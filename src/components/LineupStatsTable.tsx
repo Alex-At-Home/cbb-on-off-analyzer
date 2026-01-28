@@ -1209,6 +1209,26 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         .omit([LineupTableUtils.totalLineupId])
         .values()
         .value() as LineupStatSet[];
+
+      // Enrich before sorting, since we may want to sort on an enriched field:
+      _.forEach(otherLineups, (lineupToEnrich) => {
+        TableDisplayUtils.injectPlayTypeInfo(
+          lineupToEnrich,
+          false,
+          false,
+          teamSeasonLookup
+        ); //(inject assist numbers)
+
+        DerivedStatsUtils.injectExtraDefensiveStats(
+          lineupToEnrich,
+          lineupToEnrich
+        );
+        TableDisplayUtils.turnPppIntoRawPts(
+          lineupToEnrich,
+          showRawPts,
+          adjustForLuck
+        );
+      });
       const [refilteredLineupsNotTotal, ignoreTheseLineups] =
         LineupTableUtils.buildFilteredLineups(
           otherLineups,
@@ -1230,18 +1250,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
       const tableData = refilteredLineups
         .flatMap((stats, index) => {
-          // Re-enrich if not total
-          if (stats.posKey != LineupTableUtils.totalLineupId) {
-            TableDisplayUtils.injectPlayTypeInfo(
+          if (stats.posKey == LineupTableUtils.totalLineupId) {
+            TableDisplayUtils.turnPppIntoRawPts(
               stats,
-              false,
-              false,
-              teamSeasonLookup
-            ); //(inject assist numbers)
-
-            DerivedStatsUtils.injectExtraDefensiveStats(stats, stats);
+              showRawPts,
+              adjustForLuck
+            );
           }
-          TableDisplayUtils.turnPppIntoRawPts(stats, showRawPts, adjustForLuck);
 
           const showRepeatingHeaderThisLine =
             showRepeatingHeader && !showGameInfo && index > 0 && 0 == index % 5;

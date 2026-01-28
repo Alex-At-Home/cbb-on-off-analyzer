@@ -182,7 +182,7 @@ export class LineupTableDefs {
         CommonTableDefs.simpleHeader(mixedMode, "Pts"),
         "Points scored/conceded by this lineup",
         CbbColors.applyThemedBackground,
-        GenericTableOps.pointsOrHtmlFormatter
+        GenericTableOps.doubleRowShadowPointsFormatter(CbbColors.pp100, true)
       ),
       ppp: GenericTableOps.addPtsCol(
         CommonTableDefs.simpleHeader(mixedMode, "P/100"),

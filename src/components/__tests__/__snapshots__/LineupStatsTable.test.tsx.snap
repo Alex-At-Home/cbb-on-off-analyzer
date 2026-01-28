@@ -2416,6 +2416,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -2435,17 +2436,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -2571,6 +2563,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -2590,17 +2583,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -3045,6 +3029,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -3064,17 +3049,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -3200,6 +3176,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -3219,17 +3196,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -3678,6 +3646,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -3697,17 +3666,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -3833,6 +3793,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -3852,17 +3813,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -4307,6 +4259,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -4326,17 +4279,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -4462,6 +4406,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -4481,17 +4426,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -4940,6 +4876,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -4959,17 +4896,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -5095,6 +5023,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -5114,17 +5043,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -5569,6 +5489,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -5588,17 +5509,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -5724,6 +5636,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -5743,17 +5656,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -8690,7 +8594,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                     }
                   
                                     def_raw_pts: Object {
-                                                      "value": 0,
+                                                      "value": 297.8265895953757,
                                                     }
                   
                                     def_stk: Object {
@@ -8722,7 +8626,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                     }
                   
                                     off_raw_pts: Object {
-                                                      "value": 0,
+                                                      "value": 384.5754527162978,
                                                     }
                   
                                     off_stk: Object {
@@ -8856,6 +8760,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 90.01663893510815,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -8875,17 +8780,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #80c080,0px 0px 15px #80c080,0px 0px 15px #80c080",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        541
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 541,
                                   }
 
                   def_stk: Object {
@@ -9013,6 +8909,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 113.72549019607843,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9032,17 +8929,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        696
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 696,
                                   }
 
                   off_stk: Object {
@@ -9088,7 +8976,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                     }
                   
                                     def_raw_pts: Object {
-                                                      "value": 0,
+                                                      "value": 297.8265895953757,
                                                     }
                   
                                     def_stk: Object {
@@ -9120,7 +9008,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                     }
                   
                                     off_raw_pts: Object {
-                                                      "value": 0,
+                                                      "value": 384.5754527162978,
                                                     }
                   
                                     off_stk: Object {
@@ -9254,6 +9142,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 90.01663893510815,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9273,17 +9162,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #80c080,0px 0px 15px #80c080,0px 0px 15px #80c080",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        541
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 541,
                                   }
 
                   def_stk: Object {
@@ -9411,6 +9291,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 113.72549019607843,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9430,17 +9311,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        696
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 696,
                                   }
 
                   off_stk: Object {
@@ -9585,6 +9457,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9604,17 +9477,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -9740,6 +9604,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -9759,17 +9624,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -10214,6 +10070,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10233,17 +10090,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -10369,6 +10217,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10388,17 +10237,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -10847,6 +10687,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -10866,17 +10707,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -11002,6 +10834,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -11021,17 +10854,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -11476,6 +11300,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -11495,17 +11320,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -11631,6 +11447,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -11650,17 +11467,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -14668,6 +14476,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -14687,17 +14496,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -14823,6 +14623,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -14842,17 +14643,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -15079,6 +14871,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -15098,17 +14891,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -15234,6 +15018,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -15253,17 +15038,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -15494,6 +15270,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -15513,17 +15290,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -15649,6 +15417,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -15668,17 +15437,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -15905,6 +15665,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -15924,17 +15685,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -16060,6 +15812,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -16079,17 +15832,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -16320,6 +16064,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -16339,17 +16084,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -16475,6 +16211,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -16494,17 +16231,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -16731,6 +16459,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -16750,17 +16479,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -16886,6 +16606,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -16905,17 +16626,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -19757,6 +19469,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 95.48556680340025,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -19776,19 +19489,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 93.29896907216495,
+                                    "old_value": 362,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        370.5
-                                      </i>
-                                    </text>,
+                                    "value": 370.48399919719293,
                                   }
 
                   def_stk: Object {
@@ -19942,6 +19645,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -19961,19 +19665,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 117.2069825436409,
+                                    "old_value": 470,
                                     "override": "Adjusted from Off 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470.0
-                                      </i>
-                                    </text>,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -20228,6 +19922,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 95.48556680340025,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20247,19 +19942,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 93.29896907216495,
+                                    "old_value": 362,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5,0px 0px 15px #c5e2c5",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        370.5
-                                      </i>
-                                    </text>,
+                                    "value": 370.48399919719293,
                                   }
 
                   def_stk: Object {
@@ -20413,6 +20098,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20432,19 +20118,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 117.2069825436409,
+                                    "old_value": 470,
                                     "override": "Adjusted from Off 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470.0
-                                      </i>
-                                    </text>,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -20740,6 +20416,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.15059538569945,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20759,19 +20436,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 84.03755868544602,
+                                    "old_value": 179,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5bad5b,0px 0px 15px #5bad5b,0px 0px 15px #5bad5b",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        185.6
-                                      </i>
-                                    </text>,
+                                    "value": 185.6307681715398,
                                   }
 
                   def_stk: Object {
@@ -20925,6 +20592,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -20944,19 +20612,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 107.1090047393365,
+                                    "old_value": 226.00000000000003,
                                     "override": "Adjusted from Off 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226.0
-                                      </i>
-                                    </text>,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -21211,6 +20869,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.15059538569945,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21230,19 +20889,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 84.03755868544602,
+                                    "old_value": 179,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5bad5b,0px 0px 15px #5bad5b,0px 0px 15px #5bad5b",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        185.6
-                                      </i>
-                                    </text>,
+                                    "value": 185.6307681715398,
                                   }
 
                   def_stk: Object {
@@ -21396,6 +21045,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21415,19 +21065,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 107.1090047393365,
+                                    "old_value": 226.00000000000003,
                                     "override": "Adjusted from Off 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226.0
-                                      </i>
-                                    </text>,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -21723,6 +21363,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 92.55261350228072,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21742,19 +21383,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 87.04663212435233,
+                                    "old_value": 168,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        178.6
-                                      </i>
-                                    </text>,
+                                    "value": 178.6265440594018,
                                   }
 
                   def_stk: Object {
@@ -21908,6 +21539,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -21927,19 +21559,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 112.18274111675127,
+                                    "old_value": 221.00000000000003,
                                     "override": "Adjusted from Off 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221.0
-                                      </i>
-                                    </text>,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -22194,6 +21816,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 92.55261350228072,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -22213,19 +21836,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 87.04663212435233,
+                                    "old_value": 168,
                                     "override": "Adjusted from Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0,0px 0px 15px #a0d0a0",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        178.6
-                                      </i>
-                                    </text>,
+                                    "value": 178.6265440594018,
                                   }
 
                   def_stk: Object {
@@ -22379,6 +21992,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -22398,19 +22012,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "old_value": 112.18274111675127,
+                                    "old_value": 221.00000000000003,
                                     "override": "Adjusted from Off 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221.0
-                                      </i>
-                                    </text>,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -25247,6 +24851,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -25266,17 +24871,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -25402,6 +24998,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -25421,17 +25018,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -25890,6 +25478,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -25909,17 +25498,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -26045,6 +25625,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -26064,17 +25645,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -26537,6 +26109,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -26556,17 +26129,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -26692,6 +26256,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -26711,17 +26276,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -27180,6 +26736,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -27199,17 +26756,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -27335,6 +26883,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -27354,17 +26903,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -27827,6 +27367,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -27846,17 +27387,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -27982,6 +27514,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -28001,17 +27534,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -28470,6 +27994,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -28489,17 +28014,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -28625,6 +28141,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -28644,17 +28161,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -31700,6 +31208,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -31719,17 +31228,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -31855,6 +31355,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -31874,17 +31375,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -32343,6 +31835,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 93.29896907216495,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -32362,17 +31855,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #aad4aa,0px 0px 15px #aad4aa,0px 0px 15px #aad4aa",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        362
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 362,
                                   }
 
                   def_stk: Object {
@@ -32498,6 +31982,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 117.2069825436409,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -32517,17 +32002,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #249224,0px 0px 15px #249224,0px 0px 15px #249224",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        470
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 470,
                                   }
 
                   off_stk: Object {
@@ -32990,6 +32466,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -33009,17 +32486,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -33145,6 +32613,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -33164,17 +32633,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -33633,6 +33093,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 84.03755868544602,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -33652,17 +33113,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #339a33,0px 0px 15px #339a33,0px 0px 15px #339a33",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        179
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 179,
                                   }
 
                   def_stk: Object {
@@ -33788,6 +33240,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 107.1090047393365,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -33807,17 +33260,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4,0px 0px 15px #a4d2a4",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        226
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 226.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -34280,6 +33724,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -34299,17 +33744,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -34435,6 +33871,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -34454,17 +33891,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {
@@ -34923,6 +34351,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_pts: Object {
+                                    "colorOverride": 87.04663212435233,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -34942,17 +34371,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5aad5a,0px 0px 15px #5aad5a,0px 0px 15px #5aad5a",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        168
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 168,
                                   }
 
                   def_stk: Object {
@@ -35078,6 +34498,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   off_raw_pts: Object {
+                                    "colorOverride": 112.18274111675127,
                                     "extraInfo": <span>
                                       Play category breakdown:
                                       <li>
@@ -35097,17 +34518,8 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                          pts/100
                                       </li>
                                     </span>,
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #64b264,0px 0px 15px #64b264,0px 0px 15px #64b264",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        221
-                                      </i>
-                                    </text>,
+                                    "old_value": undefined,
+                                    "value": 221.00000000000003,
                                   }
 
                   off_stk: Object {

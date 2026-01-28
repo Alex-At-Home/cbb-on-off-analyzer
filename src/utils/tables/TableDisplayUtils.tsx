@@ -802,32 +802,27 @@ export class TableDisplayUtils {
       (mutableLineup.def_ppp?.value || 0) *
       (mutableLineup.def_poss?.value || 0);
 
+    const luckAdjRawOffPts =
+      0.01 *
+      (mutableLineup.off_ppp?.old_value || 0) *
+      (mutableLineup.off_poss?.value || 0);
+    const luckAdjRawDefPts =
+      0.01 *
+      (mutableLineup.def_ppp?.old_value || 0) *
+      (mutableLineup.def_poss?.value || 0);
+
     (mutableLineup as any).off_raw_pts = {
       ...mutableLineup.off_ppp,
-      value: (
-        <text
-          style={CommonTableDefs.getTextShadow(
-            mutableLineup.off_ppp,
-            CbbColors.off_pp100
-          )}
-        >
-          <i>{rawOffPts.toFixed(granularity)}</i>
-        </text>
-      ),
+      colorOverride: mutableLineup?.off_ppp?.value,
+      value: rawOffPts,
+      old_value: adjustForLuck ? luckAdjRawOffPts : undefined,
     };
 
     (mutableLineup as any).def_raw_pts = {
       ...mutableLineup.def_ppp,
-      value: (
-        <text
-          style={CommonTableDefs.getTextShadow(
-            mutableLineup.def_ppp,
-            CbbColors.def_pp100
-          )}
-        >
-          <i>{rawDefPts.toFixed(granularity)}</i>
-        </text>
-      ),
+      colorOverride: mutableLineup?.def_ppp?.value,
+      value: rawDefPts,
+      old_value: adjustForLuck ? luckAdjRawDefPts : undefined,
     };
 
     (mutableLineup.def_raw_net_pts as any) = {

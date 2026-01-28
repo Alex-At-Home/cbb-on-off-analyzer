@@ -2,7 +2,7 @@ import chroma from "chroma-js";
 import _ from "lodash";
 import { IntegratedGradeSettingsColorChoice } from "../components/GenericTable";
 
-type CbbColorTuple = [
+export type CbbColorTuple = [
   (val: number) => string | undefined,
   (val: number) => string | undefined
 ];

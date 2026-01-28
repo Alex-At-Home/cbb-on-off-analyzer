@@ -37,6 +37,7 @@ import ColumnConfigModal, {
   TableColumnConfig,
 } from "./shared/ColumnConfigModal";
 import { opacity } from "html2canvas-pro/dist/types/css/property-descriptors/opacity";
+import { CbbColorTuple } from "../utils/CbbColors";
 
 // Re-export for consumers
 export type { TableColumnConfig };
@@ -279,31 +280,61 @@ export class GenericTableOps {
   };
   static readonly pointsFormatter = (val: any) =>
     (val.value as number).toFixed(1);
-  static readonly shadowPointsFormatter = (
-    colorOverride: (val: number) => string
+
+  /** Single row uses a shadow and displays points */
+  static readonly singleRowShadowPointsFormatter = (
+    colorOverride: (val: number) => string | undefined,
+    intIfPossible: boolean = false
   ) => {
     return (val: any) => {
+      const shouldBeInt = intIfPossible && !val.override;
       return (
         <div
           style={{
-            ...GenericTableOps.getTextShadow(val, colorOverride),
+            ...GenericTableOps.getTextShadow(
+              { value: val?.colorOverride ?? val?.value },
+              colorOverride
+            ),
+            ...(val.extraInfo ? { display: "inline" } : {}),
             fontSize: "0.875em", //(use this instead of small so as to inherit the fontWeight from the parent)
           }}
         >
-          <i>{(val?.value || 0).toFixed(1)}</i>
+          <i>{(val?.value ?? 0).toFixed(shouldBeInt ? 0 : 1)}</i>
         </div>
       );
     };
   };
-  /** Top row is %, bottom row is also % but has a shadow instead of a full background */
+  /** Dual row - both uses a shadow and displays points */
+  static readonly doubleRowShadowPointsFormatter = (
+    colorOverride: CbbColorTuple,
+    intIfPossible: boolean = false
+  ) => {
+    return (val: any, key?: string) => {
+      if (!key || key.startsWith("off_")) {
+        return GenericTableOps.singleRowShadowPointsFormatter(
+          colorOverride[0],
+          intIfPossible
+        )(val);
+      } else {
+        return GenericTableOps.singleRowShadowPointsFormatter(
+          colorOverride[1],
+          intIfPossible
+        )(val);
+      }
+    };
+  }; /** Top row is %, bottom row is also % but has a shadow instead of a full background */
   static readonly dualRowPointsFormatter = (
-    colorOverride: (val: number) => string
+    colorOverride: (val: number) => string,
+    intIfPossible: boolean
   ) => {
     return (val: any, key?: string) => {
       if (!key || key.startsWith("off_")) {
         return GenericTableOps.pointsFormatter(val);
       } else {
-        return GenericTableOps.shadowPointsFormatter(colorOverride)(val);
+        return GenericTableOps.singleRowShadowPointsFormatter(
+          colorOverride,
+          intIfPossible
+        )(val);
       }
     };
   };
