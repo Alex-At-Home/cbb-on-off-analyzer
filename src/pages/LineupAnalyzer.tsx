@@ -185,6 +185,9 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
     if (!_.isEqual(params, lineupFilterParamsRef.current)) {
       //(to avoid recursion)
 
+      const hasPresetChanged =
+        params.presetGroup != lineupFilterParamsRef?.current?.presetGroup;
+
       // Currently: game info requires an extra possibly expensive query component so we make it on demand only
       if (params.showGameInfo != lineupFilterParamsRef.current?.showGameInfo) {
         setShouldForceReload((t) => t + 1); //(note this sets an intermediate param, NOT the one in CommonFilter)
@@ -200,7 +203,9 @@ const LineupAnalyzerPage: NextPage<{}> = () => {
       setLineupFilterParams(params); // (to ensure the new params are included in links)
 
       // Updates the table to ensure its internal state is updated, if preset group changing
-      setShouldReloadTableParams((oneUp) => oneUp + 1);
+      if (hasPresetChanged) {
+        setShouldReloadTableParams((oneUp) => oneUp + 1);
+      }
     }
   };
 

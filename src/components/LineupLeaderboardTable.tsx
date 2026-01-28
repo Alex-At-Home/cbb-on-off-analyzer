@@ -640,7 +640,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
                 LineupTableDefs.repeatingLineupHeaderFields,
                 "small"
               ),
-              GenericTableOps.buildRowSeparator(),
+              GenericTableOps.buildRowSeparator("1px"),
             ]
           : [],
         [GenericTableOps.buildDataRow(stats, offPrefixFn, offCellMetaFn)],
