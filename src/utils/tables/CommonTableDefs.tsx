@@ -15,6 +15,7 @@ import { TableDisplayUtils } from "./TableDisplayUtils"; // Import needed for to
 
 // Lodash:
 import _ from "lodash";
+import { TableSortPopupMenuState } from "../../components/shared/TableSortPopupMenu";
 
 const lineSep = (
   <hr
@@ -1272,5 +1273,142 @@ export class CommonTableDefs {
               ]
         )
     ) as Record<string, GenericTableColProps>;
+  };
+
+  //////////////////////////
+
+  // Generic Sort Utils
+
+  /** Builds the representation of a menu dropdown with all available sort options */
+  static readonly sortBuilder = (
+    rowMode: OffDefDualMixed,
+    sortKeyFilter: (sortType: string, key: string) => boolean,
+    keyTransformer: (inKey: string) => string | undefined,
+    labelTransforms: Record<string, (o: string) => string | undefined>,
+    allowedFields: _.CollectionChain<[string, GenericTableColProps]>
+  ): { label: string; value: string }[] => {
+    return _.flatten(
+      allowedFields
+        .filter((keycol) =>
+          Boolean(
+            keycol[1].colName &&
+              keycol[1].colName != "" &&
+              (!_.isString(keycol[1].colName) ||
+                !_.startsWith(keycol[1].colName, "__"))
+          )
+        )
+        .map((keycol) => {
+          return rowMode == "Mixed"
+            ? ["desc", "asc"].flatMap((combo) => {
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                    default:
+                      return "N/A";
+                  }
+                };
+                const labelOverrideFn = labelTransforms[keycol[0]];
+                const ascOrDescLabel = ascOrDesc(combo);
+                const label =
+                  labelOverrideFn?.(ascOrDescLabel) ||
+                  `${keycol[1].colName} (${ascOrDescLabel})`;
+                return [
+                  {
+                    label,
+                    value: `${combo}:${keycol[0]}`,
+                  },
+                ];
+              })
+            : [
+                ["desc", "off"],
+                ["asc", "off"],
+                ["desc", "def"],
+                ["asc", "def"],
+                ["desc", "diff"],
+                ["asc", "diff"],
+              ].flatMap((combo) => {
+                if (sortKeyFilter(combo[1], keycol[0])) {
+                  return [];
+                }
+
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                    default:
+                      return "N/A";
+                  }
+                };
+                const offOrDef = (s: string) => {
+                  switch (s) {
+                    case "off":
+                      return "Offensive";
+                    case "def":
+                      return "Defensive";
+                    case "diff":
+                      return "Net";
+                    default:
+                      return "";
+                  }
+                };
+                const labelOverrideFn =
+                  labelTransforms[`${combo[1]}_${keycol[0]}`];
+                const ascOrDescLabel = ascOrDesc(combo[0]);
+                const offOrDefLabel = offOrDef(combo[1]);
+                const label =
+                  labelOverrideFn?.(ascOrDescLabel) ||
+                  `${keycol[1].colName} (${ascOrDescLabel} / ${offOrDefLabel})`;
+                const keyToUse =
+                  keyTransformer(keycol[0]) || `${combo[1]}_${keycol[0]}`;
+                return [
+                  {
+                    label,
+                    value: `${combo[0]}:${keyToUse}`,
+                  },
+                ];
+              });
+        })
+        .value()
+    );
+  };
+
+  /** Lineup-table specific handling of clicking on a column header to manage sorting */
+  static readonly buildSortCallback = (
+    rowMode: OffDefDualMixed,
+    tableFieldTransformer: (headerKey: string) => string,
+    sortBy: string,
+    sortOptions: { label: string; value: string }[],
+    setSortMenuState: (newState: TableSortPopupMenuState) => void
+  ) => {
+    return (headerKeyIn: string, ev: any) => {
+      const headerKey = tableFieldTransformer(headerKeyIn);
+      const matchingOptions: {
+        value: string;
+        label: string;
+      }[] = sortOptions.filter((opt: { value: string; label: string }) => {
+        const field = opt.value.split(":")[1];
+        const rawFieldIndex = field.indexOf("_");
+        const rawField =
+          rawFieldIndex > 0 && rowMode != "Mixed"
+            ? field.substring(rawFieldIndex + 1)
+            : field;
+        return rawField == headerKey;
+      });
+
+      if (matchingOptions.length > 1) {
+        // Multiple options - show popup
+        setSortMenuState({
+          columnKey: headerKey,
+          options: matchingOptions.concat([{ label: "Clear", value: "" }]),
+          anchorEl: ev.currentTarget as HTMLElement,
+          currentSortValue: sortBy,
+        });
+      }
+    };
   };
 }

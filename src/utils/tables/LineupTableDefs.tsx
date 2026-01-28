@@ -50,110 +50,30 @@ export class LineupTableDefs {
 
   // Sort utils
 
+  /** Builds the representation of a menu dropdown with all available sort options */
   static readonly sortBuilder = (
     rowMode: OffDefDualMixed,
     allowedFields: _.CollectionChain<[string, GenericTableColProps]>
   ): { label: string; value: string }[] => {
-    return _.flatten(
+    return CommonTableDefs.sortBuilder(
+      rowMode,
+      (sortType: string, key: string) => {
+        if (sortType == "diff" && key == "net") {
+          //diff of adj/raw makes no sense
+          return true;
+        } else if (
+          key.startsWith("net_") &&
+          sortType != rowMode.toLowerCase()
+        ) {
+          //net_adj / net_raw
+          return true;
+        } else {
+          return false;
+        }
+      },
+      LineupTableDefs.offDefKeyTransform,
+      LineupTableDefs.sortColNameOverrides,
       allowedFields
-        .filter((keycol) =>
-          Boolean(
-            keycol[1].colName &&
-              keycol[1].colName != "" &&
-              (!_.isString(keycol[1].colName) ||
-                !_.startsWith(keycol[1].colName, "__"))
-          )
-        )
-        .map((keycol) => {
-          return rowMode == "Mixed"
-            ? ["desc", "asc"].flatMap((combo) => {
-                const ascOrDesc = (s: string) => {
-                  switch (s) {
-                    case "asc":
-                      return "Asc.";
-                    case "desc":
-                      return "Desc.";
-                    default:
-                      return "N/A";
-                  }
-                };
-                const labelOverrideFn =
-                  LineupTableDefs.sortColNameOverrides[keycol[0]];
-                const ascOrDescLabel = ascOrDesc(combo);
-                const label =
-                  labelOverrideFn?.(ascOrDescLabel) ||
-                  `${keycol[1].colName} (${ascOrDescLabel})`;
-                return [
-                  {
-                    label,
-                    value: `${combo}:${keycol[0]}`,
-                  },
-                ];
-              })
-            : [
-                ["desc", "off"],
-                ["asc", "off"],
-                ["desc", "def"],
-                ["asc", "def"],
-                ["desc", "diff"],
-                ["asc", "diff"],
-              ].flatMap((combo) => {
-                if (combo[1] == "diff" && keycol[0] == "net") {
-                  //diff of adj/raw makes no sense
-                  return [];
-                }
-                if (
-                  keycol[0].startsWith("net_") &&
-                  combo[1] != rowMode.toLowerCase()
-                ) {
-                  //net_adj / net_raw
-                  return [];
-                }
-
-                const ascOrDesc = (s: string) => {
-                  switch (s) {
-                    case "asc":
-                      return "Asc.";
-                    case "desc":
-                      return "Desc.";
-                    default:
-                      return "N/A";
-                  }
-                };
-                const offOrDef = (s: string) => {
-                  switch (s) {
-                    case "off":
-                      return "Offensive";
-                    case "def":
-                      return "Defensive";
-                    case "diff":
-                      return "Net";
-                    default:
-                      return "";
-                  }
-                };
-                const labelOverrideFn =
-                  LineupTableDefs.sortColNameOverrides[
-                    `${combo[1]}_${keycol[0]}`
-                  ];
-                const ascOrDescLabel = ascOrDesc(combo[0]);
-                const offOrDefLabel = offOrDef(combo[1]);
-                const label =
-                  labelOverrideFn?.(ascOrDescLabel) ||
-                  `${keycol[1].colName} (${ascOrDescLabel} / ${offOrDefLabel})`;
-                const maybeKeyOverride = LineupTableDefs.offDefKeyTransform(
-                  keycol[0]
-                );
-                const keyToUse = maybeKeyOverride || `${combo[1]}_${keycol[0]}`;
-                return [
-                  {
-                    label,
-                    value: `${combo[0]}:${keyToUse}`,
-                  },
-                ];
-              });
-        })
-        .value()
     );
   };
 
@@ -185,35 +105,20 @@ export class LineupTableDefs {
     sortOptions: { label: string; value: string }[],
     setSortMenuState: (newState: TableSortPopupMenuState) => void
   ) => {
-    return (headerKeyIn: string, ev: any) => {
-      const maybeTranslatedHeaderKey =
-        LineupTableDefs.offDefKeyTransform(headerKeyIn);
-      const headerKey = maybeTranslatedHeaderKey
-        ? maybeTranslatedHeaderKey.substring(4)
-        : headerKeyIn;
-      const matchingOptions: {
-        value: string;
-        label: string;
-      }[] = sortOptions.filter((opt: { value: string; label: string }) => {
-        const field = opt.value.split(":")[1];
-        const rawFieldIndex = field.indexOf("_");
-        const rawField =
-          rawFieldIndex > 0 && rowMode != "Mixed"
-            ? field.substring(rawFieldIndex + 1)
-            : field;
-        return rawField == headerKey;
-      });
-
-      if (matchingOptions.length > 1) {
-        // Multiple options - show popup
-        setSortMenuState({
-          columnKey: headerKey,
-          options: matchingOptions.concat([{ label: "Clear", value: "" }]),
-          anchorEl: ev.currentTarget as HTMLElement,
-          currentSortValue: sortBy,
-        });
-      }
-    };
+    return CommonTableDefs.buildSortCallback(
+      rowMode,
+      (headerKeyIn: string) => {
+        const maybeTranslatedHeaderKey =
+          LineupTableDefs.offDefKeyTransform(headerKeyIn);
+        const headerKey = maybeTranslatedHeaderKey
+          ? maybeTranslatedHeaderKey.substring(4)
+          : headerKeyIn;
+        return headerKey;
+      },
+      sortBy,
+      sortOptions,
+      setSortMenuState
+    );
   };
 
   /** Fix sort names for non-off/def columns */
