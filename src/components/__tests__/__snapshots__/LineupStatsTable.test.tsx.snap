@@ -151,12 +151,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -1161,7 +1169,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -2106,7 +2114,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "poss": GenericTableColProps {
@@ -2186,7 +2194,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   },
                   "def_net": GenericTableColProps {
                     "className": "",
-                    "colName": "Net Rtg",
+                    "colName": "Raw Rtg",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
@@ -2365,17 +2373,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -2402,17 +2400,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -2978,17 +2968,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -3015,17 +2995,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -3595,17 +3567,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -3632,17 +3594,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -4208,17 +4162,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -4245,17 +4189,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -4825,17 +4761,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.1
-                                      </i>
-                                    </small>,
+                                    "value": 25.136108992398945,
                                   }
 
                   def_ppp: Object {
@@ -4862,17 +4788,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -5438,17 +5356,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.1
-                                      </i>
-                                    </small>,
+                                    "value": 25.136108992398945,
                                   }
 
                   def_ppp: Object {
@@ -5475,17 +5383,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -6129,7 +6029,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (no individu
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -6424,12 +6324,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -7434,7 +7342,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -8379,7 +8287,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "poss": GenericTableColProps {
@@ -8459,7 +8367,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   },
                   "def_net": GenericTableColProps {
                     "className": "",
-                    "colName": "Net Rtg",
+                    "colName": "Raw Rtg",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
@@ -8586,11 +8494,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                     }
                   
                                     def_net: Object {
-                                                      "value": 0,
+                                                      "value": 23.614650716176232,
                                                     }
                   
                                     def_raw_net_pts: Object {
-                                                      "value": 0,
+                                                      "value": 86.6088631984586,
                                                     }
                   
                                     def_raw_pts: Object {
@@ -8709,17 +8617,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.7
-                                      </i>
-                                    </small>,
+                                    "value": 23.708851260970278,
                                   }
 
                   def_ppp: Object {
@@ -8746,17 +8644,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        155
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.708851260970278,
+                                    "old_value": undefined,
+                                    "value": 155,
                                   }
 
                   def_raw_pts: Object {
@@ -8968,11 +8858,11 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                                     }
                   
                                     def_net: Object {
-                                                      "value": 0,
+                                                      "value": 23.614650716176232,
                                                     }
                   
                                     def_raw_net_pts: Object {
-                                                      "value": 0,
+                                                      "value": 86.6088631984586,
                                                     }
                   
                                     def_raw_pts: Object {
@@ -9091,17 +8981,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.7
-                                      </i>
-                                    </small>,
+                                    "value": 23.708851260970278,
                                   }
 
                   def_ppp: Object {
@@ -9128,17 +9008,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #52a952,0px 0px 15px #52a952,0px 0px 15px #52a952",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        155
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.708851260970278,
+                                    "old_value": undefined,
+                                    "value": 155,
                                   }
 
                   def_raw_pts: Object {
@@ -9406,17 +9278,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -9443,17 +9305,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -10019,17 +9873,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -10056,17 +9900,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -10636,17 +10472,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -10673,17 +10499,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -11249,17 +11067,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -11286,17 +11094,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -11940,7 +11740,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (totals/off)
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -12235,12 +12035,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "Pts (Desc. / Offensive)",
@@ -13510,13 +13318,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   },
                   "net_raw_rtg": GenericTableColProps {
                     "className": "",
-                    "colName": "Raw Rtg",
+                    "colName": "Raw Pts",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the raw offensive and defensive efficiencies",
+                    "toolTip": "Points scored - allowed for this sample",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -13986,13 +13794,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   },
                   "net_raw_rtg": GenericTableColProps {
                     "className": "",
-                    "colName": "Raw Rtg",
+                    "colName": "Raw Pts",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the raw offensive and defensive efficiencies",
+                    "toolTip": "Points scored - allowed for this sample",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -14246,13 +14054,13 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   },
                   "def_net": GenericTableColProps {
                     "className": "",
-                    "colName": "Net Rtg",
+                    "colName": "Raw Pts",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the raw offensive and defensive efficiencies",
+                    "toolTip": "Points scored - allowed for this sample",
                     "widthUnits": 2,
                   },
                   "off_3p": GenericTableColProps {
@@ -14425,17 +14233,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_ppp: Object {
@@ -14462,17 +14262,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -14820,17 +14612,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_ppp: Object {
@@ -14857,17 +14641,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -15219,17 +14995,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_ppp: Object {
@@ -15256,17 +15024,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -15614,17 +15374,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_ppp: Object {
@@ -15651,17 +15403,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -16013,17 +15757,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_ppp: Object {
@@ -16050,17 +15786,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -16408,17 +16136,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_ppp: Object {
@@ -16445,17 +16165,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -17176,12 +16888,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -18186,7 +17906,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -19131,7 +18851,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "poss": GenericTableColProps {
@@ -19211,7 +18931,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   },
                   "def_net": GenericTableColProps {
                     "className": "",
-                    "colName": "Net Rtg",
+                    "colName": "Raw Rtg",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
@@ -19414,17 +19134,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_net: Object {
                                     "old_value": 23.908013471475954,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        21.7
-                                      </i>
-                                    </small>,
+                                    "value": 21.721415740240655,
                                   }
 
                   def_ppp: Object {
@@ -19453,19 +19163,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "old_value": 23.908013471475954,
+                                    "colorOverride": 21.721415740240655,
+                                    "old_value": 108,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        99.5
-                                      </i>
-                                    </text>,
+                                    "value": 99.51600080280707,
                                   }
 
                   def_raw_pts: Object {
@@ -19867,17 +19568,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_net: Object {
                                     "old_value": 23.908013471475954,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        21.7
-                                      </i>
-                                    </small>,
+                                    "value": 21.721415740240655,
                                   }
 
                   def_ppp: Object {
@@ -19906,19 +19597,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "old_value": 23.908013471475954,
+                                    "colorOverride": 21.721415740240655,
+                                    "old_value": 108,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        99.5
-                                      </i>
-                                    </text>,
+                                    "value": 99.51600080280707,
                                   }
 
                   def_raw_pts: Object {
@@ -20361,17 +20043,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_net: Object {
                                     "old_value": 23.071446053890483,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        20.0
-                                      </i>
-                                    </small>,
+                                    "value": 19.958409353637055,
                                   }
 
                   def_ppp: Object {
@@ -20400,19 +20072,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "old_value": 23.071446053890483,
+                                    "colorOverride": 19.958409353637055,
+                                    "old_value": 47.00000000000003,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        40.4
-                                      </i>
-                                    </text>,
+                                    "value": 40.369231828460215,
                                   }
 
                   def_raw_pts: Object {
@@ -20814,17 +20477,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_net: Object {
                                     "old_value": 23.071446053890483,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        20.0
-                                      </i>
-                                    </small>,
+                                    "value": 19.958409353637055,
                                   }
 
                   def_ppp: Object {
@@ -20853,19 +20506,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "old_value": 23.071446053890483,
+                                    "colorOverride": 19.958409353637055,
+                                    "old_value": 47.00000000000003,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        40.4
-                                      </i>
-                                    </text>,
+                                    "value": 40.369231828460215,
                                   }
 
                   def_raw_pts: Object {
@@ -21308,17 +20952,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_net: Object {
                                     "old_value": 25.136108992398945,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        19.6
-                                      </i>
-                                    </small>,
+                                    "value": 19.63012761447055,
                                   }
 
                   def_ppp: Object {
@@ -21347,19 +20981,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "old_value": 25.136108992398945,
+                                    "colorOverride": 19.63012761447055,
+                                    "old_value": 53.00000000000003,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        42.4
-                                      </i>
-                                    </text>,
+                                    "value": 42.373455940598234,
                                   }
 
                   def_raw_pts: Object {
@@ -21761,17 +21386,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_net: Object {
                                     "old_value": 25.136108992398945,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        19.6
-                                      </i>
-                                    </small>,
+                                    "value": 19.63012761447055,
                                   }
 
                   def_ppp: Object {
@@ -21800,19 +21415,10 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "old_value": 25.136108992398945,
+                                    "colorOverride": 19.63012761447055,
+                                    "old_value": 53.00000000000003,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        42.4
-                                      </i>
-                                    </text>,
+                                    "value": 42.373455940598234,
                                   }
 
                   def_raw_pts: Object {
@@ -22291,7 +21897,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -22586,12 +22192,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -23596,7 +23210,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -24541,7 +24155,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "poss": GenericTableColProps {
@@ -24621,7 +24235,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   },
                   "def_net": GenericTableColProps {
                     "className": "",
-                    "colName": "Net Rtg",
+                    "colName": "Raw Rtg",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
@@ -24800,17 +24414,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -24837,17 +24441,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -25427,17 +25023,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -25464,17 +25050,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -26058,17 +25636,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -26095,17 +25663,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -26685,17 +26245,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -26722,17 +26272,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -27316,17 +26858,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.1
-                                      </i>
-                                    </small>,
+                                    "value": 25.136108992398945,
                                   }
 
                   def_ppp: Object {
@@ -27353,17 +26885,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -27943,17 +27467,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.1
-                                      </i>
-                                    </small>,
+                                    "value": 25.136108992398945,
                                   }
 
                   def_ppp: Object {
@@ -27980,17 +27494,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -28648,7 +28154,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -28943,12 +28449,20 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "P/100 (Desc. / Offensive)",
@@ -29953,7 +29467,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "orb": GenericTableColProps {
@@ -30898,7 +30412,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                     "isTitle": false,
                     "missingData": undefined,
                     "rowSpan": [Function],
-                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                    "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                     "widthUnits": 2,
                   },
                   "poss": GenericTableColProps {
@@ -30978,7 +30492,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   },
                   "def_net": GenericTableColProps {
                     "className": "",
-                    "colName": "Net Rtg",
+                    "colName": "Raw Rtg",
                     "colorPicker": [Function],
                     "formatter": [Function],
                     "isTitle": false,
@@ -31157,17 +30671,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -31194,17 +30698,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -31784,17 +31280,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.9
-                                      </i>
-                                    </small>,
+                                    "value": 23.908013471475954,
                                   }
 
                   def_ppp: Object {
@@ -31821,17 +31307,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        108
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.908013471475954,
+                                    "old_value": undefined,
+                                    "value": 108,
                                   }
 
                   def_raw_pts: Object {
@@ -32415,17 +31893,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -32452,17 +31920,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -33042,17 +32502,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.071446053890483,
                                   }
 
                   def_ppp: Object {
@@ -33079,17 +32529,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        47
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 23.071446053890483,
+                                    "old_value": undefined,
+                                    "value": 47.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -33673,17 +33115,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.1
-                                      </i>
-                                    </small>,
+                                    "value": 25.136108992398945,
                                   }
 
                   def_ppp: Object {
@@ -33710,17 +33142,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -34300,17 +33724,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                   def_luck_diags: undefined
 
                   def_net: Object {
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.1
-                                      </i>
-                                    </small>,
+                                    "value": 25.136108992398945,
                                   }
 
                   def_ppp: Object {
@@ -34337,17 +33751,9 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                                   }
 
                   def_raw_net_pts: Object {
-                                    "value": <text
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        53
-                                      </i>
-                                    </text>,
+                                    "colorOverride": 25.136108992398945,
+                                    "old_value": undefined,
+                                    "value": 53.00000000000003,
                                   }
 
                   def_raw_pts: Object {
@@ -35005,7 +34411,7 @@ exports[`LineupStatsTable LineupStatsTable - should create snapshot (with indivi
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {

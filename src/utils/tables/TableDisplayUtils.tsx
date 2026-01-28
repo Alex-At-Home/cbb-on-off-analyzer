@@ -704,16 +704,6 @@ export class TableDisplayUtils {
         // Copy raw net as a small extra info in the defensive column
         (statSet as TeamEnrichment | LineupEnrichment).def_net = {
           ...statSet.off_raw_net,
-          value: (
-            <small
-              style={CommonTableDefs.getTextShadow(
-                statSet.off_raw_net,
-                CbbColors.off_diff35_p100_redGreen
-              )}
-            >
-              <i>{(statSet.off_raw_net?.value || 0).toFixed(1)}</i>
-            </small>
-          ),
         };
       }
       // Extra defensive info:
@@ -791,8 +781,6 @@ export class TableDisplayUtils {
     overwritePpp: boolean,
     adjustForLuck: boolean
   ) => {
-    const granularity = adjustForLuck ? 1 : 0;
-
     const rawOffPts =
       0.01 *
       (mutableLineup.off_ppp?.value || 0) *
@@ -827,16 +815,11 @@ export class TableDisplayUtils {
 
     (mutableLineup.def_raw_net_pts as any) = {
       ...mutableLineup.off_raw_net,
-      value: (
-        <text
-          style={CommonTableDefs.getTextShadow(
-            mutableLineup.off_raw_net,
-            CbbColors.off_diff35_p100_redGreen
-          )}
-        >
-          <i>{(rawOffPts - rawDefPts).toFixed(granularity)}</i>
-        </text>
-      ),
+      value: rawOffPts - rawDefPts,
+      old_value: adjustForLuck
+        ? luckAdjRawOffPts - luckAdjRawDefPts
+        : undefined,
+      colorOverride: mutableLineup?.def_net?.value,
     };
     if (overwritePpp) {
       mutableLineup.def_net = mutableLineup.def_raw_net_pts;

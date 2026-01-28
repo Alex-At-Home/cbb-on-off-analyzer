@@ -385,12 +385,20 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "Pts (Desc. / Offensive)",
@@ -1008,17 +1016,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 41.614900000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.4
-                                      </i>
-                                    </small>,
+                                    "value": 39.397800000000004,
                                   }
 
                   def_ppp: Object {
@@ -1646,17 +1644,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 41.614900000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.4
-                                      </i>
-                                    </small>,
+                                    "value": 39.397800000000004,
                                   }
 
                   def_ppp: Object {
@@ -2288,17 +2276,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 31.428799999999995,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.7
-                                      </i>
-                                    </small>,
+                                    "value": 26.66839999999999,
                                   }
 
                   def_ppp: Object {
@@ -2926,17 +2904,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 31.428799999999995,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.7
-                                      </i>
-                                    </small>,
+                                    "value": 26.66839999999999,
                                   }
 
                   def_ppp: Object {
@@ -3568,17 +3536,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.2187,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.8
-                                      </i>
-                                    </small>,
+                                    "value": 26.821399999999997,
                                   }
 
                   def_ppp: Object {
@@ -4196,17 +4154,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.2187,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.8
-                                      </i>
-                                    </small>,
+                                    "value": 26.821399999999997,
                                   }
 
                   def_ppp: Object {
@@ -4828,17 +4776,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.194500000000005,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.106800000000007,
                                   }
 
                   def_ppp: Object {
@@ -5463,17 +5401,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.194500000000005,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.106800000000007,
                                   }
 
                   def_ppp: Object {
@@ -6102,17 +6030,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 46.73660000000001,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        36.1
-                                      </i>
-                                    </small>,
+                                    "value": 36.05970000000001,
                                   }
 
                   def_ppp: Object {
@@ -6752,17 +6670,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 46.73660000000001,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        36.1
-                                      </i>
-                                    </small>,
+                                    "value": 36.05970000000001,
                                   }
 
                   def_ppp: Object {
@@ -7348,7 +7256,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -7424,17 +7332,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 48.4344,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        41.7
-                                      </i>
-                                    </small>,
+                                    "value": 41.7398,
                                   }
 
                   def_ppp: Object {
@@ -8052,17 +7950,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 48.4344,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        41.7
-                                      </i>
-                                    </small>,
+                                    "value": 41.7398,
                                   }
 
                   def_ppp: Object {
@@ -8684,17 +8572,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 33.89489999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.2
-                                      </i>
-                                    </small>,
+                                    "value": 39.2144,
                                   }
 
                   def_ppp: Object {
@@ -9318,17 +9196,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 33.89489999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.2
-                                      </i>
-                                    </small>,
+                                    "value": 39.2144,
                                   }
 
                   def_ppp: Object {
@@ -9956,17 +9824,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.290499999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.091700000000003,
                                   }
 
                   def_ppp: Object {
@@ -10597,17 +10455,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.290499999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.091700000000003,
                                   }
 
                   def_ppp: Object {
@@ -11242,17 +11090,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 36.532300000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #43a143,0px 0px 15px #43a143,0px 0px 15px #43a143",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.9
-                                      </i>
-                                    </small>,
+                                    "value": 25.857200000000006,
                                   }
 
                   def_ppp: Object {
@@ -11873,17 +11711,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 36.532300000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #43a143,0px 0px 15px #43a143,0px 0px 15px #43a143",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.9
-                                      </i>
-                                    </small>,
+                                    "value": 25.857200000000006,
                                   }
 
                   def_ppp: Object {
@@ -12508,17 +12336,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.907999999999987,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        21.7
-                                      </i>
-                                    </small>,
+                                    "value": 21.73230000000001,
                                   }
 
                   def_ppp: Object {
@@ -13143,17 +12961,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.907999999999987,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        21.7
-                                      </i>
-                                    </small>,
+                                    "value": 21.73230000000001,
                                   }
 
                   def_ppp: Object {
@@ -13852,7 +13660,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -14326,12 +14134,20 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "Pts (Desc. / Offensive)",
@@ -14949,17 +14765,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 41.614900000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.4
-                                      </i>
-                                    </small>,
+                                    "value": 39.397800000000004,
                                   }
 
                   def_ppp: Object {
@@ -15596,17 +15402,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 41.614900000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.4
-                                      </i>
-                                    </small>,
+                                    "value": 39.397800000000004,
                                   }
 
                   def_ppp: Object {
@@ -16247,17 +16043,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 43.566599999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        35.7
-                                      </i>
-                                    </small>,
+                                    "value": 35.650999999999996,
                                   }
 
                   def_ppp: Object {
@@ -16888,17 +16674,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 43.566599999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        35.7
-                                      </i>
-                                    </small>,
+                                    "value": 35.650999999999996,
                                   }
 
                   def_ppp: Object {
@@ -17533,17 +17309,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 33.7111,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        31.1
-                                      </i>
-                                    </small>,
+                                    "value": 31.0736,
                                   }
 
                   def_ppp: Object {
@@ -18167,17 +17933,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 33.7111,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d,0px 0px 15px #1d8e1d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        31.1
-                                      </i>
-                                    </small>,
+                                    "value": 31.0736,
                                   }
 
                   def_ppp: Object {
@@ -18805,17 +18561,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.2187,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.8
-                                      </i>
-                                    </small>,
+                                    "value": 26.821399999999997,
                                   }
 
                   def_ppp: Object {
@@ -19442,17 +19188,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.2187,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.8
-                                      </i>
-                                    </small>,
+                                    "value": 26.821399999999997,
                                   }
 
                   def_ppp: Object {
@@ -20083,17 +19819,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 36.471500000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #269326,0px 0px 15px #269326,0px 0px 15px #269326",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        29.8
-                                      </i>
-                                    </small>,
+                                    "value": 29.8343,
                                   }
 
                   def_ppp: Object {
@@ -20727,17 +20453,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 36.471500000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #269326,0px 0px 15px #269326,0px 0px 15px #269326",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        29.8
-                                      </i>
-                                    </small>,
+                                    "value": 29.8343,
                                   }
 
                   def_ppp: Object {
@@ -21317,7 +21033,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -21393,17 +21109,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.952799999999996,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3fa03f,0px 0px 15px #3fa03f,0px 0px 15px #3fa03f",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.3
-                                      </i>
-                                    </small>,
+                                    "value": 26.305000000000007,
                                   }
 
                   def_ppp: Object {
@@ -22033,17 +21739,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.952799999999996,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3fa03f,0px 0px 15px #3fa03f,0px 0px 15px #3fa03f",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.3
-                                      </i>
-                                    </small>,
+                                    "value": 26.305000000000007,
                                   }
 
                   def_ppp: Object {
@@ -22677,17 +22373,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.82679999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5eaf5e,0px 0px 15px #5eaf5e,0px 0px 15px #5eaf5e",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        22.2
-                                      </i>
-                                    </small>,
+                                    "value": 22.165000000000006,
                                   }
 
                   def_ppp: Object {
@@ -23317,17 +23003,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.82679999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #5eaf5e,0px 0px 15px #5eaf5e,0px 0px 15px #5eaf5e",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        22.2
-                                      </i>
-                                    </small>,
+                                    "value": 22.165000000000006,
                                   }
 
                   def_ppp: Object {
@@ -23961,17 +23637,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 46.73660000000001,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        36.1
-                                      </i>
-                                    </small>,
+                                    "value": 36.05970000000001,
                                   }
 
                   def_ppp: Object {
@@ -24620,17 +24286,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 46.73660000000001,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        36.1
-                                      </i>
-                                    </small>,
+                                    "value": 36.05970000000001,
                                   }
 
                   def_ppp: Object {
@@ -25283,17 +24939,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 31.428799999999995,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.7
-                                      </i>
-                                    </small>,
+                                    "value": 26.66839999999999,
                                   }
 
                   def_ppp: Object {
@@ -25930,17 +25576,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 31.428799999999995,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.7
-                                      </i>
-                                    </small>,
+                                    "value": 26.66839999999999,
                                   }
 
                   def_ppp: Object {
@@ -26581,17 +26217,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.194500000000005,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.106800000000007,
                                   }
 
                   def_ppp: Object {
@@ -27225,17 +26851,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.194500000000005,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.106800000000007,
                                   }
 
                   def_ppp: Object {
@@ -27815,7 +27431,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -27891,17 +27507,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 22.50609999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #67b367,0px 0px 15px #67b367,0px 0px 15px #67b367",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        20.9
-                                      </i>
-                                    </small>,
+                                    "value": 20.9242,
                                   }
 
                   def_ppp: Object {
@@ -28523,17 +28129,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 22.50609999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #67b367,0px 0px 15px #67b367,0px 0px 15px #67b367",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        20.9
-                                      </i>
-                                    </small>,
+                                    "value": 20.9242,
                                   }
 
                   def_ppp: Object {
@@ -29159,17 +28755,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 16.610699999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #86c386,0px 0px 15px #86c386,0px 0px 15px #86c386",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        16.7
-                                      </i>
-                                    </small>,
+                                    "value": 16.671999999999997,
                                   }
 
                   def_ppp: Object {
@@ -29791,17 +29377,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 16.610699999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #86c386,0px 0px 15px #86c386,0px 0px 15px #86c386",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        16.7
-                                      </i>
-                                    </small>,
+                                    "value": 16.671999999999997,
                                   }
 
                   def_ppp: Object {
@@ -30427,17 +30003,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 20.8142,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #86c386,0px 0px 15px #86c386,0px 0px 15px #86c386",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        16.6
-                                      </i>
-                                    </small>,
+                                    "value": 16.588799999999992,
                                   }
 
                   def_ppp: Object {
@@ -31062,17 +30628,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 20.8142,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #86c386,0px 0px 15px #86c386,0px 0px 15px #86c386",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        16.6
-                                      </i>
-                                    </small>,
+                                    "value": 16.588799999999992,
                                   }
 
                   def_ppp: Object {
@@ -31701,17 +31257,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.770799999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #6bb56b,0px 0px 15px #6bb56b,0px 0px 15px #6bb56b",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        20.3
-                                      </i>
-                                    </small>,
+                                    "value": 20.326699999999988,
                                   }
 
                   def_ppp: Object {
@@ -32343,17 +31889,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.770799999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #6bb56b,0px 0px 15px #6bb56b,0px 0px 15px #6bb56b",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        20.3
-                                      </i>
-                                    </small>,
+                                    "value": 20.326699999999988,
                                   }
 
                   def_ppp: Object {
@@ -32989,17 +32525,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 13.32159999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #95ca95,0px 0px 15px #95ca95,0px 0px 15px #95ca95",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        14.5
-                                      </i>
-                                    </small>,
+                                    "value": 14.486899999999991,
                                   }
 
                   def_ppp: Object {
@@ -33621,17 +33147,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 13.32159999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #95ca95,0px 0px 15px #95ca95,0px 0px 15px #95ca95",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        14.5
-                                      </i>
-                                    </small>,
+                                    "value": 14.486899999999991,
                                   }
 
                   def_ppp: Object {
@@ -34327,7 +33843,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {
@@ -34856,12 +34372,20 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   "label": "Other",
                   "options": Array [
                     Object {
-                      "label": "Net Rtg (Desc. / Offensive)",
+                      "label": "Adj Rtg (Desc. / Net)",
                       "value": "desc:off_net",
                     },
                     Object {
-                      "label": "Net Rtg (Asc. / Offensive)",
+                      "label": "Adj Rtg (Asc. / Net)",
                       "value": "asc:off_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Desc. / Net)",
+                      "value": "desc:def_net",
+                    },
+                    Object {
+                      "label": "Raw Rtg (Asc. / Net)",
+                      "value": "asc:def_net",
                     },
                     Object {
                       "label": "Pts (Desc. / Offensive)",
@@ -35479,17 +35003,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 41.614900000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.4
-                                      </i>
-                                    </small>,
+                                    "value": 39.397800000000004,
                                   }
 
                   def_ppp: Object {
@@ -36117,17 +35631,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 41.614900000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.4
-                                      </i>
-                                    </small>,
+                                    "value": 39.397800000000004,
                                   }
 
                   def_ppp: Object {
@@ -36759,17 +36263,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 31.428799999999995,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.7
-                                      </i>
-                                    </small>,
+                                    "value": 26.66839999999999,
                                   }
 
                   def_ppp: Object {
@@ -37397,17 +36891,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 31.428799999999995,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d,0px 0px 15px #3d9e3d",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.7
-                                      </i>
-                                    </small>,
+                                    "value": 26.66839999999999,
                                   }
 
                   def_ppp: Object {
@@ -38039,17 +37523,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.2187,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.8
-                                      </i>
-                                    </small>,
+                                    "value": 26.821399999999997,
                                   }
 
                   def_ppp: Object {
@@ -38667,17 +38141,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.2187,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c,0px 0px 15px #3c9e3c",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        26.8
-                                      </i>
-                                    </small>,
+                                    "value": 26.821399999999997,
                                   }
 
                   def_ppp: Object {
@@ -39299,17 +38763,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.194500000000005,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.106800000000007,
                                   }
 
                   def_ppp: Object {
@@ -39934,17 +39388,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.194500000000005,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.106800000000007,
                                   }
 
                   def_ppp: Object {
@@ -40573,17 +40017,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 46.73660000000001,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        36.1
-                                      </i>
-                                    </small>,
+                                    "value": 36.05970000000001,
                                   }
 
                   def_ppp: Object {
@@ -41223,17 +40657,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 46.73660000000001,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        36.1
-                                      </i>
-                                    </small>,
+                                    "value": 36.05970000000001,
                                   }
 
                   def_ppp: Object {
@@ -41819,7 +41243,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
               },
               GenericTableSeparator {
                 "kind": "separator",
-                "padding": undefined,
+                "padding": "1px",
               },
               GenericTableDataRow {
                 "cellMetaFn": [Function],
@@ -41895,17 +41319,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 48.4344,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        41.7
-                                      </i>
-                                    </small>,
+                                    "value": 41.7398,
                                   }
 
                   def_ppp: Object {
@@ -42523,17 +41937,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 48.4344,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        41.7
-                                      </i>
-                                    </small>,
+                                    "value": 41.7398,
                                   }
 
                   def_ppp: Object {
@@ -43155,17 +42559,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 33.89489999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.2
-                                      </i>
-                                    </small>,
+                                    "value": 39.2144,
                                   }
 
                   def_ppp: Object {
@@ -43789,17 +43183,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 33.89489999999999,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #008000,0px 0px 15px #008000,0px 0px 15px #008000",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        39.2
-                                      </i>
-                                    </small>,
+                                    "value": 39.2144,
                                   }
 
                   def_ppp: Object {
@@ -44427,17 +43811,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.290499999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.091700000000003,
                                   }
 
                   def_ppp: Object {
@@ -45068,17 +44442,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 27.290499999999994,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        23.1
-                                      </i>
-                                    </small>,
+                                    "value": 23.091700000000003,
                                   }
 
                   def_ppp: Object {
@@ -45713,17 +45077,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 36.532300000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #43a143,0px 0px 15px #43a143,0px 0px 15px #43a143",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.9
-                                      </i>
-                                    </small>,
+                                    "value": 25.857200000000006,
                                   }
 
                   def_ppp: Object {
@@ -46344,17 +45698,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 36.532300000000006,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #43a143,0px 0px 15px #43a143,0px 0px 15px #43a143",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        25.9
-                                      </i>
-                                    </small>,
+                                    "value": 25.857200000000006,
                                   }
 
                   def_ppp: Object {
@@ -46979,17 +46323,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.907999999999987,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        21.7
-                                      </i>
-                                    </small>,
+                                    "value": 21.73230000000001,
                                   }
 
                   def_ppp: Object {
@@ -47614,17 +46948,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                   def_net: Object {
                                     "old_value": 23.907999999999987,
                                     "override": "Adjusted from Off 3P% and Def 3P%",
-                                    "value": <small
-                                      style={
-                                        Object {
-                                          "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                        }
-                                      }
-                                    >
-                                      <i>
-                                        21.7
-                                      </i>
-                                    </small>,
+                                    "value": 21.73230000000001,
                                   }
 
                   def_ppp: Object {
@@ -48323,7 +47647,7 @@ exports[`LineupLeaderboardTable LineupLeaderboardTable - should create snapshot 
                 "isTitle": false,
                 "missingData": undefined,
                 "rowSpan": [Function],
-                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+                "toolTip": "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
                 "widthUnits": 2,
               },
               "orb": GenericTableColProps {

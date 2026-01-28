@@ -425,95 +425,22 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
   // 3.1] Sorting utils
 
-  const sortOptions: Array<any> = React.useMemo(() => {
-    return _.flatten(
-      _.chain(
-        CommonTableDefs.extraColSetPicker(
-          LineupTableDefs.lineupsExtraColSet(showRawPts),
-          rowMode,
-          true
-        )
-      )
-        .values()
-        .flatMap((v) => _.toPairs(v.colSet))
-        .uniqBy((kv) => kv[0])
-        .filter((keycol) =>
-          Boolean(
-            keycol[1].colName &&
-              keycol[1].colName != "" &&
-              (!_.isString(keycol[1].colName) ||
-                !_.startsWith(keycol[1].colName, "__"))
+  const sortOptions: Array<{ label: string; value: string }> =
+    React.useMemo(() => {
+      return LineupTableDefs.sortBuilder(
+        rowMode,
+        _.chain(
+          CommonTableDefs.extraColSetPicker(
+            LineupTableDefs.lineupsExtraColSet(showRawPts),
+            rowMode,
+            true
           )
         )
-        .map((keycol) => {
-          return rowMode == "Mixed"
-            ? ["desc", "asc"].flatMap((combo) => {
-                if (keycol[0] == "def_net") {
-                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
-                  // using the new built-in way of supporting "shadow" fields)
-                  return [];
-                }
-
-                const ascOrDesc = (s: string) => {
-                  switch (s) {
-                    case "asc":
-                      return "Asc.";
-                    case "desc":
-                      return "Desc.";
-                  }
-                };
-                return [
-                  {
-                    label: `${keycol[1].colName} (${ascOrDesc(combo)})`,
-                    value: `${combo}:${keycol[0]}`,
-                  },
-                ];
-              })
-            : [
-                ["desc", "off"],
-                ["asc", "off"],
-                ["desc", "def"],
-                ["asc", "def"],
-                ["desc", "diff"],
-                ["asc", "diff"],
-              ].flatMap((combo) => {
-                if (combo[1] != "off" && keycol[0] == "net") {
-                  //(def net is raw net but respresented weirdly so can't do anything until I fix that
-                  // using the new built-in way of supporting "shadow" fields)
-                  return [];
-                }
-
-                const ascOrDesc = (s: string) => {
-                  switch (s) {
-                    case "asc":
-                      return "Asc.";
-                    case "desc":
-                      return "Desc.";
-                  }
-                };
-                const offOrDef = (s: string) => {
-                  switch (s) {
-                    case "off":
-                      return "Offensive";
-                    case "def":
-                      return "Defensive";
-                    case "diff":
-                      return "Net";
-                  }
-                };
-                return [
-                  {
-                    label: `${keycol[1].colName} (${ascOrDesc(
-                      combo[0]
-                    )} / ${offOrDef(combo[1])})`,
-                    value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-                  },
-                ];
-              });
-        })
-        .value()
-    );
-  }, [showRawPts, rowMode]);
+          .values()
+          .flatMap((v) => _.toPairs(v.colSet))
+          .uniqBy((kv) => kv[0])
+      );
+    }, [showRawPts, rowMode]);
 
   const sortOptionsByValue = _.fromPairs(
     sortOptions.map((opt) => [opt.value, opt])

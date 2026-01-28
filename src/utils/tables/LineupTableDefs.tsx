@@ -1,9 +1,5 @@
-// React imports:
-import React from "react";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
 // Component imports
-import GenericTable, {
+import {
   GenericTableOps,
   GenericTableColProps,
   ExtraColSet,
@@ -11,7 +7,6 @@ import GenericTable, {
 
 // Util imports
 import { CbbColors } from "../CbbColors";
-import { TableDisplayUtils } from "./TableDisplayUtils"; // Import needed for tooltips/links if used
 
 // Lodash:
 import _ from "lodash";
@@ -22,24 +17,32 @@ import { TableSortPopupMenuState } from "../../components/shared/TableSortPopupM
 export class LineupTableDefs {
   /** "Overrides" of standard utils */
   static offPrefixFn = (key: string) => {
-    if (key == "net_adj_rtg") {
-      return "off_net";
-    } else if (key == "net_raw_rtg") {
-      return "def_net";
+    const maybeSpecialKey = LineupTableDefs.offDefKeyTransform(key);
+    if (maybeSpecialKey) {
+      return maybeSpecialKey;
     } else {
       return CommonTableDefs.offPrefixFn(key);
     }
   };
   /** "Overrides" of standard utils */
   static defPrefixFn = (key: string) => {
-    if (key == "net_adj_rtg") {
-      return "off_net";
-    } else if (key == "net_raw_rtg") {
-      return "def_net";
+    const maybeSpecialKey = LineupTableDefs.offDefKeyTransform(key);
+    if (maybeSpecialKey) {
+      return maybeSpecialKey;
     } else if (key == "title") {
       return "off_title";
     } else {
       return CommonTableDefs.defPrefixFn(key);
+    }
+  };
+  /** In Off/Def modes we use dummy fields to represent off_net, def_net */
+  static offDefKeyTransform = (keyRadical: string) => {
+    if (keyRadical == "net_adj_rtg") {
+      return "off_net";
+    } else if (keyRadical == "net_raw_rtg") {
+      return "def_net";
+    } else {
+      return undefined;
     }
   };
 
@@ -47,6 +50,114 @@ export class LineupTableDefs {
 
   // Sort utils
 
+  static readonly sortBuilder = (
+    rowMode: OffDefDualMixed,
+    allowedFields: _.CollectionChain<[string, GenericTableColProps]>
+  ): { label: string; value: string }[] => {
+    return _.flatten(
+      allowedFields
+        .filter((keycol) =>
+          Boolean(
+            keycol[1].colName &&
+              keycol[1].colName != "" &&
+              (!_.isString(keycol[1].colName) ||
+                !_.startsWith(keycol[1].colName, "__"))
+          )
+        )
+        .map((keycol) => {
+          return rowMode == "Mixed"
+            ? ["desc", "asc"].flatMap((combo) => {
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                    default:
+                      return "N/A";
+                  }
+                };
+                const labelOverrideFn =
+                  LineupTableDefs.sortColNameOverrides[keycol[0]];
+                const ascOrDescLabel = ascOrDesc(combo);
+                const label =
+                  labelOverrideFn?.(ascOrDescLabel) ||
+                  `${keycol[1].colName} (${ascOrDescLabel})`;
+                return [
+                  {
+                    label,
+                    value: `${combo}:${keycol[0]}`,
+                  },
+                ];
+              })
+            : [
+                ["desc", "off"],
+                ["asc", "off"],
+                ["desc", "def"],
+                ["asc", "def"],
+                ["desc", "diff"],
+                ["asc", "diff"],
+              ].flatMap((combo) => {
+                if (combo[1] == "diff" && keycol[0] == "net") {
+                  //diff of adj/raw makes no sense
+                  return [];
+                }
+                if (
+                  keycol[0].startsWith("net_") &&
+                  combo[1] != rowMode.toLowerCase()
+                ) {
+                  //net_adj / net_raw
+                  return [];
+                }
+
+                const ascOrDesc = (s: string) => {
+                  switch (s) {
+                    case "asc":
+                      return "Asc.";
+                    case "desc":
+                      return "Desc.";
+                    default:
+                      return "N/A";
+                  }
+                };
+                const offOrDef = (s: string) => {
+                  switch (s) {
+                    case "off":
+                      return "Offensive";
+                    case "def":
+                      return "Defensive";
+                    case "diff":
+                      return "Net";
+                    default:
+                      return "";
+                  }
+                };
+                const labelOverrideFn =
+                  LineupTableDefs.sortColNameOverrides[
+                    `${combo[1]}_${keycol[0]}`
+                  ];
+                const ascOrDescLabel = ascOrDesc(combo[0]);
+                const offOrDefLabel = offOrDef(combo[1]);
+                const label =
+                  labelOverrideFn?.(ascOrDescLabel) ||
+                  `${keycol[1].colName} (${ascOrDescLabel} / ${offOrDefLabel})`;
+                const maybeKeyOverride = LineupTableDefs.offDefKeyTransform(
+                  keycol[0]
+                );
+                const keyToUse = maybeKeyOverride || `${combo[1]}_${keycol[0]}`;
+                return [
+                  {
+                    label,
+                    value: `${combo[0]}:${keyToUse}`,
+                  },
+                ];
+              });
+        })
+        .value()
+    );
+  };
+
+  /** Lineup-table specific translation from the sort field to the table display */
   static readonly sortField = (
     sortField: string,
     defaultSortConfig: string
@@ -56,13 +167,18 @@ export class LineupTableDefs {
     } else {
       const sortFieldDecomp = sortField.split(":");
       if (sortFieldDecomp[1] == "diff_adj_ppp") {
+        //(nicer visuals)
         return "off_net";
+      } else if (sortFieldDecomp[1] == "diff_ppp") {
+        //(nicer visuals)
+        return "def_net";
       } else {
         return sortFieldDecomp[1];
       }
     }
   };
 
+  /** Lineup-table specific handling of clicking on a column header to manage sorting */
   static readonly buildSortCallback = (
     rowMode: OffDefDualMixed,
     sortBy: string,
@@ -70,8 +186,11 @@ export class LineupTableDefs {
     setSortMenuState: (newState: TableSortPopupMenuState) => void
   ) => {
     return (headerKeyIn: string, ev: any) => {
-      const headerKey = headerKeyIn == "net" ? "adj_ppp" : headerKeyIn;
-
+      const maybeTranslatedHeaderKey =
+        LineupTableDefs.offDefKeyTransform(headerKeyIn);
+      const headerKey = maybeTranslatedHeaderKey
+        ? maybeTranslatedHeaderKey.substring(4)
+        : headerKeyIn;
       const matchingOptions: {
         value: string;
         label: string;
@@ -97,6 +216,16 @@ export class LineupTableDefs {
     };
   };
 
+  /** Fix sort names for non-off/def columns */
+  static sortColNameOverrides = {
+    off_net: (o: string) => `Adj Rtg (${o} / Net)`,
+    def_net: (o: string) => `Raw Rtg (${o} / Net)`,
+    off_net_adj_rtg: (o: string) => `Adj Rtg (${o} / Net)`,
+    def_net_adj_rtg: (o: string) => `Adj Rtg (${o} / Net)`,
+    off_net_raw_rtg: (o: string) => `Raw Rtg (${o} / Net)`,
+    def_net_raw_rtg: (o: string) => `Raw Rtg (${o} / Net)`,
+  } as Record<string, (o: string) => string | undefined>;
+
   ////////////////////////////////////////////
 
   // Table Defs:
@@ -115,6 +244,7 @@ export class LineupTableDefs {
 
   /** All fields in the lineup table */
   static readonly mainLineupTableFields = (
+    rawPts: boolean,
     rowMode: OffDefDualMixed,
     mixedMode?: "Off" | "Def" //(bug if this is undefined when rowMode == "Mixed")
   ): Record<string, GenericTableColProps> => {
@@ -136,15 +266,19 @@ export class LineupTableDefs {
             sep_adj_net: GenericTableOps.addSpecialColSeparator("__adj_raw__"),
             net: GenericTableOps.addDataCol(
               "Net Rtg",
-              "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)",
+              rawPts
+                ? "The margin between the adjusted offensive and defensive efficiencies (lower number is raw margin)"
+                : "The margin between the adjusted offensive and defensive efficiencies (lower number is net points)",
               CbbColors.offOnlyPicker(...CbbColors.diff35_p100_redGreen),
-              GenericTableOps.pointsOrHtmlFormatter
+              GenericTableOps.dualRowPointsFormatter(
+                CbbColors.off_diff35_p100_redGreen,
+                rawPts
+              )
             ),
           }
         : {}),
       ...(rowMode == "Off" || rowMode == "Def"
         ? {
-            //TODO: how can I support def_net meaning adjusted here?
             sep_adj_net: GenericTableOps.addSpecialColSeparator("__net__"),
             net_adj_rtg: GenericTableOps.addDataCol(
               "Adj Rtg",
@@ -153,10 +287,16 @@ export class LineupTableDefs {
               GenericTableOps.pointsOrHtmlFormatter
             ),
             net_raw_rtg: GenericTableOps.addDataCol(
-              "Raw Rtg",
-              "The margin between the raw offensive and defensive efficiencies",
+              //(TODO ideally would treat like like raw_pts/ppp below)
+              rawPts ? "Raw Pts" : "Raw Rtg",
+              rawPts
+                ? "Points scored - allowed for this sample"
+                : "The margin between the raw offensive and defensive efficiencies",
               CbbColors.applyThemedBackground,
-              GenericTableOps.pointsOrHtmlFormatter
+              GenericTableOps.singleRowShadowPointsFormatter(
+                CbbColors.off_diff35_p100_redGreen,
+                rawPts
+              )
             ),
           }
         : {}),
@@ -170,10 +310,16 @@ export class LineupTableDefs {
               GenericTableOps.pointsOrHtmlFormatter
             ),
             def_net: GenericTableOps.addDataCol(
-              "Net Rtg",
-              "The margin between the raw offensive and defensive efficiencies",
+              //(TODO ideally would treat like like raw_pts/ppp below)
+              rawPts ? "Raw Pts" : "Raw Rtg",
+              rawPts
+                ? "Points scored - allowed for this sample"
+                : "The margin between the raw offensive and defensive efficiencies",
               CbbColors.applyThemedBackground,
-              GenericTableOps.pointsOrHtmlFormatter
+              GenericTableOps.singleRowShadowPointsFormatter(
+                CbbColors.off_diff35_p100_redGreen,
+                rawPts
+              )
             ),
           }
         : {}),
@@ -358,26 +504,38 @@ export class LineupTableDefs {
     );
   };
 
-  private static readonly allDualLineupFields =
-    LineupTableDefs.mainLineupTableFields("Dual");
-  private static readonly allOffOnlyLineupFields =
-    LineupTableDefs.mainLineupTableFields("Off");
-  private static readonly allDefOnlyLineupFields =
-    LineupTableDefs.mainLineupTableFields("Def");
-  private static readonly allMixedOffLineupFields =
-    LineupTableDefs.mainLineupTableFields("Mixed", "Off");
-  private static readonly allMixedDefLineupFields =
-    LineupTableDefs.mainLineupTableFields("Mixed", "Def");
-
   // Extra lineup table presets:
 
   static readonly lineupsExtraColSet = _.memoize(
     (
       rawPts: boolean
     ): Record<string, ExtraColSet & { rowMode: OffDefDualMixed }> => {
+      const allDualLineupFields = LineupTableDefs.mainLineupTableFields(
+        rawPts,
+        "Dual"
+      );
+      const allOffOnlyLineupFields = LineupTableDefs.mainLineupTableFields(
+        rawPts,
+        "Off"
+      );
+      const allDefOnlyLineupFields = LineupTableDefs.mainLineupTableFields(
+        rawPts,
+        "Def"
+      );
+      const allMixedOffLineupFields = LineupTableDefs.mainLineupTableFields(
+        rawPts,
+        "Mixed",
+        "Off"
+      );
+      const allMixedDefLineupFields = LineupTableDefs.mainLineupTableFields(
+        rawPts,
+        "Mixed",
+        "Def"
+      );
+
       const defaultColSet = LineupTableDefs.rawPtsPicker(
         rawPts,
-        LineupTableDefs.allDualLineupFields
+        allDualLineupFields
       );
 
       return {
@@ -468,16 +626,16 @@ export class LineupTableDefs {
           description:
             "A simple single line view of the most important few stats",
           colSet: LineupTableDefs.rawPtsPicker(rawPts, {
-            off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
+            off_title: allMixedOffLineupFields.off_title,
             sep1: GenericTableOps.addColSeparator(),
-            off_net: LineupTableDefs.allMixedOffLineupFields.off_net,
-            def_net: LineupTableDefs.allMixedDefLineupFields.def_net,
-            off_adj_ppp: LineupTableDefs.allMixedOffLineupFields.off_adj_ppp,
-            def_adj_ppp: LineupTableDefs.allMixedDefLineupFields.def_adj_ppp,
+            off_net: allMixedOffLineupFields.off_net,
+            def_net: allMixedDefLineupFields.def_net,
+            off_adj_ppp: allMixedOffLineupFields.off_adj_ppp,
+            def_adj_ppp: allMixedDefLineupFields.def_adj_ppp,
             sep2: GenericTableOps.addColSeparator(),
-            off_3p: LineupTableDefs.allMixedOffLineupFields.off_3p,
-            def_3p: LineupTableDefs.allMixedDefLineupFields.def_3p,
-            off_poss: LineupTableDefs.allMixedOffLineupFields.off_poss,
+            off_3p: allMixedOffLineupFields.off_3p,
+            def_3p: allMixedDefLineupFields.def_3p,
+            off_poss: allMixedOffLineupFields.off_poss,
           }),
         },
         simpleDual: {
@@ -500,20 +658,14 @@ export class LineupTableDefs {
           rowMode: "Off",
           name: "Offense Only",
           description: "A single row showing all offensive stats",
-          colSet: LineupTableDefs.rawPtsPicker(
-            rawPts,
-            LineupTableDefs.allOffOnlyLineupFields
-          ),
+          colSet: LineupTableDefs.rawPtsPicker(rawPts, allOffOnlyLineupFields),
         },
         defenseSingleRow: {
           isPreset: true,
           rowMode: "Def",
           name: "Defense Only",
           description: "A single row showing all defensive stats",
-          colSet: LineupTableDefs.rawPtsPicker(
-            rawPts,
-            LineupTableDefs.allDefOnlyLineupFields
-          ),
+          colSet: LineupTableDefs.rawPtsPicker(rawPts, allDefOnlyLineupFields),
         },
         emptyDual: {
           isPreset: true,
@@ -522,7 +674,7 @@ export class LineupTableDefs {
           description:
             "An empty set of columns - pick whatever you want (top row offense, bottom row defense)",
           colSet: {
-            title: LineupTableDefs.allDualLineupFields.title,
+            title: allDualLineupFields.title,
           } as Record<string, GenericTableColProps>,
         },
         emptySingle: {
@@ -532,7 +684,7 @@ export class LineupTableDefs {
           description:
             "An empty set of columns - pick whatever you want (mixing offense and defense)",
           colSet: {
-            off_title: LineupTableDefs.allMixedOffLineupFields.off_title,
+            off_title: allMixedOffLineupFields.off_title,
           } as Record<string, GenericTableColProps>,
         },
         offenseOnlyMixed: {
@@ -540,14 +692,14 @@ export class LineupTableDefs {
           name: "Offensive Stats",
           rowMode: "Mixed",
           description: "A collection of offensive stats",
-          colSet: LineupTableDefs.allMixedOffLineupFields,
+          colSet: allMixedOffLineupFields,
         },
         defenseOnlyMixed: {
           isPreset: false,
           rowMode: "Mixed",
           name: "Defensive Stats",
           description: "A collection of defensive stats",
-          colSet: LineupTableDefs.allMixedDefLineupFields,
+          colSet: allMixedDefLineupFields,
         },
       };
     }

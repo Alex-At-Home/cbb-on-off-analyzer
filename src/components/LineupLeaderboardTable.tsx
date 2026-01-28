@@ -96,58 +96,12 @@ type Props = {
 
 // Some static methods
 
-const sortOptions: Array<any> = _.flatten(
-  _.toPairs(LineupTableDefs.mainLineupTableFields("Dual"))
-    .filter(
-      (keycol) =>
-        keycol[1].colName &&
-        keycol[1].colName != "" &&
-        (!_.isString(keycol[1].colName) ||
-          !_.startsWith(keycol[1].colName, "__"))
-    )
-    .map((keycol) => {
-      return [
-        ["desc", "off"],
-        ["asc", "off"],
-        ["desc", "def"],
-        ["asc", "def"],
-        ["desc", "diff"],
-        ["asc", "diff"],
-      ].flatMap((combo) => {
-        if (combo[1] != "off" && keycol[0] == "net") {
-          //(def net is raw net but respresented weirdly so can't do anything)
-          return [];
-        }
+const sortOptions: Array<{ label: string; value: string }> =
+  LineupTableDefs.sortBuilder(
+    "Dual",
+    _.chain(LineupTableDefs.mainLineupTableFields(false, "Dual")).toPairs()
+  );
 
-        const ascOrDesc = (s: string) => {
-          switch (s) {
-            case "asc":
-              return "Asc.";
-            case "desc":
-              return "Desc.";
-          }
-        };
-        const offOrDef = (s: string) => {
-          switch (s) {
-            case "off":
-              return "Offensive";
-            case "def":
-              return "Defensive";
-            case "diff":
-              return "Net";
-          }
-        };
-        return [
-          {
-            label: `${keycol[1].colName} (${ascOrDesc(combo[0])} / ${offOrDef(
-              combo[1]
-            )})`,
-            value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-          },
-        ];
-      });
-    })
-);
 const sortOptionsByValue = _.fromPairs(
   sortOptions.map((opt) => [opt.value, opt])
 );
