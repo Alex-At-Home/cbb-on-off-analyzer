@@ -222,8 +222,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [advancedFilterStr, setAdvancedFilterStr] = useState(
     _.trim(startingState.advancedFilter || "")
   );
-  const isCustomRanking =
-    advancedFilterStr.includes("SORT_BY") || dataEvent.syntheticData;
+  const isCustomRanking = advancedFilterStr.includes("SORT_BY");
 
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(
     _.isNil(startingState.showAdvancedFilter)
@@ -518,7 +517,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     }, []).concat([
       {
         label: _.thru(undefined, (__) => {
-          if (isCustomRanking) {
+          if (isCustomRanking || dataEvent.syntheticData) {
             return "Custom Ranking";
           } else if (manualFilterSelected) {
             return "Manual Ordering";
@@ -706,6 +705,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         } else if (sortBy == "power") {
           if (secretQuery?.length) {
             return -(team.off_net?.value || 0);
+          } else if (dataEvent?.syntheticData) {
+            return 0; //(don't sort)
           } else {
             return -(team.power || 0);
           }
@@ -960,12 +961,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           sortBy,
           ParamDefaults.defaultLineupSortBy
         )}
-        onHeaderClick={TeamTableDefs.buildSortCallback(
-          "Dual",
-          sortBy,
-          sortOptions,
-          setSortMenuState
-        )}
+        onHeaderClick={
+          !isCustomRanking && !manualFilterSelected
+            ? TeamTableDefs.buildSortCallback(
+                "Dual",
+                sortBy,
+                sortOptions,
+                setSortMenuState
+              )
+            : undefined
+        }
         showConfigureColumns={true}
         initialColumnConfig={{
           newCol: tableConfigExtraCols,
