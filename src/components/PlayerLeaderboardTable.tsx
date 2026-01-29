@@ -464,6 +464,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [advancedFilterStr, setAdvancedFilterStr] = useState(
     startingState.advancedFilter || ""
   );
+  const isCustomRanking = advancedFilterStr?.includes("SORT_BY");
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [advancedFilterError, setAdvancedFilterError] = useState(
     undefined as string | undefined
@@ -2117,7 +2118,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             }
           })}
           onHeaderClick={
-            !advancedFilterStr?.includes("SORT_BY")
+            !isCustomRanking
               ? (headerKeyIn, ev) => {
                   const headerKey = headerKeyIn.replace("_margin", "");
                   const matchingOptions: { value: string; label: string }[] =
@@ -2700,8 +2701,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               </InputGroup.Prepend>
               <ThemedSelect
                 className="w-75"
+                isDisabled={isCustomRanking}
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
-                value={sortStringToOption(sortBy)}
+                value={
+                  isCustomRanking
+                    ? { label: "Custom Ranking", value: "" }
+                    : sortStringToOption(sortBy)
+                }
                 options={groupedOptions}
                 onChange={(option: any) => {
                   if ((option as any)?.value) {

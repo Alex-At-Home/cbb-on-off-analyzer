@@ -517,10 +517,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     }, []).concat([
       {
         label: _.thru(undefined, (__) => {
-          if (isCustomRanking || dataEvent.syntheticData) {
+          if (isCustomRanking) {
             return "Custom Ranking";
           } else if (manualFilterSelected) {
             return "Manual Ordering";
+          } else if (dataEvent?.syntheticData) {
+            return "(Sorted Above)";
           } else if (secretQuery?.length) {
             return "Adjusted Efficiency";
           } else {
