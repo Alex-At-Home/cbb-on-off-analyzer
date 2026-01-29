@@ -852,7 +852,7 @@ export class AdvancedFilterUtils {
       )
       .replace(
         /(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g,
-        "$1$.$2?.$3"
+        "$1$.$2?.margins?.off_$3?.value"
       )
       .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
       .replace(/(^|[^_])transfer_(src|dest)/g, "$1$.transfer_$2")
