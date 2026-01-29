@@ -79,6 +79,10 @@ import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { CbbColors } from "../utils/CbbColors";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import { TeamTableDefs } from "../utils/tables/TeamTableDefs";
+import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
+import TableSortPopupMenu, {
+  TableSortPopupMenuState,
+} from "./shared/TableSortPopupMenu";
 
 export type TeamStatsExplorerModel = {
   confs: string[];
@@ -218,6 +222,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [advancedFilterStr, setAdvancedFilterStr] = useState(
     _.trim(startingState.advancedFilter || "")
   );
+  const isCustomRanking =
+    advancedFilterStr.includes("SORT_BY") || dataEvent.syntheticData;
+
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(
     _.isNil(startingState.showAdvancedFilter)
       ? true
@@ -239,6 +246,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   );
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
+  const [sortMenuState, setSortMenuState] = useState<
+    TableSortPopupMenuState | undefined
+  >(undefined);
+  const handleSortMenuClick = (value: string) => {
+    setSortMenuState(undefined);
+    const newVal = value || "power";
+    friendlyChange(() => {
+      setSortBy(newVal);
+    }, newVal != sortBy);
+  };
 
   const teamList =
     year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
@@ -490,6 +507,70 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     }
   };
 
+  // Sorting:
+
+  const sortOptions: Array<{ label: string; value: string }> =
+    React.useMemo(() => {
+      return TeamTableDefs.sortBuilder(
+        "Dual",
+        _.chain(TeamTableDefs.onOffTable()).toPairs()
+      );
+    }, []).concat([
+      {
+        label: _.thru(undefined, (__) => {
+          if (isCustomRanking) {
+            return "Custom Ranking";
+          } else if (manualFilterSelected) {
+            return "Manual Ordering";
+          } else if (secretQuery?.length) {
+            return "Adjusted Efficiency";
+          } else {
+            return "Default Power Ranking";
+          }
+        }),
+        value: "power", //(this is ignored, see sortBy filter for what's actually applied)
+      },
+    ]);
+
+  const sortOptionsByValue = _.fromPairs(
+    sortOptions.map((opt) => [opt.value, opt])
+  );
+  /** Put these options at the front */
+  const mostUsefulSubset = [
+    "power",
+    "desc:off_poss",
+    "desc:diff_adj_ppp",
+    "desc:off_adj_ppp",
+    "asc:def_adj_ppp",
+  ];
+  /** The two sub-headers for the dropdown */
+  const groupedOptions = [
+    {
+      label: "Most useful",
+      options: _.chain(sortOptionsByValue)
+        .pick(mostUsefulSubset)
+        .values()
+        .value(),
+    },
+    {
+      label: "Other",
+      options: _.chain(sortOptionsByValue)
+        .omit(mostUsefulSubset)
+        .values()
+        .value(),
+    },
+  ];
+  /** The sub-header builder */
+  const formatGroupLabel = (data: any) => (
+    <div>
+      <span>{data.label}</span>
+    </div>
+  );
+
+  function stringToOption(s: string) {
+    return sortOptionsByValue[s];
+  }
+
   // 2] Processing
 
   /** Handy util to filter teams by conference */
@@ -622,10 +703,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           } else {
             return queryFiltersAsMap[team.team_name] || 1000;
           }
-        } else if (secretQuery?.length) {
-          return -(team.off_net?.value || 0);
+        } else if (sortBy == "power") {
+          if (secretQuery?.length) {
+            return -(team.off_net?.value || 0);
+          } else {
+            return -(team.power || 0);
+          }
         } else {
-          return -(team.power || 0);
+          // actual sort by
+          return LineupTableUtils.sorter(sortBy)(team);
         }
       })
       .value();
@@ -870,6 +956,16 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
     return (
       <GenericTable
+        sortField={TeamTableDefs.sortField(
+          sortBy,
+          ParamDefaults.defaultLineupSortBy
+        )}
+        onHeaderClick={TeamTableDefs.buildSortCallback(
+          "Dual",
+          sortBy,
+          sortOptions,
+          setSortMenuState
+        )}
         showConfigureColumns={true}
         initialColumnConfig={{
           newCol: tableConfigExtraCols,
@@ -973,49 +1069,6 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       </OverlayTrigger>
     );
   };
-
-  function stringToOption(s: string) {
-    return { label: s, value: s };
-  }
-  const sortByOptions: Record<string, { label: string; value: string }> = {
-    power: {
-      label: _.thru(undefined, (__) => {
-        if (advancedFilterStr.includes("SORT_BY") || dataEvent.syntheticData) {
-          return "Custom Ranking";
-        } else if (manualFilterSelected) {
-          return "Manual Ordering";
-        } else if (secretQuery?.length) {
-          return "Adjusted Efficiency";
-        } else {
-          return "Default Power Ranking";
-        }
-      }),
-      value: "power", //(this is ignored, see sortBy filter for what's actually applied)
-    },
-  };
-
-  const linqEnableTooltip = (
-    <Tooltip id="linqEnableTooltip">
-      Enable the Linq filter editor, click on "?" for a guide on using Linq
-    </Tooltip>
-  );
-  const linqEnableText = showHelp ? (
-    <OverlayTrigger placement="auto" overlay={linqEnableTooltip}>
-      <span>
-        Linq
-        <sup>
-          <a
-            target="_blank"
-            href="https://hoop-explorer.blogspot.com/2025/02/using-linq-to-build-advanced-filters-in.html"
-          >
-            ?
-          </a>
-        </sup>
-      </span>
-    </OverlayTrigger>
-  ) : (
-    <span>Linq</span>
-  );
 
   const topLevelGradeControls = _.thru(
     !hideGlobalGradeSettings,
@@ -1184,6 +1237,45 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const fullHelpDropdown = (
     <GenericTogglingMenu>
       <GenericTogglingMenuItem
+        text={
+          <OverlayTrigger
+            placement="auto"
+            overlay={
+              <Tooltip id="linqEnableTooltip">
+                Enable the Linq filter editor, click on "?" for a guide on using
+                Linq
+              </Tooltip>
+            }
+          >
+            <span>
+              Show Advanced Filter
+              <sup>
+                <a
+                  target="_blank"
+                  href="https://hoop-explorer.blogspot.com/2025/02/using-linq-to-build-advanced-filters-in.html"
+                >
+                  ?
+                </a>
+              </sup>
+            </span>
+          </OverlayTrigger>
+        }
+        truthVal={showAdvancedFilter}
+        onSelect={() => {
+          const isCurrentlySet =
+            showAdvancedFilter || advancedFilterStr.length > 0;
+          if (!showAdvancedFilter || 0 == advancedFilterStr.length) {
+            // Just enabling/disabling the LINQ query with no implications on filter, so don't need a UX friendly change
+            setShowAdvancedFilter(!isCurrentlySet);
+          } else {
+            friendlyChange(() => {
+              setAdvancedFilterStr("");
+              setShowAdvancedFilter(!isCurrentlySet);
+            }, true);
+          }
+        }}
+      />
+      <GenericTogglingMenuItem
         text="Show grade controls"
         truthVal={!hideGlobalGradeSettings}
         onSelect={() => setHideGlobalGradeSettings(!hideGlobalGradeSettings)}
@@ -1307,6 +1399,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   );
   return (
     <Container className="medium_screen">
+      <TableSortPopupMenu
+        state={sortMenuState}
+        onClick={handleSortMenuClick}
+        onClose={() => setSortMenuState(undefined)}
+      />
       {dataEvent.syntheticData ? null : (
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
@@ -1415,47 +1512,42 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             </div>
           </InputGroup>
         </Col>
-        <Form.Group as={Col} xs={8} sm={10} md={4} lg={4}>
-          <ThemedSelect
-            styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-            value={sortByOptions[sortBy]}
-            components={{ MenuList }}
-            options={_.values(sortByOptions)}
-            isSearchable={false}
-            onChange={(option: any) => {
-              if ((option as any)?.value) {
-                const newSortBy = (option as any)?.value || "net";
-                friendlyChange(() => setSortBy(newSortBy), sortBy != newSortBy);
+        <Form.Group as={Col} xs={8} sm={10} md={5} lg={5}>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
+            </InputGroup.Prepend>
+            <ThemedSelect
+              className="w-75"
+              isDisabled={isCustomRanking || manualFilterSelected}
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+              value={
+                isCustomRanking || manualFilterSelected
+                  ? stringToOption("power")
+                  : stringToOption(sortBy)
               }
-            }}
-          />
-        </Form.Group>
-        <Form.Group as={Col} xs={1} className="mt-2">
-          <Form.Check
-            type="switch"
-            id="linq"
-            checked={showAdvancedFilter || advancedFilterStr.length > 0}
-            onChange={() => {
-              const isCurrentlySet =
-                showAdvancedFilter || advancedFilterStr.length > 0;
-              if (!showAdvancedFilter || 0 == advancedFilterStr.length) {
-                // Just enabling/disabling the LINQ query with no implications on filter, so don't need a UX friendly change
-                setShowAdvancedFilter(!isCurrentlySet);
-              } else {
-                friendlyChange(() => {
-                  setAdvancedFilterStr("");
-                  setShowAdvancedFilter(!isCurrentlySet);
-                }, true);
-              }
-            }}
-            label={linqEnableText}
-          />
+              options={groupedOptions}
+              components={{ MenuList }}
+              isSearchable={true}
+              onChange={(option: any) => {
+                if ((option as any)?.value) {
+                  const newSortBy = (option as any)?.value || "net";
+                  friendlyChange(
+                    () => setSortBy(newSortBy),
+                    sortBy != newSortBy
+                  );
+                }
+              }}
+              formatGroupLabel={formatGroupLabel}
+            />
+          </InputGroup>
         </Form.Group>
       </Row>
       {showAdvancedFilter ? (
         <Row>
           <Form.Group as={Col} xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
+              label="Linq"
               prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
               value={advancedFilterStr.concat(
                 secretQuery

@@ -1272,7 +1272,7 @@ export class CommonTableDefs {
         value: string;
         label: string;
       }[] = sortOptions.filter((opt: { value: string; label: string }) => {
-        const field = opt.value.split(":")[1];
+        const field = opt.value.split(":")[1] || opt.value;
         const rawFieldIndex = field.indexOf("_");
         const rawField =
           rawFieldIndex > 0 && rowMode != "Mixed"

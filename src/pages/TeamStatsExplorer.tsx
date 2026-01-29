@@ -101,14 +101,14 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
         // omit all defaults
         !rawParams.confs ? ["confs"] : [],
         !rawParams.queryFilters ? ["queryFilters"] : [],
-        rawParams.sortBy == "net" ? ["sortBy"] : [],
+        rawParams.sortBy == "power" ? ["sortBy"] : [],
         rawParams.maxTableSize == ParamDefaults.defaultTeamExplorerMaxTableSize
           ? ["maxTableSize"]
           : [],
         !rawParams.showExtraInfo ? ["showExtraInfo"] : [],
         !rawParams.showPlayStyles ? ["showPlayStyles"] : [],
         rawParams.playStyleConfig ==
-          ParamDefaults.defaultTeamExplorerPlayStyleConfig
+        ParamDefaults.defaultTeamExplorerPlayStyleConfig
           ? ["playStyleConfig"]
           : [],
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
@@ -124,8 +124,12 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
           : [], //(true by default)
         // Table configuration:
         !rawParams.tablePreset ? ["tablePreset"] : [],
-        _.isEmpty(rawParams.tableConfigExtraCols) ? ["tableConfigExtraCols"] : [],
-        _.isNil(rawParams.tableConfigDisabledCols) ? ["tableConfigDisabledCols"] : [],
+        _.isEmpty(rawParams.tableConfigExtraCols)
+          ? ["tableConfigExtraCols"]
+          : [],
+        _.isNil(rawParams.tableConfigDisabledCols)
+          ? ["tableConfigDisabledCols"]
+          : [],
       ])
     );
     if (!_.isEqual(params, teamStatsExplorerParamsRef.current)) {
@@ -164,21 +168,21 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
         (response: fetch.IsomorphicResponse) => {
           return response.ok
             ? response.json().then((j: any) => {
-              setDataSubEvent({
-                bubbleOffenses: {},
-                bubbleDefenses: {},
-                confs: [],
-                teams: (
-                  j?.responses?.[0]?.aggregations?.tri_filter?.buckets
-                    ?.baseline?.teams?.buckets || []
-                ).map((team: any) => {
-                  team.team_name = team.key || "???";
-                  return team;
-                }),
-                lastUpdated: -1,
-              });
-              return j;
-            })
+                setDataSubEvent({
+                  bubbleOffenses: {},
+                  bubbleDefenses: {},
+                  confs: [],
+                  teams: (
+                    j?.responses?.[0]?.aggregations?.tri_filter?.buckets
+                      ?.baseline?.teams?.buckets || []
+                  ).map((team: any) => {
+                    team.team_name = team.key || "???";
+                    return team;
+                  }),
+                  lastUpdated: -1,
+                });
+                return j;
+              })
             : Promise.resolve({ error: "No data available" });
         }
       );
@@ -242,8 +246,9 @@ const TeamStatsExplorerPage: NextPage<Props> = ({ testMode }) => {
   const gender = teamStatsExplorerParams.gender || ParamDefaults.defaultGender;
   const year = teamStatsExplorerParams.year || DateUtils.mostRecentYearWithData; //(don't use lboard data, we have team data immediately)
 
-  const thumbnailUrl = `${server != "localhost" ? `https://${server}` : "http://localhost:3000"
-    }/thumbnails/player_leaderboard_thumbnail.png`;
+  const thumbnailUrl = `${
+    server != "localhost" ? `https://${server}` : "http://localhost:3000"
+  }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className="medium_screen">
       <SiteModeDropdown />

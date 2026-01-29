@@ -40,8 +40,8 @@ export class TeamTableDefs {
           return false;
         }
       },
-      (k: string) => k,
-      {},
+      (k: string) => undefined,
+      TeamTableDefs.sortColNameOverrides,
       allowedFields
     );
   };
