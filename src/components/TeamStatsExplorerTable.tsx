@@ -1512,13 +1512,13 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             </div>
           </InputGroup>
         </Col>
-        <Form.Group as={Col} xs={8} sm={10} md={5} lg={5}>
+        <Form.Group as={Col} xs={10} sm={10} md={10} lg={5}>
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text id="sortBy">Sort By</InputGroup.Text>
             </InputGroup.Prepend>
             <ThemedSelect
-              className="w-75"
+              className="w-75 flex-fill"
               isDisabled={isCustomRanking || manualFilterSelected}
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={
@@ -1547,8 +1547,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         <Row>
           <Form.Group as={Col} xs={12} sm={12} md={12} lg={12}>
             <LinqExpressionBuilder
-              label="Linq"
-              prompt="eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
+              prompt="Advanced, eg 'off_adj_ppp > 110.0 SORT_BY def_adj_ppp ASC'"
               value={advancedFilterStr.concat(
                 secretQuery
                   ? `${
