@@ -222,7 +222,7 @@ export class LineupTableUtils {
     const fieldComps = _.split(sortComps[1], "_", 1); //off/def/diff
     const fieldName =
       fieldComps[0] != "year"
-        ? sortComps[1].substring(fieldComps[0].length + 1) //+1 for _
+        ? sortComps[1]?.substring(fieldComps[0].length + 1) //+1 for _
         : sortComps[1];
     const field = (stat: any) => {
       switch (fieldComps[0]) {

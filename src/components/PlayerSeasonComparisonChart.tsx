@@ -31,6 +31,7 @@ import ConferenceSelector, {
 import {
   PlayerSeasonComparisonParams,
   PlayerLeaderboardParams,
+  ParamDefaults,
 } from "../utils/FilterModels";
 
 import { Statistic, RosterEntry, PureStatSet } from "../utils/StatModels";
@@ -1022,10 +1023,6 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
         incWeightedSummary={true}
       />
     );
-    const dataIsAlreadySorted =
-      datasetFilterStr.includes("SORT_BY") ||
-      highlightFilterStr.includes("SORT_BY");
-
     const subChartData =
       _.isEmpty(confs) && !highlightData
         ? undefined
@@ -1037,10 +1034,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
     const playerLeaderboardToReturn = (
       <PlayerLeaderboardTable
+        syntheticSortedAtSource={true}
         startingState={{
           ...startingState,
           includePrevYear: showPrevNextInTable,
-          sortBy: dataIsAlreadySorted ? "unsorted" : undefined, //(default if not sorted already)
+          sortBy:
+            startingState.sortBy || ParamDefaults.playerLboardSyntheticSorted,
           year: multiYearScenarios[year] ? DateUtils.AllYears : year,
           tier: "All",
           minPoss: incLowVol ? "0" : undefined,

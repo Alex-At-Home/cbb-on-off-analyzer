@@ -139,15 +139,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         rawParams.maxTableSize == ParamDefaults.defaultPlayerLboardMaxTableSize
           ? ["maxTableSize"]
           : [],
-        rawParams.sortBy ==
-        ParamDefaults.defaultPlayerLboardSortBy(
-          _.isNil(rawParams.useRapm)
-            ? ParamDefaults.defaultPlayerLboardUseRapm
-            : rawParams.useRapm,
-          _.isNil(rawParams.factorMins)
-            ? ParamDefaults.defaultPlayerLboardFactorMins
-            : rawParams.factorMins
-        )
+        rawParams.sortBy == ParamDefaults.playerLboardSyntheticSorted
           ? ["sortBy"]
           : [],
       ])

@@ -334,8 +334,17 @@ export type OffseasonLeaderboardParams = {
 
 // Similarity configuration types
 export type WeightingOption = "none" | "less" | "default" | "more" | "max";
-export type ClassWeightingOption = "same_class" | "fr_only" | "under" | "upper" | WeightingOption;
-export type LevelOfPlayOption = "any" | "same_tier" | "same_conf" | "similar_sos";
+export type ClassWeightingOption =
+  | "same_class"
+  | "fr_only"
+  | "under"
+  | "upper"
+  | WeightingOption;
+export type LevelOfPlayOption =
+  | "any"
+  | "same_tier"
+  | "same_conf"
+  | "similar_sos";
 
 export interface SimilarityConfig {
   // Slider weights (existing, but rename class -> playerInfo)
@@ -673,9 +682,10 @@ export class ParamDefaults {
         ? "desc:diff_adj_rapm_prod"
         : "desc:diff_adj_rapm"
       : factorMins
-        ? "desc:off_adj_prod"
-        : "desc:off_adj_rtg";
+      ? "desc:off_adj_prod"
+      : "desc:off_adj_rtg";
   }
+  static readonly playerLboardSyntheticSorted = "sorted_above";
   static readonly defaultPlayerLboardFilter = "";
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;

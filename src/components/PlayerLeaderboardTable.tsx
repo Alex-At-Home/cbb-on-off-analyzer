@@ -110,6 +110,7 @@ type Props = {
   teamEditorMode?: (p: IndivStatSet) => void;
   geoMode?: boolean; //(if true display a map and have some basic filtering)
   testMode?: boolean;
+  syntheticSortedAtSource?: boolean; //(for synthetic data .. has this been re-sorted)
 };
 
 // Some static methods
@@ -119,8 +120,8 @@ const yearOpt = {
   value: "desc:year",
 };
 const unsortedOpt = {
-  label: "Unsorted",
-  value: "unsorted",
+  label: "(Sorted Above)",
+  value: ParamDefaults.playerLboardSyntheticSorted,
 };
 const sortOptions: Array<any> = _.flatten(
   _.toPairs(CommonTableDefs.onOffIndividualTableAllFields(true))
@@ -285,6 +286,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   teamEditorMode,
   geoMode,
   testMode,
+  syntheticSortedAtSource,
 }) => {
   const server =
     typeof window === `undefined` //(ensures SSR code still compiles)
@@ -450,7 +452,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const handleSortMenuClick = (value: string) => {
     setSortMenuState(undefined);
     const newVal =
-      value || ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins);
+      value ||
+      (syntheticSortedAtSource
+        ? ParamDefaults.playerLboardSyntheticSorted
+        : ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins));
     friendlyChange(() => setSortBy(newVal), newVal != sortBy);
   };
 
@@ -959,7 +964,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     var varNoGeoFilters = true;
 
     const skipSort =
-      (year != DateUtils.AllYears &&
+      (!syntheticSortedAtSource && //(if it's synthetic then we have no idea how it was sorted at source)
+        year != DateUtils.AllYears &&
         !year.startsWith(DateUtils.MultiYearPrefix) &&
         tier != "All" &&
         sortBy ==
@@ -967,7 +973,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             ParamDefaults.defaultPlayerLboardUseRapm,
             ParamDefaults.defaultPlayerLboardFactorMins
           )) ||
-      sortBy == unsortedOpt.value;
+      sortBy == unsortedOpt.value ||
+      sortBy == "unsorted"; //(unsorted=legacy string, might have made its way into the URL)
+
     // Filter, sort, and limit players part 2/2
     const playersPhase1 =
       geoMode && !geoBoundsChecker // In geo mode, don't render until we have a map!

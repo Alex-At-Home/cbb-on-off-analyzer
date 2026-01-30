@@ -1475,7 +1475,6 @@ const TeamStatsExplorerChart: React.FunctionComponent<Props> = ({
         startingState={{
           ...startingState,
           maxTableSize: startingState.maxTableSize ?? "10",
-          sortBy: "power", //(should improve this logic)
           year: year,
         }}
         dataEvent={{
