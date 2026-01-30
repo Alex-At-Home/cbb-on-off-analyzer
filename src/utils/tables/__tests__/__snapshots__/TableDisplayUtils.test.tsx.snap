@@ -747,44 +747,21 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
 
 exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
 {
-  def_2pmidr: <small
-    style={
-      Object {
-        "textShadow": "0px 0px 15px #add8e6,0px 0px 15px #add8e6,0px 0px 15px #add8e6",
-      }
-    }
-  >
-    <i>
-      0
-      %
-    </i>
-  </small>
+  def_2pmidr: Object {
+    "value": 0,
+  }
 
-  def_2primr: <small
-    style={
-      Object {
-        "textShadow": "0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5",
-      }
-    }
-  >
-    <i>
-      26
-      %
-    </i>
-  </small>
+  def_2primr: Object {
+    "value": 0.26153846153846155,
+  }
 
-  def_3pr: <small
-    style={
-      Object {
-        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-      }
-    }
-  >
-    <i>
-      63
-      %
-    </i>
-  </small>
+  def_3p: Object {
+    "value": 0.8113207547169812,
+  }
+
+  def_3pr: Object {
+    "value": 0.625,
+  }
 
   off_2pmidr: Object {
     "extraInfo": <span>
@@ -846,44 +823,21 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
 
 exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
 {
-  def_2pmidr: <small
-    style={
-      Object {
-        "textShadow": "0px 0px 15px #add8e6,0px 0px 15px #add8e6,0px 0px 15px #add8e6",
-      }
-    }
-  >
-    <i>
-      0
-      %
-    </i>
-  </small>
+  def_2pmidr: Object {
+    "value": 0,
+  }
 
-  def_2primr: <small
-    style={
-      Object {
-        "textShadow": "0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5",
-      }
-    }
-  >
-    <i>
-      26
-      %
-    </i>
-  </small>
+  def_2primr: Object {
+    "value": 0.26153846153846155,
+  }
 
-  def_3pr: <small
-    style={
-      Object {
-        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-      }
-    }
-  >
-    <i>
-      63
-      %
-    </i>
-  </small>
+  def_3p: Object {
+    "value": 0.8113207547169812,
+  }
+
+  def_3pr: Object {
+    "value": 0.625,
+  }
 
   off_assist: Object {
     "extraInfo": <span>

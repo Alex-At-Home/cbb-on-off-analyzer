@@ -240,8 +240,8 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             s,
             {
               renderTo: (
-                <Badge variant="secondary">
-                  <div style={{ fontSize: "0.95rem" }}>{s}</div>
+                <Badge variant="secondary" style={{ fontSize: "0.95rem" }}>
+                  {s}
                 </Badge>
               ),
             },
@@ -253,8 +253,8 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             s,
             {
               renderTo: (
-                <Badge variant="info">
-                  <div style={{ fontSize: "0.85rem" }}>{s}</div>
+                <Badge variant="info" style={{ fontSize: "0.85rem" }}>
+                  {s}
                 </Badge>
               ),
             },
@@ -267,13 +267,11 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             {
               renderTo: (
                 <span>
-                  <Badge variant="info">
-                    <div style={{ fontSize: "0.85rem" }}>
-                      opponent.{g.location}:
-                    </div>
+                  <Badge variant="info" style={{ fontSize: "0.85rem" }}>
+                    opponent.{g.location}:
                   </Badge>
-                  <Badge variant="success">
-                    <div style={{ fontSize: "0.85rem" }}>"{g.opponent}"</div>
+                  <Badge variant="success" style={{ fontSize: "0.85rem" }}>
+                    "{g.opponent}"
                   </Badge>
                 </span>
               ),
@@ -287,11 +285,11 @@ const LineupQueryAutoSuggestText: React.FunctionComponent<Props> = ({
             {
               renderTo: (
                 <span>
-                  <Badge variant="info">
-                    <div style={{ fontSize: "0.85rem" }}>opponent.team:</div>
+                  <Badge variant="info" style={{ fontSize: "0.85rem" }}>
+                    opponent.team:
                   </Badge>
-                  <Badge variant="success">
-                    <div style={{ fontSize: "0.85rem" }}>"{g.opponent}"</div>
+                  <Badge variant="success" style={{ fontSize: "0.85rem" }}>
+                    "{g.opponent}"
                   </Badge>
                 </span>
               ),

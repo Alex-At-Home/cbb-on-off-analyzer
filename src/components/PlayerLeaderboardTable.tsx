@@ -270,8 +270,8 @@ const playerLeaderboardRichTextReplacements: Record<
 > = {
   hs_region_dmv: {
     renderTo: (
-      <Badge variant="info">
-        <div style={{ fontSize: "0.95rem" }}>hs_region_dmv</div>
+      <Badge variant="info" style={{ fontSize: "0.95rem" }}>
+        hs_region_dmv
       </Badge>
     ),
   },

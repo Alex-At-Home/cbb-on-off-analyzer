@@ -1560,17 +1560,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -2051,17 +2041,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -2288,17 +2268,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -2775,17 +2745,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -3012,17 +2972,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -3503,17 +3453,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -3740,17 +3680,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -4227,17 +4157,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -4464,17 +4384,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -4955,17 +4865,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -5192,17 +5092,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -5679,17 +5569,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -5916,17 +5796,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -6407,17 +6277,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -6644,17 +6504,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -7150,17 +7000,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -7406,17 +7246,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -7897,17 +7727,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -8134,17 +7954,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -8640,17 +8450,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -8896,17 +8696,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -9387,17 +9177,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -9624,17 +9404,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -10130,17 +9900,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (no 
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -12573,17 +12333,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.022815613078475,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #68b468,0px 0px 15px #68b468,0px 0px 15px #68b468",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.7
-                                          </i>
-                                        </small>,
+                                        "value": 20.70907766931402,
                                       }
 
                     def_ppp: Object {
@@ -13110,17 +12860,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.022815613078475,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #68b468,0px 0px 15px #68b468,0px 0px 15px #68b468",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.7
-                                          </i>
-                                        </small>,
+                                        "value": 20.70907766931402,
                                       }
 
                     def_ppp: Object {
@@ -13373,17 +13113,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -13860,17 +13590,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -14675,17 +14395,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.022815613078475,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #68b468,0px 0px 15px #68b468,0px 0px 15px #68b468",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.7
-                                          </i>
-                                        </small>,
+                                        "value": 20.70907766931402,
                                       }
 
                     def_ppp: Object {
@@ -15212,17 +14922,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.022815613078475,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #68b468,0px 0px 15px #68b468,0px 0px 15px #68b468",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.7
-                                          </i>
-                                        </small>,
+                                        "value": 20.70907766931402,
                                       }
 
                     def_ppp: Object {
@@ -15475,17 +15175,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -15962,17 +15652,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -16777,17 +16457,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.022815613078475,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #68b468,0px 0px 15px #68b468,0px 0px 15px #68b468",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.7
-                                          </i>
-                                        </small>,
+                                        "value": 20.70907766931402,
                                       }
 
                     def_ppp: Object {
@@ -17314,17 +16984,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.022815613078475,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #68b468,0px 0px 15px #68b468,0px 0px 15px #68b468",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.7
-                                          </i>
-                                        </small>,
+                                        "value": 20.70907766931402,
                                       }
 
                     def_ppp: Object {
@@ -17577,17 +17237,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -18064,17 +17714,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -18879,17 +18519,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 23.615130713609005,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #65b265,0px 0px 15px #65b265,0px 0px 15px #65b265",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            21.1
-                                          </i>
-                                        </small>,
+                                        "value": 21.104186140101767,
                                       }
 
                     def_ppp: Object {
@@ -19416,17 +19046,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 23.615130713609005,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #65b265,0px 0px 15px #65b265,0px 0px 15px #65b265",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            21.1
-                                          </i>
-                                        </small>,
+                                        "value": 21.104186140101767,
                                       }
 
                     def_ppp: Object {
@@ -19699,17 +19319,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 25.136108992398945,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            19.6
-                                          </i>
-                                        </small>,
+                                        "value": 19.63012761447055,
                                       }
 
                     def_ppp: Object {
@@ -20251,17 +19861,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 25.136108992398945,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #70b870,0px 0px 15px #70b870,0px 0px 15px #70b870",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            19.6
-                                          </i>
-                                        </small>,
+                                        "value": 19.63012761447055,
                                       }
 
                     def_ppp: Object {
@@ -21247,17 +20847,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.350614233471966,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #66b366,0px 0px 15px #66b366,0px 0px 15px #66b366",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            21.0
-                                          </i>
-                                        </small>,
+                                        "value": 20.96772378204232,
                                       }
 
                     def_ppp: Object {
@@ -21784,17 +21374,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.350614233471966,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #66b366,0px 0px 15px #66b366,0px 0px 15px #66b366",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            21.0
-                                          </i>
-                                        </small>,
+                                        "value": 20.96772378204232,
                                       }
 
                     def_ppp: Object {
@@ -22067,17 +21647,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 23.071446053890483,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.0
-                                          </i>
-                                        </small>,
+                                        "value": 19.958409353637055,
                                       }
 
                     def_ppp: Object {
@@ -22619,17 +22189,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 23.071446053890483,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #6eb76e,0px 0px 15px #6eb76e,0px 0px 15px #6eb76e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            20.0
-                                          </i>
-                                        </small>,
+                                        "value": 19.958409353637055,
                                       }
 
                     def_ppp: Object {
@@ -23615,17 +23175,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.126975983127956,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #6fb76f,0px 0px 15px #6fb76f,0px 0px 15px #6fb76f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            19.8
-                                          </i>
-                                        </small>,
+                                        "value": 19.790579925186762,
                                       }
 
                     def_ppp: Object {
@@ -24152,17 +23702,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 24.126975983127956,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #6fb76f,0px 0px 15px #6fb76f,0px 0px 15px #6fb76f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            19.8
-                                          </i>
-                                        </small>,
+                                        "value": 19.790579925186762,
                                       }
 
                     def_ppp: Object {
@@ -24435,17 +23975,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 23.908013471475954,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            21.7
-                                          </i>
-                                        </small>,
+                                        "value": 21.721415740240655,
                                       }
 
                     def_ppp: Object {
@@ -24987,17 +24517,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                     def_net: Object {
                                         "old_value": 23.908013471475954,
                                         "override": "Adjusted from Off 3P% and Def 3P%",
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #61b061,0px 0px 15px #61b061,0px 0px 15px #61b061",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            21.7
-                                          </i>
-                                        </small>,
+                                        "value": 21.721415740240655,
                                       }
 
                     def_ppp: Object {
@@ -28130,17 +27650,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -28621,17 +28131,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -28858,17 +28358,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -29345,17 +28835,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -30140,17 +29620,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -30631,17 +30101,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -30868,17 +30328,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -31355,17 +30805,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -32150,17 +31590,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -32641,17 +32071,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -32878,17 +32298,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -33365,17 +32775,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -34160,17 +33560,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -34651,17 +34041,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -34888,17 +34268,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -35394,17 +34764,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -36240,17 +35600,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -36731,17 +36081,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -36968,17 +36308,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -37474,17 +36804,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -38320,17 +37640,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -38811,17 +38121,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -39048,17 +38348,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -39554,17 +38844,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -42567,17 +41847,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -43058,17 +42328,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -43295,17 +42555,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -43782,17 +43032,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -44593,17 +43833,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        0.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 0,
                                                   }
 
                           def_ppp: Object {
@@ -44780,17 +44010,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        24.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 24.022815613078475,
                                                   }
 
                           def_ppp: Object {
@@ -45077,17 +44297,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -45568,17 +44778,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -45805,17 +45005,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -46292,17 +45482,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -47103,17 +46283,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        0.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 0,
                                                   }
 
                           def_ppp: Object {
@@ -47290,17 +46460,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        24.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 24.022815613078475,
                                                   }
 
                           def_ppp: Object {
@@ -47587,17 +46747,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -48078,17 +47228,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -48315,17 +47455,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -48802,17 +47932,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -49613,17 +48733,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        0.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 0,
                                                   }
 
                           def_ppp: Object {
@@ -49800,17 +48910,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        24.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 24.022815613078475,
                                                   }
 
                           def_ppp: Object {
@@ -50097,17 +49197,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -50588,17 +49678,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -50825,17 +49905,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -51331,17 +50401,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -52764,17 +51824,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        25.1
-                                                      </i>
-                                                    </small>,
+                                                    "value": 25.136108992398945,
                                                   }
 
                           def_ppp: Object {
@@ -52970,17 +52020,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        23.6
-                                                      </i>
-                                                    </small>,
+                                                    "value": 23.615130713609005,
                                                   }
 
                           def_ppp: Object {
@@ -53447,17 +52487,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -53938,17 +52968,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -54175,17 +53195,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -54681,17 +53691,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -56114,17 +55114,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        23.1
-                                                      </i>
-                                                    </small>,
+                                                    "value": 23.071446053890483,
                                                   }
 
                           def_ppp: Object {
@@ -56320,17 +55310,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        24.4
-                                                      </i>
-                                                    </small>,
+                                                    "value": 24.350614233471966,
                                                   }
 
                           def_ppp: Object {
@@ -56797,17 +55777,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -57288,17 +56258,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -57525,17 +56485,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -58031,17 +56981,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -59464,17 +58404,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        23.9
-                                                      </i>
-                                                    </small>,
+                                                    "value": 23.908013471475954,
                                                   }
 
                           def_ppp: Object {
@@ -59670,17 +58600,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        24.1
-                                                      </i>
-                                                    </small>,
+                                                    "value": 24.126975983127956,
                                                   }
 
                           def_ppp: Object {
@@ -62314,17 +61234,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -62805,17 +61715,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -63042,17 +61942,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -63529,17 +62419,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -64340,17 +63220,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        0.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 0,
                                                   }
 
                           def_ppp: Object {
@@ -64527,17 +63397,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                                   }
 
                           def_net: Object {
-                                                    "value": <small
-                                                      style={
-                                                        Object {
-                                                          "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                                        }
-                                                      }
-                                                    >
-                                                      <i>
-                                                        24.0
-                                                      </i>
-                                                    </small>,
+                                                    "value": 24.022815613078475,
                                                   }
 
                           def_ppp: Object {
@@ -66680,17 +65540,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -67171,17 +66021,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -67408,17 +66248,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -67895,17 +66725,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -68132,17 +66952,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -68623,17 +67433,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -68860,17 +67660,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -69347,17 +68137,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -69584,17 +68364,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -70075,17 +68845,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #50a850,0px 0px 15px #50a850,0px 0px 15px #50a850",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.0
-                                          </i>
-                                        </small>,
+                                        "value": 24.022815613078475,
                                       }
 
                     def_ppp: Object {
@@ -70312,17 +69072,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -70799,17 +69549,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #ffffff,0px 0px 15px #ffffff,0px 0px 15px #ffffff",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            0.0
-                                          </i>
-                                        </small>,
+                                        "value": 0,
                                       }
 
                     def_ppp: Object {
@@ -71036,17 +69776,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -71527,17 +70257,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #53a953,0px 0px 15px #53a953,0px 0px 15px #53a953",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.6
-                                          </i>
-                                        </small>,
+                                        "value": 23.615130713609005,
                                       }
 
                     def_ppp: Object {
@@ -71764,17 +70484,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -72270,17 +70980,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #48a448,0px 0px 15px #48a448,0px 0px 15px #48a448",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            25.1
-                                          </i>
-                                        </small>,
+                                        "value": 25.136108992398945,
                                       }
 
                     def_ppp: Object {
@@ -72526,17 +71226,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -73017,17 +71707,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4ea74e,0px 0px 15px #4ea74e,0px 0px 15px #4ea74e",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.4
-                                          </i>
-                                        </small>,
+                                        "value": 24.350614233471966,
                                       }
 
                     def_ppp: Object {
@@ -73254,17 +71934,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -73760,17 +72430,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #57ab57,0px 0px 15px #57ab57,0px 0px 15px #57ab57",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.1
-                                          </i>
-                                        </small>,
+                                        "value": 23.071446053890483,
                                       }
 
                     def_ppp: Object {
@@ -74016,17 +72676,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -74507,17 +73157,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #4fa74f,0px 0px 15px #4fa74f,0px 0px 15px #4fa74f",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            24.1
-                                          </i>
-                                        </small>,
+                                        "value": 24.126975983127956,
                                       }
 
                     def_ppp: Object {
@@ -74744,17 +73384,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
@@ -75250,17 +73880,7 @@ exports[`TeamReportStatsTable TeamReportStatsTable - should create snapshot (wit
                                       }
 
                     def_net: Object {
-                                        "value": <small
-                                          style={
-                                            Object {
-                                              "textShadow": "0px 0px 15px #51a851,0px 0px 15px #51a851,0px 0px 15px #51a851",
-                                            }
-                                          }
-                                        >
-                                          <i>
-                                            23.9
-                                          </i>
-                                        </small>,
+                                        "value": 23.908013471475954,
                                       }
 
                     def_ppp: Object {
