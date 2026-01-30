@@ -666,7 +666,7 @@ export class ParamDefaults {
   // Lineup leaderboard
   static readonly defaultLineupLboardMinPos = "20";
   static readonly defaultLineupLboardMaxTableSize = "100";
-  static readonly defaultLineupLboardSortBy = "desc:diff_adj_ppp";
+  static readonly defaultLineupLboardSortBy = "desc:diff_adj_power";
   static readonly defaultLineupLboardFilter = "";
   static readonly defaultLineupLboardLuckDiagMode = false;
   // Team stats explorer

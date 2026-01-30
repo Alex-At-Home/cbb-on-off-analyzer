@@ -1147,4 +1147,43 @@ export class LineupUtils {
       .value();
     return orderedMutableOppoList;
   }
+
+  // For leaderboards, build regressed off/def "power"
+
+  static readonly regressedOffDef = (lineup: any, avgEff: number) => {
+    const regression_min_poss = 50;
+    const regression_max_min_poss = 200; //(at 250 we're using the exact value)
+    const avg_eff = 100;
+    const extra_regression_poss = 150; //(below this we assume the lineup was worse than team average)
+    const extra_regression_max = 10;
+
+    const poss = lineup.off_poss?.value || 0;
+    const off_adj_ppp = lineup.off_adj_ppp?.value || avgEff;
+    const regression =
+      (1 - Math.min(poss, extra_regression_poss) / extra_regression_poss) *
+      extra_regression_max;
+    const team_off_adj_ppp =
+      (lineup.team_off_adj_ppp?.value || avg_eff) - regression; //slight regression because it's a low vol
+    const factor =
+      Math.min(
+        Math.max(poss - regression_min_poss, 0),
+        regression_max_min_poss
+      ) / regression_max_min_poss;
+
+    const def_adj_ppp = lineup.def_adj_ppp?.value || avgEff;
+    const team_def_adj_ppp =
+      (lineup.team_def_adj_ppp?.value || avgEff) + regression; //slight regression because it's a low vol
+
+    //DIAG
+    // console.log(
+    //   `Off regress for [${lineup.key}] ${off_adj_ppp} : ${poss} = ${
+    //     factor * off_adj_ppp + (1 - factor) * team_off_adj_ppp
+    //   } (${team_off_adj_ppp})`
+    // );
+
+    return {
+      off_regress: factor * off_adj_ppp + (1 - factor) * team_off_adj_ppp,
+      def_regress: factor * def_adj_ppp + (1 - factor) * team_def_adj_ppp,
+    };
+  };
 }

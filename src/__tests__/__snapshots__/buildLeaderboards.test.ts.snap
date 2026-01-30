@@ -986,7 +986,6 @@ Array [
 exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard 3`] = `
 Array [
   Object {
-    "adj_margin_rank": 1,
     "conf": "Big Ten Conference",
     "def_2p": Object {
       "value": 0.4264705882352941,
@@ -1034,7 +1033,6 @@ Array [
       "override": "Adjusted from Def 3P%",
       "value": 90.38959809194343,
     },
-    "def_adj_ppp_rank": 3,
     "def_assist": Object {
       "value": 0.5275590551181102,
     },
@@ -1222,7 +1220,6 @@ Array [
       "override": "Adjusted from Off 3P%",
       "value": 123.97981637786177,
     },
-    "off_adj_ppp_rank": 1,
     "off_assist": Object {
       "value": 0.5211267605633803,
     },
@@ -1508,7 +1505,6 @@ Array [
     "year": "2020/21",
   },
   Object {
-    "adj_margin_rank": 2,
     "conf": "Big Ten Conference",
     "def_2p": Object {
       "value": 0.425,
@@ -1556,7 +1552,6 @@ Array [
       "override": "Adjusted from Def 3P%",
       "value": 82.94960572688385,
     },
-    "def_adj_ppp_rank": 1,
     "def_assist": Object {
       "value": 0.5,
     },
@@ -1744,7 +1739,6 @@ Array [
       "override": "Adjusted from Off 3P%",
       "value": 116.85371772108024,
     },
-    "off_adj_ppp_rank": 3,
     "off_assist": Object {
       "value": 0.5492957746478874,
     },
@@ -2030,7 +2024,6 @@ Array [
     "year": "2020/21",
   },
   Object {
-    "adj_margin_rank": 3,
     "conf": "Big Ten Conference",
     "def_2p": Object {
       "value": 0.3867924528301887,
@@ -2078,7 +2071,6 @@ Array [
       "override": "Adjusted from Def 3P%",
       "value": 88.5276081639322,
     },
-    "def_adj_ppp_rank": 2,
     "def_assist": Object {
       "value": 0.5932203389830508,
     },
@@ -2266,7 +2258,6 @@ Array [
       "override": "Adjusted from Off 3P%",
       "value": 119.31300349523511,
     },
-    "off_adj_ppp_rank": 2,
     "off_assist": Object {
       "value": 0.5308641975308642,
     },
@@ -2557,7 +2548,6 @@ Array [
 exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard / completePlayerLeaderboard 4`] = `
 Array [
   Object {
-    "adj_margin_rank": 1,
     "conf": "Big Ten Conference",
     "def_2p": Object {
       "value": 0.4264705882352941,
@@ -2605,7 +2595,6 @@ Array [
       "override": "Adjusted from Def 3P%",
       "value": 90.38959809194343,
     },
-    "def_adj_ppp_rank": 1,
     "def_assist": Object {
       "value": 0.5275590551181102,
     },
@@ -2793,7 +2782,6 @@ Array [
       "override": "Adjusted from Off 3P%",
       "value": 123.97981637786177,
     },
-    "off_adj_ppp_rank": 1,
     "off_assist": Object {
       "value": 0.5211267605633803,
     },

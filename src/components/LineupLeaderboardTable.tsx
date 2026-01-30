@@ -103,10 +103,26 @@ const sortOptions: Array<{ label: string; value: string }> =
   );
 
 const sortOptionsByValue = _.fromPairs(
-  sortOptions.map((opt) => [opt.value, opt])
+  sortOptions
+    .concat([
+      { value: "desc:diff_adj_power", label: "Adj Power Rtg (Desc. / Net)" },
+    ])
+    .concat([
+      {
+        value: "desc:off_adj_power",
+        label: "Adj Power Rtg (Desc. / Offensive)",
+      },
+    ])
+    .concat([
+      { value: "asc:def_adj_power", label: "Adj Power Rtg (Asc. / Defensive)" },
+    ])
+    .map((opt) => [opt.value, opt])
 );
 /** Put these options at the front */
 const mostUsefulSubset = [
+  "desc:diff_adj_power",
+  "desc:off_adj_power",
+  "asc:def_adj_power",
   "desc:diff_adj_ppp",
   "desc:off_adj_ppp",
   "asc:def_adj_ppp",
@@ -209,6 +225,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
     true as boolean
   ); //(always start as true)
+
+  const [numQualifyingLineups, setNumQualifyingLineups] = useState(
+    dataEvent?.lineups?.length || 0
+  );
 
   // Luck:
 
@@ -324,6 +344,17 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       []) as unknown as LineupStatSet[];
     const minPossNum = parseInt(minPoss) || 0;
     const confDataEventLineups = dataEventLineups
+      .map((lineup) => {
+        // Calculate power:
+        const { off_regress, def_regress } = LineupUtils.regressedOffDef(
+          lineup,
+          avgEfficiency
+        );
+        lineup.off_adj_power = { value: off_regress };
+        lineup.def_adj_power = { value: def_regress };
+
+        return lineup;
+      })
       .filter((lineup) => {
         return (
           (!confSet || confSet.has(lineup.conf || "Unknown")) &&
@@ -379,6 +410,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
         }
         return true;
       });
+
+    setNumQualifyingLineups(_.size(confDataEventLineups));
+
     const [lineups, ignoreDroppedLineups] =
       LineupTableUtils.buildFilteredLineups(
         confDataEventLineups,
@@ -455,67 +489,10 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       const adjMarginStr = `${adjMargin > 0.0 ? "+" : ""}${adjMargin.toFixed(
         1
       )}`;
-      const generalRank = isGeneralSortOrFilter ? (
+      const generalRank = (
         <span>
           <i>(#{lineupIndex + 1})</i>&nbsp;
         </span>
-      ) : null;
-
-      const rankingsTooltip = (
-        <Tooltip id={`rankings_${lineupIndex}`}>
-          Ranks:
-          <br />
-          {isGeneralSortOrFilter ? "[filtered/sorted subset] " : ""}
-          {isGeneralSortOrFilter ? <br /> : null}
-          [Adj Net Efficiency]
-          <br />
-          [Adj Offensive Efficiency]
-          <br />
-          [Adj Defensive Efficiency]
-        </Tooltip>
-      );
-
-      const shortTier = ((lineup.tier as String) || "").substring(0, 1);
-      const marginRank =
-        sortBy == "desc:diff_adj_ppp" ? (
-          <b>
-            #{shortTier}
-            {lineup.adj_margin_rank}
-          </b>
-        ) : (
-          `${shortTier}#${lineup.adj_margin_rank}`
-        );
-      const offRank =
-        sortBy == "desc:off_adj_ppp" ? (
-          <b>
-            <big>#{lineup.off_adj_ppp_rank}</big>
-          </b>
-        ) : (
-          `#${lineup.off_adj_ppp_rank}`
-        );
-      const defRank =
-        sortBy == "asc:def_adj_ppp" ? (
-          <b>
-            <big>#{lineup.def_adj_ppp_rank}</big>
-          </b>
-        ) : (
-          `#${lineup.def_adj_ppp_rank}`
-        );
-      const seasonRankings =
-        year == "All" && !fullDataSetSeasons.has(lineup.year || "") ? (
-          "(no ranking)"
-        ) : (
-          <span>
-            {marginRank} ({offRank} / {defRank})
-          </span>
-        );
-      const rankings = (
-        <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
-          <span className="float-left">
-            {generalRank}
-            <small>{seasonRankings}</small>
-          </span>
-        </OverlayTrigger>
       );
 
       const confNickname = ConferenceToNickname[lineup.conf || "???"] || "???";
@@ -558,7 +535,7 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
       const title = (
         <div>
           <span className="">
-            {rankings}
+            {<span className="float-left">{generalRank}</span>}
             &nbsp;
             <span>
               {teamEl} (<span>{confNickname}</span>){adjMarginHtml}
@@ -1222,8 +1199,9 @@ const LineupLeaderboardTable: React.FunctionComponent<Props> = ({
           <Col xs={12} sm={12} md={12} lg={4}>
             <div className="float-right">
               <small>
-                (Qualifying lineups {tier == "All" ? "" : "in tier "}:{" "}
-                <b>{dataEvent?.lineups?.length || 0}</b>)
+                (Lineups {tier == "All" ? "" : "in tier "}:{" "}
+                <b>{numQualifyingLineups}</b> / total{" "}
+                {_.size(dataEvent?.lineups || [])})
               </small>
             </div>
           </Col>

@@ -1982,66 +1982,7 @@ export function completeLineupLeaderboard(
     .take(topLineupSize)
     .value();
 
-  const regression_min_poss = 50;
-  const regression_max_min_poss = 200; //(at 250 we're using the exact value)
-  const avg_eff = 100;
-  const extra_regression_poss = 150; //(below this we assume the lineup was worse than team average)
-  const extra_regression_max = 10;
-  const off_regress = (lineup: any) => {
-    const poss = lineup.off_poss?.value || 0;
-    const off_adj_ppp = lineup.off_adj_ppp?.value || avg_eff;
-    const regression =
-      (1 - Math.min(poss, extra_regression_poss) / extra_regression_poss) *
-      extra_regression_max;
-    const team_off_adj_ppp =
-      (lineup.team_off_adj_ppp?.value || avg_eff) - regression; //slight regression because it's a low vol
-    const factor =
-      Math.min(
-        Math.max(poss - regression_min_poss, 0),
-        regression_max_min_poss
-      ) / regression_max_min_poss;
-
-    //DIAG
-    // console.log(
-    //   `Off regress for [${lineup.key}] ${off_adj_ppp} : ${poss} = ${
-    //     factor * off_adj_ppp + (1 - factor) * team_off_adj_ppp
-    //   } (${team_off_adj_ppp})`
-    // );
-
-    return factor * off_adj_ppp + (1 - factor) * team_off_adj_ppp;
-  };
-  const def_regress = (lineup: any) => {
-    const poss = lineup.def_poss?.value || 0;
-    const def_adj_ppp = lineup.def_adj_ppp?.value || avg_eff;
-    const regression = (1 - Math.min(poss, 150) / 150) * 10;
-    const team_def_adj_ppp =
-      (lineup.team_def_adj_ppp?.value || avg_eff) + regression; //slight regression because it's a low vol
-    const factor =
-      Math.min(
-        Math.max(poss - regression_min_poss, 0),
-        regression_max_min_poss
-      ) / regression_max_min_poss;
-    return factor * def_adj_ppp + (1 - factor) * team_def_adj_ppp;
-  };
-
-  _.sortBy(topByPoss, (lineup) => -1 * off_regress(lineup)).forEach(
-    (lineup, index) => {
-      lineup[`off_adj_ppp_rank`] = index + 1;
-    }
-  );
-  _.sortBy(topByPoss, (lineup) => def_regress(lineup)).forEach(
-    (lineup, index) => {
-      lineup[`def_adj_ppp_rank`] = index + 1;
-    }
-  );
-  const rankedLineups = _.sortBy(
-    topByPoss,
-    (lineup) => def_regress(lineup) - off_regress(lineup)
-  ).map((lineup, index) => {
-    lineup[`adj_margin_rank`] = index + 1;
-    return lineup;
-  });
-  return rankedLineups;
+  return topByPoss;
 }
 
 if (!testMode) {
