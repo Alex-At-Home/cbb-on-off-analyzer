@@ -135,6 +135,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   /** Overlay counting stats on each stint if enabled */
   const labelOptions = {
     "No Labels": (info) => 0,
+    "Plus Minus": (info) => info.plus_minus || 0,
     Fouls: (info) => toStats(info)?.foul?.total || 0,
     Points: (info) =>
       3 * (toShots(info)?.fg_3p?.made?.total || 0) +
@@ -446,6 +447,19 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         7.5
       ),
       sep0: GenericTableOps.addColSeparator(),
+      ...(showLabels &&
+      labelToShow &&
+      labelToShow != "No Labels" &&
+      labelOptions[labelToShow]
+        ? {
+            total: GenericTableOps.addDataCol(
+              "",
+              `The total of label [${labelToShow}] for each player`,
+              CbbColors.applyThemedBackground,
+              GenericTableOps.htmlFormatter
+            ),
+          }
+        : {}),
       ...tableCols,
     };
 
@@ -457,7 +471,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             (player) => player.code == playerCode
           )?.id || "?????";
 
-        const playerCols = _.transform(
+        const { cols: playerCols, labelTotal } = _.transform(
           clumps,
           (acc, clump) => {
             const clumpStart = clump.stints[0].start_min;
@@ -500,6 +514,14 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                   (p) => p.code == playerCode
                 );
                 const playerStats = playerInfo?.stats;
+                if (playerStats) {
+                  //(for some reason this is empty in the API response, fill it in)
+                  playerStats.plus_minus = stint.team_stats.plus_minus;
+                }
+                acc.labelTotal +=
+                  labelToShow && labelOptions[labelToShow] && playerInfo?.stats
+                    ? labelOptions[labelToShow](playerInfo?.stats) || 0
+                    : 0;
 
                 // Calculate very simple usage rate:
                 const playerStintInfo = _.thru(playerStats, (__) => {
@@ -786,8 +808,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               acc.currStint = endStint + 1;
             } else return undefined; //(can complete the transform)
           },
-          { currStint: 0, cols: {} as Record<string, any> }
-        ).cols;
+          { currStint: 0, cols: {} as Record<string, any>, labelTotal: 0 }
+        );
 
         const addFormattingToPlayers = (playerCode: string) => {
           const prettifiedPlayerCode =
@@ -841,6 +863,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
         return {
           title: addFormattingToPlayers(playerCode),
+          total: <small>{labelTotal}</small>,
           pct_poss:
             playerInfoCache?.playerInfo?.[playerKey]?.off_team_poss_pct?.value,
           ...playerCols,
