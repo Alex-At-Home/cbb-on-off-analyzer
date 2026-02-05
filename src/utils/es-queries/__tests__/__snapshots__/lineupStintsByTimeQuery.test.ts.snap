@@ -1,0 +1,2819 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lineupStintsByTimeQuery lineupStintsByTimeQuery with 3 bins 1`] = `
+{
+   "runtime_mappings": {
+      "vs_high_major": {
+         "type": "boolean",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 1) > 0)"
+         }
+      },
+      "in_conf": {
+         "type": "boolean",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value & 2) > 0)"
+         }
+      },
+      "vs_rank": {
+         "type": "long",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit((doc['common_lookup'].value >> 2) & 511)"
+         }
+      },
+      "vs_3p": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) {\\n            def _3p = (doc['common_lookup'].value >> 11)  & 1023;\\n            if (_3p > 0) emit(0.1*_3p);\\n          }"
+         }
+      },
+      "vs_adj_off": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 21) & 2047))"
+         }
+      },
+      "vs_adj_def": {
+         "type": "double",
+         "script": {
+            "source": "if (0 != doc['common_lookup'].size()) emit(0.1*((doc['common_lookup'].value >> 32) & 2047))"
+         }
+      },
+      "common_lookup": {
+         "type": "long",
+         "script": {
+            "source": "\\n            if (!params.kp_info.isEmpty()) {\\n              def raw_name = doc[params.field_name].value;\\n              def kp_name = params.pbp_to_kp[raw_name];\\n              if (kp_name == null) {\\n                 kp_name = raw_name;\\n              } else {\\n                 kp_name = kp_name.pbp_kp_team;\\n              }\\n              def oppo = params.kp_info[kp_name];\\n              if (oppo != null) {\\n                def vs_high_major = oppo[\\"is_high_major\\"] ?: 1;\\n                if (vs_high_major instanceof String) {\\n                  vs_high_major = 0;\\n                }\\n                def oppo_conf = oppo[\\"conf\\"];\\n                def team_conf = params.conf;\\n                if (team_conf == \\"*\\") {      \\n                  def raw_team_name = doc[\\"team.team.keyword\\"].value; \\n                  def team_kp_name = params.pbp_to_kp[raw_team_name];\\n                  if (team_kp_name == null) {\\n                    team_kp_name = raw_team_name;\\n                  } else {\\n                    team_kp_name = team_kp_name.pbp_kp_team;\\n                  }\\n                  def team_kp = params.kp_info[team_kp_name];\\n                  if (team_kp != null) {\\n                    team_conf = team_kp[\\"conf\\"];\\n                  }\\n                }\\n                def in_conf = team_conf.equals(oppo_conf);\\n                def hca = 0;\\n                if (doc[\\"location_type.keyword\\"].size() > 0) {\\n                  if (doc[\\"location_type.keyword\\"].value == \\"Neutral\\") {\\n                    hca = 25;\\n                  } else if (doc[\\"location_type.keyword\\"].value == \\"Away\\") {\\n                    hca = 50;\\n                  }\\n                }\\n                def margin_rank = Math.max(1, (oppo[\\"stats.adj_margin.rank\\"] ?: 0) - hca);\\n\\n                def _3p = oppo[\\"stats.off._3p_pct.value\\"] ?: 0.0;\\n                _3p = (_3p * 10).longValue() & 1023;\\n\\n                def adj_off = oppo[\\"stats.adj_off.value\\"] ?: 0;\\n                adj_off = (adj_off * 10).longValue() & 2047;\\n\\n                def adj_def = oppo[\\"stats.adj_def.value\\"] ?: 0;\\n                adj_def = (adj_def * 10).longValue() & 2047;\\n\\n                long returnVal = 0L | (vs_high_major << 0)\\n                  | ((in_conf ? 1 : 0) << 1)\\n                  | ((margin_rank.longValue() & 511) << 2)\\n                  | (_3p.longValue() << 11)\\n                  | (adj_off.longValue() << 21)\\n                  | (adj_def.longValue() << 32)\\n                  ;\\n                emit(returnVal);\\n              }\\n            }\\n          ",
+            "lang": "painless",
+            "params": {
+               "pbp_to_kp": {
+                  "name1": "name1b"
+               },
+               "field_name": "opponent.team.keyword",
+               "kp_info": {
+                  "team": {
+                     "stats": 0
+                  }
+               },
+               "conf": ""
+            }
+         }
+      }
+   },
+   "_source": {
+      "includes": [],
+      "excludes": [
+         "agent",
+         "host",
+         "log",
+         "ecs"
+      ]
+   },
+   "size": 0,
+   "query": {
+      "bool": {
+         "filter": [],
+         "minimum_should_match": 0,
+         "should": [],
+         "must_not": [],
+         "must": [
+            {
+               "bool": {
+                  "filter": [],
+                  "must_not": [],
+                  "should": [],
+                  "minimum_should_match": 0,
+                  "must": [
+                     {
+                        "term": {
+                           "team.team.keyword": "TestTeam"
+                        }
+                     },
+                     {
+                        "query_string": {
+                           "query": "vs_rank:[10 TO 100]"
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               "query_string": {
+                  "query": "players.id:(base)"
+               }
+            }
+         ]
+      }
+   },
+   "aggregations": {
+      "bin_0": {
+         "filter": {
+            "bool": {
+               "must": [
+                  {
+                     "range": {
+                        "start_min": {
+                           "lt": 1
+                        }
+                     }
+                  },
+                  {
+                     "range": {
+                        "end_min": {
+                           "gt": 0
+                        }
+                     }
+                  }
+               ]
+            }
+         },
+         "aggregations": {
+            "off_num_possessions": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.num_possessions"
+                     }
+                  }
+               }
+            },
+            "off_pts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.pts"
+                     }
+                  }
+               }
+            },
+            "off_plus_minus": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.plus_minus"
+                     }
+                  }
+               }
+            },
+            "off_to": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.to.total"
+                     }
+                  }
+               }
+            },
+            "off_assist": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.assist.total"
+                     }
+                  }
+               }
+            },
+            "off_stl": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.stl.total"
+                     }
+                  }
+               }
+            },
+            "off_blk": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.blk.total"
+                     }
+                  }
+               }
+            },
+            "off_foul": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.foul.total"
+                     }
+                  }
+               }
+            },
+            "off_orb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.orb.total"
+                     }
+                  }
+               }
+            },
+            "off_drb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.drb.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_2p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_2p.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_2p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_2p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_3p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_3p.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_3p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_3p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_rim_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_rim.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_rim_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_rim.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_mid_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_mid.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_mid_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg_mid.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_ft_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.ft.made.total"
+                     }
+                  }
+               }
+            },
+            "off_ft_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.ft.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "team_stats.fg.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_num_possessions": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.num_possessions"
+                     }
+                  }
+               }
+            },
+            "def_pts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.pts"
+                     }
+                  }
+               }
+            },
+            "def_plus_minus": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.plus_minus"
+                     }
+                  }
+               }
+            },
+            "def_to": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.to.total"
+                     }
+                  }
+               }
+            },
+            "def_assist": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.assist.total"
+                     }
+                  }
+               }
+            },
+            "def_stl": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.stl.total"
+                     }
+                  }
+               }
+            },
+            "def_blk": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.blk.total"
+                     }
+                  }
+               }
+            },
+            "def_foul": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.foul.total"
+                     }
+                  }
+               }
+            },
+            "def_orb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.orb.total"
+                     }
+                  }
+               }
+            },
+            "def_drb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.drb.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_2p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_2p.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_2p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_2p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_3p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_3p.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_3p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_3p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_rim_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_rim.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_rim_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_rim.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_mid_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_mid.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_mid_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg_mid.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_ft_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.ft.made.total"
+                     }
+                  }
+               }
+            },
+            "def_ft_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.ft.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 0,
+                        "bin_end": 1,
+                        "stat_path": "opponent_stats.fg.attempts.total"
+                     }
+                  }
+               }
+            },
+            "players": {
+               "terms": {
+                  "field": "player.code.keyword",
+                  "size": 50
+               },
+               "aggregations": {
+                  "num_possessions": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.num_possessions"
+                           }
+                        }
+                     }
+                  },
+                  "pts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.pts"
+                           }
+                        }
+                     }
+                  },
+                  "to": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.to.total"
+                           }
+                        }
+                     }
+                  },
+                  "assist": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.assist.total"
+                           }
+                        }
+                     }
+                  },
+                  "stl": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.stl.total"
+                           }
+                        }
+                     }
+                  },
+                  "blk": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.blk.total"
+                           }
+                        }
+                     }
+                  },
+                  "foul": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.foul.total"
+                           }
+                        }
+                     }
+                  },
+                  "orb": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.orb.total"
+                           }
+                        }
+                     }
+                  },
+                  "drb": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.drb.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_2p_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_2p.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_2p_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_2p.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_3p_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_3p.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_3p_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_3p.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_rim_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_rim.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_rim_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_rim.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_mid_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_mid.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_mid_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg_mid.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "ft_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.ft.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "ft_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.ft.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "player_stats.fg.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "team_num_possessions": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "team_stats.num_possessions"
+                           }
+                        }
+                     }
+                  },
+                  "team_plus_minus": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 0,
+                              "bin_end": 1,
+                              "stat_path": "team_stats.plus_minus"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "bin_1": {
+         "filter": {
+            "bool": {
+               "must": [
+                  {
+                     "range": {
+                        "start_min": {
+                           "lt": 2
+                        }
+                     }
+                  },
+                  {
+                     "range": {
+                        "end_min": {
+                           "gt": 1
+                        }
+                     }
+                  }
+               ]
+            }
+         },
+         "aggregations": {
+            "off_num_possessions": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.num_possessions"
+                     }
+                  }
+               }
+            },
+            "off_pts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.pts"
+                     }
+                  }
+               }
+            },
+            "off_plus_minus": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.plus_minus"
+                     }
+                  }
+               }
+            },
+            "off_to": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.to.total"
+                     }
+                  }
+               }
+            },
+            "off_assist": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.assist.total"
+                     }
+                  }
+               }
+            },
+            "off_stl": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.stl.total"
+                     }
+                  }
+               }
+            },
+            "off_blk": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.blk.total"
+                     }
+                  }
+               }
+            },
+            "off_foul": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.foul.total"
+                     }
+                  }
+               }
+            },
+            "off_orb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.orb.total"
+                     }
+                  }
+               }
+            },
+            "off_drb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.drb.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_2p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_2p.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_2p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_2p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_3p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_3p.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_3p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_3p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_rim_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_rim.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_rim_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_rim.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_mid_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_mid.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_mid_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg_mid.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_ft_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.ft.made.total"
+                     }
+                  }
+               }
+            },
+            "off_ft_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.ft.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "team_stats.fg.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_num_possessions": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.num_possessions"
+                     }
+                  }
+               }
+            },
+            "def_pts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.pts"
+                     }
+                  }
+               }
+            },
+            "def_plus_minus": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.plus_minus"
+                     }
+                  }
+               }
+            },
+            "def_to": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.to.total"
+                     }
+                  }
+               }
+            },
+            "def_assist": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.assist.total"
+                     }
+                  }
+               }
+            },
+            "def_stl": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.stl.total"
+                     }
+                  }
+               }
+            },
+            "def_blk": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.blk.total"
+                     }
+                  }
+               }
+            },
+            "def_foul": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.foul.total"
+                     }
+                  }
+               }
+            },
+            "def_orb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.orb.total"
+                     }
+                  }
+               }
+            },
+            "def_drb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.drb.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_2p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_2p.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_2p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_2p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_3p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_3p.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_3p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_3p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_rim_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_rim.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_rim_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_rim.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_mid_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_mid.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_mid_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg_mid.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_ft_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.ft.made.total"
+                     }
+                  }
+               }
+            },
+            "def_ft_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.ft.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 1,
+                        "bin_end": 2,
+                        "stat_path": "opponent_stats.fg.attempts.total"
+                     }
+                  }
+               }
+            },
+            "players": {
+               "terms": {
+                  "field": "player.code.keyword",
+                  "size": 50
+               },
+               "aggregations": {
+                  "num_possessions": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.num_possessions"
+                           }
+                        }
+                     }
+                  },
+                  "pts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.pts"
+                           }
+                        }
+                     }
+                  },
+                  "to": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.to.total"
+                           }
+                        }
+                     }
+                  },
+                  "assist": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.assist.total"
+                           }
+                        }
+                     }
+                  },
+                  "stl": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.stl.total"
+                           }
+                        }
+                     }
+                  },
+                  "blk": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.blk.total"
+                           }
+                        }
+                     }
+                  },
+                  "foul": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.foul.total"
+                           }
+                        }
+                     }
+                  },
+                  "orb": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.orb.total"
+                           }
+                        }
+                     }
+                  },
+                  "drb": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.drb.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_2p_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_2p.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_2p_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_2p.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_3p_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_3p.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_3p_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_3p.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_rim_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_rim.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_rim_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_rim.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_mid_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_mid.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_mid_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg_mid.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "ft_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.ft.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "ft_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.ft.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "player_stats.fg.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "team_num_possessions": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "team_stats.num_possessions"
+                           }
+                        }
+                     }
+                  },
+                  "team_plus_minus": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 1,
+                              "bin_end": 2,
+                              "stat_path": "team_stats.plus_minus"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "bin_2": {
+         "filter": {
+            "bool": {
+               "must": [
+                  {
+                     "range": {
+                        "start_min": {
+                           "lt": 3
+                        }
+                     }
+                  },
+                  {
+                     "range": {
+                        "end_min": {
+                           "gt": 2
+                        }
+                     }
+                  }
+               ]
+            }
+         },
+         "aggregations": {
+            "off_num_possessions": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.num_possessions"
+                     }
+                  }
+               }
+            },
+            "off_pts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.pts"
+                     }
+                  }
+               }
+            },
+            "off_plus_minus": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.plus_minus"
+                     }
+                  }
+               }
+            },
+            "off_to": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.to.total"
+                     }
+                  }
+               }
+            },
+            "off_assist": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.assist.total"
+                     }
+                  }
+               }
+            },
+            "off_stl": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.stl.total"
+                     }
+                  }
+               }
+            },
+            "off_blk": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.blk.total"
+                     }
+                  }
+               }
+            },
+            "off_foul": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.foul.total"
+                     }
+                  }
+               }
+            },
+            "off_orb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.orb.total"
+                     }
+                  }
+               }
+            },
+            "off_drb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.drb.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_2p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_2p.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_2p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_2p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_3p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_3p.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_3p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_3p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_rim_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_rim.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_rim_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_rim.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_mid_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_mid.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_mid_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg_mid.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_ft_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.ft.made.total"
+                     }
+                  }
+               }
+            },
+            "off_ft_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.ft.attempts.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg.made.total"
+                     }
+                  }
+               }
+            },
+            "off_fg_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "team_stats.fg.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_num_possessions": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.num_possessions"
+                     }
+                  }
+               }
+            },
+            "def_pts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.pts"
+                     }
+                  }
+               }
+            },
+            "def_plus_minus": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.plus_minus"
+                     }
+                  }
+               }
+            },
+            "def_to": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.to.total"
+                     }
+                  }
+               }
+            },
+            "def_assist": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.assist.total"
+                     }
+                  }
+               }
+            },
+            "def_stl": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.stl.total"
+                     }
+                  }
+               }
+            },
+            "def_blk": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.blk.total"
+                     }
+                  }
+               }
+            },
+            "def_foul": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.foul.total"
+                     }
+                  }
+               }
+            },
+            "def_orb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.orb.total"
+                     }
+                  }
+               }
+            },
+            "def_drb": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.drb.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_2p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_2p.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_2p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_2p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_3p_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_3p.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_3p_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_3p.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_rim_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_rim.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_rim_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_rim.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_mid_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_mid.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_mid_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg_mid.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_ft_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.ft.made.total"
+                     }
+                  }
+               }
+            },
+            "def_ft_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.ft.attempts.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_made": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg.made.total"
+                     }
+                  }
+               }
+            },
+            "def_fg_attempts": {
+               "sum": {
+                  "script": {
+                     "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                     "lang": "painless",
+                     "params": {
+                        "bin_start": 2,
+                        "bin_end": 3,
+                        "stat_path": "opponent_stats.fg.attempts.total"
+                     }
+                  }
+               }
+            },
+            "players": {
+               "terms": {
+                  "field": "player.code.keyword",
+                  "size": 50
+               },
+               "aggregations": {
+                  "num_possessions": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.num_possessions"
+                           }
+                        }
+                     }
+                  },
+                  "pts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.pts"
+                           }
+                        }
+                     }
+                  },
+                  "to": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.to.total"
+                           }
+                        }
+                     }
+                  },
+                  "assist": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.assist.total"
+                           }
+                        }
+                     }
+                  },
+                  "stl": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.stl.total"
+                           }
+                        }
+                     }
+                  },
+                  "blk": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.blk.total"
+                           }
+                        }
+                     }
+                  },
+                  "foul": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.foul.total"
+                           }
+                        }
+                     }
+                  },
+                  "orb": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.orb.total"
+                           }
+                        }
+                     }
+                  },
+                  "drb": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.drb.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_2p_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_2p.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_2p_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_2p.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_3p_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_3p.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_3p_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_3p.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_rim_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_rim.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_rim_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_rim.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_mid_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_mid.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_mid_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg_mid.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "ft_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.ft.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "ft_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.ft.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_made": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg.made.total"
+                           }
+                        }
+                     }
+                  },
+                  "fg_attempts": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "player_stats.fg.attempts.total"
+                           }
+                        }
+                     }
+                  },
+                  "team_num_possessions": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "team_stats.num_possessions"
+                           }
+                        }
+                     }
+                  },
+                  "team_plus_minus": {
+                     "sum": {
+                        "script": {
+                           "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                           "lang": "painless",
+                           "params": {
+                              "bin_start": 2,
+                              "bin_end": 3,
+                              "stat_path": "team_stats.plus_minus"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+`;
