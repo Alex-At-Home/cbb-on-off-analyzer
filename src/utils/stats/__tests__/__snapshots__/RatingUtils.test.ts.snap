@@ -135,7 +135,17 @@ exports[`RatingUtils RatingUtils - buildORtg 1`] = `
    "Usage": 26.37230387926769,
    "Usage_Bonus": 7.965379849084613,
    "adjORtg": 132.31108374723274,
-   "adjORtgPlus": 6.462216749446549
+   "adjORtgPlus": 6.462216749446549,
+   "rimPoss": 94.74891598915988,
+   "midPoss": 49.15660569105691,
+   "threePoss": 125.77469161760582,
+   "astThreePoss": 17.074958123953095,
+   "astTwoPoss": 18.782453936348407,
+   "rimPtsProd": 120.55555555555556,
+   "midPtsProd": 36,
+   "threePtsProd": 142.65517241379308,
+   "astThreePProd": 51.224874371859286,
+   "astTwoPProd": 37.56490787269682
 }
 `;
 

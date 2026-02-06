@@ -474,6 +474,103 @@ export type LineupStintInfo = {
 
 //////////////////////////////////////
 
+/* Time-binned stint aggregations (for averaged stint analysis) */
+
+/** Player stats within a time bin */
+export type TimeBinPlayerStats = {
+  key: string; // player code
+  doc_count: number;
+  // Player stats from player_stats.*
+  num_possessions: { value: number };
+  pts: { value: number };
+  to: { value: number };
+  assist: { value: number };
+  stl: { value: number };
+  blk: { value: number };
+  foul: { value: number };
+  orb: { value: number };
+  drb: { value: number };
+  fg_2p_made: { value: number };
+  fg_2p_attempts: { value: number };
+  fg_3p_made: { value: number };
+  fg_3p_attempts: { value: number };
+  fg_rim_made: { value: number };
+  fg_rim_attempts: { value: number };
+  fg_mid_made: { value: number };
+  fg_mid_attempts: { value: number };
+  ft_made: { value: number };
+  ft_attempts: { value: number };
+  fg_made: { value: number };
+  fg_attempts: { value: number };
+  // Team stats for when this player was on court (for usage calc)
+  team_num_possessions: { value: number };
+  team_plus_minus: { value: number };
+};
+
+/** Team stats within a time bin */
+export type TimeBinStats = {
+  doc_count: number;
+  // Offensive stats (from team_stats.*)
+  off_num_possessions: { value: number };
+  off_pts: { value: number };
+  off_plus_minus: { value: number };
+  off_to: { value: number };
+  off_assist: { value: number };
+  off_stl: { value: number };
+  off_blk: { value: number };
+  off_foul: { value: number };
+  off_orb: { value: number };
+  off_drb: { value: number };
+  off_fg_2p_made: { value: number };
+  off_fg_2p_attempts: { value: number };
+  off_fg_3p_made: { value: number };
+  off_fg_3p_attempts: { value: number };
+  off_fg_rim_made: { value: number };
+  off_fg_rim_attempts: { value: number };
+  off_fg_mid_made: { value: number };
+  off_fg_mid_attempts: { value: number };
+  off_ft_made: { value: number };
+  off_ft_attempts: { value: number };
+  off_fg_made: { value: number };
+  off_fg_attempts: { value: number };
+  // Defensive stats (from opponent_stats.*)
+  def_num_possessions: { value: number };
+  def_pts: { value: number };
+  def_plus_minus: { value: number };
+  def_to: { value: number };
+  def_assist: { value: number };
+  def_stl: { value: number };
+  def_blk: { value: number };
+  def_foul: { value: number };
+  def_orb: { value: number };
+  def_drb: { value: number };
+  def_fg_2p_made: { value: number };
+  def_fg_2p_attempts: { value: number };
+  def_fg_3p_made: { value: number };
+  def_fg_3p_attempts: { value: number };
+  def_fg_rim_made: { value: number };
+  def_fg_rim_attempts: { value: number };
+  def_fg_mid_made: { value: number };
+  def_fg_mid_attempts: { value: number };
+  def_ft_made: { value: number };
+  def_ft_attempts: { value: number };
+  def_fg_made: { value: number };
+  def_fg_attempts: { value: number };
+  // Player aggregations
+  players: {
+    doc_count_error_upper_bound: number;
+    sum_other_doc_count: number;
+    buckets: TimeBinPlayerStats[];
+  };
+};
+
+/** Complete time-binned aggregation response */
+export type TimeBinnedAggregation = {
+  [key: `bin_${number}`]: TimeBinStats;
+};
+
+//////////////////////////////////////
+
 /** Useful constants */
 export class StatModels {
   static emptyIndiv: () => IndivStatSet = () => {

@@ -105,6 +105,37 @@ export type ORtgDiagnostics = {
   Usage_Bonus: number;
   adjORtg: number;
   adjORtgPlus: number;
+
+  // Net points decomp:
+  rimPoss: number;
+  midPoss: number;
+  threePoss: number;
+  //use orbPart for orbPoss
+  astThreePoss: number;
+  astTwoPoss: number;
+  //(already have ftPoss)
+  rimPtsProd: number;
+  midPtsProd: number;
+  threePtsProd: number;
+  //(use ppOrb)
+  astThreePProd: number;
+  astTwoPProd: number;
+  //(use rawFtm)
+  //(use rawTo)
+};
+
+export type NetPoints = {
+  offNetPts: number;
+  offNetPtsAst2: number;
+  offNetPtsAst3: number;
+  offNetPtsOrb: number;
+  offNetPtsRim: number;
+  offNetPts3P: number;
+  offNetPtsMid: number;
+  offNetPtsFt: number;
+  offNetPtsTo: number;
+  offNetPtsSpacing: number;
+  offNetPtsImpact: number;
 };
 
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
@@ -311,13 +342,13 @@ export class RatingUtils {
     extraTeamStatInfo: { total_off_to: Statistic; sum_total_off_to: Statistic },
     avgEfficiency: number,
     calcDiags: boolean,
-    overrideAdjusted: boolean
+    overrideAdjusted: boolean,
   ): [
     { value: number } | undefined,
     { value: number } | undefined,
     { value: number } | undefined,
     { value: number } | undefined, //< if overridden these are the raw vals
-    ORtgDiagnostics | undefined
+    ORtgDiagnostics | undefined,
   ] {
     if (!statSet)
       return [undefined, undefined, undefined, undefined, undefined];
@@ -355,7 +386,7 @@ export class RatingUtils {
     const UnblamedTOVs = Math.max(
       (extraTeamStatInfo.total_off_to?.value || 0) -
         (extraTeamStatInfo.sum_total_off_to?.value || 0),
-      0
+      0,
     );
     const UnblamedTOVs_Player =
       0.2 * UnblamedTOVs * statGet("off_team_poss_pct");
@@ -374,18 +405,18 @@ export class RatingUtils {
     // New for assist calcs:
     const Made = shotLocs.map((l) => statGet(`total_off_${l}_made`));
     const Attempts = shotLocs.map(
-      (l) => statGet(`total_off_${l}_attempts`) || 1
+      (l) => statGet(`total_off_${l}_attempts`) || 1,
     ); //||1 because used as denom
     const AssistedPct = shotLocs.map((l) => statGet(`off_${l}_ast`));
     const AssistsTotals = shotLocs.map((l) =>
-      statGet(`total_off_ast_${shotLocToLoc[l]!}`)
+      statGet(`total_off_ast_${shotLocToLoc[l]!}`),
     );
     const Assists: [string, Record<string, number>][] = shotLocs.map(
       (l) => [
         l,
         ((statSet as any)[`off_ast_${shotLocToLoc[l]!}_target`]
           ?.value as Record<string, number>) || {},
-      ]
+      ],
       // array of [shotLoc, map[player -> count]]
     );
 
@@ -518,7 +549,7 @@ export class RatingUtils {
     //(there was a case [23/24 La Salle] where a low volume player had this resolve to 0, so put a safety check in the low volume case)
     const Actual_FT_Poss = Math.max(
       Team_Poss - (Team_TOV + Team_FGA - Team_ORB),
-      FTA > 0 ? 1 : 0
+      FTA > 0 ? 1 : 0,
     );
     const Actual_FTA_to_Poss = Actual_FT_Poss / (Team_FTA || 1);
 
@@ -571,6 +602,15 @@ export class RatingUtils {
 
     const TotPoss = ScPoss + FGxPoss + FTxPoss + TOV;
 
+    // Some more decompostion:
+    const shotPossDecomp = shotLocs.map((__, idx) => {
+      return (
+        FGM_Minus_AssistPenalty[idx] * (1 - Team_ORB_Contrib) +
+        (Attempts[idx] - Made[idx]) * (1 - 1.07 * Team_ORB_pct)
+      );
+    });
+    const [rimPoss, midPoss, threePoss] = shotPossDecomp!;
+
     // Finally:
 
     const PProd_FG_Part_Classic =
@@ -578,9 +618,14 @@ export class RatingUtils {
     // New assist code:
     const PProd_FG_Part = sumBy(
       FGM_Minus_AssistPenalty,
-      (f, ii) => f * shotBonus[ii]!
+      (f, ii) => f * shotBonus[ii]!,
     );
     //(use the possession count but weighted by pts/scoring-poss)
+
+    const PProd_FG_Decomp = shotBonus.map((bonus, idx) => {
+      return FGM_Minus_AssistPenalty[idx] * bonus;
+    });
+    const [rimPtsProd, midPtsProd, threePtsProd] = PProd_FG_Decomp!;
 
     const Other_eFG =
       Others_FGA > 0
@@ -591,6 +636,11 @@ export class RatingUtils {
     const PProd_AST_Part_Classic = 0.5 * Other_eFG * AST * Other_Pts_Per_FGM;
     // New assist code:
     const PProd_AST_Part = sumBy(AST_Part, (a, ii) => shotBonus[ii]! * a);
+
+    const astThreePProd = AST_Part[2]! * shotBonus[2]!;
+    const astTwoPProd = PProd_AST_Part - astThreePProd;
+    const astTwoPoss = AST_Part[0]! + AST_Part[1]!;
+    const astThreePoss = AST_Part[2]!;
 
     const Team_FTs_Hit_1plus =
       Team_FTA > 0
@@ -624,14 +674,14 @@ export class RatingUtils {
       console.log(
         `POSS_TOT,${FG_Part_Classic},${AST_Part_Classic},${FT_Part},*,${
           1 - Team_ORB_Contrib
-        },+,${ORB_Part},+,${FGxPoss},+,${FTxPoss},+,${TOV},=,${TotPoss_Classic}`
+        },+,${ORB_Part},+,${FGxPoss},+,${FTxPoss},+,${TOV},=,${TotPoss_Classic}`,
       );
     }
     if (diagInfo.indexOf("PTS_TOT_CLASSIC") >= 0) {
       console.log(
         `PTS_TOT,${PProd_FG_Part_Classic},${PProd_AST_Part_Classic},${FTM},*,${
           1 - Team_ORB_Contrib
-        },+,${PProd_ORB_Part},=,${PProd_Classic}`
+        },+,${PProd_ORB_Part},=,${PProd_Classic}`,
       );
     }
     if (diagInfo.indexOf("PTS_AST_CLASSIC") >= 0) {
@@ -640,16 +690,16 @@ export class RatingUtils {
           1 - Team_Assist_Contrib_Classic
         },...,${PProd_AST_Part_Classic},=,${0.5 * Other_eFG},*,${AST},*,${
           Team_PTS_FROM_FG - PTS_FROM_FG
-        },/,${Others_FGM}`
+        },/,${Others_FGM}`,
       );
     }
     if (diagInfo.indexOf("PTS_AST") >= 0) {
       console.log(
         `PTS_AST,${PProd_FG_Part},=,${FGM_Minus_AssistPenalty.join(
-          ","
+          ",",
         )},*,${shotBonus.join(",")},...,${PProd_AST_Part},=,${shotBonus.join(
-          ","
-        )},*,${AST_Part.join(",")}`
+          ",",
+        )},*,${AST_Part.join(",")}`,
       );
     }
 
@@ -697,7 +747,7 @@ export class RatingUtils {
           extraTeamStatInfo,
           avgEfficiency,
           false,
-          false
+          false,
         )
       : [undefined, undefined];
 
@@ -752,7 +802,7 @@ export class RatingUtils {
             othersAssist: Others_AST,
             otherEfg: Other_eFG,
             otherEfgInfo: _.reverse(
-              Capped_Efg_By_ShotType.map((efg) => (100 * efg).toFixed(1))
+              Capped_Efg_By_ShotType.map((efg) => (100 * efg).toFixed(1)),
             ), //(3p first)
             otherPtsPerFgm: Other_Pts_Per_FGM,
             teamOrbContribPct: Team_ORB_Contrib,
@@ -806,10 +856,82 @@ export class RatingUtils {
             Usage_Bonus: Usage_Bonus,
             adjORtg: Adj_ORtg,
             adjORtgPlus: Adj_ORtgPlus,
+
+            // Some decomposition for Net points calcs:
+            rimPoss,
+            midPoss,
+            threePoss,
+            astThreePoss,
+            astTwoPoss,
+            rimPtsProd,
+            midPtsProd,
+            threePtsProd,
+            astThreePProd,
+            astTwoPProd,
           }
         : undefined) as ORtgDiagnostics | undefined,
     ];
   }
+
+  /** Decompose ORtg and RAPM into something that looks a bit like Net points, if you squint */
+  static buildNetPoints = (
+    playerRapm: IndivStatSet,
+    ortg: ORtgDiagnostics,
+    drtg: DRtgDiagnostics,
+    avgEff: number,
+  ): NetPoints => {
+    const avgPpp = 0.01 * avgEff;
+
+    const offNetPts3P = ortg.threePtsProd - ortg.threePoss * avgPpp;
+    const offNetPtsMid = ortg.midPtsProd - ortg.midPoss * avgPpp;
+    const offNetPtsRim = ortg.rimPtsProd - ortg.rimPoss * avgPpp;
+    const offNetPtsOrb = ortg.ppOrb - ortg.orbPart * avgPpp;
+    const offNetPtsFt = ortg.rawFtm - ortg.ftPoss * avgPpp;
+    const offNetPtsTo = -ortg.rawTo * avgPpp;
+    const offNetPtsAst2 = ortg.astThreePProd - ortg.astThreePoss * avgPpp;
+    const offNetPtsAst3 = ortg.astTwoPProd - ortg.astTwoPoss * avgPpp;
+
+    const offNetPtsSpacing = ortg.Usage_Bonus * 0.2 * ortg.offPoss * 0.01;
+
+    const offNetPtsImpact = _.thru(
+      playerRapm.off_adj_rapm as Statistic,
+      (rapm) => {
+        if (rapm) {
+          const delta = (rapm.value || 0) - ortg.adjORtgPlus; //pts/100 SoS-adj
+          const unadjDelta = (ortg.defSos / avgEff) * delta;
+          return unadjDelta * ortg.offPoss * 0.01;
+        } else {
+          return 0.0;
+        }
+      },
+    );
+
+    const offNetPts =
+      offNetPts3P +
+      offNetPtsMid +
+      offNetPtsRim +
+      offNetPtsOrb +
+      offNetPtsFt +
+      offNetPtsTo +
+      offNetPtsAst2 +
+      offNetPtsAst3 +
+      offNetPtsSpacing +
+      offNetPtsImpact;
+
+    return {
+      offNetPts,
+      offNetPtsAst2,
+      offNetPtsAst3,
+      offNetPtsOrb,
+      offNetPtsRim,
+      offNetPts3P,
+      offNetPtsMid,
+      offNetPtsFt,
+      offNetPtsTo,
+      offNetPtsSpacing,
+      offNetPtsImpact,
+    };
+  };
 
   /** Builds the overrides to the raw fields based on stat overrides */
   private static buildDefOverrides(statSet: Record<string, any>) {
@@ -831,13 +953,13 @@ export class RatingUtils {
     statSet: Record<string, any>,
     avgEfficiency: number,
     calcDiags: boolean,
-    overrideAdjusted: boolean
+    overrideAdjusted: boolean,
   ): [
     { value: number } | undefined,
     { value: number } | undefined,
     { value: number } | undefined,
     { value: number } | undefined, //< if overrridden these are the raw vals
-    DRtgDiagnostics | undefined
+    DRtgDiagnostics | undefined,
   ] {
     if (!statSet)
       return [undefined, undefined, undefined, undefined, undefined];
@@ -1009,7 +1131,7 @@ export class RatingUtils {
   /** Builds a stat object for all the defensive plays not assigned to a player, copy into the player stats */
   static injectUncatOnBallDefenseStats(
     totalStats: OnBallDefenseModel,
-    players: OnBallDefenseModel[]
+    players: OnBallDefenseModel[],
   ): OnBallDefenseModel[] {
     // Use this to output data beforer mutation and paste into sampleOnBallDefenseStats.ts
     //console.log(JSON.stringify(totalStats, null, 3));
@@ -1039,7 +1161,7 @@ export class RatingUtils {
         totalTos: totalTos,
         totalFgMade: totalStats.fgMade,
         totalFgMiss: totalStats.fgMiss,
-      } as OnBallDefenseModel
+      } as OnBallDefenseModel,
     );
 
     const uncatPtsPerScPlay =
@@ -1073,7 +1195,7 @@ export class RatingUtils {
   static buildOnBallDefenseAdjustmentsPhase1(
     player: IndivStatSet,
     diags: DRtgDiagnostics,
-    onBallStats: OnBallDefenseModel
+    onBallStats: OnBallDefenseModel,
   ): OnBallDefenseDiags {
     const showConsoleDiag = false;
 
@@ -1134,40 +1256,40 @@ export class RatingUtils {
       (player.def_team_poss_pct?.value || 0) * onBallStats.totalPlays;
     const completeness = Math.min(
       1.0,
-      approxOnBallPlaysWhileOnFloor / (teamDefPlays || 1)
+      approxOnBallPlaysWhileOnFloor / (teamDefPlays || 1),
     );
     // For weighting classic DRtg vs adjusted DRtg on incomplete samples, we weight up the on-ball stats
     // since it is somewhat predictive in nature
     const weightedCompleteness = Math.min(
       1.0,
       (2.0 * approxOnBallPlaysWhileOnFloor) /
-        (teamDefPlays + approxOnBallPlaysWhileOnFloor || 1)
+        (teamDefPlays + approxOnBallPlaysWhileOnFloor || 1),
     );
 
     // Diags:
     if (showConsoleDiag) {
       console.log(
         `PLAYER ${player.key}: TEAM: poss=${sampleTeamDefPoss.toFixed(
-          1
+          1,
         )} plays=${teamDefPlays.toFixed(
-          1
+          1,
         )} on_ball_plays=${approxOnBallPlaysWhileOnFloor.toFixed(
-          1
+          1,
         )} completeness=${(completeness * 100).toFixed(
-          1
-        )} NORM_NON_REB ${normalizedPlayerNonRebPoss.toFixed(1)}`
+          1,
+        )} NORM_NON_REB ${normalizedPlayerNonRebPoss.toFixed(1)}`,
       );
       console.log(
         `TEAM: [${teamPts.toFixed(1)} / ${teamDefPoss.toFixed(
-          1
+          1,
         )}] = (${teamFgMadeAgainst.toFixed(1)}+${teamAdjFgMissAgainst.toFixed(
-          1
+          1,
         )}+${teamAdjReb.toFixed(1)}) ` +
           ` + ${teamDefTo.toFixed(1)} + ${teamFtaPossCalc.toFixed(
-            1
+            1,
           )} - ${teamOrbAllowed.toFixed(1)} (${diags.teamDvsRebCredit.toFixed(
-            1
-          )}, ${(teamFtaPossCalc / (diags.oppoFta || 1)).toFixed(1)})`
+            1,
+          )}, ${(teamFtaPossCalc / (diags.oppoFta || 1)).toFixed(1)})`,
       );
     }
 
@@ -1197,18 +1319,18 @@ export class RatingUtils {
     if (showConsoleDiag) {
       console.log(
         `ON-BALL [${onBallPts.toFixed(1)} / ${onBallAdjPlays.toFixed(
-          1
+          1,
         )}]: AdjFGMiss=${onBallAdjFgMiss.toFixed(
-          1
+          1,
         )} + FGMade=${onBallFgMade.toFixed(1)}` +
           ` + SF=${onBallFtPoss.toFixed(1)} [${onBallStats.sfPct.toFixed(
-            1
+            1,
           )}%] + TO=${onBallTo.toFixed(1)} [${onBallStats.tovPct.toFixed(
-            1
+            1,
           )}%] ` +
           `(PLAYS=${onBallPlays.toFixed(1)} [${(targetedPct * 100).toFixed(
-            1
-          )}%] vs [${onBallStats.plays}])`
+            1,
+          )}%] vs [${onBallStats.plays}])`,
       );
     }
 
@@ -1239,15 +1361,15 @@ export class RatingUtils {
     const offBallPts = Math.max(0, completeness * teamPts - onBallPts);
     const offBallAdjFgMiss = Math.max(
       0,
-      completeness * teamAdjFgMissAgainst - onBallAdjFgMiss
+      completeness * teamAdjFgMissAgainst - onBallAdjFgMiss,
     );
     const offBallFgMade = Math.max(
       0,
-      completeness * teamFgMadeAgainst - onBallFgMade
+      completeness * teamFgMadeAgainst - onBallFgMade,
     );
     const offBallFtPoss = Math.max(
       0,
-      completeness * teamFtaPossCalc - onBallFtPoss
+      completeness * teamFtaPossCalc - onBallFtPoss,
     );
     const offBallTo = Math.max(0, completeness * teamDefTo - onBallTo);
     const offBallAdjPlays =
@@ -1257,11 +1379,11 @@ export class RatingUtils {
     if (showConsoleDiag) {
       console.log(
         `OFF-BALL [${offBallPts.toFixed(1)} / ${offBallAdjPlays.toFixed(
-          1
+          1,
         )}]: AdjFGMiss=${offBallAdjFgMiss.toFixed(
-          1
+          1,
         )} + FGMade=${offBallFgMade.toFixed(1)}` +
-          ` + SF=${offBallFtPoss.toFixed(1)} + TO=${offBallTo.toFixed(1)}`
+          ` + SF=${offBallFtPoss.toFixed(1)} + TO=${offBallTo.toFixed(1)}`,
       );
     }
 
@@ -1292,14 +1414,14 @@ export class RatingUtils {
     if (showConsoleDiag) {
       console.log(
         `UNCAT [${uncatPts.toFixed(1)} / ${uncatAdjPlays.toFixed(
-          1
+          1,
         )}]: AdjFGMiss=${uncatAdjFgMiss.toFixed(
-          1
+          1,
         )} + FGMade=${uncatFgMade.toFixed(1)}` +
           ` + SF=${uncatFtPoss.toFixed(1)} + TO=${uncatTo.toFixed(1)} ` +
           `(PLAYS=${uncatPlays.toFixed(1)} [${(uncatTargetedPct * 100).toFixed(
-            1
-          )}%] vs [${onBallStats.uncatPlays}])`
+            1,
+          )}%] vs [${onBallStats.uncatPlays}])`,
       );
     }
 
@@ -1315,8 +1437,8 @@ export class RatingUtils {
     if (showConsoleDiag) {
       console.log(
         `COMBO: ${totalCatAdjPlays.toFixed(1)} [delta: ${deltaPlays.toFixed(
-          1
-        )}]`
+          1,
+        )}]`,
       );
     }
 
@@ -1329,7 +1451,7 @@ export class RatingUtils {
     const playerVsTeamRebWeight = 0.2;
     const rebsOffFts = Math.max(
       0,
-      diags.teamDrb + teamOrbAllowed - teamFgMissAgainst
+      diags.teamDrb + teamOrbAllowed - teamFgMissAgainst,
     );
     //(we're only interesting in matching FGx, so we subtract the number of rebounded FTx ...
     // note this somewhat overvalues frontcourt players' rebounds - because many of them are off Ftx,
@@ -1388,17 +1510,17 @@ export class RatingUtils {
     if (showConsoleDiag) {
       console.log(
         `Sample DRtg [${unadjSampleDRtg.toFixed(1)}] = ${weightedPts.toFixed(
-          1
+          1,
         )}/(${normalizedPlayerNonRebPoss.toFixed(1)} + ${adjDefRebPoss.toFixed(
-          1
-        )} - ${orbAdjustment.toFixed(1)})`
+          1,
+        )} - ${orbAdjustment.toFixed(1)})`,
       );
       console.log(
         `DRtg [${unadjDRtg.toFixed(1)}] = ${weightedCompleteness.toFixed(
-          2
+          2,
         )}*${unadjSampleDRtg.toFixed(1)} + ${(1 - weightedCompleteness).toFixed(
-          2
-        )}*${diags.dRtg.toFixed(1)}`
+          2,
+        )}*${diags.dRtg.toFixed(1)}`,
       );
     }
 
@@ -1449,7 +1571,7 @@ export class RatingUtils {
   /** (MUTATES) Adjusts the defensive stats according to the aggregated individual stats (phase 2 takes the team into account) */
   static injectOnBallDefenseAdjustmentsPhase2(
     players: IndivStatSet[],
-    team: PureStatSet
+    team: PureStatSet,
   ) {
     const showConsoleDiag = false;
 
@@ -1466,7 +1588,7 @@ export class RatingUtils {
             return acc;
           }
         },
-        0
+        0,
       );
 
     //(START CONSOLE DISPLAY/DIAGS)
@@ -1482,7 +1604,7 @@ export class RatingUtils {
               ? acc + (diags.teamDvsRebCredit * diags.oppoPoss) / totalPoss
               : acc;
           },
-          0
+          0,
         );
 
       // Calculate the team stats
@@ -1513,15 +1635,15 @@ export class RatingUtils {
 
       console.log(
         `TEAM: [${teamPts.toFixed(1)} / ${teamDefPoss.toFixed(
-          1
+          1,
         )}] = (${teamFgMadeAgainst.toFixed(1)}+${teamAdjFgMissAgainst.toFixed(
-          1
+          1,
         )}+${teamAdjReb.toFixed(1)} [drb=${team.total_off_drb?.value}]) ` +
           ` + ${teamDefTo.toFixed(1)} + ${teamFtaPossCalc.toFixed(
-            1
+            1,
           )} - ${teamOrbAllowed.toFixed(1)} (${avgDvsRebCredit.toFixed(2)}, ${(
             teamFtaPossCalc / (team.total_def_fta?.value || 1)
-          ).toFixed(2)})`
+          ).toFixed(2)})`,
       );
     }
     //(END CONSOLE DISPLAY/DIAGS)
@@ -1544,7 +1666,7 @@ export class RatingUtils {
               return acc;
             }
           },
-          0
+          0,
         )) /
       (adjustedPossPct || 1);
 
@@ -1565,7 +1687,7 @@ export class RatingUtils {
               return acc;
             }
           },
-          0
+          0,
         )) /
       (adjustedPossPct || 1);
 
@@ -1601,7 +1723,7 @@ export class RatingUtils {
                 weightedUnadjDRtgMean: weightedUnadjDRtgMean.toFixed(1),
                 uncategorizedAdjustment: uncategorizedAdjustment.toFixed(1),
                 adjustedPossPct: adjustedPossPct.toFixed(1),
-              })
+              }),
           );
         }
 
@@ -1625,13 +1747,13 @@ export class RatingUtils {
           if (stat.def_rtg) {
             stat.def_rtg.value = onBallDiags.dRtg;
             stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${diag.dRtg.toFixed(
-              1
+              1,
             )}]`;
           }
           if (stat.def_adj_rtg) {
             stat.def_adj_rtg.value = Adj_DRtgPlus;
             stat.def_adj_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${diag.adjDRtgPlus.toFixed(
-              1
+              1,
             )}]`;
           }
           if (stat.def_adj_prod) {
@@ -1641,18 +1763,16 @@ export class RatingUtils {
             const defAdjProd =
               diag.adjDRtgPlus * (stat.def_team_poss_pct.value || 0);
             stat.def_adj_prod.extraInfo = `Using on-ball defense stats - classic value would be [${defAdjProd.toFixed(
-              1
+              1,
             )}]`;
           }
           if (!_.isNil((stat as PureStatSet).def_adj_rapm?.value)) {
-            (
-              stat as PureStatSet
-            ).def_adj_rapm.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
+            (stat as PureStatSet).def_adj_rapm.extraInfo =
+              `Using on-ball defense - unknown adjustment (see Adj+ Rtg for estimate)`;
           }
           if (!_.isNil((stat as PureStatSet).def_adj_rapm_prod?.value)) {
-            (
-              stat as PureStatSet
-            ).def_adj_rapm_prod.extraInfo = `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
+            (stat as PureStatSet).def_adj_rapm_prod.extraInfo =
+              `Using on-ball defense - unknown adjustment (see Adj+ Prod for estimate)`;
           }
         }
       }
@@ -1663,7 +1783,7 @@ export class RatingUtils {
   static adjustORtgForUsageDelta(
     ortg: number,
     usagePct: number,
-    usageDeltaPct: number
+    usageDeltaPct: number,
   ) {
     //Based on
     //    const Usage_Bonus = usage > 20 ? ((usage - 20) * 1.25) :  ((usage - 20) * 1.5);
