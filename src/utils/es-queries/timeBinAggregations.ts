@@ -183,16 +183,53 @@ export const timeBinTeamAggregations = (
 /**
  * Builds the complete time bin aggregation structure.
  * Creates a filter aggregation per bin with weighted team and player stats.
+ *
+ * Since we query both lineup index and player_events index:
+ * - Team stats should only come from lineup docs (filtered by _index)
+ * - Player stats should only come from player_events docs (filtered by _index)
+ *
+ * @param numBins Number of 1-minute bins (default 40 for regulation game)
+ * @param lineupIndex Optional lineup index name for efficient _index filtering
+ * @param playerEventsIndex Optional player_events index name for efficient _index filtering
  */
-export const timeBinAggregations = (numBins: number = 40) => {
+export const timeBinAggregations = (
+  numBins: number = 40,
+  lineupIndex?: string,
+  playerEventsIndex?: string
+) => {
   return _.fromPairs(
     _.range(numBins).map((binStart) => {
       const binEnd = binStart + 1;
-      const binFilter = {
+
+      // Base time filter for this bin
+      const binTimeFilter = [
+        { range: { start_min: { lt: binEnd } } },
+        { range: { end_min: { gt: binStart } } },
+      ];
+
+      // Filter for lineup docs only
+      // Use _index term filter if available (more efficient), fallback to exists check
+      const lineupDocsFilter = {
         bool: {
           must: [
-            { range: { start_min: { lt: binEnd } } },
-            { range: { end_min: { gt: binStart } } },
+            ...binTimeFilter,
+            ...(lineupIndex
+              ? [{ term: { _index: lineupIndex } }]
+              : []),
+          ],
+          must_not: lineupIndex ? [] : [{ exists: { field: "player" } }],
+        },
+      };
+
+      // Filter for player_events docs only
+      // Use _index term filter if available (more efficient), fallback to exists check
+      const playerDocsFilter = {
+        bool: {
+          must: [
+            ...binTimeFilter,
+            ...(playerEventsIndex
+              ? [{ term: { _index: playerEventsIndex } }]
+              : [{ exists: { field: "player" } }]),
           ],
         },
       };
@@ -200,13 +237,38 @@ export const timeBinAggregations = (numBins: number = 40) => {
       return [
         `bin_${binStart}`,
         {
-          filter: binFilter,
+          // Use the base time filter as the bin filter (for doc_count)
+          filter: {
+            bool: {
+              must: binTimeFilter,
+            },
+          },
           aggregations: {
-            // Team-level weighted stats (off = team_stats, def = opponent_stats)
-            ...timeBinTeamAggregations("team_stats", "off", binStart, binEnd),
-            ...timeBinTeamAggregations("opponent_stats", "def", binStart, binEnd),
-            // Player-level weighted stats
-            ...timeBinPlayerAggregations(binStart, binEnd),
+            // Team-level weighted stats - only from lineup docs
+            team_stats: {
+              filter: lineupDocsFilter,
+              aggregations: {
+                ...timeBinTeamAggregations(
+                  "team_stats",
+                  "off",
+                  binStart,
+                  binEnd
+                ),
+                ...timeBinTeamAggregations(
+                  "opponent_stats",
+                  "def",
+                  binStart,
+                  binEnd
+                ),
+              },
+            },
+            // Player-level weighted stats - only from player_events docs
+            player_stats: {
+              filter: playerDocsFilter,
+              aggregations: {
+                ...timeBinPlayerAggregations(binStart, binEnd),
+              },
+            },
           },
         },
       ];

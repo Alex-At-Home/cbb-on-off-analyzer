@@ -39,13 +39,16 @@ import {
   ShotStats,
   StatModels,
   TeamStatSet,
+  TimeBinnedAggregation,
 } from "../utils/StatModels";
 import { UrlRouting } from "../utils/UrlRouting";
 import { HistoryManager } from "../utils/HistoryManager";
 import { ClientRequestCache } from "../utils/ClientRequestCache";
 import PlayerImpactChart from "../components/PlayerImpactChart";
+import LineupAveragedStintsChart from "../components/LineupAveragedStintsChart";
 import { LineupStintInfo } from "../utils/StatModels";
 import MatchupPreviewFilter from "../components/MatchupPreviewFilter";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import {
   DivisionStatsCache,
   GradeTableUtils,
@@ -125,6 +128,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       string,
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
     >,
+    lineupStintsAggA: {} as TimeBinnedAggregation,
+    lineupStintsAggB: {} as TimeBinnedAggregation,
   });
 
   const injectStats = (
@@ -151,7 +156,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     defensiveInfoB?: Record<
       string,
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
-    >
+    >,
+    lineupStintsAggA?: TimeBinnedAggregation,
+    lineupStintsAggB?: TimeBinnedAggregation
   ) => {
     setDataEvent({
       teamStatsA,
@@ -166,6 +173,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       shotChartInfoB,
       defensiveInfoA: defensiveInfoA || {},
       defensiveInfoB: defensiveInfoB || {},
+      lineupStintsAggA: lineupStintsAggA || {},
+      lineupStintsAggB: lineupStintsAggB || {},
     });
   };
 
@@ -360,11 +369,15 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   // Quick navigation to the different sections
   const topRef = useRef<HTMLDivElement>(null);
+  const lineupStintsRef = useRef<HTMLDivElement>(null);
   const playTypesRef = useRef<HTMLDivElement>(null);
   const playerImpactRef = useRef<HTMLDivElement>(null);
   const shotChartsRef = useRef<HTMLDivElement>(null);
   const navigationRefs = {
     Top: { ref: topRef },
+    "Lineup Stints": FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg)
+      ? { ref: lineupStintsRef }
+      : { skip: true },
     "Play Types": { ref: playTypesRef },
     "Player Impact": { ref: playerImpactRef },
     "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
@@ -839,6 +852,34 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         </GenericCollapsibleCard>
       </Row>
       <InternalNavBarInRow refs={navigationRefs} showAnnotations={true} />
+      {FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg) ? (
+        <Row
+          style={{
+            breakBefore: "page",
+          }}
+          ref={lineupStintsRef}
+        >
+          <GenericCollapsibleCard
+            minimizeMargin={true}
+            title="Lineup Time Breakdown"
+          >
+            <LineupAveragedStintsChart
+              teamA={matchupFilterParams.team || ""}
+              teamB={
+                matchupFilterParams.oppoTeam != AvailableTeams.noOpponent
+                  ? matchupFilterParams.oppoTeam
+                  : undefined
+              }
+              dataEvent={{
+                aggregatedStintsA: dataEvent.lineupStintsAggA,
+                aggregatedStintsB: dataEvent.lineupStintsAggB,
+              }}
+              startingState={matchupFilterParamsRef.current || {}}
+              onChangeState={onMatchupFilterParamsChange}
+            />
+          </GenericCollapsibleCard>
+        </Row>
+      ) : null}
       <Row
         style={{
           breakBefore: "page",

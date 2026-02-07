@@ -38,6 +38,7 @@ import {
   IndivStatSet,
   TeamStatSet,
   ShotStats,
+  TimeBinnedAggregation,
 } from "../utils/StatModels";
 import { QueryUtils } from "../utils/QueryUtils";
 import { UrlRouting } from "../utils/UrlRouting";
@@ -45,6 +46,7 @@ import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { DateUtils } from "../utils/DateUtils";
 import { FilterParamsType, CommonFilterParams } from "../utils/FilterModels";
 import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import ThemedSelect from "./shared/ThemedSelect";
 
 type Props = {
@@ -72,7 +74,9 @@ type Props = {
     defensiveInfoB?: Record<
       string,
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
-    >
+    >,
+    lineupStintsAggA?: TimeBinnedAggregation,
+    lineupStintsAggB?: TimeBinnedAggregation
   ) => void;
   startingState: MatchupFilterParams;
   onChangeState: (newParams: MatchupFilterParams) => void;
@@ -249,6 +253,30 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         ) //(only get team defense if there is "no opponent")
       : [];
 
+    const lineupStintsAggRequests: FilterRequestInfo[] = FeatureFlags.isActiveWindow(
+      FeatureFlags.lineupStintsAgg
+    )
+      ? (
+          [
+            {
+              tag: "lineupStintsAggA",
+              context: ParamPrefixes.lineupStintsAgg as ParamPrefixesType,
+              paramsObj: secondaryRequestA,
+            },
+          ] as FilterRequestInfo[]
+        ).concat(
+          game != AvailableTeams.noOpponent
+            ? [
+                {
+                  tag: "lineupStintsAggB",
+                  context: ParamPrefixes.lineupStintsAgg as ParamPrefixesType,
+                  paramsObj: secondaryRequestB,
+                },
+              ]
+            : []
+        )
+      : [];
+
     return [
       primaryRequestA,
       primaryRequests
@@ -257,7 +285,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
             ? secondaryRequests
             : ([] as FilterRequestInfo[])
         )
-        .concat(defensiveRequests),
+        .concat(defensiveRequests)
+        .concat(lineupStintsAggRequests),
     ];
   }
 
@@ -339,6 +368,12 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       }
     });
 
+    // Parse lineup stints aggregations (feature flagged)
+    const lineupStintsAggA: TimeBinnedAggregation =
+      jsonResps?.["lineupStintsAggA"]?.responses?.[0]?.aggregations || {};
+    const lineupStintsAggB: TimeBinnedAggregation =
+      jsonResps?.["lineupStintsAggB"]?.responses?.[0]?.aggregations || {};
+
     if (!jsonResps?.["teamB"]) {
       //special "no opponent case", short circuit the rest
       onStats(
@@ -353,7 +388,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         shotChartInfoA,
         { off: {}, def: {} },
         defensiveStatsA,
-        defensiveStatsB
+        defensiveStatsB,
+        lineupStintsAggA,
+        lineupStintsAggB
       );
     } else {
       const lineupJsonB = jsonResps?.["lineupsB"]?.responses?.[0] || {};
@@ -388,7 +425,9 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         shotChartInfoA,
         shotChartInfoB,
         defensiveStatsA,
-        defensiveStatsB
+        defensiveStatsB,
+        lineupStintsAggA,
+        lineupStintsAggB
       );
     }
   }

@@ -6,7 +6,7 @@ import { CommonApiUtils } from "../../utils/CommonApiUtils";
 import { lineupStintsByTimeQuery } from "../../utils/es-queries/lineupStintsByTimeQueryTemplate";
 import { ParamPrefixes, CommonFilterParams } from "../../utils/FilterModels";
 
-const queryPrefix = ParamPrefixes.lineupStints + "_by_time";
+const queryPrefix = ParamPrefixes.lineupStintsAgg;
 
 function marshallRequest(
   index: string,
@@ -15,12 +15,15 @@ function marshallRequest(
   currentJsonEpoch: number,
   efficiency: Record<string, any>,
   lookup: Record<string, any>,
-  avgEfficiency: number
+  avgEfficiency: number,
 ) {
+  const lineupIndex = index;
+  const playerEventsIndex = `player_events_${genderPrefix}${index}`;
+
   const body =
     [
       JSON.stringify({
-        index: `${index},player_events_${genderPrefix}${index}`,
+        index: `${lineupIndex},${playerEventsIndex}`,
       }),
       JSON.stringify(
         lineupStintsByTimeQuery(
@@ -29,9 +32,12 @@ function marshallRequest(
           efficiency,
           lookup,
           avgEfficiency,
-          CommonApiUtils.getHca(params as CommonFilterParams)
+          CommonApiUtils.getHca(params as CommonFilterParams),
+          40, // numBins
+          lineupIndex,
+          playerEventsIndex,
         ),
-        CommonApiUtils.efficiencyReplacer()
+        CommonApiUtils.efficiencyReplacer(),
       ),
     ].join("\n") + "\n";
 
@@ -40,14 +46,14 @@ function marshallRequest(
 
 async function calculateLineupStintsByTime(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ) {
   const url = require("url").parse(req.url);
   await CommonApiUtils.handleRequest(
     res,
     queryPrefix,
     url.query,
-    marshallRequest
+    marshallRequest,
   );
 }
 

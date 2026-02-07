@@ -34,8 +34,8 @@ export class RequestUtils {
     const isLocalError =
       _.some(
         (resp?.responses || []).map(
-          (r: any) => Object.keys(r?.error || {}).length > 0
-        )
+          (r: any) => Object.keys(r?.error || {}).length > 0,
+        ),
       ) || false;
 
     return isGlobalError || isLocalError;
@@ -62,7 +62,7 @@ export class RequestUtils {
    */
   static fixLocalhostRosterUrl(
     str: string,
-    encodeEncodePrefix: boolean
+    encodeEncodePrefix: boolean,
   ): string {
     const stage1 = encodeURIComponent(str)
       // Handle characters that are not/mis-encoded by encodeURIComponent (note & is fine, . not encoded)
@@ -90,17 +90,17 @@ export class RequestUtils {
     otherRequests: FilterRequestInfo[],
     fetchPromiseFactory: (
       url: string,
-      force: boolean
+      force: boolean,
     ) => Promise<[any, boolean, fetch.IsomorphicResponse]>,
     /** if NaN then bypass cache */
     currentJsonEpoch: number,
     isDebug: boolean,
-    testNow?: number
+    testNow?: number,
   ): Promise<any>[] {
     return RequestUtils.buildRequestList(
       primaryRequest,
       primaryContext,
-      otherRequests
+      otherRequests,
     ).map((req: FilterRequestInfo, index: number) => {
       // Mutate req for teams with changing names over years:
       const teamToCheck =
@@ -108,7 +108,7 @@ export class RequestUtils {
           ? AvailableTeams.getTeam(
               req.paramsObj?.team,
               req.paramsObj?.year,
-              req.paramsObj?.gender
+              req.paramsObj?.gender,
             )
           : null;
 
@@ -124,7 +124,7 @@ export class RequestUtils {
             24 * 3600); //(during the season, if the data is >24h old then always refresh)
       if (isDebug && !bypassCache) {
         console.log(
-          `Looking for cache entry for [${index}][${req.context}][${newParamsStr}]`
+          `Looking for cache entry for [${index}][${req.context}][${newParamsStr}]`,
         );
       }
       const cachedJson = bypassCache
@@ -133,7 +133,7 @@ export class RequestUtils {
             newParamsStr,
             req.context,
             currentJsonEpoch,
-            isDebug
+            isDebug,
           );
       const jsonExistsButEmpty = !_.isNil(cachedJson) && _.isEmpty(cachedJson);
 
@@ -144,7 +144,7 @@ export class RequestUtils {
         const startTimeMs = new Date().getTime();
         const fetchPromise = fetchPromiseFactory(
           RequestUtils.requestContextToUrl(req.context, newParamsStr),
-          jsonExistsButEmpty
+          jsonExistsButEmpty,
         );
 
         // Fetch the JSON from the CDN if requested
@@ -166,7 +166,7 @@ export class RequestUtils {
           : Promise.resolve(undefined);
         return rosterJsonPromise.then((rosterJson: any) => {
           return fetchPromise.then(function (
-            jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined]
+            jsonResp: [any, boolean, fetch.IsomorphicResponse | undefined],
           ) {
             const json = jsonResp[0];
             const respOk = jsonResp[1];
@@ -176,7 +176,7 @@ export class RequestUtils {
             if (rosterJson) {
               RequestUtils.mutateRosterJsonForWomen(
                 rosterJson,
-                req.paramsObj.gender
+                req.paramsObj.gender,
               );
               json.roster = rosterJson;
             }
@@ -184,13 +184,13 @@ export class RequestUtils {
             // Cache result locally:
             if (isDebug && !bypassCache) {
               console.log(
-                `CACHE_KEY[${index}]=[${req.context}${newParamsStr}]`
+                `CACHE_KEY[${index}]=[${req.context}${newParamsStr}]`,
               );
               if (debugLogResponses) {
                 console.log(`CACHE_VAL[${index}]=[${JSON.stringify(json)}]`);
               } else {
                 console.log(
-                  `CACHE_VAL[${index}]=[${JSON.stringify(json).length}]B`
+                  `CACHE_VAL[${index}]=[${JSON.stringify(json).length}]B`,
                 );
               }
               const totalTimeMs = new Date().getTime() - startTimeMs;
@@ -203,15 +203,15 @@ export class RequestUtils {
                 req.context,
                 json,
                 currentJsonEpoch,
-                isDebug
+                isDebug,
               );
             } else if (isDebug) {
               console.log(
                 `[${index}] Response error: ok=[${respOk}] ok_from_obj=[${!RequestUtils.isResponseError(
-                  json
+                  json,
                 )}] status=[${response?.status}] keys=[${Object.keys(
-                  response || {}
-                )}]`
+                  response || {},
+                )}]`,
               );
             }
             return json;
@@ -224,7 +224,7 @@ export class RequestUtils {
   /** Switch from one of the request types to the URL */
   static requestContextToUrl(
     context: ParamPrefixesType,
-    paramStr: string
+    paramStr: string,
   ): string {
     switch (context) {
       case ParamPrefixes.game:
@@ -235,6 +235,8 @@ export class RequestUtils {
         return `/api/calculateLineupStats?${paramStr}`;
       case ParamPrefixes.lineupStints:
         return `/api/calculateLineupStints?${paramStr}`;
+      case ParamPrefixes.lineupStintsAgg:
+        return `/api/calculateLineupStintsAgg?${paramStr}`;
       case ParamPrefixes.report:
         return `/api/calculateLineupStats?${paramStr}`; //(report uses the lineup info but processes differently)
       case ParamPrefixes.roster:
@@ -267,7 +269,7 @@ export class RequestUtils {
     params: CommonFilterParams,
     resultCallback: (gameObjs: GameInfoStatSet[]) => void,
     dataLastUpdated: Record<string, number>,
-    isDebug: boolean
+    isDebug: boolean,
   ) {
     const { gender, year, team } = params;
     if (gender && year && team) {
@@ -294,7 +296,7 @@ export class RequestUtils {
             paramStr,
             ParamPrefixes.gameInfo,
             currentJsonEpoch,
-            isDebug
+            isDebug,
           );
 
       // Cache debugging:
@@ -310,22 +312,22 @@ export class RequestUtils {
         //TODO: should actually combine inside the LineupUtils call, but this will do for now
         return _.sortedUniqBy(
           gameInfoObjs,
-          (gameInfoObj) => gameInfoObj.opponent || "" + gameInfoObj.date || ""
+          (gameInfoObj) => gameInfoObj.opponent || "" + gameInfoObj.date || "",
         );
       };
       if (cachedJson && !_.isEmpty(cachedJson)) {
         //(ignore placeholders here)
         const oppoList = LineupUtils.getGameInfo(
-          cachedJson?.responses?.[0]?.aggregations?.game_info || {}
+          cachedJson?.responses?.[0]?.aggregations?.game_info || {},
         );
         resultCallback(
           makeUnique(
-            _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc")
-          )
+            _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc"),
+          ),
         );
       } else {
         fetch(`/api/getGameInfo?${paramStr}`).then(function (
-          response: fetch.IsomorphicResponse
+          response: fetch.IsomorphicResponse,
         ) {
           response.json().then(function (json: any) {
             // Cache result locally:
@@ -341,16 +343,16 @@ export class RequestUtils {
                 ParamPrefixes.gameInfo,
                 json,
                 currentJsonEpoch,
-                isDebug
+                isDebug,
               );
             }
             const oppoList = LineupUtils.getGameInfo(
-              json?.responses?.[0]?.aggregations?.game_info || {}
+              json?.responses?.[0]?.aggregations?.game_info || {},
             );
             resultCallback(
               makeUnique(
-                _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc")
-              )
+                _.orderBy(oppoList, (gameInfoObj) => gameInfoObj.date, "desc"),
+              ),
             );
           });
         });
@@ -366,7 +368,7 @@ export class RequestUtils {
   static replaceRosterShortcut(
     inQuery: string | undefined,
     roster: string[],
-    forQuery: Boolean //(if false then do nothing)
+    forQuery: Boolean, //(if false then do nothing)
   ): string | undefined {
     if (!forQuery) return inQuery;
     return inQuery?.replace(
@@ -383,7 +385,7 @@ export class RequestUtils {
         // );
 
         return replacement;
-      }
+      },
     );
   }
 
@@ -394,7 +396,7 @@ export class RequestUtils {
     params: CommonFilterParams,
     resultCallback: (rosterObjs: string[]) => void,
     dataLastUpdated: Record<string, number>,
-    isDebug: boolean
+    isDebug: boolean,
   ) {
     if (params.gender && params.year && params.team) {
       const genderYear = `${params.gender}_${params.year}`;
@@ -431,20 +433,20 @@ export class RequestUtils {
             paramStr,
             ParamPrefixes.roster,
             currentJsonEpoch,
-            false /* This gets called every keypress, so even in debug mode it's a huge pain */
+            false /* This gets called every keypress, so even in debug mode it's a huge pain */,
           );
       if (cachedJson && !_.isEmpty(cachedJson)) {
         //(ignore placeholders here)
         resultCallback(jsonToIndivs(cachedJson));
       } else {
         fetch(`/api/getRoster?${paramStr}`).then(function (
-          response: fetch.IsomorphicResponse
+          response: fetch.IsomorphicResponse,
         ) {
           response.json().then(function (json: any) {
             // Cache result locally:
             if (isDebug) {
               console.log(
-                `[auto-debug-mode] CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`
+                `[auto-debug-mode] CACHE_KEY=[${ParamPrefixes.roster}${paramStr}]`,
               );
               //(this is a bit chatty)
               //console.log(`CACHE_VAL=[${JSON.stringify(json)}]`);
@@ -456,7 +458,7 @@ export class RequestUtils {
                 ParamPrefixes.roster,
                 json,
                 currentJsonEpoch,
-                isDebug
+                isDebug,
               );
             }
             resultCallback(jsonToIndivs(json));
@@ -487,10 +489,10 @@ export class RequestUtils {
   private static buildRequestList(
     primaryRequest: FilterParamsType,
     context: ParamPrefixesType,
-    otherRequests: FilterRequestInfo[]
+    otherRequests: FilterRequestInfo[],
   ): FilterRequestInfo[] {
     return [{ context: context, paramsObj: primaryRequest }].concat(
-      otherRequests
+      otherRequests,
     );
   }
 }

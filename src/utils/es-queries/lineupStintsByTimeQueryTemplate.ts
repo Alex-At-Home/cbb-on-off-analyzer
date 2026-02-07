@@ -21,7 +21,9 @@ export const lineupStintsByTimeQuery = function (
   lookup: any,
   avgEfficiency: number,
   hca: number,
-  numBins: number = 40
+  numBins: number = 40,
+  lineupIndex?: string,
+  playerEventsIndex?: string
 ) {
   return {
     ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
@@ -49,6 +51,6 @@ export const lineupStintsByTimeQuery = function (
         ],
       },
     },
-    aggregations: timeBinAggregations(numBins),
+    aggregations: timeBinAggregations(numBins, lineupIndex, playerEventsIndex),
   };
 };

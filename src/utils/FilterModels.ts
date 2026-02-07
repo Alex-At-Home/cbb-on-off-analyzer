@@ -7,6 +7,7 @@ export class ParamPrefixes {
   static readonly game = "game-"; //(this is on-off / team info)
   static readonly lineup = "lineup-";
   static readonly lineupStints = "lineupStints-";
+  static readonly lineupStintsAgg = "lineupStintsAgg-";
   static readonly report = "report-"; //(only used for HeaderBar, we re-use lineup for AP requests)
   static readonly roster = "roster-";
   static readonly player = "player-";
@@ -24,6 +25,7 @@ export type ParamPrefixesType =
   | "game-"
   | "lineup-"
   | "lineupStints-"
+  | "lineupStintsAgg-"
   | "report-"
   | "roster-"
   | "player-"
@@ -95,7 +97,7 @@ export function getBaseFilterParams(p: CommonFilterParams) {
 /** Extracts the common leaderboard params from a superset */
 export function getCommonLboardFilterParams(
   p: CommonFilterParams,
-  tier?: string
+  tier?: string,
 ) {
   return {
     tier: tier,
@@ -682,8 +684,8 @@ export class ParamDefaults {
         ? "desc:diff_adj_rapm_prod"
         : "desc:diff_adj_rapm"
       : factorMins
-      ? "desc:off_adj_prod"
-      : "desc:off_adj_rtg";
+        ? "desc:off_adj_prod"
+        : "desc:off_adj_rtg";
   }
   static readonly playerLboardSyntheticSorted = "sorted_above";
   static readonly defaultPlayerLboardFilter = "";

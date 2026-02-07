@@ -507,8 +507,8 @@ export type TimeBinPlayerStats = {
   team_plus_minus: { value: number };
 };
 
-/** Team stats within a time bin */
-export type TimeBinStats = {
+/** Team stats sub-aggregation within a time bin (from lineup docs only) */
+export type TimeBinTeamStatsAgg = {
   doc_count: number;
   // Offensive stats (from team_stats.*)
   off_num_possessions: { value: number };
@@ -556,12 +556,25 @@ export type TimeBinStats = {
   def_ft_attempts: { value: number };
   def_fg_made: { value: number };
   def_fg_attempts: { value: number };
-  // Player aggregations
+};
+
+/** Player stats sub-aggregation within a time bin (from player_events docs only) */
+export type TimeBinPlayerStatsAgg = {
+  doc_count: number;
   players: {
     doc_count_error_upper_bound: number;
     sum_other_doc_count: number;
     buckets: TimeBinPlayerStats[];
   };
+};
+
+/** Complete stats for a time bin */
+export type TimeBinStats = {
+  doc_count: number;
+  // Team stats from lineup docs only
+  team_stats: TimeBinTeamStatsAgg;
+  // Player stats from player_events docs only
+  player_stats: TimeBinPlayerStatsAgg;
 };
 
 /** Complete time-binned aggregation response */

@@ -126,7 +126,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     const playerPoss: Record<string, number> = {};
 
     bins.forEach(([_, bin]) => {
-      bin.players?.buckets?.forEach((player) => {
+      bin.player_stats?.players?.buckets?.forEach((player) => {
         const code = player.key;
         playerPoss[code] =
           (playerPoss[code] || 0) + (player.team_num_possessions?.value || 0);
@@ -192,7 +192,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     const playersByBin: Record<number, Record<string, TimeBinPlayerStats>> = {};
     bins.forEach(([binNum, bin]) => {
       playersByBin[binNum] = {};
-      bin.players?.buckets?.forEach((player) => {
+      bin.player_stats?.players?.buckets?.forEach((player) => {
         playersByBin[binNum][player.key] = player;
       });
     });
@@ -203,8 +203,8 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         title: <i>Team Off PPP</i>,
         ..._.fromPairs(
           bins.map(([binNum, bin]) => {
-            const poss = bin.off_num_possessions?.value || 1;
-            const pts = bin.off_pts?.value || 0;
+            const poss = bin.team_stats?.off_num_possessions?.value || 1;
+            const pts = bin.team_stats?.off_pts?.value || 0;
             const ppp = pts / poss;
 
             const tooltip = (
@@ -271,7 +271,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
 
           // Calculate stats
           const playerPoss = player.team_num_possessions?.value || 0;
-          const binPoss = bin.off_num_possessions?.value || 1;
+          const binPoss = bin.team_stats?.off_num_possessions?.value || 1;
           const usage = playerPoss / binPoss;
 
           const playerPts =
@@ -427,8 +427,8 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
             title: <i>Defense (Opp PPP):</i>,
             ..._.fromPairs(
               bins.map(([binNum, bin]) => {
-                const poss = bin.def_num_possessions?.value || 1;
-                const pts = bin.def_pts?.value || 0;
+                const poss = bin.team_stats?.def_num_possessions?.value || 1;
+                const pts = bin.team_stats?.def_pts?.value || 0;
                 const ppp = pts / poss;
 
                 const tooltip = (

@@ -131,7 +131,7 @@ describe("timeBinAggregations", () => {
       expect(aggs.bin_0).toHaveProperty("aggregations");
     });
 
-    test("bin filters have correct boundaries", () => {
+    test("bin filters have correct time boundaries", () => {
       const aggs = timeBinAggregations(3);
 
       expect(aggs.bin_0.filter).toEqual({
@@ -153,29 +153,76 @@ describe("timeBinAggregations", () => {
       });
     });
 
-    test("includes team aggregations at bin level", () => {
+    test("includes team_stats sub-aggregation for lineup docs only (fallback exists filter)", () => {
       const aggs = timeBinAggregations(3);
       const binAggs = aggs.bin_0.aggregations;
 
-      // Team stats (off/def)
-      expect(binAggs).toHaveProperty("off_pts");
-      expect(binAggs).toHaveProperty("def_pts");
-      expect(binAggs).toHaveProperty("off_num_possessions");
+      // team_stats filter agg
+      expect(binAggs).toHaveProperty("team_stats");
+      expect(binAggs.team_stats).toHaveProperty("filter");
+      expect(binAggs.team_stats).toHaveProperty("aggregations");
+
+      // Filter excludes player_events docs (no player field) - fallback when no index names
+      expect(binAggs.team_stats.filter.bool.must_not).toEqual([
+        { exists: { field: "player" } },
+      ]);
+
+      // Team stats (off/def) inside team_stats
+      const teamAggs = binAggs.team_stats.aggregations;
+      expect(teamAggs).toHaveProperty("off_pts");
+      expect(teamAggs).toHaveProperty("def_pts");
+      expect(teamAggs).toHaveProperty("off_num_possessions");
     });
 
-    test("includes players terms aggregation with nested player stats", () => {
+    test("includes player_stats sub-aggregation for player_events docs only (fallback exists filter)", () => {
       const aggs = timeBinAggregations(3);
       const binAggs = aggs.bin_0.aggregations;
 
+      // player_stats filter agg
+      expect(binAggs).toHaveProperty("player_stats");
+      expect(binAggs.player_stats).toHaveProperty("filter");
+      expect(binAggs.player_stats).toHaveProperty("aggregations");
+
+      // Filter includes only player_events docs (has player field) - fallback when no index names
+      const mustFilters = binAggs.player_stats.filter.bool.must;
+      expect(mustFilters).toContainEqual({ exists: { field: "player" } });
+    });
+
+    test("uses _index term filter when index names are provided (more efficient)", () => {
+      const aggs = timeBinAggregations(
+        3,
+        "lineups_men_2024",
+        "player_events_men_lineups_men_2024"
+      );
+      const binAggs = aggs.bin_0.aggregations;
+
+      // team_stats should filter by _index
+      expect(binAggs.team_stats.filter.bool.must).toContainEqual({
+        term: { _index: "lineups_men_2024" },
+      });
+      expect(binAggs.team_stats.filter.bool.must_not).toEqual([]);
+
+      // player_stats should filter by _index
+      expect(binAggs.player_stats.filter.bool.must).toContainEqual({
+        term: { _index: "player_events_men_lineups_men_2024" },
+      });
+    });
+
+    test("includes players terms aggregation inside player_stats", () => {
+      const aggs = timeBinAggregations(3);
+      const playerStatsAggs = aggs.bin_0.aggregations.player_stats.aggregations;
+
       // Players terms agg
-      expect(binAggs).toHaveProperty("players");
-      expect(binAggs.players).toHaveProperty("terms");
-      expect(binAggs.players).toHaveProperty("aggregations");
+      expect(playerStatsAggs).toHaveProperty("players");
+      expect(playerStatsAggs.players).toHaveProperty("terms");
+      expect(playerStatsAggs.players).toHaveProperty("aggregations");
 
       // Player stats inside players bucket
-      expect(binAggs.players.aggregations).toHaveProperty("pts");
-      expect(binAggs.players.aggregations).toHaveProperty("fg_made");
-      expect(binAggs.players.aggregations).toHaveProperty("team_num_possessions");
+      expect(playerStatsAggs.players.aggregations).toHaveProperty("pts");
+      expect(playerStatsAggs.players.aggregations).toHaveProperty("fg_made");
+      expect(playerStatsAggs.players.aggregations).toHaveProperty(
+        "team_num_possessions"
+      );
     });
 
     test("does NOT include lineup aggregations", () => {
