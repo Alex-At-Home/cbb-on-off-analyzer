@@ -492,8 +492,10 @@ export type TimeBinPlayerStats = {
   drb: { value: number };
   fg_2p_made: { value: number };
   fg_2p_attempts: { value: number };
+  fg_2p_ast: { value: number };
   fg_3p_made: { value: number };
   fg_3p_attempts: { value: number };
+  fg_3p_ast: { value: number };
   fg_rim_made: { value: number };
   fg_rim_attempts: { value: number };
   fg_mid_made: { value: number };

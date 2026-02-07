@@ -1,6 +1,7 @@
 // React imports:
 import _ from "lodash";
 import React, { useState, useEffect } from "react";
+import chroma from "chroma-js";
 import { CbbColors } from "../utils/CbbColors";
 
 // Bootstrap imports:
@@ -23,6 +24,7 @@ import GenericTable, {
 } from "./GenericTable";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import ThemedSelect from "./shared/ThemedSelect";
+import { useTheme } from "next-themes";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -44,31 +46,41 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
 }) => {
   const { aggregatedStintsA, aggregatedStintsB } = dataEvent;
 
+  const { resolvedTheme } = useTheme();
+
   // UI State
+  const [showPoss, setShowPoss] = useState<boolean>(true); // Default to true
   const [showUsage, setShowUsage] = useState<boolean>(
     _.isNil(startingState.showUsage)
-      ? ParamDefaults.defaultMatchupAnalysisShowUsage
-      : startingState.showUsage
+      ? true // Default to showing usage
+      : startingState.showUsage,
   );
   const [showPpp, setShowPpp] = useState<boolean>(
     _.isNil(startingState.showPpp)
-      ? ParamDefaults.defaultMatchupAnalysisShowPpp
-      : startingState.showPpp
+      ? false // Default PPP to off
+      : startingState.showPpp,
   );
+
+  // If all 3 toggles are off, force Poss back on
+  useEffect(() => {
+    if (!showPoss && !showUsage && !showPpp) {
+      setShowPoss(true);
+    }
+  }, [showPoss, showUsage, showPpp]);
   const [showLabels, setShowLabels] = useState<boolean>(
     _.isNil(startingState.showLabels)
       ? ParamDefaults.defaultMatchupAnalysisShowLabels
-      : startingState.showLabels
+      : startingState.showLabels,
   );
   const [labelToShow, setLabelToShow] = useState<string>(
     _.isNil(startingState.labelToShow)
       ? ParamDefaults.defaultMatchupAnalysisLabelToShow
-      : startingState.labelToShow
+      : startingState.labelToShow,
   );
 
   // Highlight player when hovering
   const [activePlayer, setActivePlayer] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   // Sync state with parent
@@ -80,6 +92,97 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
       labelToShow,
     });
   }, [showUsage, showPpp, labelToShow]);
+
+  // Constants for usage calculation (from LineupStintsChart)
+  const orbFactor = 0.9; // Approximation for ORB factor
+
+  // Color scale for possession% (0% = light, 100% = dark teal)
+  //const possessionScale = chroma.scale(["#E6FAF7", "#7DE0D8", "#0F8F95"]);
+  const possessionScale =
+    resolvedTheme == "light"
+      ? chroma.scale(["#EDF4FF", "#5FA6FF", "#004E98"]).mode("lab").gamma(1.1)
+      : chroma
+          .scale([
+            "#0E1A24", // low possession
+            "#1F4E79",
+            "#6FB6FF", // high possession
+          ])
+          .mode("lab");
+  // Calculate player stats for a bin (PPP, usage, possession%)
+  const calcPlayerStintInfo = (
+    player: TimeBinPlayerStats,
+    binTeamPoss: number,
+  ) => {
+    // Player's "classic shots" = FGA + 0.475*FTA + TO
+    const playerClassicShots =
+      (player.fg_attempts?.value || 0) +
+      0.475 * (player.ft_attempts?.value || 0) +
+      (player.to?.value || 0);
+
+    // Team shots for when player was on court
+    // We use the player's team_num_possessions as proxy for team shots they were part of
+    const teamPossForPlayer = player.team_num_possessions?.value || 0;
+
+    // Possession% = player's time on court relative to bin
+    const possessionPct = Math.min(teamPossForPlayer / (binTeamPoss || 1), 1);
+
+    // Points scored
+    const ptsScored =
+      2 * (player.fg_2p_made?.value || 0) +
+      3 * (player.fg_3p_made?.value || 0) +
+      (player.ft_made?.value || 0);
+
+    // PPP = points / player's classic shots (their own possessions used)
+    const ppp = playerClassicShots > 0 ? ptsScored / playerClassicShots : 0;
+
+    // Usage calculation (from LineupStintsChart)
+    const playerMakes =
+      (player.fg_2p_made?.value || 0) + (player.fg_3p_made?.value || 0);
+    const playerMisses =
+      (player.fg_2p_attempts?.value || 0) +
+      (player.fg_3p_attempts?.value || 0) -
+      playerMakes;
+    const playerAssists = player.assist?.value || 0;
+    const playerAssisted2s = player.fg_2p_ast?.value || 0;
+    const playerAssisted3s = player.fg_3p_ast?.value || 0;
+    const playerOrbs = player.orb?.value || 0;
+
+    // Estimate game ORB% (use 0.28 as reasonable default for D1)
+    const gameOrbPct = 0.28;
+
+    // Player possessions used (from LineupStintsChart logic)
+    const playerPossUsed =
+      playerClassicShots -
+      playerMisses * gameOrbPct - // not penalized for misses if team ORBs well
+      playerMakes * (1.0 - orbFactor) + // small penalty on all shots from ORBs
+      (0.25 * (playerAssists - (playerAssisted2s + playerAssisted3s)) +
+        0.25 * playerOrbs) *
+        orbFactor;
+
+    // Points contributed (from LineupStintsChart)
+    const ptsContributed =
+      orbFactor *
+      (ptsScored +
+        0.5 * (playerAssists - (playerAssisted2s + playerAssisted3s)) +
+        0.5 * playerOrbs);
+
+    // Usage = player poss used / team shots
+    const usage =
+      teamPossForPlayer > 0 ? playerPossUsed / teamPossForPlayer : 0;
+
+    // ORtg approximation
+    const ortg = playerPossUsed > 0 ? ptsContributed / playerPossUsed : 0;
+
+    return {
+      possessionPct,
+      ppp,
+      usage,
+      ortg,
+      ptsScored,
+      ptsContributed,
+      playerPossUsed,
+    };
+  };
 
   // Label options for player stats display
   const labelOptions = {
@@ -121,7 +224,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
 
   // Get all unique players across all bins, sorted by total possessions
   const getPlayersSorted = (
-    bins: [number, TimeBinStats][]
+    bins: [number, TimeBinStats][],
   ): { code: string; totalPoss: number }[] => {
     const playerPoss: Record<string, number> = {};
 
@@ -143,7 +246,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   // Build table for a team
   const buildTable = (
     team: string,
-    aggregation: TimeBinnedAggregation
+    aggregation: TimeBinnedAggregation,
   ): [Record<string, GenericTableColProps>, GenericTableRow[]] => {
     const bins = getBins(aggregation);
     const players = getPlayersSorted(bins);
@@ -158,7 +261,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         `Minute ${binNum}-${binNum + 1}`,
         binWidth,
         false,
-        GenericTableOps.htmlFormatter
+        GenericTableOps.htmlFormatter,
       );
     });
 
@@ -169,7 +272,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         GenericTableOps.defaultRowSpanCalculator,
         "",
         GenericTableOps.htmlFormatter,
-        7.5
+        7.5,
       ),
       sep0: GenericTableOps.addColSeparator(),
       ...(showLabels &&
@@ -181,7 +284,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
               "",
               `Total of [${labelToShow}] for each player`,
               CbbColors.applyThemedBackground,
-              GenericTableOps.htmlFormatter
+              GenericTableOps.htmlFormatter,
             ),
           }
         : {}),
@@ -236,11 +339,11 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                 </div>
               </OverlayTrigger>,
             ];
-          })
+          }),
         ),
       },
       GenericTableOps.defaultFormatter,
-      GenericTableOps.defaultCellMeta
+      GenericTableOps.defaultCellMeta,
     );
 
     // Build player rows
@@ -253,32 +356,28 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           const player = playersByBin[binNum][playerCode];
 
           if (!player) {
-            // Player not in this bin
+            // Player not in this bin - treat as 0% possession
             return [
               `bin_${binNum}`,
-              <div style={{ opacity: "20%" }}>
-                <hr
-                  className="mt-0 pt-0 pb-0"
-                  style={{
-                    height: "4px",
-                    marginBottom: "2px",
-                    background: "#ccc",
-                  }}
-                />
+              <div>
+                {showPoss ? (
+                  <hr
+                    className="mt-0 pt-0 pb-0"
+                    style={{
+                      height: "4px",
+                      marginBottom: "2px",
+                      background: possessionScale(0).css(),
+                    }}
+                  />
+                ) : undefined}
               </div>,
             ];
           }
 
-          // Calculate stats
-          const playerPoss = player.team_num_possessions?.value || 0;
+          // Calculate stats using the helper function
           const binPoss = bin.team_stats?.off_num_possessions?.value || 1;
-          const usage = playerPoss / binPoss;
-
-          const playerPts =
-            3 * (player.fg_3p_made?.value || 0) +
-            2 * (player.fg_2p_made?.value || 0) +
-            (player.ft_made?.value || 0);
-          const ppp = playerPoss > 0 ? playerPts / playerPoss : 0;
+          const playerTeamPoss = player.team_num_possessions?.value || 0;
+          const stintInfo = calcPlayerStintInfo(player, binPoss);
 
           const plusMinus = player.team_plus_minus?.value || 0;
 
@@ -296,13 +395,15 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                 Minute {binNum}-{binNum + 1}
               </b>
               <br />
-              Poss on court: {playerPoss.toFixed(1)}
+              Poss on court: {playerTeamPoss.toFixed(1)}
               <br />
-              Usage: {(usage * 100).toFixed(0)}%
+              Poss%: {(stintInfo.possessionPct * 100).toFixed(0)}%
               <br />
-              Points: {playerPts.toFixed(1)}
+              Usage: {(stintInfo.usage * 100).toFixed(0)}%
               <br />
-              PPP: {ppp.toFixed(2)}
+              Points: {stintInfo.ptsScored.toFixed(1)}
+              <br />
+              PPP: {stintInfo.ppp.toFixed(2)}
               <br />
               +/-: {plusMinus.toFixed(1)}
               <br />
@@ -334,65 +435,61 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
               onEntered={() => setActivePlayer(playerCode)}
               onExited={() => setActivePlayer(undefined)}
             >
-              <div>
-                {/* Plus/minus bar */}
-                <hr
-                  className="mt-0 pt-0 pb-0"
-                  style={{
-                    height: "4px",
-                    marginBottom: "2px",
-                    background: CbbColors.off_diff20_p100_redGreyGreen(
-                      plusMinus / (playerPoss || 1)
-                    ),
-                  }}
-                />
-                {showUsage || showPpp ? (
-                  <div
+              <div
+                style={{
+                  position: "relative",
+                  textAlign: "center",
+                }}
+              >
+                {/* Poss% bar */}
+                {showPoss ? (
+                  <hr
+                    className="mt-0 pt-0 pb-0"
                     style={{
-                      position: "relative",
-                      textAlign: "center",
+                      height: "4px",
+                      marginBottom: "2px",
+                      background: possessionScale(stintInfo.possessionPct).css(),
+                    }}
+                  />
+                ) : undefined}
+                {showUsage ? (
+                  <hr
+                    className="mt-0 pt-0 pb-0"
+                    style={{
+                      height: "2px",
+                      marginBottom: "2px",
+                      background: CbbColors.usg_offDef_alt(stintInfo.usage),
+                    }}
+                  />
+                ) : undefined}
+                {showPpp ? (
+                  <hr
+                    className="mt-0 pt-0 pb-0"
+                    style={{
+                      height: "2px",
+                      marginBottom: "0px",
+                      opacity: `${Math.min(stintInfo.possessionPct * 400, 100).toFixed(0)}%`,
+                      background: CbbColors.off_ppp_redGreyGreen(stintInfo.ppp),
+                    }}
+                  />
+                ) : undefined}
+                {showLabels && labelValue ? (
+                  <small
+                    style={{
+                      position: "absolute",
+                      bottom: "calc(25% - 3px)",
+                      right: "calc(50% - 3px)",
                     }}
                   >
-                    {showUsage ? (
-                      <hr
-                        className="mt-0 pt-0 pb-0"
-                        style={{
-                          height: "2px",
-                          marginBottom: "2px",
-                          background: CbbColors.usg_offDef_alt(usage),
-                        }}
-                      />
-                    ) : undefined}
-                    {showPpp ? (
-                      <hr
-                        className="mt-0 pt-0 pb-0"
-                        style={{
-                          height: "2px",
-                          marginBottom: "0px",
-                          opacity: `${Math.min(usage * 400, 100).toFixed(0)}%`,
-                          background: CbbColors.off_ppp_redGreyGreen(ppp),
-                        }}
-                      />
-                    ) : undefined}
-                    {showLabels && labelValue ? (
-                      <small
-                        style={{
-                          position: "absolute",
-                          bottom: "calc(25% - 3px)",
-                          right: "calc(50% - 3px)",
-                        }}
-                      >
-                        <small>
-                          <b>{labelValue.toFixed(1)}</b>
-                        </small>
-                      </small>
-                    ) : undefined}
-                  </div>
+                    <small>
+                      <b>{labelValue.toFixed(1)}</b>
+                    </small>
+                  </small>
                 ) : undefined}
               </div>
             </OverlayTrigger>,
           ];
-        })
+        }),
       );
 
       const prettifiedPlayerCode = playerCode.replace(/([A-Z])/g, " $1").trim();
@@ -416,70 +513,68 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           ...playerCols,
         },
         GenericTableOps.defaultFormatter,
-        GenericTableOps.defaultCellMeta
+        GenericTableOps.defaultCellMeta,
       );
     });
 
-    // Build defense row (opponent PPP)
-    const defenseRow = showPpp
-      ? GenericTableOps.buildDataRow(
-          {
-            title: <i>Defense (Opp PPP):</i>,
-            ..._.fromPairs(
-              bins.map(([binNum, bin]) => {
-                const poss = bin.team_stats?.def_num_possessions?.value || 1;
-                const pts = bin.team_stats?.def_pts?.value || 0;
-                const ppp = pts / poss;
+    // Build defense row (opponent PPP) - always shown
+    const defenseRow = GenericTableOps.buildDataRow(
+      {
+        title: <i>Defense (Opp PPP):</i>,
+        ..._.fromPairs(
+          bins.map(([binNum, bin]) => {
+            const poss = bin.team_stats?.def_num_possessions?.value || 1;
+            const pts = bin.team_stats?.def_pts?.value || 0;
+            const ppp = pts / poss;
 
-                const tooltip = (
-                  <Tooltip id={`bin_${binNum}_def`}>
-                    <b>
-                      Opponent - Minute {binNum}-{binNum + 1}
-                    </b>
-                    <br />
-                    Possessions: {poss.toFixed(1)}
-                    <br />
-                    Points Allowed: {pts.toFixed(1)}
-                    <br />
-                    PPP Against: {ppp.toFixed(2)}
-                  </Tooltip>
-                );
+            const tooltip = (
+              <Tooltip id={`bin_${binNum}_def`}>
+                <b>
+                  Opponent - Minute {binNum}-{binNum + 1}
+                </b>
+                <br />
+                Possessions: {poss.toFixed(1)}
+                <br />
+                Points Allowed: {pts.toFixed(1)}
+                <br />
+                PPP Against: {ppp.toFixed(2)}
+              </Tooltip>
+            );
 
-                return [
-                  `bin_${binNum}`,
-                  <OverlayTrigger placement="auto" overlay={tooltip}>
-                    <div>
-                      <hr
-                        className="mt-0 pt-0 pb-0"
-                        style={{
-                          height: "3px",
-                          opacity: "75%",
-                          marginBottom: "0px",
-                          background: CbbColors.def_ppp_redGreyGreen(ppp),
-                        }}
-                      />
-                    </div>
-                  </OverlayTrigger>,
-                ];
-              })
-            ),
-          },
-          GenericTableOps.defaultFormatter,
-          GenericTableOps.defaultCellMeta
-        )
-      : null;
+            return [
+              `bin_${binNum}`,
+              <OverlayTrigger placement="auto" overlay={tooltip}>
+                <div>
+                  <hr
+                    className="mt-0 pt-0 pb-0"
+                    style={{
+                      height: "3px",
+                      opacity: "75%",
+                      marginBottom: "0px",
+                      background: CbbColors.def_ppp_redGreyGreen(ppp),
+                    }}
+                  />
+                </div>
+              </OverlayTrigger>,
+            ];
+          }),
+        ),
+      },
+      GenericTableOps.defaultFormatter,
+      GenericTableOps.defaultCellMeta,
+    );
 
     const tableRows = (
       [
         GenericTableOps.buildSubHeaderRow(
           [[<b>{team}:</b>, _.size(tableDefs)]],
-          "small text-center"
+          "small text-center",
         ),
         headerRow,
       ] as GenericTableRow[]
     )
       .concat(playerRows)
-      .concat(defenseRow ? [defenseRow] : []);
+      .concat([defenseRow]);
 
     return [tableDefs, tableRows];
   };
@@ -500,14 +595,22 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           <ToggleButtonGroup
             items={[
               {
+                label: "Poss",
+                tooltip:
+                  "Show/hide player possession% (time on court) in each time bin",
+                toggled: showPoss,
+                onClick: () => setShowPoss(!showPoss),
+              },
+              {
                 label: "Usage",
-                tooltip: "Show/hide player usage in each time bin",
+                tooltip: "Show/hide player usage rate in each time bin",
                 toggled: showUsage,
                 onClick: () => setShowUsage(!showUsage),
               },
               {
                 label: "PPP",
-                tooltip: "Show/hide player pts/play in each time bin",
+                tooltip:
+                  "Show/hide player points per possession in each time bin",
                 toggled: showPpp,
                 onClick: () => setShowPpp(!showPpp),
               },
@@ -522,7 +625,6 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                 label: "Labels",
                 tooltip: "Show/hide stat labels (see dropdown to right)",
                 toggled: showLabels,
-                disabled: !(showUsage || showPpp),
                 onClick: () => setShowLabels(!showLabels),
               },
             ]}
@@ -532,7 +634,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         <Col xs={12} md={4} lg={3}>
           <ThemedSelect
             value={stringToOption(labelToShow)}
-            isDisabled={!(showUsage || showPpp) || !showLabels}
+            isDisabled={!showLabels}
             options={_.keys(labelOptions).map((l) => stringToOption(l))}
             isSearchable={true}
             onChange={(option: any) => {

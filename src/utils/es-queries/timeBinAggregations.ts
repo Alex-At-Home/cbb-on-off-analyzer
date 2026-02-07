@@ -64,9 +64,11 @@ const playerStatPaths = {
   // Shot stats - 2p
   fg_2p_made: "fg_2p.made.total",
   fg_2p_attempts: "fg_2p.attempts.total",
+  fg_2p_ast: "fg_2p.ast.total",
   // Shot stats - 3p
   fg_3p_made: "fg_3p.made.total",
   fg_3p_attempts: "fg_3p.attempts.total",
+  fg_3p_ast: "fg_3p.ast.total",
   // Shot stats - rim
   fg_rim_made: "fg_rim.made.total",
   fg_rim_attempts: "fg_rim.attempts.total",

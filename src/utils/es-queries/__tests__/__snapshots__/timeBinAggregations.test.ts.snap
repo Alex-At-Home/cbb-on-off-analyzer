@@ -803,6 +803,19 @@ exports[`timeBinAggregations snapshots timeBinAggregations structure for 3 bins 
                            }
                         }
                      },
+                     "fg_2p_ast": {
+                        "sum": {
+                           "script": {
+                              "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                              "lang": "painless",
+                              "params": {
+                                 "bin_start": 0,
+                                 "bin_end": 1,
+                                 "stat_path": "player_stats.fg_2p.ast.total"
+                              }
+                           }
+                        }
+                     },
                      "fg_3p_made": {
                         "sum": {
                            "script": {
@@ -825,6 +838,19 @@ exports[`timeBinAggregations snapshots timeBinAggregations structure for 3 bins 
                                  "bin_start": 0,
                                  "bin_end": 1,
                                  "stat_path": "player_stats.fg_3p.attempts.total"
+                              }
+                           }
+                        }
+                     },
+                     "fg_3p_ast": {
+                        "sum": {
+                           "script": {
+                              "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                              "lang": "painless",
+                              "params": {
+                                 "bin_start": 0,
+                                 "bin_end": 1,
+                                 "stat_path": "player_stats.fg_3p.ast.total"
                               }
                            }
                         }
@@ -1766,6 +1792,19 @@ exports[`timeBinAggregations snapshots timeBinAggregations structure for 3 bins 
                            }
                         }
                      },
+                     "fg_2p_ast": {
+                        "sum": {
+                           "script": {
+                              "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                              "lang": "painless",
+                              "params": {
+                                 "bin_start": 1,
+                                 "bin_end": 2,
+                                 "stat_path": "player_stats.fg_2p.ast.total"
+                              }
+                           }
+                        }
+                     },
                      "fg_3p_made": {
                         "sum": {
                            "script": {
@@ -1788,6 +1827,19 @@ exports[`timeBinAggregations snapshots timeBinAggregations structure for 3 bins 
                                  "bin_start": 1,
                                  "bin_end": 2,
                                  "stat_path": "player_stats.fg_3p.attempts.total"
+                              }
+                           }
+                        }
+                     },
+                     "fg_3p_ast": {
+                        "sum": {
+                           "script": {
+                              "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                              "lang": "painless",
+                              "params": {
+                                 "bin_start": 1,
+                                 "bin_end": 2,
+                                 "stat_path": "player_stats.fg_3p.ast.total"
                               }
                            }
                         }
@@ -2729,6 +2781,19 @@ exports[`timeBinAggregations snapshots timeBinAggregations structure for 3 bins 
                            }
                         }
                      },
+                     "fg_2p_ast": {
+                        "sum": {
+                           "script": {
+                              "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                              "lang": "painless",
+                              "params": {
+                                 "bin_start": 2,
+                                 "bin_end": 3,
+                                 "stat_path": "player_stats.fg_2p.ast.total"
+                              }
+                           }
+                        }
+                     },
                      "fg_3p_made": {
                         "sum": {
                            "script": {
@@ -2751,6 +2816,19 @@ exports[`timeBinAggregations snapshots timeBinAggregations structure for 3 bins 
                                  "bin_start": 2,
                                  "bin_end": 3,
                                  "stat_path": "player_stats.fg_3p.attempts.total"
+                              }
+                           }
+                        }
+                     },
+                     "fg_3p_ast": {
+                        "sum": {
+                           "script": {
+                              "source": "\\n  def startMin = doc[\\"start_min\\"].value;\\n  def endMin = doc[\\"end_min\\"].value;\\n  def durationMins = doc[\\"duration_mins\\"].value;\\n  def overlap = Math.min(endMin, params.bin_end) - Math.max(startMin, params.bin_start);\\n  def weight = durationMins > 0 ? overlap / durationMins : 0.0;\\n  \\n  def statVal = 0.0;\\n  if (doc.containsKey(params.stat_path) && doc[params.stat_path].size() > 0) {\\n    statVal = doc[params.stat_path].value;\\n  }\\n  return weight * statVal;\\n",
+                              "lang": "painless",
+                              "params": {
+                                 "bin_start": 2,
+                                 "bin_end": 3,
+                                 "stat_path": "player_stats.fg_3p.ast.total"
                               }
                            }
                         }
