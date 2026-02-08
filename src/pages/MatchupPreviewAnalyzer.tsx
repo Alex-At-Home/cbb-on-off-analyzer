@@ -873,6 +873,12 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
               dataEvent={{
                 aggregatedStintsA: dataEvent.lineupStintsAggA,
                 aggregatedStintsB: dataEvent.lineupStintsAggB,
+                lineupStatsA: dataEvent.lineupStatsA,
+                teamStatsA: dataEvent.teamStatsA,
+                rosterStatsA: dataEvent.rosterStatsA,
+                lineupStatsB: dataEvent.lineupStatsB,
+                teamStatsB: dataEvent.teamStatsB,
+                rosterStatsB: dataEvent.rosterStatsB,
               }}
               startingState={matchupFilterParamsRef.current || {}}
               onChangeState={onMatchupFilterParamsChange}

@@ -10,13 +10,32 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
-import { MatchupFilterParams, ParamDefaults } from "../utils/FilterModels";
+// FontAwesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+
+import {
+  getCommonFilterParams,
+  MatchupFilterParams,
+  ParamDefaults,
+  LuckParams,
+} from "../utils/FilterModels";
 import {
   TimeBinnedAggregation,
   TimeBinStats,
   TimeBinPlayerStats,
+  IndivPosInfo,
+  IndivStatSet,
 } from "../utils/StatModels";
+import { PlayerOnOffStats } from "../utils/stats/LineupUtils";
+import { RosterStatsModel } from "./RosterStatsTable";
+import { TeamStatsModel } from "./TeamStatsTable";
+import { LineupStatsModel } from "./LineupStatsTable";
+import { LineupUtils } from "../utils/stats/LineupUtils";
+import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import GenericTable, {
   GenericTableColProps,
   GenericTableOps,
@@ -24,7 +43,9 @@ import GenericTable, {
 } from "./GenericTable";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import ThemedSelect from "./shared/ThemedSelect";
+import AsyncFormControl from "./shared/AsyncFormControl";
 import { useTheme } from "next-themes";
+import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -33,8 +54,23 @@ type Props = {
   dataEvent: {
     aggregatedStintsA: TimeBinnedAggregation;
     aggregatedStintsB?: TimeBinnedAggregation;
+    lineupStatsA: LineupStatsModel;
+    teamStatsA: TeamStatsModel;
+    rosterStatsA: RosterStatsModel;
+    lineupStatsB?: LineupStatsModel;
+    teamStatsB?: TeamStatsModel;
+    rosterStatsB?: RosterStatsModel;
   };
   onChangeState: (newParams: MatchupFilterParams) => void;
+};
+
+// Player info cache for tooltips
+type PlayerInfoCache = {
+  playerInfo: Record<string, IndivStatSet>;
+  positionInfo: Record<string, IndivPosInfo>;
+  rapmInfo?: {
+    enrichedPlayers: PlayerOnOffStats[];
+  };
 };
 
 const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
@@ -44,9 +80,23 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   dataEvent,
   onChangeState,
 }) => {
-  const { aggregatedStintsA, aggregatedStintsB } = dataEvent;
+  const {
+    aggregatedStintsA,
+    aggregatedStintsB,
+    lineupStatsA,
+    teamStatsA,
+    rosterStatsA,
+    lineupStatsB,
+    teamStatsB,
+    rosterStatsB,
+  } = dataEvent;
 
   const { resolvedTheme } = useTheme();
+
+  // Common params for RAPM calculation
+  const commonParams = getCommonFilterParams(startingState);
+  const avgEfficiency =
+    efficiencyAverages[`${commonParams.gender}_${commonParams.year}`] || 100;
 
   // UI State
   const [showPoss, setShowPoss] = useState<boolean>(true); // Default to true
@@ -82,6 +132,14 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   const [activePlayer, setActivePlayer] = useState<string | undefined>(
     undefined,
   );
+
+  // Filter state
+  const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [filterStr, setFilterStr] = useState<string>("");
+  const [showWalkOns, setShowWalkOns] = useState<boolean>(false);
+
+  // Net toggle (show Off-Def instead of separate rows) - default to true
+  const [showNet, setShowNet] = useState<boolean>(true);
 
   // Sync state with parent
   useEffect(() => {
@@ -184,6 +242,47 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     };
   };
 
+  // Build player info cache for tooltips (similar to PlayerImpactChart)
+  const luckConfig: LuckParams = {
+    base: "baseline",
+  };
+  const adjustForLuck = false;
+
+  const buildPlayerInfoCache = (
+    team: string,
+    lineupStats: LineupStatsModel | undefined,
+    teamStats: TeamStatsModel | undefined,
+    rosterStats: RosterStatsModel | undefined,
+  ): PlayerInfoCache | undefined => {
+    if (!lineupStats || !teamStats || !rosterStats) {
+      return undefined;
+    }
+    return GameAnalysisUtils.buildGameRapmStats(
+      team,
+      commonParams,
+      lineupStats,
+      teamStats,
+      rosterStats,
+      adjustForLuck,
+      luckConfig,
+      avgEfficiency,
+    );
+  };
+
+  // Build caches for both teams
+  const playerInfoCacheA = buildPlayerInfoCache(
+    teamA,
+    lineupStatsA,
+    teamStatsA,
+    rosterStatsA,
+  );
+  const playerInfoCacheB = buildPlayerInfoCache(
+    teamB || "",
+    lineupStatsB,
+    teamStatsB,
+    rosterStatsB,
+  );
+
   // Label options for player stats display
   const labelOptions = {
     "No Labels": (_: TimeBinPlayerStats) => 0,
@@ -225,10 +324,13 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   // Get all unique players across all bins, sorted by total possessions
   const getPlayersSorted = (
     bins: [number, TimeBinStats][],
-  ): { code: string; totalPoss: number }[] => {
+  ): { code: string; totalPoss: number; possPct: number }[] => {
     const playerPoss: Record<string, number> = {};
 
+    // Calculate total team possessions
+    let totalTeamPoss = 0;
     bins.forEach(([_, bin]) => {
+      totalTeamPoss += bin.team_stats?.off_num_possessions?.value || 0;
       bin.player_stats?.players?.buckets?.forEach((player) => {
         const code = player.key;
         playerPoss[code] =
@@ -238,18 +340,65 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
 
     return _.chain(playerPoss)
       .toPairs()
-      .map(([code, totalPoss]) => ({ code, totalPoss }))
+      .map(([code, totalPoss]) => ({
+        code,
+        totalPoss,
+        possPct: totalTeamPoss > 0 ? totalPoss / totalTeamPoss : 0,
+      }))
       .sortBy((p) => -p.totalPoss)
       .value();
+  };
+
+  // Filter fragments for player search
+  const fragmentDelimiter = filterStr.includes(";") ? ";" : ",";
+  const filterFragments = filterStr
+    .split(fragmentDelimiter)
+    .map((fragment) => _.trim(fragment))
+    .filter((fragment) => (fragment ? true : false));
+  const filterFragmentsPve = filterFragments.filter(
+    (fragment) => fragment[0] !== "-",
+  );
+  const filterFragmentsNve = filterFragments
+    .filter((fragment) => fragment[0] === "-")
+    .map((fragment) => fragment.substring(1));
+
+  // Apply filter to players
+  const filterPlayers = (
+    players: { code: string; totalPoss: number; possPct: number }[],
+  ) => {
+    return players.filter((player) => {
+      // Walk-on filter: exclude players with <10% possessions unless showWalkOns
+      if (!showWalkOns && player.possPct < 0.1) {
+        return false;
+      }
+
+      // Text filter
+      if (filterFragmentsPve.length > 0 || filterFragmentsNve.length > 0) {
+        const strToTest = player.code.toLowerCase();
+        const matchesPve =
+          filterFragmentsPve.length === 0 ||
+          filterFragmentsPve.some((f) =>
+            strToTest.includes(f.toLowerCase()),
+          );
+        const matchesNve = filterFragmentsNve.some((f) =>
+          strToTest.includes(f.toLowerCase()),
+        );
+        return matchesPve && !matchesNve;
+      }
+
+      return true;
+    });
   };
 
   // Build table for a team
   const buildTable = (
     team: string,
     aggregation: TimeBinnedAggregation,
+    playerInfoCache: PlayerInfoCache | undefined,
   ): [Record<string, GenericTableColProps>, GenericTableRow[]] => {
     const bins = getBins(aggregation);
-    const players = getPlayersSorted(bins);
+    const allPlayers = getPlayersSorted(bins);
+    const players = filterPlayers(allPlayers);
 
     // Build column definitions - one per bin (equal width)
     const binWidth = 1; // Each bin is 1 minute
@@ -303,7 +452,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     // Build header row showing team offensive PPP per bin
     const headerRow = GenericTableOps.buildDataRow(
       {
-        title: <i>Team Off PPP</i>,
+        title: <i>Off PPP:</i>,
         ..._.fromPairs(
           bins.map(([binNum, bin]) => {
             const poss = bin.team_stats?.off_num_possessions?.value || 1;
@@ -401,7 +550,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
               <br />
               Usage: {(stintInfo.usage * 100).toFixed(0)}%
               <br />
-              Points: {stintInfo.ptsScored.toFixed(1)}
+              Pts/50: {(playerTeamPoss > 0 ? (stintInfo.ptsScored / playerTeamPoss) * 50 : 0).toFixed(1)}
               <br />
               PPP: {stintInfo.ppp.toFixed(2)}
               <br />
@@ -458,6 +607,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                     style={{
                       height: "2px",
                       marginBottom: "2px",
+                      opacity: `${(Math.sqrt(stintInfo.possessionPct) * 100).toFixed(0)}%`,
                       background: CbbColors.usg_offDef_alt(stintInfo.usage),
                     }}
                   />
@@ -468,7 +618,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                     style={{
                       height: "2px",
                       marginBottom: "0px",
-                      opacity: `${Math.min(stintInfo.possessionPct * 400, 100).toFixed(0)}%`,
+                      opacity: `${(Math.min(Math.sqrt(stintInfo.possessionPct * stintInfo.usage / 0.2), 1) * 100).toFixed(0)}%`,
                       background: CbbColors.off_ppp_redGreyGreen(stintInfo.ppp),
                     }}
                   />
@@ -492,22 +642,68 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         }),
       );
 
-      const prettifiedPlayerCode = playerCode.replace(/([A-Z])/g, " $1").trim();
+      const prettifiedPlayerCode =
+        GameAnalysisUtils.namePrettifier(playerCode);
+
+      // Build player tooltip with season stats
+      // Find the enriched player by playerCode, then use playerId to lookup stats
+      const maybeEnrichedPlayer = _.find(
+        playerInfoCache?.rapmInfo?.enrichedPlayers,
+        (p) => p.playerCode === playerCode,
+      );
+      const playerId = maybeEnrichedPlayer?.playerId;
+      const playerStats = playerId
+        ? playerInfoCache?.playerInfo[playerId]
+        : undefined;
+      const playerPosInfo = playerId
+        ? playerInfoCache?.positionInfo[playerId]
+        : undefined;
+
+      const playerTooltip =
+        maybeEnrichedPlayer && playerStats && playerPosInfo ? (
+          <Tooltip id={`playerInfo_${playerCode}`}>
+            <small>
+              {GameAnalysisUtils.buildPlayerTooltipContents(
+                team,
+                playerStats,
+                maybeEnrichedPlayer,
+                playerPosInfo,
+                true, // seasonStats = true
+                1.0, // missingGameAdj
+              )}
+            </small>
+          </Tooltip>
+        ) : (
+          <Tooltip id={`playerInfo_${playerCode}`}>
+            <b>{prettifiedPlayerCode}</b>
+          </Tooltip>
+        );
+
+      const maybePos = playerPosInfo?.posClass || "";
 
       return GenericTableOps.buildDataRow(
         {
           title: (
-            <b
-              style={{
-                opacity: activePlayer
-                  ? activePlayer === playerCode
-                    ? "100%"
-                    : "50%"
-                  : "100%",
-              }}
-            >
-              {prettifiedPlayerCode}
-            </b>
+            <span style={{ whiteSpace: "nowrap" }}>
+              {maybePos ? (
+                <sup>
+                  <small>{maybePos} </small>
+                </sup>
+              ) : undefined}
+              <OverlayTrigger placement="auto" overlay={playerTooltip}>
+                <b
+                  style={{
+                    opacity: activePlayer
+                      ? activePlayer === playerCode
+                        ? "100%"
+                        : "50%"
+                      : "100%",
+                  }}
+                >
+                  {prettifiedPlayerCode}
+                </b>
+              </OverlayTrigger>
+            </span>
           ),
           total: <small>{labelTotal.toFixed(1)}</small>,
           ...playerCols,
@@ -517,10 +713,10 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
       );
     });
 
-    // Build defense row (opponent PPP) - always shown
+    // Build defense row (opponent PPP)
     const defenseRow = GenericTableOps.buildDataRow(
       {
-        title: <i>Defense (Opp PPP):</i>,
+        title: <i>Def PPP:</i>,
         ..._.fromPairs(
           bins.map(([binNum, bin]) => {
             const poss = bin.team_stats?.def_num_possessions?.value || 1;
@@ -564,25 +760,84 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
       GenericTableOps.defaultCellMeta,
     );
 
+    // Build net row (Off PPP - Def PPP)
+    const netRow = GenericTableOps.buildDataRow(
+      {
+        title: <i>Net PPP:</i>,
+        ..._.fromPairs(
+          bins.map(([binNum, bin]) => {
+            const offPoss = bin.team_stats?.off_num_possessions?.value || 1;
+            const offPts = bin.team_stats?.off_pts?.value || 0;
+            const offPpp = offPts / offPoss;
+
+            const defPoss = bin.team_stats?.def_num_possessions?.value || 1;
+            const defPts = bin.team_stats?.def_pts?.value || 0;
+            const defPpp = defPts / defPoss;
+
+            const netPpp = offPpp - defPpp;
+
+            const tooltip = (
+              <Tooltip id={`bin_${binNum}_net`}>
+                <b>
+                  Net - Minute {binNum}-{binNum + 1}
+                </b>
+                <br />
+                Off PPP: {offPpp.toFixed(2)}
+                <br />
+                Def PPP: {defPpp.toFixed(2)}
+                <br />
+                Net PPP: {netPpp.toFixed(2)}
+              </Tooltip>
+            );
+
+            return [
+              `bin_${binNum}`,
+              <OverlayTrigger placement="auto" overlay={tooltip}>
+                <div>
+                  <hr
+                    className="mt-0 pt-0 pb-0"
+                    style={{
+                      height: "5px",
+                      marginBottom: "0px",
+                      background: CbbColors.off_diff20_p100_redGreyGreen(
+                        netPpp * 100,
+                      ),
+                    }}
+                  />
+                </div>
+              </OverlayTrigger>,
+            ];
+          }),
+        ),
+      },
+      GenericTableOps.defaultFormatter,
+      GenericTableOps.defaultCellMeta,
+    );
+
+    // Build table rows: header + (off+def or net) + players
+    // When showNet is true, replace both Off PPP and Def PPP with a single Net PPP row
     const tableRows = (
       [
         GenericTableOps.buildSubHeaderRow(
           [[<b>{team}:</b>, _.size(tableDefs)]],
           "small text-center",
         ),
-        headerRow,
+        ...(showNet ? [netRow] : [headerRow, defenseRow]),
       ] as GenericTableRow[]
-    )
-      .concat(playerRows)
-      .concat([defenseRow]);
+    ).concat(playerRows);
 
     return [tableDefs, tableRows];
   };
 
-  const [tableDefsA, tableRowsA] = buildTable(teamA, aggregatedStintsA);
-  const [tableDefsB, tableRowsB] = aggregatedStintsB
-    ? buildTable(teamB || "Team B", aggregatedStintsB)
-    : [{}, []];
+  const [tableDefsA, tableRowsA] = buildTable(
+    teamA,
+    aggregatedStintsA,
+    playerInfoCacheA,
+  );
+  const [tableDefsB, tableRowsB] =
+    aggregatedStintsB && !_.isEmpty(aggregatedStintsB)
+      ? buildTable(teamB || "Team B", aggregatedStintsB, playerInfoCacheB)
+      : [{}, []];
 
   function stringToOption(s: string) {
     return { label: s, value: s };
@@ -622,10 +877,36 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                 isLabelOnly: true,
               },
               {
+                label: "Net",
+                tooltip: "Show net PPP (Off - Def) instead of separate rows",
+                toggled: showNet,
+                onClick: () => setShowNet(!showNet),
+              },
+              {
+                label: "| ",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+                isLabelOnly: true,
+              },
+              {
                 label: "Labels",
                 tooltip: "Show/hide stat labels (see dropdown to right)",
                 toggled: showLabels,
                 onClick: () => setShowLabels(!showLabels),
+              },
+              {
+                label: "| ",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+                isLabelOnly: true,
+              },
+              {
+                label: <FontAwesomeIcon icon={faFilter} />,
+                tooltip: "Show/hide player filter options",
+                toggled: showFilter,
+                onClick: () => setShowFilter(!showFilter),
               },
             ]}
           />
@@ -645,6 +926,37 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           />
         </Col>
       </Row>
+      {showFilter ? (
+        <Row className="mb-2">
+          <Col xs={12} sm={6}>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text id="filter">Filter</InputGroup.Text>
+              </InputGroup.Prepend>
+              <AsyncFormControl
+                startingVal={filterStr}
+                onChange={(t: string) => setFilterStr(t)}
+                timeout={500}
+                placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+              />
+            </InputGroup>
+          </Col>
+          <Col xs={12} sm={6} className="pt-1">
+            <ToggleButtonGroup
+              labelOverride=""
+              items={[
+                {
+                  label: "Walk-Ons",
+                  tooltip:
+                    "Include players with <10% of possessions (filtered out by default)",
+                  toggled: showWalkOns,
+                  onClick: () => setShowWalkOns(!showWalkOns),
+                },
+              ]}
+            />
+          </Col>
+        </Row>
+      ) : undefined}
       <Row>
         <Col xs={12} className="w-100 text-center">
           <GenericTable
@@ -658,7 +970,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           />
         </Col>
       </Row>
-      {aggregatedStintsB && !_.isEmpty(tableRowsB) ? (
+      {aggregatedStintsB && !_.isEmpty(aggregatedStintsB) && !_.isEmpty(tableRowsB) ? (
         <Row>
           <Col xs={12} className="w-100 text-center">
             <GenericTable
