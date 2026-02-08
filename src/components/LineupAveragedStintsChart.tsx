@@ -283,6 +283,20 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     rosterStatsB,
   );
 
+  // Calculate total games for each team (for averaging labels)
+  const getTotalGames = (teamStats: TeamStatsModel | undefined): number => {
+    if (!teamStats?.baseline?.game_info) return 1;
+    return (
+      _.size(
+        LineupUtils.isGameInfoStatSet(teamStats.baseline.game_info)
+          ? LineupUtils.getGameInfo(teamStats.baseline.game_info)
+          : teamStats.baseline.game_info,
+      ) || 1
+    );
+  };
+  const totalGamesA = getTotalGames(teamStatsA);
+  const totalGamesB = getTotalGames(teamStatsB);
+
   // Label options for player stats display
   const labelOptions = {
     "No Labels": (_: TimeBinPlayerStats) => 0,
@@ -365,6 +379,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   // Apply filter to players
   const filterPlayers = (
     players: { code: string; totalPoss: number; possPct: number }[],
+    playerInfoCache: PlayerInfoCache | undefined,
   ) => {
     return players.filter((player) => {
       // Walk-on filter: exclude players with <10% possessions unless showWalkOns
@@ -372,9 +387,21 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         return false;
       }
 
-      // Text filter
+      // Text filter - match against both code and full player name
       if (filterFragmentsPve.length > 0 || filterFragmentsNve.length > 0) {
-        const strToTest = player.code.toLowerCase();
+        // Get full player name from cache if available
+        const maybeEnrichedPlayer = _.find(
+          playerInfoCache?.rapmInfo?.enrichedPlayers,
+          (p) => p.playerCode === player.code,
+        );
+        const playerId = maybeEnrichedPlayer?.playerId || "";
+        const playerStats = playerId
+          ? playerInfoCache?.playerInfo[playerId]
+          : undefined;
+        const fullName = playerStats?.key || "";
+
+        // Test both code and full name (like RosterStatsTable does)
+        const strToTest = `${fullName} ${player.code}`.toLowerCase();
         const matchesPve =
           filterFragmentsPve.length === 0 ||
           filterFragmentsPve.some((f) =>
@@ -395,16 +422,27 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     team: string,
     aggregation: TimeBinnedAggregation,
     playerInfoCache: PlayerInfoCache | undefined,
+    totalGames: number,
   ): [Record<string, GenericTableColProps>, GenericTableRow[]] => {
     const bins = getBins(aggregation);
     const allPlayers = getPlayersSorted(bins);
-    const players = filterPlayers(allPlayers);
+    const players = filterPlayers(allPlayers, playerInfoCache);
 
     // Build column definitions - one per bin (equal width)
     const binWidth = 1; // Each bin is 1 minute
     const tableCols: Record<string, GenericTableColProps> = {};
 
     bins.forEach(([binNum]) => {
+      // Add halftime separator after bin 19 (first half is bins 0-19)
+      if (binNum === 20) {
+        tableCols[`sep_halftime`] = new GenericTableColProps(
+          "",
+          "",
+          0.1,
+          false,
+          GenericTableOps.htmlFormatter,
+        );
+      }
       tableCols[`bin_${binNum}`] = new GenericTableColProps(
         "",
         `Minute ${binNum}-${binNum + 1}`,
@@ -431,13 +469,34 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         ? {
             total: GenericTableOps.addDataCol(
               "",
-              `Total of [${labelToShow}] for each player`,
+              `Per-game average of [${labelToShow}] for each player`,
               CbbColors.applyThemedBackground,
               GenericTableOps.htmlFormatter,
             ),
           }
         : {}),
       ...tableCols,
+    };
+
+    // Halftime marker for Off PPP / Net rows
+    const halftimeMarker = {
+      sep_halftime: (
+        <OverlayTrigger
+          placement="auto"
+          overlay={<Tooltip id="halftime">Halftime</Tooltip>}
+        >
+          <small>
+            <sup
+              style={{
+                paddingLeft: "5px",
+                paddingRight: "4px",
+              }}
+            >
+              <b>H</b>
+            </sup>
+          </small>
+        </OverlayTrigger>
+      ),
     };
 
     // Build player lookup per bin for quick access
@@ -453,6 +512,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     const headerRow = GenericTableOps.buildDataRow(
       {
         title: <i>Off PPP:</i>,
+        ...halftimeMarker,
         ..._.fromPairs(
           bins.map(([binNum, bin]) => {
             const poss = bin.team_stats?.off_num_possessions?.value || 1;
@@ -498,7 +558,23 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     // Build player rows
     const playerRows = players.map((playerInfo) => {
       const playerCode = playerInfo.code;
+      const prettifiedPlayerCode =
+        GameAnalysisUtils.namePrettifier(playerCode);
       let labelTotal = 0;
+
+      // Pre-compute 4-bin chunk sums for labels
+      // Chunks: 0-3, 4-7, 8-11, etc.
+      const chunkLabelSums: Record<number, number> = {};
+      if (labelToShow && labelOptions[labelToShow]) {
+        bins.forEach(([binNum]) => {
+          const chunkIndex = Math.floor(binNum / 4);
+          const player = playersByBin[binNum][playerCode];
+          if (player) {
+            const value = labelOptions[labelToShow](player) || 0;
+            chunkLabelSums[chunkIndex] = (chunkLabelSums[chunkIndex] || 0) + value;
+          }
+        });
+      }
 
       const playerCols = _.fromPairs(
         bins.map(([binNum, bin]) => {
@@ -537,7 +613,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
 
           const tooltip = (
             <Tooltip id={`bin_${binNum}_${playerCode}`}>
-              <b>{playerCode}</b>
+              <b>{prettifiedPlayerCode}</b>
               <br />
               <br />
               <b>
@@ -571,10 +647,10 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
             </Tooltip>
           );
 
-          const labelValue =
-            labelToShow && labelOptions[labelToShow]
-              ? labelOptions[labelToShow](player)
-              : 0;
+          // For labels: use 4-bin chunk averages per game, only display in 3rd bin of each chunk
+          const chunkIndex = Math.floor(binNum / 4);
+          const isThirdBinOfChunk = binNum % 4 === 2;
+          const chunkLabelValue = (chunkLabelSums[chunkIndex] || 0) / totalGames;
 
           return [
             `bin_${binNum}`,
@@ -623,7 +699,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                     }}
                   />
                 ) : undefined}
-                {showLabels && labelValue ? (
+                {showLabels && isThirdBinOfChunk && chunkLabelValue ? (
                   <small
                     style={{
                       position: "absolute",
@@ -632,7 +708,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                     }}
                   >
                     <small>
-                      <b>{labelValue.toFixed(1)}</b>
+                      <b>{chunkLabelValue.toFixed(1)}</b>
                     </small>
                   </small>
                 ) : undefined}
@@ -641,9 +717,6 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           ];
         }),
       );
-
-      const prettifiedPlayerCode =
-        GameAnalysisUtils.namePrettifier(playerCode);
 
       // Build player tooltip with season stats
       // Find the enriched player by playerCode, then use playerId to lookup stats
@@ -705,7 +778,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
               </OverlayTrigger>
             </span>
           ),
-          total: <small>{labelTotal.toFixed(1)}</small>,
+          total: <small>{(labelTotal / totalGames).toFixed(1)}</small>,
           ...playerCols,
         },
         GenericTableOps.defaultFormatter,
@@ -764,6 +837,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     const netRow = GenericTableOps.buildDataRow(
       {
         title: <i>Net PPP:</i>,
+        ...halftimeMarker,
         ..._.fromPairs(
           bins.map(([binNum, bin]) => {
             const offPoss = bin.team_stats?.off_num_possessions?.value || 1;
@@ -833,10 +907,11 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     teamA,
     aggregatedStintsA,
     playerInfoCacheA,
+    totalGamesA,
   );
   const [tableDefsB, tableRowsB] =
     aggregatedStintsB && !_.isEmpty(aggregatedStintsB)
-      ? buildTable(teamB || "Team B", aggregatedStintsB, playerInfoCacheB)
+      ? buildTable(teamB || "Team B", aggregatedStintsB, playerInfoCacheB, totalGamesB)
       : [{}, []];
 
   function stringToOption(s: string) {
@@ -943,7 +1018,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           </Col>
           <Col xs={12} sm={6} className="pt-1">
             <ToggleButtonGroup
-              labelOverride=""
+              labelOverride=" "
               items={[
                 {
                   label: "Walk-Ons",
