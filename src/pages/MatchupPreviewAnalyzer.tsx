@@ -158,7 +158,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
     >,
     lineupStintsAggA?: TimeBinnedAggregation,
-    lineupStintsAggB?: TimeBinnedAggregation
+    lineupStintsAggB?: TimeBinnedAggregation,
   ) => {
     setDataEvent({
       teamStatsA,
@@ -204,17 +204,17 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   }
 
   const startingMatchupFilterParams = UrlRouting.removedSavedKeys(
-    allParams
+    allParams,
   ) as MatchupFilterParams; //(only used to init a couple of useStates)
   const [matchupFilterParams, setMatchupFilterParams] = useState(
-    startingMatchupFilterParams
+    startingMatchupFilterParams,
   );
   const matchupFilterParamsRef = useRef<MatchupFilterParams>();
   matchupFilterParamsRef.current = matchupFilterParams;
 
   const [breakdownView, setBreakdownView] = useState<string>(
     startingMatchupFilterParams.breakdownConfig ||
-      ParamDefaults.defaultMatchupAnalysisBreakdownConfig
+      ParamDefaults.defaultMatchupAnalysisBreakdownConfig,
   );
   const breakdownViewArr = breakdownView.split(";");
 
@@ -225,15 +225,15 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   const [shotChartsShowZones, setShotChartsShowZones] = useState(
     _.isNil(startingMatchupFilterParams.shotChartsShowZones)
       ? ParamDefaults.defaultShotChartShowZones
-      : startingMatchupFilterParams.shotChartsShowZones
+      : startingMatchupFilterParams.shotChartsShowZones,
   );
   const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
-    startingMatchupFilterParams.shotChartsUseEfg ?? false
+    startingMatchupFilterParams.shotChartsUseEfg ?? false,
   );
 
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
     startingMatchupFilterParams.playStyleConfigStr ||
-      ParamDefaults.defaultTeamPlayTypeConfig
+      ParamDefaults.defaultTeamPlayTypeConfig,
   );
 
   const [csvData, setCsvData] = useState<object[]>([]);
@@ -308,7 +308,24 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         rawParams.labelToShow == ParamDefaults.defaultMatchupAnalysisLabelToShow
           ? ["labelToShow"]
           : [],
-      ])
+        // Chart collapse states
+        _.isNil(rawParams.hidePlayTypes) ||
+        rawParams.hidePlayTypes == ParamDefaults.defaultHidePlayTypes
+          ? ["hidePlayTypes"]
+          : [],
+        _.isNil(rawParams.hidePlayerImpact) ||
+        rawParams.hidePlayerImpact == ParamDefaults.defaultHidePlayerImpact
+          ? ["hidePlayerImpact"]
+          : [],
+        _.isNil(rawParams.hideShotCharts) ||
+        rawParams.hideShotCharts == ParamDefaults.defaultHideShotCharts
+          ? ["hideShotCharts"]
+          : [],
+        _.isNil(rawParams.hideTimeline) ||
+        rawParams.hideTimeline == ParamDefaults.defaultHideTimeline
+          ? ["hideTimeline"]
+          : [],
+      ]),
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
       //(to avoid recursion)
@@ -344,7 +361,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
   // Load team grades, needed for play recap view
 
   const [divisionStatsCache, setDivisionStatsCache] = useState(
-    {} as DivisionStatsCache
+    {} as DivisionStatsCache,
   );
 
   /** Set this here and in teamDefenseStatsQueryTemplate+teamPlayerDefenseStatsQueryTemplate to check we get approx the
@@ -366,7 +383,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
       if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
       GradeTableUtils.populateTeamDivisionStatsCache(
         matchupFilterParams,
-        setDivisionStatsCache
+        setDivisionStatsCache,
       );
 
       // Also load all players into a separate cache, for defensive purposes
@@ -378,17 +395,17 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         matchupFilterParams.year || ParamDefaults.defaultYear,
         "All",
         [],
-        []
+        [],
       );
       fetchPlayers.then((players) => {
         setAllPlayerStatsCache(
           _.groupBy(
             _.flatMap(
               players,
-              (pp) => pp?.players || []
+              (pp) => pp?.players || [],
             ) as Array<IndivStatSet>,
-            (p) => p.team
-          )
+            (p) => p.team,
+          ),
         );
       });
     }
@@ -415,18 +432,26 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     "Play Types": { ref: playTypesRef },
     "Player Impact": { ref: playerImpactRef },
     "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
-    Timeline: FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg)
-      ? { ref: timelineRef }
-      : { skip: true },
+    Timeline: { ref: timelineRef },
   };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
-  const chart = React.useMemo(() => {
+  const chartContent = React.useMemo(() => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
         title="Player Impact Chart"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hidePlayerImpact ??
+          ParamDefaults.defaultHidePlayerImpact
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hidePlayerImpact: !nowShown,
+          });
+        }}
       >
         <Col
           xs={12}
@@ -460,8 +485,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
               RosterTableUtils.buildRosterTableByCode(
                 dataEvent.rosterStatsA.global,
                 dataEvent.teamStatsA.global.roster || {},
-                true //(injects positional info into the player stats, needed for play style analysis below)
-              )
+                true, //(injects positional info into the player stats, needed for play style analysis below)
+              ),
             )
           : allPlayerStatsCache[matchupFilterParams.team || "??"] || []
         : [];
@@ -473,9 +498,9 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
               seasonVsGameAverageDebugMode
                 ? _.mapValues(
                     allPlayerStatsCache, //(ie always returns this regardless of team faced, since with this debug flag...
-                    (__) => globalRosterStats //... we are always looking at team's offense, not opponents')
+                    (__) => globalRosterStats, //... we are always looking at team's offense, not opponents')
                   )
-                : allPlayerStatsCache
+                : allPlayerStatsCache,
             )
           : undefined;
 
@@ -484,7 +509,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         !_.isEmpty(dataEvent.defensiveInfoA) && showDefB
           ? PlayTypeUtils.buildTeamDefenseBreakdown(
               dataEvent.defensiveInfoB,
-              allPlayerStatsCache
+              allPlayerStatsCache,
             )
           : undefined;
 
@@ -502,6 +527,16 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         title="Play Type Breakdown"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hidePlayTypes ??
+          ParamDefaults.defaultHidePlayTypes
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hidePlayTypes: !nowShown,
+          });
+        }}
       >
         {!_.isEmpty(divisionStatsCache) ? (
           <Container>
@@ -579,7 +614,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                               false,
                               breakdownViewArr?.[0] == "def"
                                 ? defensiveBreakdownA
-                                : undefined
+                                : undefined,
                             );
                           const dataTeamB: object[] =
                             _.isEmpty(divisionStatsCache) ||
@@ -615,10 +650,10 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                                   matchupFilterParams.oppoTeam ==
                                     AvailableTeams.noOpponent
                                     ? defensiveBreakdownA
-                                    : defensiveBreakdownB
+                                    : defensiveBreakdownB,
                                 );
                           setCsvData(dataTeamA.concat(dataTeamB));
-                        }
+                        },
                       ),
                     },
                   ])}
@@ -653,7 +688,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     undefined,
                     playStyleConfigStr,
                     (newConfigStr: string) =>
-                      setPlayStyleConfigStr(newConfigStr)
+                      setPlayStyleConfigStr(newConfigStr),
                   )
                 )}
               </Col>
@@ -686,7 +721,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     undefined,
                     playStyleConfigStr,
                     (newConfigStr: string) =>
-                      setPlayStyleConfigStr(newConfigStr)
+                      setPlayStyleConfigStr(newConfigStr),
                   )
                 )}
               </Col>
@@ -721,6 +756,16 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         title="Team Shot Charts"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hideShotCharts ??
+          ParamDefaults.defaultHideShotCharts
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hideShotCharts: !nowShown,
+          });
+        }}
       >
         {matchupFilterParams.oppoTeam != AvailableTeams.noOpponent ? (
           <Container>
@@ -772,8 +817,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
                       ? dataEvent.shotChartInfoA.def
                       : breakdownViewArr?.[1] == "off"
-                      ? dataEvent.shotChartInfoB.off
-                      : dataEvent.shotChartInfoB.def
+                        ? dataEvent.shotChartInfoB.off
+                        : dataEvent.shotChartInfoB.def
                   }
                   gender={matchupFilterParams.gender as "Men" | "Women"}
                   quickSwitchOptions={[]}
@@ -792,8 +837,8 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
                     matchupFilterParams.oppoTeam == AvailableTeams.noOpponent
                       ? `${matchupFilterParams.team} Defense:`
                       : breakdownViewArr?.[1] == "off"
-                      ? `${matchupFilterParams.oppoTeam} Offense:`
-                      : `${matchupFilterParams.oppoTeam} Defense:`,
+                        ? `${matchupFilterParams.oppoTeam} Offense:`
+                        : `${matchupFilterParams.oppoTeam} Defense:`,
                   ]}
                   offDefOverrides={[
                     breakdownViewArr?.[0] != "off",
@@ -859,6 +904,45 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
     );
   }, [dataEvent, breakdownView, shotChartsShowZones, shotChartsUseEfg]);
 
+  const timelineChart = React.useMemo(() => {
+    return (
+      <GenericCollapsibleCard
+        minimizeMargin={true}
+        title="Timeline View"
+        startClosed={
+          matchupFilterParams.hideTimeline ?? ParamDefaults.defaultHideTimeline
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hideTimeline: !nowShown,
+          });
+        }}
+      >
+        <LineupAveragedStintsChart
+          teamA={matchupFilterParams.team || ""}
+          teamB={
+            matchupFilterParams.oppoTeam != AvailableTeams.noOpponent
+              ? matchupFilterParams.oppoTeam
+              : undefined
+          }
+          dataEvent={{
+            aggregatedStintsA: dataEvent.lineupStintsAggA,
+            aggregatedStintsB: dataEvent.lineupStintsAggB,
+            lineupStatsA: dataEvent.lineupStatsA,
+            teamStatsA: dataEvent.teamStatsA,
+            rosterStatsA: dataEvent.rosterStatsA,
+            lineupStatsB: dataEvent.lineupStatsB,
+            teamStatsB: dataEvent.teamStatsB,
+            rosterStatsB: dataEvent.rosterStatsB,
+          }}
+          startingState={matchupFilterParamsRef.current || {}}
+          onChangeState={onMatchupFilterParamsChange}
+        />
+      </GenericCollapsibleCard>
+    );
+  }, [dataEvent]);
+
   return (
     <Container>
       <SiteModeDropdown />
@@ -903,7 +987,7 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         }}
         ref={playerImpactRef}
       >
-        {chart}
+        {chartContent}
       </Row>
       {showShotCharts ? (
         <Row
@@ -915,37 +999,14 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           {shotChart}
         </Row>
       ) : undefined}
-      {FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg) ? (
-        <Row
-          style={{
-            breakBefore: "page",
-          }}
-          ref={timelineRef}
-        >
-          <GenericCollapsibleCard minimizeMargin={true} title="Timeline View">
-            <LineupAveragedStintsChart
-              teamA={matchupFilterParams.team || ""}
-              teamB={
-                matchupFilterParams.oppoTeam != AvailableTeams.noOpponent
-                  ? matchupFilterParams.oppoTeam
-                  : undefined
-              }
-              dataEvent={{
-                aggregatedStintsA: dataEvent.lineupStintsAggA,
-                aggregatedStintsB: dataEvent.lineupStintsAggB,
-                lineupStatsA: dataEvent.lineupStatsA,
-                teamStatsA: dataEvent.teamStatsA,
-                rosterStatsA: dataEvent.rosterStatsA,
-                lineupStatsB: dataEvent.lineupStatsB,
-                teamStatsB: dataEvent.teamStatsB,
-                rosterStatsB: dataEvent.rosterStatsB,
-              }}
-              startingState={matchupFilterParamsRef.current || {}}
-              onChangeState={onMatchupFilterParamsChange}
-            />
-          </GenericCollapsibleCard>
-        </Row>
-      ) : null}
+      <Row
+        style={{
+          breakBefore: "page",
+        }}
+        ref={timelineRef}
+      >
+        {timelineChart}
+      </Row>
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

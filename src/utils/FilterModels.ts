@@ -123,6 +123,11 @@ export type MatchupFilterParams = {
   showTimelineFilter?: boolean; // show filter controls
   timelineFilterStr?: string; // player filter string
   showWalkOns?: boolean; // include walk-ons (<10% poss)
+  // Collapse states for charts:
+  hidePlayTypes?: boolean;
+  hidePlayerImpact?: boolean;
+  hideShotCharts?: boolean;
+  hideTimeline?: boolean;
   posClasses?: string; // which position classes to show
   showTeam?: boolean;
   showOppo?: boolean;
@@ -738,6 +743,11 @@ export class ParamDefaults {
   static readonly defaultTimelineShowFilter = false;
   static readonly defaultTimelineFilterStr = "";
   static readonly defaultTimelineShowWalkOns = false;
+  // Chart collapse state defaults (false = expanded):
+  static readonly defaultHidePlayTypes = false;
+  static readonly defaultHidePlayerImpact = false;
+  static readonly defaultHideShotCharts = false;
+  static readonly defaultHideTimeline = false;
   // Player Career
   static readonly defaultShowNextYear = false;
   static readonly defaultHidePlayerOverview = false;

@@ -464,9 +464,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         const strToTest = `${fullName} ${player.code}`.toLowerCase();
         const matchesPve =
           filterFragmentsPve.length === 0 ||
-          filterFragmentsPve.some((f) =>
-            strToTest.includes(f.toLowerCase()),
-          );
+          filterFragmentsPve.some((f) => strToTest.includes(f.toLowerCase()));
         const matchesNve = filterFragmentsNve.some((f) =>
           strToTest.includes(f.toLowerCase()),
         );
@@ -618,8 +616,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     // Build player rows
     const playerRows = players.map((playerInfo) => {
       const playerCode = playerInfo.code;
-      const prettifiedPlayerCode =
-        GameAnalysisUtils.namePrettifier(playerCode);
+      const prettifiedPlayerCode = GameAnalysisUtils.namePrettifier(playerCode);
       let labelTotal = 0;
 
       // Pre-compute 4-bin chunk sums for labels
@@ -631,7 +628,8 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           const player = playersByBin[binNum][playerCode];
           if (player) {
             const value = labelOptions[labelToShow](player) || 0;
-            chunkLabelSums[chunkIndex] = (chunkLabelSums[chunkIndex] || 0) + value;
+            chunkLabelSums[chunkIndex] =
+              (chunkLabelSums[chunkIndex] || 0) + value;
           }
         });
       }
@@ -686,7 +684,11 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
               <br />
               Usage: {(stintInfo.usage * 100).toFixed(0)}%
               <br />
-              Pts/50: {(playerTeamPoss > 0 ? (stintInfo.ptsScored / playerTeamPoss) * 50 : 0).toFixed(1)}
+              Pts/50:{" "}
+              {(playerTeamPoss > 0
+                ? (stintInfo.ptsScored / playerTeamPoss) * 50
+                : 0
+              ).toFixed(1)}
               <br />
               PPP: {stintInfo.ppp.toFixed(2)}
               <br />
@@ -710,7 +712,8 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           // For labels: use 4-bin chunk averages per game, only display in 3rd bin of each chunk
           const chunkIndex = Math.floor(binNum / 4);
           const isThirdBinOfChunk = binNum % 4 === 2;
-          const chunkLabelValue = (chunkLabelSums[chunkIndex] || 0) / totalGames;
+          const chunkLabelValue =
+            (chunkLabelSums[chunkIndex] || 0) / totalGames;
 
           return [
             `bin_${binNum}`,
@@ -733,7 +736,9 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                     style={{
                       height: "4px",
                       marginBottom: "2px",
-                      background: possessionScale(stintInfo.possessionPct).css(),
+                      background: possessionScale(
+                        stintInfo.possessionPct,
+                      ).css(),
                     }}
                   />
                 ) : undefined}
@@ -754,7 +759,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                     style={{
                       height: "2px",
                       marginBottom: "0px",
-                      opacity: `${(Math.min(Math.sqrt(stintInfo.possessionPct * stintInfo.usage / 0.2), 1) * 100).toFixed(0)}%`,
+                      opacity: `${(Math.min(Math.sqrt((stintInfo.possessionPct * stintInfo.usage) / 0.2), 1) * 100).toFixed(0)}%`,
                       background: CbbColors.off_ppp_redGreyGreen(stintInfo.ppp),
                     }}
                   />
@@ -988,7 +993,12 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   );
   const [tableDefsB, tableRowsB] =
     aggregatedStintsB && !_.isEmpty(aggregatedStintsB)
-      ? buildTable(teamB || "Team B", aggregatedStintsB, playerInfoCacheB, totalGamesB)
+      ? buildTable(
+          teamB || "Team B",
+          aggregatedStintsB,
+          playerInfoCacheB,
+          totalGamesB,
+        )
       : [{}, []];
 
   function stringToOption(s: string) {
@@ -1122,7 +1132,9 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
           />
         </Col>
       </Row>
-      {aggregatedStintsB && !_.isEmpty(aggregatedStintsB) && !_.isEmpty(tableRowsB) ? (
+      {aggregatedStintsB &&
+      !_.isEmpty(aggregatedStintsB) &&
+      !_.isEmpty(tableRowsB) ? (
         <Row>
           <Col xs={12} className="w-100 text-center">
             <GenericTable

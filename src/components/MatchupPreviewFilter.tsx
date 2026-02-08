@@ -76,7 +76,7 @@ type Props = {
       { teamStats: TeamStatSet; playerStats: Array<IndivStatSet> }
     >,
     lineupStintsAggA?: TimeBinnedAggregation,
-    lineupStintsAggB?: TimeBinnedAggregation
+    lineupStintsAggB?: TimeBinnedAggregation,
   ) => void;
   startingState: MatchupFilterParams;
   onChangeState: (newParams: MatchupFilterParams) => void;
@@ -102,7 +102,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
-    startingCommonFilterParams as CommonFilterParams
+    startingCommonFilterParams as CommonFilterParams,
   );
 
   // Lineup Filter - custom queries and filters:
@@ -117,7 +117,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   const teamList = AvailableTeams.getTeams(
     null,
     commonParams.year || ParamDefaults.defaultYear,
-    commonParams.gender || ParamDefaults.defaultGender
+    commonParams.gender || ParamDefaults.defaultGender,
   ).filter((t) => t.team != commonParams.team);
 
   /** Bridge between the callback in CommonFilter and state management */
@@ -131,7 +131,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
    * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
    */
   function buildParamsFromState(
-    includeFilterParams: Boolean
+    includeFilterParams: Boolean,
   ): [LineupFilterParams, FilterRequestInfo[]] {
     const shotChartEnabled =
       !commonParams.year ||
@@ -205,7 +205,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                 paramsObj: primaryRequestA,
               },
             ]
-          : []
+          : [],
       );
     const secondaryRequests: FilterRequestInfo[] = [
       {
@@ -233,7 +233,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
               paramsObj: primaryRequestB,
             },
           ]
-        : []
+        : [],
     );
     const defensiveRequests: FilterRequestInfo[] = includeDefense
       ? _.take(
@@ -249,33 +249,29 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
               paramsObj: primaryRequestB as FilterParamsType,
             },
           ],
-          game != AvailableTeams.noOpponent ? 2 : 1
+          game != AvailableTeams.noOpponent ? 2 : 1,
         ) //(only get team defense if there is "no opponent")
       : [];
 
-    const lineupStintsAggRequests: FilterRequestInfo[] = FeatureFlags.isActiveWindow(
-      FeatureFlags.lineupStintsAgg
-    )
-      ? (
-          [
+    const lineupStintsAggRequests: FilterRequestInfo[] = (
+      [
+        {
+          tag: "lineupStintsAggA",
+          context: ParamPrefixes.lineupStintsAgg as ParamPrefixesType,
+          paramsObj: secondaryRequestA,
+        },
+      ] as FilterRequestInfo[]
+    ).concat(
+      game != AvailableTeams.noOpponent
+        ? [
             {
-              tag: "lineupStintsAggA",
+              tag: "lineupStintsAggB",
               context: ParamPrefixes.lineupStintsAgg as ParamPrefixesType,
-              paramsObj: secondaryRequestA,
+              paramsObj: secondaryRequestB,
             },
-          ] as FilterRequestInfo[]
-        ).concat(
-          game != AvailableTeams.noOpponent
-            ? [
-                {
-                  tag: "lineupStintsAggB",
-                  context: ParamPrefixes.lineupStintsAgg as ParamPrefixesType,
-                  paramsObj: secondaryRequestB,
-                },
-              ]
-            : []
-        )
-      : [];
+          ]
+        : [],
+    );
 
     return [
       primaryRequestA,
@@ -283,7 +279,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         .concat(
           game != AvailableTeams.noOpponent
             ? secondaryRequests
-            : ([] as FilterRequestInfo[])
+            : ([] as FilterRequestInfo[]),
         )
         .concat(defensiveRequests)
         .concat(lineupStintsAggRequests),
@@ -357,10 +353,10 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       if (includeDefense) {
         return [
           PlayTypeUtils.parseTeamDefenseResponse(
-            jsonResps?.["defenseA"]?.responses || []
+            jsonResps?.["defenseA"]?.responses || [],
           ),
           PlayTypeUtils.parseTeamDefenseResponse(
-            jsonResps?.["defenseB"]?.responses || []
+            jsonResps?.["defenseB"]?.responses || [],
           ),
         ];
       } else {
@@ -390,7 +386,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         defensiveStatsA,
         defensiveStatsB,
         lineupStintsAggA,
-        lineupStintsAggB
+        lineupStintsAggB,
       );
     } else {
       const lineupJsonB = jsonResps?.["lineupsB"]?.responses?.[0] || {};
@@ -427,7 +423,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
         defensiveStatsA,
         defensiveStatsB,
         lineupStintsAggA,
-        lineupStintsAggB
+        lineupStintsAggB,
       );
     }
   }
@@ -450,7 +446,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       commonParams.gender || ParamDefaults.defaultGender,
       (aliasUpdate) => {
         setGame(aliasUpdate);
-      }
+      },
     ) || {
       value: undefined,
       label: "Choose Team...",
@@ -463,7 +459,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       (commonParams.minRank || "1") + "-" + (commonParams.maxRank || "400");
     const key = _.findKey(
       gameFilterOptions,
-      (v, k) => v.minRank + "-" + v.maxRank == objToCheck
+      (v, k) => v.minRank + "-" + v.maxRank == objToCheck,
     );
     return key || "Based On All Games";
   }
@@ -499,7 +495,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   const gameParams = (
     params: MatchupFilterParams,
     team: string,
-    subFor?: string
+    subFor?: string,
   ): GameFilterParams => ({
     team,
     minRank: "1",
@@ -518,7 +514,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   const lineupParams = (
     params: MatchupFilterParams,
     team: string,
-    subFor?: string
+    subFor?: string,
   ): LineupFilterParams => ({
     team,
     minRank: "1",
@@ -550,7 +546,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                 target="_blank"
                 href={UrlRouting.getGameUrl(
                   gameParams(params, params.team),
-                  {}
+                  {},
                 )}
               >
                 Team stats
@@ -559,7 +555,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                 target="_blank"
                 href={UrlRouting.getLineupUrl(
                   lineupParams(params, params.team),
-                  {}
+                  {},
                 )}
               >
                 Team lineups
@@ -571,7 +567,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                       target="_blank"
                       href={UrlRouting.getGameUrl(
                         gameParams(params, opponentName, params.team),
-                        {}
+                        {},
                       )}
                     >
                       Opponent stats
@@ -580,13 +576,13 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                       target="_blank"
                       href={UrlRouting.getLineupUrl(
                         lineupParams(params, opponentName, params.team),
-                        {}
+                        {},
                       )}
                     >
                       Opponent lineups
                     </a>,
                   ]
-                : []
+                : [],
             )
           : [];
       }}
@@ -601,7 +597,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={stringToOption(getCurrentGameFilter())}
                   options={_.keys(gameFilterOptions).map((r) =>
-                    stringToOption(r)
+                    stringToOption(r),
                   )}
                   onChange={(option: any) => {
                     const chosenFilter = gameFilterOptions[option.value];
@@ -621,7 +617,7 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
                   options={[stringToOption(AvailableTeams.noOpponent)].concat(
-                    AvailableTeams.teamsToLabels(teamList)
+                    AvailableTeams.teamsToLabels(teamList),
                   )}
                   onChange={(option: any) => {
                     setGame((option as any)?.value);

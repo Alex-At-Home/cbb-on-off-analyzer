@@ -40,6 +40,7 @@ import {
 } from "../utils/tables/GameAnalysisUtils";
 import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import ThemedSelect from "./shared/ThemedSelect";
+import { useTheme } from "next-themes";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -78,6 +79,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     lineupStintsB,
   } = dataEvent;
 
+  const { resolvedTheme } = useTheme();
+
   // Model
 
   const commonParams = getCommonFilterParams(startingState);
@@ -89,40 +92,40 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   const [adjustForLuck, setAdjustForLuck] = useState(
     _.isNil(startingState.onOffLuck)
       ? ParamDefaults.defaultOnOffLuckAdjust
-      : startingState.onOffLuck
+      : startingState.onOffLuck,
   );
   const [luckConfig, setLuckConfig] = useState(
     _.isNil(startingState.luck)
       ? ParamDefaults.defaultLuckConfig
-      : startingState.luck
+      : startingState.luck,
   );
 
   // Highlight lineup in hovered over stint:
 
   const [activeLineup, setActiveLineup] = useState<Set<string> | undefined>(
-    undefined
+    undefined,
   );
 
   const [showUsage, setShowUsage] = useState<boolean>(
     _.isNil(startingState.showUsage)
       ? ParamDefaults.defaultMatchupAnalysisShowUsage
-      : startingState.showUsage
+      : startingState.showUsage,
   );
   const [showPpp, setShowPpp] = useState<boolean>(
     _.isNil(startingState.showPpp)
       ? ParamDefaults.defaultMatchupAnalysisShowPpp
-      : startingState.showPpp
+      : startingState.showPpp,
   );
 
   const [showLabels, setShowLabels] = useState<boolean>(
     _.isNil(startingState.showLabels)
       ? ParamDefaults.defaultMatchupAnalysisShowLabels
-      : startingState.showLabels
+      : startingState.showLabels,
   );
   const [labelToShow, setLabelToShow] = useState<string>(
     _.isNil(startingState.labelToShow)
       ? ParamDefaults.defaultMatchupAnalysisLabelToShow
-      : startingState.labelToShow
+      : startingState.labelToShow,
   );
 
   /** Util for manipulating player stats */
@@ -164,7 +167,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       Math.max(
         0,
         (toStats(info)?.orb?.total || 0) -
-          (toShots(info)?.fg?.attempts?.orb || 0)
+          (toShots(info)?.fg?.attempts?.orb || 0),
       ),
     "Transition Pts": (info) =>
       2 * (toShots(info)?.fg_2p?.made?.early || 0) +
@@ -227,7 +230,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       Math.max(
         0,
         (toStats(info)?.orb?.total || 0) -
-          (toShots(info)?.fg?.attempts?.orb || 0)
+          (toShots(info)?.fg?.attempts?.orb || 0),
       ),
   } as Record<string, (info: LineupStintTeamStats) => number>;
 
@@ -261,7 +264,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         rosterStatsA,
         adjustForLuck,
         luckConfig,
-        avgEfficiency
+        avgEfficiency,
       );
 
       const bStats = GameAnalysisUtils.buildGameRapmStats(
@@ -272,7 +275,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         rosterStatsB,
         adjustForLuck,
         luckConfig,
-        avgEfficiency
+        avgEfficiency,
       );
       setCachedStats({
         aStats,
@@ -284,17 +287,17 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   // Lineup building model
 
   const toStintsPerPlayer = (
-    stints: LineupStintInfo[]
+    stints: LineupStintInfo[],
   ): Record<PlayerCode, LineupStintInfo[]> => {
     return _.chain(stints)
       .flatMap((l) => {
         return l.players.map(
-          (p) => [p.code, l] as [PlayerCode, LineupStintInfo]
+          (p) => [p.code, l] as [PlayerCode, LineupStintInfo],
         );
       })
       .groupBy((idStint: [PlayerCode, LineupStintInfo]) => idStint[0])
       .mapValues((idStints: [PlayerCode, LineupStintInfo][]) =>
-        idStints.map((idStint) => idStint[1])
+        idStints.map((idStint) => idStint[1]),
       )
       .value();
   };
@@ -306,7 +309,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
   const crossesGameBreak = (
     breakTime: number,
     lastStingInClump: LineupStintInfo,
-    nextStint: LineupStintInfo
+    nextStint: LineupStintInfo,
   ) => {
     if (breakTime > nextStint.end_min) {
       return false;
@@ -338,7 +341,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             crossesGameBreak(
               gameBreaks[acc.nextGameBreakIndex]!,
               _.last(lastClump.stints)!,
-              v
+              v,
             )
           ) {
             //(new clump!)
@@ -349,15 +352,15 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           }
         }
       },
-      { res: [] as StintClump[], nextGameBreakIndex: 0 }
+      { res: [] as StintClump[], nextGameBreakIndex: 0 },
     ).res;
   };
 
   const playersA = _.mapValues(toStintsPerPlayer(lineupStintsA), (ss) =>
-    toClumpsPerPlayer(ss)
+    toClumpsPerPlayer(ss),
   );
   const playersB = _.mapValues(toStintsPerPlayer(lineupStintsB), (ss) =>
-    toClumpsPerPlayer(ss)
+    toClumpsPerPlayer(ss),
   );
 
   const buildTable = (
@@ -365,10 +368,10 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     teamStats: TeamStatsModel,
     lineupStints: LineupStintInfo[],
     players: Record<string, StintClump[]>,
-    playerInfoCache: GameStatsCache | undefined
+    playerInfoCache: GameStatsCache | undefined,
   ): [Record<string, GenericTableColProps>, GenericTableRow[]] => {
     const starterCodes = new Set(
-      _.first(lineupStints)?.players?.map((p) => p.code) || []
+      _.first(lineupStints)?.players?.map((p) => p.code) || [],
     );
 
     const gameOrbPct = teamStats.baseline?.off_orb?.value || 0;
@@ -383,7 +386,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             "",
             0.1,
             false,
-            GenericTableOps.htmlFormatter
+            GenericTableOps.htmlFormatter,
           );
           acc.gameBreakRowInfo[fieldName] = _.thru(
             acc.nextGameBreakIndex,
@@ -418,7 +421,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               } else {
                 return styled((breakNum - 1).toFixed(0));
               }
-            }
+            },
           );
           acc.nextGameBreakIndex = acc.nextGameBreakIndex + 1;
         }
@@ -427,14 +430,14 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           ``,
           stint.duration_mins,
           false,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         );
       },
       {
         tableCols: {} as Record<string, GenericTableColProps>,
         nextGameBreakIndex: 0,
         gameBreakRowInfo: {} as Record<string, any>,
-      }
+      },
     );
 
     const tableDefs = {
@@ -444,7 +447,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         GenericTableOps.defaultRowSpanCalculator,
         "",
         GenericTableOps.htmlFormatter,
-        7.5
+        7.5,
       ),
       sep0: GenericTableOps.addColSeparator(),
       ...(showLabels &&
@@ -456,7 +459,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               "",
               `The total of label [${labelToShow}] for each player`,
               CbbColors.applyThemedBackground,
-              GenericTableOps.htmlFormatter
+              GenericTableOps.htmlFormatter,
             ),
           }
         : {}),
@@ -468,7 +471,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
         const playerKey =
           _.find(
             clumps[0].stints[0].players,
-            (player) => player.code == playerCode
+            (player) => player.code == playerCode,
           )?.id || "?????";
 
         const { cols: playerCols, labelTotal } = _.transform(
@@ -477,7 +480,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             const clumpStart = clump.stints[0].start_min;
             const clumpEnd = _.last(clump.stints)!.end_min;
             const clumpPlusMinus = _.sum(
-              clump.stints.map((c) => c.team_stats.plus_minus)
+              clump.stints.map((c) => c.team_stats.plus_minus),
             );
             const clumpNumPoss =
               _.sum(clump.stints.map((c) => c.team_stats.num_possessions)) || 1;
@@ -486,19 +489,19 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
             const startStint = _.thru(
               _.findIndex(
                 stintsRemaining,
-                (stint) => stint.start_min >= clumpStart
+                (stint) => stint.start_min >= clumpStart,
               ),
               (index) =>
-                index < 0 ? _.size(lineupStints) : index + acc.currStint
+                index < 0 ? _.size(lineupStints) : index + acc.currStint,
             );
             if (startStint >= 0) {
               const endStint = _.thru(
                 _.findIndex(
                   stintsRemaining,
-                  (stint) => stint.end_min >= clumpEnd
+                  (stint) => stint.end_min >= clumpEnd,
                 ),
                 (index) =>
-                  index < 0 ? _.size(lineupStints) : index + acc.currStint
+                  index < 0 ? _.size(lineupStints) : index + acc.currStint,
               );
 
               //   console.log(
@@ -511,7 +514,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
 
                 const playerInfo = _.find(
                   stint.players,
-                  (p) => p.code == playerCode
+                  (p) => p.code == playerCode,
                 );
                 const playerStats = playerInfo?.stats;
                 if (playerStats) {
@@ -620,11 +623,11 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                   <Tooltip id={`stint${ii}`}>
                     <b>CLUMP</b>: [
                     {GameAnalysisUtils.buildDurationStr(
-                      clump.stints[0].start_min
+                      clump.stints[0].start_min,
                     )}
                     ]-[
                     {GameAnalysisUtils.buildDurationStr(
-                      _.last(clump.stints)!.end_min
+                      _.last(clump.stints)!.end_min,
                     )}
                     ]
                     <br />
@@ -694,7 +697,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                               team_stats: playerStats,
                             },
                           ],
-                          true
+                          true,
                         )
                       : undefined}
                   </Tooltip>
@@ -707,7 +710,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       overlay={tooltipTeam}
                       onEntered={() => {
                         setActiveLineup(
-                          new Set(stint.players.map((p) => `${team}${p.code}`))
+                          new Set(stint.players.map((p) => `${team}${p.code}`)),
                         );
                       }}
                       onExited={() => {
@@ -722,7 +725,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                             marginBottom: "2px",
                             background:
                               CbbColors.off_diff20_p100_redGreyGreen(
-                                clumpPlusMinus
+                                clumpPlusMinus,
                               ),
                           }}
                         />
@@ -735,8 +738,8 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                         onEntered={() => {
                           setActiveLineup(
                             new Set(
-                              stint.players.map((p) => `${team}${p.code}`)
-                            )
+                              stint.players.map((p) => `${team}${p.code}`),
+                            ),
                           );
                         }}
                         onExited={() => {
@@ -759,7 +762,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                                   ? "0%"
                                   : "100%",
                                 background: CbbColors.usg_offDef_alt(
-                                  playerStintInfo?.usage || 0
+                                  playerStintInfo?.usage || 0,
                                 ),
                               }}
                             />
@@ -772,10 +775,10 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                                 marginBottom: "0px",
                                 opacity: `${Math.min(
                                   (playerStintInfo?.usage || 0) * 400,
-                                  100
+                                  100,
                                 ).toFixed(0)}%`,
                                 background: CbbColors.off_ppp_redGreyGreen(
-                                  playerStintInfo?.ppp || 0
+                                  playerStintInfo?.ppp || 0,
                                 ),
                               }}
                             />
@@ -792,11 +795,24 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                                 right: "calc(50% - 3px)",
                               }}
                             >
-                              <small>
-                                <b>
-                                  {labelOptions[labelToShow](playerInfo?.stats)}
-                                </b>
-                              </small>
+                              <span
+                                style={{
+                                  backgroundColor:
+                                    resolvedTheme === "light"
+                                      ? "rgba(255, 255, 255, 0.7)"
+                                      : "rgba(0, 0, 0, 0.3)",
+                                  borderRadius: "50%",
+                                  padding: "1px 3px",
+                                }}
+                              >
+                                <small>
+                                  <b>
+                                    {labelOptions[labelToShow](
+                                      playerInfo?.stats,
+                                    )}
+                                  </b>
+                                </small>
+                              </span>
                             </small>
                           ) : undefined}
                         </div>
@@ -808,7 +824,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
               acc.currStint = endStint + 1;
             } else return undefined; //(can complete the transform)
           },
-          { currStint: 0, cols: {} as Record<string, any>, labelTotal: 0 }
+          { currStint: 0, cols: {} as Record<string, any>, labelTotal: 0 },
         );
 
         const addFormattingToPlayers = (playerCode: string) => {
@@ -821,7 +837,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           } else {
             const maybeRapmInfo = _.find(
               playerInfoCache.rapmInfo?.enrichedPlayers,
-              (p) => p.playerCode == playerCode
+              (p) => p.playerCode == playerCode,
             );
             const tooltip = (
               <Tooltip id={`playerInfo${playerCode}`}>
@@ -830,7 +846,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                       team,
                       playerInfoCache.playerInfo[playerKey] || {},
                       maybeRapmInfo,
-                      playerInfoCache.positionInfo[playerKey]
+                      playerInfoCache.positionInfo[playerKey],
                     )
                   : "(loading)"}
               </Tooltip>
@@ -876,7 +892,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
       [
         GenericTableOps.buildSubHeaderRow(
           [[<b>{team}:</b>, _.size(tableDefs)]],
-          "small text-center"
+          "small text-center",
         ),
         GenericTableOps.buildDataRow(
           {
@@ -913,9 +929,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                           height: "5px",
                           marginBottom: "2px",
                           background: `linear-gradient(to right, ${CbbColors.off_diff20_p100_redGreyGreen(
-                            scoreDiffAtStart
+                            scoreDiffAtStart,
                           )} 0%, ${CbbColors.off_diff20_p100_redGreyGreen(
-                            scoreDiffAtEnd
+                            scoreDiffAtEnd,
                           )} 100%)`,
                         }}
                       />
@@ -925,20 +941,20 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                           height: "2px",
                           marginBottom: "0px",
                           background: `linear-gradient(to right, ${CbbColors.off_diff20_p100_redGreyGreen(
-                            stintDiff
+                            stintDiff,
                           )} 0%, ${CbbColors.off_diff20_p100_redGreyGreen(
-                            stintDiff
+                            stintDiff,
                           )} 100%)`,
                         }}
                       />
                     </div>
                   </OverlayTrigger>,
                 ];
-              })
+              }),
             ),
           },
           GenericTableOps.defaultFormatter,
-          GenericTableOps.defaultCellMeta
+          GenericTableOps.defaultCellMeta,
         ),
       ] as GenericTableRow[]
     )
@@ -947,9 +963,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
           return GenericTableOps.buildDataRow(
             playerObj,
             GenericTableOps.defaultFormatter,
-            GenericTableOps.defaultCellMeta
+            GenericTableOps.defaultCellMeta,
           );
-        })
+        }),
       )
       .concat(
         showPpp
@@ -1000,9 +1016,9 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                                 opacity: "75%",
                                 marginBottom: "0px",
                                 background: `linear-gradient(to right, ${CbbColors.def_ppp_redGreyGreen(
-                                  ppp
+                                  ppp,
                                 )} 0%, ${CbbColors.def_ppp_redGreyGreen(
-                                  ppp
+                                  ppp,
                                 )} 100%)`,
                               }}
                             />
@@ -1011,7 +1027,7 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                             defenseOnlyLabelOptions[labelToShow] &&
                             stint.opponent_stats &&
                             defenseOnlyLabelOptions[labelToShow](
-                              stint.opponent_stats
+                              stint.opponent_stats,
                             ) ? (
                               <small
                                 style={{
@@ -1020,26 +1036,37 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
                                   right: "calc(50% - 3px)",
                                 }}
                               >
-                                <small>
-                                  <b>
-                                    {labelOptions[labelToShow](
-                                      stint.opponent_stats
-                                    )}
-                                  </b>
-                                </small>
+                                <span
+                                  style={{
+                                    backgroundColor:
+                                      resolvedTheme === "light"
+                                        ? "rgba(255, 255, 255, 0.7)"
+                                        : "rgba(0, 0, 0, 0.3)",
+                                    borderRadius: "50%",
+                                    padding: "1px 3px",
+                                  }}
+                                >
+                                  <small>
+                                    <b>
+                                      {labelOptions[labelToShow](
+                                        stint.opponent_stats,
+                                      )}
+                                    </b>
+                                  </small>
+                                </span>
                               </small>
                             ) : undefined}
                           </div>
                         </OverlayTrigger>,
                       ];
-                    })
+                    }),
                   ),
                 },
                 GenericTableOps.defaultFormatter,
-                GenericTableOps.defaultCellMeta
+                GenericTableOps.defaultCellMeta,
               ),
             ] as GenericTableRow[])
-          : []
+          : [],
       );
     return [tableDefs, tableRows];
   };
@@ -1049,14 +1076,14 @@ const LineupStintsChart: React.FunctionComponent<Props> = ({
     teamStatsA,
     lineupStintsA,
     playersA,
-    cachedStats.aStats
+    cachedStats.aStats,
   );
   const [tableDefsB, tableRowsB] = buildTable(
     opponent,
     teamStatsB,
     lineupStintsB,
     playersB,
-    cachedStats.bStats
+    cachedStats.bStats,
   );
 
   function stringToOption(s: string) {

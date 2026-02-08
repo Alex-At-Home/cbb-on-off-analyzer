@@ -27,7 +27,4 @@ export class FeatureFlags {
 
   /** For work in progress on improving the player UX */
   static readonly friendlierInterface = true;
-
-  /** For work in progress on improving the player UX */
-  static readonly lineupStintsAgg = true;
 }
