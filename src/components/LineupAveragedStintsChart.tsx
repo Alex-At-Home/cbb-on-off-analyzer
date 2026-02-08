@@ -707,9 +707,20 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                       right: "calc(50% - 3px)",
                     }}
                   >
-                    <small>
-                      <b>{chunkLabelValue.toFixed(1)}</b>
-                    </small>
+                    <span
+                      style={{
+                        backgroundColor:
+                          resolvedTheme === "light"
+                            ? "rgba(255, 255, 255, 0.7)"
+                            : "rgba(0, 0, 0, 0.3)",
+                        borderRadius: "50%",
+                        padding: "1px 3px",
+                      }}
+                    >
+                      <small>
+                        <b>{chunkLabelValue.toFixed(1)}</b>
+                      </small>
+                    </span>
                   </small>
                 ) : undefined}
               </div>
