@@ -7,8 +7,11 @@ import { render, waitFor } from "@testing-library/react";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 import LineupAveragedStintsChart from "../LineupAveragedStintsChart";
-import { TimeBinnedAggregation } from "../../utils/StatModels";
+import { StatModels, TimeBinnedAggregation } from "../../utils/StatModels";
 import { MatchupFilterParams } from "../../utils/FilterModels";
+import { LineupStatsModel } from "../LineupStatsTable";
+import { TeamStatsModel } from "../TeamStatsTable";
+import { RosterStatsModel } from "../RosterStatsTable";
 import fs from "fs";
 
 // Mock ResizeObserver for react-bootstrap components
@@ -37,11 +40,32 @@ describe("LineupAveragedStintsChart", () => {
   const aggregations =
     sampleData.responses[0].aggregations as TimeBinnedAggregation;
 
+  // Mock data for required props
+  const mockLineupStats: LineupStatsModel = { lineups: [] };
+  const mockTeamStats: TeamStatsModel = {
+    on: StatModels.emptyTeam(),
+    off: StatModels.emptyTeam(),
+    baseline: StatModels.emptyTeam(),
+    global: StatModels.emptyTeam(),
+  };
+  const mockRosterStats: RosterStatsModel = {
+    on: [],
+    off: [],
+    other: [],
+    baseline: [],
+    global: [],
+  };
+
   test("LineupAveragedStintsChart (teamA only, default settings) - should create snapshot", async () => {
     const { container } = render(
       <LineupAveragedStintsChart
         teamA="Maryland"
-        dataEvent={{ aggregatedStintsA: aggregations }}
+        dataEvent={{
+          aggregatedStintsA: aggregations,
+          lineupStatsA: mockLineupStats,
+          teamStatsA: mockTeamStats,
+          rosterStatsA: mockRosterStats,
+        }}
         startingState={{}}
         onChangeState={(newParams: MatchupFilterParams) => {}}
       />
@@ -55,7 +79,12 @@ describe("LineupAveragedStintsChart", () => {
     const wrapper = shallow(
       <LineupAveragedStintsChart
         teamA="Maryland"
-        dataEvent={{ aggregatedStintsA: aggregations }}
+        dataEvent={{
+          aggregatedStintsA: aggregations,
+          lineupStatsA: mockLineupStats,
+          teamStatsA: mockTeamStats,
+          rosterStatsA: mockRosterStats,
+        }}
         startingState={{
           showUsage: true,
           showPpp: true,
@@ -71,7 +100,12 @@ describe("LineupAveragedStintsChart", () => {
     const wrapper = shallow(
       <LineupAveragedStintsChart
         teamA="Maryland"
-        dataEvent={{ aggregatedStintsA: aggregations }}
+        dataEvent={{
+          aggregatedStintsA: aggregations,
+          lineupStatsA: mockLineupStats,
+          teamStatsA: mockTeamStats,
+          rosterStatsA: mockRosterStats,
+        }}
         startingState={{
           showUsage: true,
           showPpp: true,
@@ -88,7 +122,12 @@ describe("LineupAveragedStintsChart", () => {
     const wrapper = shallow(
       <LineupAveragedStintsChart
         teamA="Maryland"
-        dataEvent={{ aggregatedStintsA: aggregations }}
+        dataEvent={{
+          aggregatedStintsA: aggregations,
+          lineupStatsA: mockLineupStats,
+          teamStatsA: mockTeamStats,
+          rosterStatsA: mockRosterStats,
+        }}
         startingState={{
           showUsage: true,
           showPpp: false,
@@ -109,6 +148,12 @@ describe("LineupAveragedStintsChart", () => {
         dataEvent={{
           aggregatedStintsA: aggregations,
           aggregatedStintsB: aggregations, // Use same data for both teams in test
+          lineupStatsA: mockLineupStats,
+          teamStatsA: mockTeamStats,
+          rosterStatsA: mockRosterStats,
+          lineupStatsB: mockLineupStats,
+          teamStatsB: mockTeamStats,
+          rosterStatsB: mockRosterStats,
         }}
         startingState={{
           showUsage: true,

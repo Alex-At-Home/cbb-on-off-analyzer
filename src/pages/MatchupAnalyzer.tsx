@@ -54,6 +54,9 @@ import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 const MatchupAnalyzerPage: NextPage<{}> = () => {
+  const isServer = () => typeof window === `undefined`;
+  if (isServer()) return null; //(don't render server-side)
+
   useEffect(() => {
     // Set up GA
     if (process.env.NODE_ENV === "production" && typeof window !== undefined) {
@@ -140,7 +143,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         off: ShotStats;
         def: ShotStats;
       };
-    }
+    },
   ) => {
     setDataEvent({
       teamStatsA,
@@ -190,10 +193,10 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   }
 
   const startingMatchupFilterParams = UrlRouting.removedSavedKeys(
-    allParams
+    allParams,
   ) as MatchupFilterParams; //(only used to init a couple of useStates)
   const [matchupFilterParams, setMatchupFilterParams] = useState(
-    startingMatchupFilterParams
+    startingMatchupFilterParams,
   );
   const matchupFilterParamsRef = useRef<MatchupFilterParams>();
   matchupFilterParamsRef.current = matchupFilterParams;
@@ -205,15 +208,15 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const [shotChartsShowZones, setShotChartsShowZones] = useState(
     _.isNil(startingMatchupFilterParams.shotChartsShowZones)
       ? ParamDefaults.defaultShotChartShowZones
-      : startingMatchupFilterParams.shotChartsShowZones
+      : startingMatchupFilterParams.shotChartsShowZones,
   );
   const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
-    startingMatchupFilterParams.shotChartsUseEfg ?? false
+    startingMatchupFilterParams.shotChartsUseEfg ?? false,
   );
 
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
     startingMatchupFilterParams.playStyleConfigStr ||
-      ParamDefaults.defaultTeamPlayTypeConfig
+      ParamDefaults.defaultTeamPlayTypeConfig,
   );
 
   function getRootUrl(params: MatchupFilterParams) {
@@ -262,7 +265,24 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["playStyleConfigStr"]
           : [],
-      ])
+        // Chart collapse states
+        _.isNil(rawParams.hidePlayTypes) ||
+        rawParams.hidePlayTypes == ParamDefaults.defaultHidePlayTypes
+          ? ["hidePlayTypes"]
+          : [],
+        _.isNil(rawParams.hidePlayerImpact) ||
+        rawParams.hidePlayerImpact == ParamDefaults.defaultHidePlayerImpact
+          ? ["hidePlayerImpact"]
+          : [],
+        _.isNil(rawParams.hideShotCharts) ||
+        rawParams.hideShotCharts == ParamDefaults.defaultHideShotCharts
+          ? ["hideShotCharts"]
+          : [],
+        _.isNil(rawParams.hideTimeline) ||
+        rawParams.hideTimeline == ParamDefaults.defaultHideTimeline
+          ? ["hideTimeline"]
+          : [],
+      ]),
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
       //(to avoid recursion)
@@ -282,7 +302,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   // Load team grades, needed for play recap view
 
   const [divisionStatsCache, setDivisionStatsCache] = useState(
-    {} as DivisionStatsCache
+    {} as DivisionStatsCache,
   );
 
   // Events that trigger building or rebuilding the division stats cache
@@ -295,7 +315,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
       GradeTableUtils.populateTeamDivisionStatsCache(
         matchupFilterParams,
-        setDivisionStatsCache
+        setDivisionStatsCache,
       );
     }
   }, [matchupFilterParams]);
@@ -337,12 +357,22 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
 
   /** Only rebuild the table if the data changes */
-  const chart = React.useMemo(() => {
+  const playerImpactChart = React.useMemo(() => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
         title="Player Impact Chart"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hidePlayerImpact ??
+          ParamDefaults.defaultHidePlayerImpact
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hidePlayerImpact: !nowShown,
+          });
+        }}
       >
         <Col
           xs={12}
@@ -366,6 +396,15 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         title="Timeline View"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hideTimeline ?? ParamDefaults.defaultHideTimeline
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hideTimeline: !nowShown,
+          });
+        }}
       >
         {dataEvent.teamStatsA.baseline.off_poss?.value ? (
           <Col
@@ -421,7 +460,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           jsonMode,
         },
         playStyleConfigStr,
-        (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
+        (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr),
       );
 
     const buildTeamB = () =>
@@ -442,7 +481,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           jsonMode,
         },
         playStyleConfigStr,
-        (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr)
+        (newConfigStr: string) => setPlayStyleConfigStr(newConfigStr),
       );
     return jsonMode ? (
       <span>
@@ -466,6 +505,16 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         title="Play Type Breakdown"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hidePlayTypes ??
+          ParamDefaults.defaultHidePlayTypes
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hidePlayTypes: !nowShown,
+          });
+        }}
       >
         {dataEvent.teamStatsA.baseline.off_poss?.value ? (
           <Container>
@@ -507,6 +556,16 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         minimizeMargin={true}
         title="Game Shot Charts"
         helpLink={maybeShowDocs()}
+        startClosed={
+          matchupFilterParams.hideShotCharts ??
+          ParamDefaults.defaultHideShotCharts
+        }
+        onShowHide={(nowShown: boolean) => {
+          onMatchupFilterParamsChange({
+            ...matchupFilterParams,
+            hideShotCharts: !nowShown,
+          });
+        }}
       >
         {dataEvent.teamStatsA.baseline.off_poss?.value &&
         dataEvent.shotChartInfo ? (
@@ -629,7 +688,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         }}
         ref={playerImpactRef}
       >
-        {chart}
+        {playerImpactChart}
       </Row>
       <Row
         style={{

@@ -442,7 +442,7 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
   };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
-  const chartContent = React.useMemo(() => {
+  const playerImpactChart = React.useMemo(() => {
     return (
       <GenericCollapsibleCard
         minimizeMargin={true}
@@ -993,7 +993,7 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
         }}
         ref={playerImpactRef}
       >
-        {chartContent}
+        {playerImpactChart}
       </Row>
       {showShotCharts ? (
         <Row
