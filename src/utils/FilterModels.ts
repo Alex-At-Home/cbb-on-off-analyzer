@@ -115,8 +115,14 @@ export type MatchupFilterParams = {
   onOffLuck?: boolean;
   showUsage?: boolean; // show player usage in stint view
   showPpp?: boolean; // show player ppp in stint view
-  showLabels?: boolean; // show player ppp in stint view
-  labelToShow?: string; // show player ppp in stint view
+  showLabels?: boolean; // show labels in stint view
+  labelToShow?: string; // which label to show in stint view
+  // Timeline view (aggregated stints) params:
+  showPoss?: boolean; // show possession% bars
+  showNet?: boolean; // show net PPP instead of off/def
+  showTimelineFilter?: boolean; // show filter controls
+  timelineFilterStr?: string; // player filter string
+  showWalkOns?: boolean; // include walk-ons (<10% poss)
   posClasses?: string; // which position classes to show
   showTeam?: boolean;
   showOppo?: boolean;
@@ -724,6 +730,14 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
   static readonly defaultMatchupAnalysisIconType = "logo";
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
+  // Timeline view (aggregated stints) defaults:
+  static readonly defaultTimelineShowPoss = true;
+  static readonly defaultTimelineShowUsage = true;
+  static readonly defaultTimelineShowPpp = false;
+  static readonly defaultTimelineShowNet = true;
+  static readonly defaultTimelineShowFilter = false;
+  static readonly defaultTimelineFilterStr = "";
+  static readonly defaultTimelineShowWalkOns = false;
   // Player Career
   static readonly defaultShowNextYear = false;
   static readonly defaultHidePlayerOverview = false;

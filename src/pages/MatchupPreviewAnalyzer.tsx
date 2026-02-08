@@ -271,6 +271,43 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["playStyleConfigStr"]
           : [],
+        // Timeline view defaults
+        _.isNil(rawParams.showPoss) ||
+        rawParams.showPoss == ParamDefaults.defaultTimelineShowPoss
+          ? ["showPoss"]
+          : [],
+        _.isNil(rawParams.showUsage) ||
+        rawParams.showUsage == ParamDefaults.defaultTimelineShowUsage
+          ? ["showUsage"]
+          : [],
+        _.isNil(rawParams.showPpp) ||
+        rawParams.showPpp == ParamDefaults.defaultTimelineShowPpp
+          ? ["showPpp"]
+          : [],
+        _.isNil(rawParams.showNet) ||
+        rawParams.showNet == ParamDefaults.defaultTimelineShowNet
+          ? ["showNet"]
+          : [],
+        _.isNil(rawParams.showTimelineFilter) ||
+        rawParams.showTimelineFilter == ParamDefaults.defaultTimelineShowFilter
+          ? ["showTimelineFilter"]
+          : [],
+        !rawParams.timelineFilterStr ||
+        rawParams.timelineFilterStr == ParamDefaults.defaultTimelineFilterStr
+          ? ["timelineFilterStr"]
+          : [],
+        _.isNil(rawParams.showWalkOns) ||
+        rawParams.showWalkOns == ParamDefaults.defaultTimelineShowWalkOns
+          ? ["showWalkOns"]
+          : [],
+        _.isNil(rawParams.showLabels) ||
+        rawParams.showLabels == ParamDefaults.defaultMatchupAnalysisShowLabels
+          ? ["showLabels"]
+          : [],
+        !rawParams.labelToShow ||
+        rawParams.labelToShow == ParamDefaults.defaultMatchupAnalysisLabelToShow
+          ? ["labelToShow"]
+          : [],
       ])
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
@@ -369,18 +406,18 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
 
   // Quick navigation to the different sections
   const topRef = useRef<HTMLDivElement>(null);
-  const lineupStintsRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
   const playTypesRef = useRef<HTMLDivElement>(null);
   const playerImpactRef = useRef<HTMLDivElement>(null);
   const shotChartsRef = useRef<HTMLDivElement>(null);
   const navigationRefs = {
     Top: { ref: topRef },
-    "Lineup Stints": FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg)
-      ? { ref: lineupStintsRef }
-      : { skip: true },
     "Play Types": { ref: playTypesRef },
     "Player Impact": { ref: playerImpactRef },
     "Shot Charts": showShotCharts ? { ref: shotChartsRef } : { skip: true },
+    Timeline: FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg)
+      ? { ref: timelineRef }
+      : { skip: true },
   };
 
   /** Only rebuild the chart if the data changes, or if one of the filter params changes */
@@ -852,40 +889,6 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
         </GenericCollapsibleCard>
       </Row>
       <InternalNavBarInRow refs={navigationRefs} showAnnotations={true} />
-      {FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg) ? (
-        <Row
-          style={{
-            breakBefore: "page",
-          }}
-          ref={lineupStintsRef}
-        >
-          <GenericCollapsibleCard
-            minimizeMargin={true}
-            title="Lineup Time Breakdown"
-          >
-            <LineupAveragedStintsChart
-              teamA={matchupFilterParams.team || ""}
-              teamB={
-                matchupFilterParams.oppoTeam != AvailableTeams.noOpponent
-                  ? matchupFilterParams.oppoTeam
-                  : undefined
-              }
-              dataEvent={{
-                aggregatedStintsA: dataEvent.lineupStintsAggA,
-                aggregatedStintsB: dataEvent.lineupStintsAggB,
-                lineupStatsA: dataEvent.lineupStatsA,
-                teamStatsA: dataEvent.teamStatsA,
-                rosterStatsA: dataEvent.rosterStatsA,
-                lineupStatsB: dataEvent.lineupStatsB,
-                teamStatsB: dataEvent.teamStatsB,
-                rosterStatsB: dataEvent.rosterStatsB,
-              }}
-              startingState={matchupFilterParamsRef.current || {}}
-              onChangeState={onMatchupFilterParamsChange}
-            />
-          </GenericCollapsibleCard>
-        </Row>
-      ) : null}
       <Row
         style={{
           breakBefore: "page",
@@ -912,6 +915,37 @@ const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
           {shotChart}
         </Row>
       ) : undefined}
+      {FeatureFlags.isActiveWindow(FeatureFlags.lineupStintsAgg) ? (
+        <Row
+          style={{
+            breakBefore: "page",
+          }}
+          ref={timelineRef}
+        >
+          <GenericCollapsibleCard minimizeMargin={true} title="Timeline View">
+            <LineupAveragedStintsChart
+              teamA={matchupFilterParams.team || ""}
+              teamB={
+                matchupFilterParams.oppoTeam != AvailableTeams.noOpponent
+                  ? matchupFilterParams.oppoTeam
+                  : undefined
+              }
+              dataEvent={{
+                aggregatedStintsA: dataEvent.lineupStintsAggA,
+                aggregatedStintsB: dataEvent.lineupStintsAggB,
+                lineupStatsA: dataEvent.lineupStatsA,
+                teamStatsA: dataEvent.teamStatsA,
+                rosterStatsA: dataEvent.rosterStatsA,
+                lineupStatsB: dataEvent.lineupStatsB,
+                teamStatsB: dataEvent.teamStatsB,
+                rosterStatsB: dataEvent.rosterStatsB,
+              }}
+              startingState={matchupFilterParamsRef.current || {}}
+              onChangeState={onMatchupFilterParamsChange}
+            />
+          </GenericCollapsibleCard>
+        </Row>
+      ) : null}
       <Footer
         year={matchupFilterParams.year}
         gender={matchupFilterParams.gender}

@@ -98,16 +98,20 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   const avgEfficiency =
     efficiencyAverages[`${commonParams.gender}_${commonParams.year}`] || 100;
 
-  // UI State
-  const [showPoss, setShowPoss] = useState<boolean>(true); // Default to true
+  // UI State - using Timeline-specific defaults
+  const [showPoss, setShowPoss] = useState<boolean>(
+    _.isNil(startingState.showPoss)
+      ? ParamDefaults.defaultTimelineShowPoss
+      : startingState.showPoss,
+  );
   const [showUsage, setShowUsage] = useState<boolean>(
     _.isNil(startingState.showUsage)
-      ? true // Default to showing usage
+      ? ParamDefaults.defaultTimelineShowUsage
       : startingState.showUsage,
   );
   const [showPpp, setShowPpp] = useState<boolean>(
     _.isNil(startingState.showPpp)
-      ? false // Default PPP to off
+      ? ParamDefaults.defaultTimelineShowPpp
       : startingState.showPpp,
   );
 
@@ -117,6 +121,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
       setShowPoss(true);
     }
   }, [showPoss, showUsage, showPpp]);
+
   const [showLabels, setShowLabels] = useState<boolean>(
     _.isNil(startingState.showLabels)
       ? ParamDefaults.defaultMatchupAnalysisShowLabels
@@ -134,22 +139,77 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
   );
 
   // Filter state
-  const [showFilter, setShowFilter] = useState<boolean>(false);
-  const [filterStr, setFilterStr] = useState<string>("");
-  const [showWalkOns, setShowWalkOns] = useState<boolean>(false);
+  const [showFilter, setShowFilter] = useState<boolean>(
+    _.isNil(startingState.showTimelineFilter)
+      ? ParamDefaults.defaultTimelineShowFilter
+      : startingState.showTimelineFilter,
+  );
+  const [filterStr, setFilterStr] = useState<string>(
+    _.isNil(startingState.timelineFilterStr)
+      ? ParamDefaults.defaultTimelineFilterStr
+      : startingState.timelineFilterStr,
+  );
+  const [showWalkOns, setShowWalkOns] = useState<boolean>(
+    _.isNil(startingState.showWalkOns)
+      ? ParamDefaults.defaultTimelineShowWalkOns
+      : startingState.showWalkOns,
+  );
 
-  // Net toggle (show Off-Def instead of separate rows) - default to true
-  const [showNet, setShowNet] = useState<boolean>(true);
+  // Net toggle (show Off-Def instead of separate rows)
+  const [showNet, setShowNet] = useState<boolean>(
+    _.isNil(startingState.showNet)
+      ? ParamDefaults.defaultTimelineShowNet
+      : startingState.showNet,
+  );
 
-  // Sync state with parent
+  // Sync state with parent (only non-default values)
   useEffect(() => {
     onChangeState({
       ...startingState,
-      showUsage,
-      showPpp,
-      labelToShow,
+      showPoss:
+        showPoss !== ParamDefaults.defaultTimelineShowPoss
+          ? showPoss
+          : undefined,
+      showUsage:
+        showUsage !== ParamDefaults.defaultTimelineShowUsage
+          ? showUsage
+          : undefined,
+      showPpp:
+        showPpp !== ParamDefaults.defaultTimelineShowPpp ? showPpp : undefined,
+      showNet:
+        showNet !== ParamDefaults.defaultTimelineShowNet ? showNet : undefined,
+      showTimelineFilter:
+        showFilter !== ParamDefaults.defaultTimelineShowFilter
+          ? showFilter
+          : undefined,
+      timelineFilterStr:
+        filterStr !== ParamDefaults.defaultTimelineFilterStr
+          ? filterStr
+          : undefined,
+      showWalkOns:
+        showWalkOns !== ParamDefaults.defaultTimelineShowWalkOns
+          ? showWalkOns
+          : undefined,
+      showLabels:
+        showLabels !== ParamDefaults.defaultMatchupAnalysisShowLabels
+          ? showLabels
+          : undefined,
+      labelToShow:
+        labelToShow !== ParamDefaults.defaultMatchupAnalysisLabelToShow
+          ? labelToShow
+          : undefined,
     });
-  }, [showUsage, showPpp, labelToShow]);
+  }, [
+    showPoss,
+    showUsage,
+    showPpp,
+    showNet,
+    showFilter,
+    filterStr,
+    showWalkOns,
+    showLabels,
+    labelToShow,
+  ]);
 
   // Constants for usage calculation (from LineupStintsChart)
   const orbFactor = 0.9; // Approximation for ORB factor
@@ -867,9 +927,15 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                   Net - Minute {binNum}-{binNum + 1}
                 </b>
                 <br />
+                Off Poss: {offPoss.toFixed(1)}
+                <br />
                 Off PPP: {offPpp.toFixed(2)}
                 <br />
+                <br />
+                Def Poss: {defPoss.toFixed(1)}
+                <br />
                 Def PPP: {defPpp.toFixed(2)}
+                <br />
                 <br />
                 Net PPP: {netPpp.toFixed(2)}
               </Tooltip>
