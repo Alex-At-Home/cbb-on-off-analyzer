@@ -65,7 +65,13 @@ import { PlayTypeUtils } from "../utils/stats/PlayTypeUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 
-const MatchupPreviewAnalyzerPage: NextPage<{}> = () => {
+type Props = {
+  testMode?: boolean; //works around SSR issues, see below
+};
+const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
+  const isServer = () => typeof window === `undefined`;
+  if (isServer() && !testMode) return null; //(don't render server-side)
+
   useEffect(() => {
     // Set up GA
     if (process.env.NODE_ENV === "production" && typeof window !== undefined) {
