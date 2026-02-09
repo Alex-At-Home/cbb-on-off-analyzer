@@ -724,14 +724,25 @@ export class RatingUtils {
     const SD_at_Usage_20 = 10.143;
     const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
     // See AR3:
-    // Old:
-    const Usage_Bonus = usage > 20 ? (usage - 20) * 1.25 : (usage - 20) * 1.5;
-    // TODO:  candidate new calc:
-    //const Usage_Bonus = 1.25*(usage - 20);
     // See AR2:
-    // Current "PPG!"-like
-    const Adj_ORtg = (ORtg + Usage_Bonus) * o_adj;
-    const Adj_ORtgPlus = 0.2 * (Adj_ORtg - avgEfficiency);
+    const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus } = _.thru(null, (__) => {
+      if (true) {
+        // Current "PPG!"-like
+        const Usage_Bonus =
+          usage > 20 ? (usage - 20) * 1.25 : (usage - 20) * 1.5;
+        const Adj_ORtg = (ORtg + Usage_Bonus) * o_adj;
+        const Adj_ORtgPlus = 0.2 * (Adj_ORtg - avgEfficiency);
+        return { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus };
+      } else {
+        //TODO: playing around with improving this
+        const Usage_Bonus = 1.3 * (usage - 20);
+        const Adj_ORtg = ORtg * o_adj;
+        const Adj_ORtgPlus =
+          0.01 * usage * (Adj_ORtg - avgEfficiency) + Usage_Bonus * 0.2;
+        return { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus };
+      }
+    });
+
     // TODO: candidate new calc:
     // const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
     // const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
