@@ -1,0 +1,15 @@
+---
+description: Run prettier on edited files in src/
+globs: src/**/*
+alwaysApply: false
+---
+
+# Run Prettier After Edits
+
+After making changes to any file in `src/`, run prettier to format the file:
+
+```bash
+npx prettier --write <path-to-file>
+```
+
+Run this command for each file you edit, but do not run it on files you haven't modified.

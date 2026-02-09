@@ -1,0 +1,70 @@
+---
+description: Prefer lodash for functional, immutable code patterns
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Use Lodash Idiomatically
+
+Write code in a functional, effect-less, immutable fashion using lodash.
+
+## Chained Transformations
+
+Use `_.chain()...value()` instead of imperative loops with `let` variables:
+
+```typescript
+// ❌ BAD
+let result = [];
+for (const item of items) {
+  if (item.active) {
+    result.push(item.name);
+  }
+}
+
+// ✅ GOOD
+const result = _.chain(items)
+  .filter(item => item.active)
+  .map(item => item.name)
+  .value();
+```
+
+## IIFE Pattern with _.thru
+
+Use `_.thru(null, () => {...})` to scope complex logic that returns a value:
+
+```typescript
+const [valueA, valueB] = _.thru(null, () => {
+  const showA = condition1 || condition2;
+  const a = showA ? computeA() : undefined;
+  const b = showB ? computeB() : undefined;
+  return [a, b];
+});
+```
+
+## Null/Empty Checks
+
+Use `_.isNil()` and `_.isEmpty()` instead of manual checks:
+
+```typescript
+// ❌ BAD
+if (value === null || value === undefined) { }
+if (obj && Object.keys(obj).length > 0) { }
+
+// ✅ GOOD
+if (_.isNil(value)) { }
+if (!_.isEmpty(obj)) { }
+```
+
+## Other Preferred Patterns
+
+- `_.isEqual()` for deep equality comparison
+- `_.startsWith()` / `_.endsWith()` for string checks
+- `_.omit()` / `_.pick()` for object field selection
+- `_.keys()` / `_.values()` for object iteration
+- `_.flatten()` for array flattening
+- `_.cloneDeep()` for deep cloning when mutation is needed
+- `_.transform()` when processing requires mutation
+
+## When Native is OK
+
+Use native methods when lodash would be computationally expensive. Encapsulate the logic in its own function if possible.
