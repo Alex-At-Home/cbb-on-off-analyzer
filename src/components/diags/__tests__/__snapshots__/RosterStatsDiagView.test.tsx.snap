@@ -107,7 +107,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <b>
             18
           </b>
-           + 
+           +
+           
           <b>
             65
           </b>
@@ -321,7 +322,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <b>
             2.2
           </b>
-          ] 
+          ]
+           
         </li>
         <ul>
           <li>
@@ -399,7 +401,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
             <b>
               890.4
             </b>
-            ] 
+            ]
+             
           </li>
           <ul>
             <li>
@@ -527,7 +530,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <b>
             65
           </b>
-           + 
+           +
+           
           <b>
             117
           </b>
@@ -614,7 +618,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
               42.2
               %
             </b>
-            ]) 
+            ])
+             
           </li>
           <ul>
             <li>
@@ -889,23 +894,30 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </b>
       : [
       <b>
-        6.5
+        6.9
       </b>
-      ] = 
+      ] =
+       
       <em>
-        Normalize
+        Combine Usage
       </em>
        [
       <b>
-        132.3
+        26.4
+        %
+      </b>
+      ]
+       
+      <em>
+        with Adjusted ORtg
+      </em>
+       [
+      <b>
+        124.1
       </b>
       ] (ORtg [
       <b>
         119.8
-      </b>
-      ] + Usage_Bonus [
-      <b>
-        8.0
       </b>
       ]) * (Avg_Efficiency [
       <b>
@@ -922,96 +934,87 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <u>
           Adjusted+ ORtg details
         </u>
-         (
-        <a
-          href="https://www.bigtengeeks.com/new-stat-porpagatu/"
-          target="_blank"
-        >
-          ?
-        </a>
-        )
       </li>
       <ul>
         <li>
-          Normalization: Rtg+ [
           <b>
-            6.5
+            Adjusted+ ORtg
           </b>
-          ] = 20% * (Normalized_ORtg [
+          : [
           <b>
-            132.3
+            6.9
           </b>
-          ] - Avg_Efficiency [
+          ] = (Adjusted ORtg [
           <b>
-            100.0
+            124.1
           </b>
-          ])
+          ] - Replacement_Level [
+          <b>
+            92.0
+          </b>
+          ]) * Usage [
+          <b>
+            26.4
+            %
+          </b>
+          ] - Replacement Penalty: [
+          <b>
+            1.6
+          </b>
+          ]
         </li>
         <ul>
           <li>
-            <em>
-              (Unused, Regressed_ORtg: [
-              <b>
-                121.8
-              </b>
-              ] = Avg_Efficiency [
-              <b>
-                100.0
-              </b>
-              ] + ORtg_SDs_Above_Mean [
-              <b>
-                2.2
-              </b>
-              ] * ORtg_SD_At_20%_Usage [
-              <b>
-                10.1
-              </b>
-              ])
-            </em>
-          </li>
-        </ul>
-        <li>
-          Usage_Bonus: [
-          <b>
-            8.0
-          </b>
-          ] = 
-          <span>
-            ((Adj_Usage [
+            Replacement_Level: [
             <b>
-              26.4
+              92.0
+            </b>
+            ] = Replacement_Level [
+            <b>
+              92
               %
             </b>
-            ] - [
+            ] * Avg_Efficiency [
+            <b>
+              100.0
+            </b>
+            ]
+          </li>
+          <li>
+            Replacement Penalty: [
+            <b>
+              1.6
+            </b>
+            ] = [
             <b>
               20%
             </b>
-            ]) * [
+            ] * (1 - Replacement_Level) [
             <b>
-              1.25
+              8
+              %
             </b>
-            ])
-          </span>
-        </li>
-        <ul>
+            ]) * Avg_Efficiency [
+            <b>
+              100.0
+            </b>
+            ]
+          </li>
           <li>
-            <em>
-              (Factor would have been [
-              <b>
-                <span>
-                  1.5
-                </span>
-              </b>
-              ] at Adj_Usage 
-              <span>
-                &lt;
-              </span>
-               [
-              <b>
-                20%
-              </b>
-              ]), ie there is an additional penalty on low usage players
-            </em>
+            Effective Usage_Bonus: [
+            <b>
+              2.5
+            </b>
+            ]
+             
+          </li>
+          <li>
+            Effective SoS_Bonus: [
+            <b>
+              1.1
+            </b>
+            ]
+             
           </li>
         </ul>
       </ul>
@@ -1035,7 +1038,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     onClick={[Function]}
   >
     less
-     about 
+     about
+     
     DRtg
   </a>
   )
@@ -1053,7 +1057,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       <b>
         1790
       </b>
-      ] 
+      ]
+       
       <em>
         (only counting while player was on floor)
       </em>
@@ -1079,7 +1084,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     </li>
     <ul>
       <li>
-        Player_DRtg:  [
+        Player_DRtg: [
         <b>
           105.9
         </b>
@@ -1103,7 +1108,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       <b>
         -1.7
       </b>
-      ] = 
+      ] =
+       
       <em>
         Normalize
       </em>
@@ -1336,7 +1342,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
                   16.4
                   %
                 </b>
-                ]) 
+                ])
+                 
               </li>
               <ul>
                 <li>
@@ -1639,7 +1646,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <b>
             18
           </b>
-           + 
+           +
+           
           <b>
             65
           </b>
@@ -1853,7 +1861,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <b>
             2.2
           </b>
-          ] 
+          ]
+           
         </li>
         <ul>
           <li>
@@ -1931,7 +1940,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
             <b>
               890.4
             </b>
-            ] 
+            ]
+             
           </li>
           <ul>
             <li>
@@ -2059,7 +2069,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <b>
             65
           </b>
-           + 
+           +
+           
           <b>
             117
           </b>
@@ -2146,7 +2157,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
               42.2
               %
             </b>
-            ]) 
+            ])
+             
           </li>
           <ul>
             <li>
@@ -2421,23 +2433,30 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </b>
       : [
       <b>
-        6.5
+        6.9
       </b>
-      ] = 
+      ] =
+       
       <em>
-        Normalize
+        Combine Usage
       </em>
        [
       <b>
-        132.3
+        26.4
+        %
+      </b>
+      ]
+       
+      <em>
+        with Adjusted ORtg
+      </em>
+       [
+      <b>
+        124.1
       </b>
       ] (ORtg [
       <b>
         119.8
-      </b>
-      ] + Usage_Bonus [
-      <b>
-        8.0
       </b>
       ]) * (Avg_Efficiency [
       <b>
@@ -2454,96 +2473,87 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <u>
           Adjusted+ ORtg details
         </u>
-         (
-        <a
-          href="https://www.bigtengeeks.com/new-stat-porpagatu/"
-          target="_blank"
-        >
-          ?
-        </a>
-        )
       </li>
       <ul>
         <li>
-          Normalization: Rtg+ [
           <b>
-            6.5
+            Adjusted+ ORtg
           </b>
-          ] = 20% * (Normalized_ORtg [
+          : [
           <b>
-            132.3
+            6.9
           </b>
-          ] - Avg_Efficiency [
+          ] = (Adjusted ORtg [
           <b>
-            100.0
+            124.1
           </b>
-          ])
+          ] - Replacement_Level [
+          <b>
+            92.0
+          </b>
+          ]) * Usage [
+          <b>
+            26.4
+            %
+          </b>
+          ] - Replacement Penalty: [
+          <b>
+            1.6
+          </b>
+          ]
         </li>
         <ul>
           <li>
-            <em>
-              (Unused, Regressed_ORtg: [
-              <b>
-                121.8
-              </b>
-              ] = Avg_Efficiency [
-              <b>
-                100.0
-              </b>
-              ] + ORtg_SDs_Above_Mean [
-              <b>
-                2.2
-              </b>
-              ] * ORtg_SD_At_20%_Usage [
-              <b>
-                10.1
-              </b>
-              ])
-            </em>
-          </li>
-        </ul>
-        <li>
-          Usage_Bonus: [
-          <b>
-            8.0
-          </b>
-          ] = 
-          <span>
-            ((Adj_Usage [
+            Replacement_Level: [
             <b>
-              26.4
+              92.0
+            </b>
+            ] = Replacement_Level [
+            <b>
+              92
               %
             </b>
-            ] - [
+            ] * Avg_Efficiency [
+            <b>
+              100.0
+            </b>
+            ]
+          </li>
+          <li>
+            Replacement Penalty: [
+            <b>
+              1.6
+            </b>
+            ] = [
             <b>
               20%
             </b>
-            ]) * [
+            ] * (1 - Replacement_Level) [
             <b>
-              1.25
+              8
+              %
             </b>
-            ])
-          </span>
-        </li>
-        <ul>
+            ]) * Avg_Efficiency [
+            <b>
+              100.0
+            </b>
+            ]
+          </li>
           <li>
-            <em>
-              (Factor would have been [
-              <b>
-                <span>
-                  1.5
-                </span>
-              </b>
-              ] at Adj_Usage 
-              <span>
-                &lt;
-              </span>
-               [
-              <b>
-                20%
-              </b>
-              ]), ie there is an additional penalty on low usage players
-            </em>
+            Effective Usage_Bonus: [
+            <b>
+              2.5
+            </b>
+            ]
+             
+          </li>
+          <li>
+            Effective SoS_Bonus: [
+            <b>
+              1.1
+            </b>
+            ]
+             
           </li>
         </ul>
       </ul>
@@ -2600,7 +2610,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     onClick={[Function]}
   >
     less
-     about 
+     about
+     
     <span>
       "Classic" 
     </span>
@@ -2621,7 +2632,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       <b>
         1790
       </b>
-      ] 
+      ]
+       
       <em>
         (only counting while player was on floor)
       </em>
@@ -2647,7 +2659,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     </li>
     <ul>
       <li>
-        Player_DRtg:  [
+        Player_DRtg: [
         <b>
           105.9
         </b>
@@ -2671,7 +2683,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       <b>
         -1.7
       </b>
-      ] = 
+      ] =
+       
       <em>
         Normalize
       </em>
@@ -2907,7 +2920,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
                   16.4
                   %
                 </b>
-                ]) 
+                ])
+                 
               </li>
               <ul>
                 <li>
@@ -3210,7 +3224,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           <b>
             18
           </b>
-           + 
+           +
+           
           <b>
             65
           </b>
@@ -3276,7 +3291,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
           <b>
             65
           </b>
-           + 
+           +
+           
           <b>
             117
           </b>
@@ -3306,23 +3322,30 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        6.5
+        6.9
       </b>
-      ] = 
+      ] =
+       
       <em>
-        Normalize
+        Combine Usage
       </em>
        [
       <b>
-        132.3
+        26.4
+        %
+      </b>
+      ]
+       
+      <em>
+        with Adjusted ORtg
+      </em>
+       [
+      <b>
+        124.1
       </b>
       ] (ORtg [
       <b>
         119.8
-      </b>
-      ] + Usage_Bonus [
-      <b>
-        8.0
       </b>
       ]) * (Avg_Efficiency [
       <b>
@@ -3353,7 +3376,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     onClick={[Function]}
   >
     more
-     about 
+     about
+     
     DRtg
   </a>
   )
@@ -3371,7 +3395,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       <b>
         1790
       </b>
-      ] 
+      ]
+       
       <em>
         (only counting while player was on floor)
       </em>
@@ -3397,7 +3422,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     </li>
     <ul>
       <li>
-        Player_DRtg:  [
+        Player_DRtg: [
         <b>
           105.9
         </b>
@@ -3421,7 +3446,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       <b>
         -1.7
       </b>
-      ] = 
+      ] =
+       
       <em>
         Normalize
       </em>
@@ -3554,7 +3580,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
           <b>
             18
           </b>
-           + 
+           +
+           
           <b>
             65
           </b>
@@ -3620,7 +3647,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
           <b>
             65
           </b>
-           + 
+           +
+           
           <b>
             117
           </b>
@@ -3650,23 +3678,30 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       </b>
       : [
       <b>
-        6.5
+        6.9
       </b>
-      ] = 
+      ] =
+       
       <em>
-        Normalize
+        Combine Usage
       </em>
        [
       <b>
-        132.3
+        26.4
+        %
+      </b>
+      ]
+       
+      <em>
+        with Adjusted ORtg
+      </em>
+       [
+      <b>
+        124.1
       </b>
       ] (ORtg [
       <b>
         119.8
-      </b>
-      ] + Usage_Bonus [
-      <b>
-        8.0
       </b>
       ]) * (Avg_Efficiency [
       <b>
@@ -3723,7 +3758,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
     onClick={[Function]}
   >
     more
-     about 
+     about
+     
     <span>
       "Classic" 
     </span>
@@ -3744,7 +3780,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       <b>
         1790
       </b>
-      ] 
+      ]
+       
       <em>
         (only counting while player was on floor)
       </em>
@@ -3770,7 +3807,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
     </li>
     <ul>
       <li>
-        Player_DRtg:  [
+        Player_DRtg: [
         <b>
           105.9
         </b>
@@ -3794,7 +3831,8 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       <b>
         -1.7
       </b>
-      ] = 
+      ] =
+       
       <em>
         Normalize
       </em>

@@ -103,6 +103,7 @@ export type ORtgDiagnostics = {
   Regressed_ORtg: number; //(not used any more)
   Usage: number;
   Usage_Bonus: number;
+  SoS_Bonus: number;
   adjORtg: number;
   adjORtgPlus: number;
 
@@ -263,6 +264,9 @@ const array = (v: number[]) => {
 /** Contains the logic to build offensive and defensive ratings for individual players */
 export class RatingUtils {
   // Manual override calcs:
+
+  /** The % of average efficiency that represents replacement level */
+  static readonly Replacement_Level = 0.92;
 
   /** Builds the overrides to the raw fields based on stat overrides
    *  See also OverrideUtils.applyPlayerOverridesToTeam, which is tightly coupled to this
@@ -725,30 +729,55 @@ export class RatingUtils {
     const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
     // See AR3:
     // See AR2:
-    const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus } = _.thru(null, (__) => {
-      if (true) {
-        // Current "PPG!"-like
-        const Usage_Bonus =
-          usage > 20 ? (usage - 20) * 1.25 : (usage - 20) * 1.5;
-        const Adj_ORtg = (ORtg + Usage_Bonus) * o_adj;
-        const Adj_ORtgPlus = 0.2 * (Adj_ORtg - avgEfficiency);
-        return { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus };
-      } else {
-        //TODO: playing around with improving this
-        const Usage_Bonus = 1.3 * (usage - 20);
-        const Adj_ORtg = ORtg * o_adj;
-        const Adj_ORtgPlus =
-          0.01 * usage * (Adj_ORtg - avgEfficiency) + Usage_Bonus * 0.2;
-        return { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus };
-      }
-    });
+    const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus, SoS_Bonus } = _.thru(
+      null,
+      (__) => {
+        if (false) {
+          // Legacy, replace this thru with commented out code once I'm committed
+          // Current "PPG!"-like
+          const Usage_Bonus =
+            usage > 20 ? (usage - 20) * 1.25 : (usage - 20) * 1.5;
+          const Adj_ORtg = (ORtg + Usage_Bonus) * o_adj;
+          const Adj_ORtgPlus = 0.2 * (Adj_ORtg - avgEfficiency);
+          const ORtgPlus = 0.2 * (ORtg + Usage_Bonus - avgEfficiency);
 
-    // TODO: candidate new calc:
-    // const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
-    // const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
+          // TODO: candidate new calc:
+          // const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
+          // const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
 
-    // so sum(Adj_ORtgPlus) = sum(ORtg*usage)*sos_factor + 1.25*sum(delta_usage)*sos_factor - avgEff*(sum(usage))
-    //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
+          // so sum(Adj_ORtgPlus) = sum(ORtg*usage)*sos_factor + 1.25*sum(delta_usage)*sos_factor - avgEff*(sum(usage))
+          //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
+
+          return {
+            Adj_ORtg,
+            Adj_ORtgPlus,
+            Usage_Bonus,
+            SoS_Bonus: Adj_ORtgPlus - ORtgPlus,
+          };
+        } else {
+          // Dean Oliver's "PUE" with some diagnostics
+          const Adj_ORtg = ORtg * o_adj;
+          const Unadjusted_Productivity = 0.01 * usage * (ORtg - avgEfficiency);
+          const Raw_Productivity =
+            0.01 *
+              usage *
+              (ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
+            0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
+          // Adjusted for both SoS and usage:
+          const Adj_ORtgPlus =
+            0.01 *
+              usage *
+              (Adj_ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
+            0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
+          return {
+            Adj_ORtg,
+            Adj_ORtgPlus,
+            Usage_Bonus: 5 * (Raw_Productivity - Unadjusted_Productivity),
+            SoS_Bonus: Adj_ORtgPlus - Raw_Productivity,
+          };
+        }
+      },
+    );
 
     // If the values have been overridden then calculate the un-overridden values
     const [rawORtg, rawAdjRating] = overrideAdjusted
@@ -864,7 +893,8 @@ export class RatingUtils {
             SD_at_Usage_20: SD_at_Usage_20,
             Regressed_ORtg: Regressed_ORtg,
             Usage: Math.max(usage, 0.0), //(this can replace off_usage, so ensure it's sane in edge cases)
-            Usage_Bonus: Usage_Bonus,
+            Usage_Bonus,
+            SoS_Bonus,
             adjORtg: Adj_ORtg,
             adjORtgPlus: Adj_ORtgPlus,
 
