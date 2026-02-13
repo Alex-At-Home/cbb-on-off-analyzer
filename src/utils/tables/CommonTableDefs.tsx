@@ -51,7 +51,7 @@ export class CommonTableDefs {
     offScale: (val: number) => string | undefined,
     defScale: (val: number) => string | undefined,
     rowMode?: OffDefDualMixed,
-    mixedMode?: "Off" | "Def"
+    mixedMode?: "Off" | "Def",
   ) {
     return (val: any, valMeta: string) => {
       const num = _.isNil(val.colorOverride)
@@ -61,8 +61,8 @@ export class CommonTableDefs {
         return _.isNil(num)
           ? CbbColors.malformedDataColor //(we'll use this color to indicate malformed data)
           : "off" == valMeta
-          ? offScale(num)
-          : defScale(num);
+            ? offScale(num)
+            : defScale(num);
       } else if (rowMode == "Off" || mixedMode == "Off") {
         return _.isNil(num)
           ? CbbColors.malformedDataColor //(we'll use this color to indicate malformed data)
@@ -120,7 +120,7 @@ export class CommonTableDefs {
   static readonly specialMixedHeader = (
     mixedMode: "Off" | "Def" | undefined,
     mixedOffOrDef: string,
-    dualOrOffDef: string
+    dualOrOffDef: string,
   ) => {
     return _.isNil(mixedMode)
       ? dualOrOffDef
@@ -130,7 +130,7 @@ export class CommonTableDefs {
   /** One string for all modes */
   static readonly simpleHeader = (
     mixedMode: "Off" | "Def" | undefined,
-    all: string
+    all: string,
   ) => {
     return _.isNil(mixedMode) ? all : `${mixedMode || "Off"} ` + all;
   };
@@ -138,7 +138,7 @@ export class CommonTableDefs {
   /** Shows either off/def (single row), off+def (dual row) or nothing (mixed) */
   static readonly offDefSeparatorPicker = (
     rowMode: OffDefDualMixed,
-    width?: number
+    width?: number,
   ) => {
     if (rowMode == "Dual") {
       return GenericTableOps.addSpecialColSeparator("__off_def__");
@@ -159,21 +159,21 @@ export class CommonTableDefs {
   static readonly extraColSetPicker = (
     extraColSets: Record<string, ExtraColSet & { rowMode: OffDefDualMixed }>,
     rowMode: OffDefDualMixed,
-    strictMode: boolean = false
+    strictMode: boolean = false,
   ) =>
     _.pickBy(
       _.mapValues(extraColSets, (colSet) => ({
         ...colSet,
         isLibrary: colSet.rowMode == rowMode && (colSet.isLibrary ?? true),
       })),
-      (colSet) => (colSet.isPreset && !strictMode) || colSet.rowMode == rowMode
+      (colSet) => (colSet.isPreset && !strictMode) || colSet.rowMode == rowMode,
     );
 
   /** Utility to build the right mix of off/def columns based on the row mode */
   static readonly buildMixedColSet = (
     cols: Record<string, GenericTableColProps>,
     rowMode: OffDefDualMixed,
-    mixedMode: "Off" | "Def" | undefined
+    mixedMode: "Off" | "Def" | undefined,
   ) => {
     if (rowMode != "Mixed") {
       return cols;
@@ -199,7 +199,7 @@ export class CommonTableDefs {
     stat: { value?: number },
     colorMapper: (val: number) => string | undefined,
     radius: string = "15px",
-    strength = 3
+    strength = 3,
   ) => {
     //(move this but just to avoid initially changing the code everywhere)
     //(TODO: change the code everywhere to use GenericTableOps!)
@@ -300,6 +300,7 @@ export class CommonTableDefs {
     "Adj+ Rtg": "Adj+",
     "Adj+ Prod": "Adj+",
     "RAPM net": "RAPM",
+    "RAPM Prod": "RAPM",
 
     "Usg Pos": "Usg",
     "TO% Stl%": "TO%",
@@ -308,6 +309,7 @@ export class CommonTableDefs {
 
     "2PR mid": "MidR",
     "2PR rim": "RimR",
+    "3P% FT%": "3P%",
     "2P% mid": "Mid%",
     "2P% rim": "Rim%",
   };
@@ -322,14 +324,14 @@ export class CommonTableDefs {
             "",
             CommonTableDefs.rowSpanCalculator,
             "small",
-            GenericTableOps.htmlFormatter
+            GenericTableOps.htmlFormatter,
           )
         : GenericTableOps.addTitle(
             "",
             "",
             CommonTableDefs.singleLineRowSpanCalculator,
             "small",
-            GenericTableOps.htmlFormatter
+            GenericTableOps.htmlFormatter,
           ),
       sep_off_def: expandedView
         ? GenericTableOps.addSpecialColSeparator("__off_def__")
@@ -338,19 +340,19 @@ export class CommonTableDefs {
         "Poss",
         "Total number of team possessions for selected lineups",
         GenericTableOps.defaultColorPicker,
-        GenericTableOps.offHighlightFormatter(GenericTableOps.intFormatter)
+        GenericTableOps.offHighlightFormatter(GenericTableOps.intFormatter),
       ),
       team_poss_pct: GenericTableOps.addDataCol(
         "Poss%",
         "% of team possessions in selected lineups that player was on the floor",
         GenericTableOps.defaultColorPicker,
-        GenericTableOps.offHighlightFormatter(GenericTableOps.percentFormatter)
+        GenericTableOps.offHighlightFormatter(GenericTableOps.percentFormatter),
       ),
       rtg: GenericTableOps.addPtsCol(
         "Box Rtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " rating in selected lineups (box-score derived)",
-        CbbColors.picker(...CbbColors.pp100)
+        CbbColors.picker(...CbbColors.pp100),
       ),
       usage: GenericTableOps.addDataCol(
         expandedView ? <div>Usg{lineSep} Pos</div> : "Usg",
@@ -358,19 +360,19 @@ export class CommonTableDefs {
           ? "% of team possessions used in selected lineups, plus the position category for this player"
           : "% of team possessions used in selected lineups",
         CbbColors.offOnlyPicker(...CbbColors.usg),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ), //TODO needs to be steeper
       adj_rtg: GenericTableOps.addPtsCol(
         "Adj+ Rtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
-        CbbColors.picker(...CbbColors.diff10_p100_redGreen)
+        CbbColors.picker(...CbbColors.diff10_p100_redGreen),
       ),
       adj_prod: GenericTableOps.addPtsCol(
         "Adj+ Prod",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
-        CbbColors.picker(...CbbColors.diff10_p100_redGreen)
+        CbbColors.picker(...CbbColors.diff10_p100_redGreen),
       ),
 
       // 2 of these 4 are always omitted by onOffIndividualTable, the other 2 we just make empty-ish so that auto-gen of table sort works
@@ -380,7 +382,7 @@ export class CommonTableDefs {
             "RAPM net",
             "Adjusted Plus-Minus vs D1 average (Off-Def margin)",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-            GenericTableOps.pointsOrHtmlFormatter
+            GenericTableOps.pointsOrHtmlFormatter,
           ),
       adj_rapm_prod_margin: expandedView
         ? { colName: undefined }
@@ -388,14 +390,14 @@ export class CommonTableDefs {
             "RAPM Prod",
             "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average (Off-Def margin)",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-            GenericTableOps.pointsOrHtmlFormatter
+            GenericTableOps.pointsOrHtmlFormatter,
           ),
       adj_rapm: expandedView
         ? GenericTableOps.addDataCol(
             "RAPM",
             "Adjusted Plus-Minus vs D1 average",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-            GenericTableOps.pointsOrHtmlFormatter
+            GenericTableOps.pointsOrHtmlFormatter,
           )
         : { colName: undefined },
       adj_rapm_prod: expandedView
@@ -403,7 +405,7 @@ export class CommonTableDefs {
             "RAPM Prod",
             "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average",
             CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-            GenericTableOps.pointsOrHtmlFormatter
+            GenericTableOps.pointsOrHtmlFormatter,
           )
         : { colName: undefined },
 
@@ -412,43 +414,43 @@ export class CommonTableDefs {
         "eFG%",
         "Effective field goal% (3 pointers count 1.5x as much) in selected lineups",
         CbbColors.offOnlyPicker(...CbbColors.eFG),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       assist: GenericTableOps.addDataCol(
         "A%",
         "Assist % for player in selected lineups",
         CbbColors.offOnlyPicker(...CbbColors.p_ast),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       to: GenericTableOps.addPctCol(
         expandedView ? <div>TO%{lineSep} Stl%</div> : "TO%",
         expandedView
           ? "Turnover % / Steal % in selected lineups"
           : "Turnover % in selected lineups",
-        CbbColors.picker(...CbbColors.p_tOver)
+        CbbColors.picker(...CbbColors.p_tOver),
       ),
       orb: expandedView
         ? GenericTableOps.addPctCol(
             "RB%",
             "Offensive/Defensive rebounding % in selected lineups",
-            CbbColors.picker(...CbbColors.p_oReb)
+            CbbColors.picker(...CbbColors.p_oReb),
           )
         : GenericTableOps.addPctCol(
             "OR%",
             "Offensive rebounding % in selected lineups",
-            CbbColors.picker(...CbbColors.p_oReb)
+            CbbColors.picker(...CbbColors.p_oReb),
           ),
       drb: GenericTableOps.addPctCol(
         "DR%",
         "Defensive rebounding % in selected lineups",
-        CbbColors.picker(...CbbColors.p_dReb)
+        CbbColors.picker(...CbbColors.p_dReb),
       ),
       ftr: GenericTableOps.addPctCol(
         expandedView ? <div>FTR{lineSep} F/50</div> : "FTR",
         expandedView
           ? "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups"
           : "Free throw rate in selected lineups",
-        CbbColors.picker(...CbbColors.p_ftr)
+        CbbColors.picker(...CbbColors.p_ftr),
       ),
       sep_off_ast: expandedView
         ? GenericTableOps.addSpecialColSeparator("__off_ast__")
@@ -459,7 +461,7 @@ export class CommonTableDefs {
           expandedView ? " (assisted% below)" : ""
         }`,
         CbbColors.offOnlyPicker(...CbbColors.fgr),
-        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef)
+        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef),
       ),
       "2pmidr": GenericTableOps.addDataCol(
         "2PR mid",
@@ -467,7 +469,7 @@ export class CommonTableDefs {
           expandedView ? " (assisted% below)" : ""
         }`,
         CbbColors.offOnlyPicker(...CbbColors.fgr),
-        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef)
+        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef),
       ),
       "2primr": GenericTableOps.addDataCol(
         "2PR rim",
@@ -475,7 +477,7 @@ export class CommonTableDefs {
           expandedView ? " (assisted% below)" : ""
         }`,
         CbbColors.offOnlyPicker(...CbbColors.fgr),
-        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef)
+        GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef),
       ),
       sep3: GenericTableOps.addSpecialColSeparator("__ft__"),
       "3p": GenericTableOps.addDataCol(
@@ -484,30 +486,30 @@ export class CommonTableDefs {
           ? "3 point field goal percentage / FT% in lower row"
           : "3 point field goal percentage",
         CbbColors.offOnlyPicker(...CbbColors.fg3P),
-        GenericTableOps.dualRowPercentFormatter(CbbColors.off_FT)
+        GenericTableOps.dualRowPercentFormatter(CbbColors.off_FT),
       ),
       "2p": GenericTableOps.addPctCol(
         "2P%",
         "2 point field goal percentage",
-        CbbColors.picker(...CbbColors.fg2P)
+        CbbColors.picker(...CbbColors.fg2P),
       ),
       "2pmid": GenericTableOps.addPctCol(
         "2P% mid",
         "2 point field goal percentage (mid range)",
-        CbbColors.picker(...CbbColors.fg2P_mid)
+        CbbColors.picker(...CbbColors.fg2P_mid),
       ),
       "2prim": GenericTableOps.addPctCol(
         expandedView ? <div>Rim%{lineSep} Blk%</div> : "2P% rim",
         expandedView
           ? "2 point field goal percentage (off) and Block% (def)"
           : "2 point field goal percentage (layup/dunk/etc)",
-        CbbColors.picker(...CbbColors.p_fg2P_rim)
+        CbbColors.picker(...CbbColors.p_fg2P_rim),
       ),
       sep4: GenericTableOps.addColSeparator(),
       adj_opp: GenericTableOps.addPtsCol(
         "SoS",
         "Weighted average of the offensive or defensive efficiencies of the player's opponents",
-        GenericTableOps.defaultColorPicker
+        GenericTableOps.defaultColorPicker,
       ),
     };
   };
@@ -517,7 +519,7 @@ export class CommonTableDefs {
     expandedView: boolean,
     possAsPct: boolean,
     factorMins: boolean,
-    includeRapm: boolean
+    includeRapm: boolean,
   ) => {
     return _.omit(
       CommonTableDefs.onOffIndividualTableAllFields(expandedView),
@@ -528,10 +530,10 @@ export class CommonTableDefs {
         includeRapm
           ? factorMins
             ? ["adj_rapm", "adj_rapm_margin"].concat(
-                expandedView ? ["adj_rapm_prod_margin"] : ["adj_rapm_prod"]
+                expandedView ? ["adj_rapm_prod_margin"] : ["adj_rapm_prod"],
               )
             : ["adj_rapm_prod", "adj_rapm_prod_margin"].concat(
-                expandedView ? ["adj_rapm_margin"] : ["adj_rapm"]
+                expandedView ? ["adj_rapm_margin"] : ["adj_rapm"],
               )
           : [
               "adj_rapm",
@@ -539,7 +541,7 @@ export class CommonTableDefs {
               "adj_rapm_margin",
               "adj_rapm_prod_margin",
             ], //(all RAPM)
-      ])
+      ]),
     ) as Record<string, GenericTableColProps>;
   };
 
@@ -550,7 +552,7 @@ export class CommonTableDefs {
     gender: string,
     year: string,
     isT100: boolean,
-    isConfOnly: boolean
+    isConfOnly: boolean,
   ) => {
     return {
       // Player name column
@@ -572,7 +574,7 @@ export class CommonTableDefs {
               {elementToRender}
             </div>
           );
-        }
+        },
       ),
       // Team column
       team: {
@@ -590,7 +592,7 @@ export class CommonTableDefs {
                 {val?.toString() || "-"}
               </span>
             );
-          }
+          },
         ),
         //colWidth: 20
       },
@@ -616,7 +618,7 @@ export class CommonTableDefs {
                 posString,
                 "season",
                 true,
-                posBreakdown
+                posBreakdown,
               )}
             >
               <small>
@@ -624,7 +626,7 @@ export class CommonTableDefs {
               </small>
             </OverlayTrigger>
           );
-        }
+        },
       ),
       sep0: GenericTableOps.addColSeparator(),
       sep0_5: GenericTableOps.addColSeparator(),
@@ -636,13 +638,13 @@ export class CommonTableDefs {
             ? "Offensive RAPM production (RAPM * mins%)"
             : "Offensive RAPM"
           : factorMins
-          ? "Offensive adjusted production (rating * mins%)"
-          : "Offensive adjusted rating",
+            ? "Offensive adjusted production (rating * mins%)"
+            : "Offensive adjusted rating",
         CbbColors.picker(
           CbbColors.diff10_p100_redGreen[1],
-          CbbColors.diff10_p100_redGreen[0]
+          CbbColors.diff10_p100_redGreen[0],
         ),
-        GenericTableOps.pointsOrHtmlFormatter
+        GenericTableOps.pointsOrHtmlFormatter,
       ),
       def_adj_rapm: GenericTableOps.addDataCol(
         "Def",
@@ -651,10 +653,10 @@ export class CommonTableDefs {
             ? "Defensive RAPM production (RAPM * mins%)"
             : "Defensive RAPM"
           : factorMins
-          ? "Defensive adjusted production (rating * mins%)"
-          : "Defensive adjusted rating",
+            ? "Defensive adjusted production (rating * mins%)"
+            : "Defensive adjusted rating",
         CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-        GenericTableOps.pointsOrHtmlFormatter
+        GenericTableOps.pointsOrHtmlFormatter,
       ),
       net_rapm: GenericTableOps.addDataCol(
         "Net",
@@ -663,10 +665,10 @@ export class CommonTableDefs {
             ? "Net RAPM production (Off - Def)"
             : "Net RAPM (Off - Def)"
           : factorMins
-          ? "Net adjusted production (Off - Def)"
-          : "Net adjusted rating (Off - Def)",
+            ? "Net adjusted production (Off - Def)"
+            : "Net adjusted rating (Off - Def)",
         CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-        GenericTableOps.pointsOrHtmlFormatter
+        GenericTableOps.pointsOrHtmlFormatter,
       ),
       sep0_6: GenericTableOps.addColSeparator(),
       // Shooting percentage columns - Higher is better -> Red, Green (use index [1] then [0])
@@ -674,27 +676,27 @@ export class CommonTableDefs {
         "eFG%",
         "Effective field goal% (3 pointers count 1.5x as much)",
         CbbColors.picker(CbbColors.eFG[1], CbbColors.eFG[0]),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       off_2p: GenericTableOps.addPctCol(
         "2P%",
         "2 point field goal percentage",
-        CbbColors.picker(CbbColors.fg2P[1], CbbColors.fg2P[0])
+        CbbColors.picker(CbbColors.fg2P[1], CbbColors.fg2P[0]),
       ),
       off_3p: GenericTableOps.addPctCol(
         "3P%",
         "3 point field goal percentage",
-        CbbColors.picker(CbbColors.fg3P[1], CbbColors.fg3P[0])
+        CbbColors.picker(CbbColors.fg3P[1], CbbColors.fg3P[0]),
       ),
       off_2pmid: GenericTableOps.addPctCol(
         "Mid%",
         "2 point field goal percentage (mid range)",
-        CbbColors.picker(CbbColors.fg2P_mid[1], CbbColors.fg2P_mid[0])
+        CbbColors.picker(CbbColors.fg2P_mid[1], CbbColors.fg2P_mid[0]),
       ),
       off_2prim: GenericTableOps.addPctCol(
         "Rim%",
         "2 point field goal percentage (layup/dunk/etc)",
-        CbbColors.picker(CbbColors.fg2P_rim[1], CbbColors.fg2P_rim[0])
+        CbbColors.picker(CbbColors.fg2P_rim[1], CbbColors.fg2P_rim[0]),
       ),
       sep2: GenericTableOps.addColSeparator(),
       // Shooting rates columns - Neutral/Frequency -> Blue, Orange (use index [0] then [1] or custom)
@@ -702,24 +704,24 @@ export class CommonTableDefs {
         "3PR",
         "Percentage of 3 pointers taken against all field goals",
         CbbColors.picker(...CbbColors.fgr),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       off_2pmidr: GenericTableOps.addDataCol(
         "MidR",
         "Percentage of mid range 2 pointers taken against all field goals",
         CbbColors.picker(...CbbColors.fgr),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       off_2primr: GenericTableOps.addDataCol(
         "RimR",
         "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
         CbbColors.picker(...CbbColors.fgr),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       off_ftr: GenericTableOps.addPctCol(
         "FTR",
         "Free Throw Rate (FTA/FGA)",
-        CbbColors.picker(...CbbColors.fgr)
+        CbbColors.picker(...CbbColors.fgr),
       ),
       sep3: GenericTableOps.addColSeparator(),
       // Other stats columns
@@ -727,45 +729,45 @@ export class CommonTableDefs {
         "Usg",
         "% of team possessions used in selected lineups",
         CbbColors.picker(...CbbColors.usg),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       off_assist: GenericTableOps.addDataCol(
         "A%",
         "Assist % for player in selected lineups",
         CbbColors.picker(...CbbColors.p_ast),
-        GenericTableOps.percentOrHtmlFormatter
+        GenericTableOps.percentOrHtmlFormatter,
       ),
       off_to: GenericTableOps.addPctCol(
         "TO%",
         "Turnover % in selected lineups",
-        CbbColors.picker(CbbColors.p_tOver[1], CbbColors.p_tOver[0])
+        CbbColors.picker(CbbColors.p_tOver[1], CbbColors.p_tOver[0]),
       ),
       // Rebounding columns - Higher is better -> Red, Green
       off_orb: GenericTableOps.addPctCol(
         "OR%",
         "Offensive rebounding % in selected lineups",
-        CbbColors.picker(CbbColors.p_oReb[1], CbbColors.p_oReb[0])
+        CbbColors.picker(CbbColors.p_oReb[1], CbbColors.p_oReb[0]),
       ),
       def_orb: GenericTableOps.addPctCol(
         "DR%",
         "Defensive rebounding % in selected lineups",
-        CbbColors.picker(CbbColors.p_dReb[1], CbbColors.p_dReb[0])
+        CbbColors.picker(CbbColors.p_dReb[1], CbbColors.p_dReb[0]),
       ),
       def_stl: GenericTableOps.addPctCol(
         "Stl%",
         "Steal % in selected lineups",
-        CbbColors.picker(CbbColors.p_def_TO, CbbColors.p_def_TO)
+        CbbColors.picker(CbbColors.p_def_TO, CbbColors.p_def_TO),
       ),
       def_blk: GenericTableOps.addPctCol(
         "Blk%",
         "Block % in selected lineups",
-        CbbColors.picker(CbbColors.p_def_2P_rim, CbbColors.p_def_2P_rim)
+        CbbColors.picker(CbbColors.p_def_2P_rim, CbbColors.p_def_2P_rim),
       ),
       // Added Poss%
       team_poss_pct: GenericTableOps.addPctCol(
         "Poss%",
         "% of team possessions player was on the floor for",
-        GenericTableOps.defaultColorPicker
+        GenericTableOps.defaultColorPicker,
       ),
     } as Record<string, GenericTableColProps>;
   };
@@ -777,99 +779,99 @@ export class CommonTableDefs {
       "",
       "",
       CommonTableDefs.rowSpanCalculator,
-      "small"
+      "small",
     ),
     sep_off_def: GenericTableOps.addSpecialColSeparator("__off_def__"),
     ppp: GenericTableOps.addPtsCol(
       "P/100",
       "Points per 100 possessions",
-      CommonTableDefs.picker(...CbbColors.pp100)
+      CommonTableDefs.picker(...CbbColors.pp100),
     ),
     adj_ppp: GenericTableOps.addPtsCol(
       "Adj P/100",
       "Approximate schedule-adjusted Points per 100 possessions",
-      CommonTableDefs.picker(...CbbColors.pp100)
+      CommonTableDefs.picker(...CbbColors.pp100),
     ),
     sep1: GenericTableOps.addColSeparator(),
     efg: GenericTableOps.addPctCol(
       "eFG%",
       "Effective field goal% (3 pointers count 1.5x as much) for selected lineups",
-      CommonTableDefs.picker(...CbbColors.eFG)
+      CommonTableDefs.picker(...CbbColors.eFG),
     ),
     to: GenericTableOps.addPctCol(
       "TO%",
       "Turnover % for selected lineups",
-      CommonTableDefs.picker(...CbbColors.tOver)
+      CommonTableDefs.picker(...CbbColors.tOver),
     ),
     orb: GenericTableOps.addPctCol(
       "OR%",
       "Offensive rebounding % for selected lineups",
-      CommonTableDefs.picker(...CbbColors.oReb)
+      CommonTableDefs.picker(...CbbColors.oReb),
     ),
     ftr: GenericTableOps.addPctCol(
       "FTR",
       "Free throw rate for selected lineups",
-      CommonTableDefs.picker(...CbbColors.ftr)
+      CommonTableDefs.picker(...CbbColors.ftr),
     ),
     sep2a: GenericTableOps.addColSeparator(),
     assist: GenericTableOps.addPctCol(
       "A%",
       "Assist % for selected lineups",
-      CommonTableDefs.picker(...CbbColors.ast)
+      CommonTableDefs.picker(...CbbColors.ast),
     ),
     sep2b: GenericTableOps.addColSeparator(0.05),
     "3pr": GenericTableOps.addPctCol(
       "3PR",
       "Percentage of 3 pointers taken against all field goals",
-      CommonTableDefs.picker(...CbbColors.fgr)
+      CommonTableDefs.picker(...CbbColors.fgr),
     ),
     "2pmidr": GenericTableOps.addPctCol(
       "2PR mid",
       "Percentage of mid range 2 pointers taken against all field goals",
-      CommonTableDefs.picker(...CbbColors.fgr)
+      CommonTableDefs.picker(...CbbColors.fgr),
     ),
     "2primr": GenericTableOps.addPctCol(
       "2PR rim",
       "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
-      CommonTableDefs.picker(...CbbColors.fgr)
+      CommonTableDefs.picker(...CbbColors.fgr),
     ),
     sep3: GenericTableOps.addColSeparator(),
     "3p": GenericTableOps.addPctCol(
       "3P%",
       "3 point field goal percentage",
-      CommonTableDefs.picker(...CbbColors.fg3P)
+      CommonTableDefs.picker(...CbbColors.fg3P),
     ),
     "2p": GenericTableOps.addPctCol(
       "2P%",
       "2 point field goal percentage",
-      CommonTableDefs.picker(...CbbColors.fg2P)
+      CommonTableDefs.picker(...CbbColors.fg2P),
     ),
     "2pmid": GenericTableOps.addPctCol(
       "2P% mid",
       "2 point field goal percentage (mid range)",
-      CommonTableDefs.picker(...CbbColors.fg2P_mid)
+      CommonTableDefs.picker(...CbbColors.fg2P_mid),
     ),
     "2prim": GenericTableOps.addPctCol(
       "2P% rim",
       "2 point field goal percentage (layup/dunk/etc)",
-      CommonTableDefs.picker(...CbbColors.fg2P_rim)
+      CommonTableDefs.picker(...CbbColors.fg2P_rim),
     ),
     sep4: GenericTableOps.addColSeparator(),
     poss: GenericTableOps.addIntCol(
       "Poss",
       "Total number of possessions for selected lineups",
-      GenericTableOps.defaultColorPicker
+      GenericTableOps.defaultColorPicker,
     ),
     adj_opp: GenericTableOps.addPtsCol(
       "SoS",
       "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
-      GenericTableOps.defaultColorPicker
+      GenericTableOps.defaultColorPicker,
     ),
   };
 
   /** Same as onOffReport except with generic HTML for the row "title" */
   static readonly onOffReportWithFormattedTitle = _.chain(
-    CommonTableDefs.onOffReport
+    CommonTableDefs.onOffReport,
   )
     .toPairs()
     .map((kv) => {
@@ -881,7 +883,7 @@ export class CommonTableDefs {
             "",
             CommonTableDefs.rowSpanCalculator,
             "small",
-            GenericTableOps.htmlFormatter
+            GenericTableOps.htmlFormatter,
           ),
         ];
       } else return kv;
@@ -896,100 +898,100 @@ export class CommonTableDefs {
       "",
       CommonTableDefs.rowSpanCalculator,
       "small",
-      GenericTableOps.htmlFormatter
+      GenericTableOps.htmlFormatter,
     ),
     sep0: GenericTableOps.addColSeparator(),
     ppp: GenericTableOps.addPtsCol(
       "P/100",
       "Points per 100 possessions",
-      CommonTableDefs.picker(...CbbColors.diff10_p100_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_p100_redGreen),
     ),
     adj_ppp: GenericTableOps.addPtsCol(
       "Adj P/100",
       "Approximate schedule-adjusted Points per 100 possessions",
-      CommonTableDefs.picker(...CbbColors.diff10_p100_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_p100_redGreen),
     ),
     sep1: GenericTableOps.addColSeparator(),
     efg: GenericTableOps.addPctCol(
       "eFG%",
       "Effective field goal% (3 pointers count 1.5x as much) for selected lineups",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     to: GenericTableOps.addPctCol(
       "TO%",
       "Turnover % for selected lineups",
-      CommonTableDefs.picker(...CbbColors.diff10_greenRed)
+      CommonTableDefs.picker(...CbbColors.diff10_greenRed),
     ),
     orb: GenericTableOps.addPctCol(
       "OR%",
       "Offensive rebounding % for selected lineups",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     ftr: GenericTableOps.addPctCol(
       "FTR",
       "Free throw rate for selected lineups",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     "sep2-1": GenericTableOps.addColSeparator(),
     assist: GenericTableOps.addPctCol(
       "A%",
       "Assist % for selected lineups",
-      CommonTableDefs.picker(...CbbColors.diff10_blueOrange)
+      CommonTableDefs.picker(...CbbColors.diff10_blueOrange),
     ),
     "sep2-2": GenericTableOps.addColSeparator(),
     "3pr": GenericTableOps.addPctCol(
       "3PR",
       "Percentage of 3 pointers taken against all field goals",
-      CommonTableDefs.picker(...CbbColors.diff10_blueOrange)
+      CommonTableDefs.picker(...CbbColors.diff10_blueOrange),
     ),
     "2pmidr": GenericTableOps.addPctCol(
       "2PR mid",
       "Percentage of mid range 2 pointers taken against all field goals",
-      CommonTableDefs.picker(...CbbColors.diff10_blueOrange)
+      CommonTableDefs.picker(...CbbColors.diff10_blueOrange),
     ),
     "2primr": GenericTableOps.addPctCol(
       "2PR rim",
       "Percentage of layup/dunk/etc 2 pointers taken against all field goals",
-      CommonTableDefs.picker(...CbbColors.diff10_blueOrange)
+      CommonTableDefs.picker(...CbbColors.diff10_blueOrange),
     ),
     sep3: GenericTableOps.addColSeparator(),
     "3p": GenericTableOps.addPctCol(
       "3P%",
       "3 point field goal percentage",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     "2p": GenericTableOps.addPctCol(
       "2P%",
       "2 point field goal percentage",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     "2pmid": GenericTableOps.addPctCol(
       "2P% mid",
       "2 point field goal percentage (mid range)",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     "2prim": GenericTableOps.addPctCol(
       "2P% rim",
       "2 point field goal percentage (layup/dunk/etc)",
-      CommonTableDefs.picker(...CbbColors.diff10_redGreen)
+      CommonTableDefs.picker(...CbbColors.diff10_redGreen),
     ),
     sep4: GenericTableOps.addColSeparator(),
     poss: GenericTableOps.addIntCol(
       "Poss",
       "Total number of possessions for selected lineups",
-      GenericTableOps.defaultColorPicker
+      GenericTableOps.defaultColorPicker,
     ),
     adj_opp: GenericTableOps.addPtsCol(
       "SoS",
       "Weighted average of the offensive or defensive efficiencies of the lineups' opponents",
-      GenericTableOps.defaultColorPicker
+      GenericTableOps.defaultColorPicker,
     ),
   };
 
   /** Builds the table definition for the off-season leaderboard */
   static readonly offseasonLeaderboardTable = (
     evalMode: boolean,
-    transferInOutMode: boolean
+    transferInOutMode: boolean,
   ) => {
     return _.omit(
       {
@@ -999,32 +1001,32 @@ export class CommonTableDefs {
           CommonTableDefs.rowSpanCalculator,
           "small",
           GenericTableOps.htmlFormatter,
-          10
+          10,
         ),
         conf: GenericTableOps.addDataCol(
           "Conf",
           "The team's conference",
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         sep0: GenericTableOps.addColSeparator(),
 
         net: GenericTableOps.addPtsCol(
           "Net",
           "Net Adjusted Pts/100 above an average D1 team, for 'Balanced' projections",
-          CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen),
         ),
         net_grade: GenericTableOps.addDataCol(
           "Rank",
           "Net Adjusted Pts/100 ranking, for 'Balanced' projections",
           CbbColors.varPicker(CbbColors.high_pctile_qual),
-          GenericTableOps.gradeOrHtmlFormatter
+          GenericTableOps.gradeOrHtmlFormatter,
         ),
         actual_grade: GenericTableOps.addDataCol(
           "Act.",
           "Ranking based on the team's actual Net Adjusted Pts/100 above an average D1 team",
           CbbColors.varPicker(CbbColors.net_guess),
-          GenericTableOps.gradeOrHtmlFormatter
+          GenericTableOps.gradeOrHtmlFormatter,
         ),
 
         // Txfer in/out
@@ -1033,45 +1035,45 @@ export class CommonTableDefs {
           "Dev",
           "For efficiency margin, expected increase in production from returning players",
           CbbColors.picker(...CbbColors.diff10_p100_greenRed),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
         inout_margin: GenericTableOps.addDataCol(
           "I-O",
           "For efficiency margin, in-from-transfers minus out-from-transfers/NBA/Sr (using projected production for 'in')",
           CbbColors.picker(...CbbColors.diff35_p100_greenRed),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
         "sepInOut1.5": GenericTableOps.addColSeparator(0.25),
         in_margin: GenericTableOps.addDataCol(
           "TxIn",
           "For efficiency margin, projected production from incoming transfers",
           CbbColors.picker(...CbbColors.diff10_p100_greenRed),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
         out_margin: GenericTableOps.addDataCol(
           "TxOut",
           "For efficiency margin, lost production from last season due to transfers",
           CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
         "sepInOut1.6": GenericTableOps.addColSeparator(0.25),
         fr_margin: GenericTableOps.addDataCol(
           "FrIn",
           "For efficiency margin, projected production from Freshmen",
           CbbColors.picker(...CbbColors.diff10_p100_greenRed),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
         nba_margin: GenericTableOps.addDataCol(
           "NBA",
           "For efficiency margin, lost production from last season due to early NBA (or other pro) departures",
           CbbColors.picker(...CbbColors.diff10_p100_redGreen),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
         sr_margin: GenericTableOps.addDataCol(
           "SrOut",
           "For efficiency margin, lost production from last season due to graduation",
           CbbColors.picker(...CbbColors.diff35_p100_redGreen),
-          GenericTableOps.pointsOrHtmlFormatter
+          GenericTableOps.pointsOrHtmlFormatter,
         ),
 
         sep1: GenericTableOps.addColSeparator(),
@@ -1079,13 +1081,13 @@ export class CommonTableDefs {
         off: GenericTableOps.addPtsCol(
           "Off",
           "Offensive Adjusted Pts/100 above an average D1 team, for 'Balanced' projections",
-          CbbColors.varPicker(CbbColors.off_pp100)
+          CbbColors.varPicker(CbbColors.off_pp100),
         ),
         off_grade: GenericTableOps.addDataCol(
           "Rank",
           "Offensive Adjusted Pts/100 ranking, for 'Balanced' projections",
           CbbColors.varPicker(CbbColors.high_pctile_qual),
-          GenericTableOps.gradeOrHtmlFormatter
+          GenericTableOps.gradeOrHtmlFormatter,
         ),
 
         sep2: GenericTableOps.addColSeparator(),
@@ -1093,13 +1095,13 @@ export class CommonTableDefs {
         def: GenericTableOps.addPtsCol(
           "Def",
           "Defensive Adjusted Pts/100 above an average D1 team, for 'Balanced' projections",
-          CbbColors.varPicker(CbbColors.def_pp100)
+          CbbColors.varPicker(CbbColors.def_pp100),
         ),
         def_grade: GenericTableOps.addDataCol(
           "Rank",
           "Defensive Adjusted Pts/100 ranking, for 'Balanced' projections",
           CbbColors.varPicker(CbbColors.high_pctile_qual),
-          GenericTableOps.gradeOrHtmlFormatter
+          GenericTableOps.gradeOrHtmlFormatter,
         ),
 
         sep3: GenericTableOps.addColSeparator(),
@@ -1108,13 +1110,13 @@ export class CommonTableDefs {
           "Good",
           "Optimistic net ranking",
           CbbColors.varPicker(CbbColors.high_pctile_qual),
-          GenericTableOps.gradeOrHtmlFormatter
+          GenericTableOps.gradeOrHtmlFormatter,
         ),
         low_grade: GenericTableOps.addDataCol(
           "Bad",
           "Pessimistic net ranking",
           CbbColors.varPicker(CbbColors.high_pctile_qual),
-          GenericTableOps.gradeOrHtmlFormatter
+          GenericTableOps.gradeOrHtmlFormatter,
         ),
 
         sep4: GenericTableOps.addColSeparator(),
@@ -1123,7 +1125,7 @@ export class CommonTableDefs {
           "Roster",
           "Projected of (high major) Superstars / Stars / Starters / Rotation players on the team",
           CbbColors.applyThemedBackground,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
 
         sep5: GenericTableOps.addColSeparator(),
@@ -1132,7 +1134,7 @@ export class CommonTableDefs {
           "",
           "Edit the team projections",
           CbbColors.applyThemedBackground,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
       },
       ([] as string[])
@@ -1151,8 +1153,8 @@ export class CommonTableDefs {
                 "nba_margin",
                 "fr_margin",
                 "sr_margin",
-              ]
-        )
+              ],
+        ),
     ) as Record<string, GenericTableColProps>;
   };
 
@@ -1166,17 +1168,17 @@ export class CommonTableDefs {
     sortKeyFilter: (sortType: string, key: string) => boolean,
     keyTransformer: (inKey: string) => string | undefined,
     labelTransforms: Record<string, (o: string) => string | undefined>,
-    allowedFields: _.CollectionChain<[string, GenericTableColProps]>
+    allowedFields: _.CollectionChain<[string, GenericTableColProps]>,
   ): { label: string; value: string }[] => {
     return _.flatten(
       allowedFields
         .filter((keycol) =>
           Boolean(
             keycol[1].colName &&
-              keycol[1].colName != "" &&
-              (!_.isString(keycol[1].colName) ||
-                !_.startsWith(keycol[1].colName, "__"))
-          )
+            keycol[1].colName != "" &&
+            (!_.isString(keycol[1].colName) ||
+              !_.startsWith(keycol[1].colName, "__")),
+          ),
         )
         .map((keycol) => {
           return rowMode == "Mixed"
@@ -1254,7 +1256,7 @@ export class CommonTableDefs {
                 ];
               });
         })
-        .value()
+        .value(),
     );
   };
 
@@ -1264,7 +1266,7 @@ export class CommonTableDefs {
     tableFieldTransformer: (headerKey: string) => string,
     sortBy: string,
     sortOptions: { label: string; value: string }[],
-    setSortMenuState: (newState: TableSortPopupMenuState) => void
+    setSortMenuState: (newState: TableSortPopupMenuState) => void,
   ) => {
     return (headerKeyIn: string, ev: any) => {
       const headerKey = tableFieldTransformer(headerKeyIn);
