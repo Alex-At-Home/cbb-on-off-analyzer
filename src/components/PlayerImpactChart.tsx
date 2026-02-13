@@ -89,12 +89,12 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   const [adjustForLuck, setAdjustForLuck] = useState(
     _.isNil(startingState.onOffLuck)
       ? ParamDefaults.defaultOnOffLuckAdjust
-      : startingState.onOffLuck
+      : startingState.onOffLuck,
   );
   const [luckConfig, setLuckConfig] = useState(
     _.isNil(startingState.luck)
       ? ParamDefaults.defaultLuckConfig
-      : startingState.luck
+      : startingState.luck,
   );
 
   const [posClasses, setPosClasses] = useState(startingState.posClasses || "");
@@ -103,25 +103,28 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       ? new Set(
           _.flatMap(
             (classes || "").split(","),
-            (c) => PositionUtils.expandedPosClasses[c] || [c]
-          )
+            (c) => PositionUtils.expandedPosClasses[c] || [c],
+          ),
         )
       : undefined;
   };
 
   const [showTeam, setShowTeam] = useState<boolean>(
-    _.isNil(startingState.showTeam) ? true : startingState.showTeam
+    _.isNil(startingState.showTeam) ? true : startingState.showTeam,
   );
   const [showOppo, setShowOppo] = useState<boolean>(
-    _.isNil(startingState.showOppo) ? true : startingState.showOppo
+    _.isNil(startingState.showOppo) ? true : startingState.showOppo,
   );
   const [factorMins, setFactorMins] = useState<boolean>(
-    _.isNil(startingState.factorMins) ? true : startingState.factorMins
+    _.isNil(startingState.factorMins) ? true : startingState.factorMins,
+  );
+  const [impactPerGame, setImpactPerGame] = useState<boolean>(
+    _.isNil(startingState.impactPerGame) ? false : startingState.impactPerGame,
   );
   const [lockAspect, setLockAspect] = useState<boolean>(
     _.isNil(startingState.lockAspect)
       ? ParamDefaults.defaultMatchupAnalysisAspectLock
-      : startingState.lockAspect
+      : startingState.lockAspect,
   );
 
   // Viewport management
@@ -144,7 +147,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       | "logo"
       | "icon"
       | "pos"
-      | "jersey"
+      | "jersey",
   );
 
   const [screenHeight, setScreenHeight] = useState(512);
@@ -158,7 +161,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     const baseHeight = Math.max(0.5 * window.innerHeight, 400);
     const baseWidth = Math.max(
       baseHeight,
-      Math.max(0.5 * window.innerWidth, 400)
+      Math.max(0.5 * window.innerWidth, 400),
     );
     return [baseWidth, baseHeight];
   };
@@ -171,10 +174,19 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       showTeam,
       showOppo,
       factorMins,
+      impactPerGame,
       lockAspect,
       iconType,
     });
-  }, [posClasses, showTeam, showOppo, factorMins, lockAspect, iconType]);
+  }, [
+    posClasses,
+    showTeam,
+    showOppo,
+    factorMins,
+    impactPerGame,
+    lockAspect,
+    iconType,
+  ]);
 
   // RAPM building
 
@@ -192,7 +204,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         lineupStatsA,
         teamStatsA,
         rosterStatsA,
-        posClassSet
+        posClassSet,
       );
       const bStats = buildStats(
         opponent,
@@ -200,7 +212,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         lineupStatsB,
         teamStatsB,
         rosterStatsB,
-        posClassSet
+        posClassSet,
       );
       setCachedStats({
         ab: _.orderBy(aStats.concat(bStats), (p) => -(p.x * p.x + p.y * p.y)),
@@ -212,7 +224,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   const isFilteredCachedAb = (
     p: any,
     posClassSet: Set<string> | undefined,
-    team?: string
+    team?: string,
   ) => {
     //return true to filter _out_
     const teamToUse = team || p.seriesId;
@@ -233,7 +245,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             } else {
               return _.isUndefined(posClassSet); //(if don't know pos and pos filter defined then fail)
             }
-          }
+          },
         );
         return !posPass;
       }
@@ -286,15 +298,27 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     lineupStats: LineupStatsModel,
     teamStats: TeamStatsModel,
     rosterStats: RosterStatsModel,
-    posClassSet: Set<string> | undefined
+    posClassSet: Set<string> | undefined,
   ) => {
     const totalGames = seasonStats
       ? _.size(
           LineupUtils.isGameInfoStatSet(teamStats.baseline?.game_info || {})
             ? LineupUtils.getGameInfo(teamStats.baseline?.game_info || {})
-            : teamStats.baseline?.game_info
+            : teamStats.baseline?.game_info,
         ) || 1
       : 1;
+
+    const { offPerGame, defPerGame } = impactPerGame
+      ? {
+          offPerGame:
+            (0.01 * (teamStats.baseline.off_poss?.value || 0)) / totalGames,
+          defPerGame:
+            (0.01 * (teamStats.baseline.def_poss?.value || 0)) / totalGames,
+        }
+      : {
+          offPerGame: 1,
+          defPerGame: 1,
+        };
 
     return _.thru(
       GameAnalysisUtils.buildGameRapmStats(
@@ -305,7 +329,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         rosterStats,
         adjustForLuck,
         luckConfig,
-        avgEfficiency
+        avgEfficiency,
       ),
       ({ playerInfo, positionInfo, rapmInfo }) => {
         return _.chain(rapmInfo?.enrichedPlayers || [])
@@ -319,20 +343,26 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               ? _.size(
                   LineupUtils.isGameInfoStatSet(statObj.game_info)
                     ? LineupUtils.getGameInfo(statObj.game_info || {})
-                    : statObj.game_info
+                    : statObj.game_info,
                 ) || 1
               : 1;
 
-            const missingGameAdjustment = totalGames / playerGames;
+            const missingGameAdjustmentImpact = totalGames / playerGames;
+            //(this is only used for x/y so if not factoring in minutes then ignore)
+            const missingGameAdjustmentXy = factorMins
+              ? missingGameAdjustmentImpact
+              : 1.0;
 
             const offRapmProd =
               (p.rapm?.off_adj_ppp?.value || 0) *
               (factorMins ? offPoss : 1.0) *
-              missingGameAdjustment;
+              missingGameAdjustmentXy *
+              offPerGame;
             const defRapmProd =
               (p.rapm?.def_adj_ppp?.value || 0) *
               (factorMins ? defPoss : 1.0) *
-              missingGameAdjustment;
+              missingGameAdjustmentXy *
+              defPerGame;
 
             // (in season mode, remove sub 5mpg players, likely walk-ons)
             return seasonStats && offPoss < 0.12 && defPoss < 0.12
@@ -344,25 +374,26 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)),
                     y: -Math.min(
                       graphLimit,
-                      Math.max(-graphLimit, defRapmProd)
+                      Math.max(-graphLimit, defRapmProd),
                     ),
-                    z: offPoss * missingGameAdjustment,
+                    z: offPoss * missingGameAdjustmentXy,
                     color: offRapmProd - defRapmProd,
                     name: GameAnalysisUtils.namePrettifier(p.playerCode),
                     posInfo: positionInfo[p.playerId],
                     stats: statObj,
                     onOffStats: p,
-                    missingGameAdj: missingGameAdjustment,
+                    perGamePoss: [offPerGame, defPerGame],
+                    missingGameAdj: missingGameAdjustmentImpact,
                     filteredOut: isFilteredCachedAb(
                       { posInfo: positionInfo[p.playerId] },
                       posClassSet,
-                      team
+                      team,
                     ),
                   },
                 ];
           })
           .value();
-      }
+      },
     );
   };
 
@@ -398,7 +429,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               data.onOffStats,
               data.posInfo,
               seasonStats || false,
-              data.missingGameAdj
+              impactPerGame ? data.perGamePoss : undefined,
+              data.missingGameAdj,
             )}
           </small>
         </div>
@@ -417,13 +449,13 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       acc[2] = Math.min(acc[2], v.y);
       acc[3] = Math.max(acc[3], v.y);
     },
-    [1000, -1000, 1000, -1000]
+    [1000, -1000, 1000, -1000],
   );
 
   const calcGraphLimit = (min: number, max: number) => {
     const factor = _.find(
-      [0.6, 0.8],
-      (factor) => min > -factor * graphLimit && max < factor * graphLimit
+      (impactPerGame ? [0.4] : []).concat([0.6, 0.8]),
+      (factor) => min > -factor * graphLimit && max < factor * graphLimit,
     );
     return factor ? factor * graphLimit : graphLimit;
   };
@@ -440,8 +472,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           .split(",")
           .map((posClass: string) =>
             stringToOption(
-              PositionUtils.nicknameToPosClass[posClass] || posClass
-            )
+              PositionUtils.nicknameToPosClass[posClass] || posClass,
+            ),
           );
   }
 
@@ -542,6 +574,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       </div>
     );
   };
+  const wordForOffensive = isSmallScreen ? "Off." : "Offensive";
+  const wordForImpact = impactPerGame ? "Impact /G" : "Impact";
   return _.isEmpty(cachedStats.ab) ? (
     <Col className="text-center w-100">
       <i>(No Data)</i>
@@ -631,13 +665,50 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 isLabelOnly: true,
               },
               {
-                label: "* Mins%",
-                tooltip: `Whether to incorporate % of minutes played into adjusted ratings (ie turns it into 'production per team 100 possessions')`,
-                toggled: factorMins,
-                onClick: () => {
-                  setFactorMins(!factorMins);
-                  setCachedStats({ ab: [] });
-                },
+                items: [
+                  {
+                    label: (
+                      <small>
+                        P<sup>%</sup>
+                      </small>
+                    ),
+                    tooltip: `P%: Player impact (pts above average) per 100 possessions when they are on the court`,
+                    toggled: !factorMins && !impactPerGame,
+                    onClick: () => {
+                      setFactorMins(false);
+                      setImpactPerGame(false);
+                      setCachedStats({ ab: [] });
+                    },
+                  },
+                  {
+                    label: (
+                      <small>
+                        T<sup>%</sup>
+                      </small>
+                    ),
+                    tooltip: `T%: Player impact (pts above average) per 100 team possessions (so factors in how many minutes they are on the court)`,
+                    toggled: factorMins && !impactPerGame,
+                    onClick: () => {
+                      setFactorMins(true);
+                      setImpactPerGame(false);
+                      setCachedStats({ ab: [] });
+                    },
+                  },
+                  {
+                    label: (
+                      <small>
+                        <sup>/</sup>G
+                      </small>
+                    ),
+                    tooltip: `/G: Player impact per game (pts above average)`,
+                    toggled: impactPerGame,
+                    onClick: () => {
+                      setFactorMins(true);
+                      setImpactPerGame(true);
+                      setCachedStats({ ab: [] });
+                    },
+                  },
+                ],
               },
             ]}
           />
@@ -650,12 +721,12 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
             components={{ MultiValueContainer: PositionValueContainer }}
             value={getCurrentPositionsOrPlaceholder()}
             options={(PositionUtils.positionClasses || []).map((r) =>
-              stringToOption(r)
+              stringToOption(r),
             )}
             onChange={(optionsIn: any) => {
               const options = optionsIn as Array<any>;
               const selection = (options || []).map(
-                (option) => (option as any)?.value || ""
+                (option) => (option as any)?.value || "",
               );
               const posClassStr = selection
                 .filter((t: string) => t != "")
@@ -748,9 +819,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               >
                 <Label
                   value={
-                    isSmallScreen
-                      ? "Off. Impact (pts)"
-                      : "Offensive Impact (pts)"
+                    factorMins
+                      ? `${wordForOffensive} ${wordForImpact} (pts)`
+                      : `${wordForOffensive} RAPM (pts)`
                   }
                   position="top"
                   style={{ textAnchor: "middle" }}
@@ -767,7 +838,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               >
                 <Label
                   angle={-90}
-                  value={"Defensive Impact (pts)"}
+                  value={
+                    factorMins
+                      ? `Defensive ${wordForImpact} (pts)`
+                      : "Defensive RAPM (pts)"
+                  }
                   position="insideLeft"
                   style={{ textAnchor: "middle" }}
                   fill={resolvedTheme == "dark" ? "#CCC" : undefined}

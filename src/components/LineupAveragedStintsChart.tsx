@@ -817,8 +817,6 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
                 playerStats,
                 maybeEnrichedPlayer,
                 playerPosInfo,
-                true, // seasonStats = true
-                1.0, // missingGameAdj
               )}
             </small>
           </Tooltip>

@@ -133,6 +133,7 @@ export type MatchupFilterParams = {
   showOppo?: boolean;
   iconType?: string; // "logo" / "icon" / "jersey" / "pos"
   factorMins?: boolean; //impact vs /100 (defaults to true)
+  impactPerGame?: boolean; //(if true then show player impact / game not /100)
   lockAspect?: boolean; //(force x to be correct proportions to y)
   breakdownConfig?: string; //(currently: [off|def];[off|def])
   shotChartsShowZones?: boolean;

@@ -85,7 +85,7 @@ export class GameAnalysisUtils {
     rosterStats: RosterStatsModel,
     adjustForLuck: boolean,
     luckConfig: LuckParams,
-    avgEfficiency: number
+    avgEfficiency: number,
   ): GameStatsCache => {
     if (!lineupStats.lineups) {
       return { playerInfo: {}, positionInfo: {}, rapmInfo: undefined };
@@ -96,7 +96,7 @@ export class GameAnalysisUtils {
       rosterStats.global || [],
       teamStats.global?.roster,
       false,
-      teamSeasonLookup
+      teamSeasonLookup,
     );
     const playerInfo = LineupTableUtils.buildBaselinePlayerInfo(
       rosterStats.baseline!,
@@ -106,11 +106,11 @@ export class GameAnalysisUtils {
       adjustForLuck,
       luckConfig.base,
       {},
-      {}
+      {},
     );
     const positionInfo = LineupTableUtils.buildPositionPlayerMap(
       rosterStats.global,
-      teamSeasonLookup
+      teamSeasonLookup,
     );
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
       //(calcs for both luck and non-luck versions)
@@ -125,7 +125,7 @@ export class GameAnalysisUtils {
       false,
       teamSeasonLookup,
       positionInfo,
-      playerInfo
+      playerInfo,
     );
     const rapmInfo =
       TeamReportTableUtils.buildOrInjectRapm(
@@ -138,7 +138,7 @@ export class GameAnalysisUtils {
         {
           ...defaultRapmConfig,
           fixedRegression: 0.8,
-        }
+        },
       ) ||
       ({
         enrichedPlayers: _.values(playerInfo).map((p) => ({
@@ -176,7 +176,7 @@ export class GameAnalysisUtils {
   /** Build part of stint/clump lineup stat overlay */
   static renderStintStats = (
     stints: LineupStintInfo[],
-    teamNotOppo: Boolean
+    teamNotOppo: Boolean,
   ) => {
     const toStats = (stats: LineupStintTeamStats) =>
       stats as Record<string, LineupStintTeamStat>;
@@ -237,7 +237,7 @@ export class GameAnalysisUtils {
         stls: 0,
         blks: 0,
         fouls: 0,
-      }
+      },
     );
     return (
       <div>
@@ -287,15 +287,17 @@ export class GameAnalysisUtils {
     playerOnOffStats: PlayerOnOffStats,
     playerPosInfo: IndivPosInfo,
     seasonStats: Boolean = false,
-    missingGameAdj: number = 1.0
+    perGamePossIn: [number, number] | undefined = undefined,
+    missingGameAdj: number = 1.0,
   ) => {
     const games = seasonStats
       ? _.size(
           LineupUtils.isGameInfoStatSet(stats.game_info)
             ? LineupUtils.getGameInfo(stats.game_info || {})
-            : stats.game_info
+            : stats.game_info,
         ) || 1
       : 1;
+    const perGamePoss = perGamePossIn ?? [1.0, 1.0];
 
     const net =
       (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) -
@@ -306,11 +308,13 @@ export class GameAnalysisUtils {
     const offImpact =
       (playerOnOffStats.rapm?.off_adj_ppp?.value || 0) *
       offPoss *
-      missingGameAdj;
+      missingGameAdj *
+      perGamePoss[0];
     const defImpact =
       (playerOnOffStats.rapm?.def_adj_ppp?.value || 0) *
       defPoss *
-      missingGameAdj;
+      missingGameAdj *
+      perGamePoss[1];
     const sgn = defImpact > 0 ? "-" : "+"; //(def value is reversed)
     const _3pa = stats.total_off_3p_attempts?.value || 0;
     const _3pm = stats.total_off_3p_made?.value || 0;
@@ -358,7 +362,8 @@ export class GameAnalysisUtils {
           )}
           <br />
           <span>
-            Impact: <b>{(offImpact - defImpact).toFixed(1)}</b>pts (
+            Impact{perGamePossIn ? <small> /G</small> : ""}:{" "}
+            <b>{(offImpact - defImpact).toFixed(1)}</b>pts (
             <b>{offImpact.toFixed(1)}</b>
             {sgn}
             <b>{Math.abs(defImpact).toFixed(1)}</b>)
@@ -405,7 +410,7 @@ export class GameAnalysisUtils {
                 ? ((stats.duration_mins?.value || 0) / games).toFixed(1)
                 : (
                     GameAnalysisUtils.fieldValExtractor("off_team_poss_pct")(
-                      stats
+                      stats,
                     ) * 40
                   ).toFixed(1)}
             </b>

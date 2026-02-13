@@ -259,6 +259,9 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
         _.isNil(rawParams.factorMins) || rawParams.factorMins
           ? ["factorMins"]
           : [],
+        _.isNil(rawParams.impactPerGame) || !rawParams.impactPerGame
+          ? ["impactPerGame"]
+          : [],
         !rawParams.posClasses ? ["posClasses"] : [],
         (rawParams.lockAspect || false) ==
         ParamDefaults.defaultMatchupAnalysisAspectLock
