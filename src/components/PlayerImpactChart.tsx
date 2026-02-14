@@ -358,7 +358,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               : 1;
 
             const missingGameAdjustmentImpact = totalGames / playerGames;
-            //(this is only used for x/y so if not factoring in minutes then ignore)
+            //(this is only used for x/y so if not factoring in minutes (game or team min%) then ignore)
             const missingGameAdjustmentXy = factorMins
               ? missingGameAdjustmentImpact
               : 1.0;

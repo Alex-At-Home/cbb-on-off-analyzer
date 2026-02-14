@@ -12,7 +12,7 @@ import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
 import { GameAnalysisUtils } from "../../utils/tables/GameAnalysisUtils";
 import { RatingUtils, NetPoints } from "../../utils/stats/RatingUtils";
 import { IndivStatSet, IndivPosInfo } from "../../utils/StatModels";
-import { PlayerOnOffStats } from "../../utils/stats/LineupUtils";
+import { LineupUtils, PlayerOnOffStats } from "../../utils/stats/LineupUtils";
 
 /** One player point from PlayerImpactChart's buildStats (scatter point) */
 export type PlayerImpactPoint = {
@@ -114,13 +114,21 @@ function buildPlayerRow(
   );
 
   if (ortgDiag && drtgDiag) {
+    const teamGames = seasonStats
+      ? _.size(
+          LineupUtils.isGameInfoStatSet(stats.game_info)
+            ? LineupUtils.getGameInfo(stats.game_info || {})
+            : stats.game_info,
+        ) || 1
+      : 1;
+
     const netPoints = RatingUtils.buildNetPoints(
       stats,
       ortgDiag,
       drtgDiag,
       avgEfficiency,
       scaleType,
-      1.0, //TODO
+      teamGames / (missingGameAdj || 1),
     );
 
     // DEBUG:
@@ -133,10 +141,22 @@ function buildPlayerRow(
     const offSosAdj = adjBreakdownForSoS ? 0 : netPoints.offNetPtsSos;
     const defSosAdj = adjBreakdownForSoS ? 0 : netPoints.defNetPtsSos;
 
+    //TODO: huge mess with players who miss games
+    // 1] T% impact on graph is over games in which has played, so need to dup that in table
+    //    Needs to indicate what's going on though (maybe have a option?), with "!" for player
+    //    and some *s for impacted stats, and show poss
+    // 2]   Currently T% is too low .. but /G is too high wtf (/G poss is correct, T% is too low)
+    //      ah T% is expected I think, I'm not adjusting .. perhaps never adjust inside the
+    //      buildNetRating? or perhaps just adjust consistently
+    // 3] Payne's RAPM is v different to on roster stats table, maybe everyone else also?
+    //    (need to look into this?!)
+
     return {
       title,
       ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),
-      team_poss_pct: { value: possPct }, //TODO: make be raw poss in game mode, or maybe convert to mins?
+      team_poss_pct: {
+        value: possPct * (scaleType == "/G" ? missingGameAdj : 1),
+      }, //TODO: make be raw poss in game mode, or maybe convert to mins?
       diff_adj_rapm: {
         value:
           netPoints.offNetPts - netPoints.defNetPts - offSosAdj - defSosAdj,
