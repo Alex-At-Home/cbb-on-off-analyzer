@@ -53,26 +53,7 @@ export class IndivTableDefs {
       CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter,
     ),
-    sep2: GenericTableOps.addColSeparator(),
-    off_sos_bonus: GenericTableOps.addDataCol(
-      <span>SoS&Delta;</span>,
-      "Offensive Strength-Of-Schedule Bonus",
-      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-      GenericTableOps.pointsOrHtmlFormatter,
-    ),
-    off_rapm_bonus: GenericTableOps.addDataCol(
-      <span>WOWY &Delta;</span>,
-      "Offensive With-Or-Without-You bonus: did the team perform better when player was on court, taking into account their team-mates (RAPM)",
-      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-      GenericTableOps.pointsOrHtmlFormatter,
-    ),
-    usg_bonus: GenericTableOps.addDataCol(
-      <span>Vol &Delta;</span>,
-      "Volume Adjustment - was the players volume a benefit (good volume/efficiency) or a detriment (low volume or low efficiency)",
-      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-      GenericTableOps.pointsOrHtmlFormatter,
-    ),
-    sep3: GenericTableOps.addColSeparator(),
+    sep2: GenericTableOps.addSpecialColSeparator("__off__"),
     off_net_3p: GenericTableOps.addDataCol(
       "3P%",
       "3P% Net Points",
@@ -97,7 +78,7 @@ export class IndivTableDefs {
       CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter,
     ),
-    sep4: GenericTableOps.addColSeparator(),
+    sep3: GenericTableOps.addColSeparator(),
     off_net_ast: GenericTableOps.addDataCol(
       "AST",
       "Net Points from assists",
@@ -116,17 +97,30 @@ export class IndivTableDefs {
       CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter,
     ),
-    sep5: GenericTableOps.addColSeparator(),
-    def_sos_bonus: GenericTableOps.addDataCol(
-      <span>SoS&Delta;</span>,
-      "Defensive Strength-Of-Schedule Bonus",
-      CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
+    sep4: GenericTableOps.addColSeparator(),
+    off_sos_bonus: GenericTableOps.addDataCol(
+      <span>Off. SoS&Delta;</span>,
+      "Offensive Strength-Of-Schedule Bonus",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter,
     ),
-    def_rapm_bonus: GenericTableOps.addDataCol(
-      <span>WOWY &Delta;</span>,
+    off_gravity_bonus: GenericTableOps.addDataCol(
+      <span>Off. G&Delta;</span>,
+      "Offensive With-Or-Without-You bonus: did the team perform better when player was on court, taking into account their team-mates (RAPM)",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    sep5: GenericTableOps.addSpecialColSeparator("__def__"),
+    def_sos_bonus: GenericTableOps.addDataCol(
+      <span>Def. SoS&Delta;</span>,
+      "Defensive Strength-Of-Schedule Bonus",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    def_gravity_bonus: GenericTableOps.addDataCol(
+      <span>Def. G&Delta;</span>,
       "Defensive With-Or-Without-You bonus: did the team perform better when player was on court, taking into account their team-mates (RAPM)",
-      CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter,
     ),
   };

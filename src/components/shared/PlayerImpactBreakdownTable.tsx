@@ -77,42 +77,11 @@ function buildPlayerRow(
   const offAdjRapm = onOffStats.rapm?.off_adj_ppp?.value ?? 0;
   const defAdjRapm = onOffStats.rapm?.def_adj_ppp?.value ?? 0;
   const diffAdjRapm = offAdjRapm - defAdjRapm;
+  // Need to inject these for RatingUtils to work
+  stats.off_adj_rapm = onOffStats.rapm?.off_adj_ppp;
+  stats.def_adj_rapm = onOffStats.rapm?.def_adj_ppp;
 
   const possPct = stats.off_team_poss_pct?.value ?? 0;
-
-  let offSosBonus = 0;
-  let offRapmBonus = 0;
-  let usgBonus = 0;
-  let offNet3P = 0;
-  let offNetMid = 0;
-  let offNetRim = 0;
-  let offNetFt = 0;
-  let offNetAst = 0;
-  let offNetTo = 0;
-  let offNetOrb = 0;
-  let defSosBonus = 0;
-  let defRapmBonus = 0;
-
-  if (ortgDiag && drtgDiag) {
-    const netPoints = RatingUtils.buildNetPoints(
-      stats,
-      ortgDiag,
-      drtgDiag,
-      avgEfficiency,
-    );
-    offNet3P = netPoints.offNetPts3P;
-    offNetMid = netPoints.offNetPtsMid;
-    offNetRim = netPoints.offNetPtsRim;
-    offNetFt = netPoints.offNetPtsFt;
-    offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
-    offNetTo = netPoints.offNetPtsTo;
-    offNetOrb = netPoints.offNetPtsOrb;
-    offRapmBonus = netPoints.offNetPtsImpact;
-    usgBonus = netPoints.offNetPtsSpacing;
-  }
-  if (ortgDiag) {
-    offSosBonus = ortgDiag.SoS_Bonus ?? 0;
-  }
 
   const playerCode = stats.code ?? onOffStats.playerCode ?? point.name;
   const prettified = GameAnalysisUtils.namePrettifier(playerCode);
@@ -141,26 +110,69 @@ function buildPlayerRow(
     </span>
   );
 
-  return {
-    title,
-    ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),
-    team_poss_pct: { value: possPct },
-    diff_adj_rapm: { value: diffAdjRapm },
-    off_adj_rapm: { value: offAdjRapm },
-    def_adj_rapm: { value: defAdjRapm },
-    off_sos_bonus: { value: offSosBonus },
-    off_rapm_bonus: { value: offRapmBonus },
-    usg_bonus: { value: usgBonus },
-    off_net_3p: { value: offNet3P },
-    off_net_mid: { value: offNetMid },
-    off_net_rim: { value: offNetRim },
-    off_net_ft: { value: offNetFt },
-    off_net_ast: { value: offNetAst },
-    off_net_to: { value: offNetTo },
-    off_net_orb: { value: offNetOrb },
-    def_sos_bonus: { value: defSosBonus },
-    def_rapm_bonus: { value: defRapmBonus },
-  };
+  let offSosBonus = 0;
+  let offRapmBonus = 0;
+  let usgBonus = 0;
+  let offNet3P = 0;
+  let offNetMid = 0;
+  let offNetRim = 0;
+  let offNetFt = 0;
+  let offNetAst = 0;
+  let offNetTo = 0;
+  let offNetOrb = 0;
+  let defSosBonus = 0;
+  let defRapmBonus = 0;
+
+  if (ortgDiag && drtgDiag) {
+    const netPoints = RatingUtils.buildNetPoints(
+      stats,
+      ortgDiag,
+      drtgDiag,
+      avgEfficiency,
+      "/G", //TODO
+      1.0, //TODO
+    );
+
+    // DEBUG:
+    // if (team == "XXX") {
+    //   console.log(`${prettified}`, ortgDiag, drtgDiag, netPoints);
+    // }
+
+    offNet3P = netPoints.offNetPts3P;
+    offNetMid = netPoints.offNetPtsMid;
+    offNetRim = netPoints.offNetPtsRim;
+    offNetFt = netPoints.offNetPtsFt;
+    offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
+    offNetTo = netPoints.offNetPtsTo;
+    offNetOrb = netPoints.offNetPtsOrb;
+    offRapmBonus = netPoints.offNetPtsWowy;
+    usgBonus = netPoints.offNetPtsVolume;
+
+    return {
+      title,
+      ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),
+      team_poss_pct: { value: possPct }, //TODO: make be raw poss in game mode, or maybe convert to mins?
+      diff_adj_rapm: { value: netPoints.offNetPts - netPoints.defNetPts },
+      off_adj_rapm: { value: netPoints.offNetPts },
+      def_adj_rapm: { value: -netPoints.defNetPts },
+      off_sos_bonus: { value: netPoints.offNetPtsSos },
+      off_gravity_bonus: { value: offRapmBonus + usgBonus },
+      off_net_3p: { value: offNet3P },
+      off_net_mid: { value: offNetMid },
+      off_net_rim: { value: offNetRim },
+      off_net_ft: { value: offNetFt },
+      off_net_ast: { value: offNetAst },
+      off_net_to: { value: offNetTo },
+      off_net_orb: { value: offNetOrb },
+      def_sos_bonus: { value: -netPoints.defNetPtsSos },
+      def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
+    };
+  } else {
+    return {
+      title,
+      ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),
+    };
+  }
 }
 
 const dataColKeys = [
@@ -169,8 +181,7 @@ const dataColKeys = [
   "off_adj_rapm",
   "def_adj_rapm",
   "off_sos_bonus",
-  "off_rapm_bonus",
-  "usg_bonus",
+  "off_gravity_bonus",
   "off_net_3p",
   "off_net_mid",
   "off_net_rim",
@@ -179,7 +190,7 @@ const dataColKeys = [
   "off_net_to",
   "off_net_orb",
   "def_sos_bonus",
-  "def_rapm_bonus",
+  "def_gravity_bonus",
 ] as const;
 
 /** Build total row (appended at end, not sorted) */

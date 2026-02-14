@@ -967,6 +967,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       </Row>
       {FeatureFlags.showImpactBreakdown && !_.isEmpty(cachedStats.ab) ? (
         <>
+          <Row className="mb-2">
+            <b>Impact Breakdown</b>&nbsp;(Net Points /average):
+          </Row>
           {opponent !== AvailableTeams.noOpponent &&
           cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
             <Row className="mb-2">

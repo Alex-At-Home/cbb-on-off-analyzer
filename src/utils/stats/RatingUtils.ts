@@ -126,7 +126,9 @@ export type ORtgDiagnostics = {
 };
 
 export type NetPoints = {
+  // Off:
   offNetPts: number;
+  offNetPtsDerived: number; //(for diag purpose - should be very close to identical to offNetPts)
   offNetPtsAst2: number;
   offNetPtsAst3: number;
   offNetPtsOrb: number;
@@ -135,8 +137,13 @@ export type NetPoints = {
   offNetPtsMid: number;
   offNetPtsFt: number;
   offNetPtsTo: number;
-  offNetPtsSpacing: number;
-  offNetPtsImpact: number;
+  offNetPtsSos: number;
+  offNetPtsVolume: number;
+  offNetPtsWowy: number;
+  // Def:
+  defNetPts: number;
+  defNetPtsSos: number;
+  defNetPtsWowy: number;
 };
 
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
@@ -408,9 +415,12 @@ export class RatingUtils {
     const Def_SOS = statSet?.def_adj_opp?.value || avgEfficiency;
     // New for assist calcs:
     const Made = shotLocs.map((l) => statGet(`total_off_${l}_made`));
-    const Attempts = shotLocs.map(
+    const AttemptsDenom = shotLocs.map(
       (l) => statGet(`total_off_${l}_attempts`) || 1,
     ); //||1 because used as denom
+    const RealAttempts = shotLocs.map(
+      (l) => statGet(`total_off_${l}_attempts`) || 0,
+    );
     const AssistedPct = shotLocs.map((l) => statGet(`off_${l}_ast`));
     const AssistsTotals = shotLocs.map((l) =>
       statGet(`total_off_ast_${shotLocToLoc[l]!}`),
@@ -512,7 +522,7 @@ export class RatingUtils {
     const FGM_Minus_AssistPenalty = Made.map((playerMade, index) => {
       //(0.5*eFG)*(assisted FGs=FG*assisted)
       const playerEfg =
-        0.5 * shotBonus[index]! * (playerMade / Attempts[index]!);
+        0.5 * shotBonus[index]! * (playerMade / AttemptsDenom[index]!);
       return (
         playerMade *
         (1 -
@@ -610,7 +620,7 @@ export class RatingUtils {
     const shotPossDecomp = shotLocs.map((__, idx) => {
       return (
         FGM_Minus_AssistPenalty[idx] * (1 - Team_ORB_Contrib) +
-        (Attempts[idx] - Made[idx]) * (1 - 1.07 * Team_ORB_pct)
+        (RealAttempts[idx] - Made[idx]) * (1 - 1.07 * Team_ORB_pct)
       );
     });
     const [rimPoss, midPoss, threePoss] = shotPossDecomp!;
@@ -627,7 +637,7 @@ export class RatingUtils {
     //(use the possession count but weighted by pts/scoring-poss)
 
     const PProd_FG_Decomp = shotBonus.map((bonus, idx) => {
-      return FGM_Minus_AssistPenalty[idx] * bonus;
+      return FGM_Minus_AssistPenalty[idx] * bonus * (1 - Team_ORB_Contrib);
     });
     const [rimPtsProd, midPtsProd, threePtsProd] = PProd_FG_Decomp!;
 
@@ -641,10 +651,11 @@ export class RatingUtils {
     // New assist code:
     const PProd_AST_Part = sumBy(AST_Part, (a, ii) => shotBonus[ii]! * a);
 
-    const astThreePProd = AST_Part[2]! * shotBonus[2]!;
-    const astTwoPProd = PProd_AST_Part - astThreePProd;
-    const astTwoPoss = AST_Part[0]! + AST_Part[1]!;
-    const astThreePoss = AST_Part[2]!;
+    const astThreePProd = AST_Part[2]! * shotBonus[2]! * (1 - Team_ORB_Contrib);
+    const astTwoPProd =
+      (PProd_AST_Part - astThreePProd) * (1 - Team_ORB_Contrib);
+    const astTwoPoss = (AST_Part[0]! + AST_Part[1]!) * (1 - Team_ORB_Contrib);
+    const astThreePoss = AST_Part[2]! * (1 - Team_ORB_Contrib);
 
     const Team_FTs_Hit_1plus =
       Team_FTA > 0
@@ -714,7 +725,7 @@ export class RatingUtils {
     // AR1- don't regress the ORtg (don't like "regressing upwards at high usage")
     // AR2- apply the usage to the (ORtg-avg) delta _then_ apply the bonus (at 20% usage)
     //    ^ this one is important because it ensures that the sum of the Adj Rtg+ is the adjusted efficiency
-    // AR3- make the bonus scale be the same for >/< average usage
+    // AR3- make the bonus offScale be the same for >/< average usage
 
     // Calculate actual ORtg usage and use that in all ORtg calcs
     const usage = (100 * TotPoss) / (Team_Poss || 1);
@@ -773,6 +784,7 @@ export class RatingUtils {
             Adj_ORtg,
             Adj_ORtgPlus,
             Usage_Bonus: 5 * (Raw_Productivity - Unadjusted_Productivity),
+            //(^ this is now v small, most of the benefit comes from multiplying the efficiency gain by the usage)
             SoS_Bonus: Adj_ORtgPlus - Raw_Productivity,
           };
         }
@@ -916,32 +928,52 @@ export class RatingUtils {
 
   /** Decompose ORtg and RAPM into something that looks a bit like Net points, if you squint */
   static buildNetPoints = (
-    playerRapm: IndivStatSet,
+    playerRapmAndPossPct: IndivStatSet,
     ortg: ORtgDiagnostics,
     drtg: DRtgDiagnostics,
     avgEff: number,
+    scaleType: "T%" | "P%" | "/G",
+    numGames: number = 1,
   ): NetPoints => {
     const avgPpp = 0.01 * avgEff;
 
-    const offNetPts3P = ortg.threePtsProd - ortg.threePoss * avgPpp;
-    const offNetPtsMid = ortg.midPtsProd - ortg.midPoss * avgPpp;
-    const offNetPtsRim = ortg.rimPtsProd - ortg.rimPoss * avgPpp;
-    const offNetPtsOrb = ortg.ppOrb - ortg.orbPart * avgPpp;
-    const offNetPtsFt = ortg.rawFtm - ortg.ftPoss * avgPpp;
-    const offNetPtsTo = -ortg.rawTo * avgPpp;
-    const offNetPtsAst2 = ortg.astThreePProd - ortg.astThreePoss * avgPpp;
-    const offNetPtsAst3 = ortg.astTwoPProd - ortg.astTwoPoss * avgPpp;
+    // Offense
 
-    const offNetPtsSpacing = ortg.Usage_Bonus * 0.2 * ortg.offPoss * 0.01;
+    const offScale =
+      scaleType == "/G"
+        ? 1.0 / (numGames || 1)
+        : scaleType == "P%"
+          ? 100 / (ortg.offPoss || 1)
+          : (100 * (playerRapmAndPossPct.off_team_poss_pct?.value ?? 0)) /
+            (ortg.offPoss || 1);
 
-    //(TODO remove this when I get a moment)
-    const offNetPtsImpact = _.thru(
-      playerRapm.off_adj_rapm as Statistic,
+    const offNetPts3P =
+      (ortg.threePtsProd - ortg.threePoss * avgPpp) * offScale;
+    const offNetPtsMid = (ortg.midPtsProd - ortg.midPoss * avgPpp) * offScale;
+    const offNetPtsRim = (ortg.rimPtsProd - ortg.rimPoss * avgPpp) * offScale;
+    const offNetPtsOrb = (ortg.ppOrb - ortg.orbPart * avgPpp) * offScale;
+    const offNetPtsFt =
+      (ortg.rawFtm - ortg.ftPoss * avgPpp) *
+      (1 - ortg.teamOrbContribPct) *
+      offScale;
+    const offNetPtsTo = -ortg.rawTo * avgPpp * offScale;
+    const offNetPtsAst2 =
+      (ortg.astThreePProd - ortg.astThreePoss * avgPpp) * offScale;
+    const offNetPtsAst3 =
+      (ortg.astTwoPProd - ortg.astTwoPoss * avgPpp) * offScale;
+
+    //(this is in pts/100 so convert to sample then back to desired offScale)
+    const offNetPtsVolume =
+      ortg.Usage_Bonus * 0.2 * ortg.teamPoss * 0.01 * offScale;
+
+    const offNetPtsSos = ortg.SoS_Bonus * ortg.teamPoss * 0.01 * offScale;
+
+    const offNetPtsWowy = _.thru(
+      playerRapmAndPossPct.off_adj_rapm as Statistic,
       (rapm) => {
         if (rapm) {
-          const delta = (rapm.value || 0) - ortg.adjORtgPlus; //pts/100 SoS-adj
-          const unadjDelta = (ortg.defSos / avgEff) * delta;
-          return unadjDelta * ortg.offPoss * 0.01;
+          const delta = (rapm.value || 0) - ortg.adjORtgPlus; //pts/P100 SoS-adj
+          return delta * ortg.teamPoss * 0.01 * offScale;
         } else {
           return 0.0;
         }
@@ -949,6 +981,13 @@ export class RatingUtils {
     );
 
     const offNetPts =
+      ((playerRapmAndPossPct.off_adj_rapm as Statistic)?.value ??
+        ortg.adjORtgPlus) *
+      ortg.teamPoss *
+      0.01 *
+      offScale;
+
+    const offNetPtsDerived =
       offNetPts3P +
       offNetPtsMid +
       offNetPtsRim +
@@ -957,11 +996,45 @@ export class RatingUtils {
       offNetPtsTo +
       offNetPtsAst2 +
       offNetPtsAst3 +
-      offNetPtsSpacing +
-      offNetPtsImpact;
+      offNetPtsVolume +
+      offNetPtsWowy +
+      offNetPtsSos;
 
+    // Defense:
+
+    const defScale =
+      scaleType == "/G"
+        ? 1.0 / (numGames || 1)
+        : scaleType == "P%"
+          ? 100 / (ortg.offPoss || 1)
+          : ortg.Usage / (ortg.offPoss || 1);
+
+    const defNetPtsWowy = _.thru(
+      playerRapmAndPossPct.def_adj_rapm as Statistic,
+      (rapm) => {
+        if (rapm) {
+          const delta = (rapm.value || 0) - drtg.adjDRtgPlus; //pts/P100 SoS-adj
+          return delta * drtg.oppoPoss * 0.01 * defScale;
+        } else {
+          return 0.0;
+        }
+      },
+    );
+    const defNetPtsBeforeRapm =
+      drtg.adjDRtgPlus * drtg.oppoPoss * 0.01 * defScale;
+
+    const unadjDefNet =
+      (drtg.dRtg - avgEff) * 0.2 * drtg.oppoPoss * 0.01 * defScale;
+
+    // These results are across the full sample (eg 70ish possessions for a game, 1000 possessions
+    // for a season)
+    // To convert to "P%", *100, divide by player poss (offPoss?)
+    // To convert to "T%", *100, divide by player poss (offPoss?), multiply by usage/100
+    // To convert to "/G", divice by number of player games
     return {
+      /// Off:
       offNetPts,
+      offNetPtsDerived,
       offNetPtsAst2,
       offNetPtsAst3,
       offNetPtsOrb,
@@ -970,8 +1043,13 @@ export class RatingUtils {
       offNetPtsMid,
       offNetPtsFt,
       offNetPtsTo,
-      offNetPtsSpacing,
-      offNetPtsImpact,
+      offNetPtsVolume,
+      offNetPtsWowy,
+      offNetPtsSos,
+      // Def:
+      defNetPts: defNetPtsBeforeRapm + defNetPtsWowy,
+      defNetPtsWowy,
+      defNetPtsSos: unadjDefNet - defNetPtsBeforeRapm,
     };
   };
 
