@@ -934,6 +934,7 @@ export class RatingUtils {
 
     const offNetPtsSpacing = ortg.Usage_Bonus * 0.2 * ortg.offPoss * 0.01;
 
+    //(TODO remove this when I get a moment)
     const offNetPtsImpact = _.thru(
       playerRapm.off_adj_rapm as Statistic,
       (rapm) => {

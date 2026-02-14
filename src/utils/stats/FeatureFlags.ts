@@ -27,4 +27,7 @@ export class FeatureFlags {
 
   /** For work in progress on improving the player UX */
   static readonly friendlierInterface = true;
+
+  /** Show impact breakdown tables below PlayerImpactChart (team A / team B) */
+  static readonly showImpactBreakdown = true;
 }
