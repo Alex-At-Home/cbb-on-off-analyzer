@@ -10,7 +10,7 @@ import GenericTable, {
 } from "../GenericTable";
 import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
 import { GameAnalysisUtils } from "../../utils/tables/GameAnalysisUtils";
-import { RatingUtils } from "../../utils/stats/RatingUtils";
+import { RatingUtils, NetPoints } from "../../utils/stats/RatingUtils";
 import { IndivStatSet, IndivPosInfo } from "../../utils/StatModels";
 import { PlayerOnOffStats } from "../../utils/stats/LineupUtils";
 
@@ -35,6 +35,8 @@ type Props = {
   showTeamColumn?: boolean;
   /** Render team cell (e.g. logo); used when showTeamColumn is true */
   teamDisplay?: (teamId: string) => React.ReactNode;
+  adjBreakdownForSoS: boolean;
+  scaleType: "P%" | "T%" | "/G";
 };
 
 const tableDefsBase = IndivTableDefs.impactDecompTable;
@@ -61,6 +63,8 @@ function buildPlayerRow(
   point: PlayerImpactPoint,
   avgEfficiency: number,
   seasonStats: boolean,
+  adjBreakdownForSoS: boolean,
+  scaleType: "T%" | "P%" | "/G",
   teamDisplay?: (teamId: string) => React.ReactNode,
 ): Record<string, { value: number } | React.ReactNode> {
   const {
@@ -76,7 +80,6 @@ function buildPlayerRow(
   // RAPM from enriched players (same as GameAnalysisUtils tooltip)
   const offAdjRapm = onOffStats.rapm?.off_adj_ppp?.value ?? 0;
   const defAdjRapm = onOffStats.rapm?.def_adj_ppp?.value ?? 0;
-  const diffAdjRapm = offAdjRapm - defAdjRapm;
   // Need to inject these for RatingUtils to work
   stats.off_adj_rapm = onOffStats.rapm?.off_adj_ppp;
   stats.def_adj_rapm = onOffStats.rapm?.def_adj_ppp;
@@ -110,61 +113,64 @@ function buildPlayerRow(
     </span>
   );
 
-  let offSosBonus = 0;
-  let offRapmBonus = 0;
-  let usgBonus = 0;
-  let offNet3P = 0;
-  let offNetMid = 0;
-  let offNetRim = 0;
-  let offNetFt = 0;
-  let offNetAst = 0;
-  let offNetTo = 0;
-  let offNetOrb = 0;
-  let defSosBonus = 0;
-  let defRapmBonus = 0;
-
   if (ortgDiag && drtgDiag) {
     const netPoints = RatingUtils.buildNetPoints(
       stats,
       ortgDiag,
       drtgDiag,
       avgEfficiency,
-      "/G", //TODO
+      scaleType,
       1.0, //TODO
     );
 
     // DEBUG:
-    // if (team == "XXX") {
+    // if (team == "Maryland") {
     //   console.log(`${prettified}`, ortgDiag, drtgDiag, netPoints);
     // }
 
-    offNet3P = netPoints.offNetPts3P;
-    offNetMid = netPoints.offNetPtsMid;
-    offNetRim = netPoints.offNetPtsRim;
-    offNetFt = netPoints.offNetPtsFt;
-    offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
-    offNetTo = netPoints.offNetPtsTo;
-    offNetOrb = netPoints.offNetPtsOrb;
-    offRapmBonus = netPoints.offNetPtsWowy;
-    usgBonus = netPoints.offNetPtsVolume;
+    const offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
+
+    const offSosAdj = adjBreakdownForSoS ? 0 : netPoints.offNetPtsSos;
+    const defSosAdj = adjBreakdownForSoS ? 0 : netPoints.defNetPtsSos;
 
     return {
       title,
       ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),
       team_poss_pct: { value: possPct }, //TODO: make be raw poss in game mode, or maybe convert to mins?
-      diff_adj_rapm: { value: netPoints.offNetPts - netPoints.defNetPts },
-      off_adj_rapm: { value: netPoints.offNetPts },
-      def_adj_rapm: { value: -netPoints.defNetPts },
+      diff_adj_rapm: {
+        value:
+          netPoints.offNetPts - netPoints.defNetPts - offSosAdj - defSosAdj,
+      },
+      off_adj_rapm: { value: netPoints.offNetPts - offSosAdj },
+      def_adj_rapm: { value: -netPoints.defNetPts - defSosAdj },
       off_sos_bonus: { value: netPoints.offNetPtsSos },
-      off_gravity_bonus: { value: offRapmBonus + usgBonus },
-      off_net_3p: { value: offNet3P },
-      off_net_mid: { value: offNetMid },
-      off_net_rim: { value: offNetRim },
-      off_net_ft: { value: offNetFt },
-      off_net_ast: { value: offNetAst },
-      off_net_to: { value: offNetTo },
-      off_net_orb: { value: offNetOrb },
-      def_sos_bonus: { value: -netPoints.defNetPtsSos },
+      off_gravity_bonus: {
+        value: netPoints.offNetPtsWowy + netPoints.offNetPtsVolume,
+        extraInfo: (
+          <span>
+            RAPM/WOWY bonus: {netPoints.offNetPtsWowy.toFixed(2)}
+            <br />
+            Shot volume bonus: {netPoints.offNetPtsVolume.toFixed(2)}
+          </span>
+        ),
+      },
+      off_net_3p: { value: netPoints.offNetPts3P },
+      off_net_mid: { value: netPoints.offNetPtsMid },
+      off_net_rim: { value: netPoints.offNetPtsRim },
+      off_net_ft: { value: netPoints.offNetPtsFt },
+      off_net_ast: {
+        value: offNetAst,
+        extraInfo: (
+          <span>
+            2P Assists: {netPoints.offNetPtsAst2.toFixed(2)}
+            <br />
+            3P Assists: {netPoints.offNetPtsAst3.toFixed(2)}
+          </span>
+        ),
+      },
+      off_net_to: { value: netPoints.offNetPtsTo },
+      off_net_orb: { value: netPoints.offNetPtsOrb },
+      def_sos_bonus: { value: netPoints.defNetPtsSos },
       def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
     };
   } else {
@@ -225,6 +231,8 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
   avgEfficiency,
   seasonStats = false,
   showTeamColumn = false,
+  adjBreakdownForSoS,
+  scaleType,
   teamDisplay,
 }) => {
   const tableDefs = showTeamColumn ? getTableDefsWithTeam() : tableDefsBase;
@@ -240,6 +248,8 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
       point,
       avgEfficiency,
       seasonStats,
+      adjBreakdownForSoS,
+      scaleType,
       teamDisplay,
     ),
   );
@@ -264,13 +274,19 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
         tableDefs,
       ),
     ),
-    GenericTableOps.buildDataRow(
-      totalRowData,
-      identityPrefix,
-      noCellMeta,
-      tableDefs,
-    ),
-  ];
+  ].concat(
+    scaleType != "P%"
+      ? [
+          //(total is meaningless for P% since a 5mpg player impact gets same weight as 35mpg)
+          GenericTableOps.buildDataRow(
+            totalRowData,
+            identityPrefix,
+            noCellMeta,
+            tableDefs,
+          ),
+        ]
+      : [],
+  );
 
   return (
     <GenericTable

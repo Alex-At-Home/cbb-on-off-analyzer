@@ -939,13 +939,19 @@ export class RatingUtils {
 
     // Offense
 
+    const offPossPct = playerRapmAndPossPct.off_team_poss_pct?.value ?? 0; //(% of time player is on floor)
+    const offPosWhileOnFloor = ortg.teamPoss;
+
     const offScale =
       scaleType == "/G"
         ? 1.0 / (numGames || 1)
         : scaleType == "P%"
-          ? 100 / (ortg.offPoss || 1)
-          : (100 * (playerRapmAndPossPct.off_team_poss_pct?.value ?? 0)) /
-            (ortg.offPoss || 1);
+          ? 100 / (offPosWhileOnFloor || 1)
+          : (100 * offPossPct) / (offPosWhileOnFloor || 1);
+
+    // These are over the sample
+    // eg in one game Player A has 15 possessions (on floor for 50) and scores say 3pts+, so
+    // P% is 2x (we want on floor for 100)
 
     const offNetPts3P =
       (ortg.threePtsProd - ortg.threePoss * avgPpp) * offScale;
@@ -962,7 +968,8 @@ export class RatingUtils {
     const offNetPtsAst3 =
       (ortg.astTwoPProd - ortg.astTwoPoss * avgPpp) * offScale;
 
-    //(this is in pts/100 so convert to sample then back to desired offScale)
+    // These are all in pts/T100 (because they are derived from RAPM/adj rtg+ which includes usgage)
+
     const offNetPtsVolume =
       ortg.Usage_Bonus * 0.2 * ortg.teamPoss * 0.01 * offScale;
 
@@ -987,6 +994,8 @@ export class RatingUtils {
       0.01 *
       offScale;
 
+    // Final calcs
+
     const offNetPtsDerived =
       offNetPts3P +
       offNetPtsMid +
@@ -1002,12 +1011,15 @@ export class RatingUtils {
 
     // Defense:
 
+    const defPossPct = playerRapmAndPossPct.def_team_poss_pct?.value ?? 0; //(% of time player is on floor)
+    const defPosWhileOnFloor = drtg.oppoPoss;
+
     const defScale =
       scaleType == "/G"
         ? 1.0 / (numGames || 1)
         : scaleType == "P%"
-          ? 100 / (ortg.offPoss || 1)
-          : ortg.Usage / (ortg.offPoss || 1);
+          ? 100 / (defPosWhileOnFloor || 1)
+          : (100 * defPossPct) / (defPosWhileOnFloor || 1);
 
     const defNetPtsWowy = _.thru(
       playerRapmAndPossPct.def_adj_rapm as Statistic,

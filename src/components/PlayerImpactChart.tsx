@@ -135,6 +135,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     "side-by-side" | "separate" | "combined"
   >("side-by-side");
 
+  const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState<boolean>(true);
+
   // Viewport management
 
   const { resolvedTheme } = useTheme();
@@ -582,6 +584,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       </div>
     );
   };
+
+  const scaleType = impactPerGame ? "/G" : factorMins ? "T%" : "P%";
   const wordForOffensive = isSmallScreen ? "Off." : "Offensive";
   const wordForImpact = impactPerGame ? "Impact /G" : "Impact";
   return _.isEmpty(cachedStats.ab) ? (
@@ -994,6 +998,20 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       toggled: breakdownLayout === "combined",
                       onClick: () => setBreakdownLayout("combined"),
                     },
+                    {
+                      label: "| ",
+                      tooltip: "",
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                    },
+                    {
+                      label: "Adj",
+                      tooltip:
+                        "Include SoS adjustment in calcs (means total net won't sum to score differential)",
+                      toggled: adjBreakdownForSoS,
+                      onClick: () => setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                    },
                   ]}
                 />
               </Col>
@@ -1010,6 +1028,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                   avgEfficiency={avgEfficiency}
                   seasonStats={!!seasonStats}
                   showTeamColumn={true}
+                  adjBreakdownForSoS={adjBreakdownForSoS}
+                  scaleType={scaleType}
                   teamDisplay={(teamId) => (
                     <img
                       style={{ width: 16, height: 16 }}
@@ -1035,6 +1055,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         (p: any) => p.seriesId === commonParams.team,
                       ) as PlayerImpactPoint[]
                     }
+                    adjBreakdownForSoS={adjBreakdownForSoS}
+                    scaleType={scaleType}
                     avgEfficiency={avgEfficiency}
                     seasonStats={!!seasonStats}
                   />
@@ -1049,6 +1071,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         (p: any) => p.seriesId === opponent,
                       ) as PlayerImpactPoint[]
                     }
+                    adjBreakdownForSoS={adjBreakdownForSoS}
+                    scaleType={scaleType}
                     avgEfficiency={avgEfficiency}
                     seasonStats={!!seasonStats}
                   />
@@ -1073,6 +1097,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       (p: any) => p.seriesId === commonParams.team,
                     ) as PlayerImpactPoint[]
                   }
+                  adjBreakdownForSoS={adjBreakdownForSoS}
+                  scaleType={scaleType}
                   avgEfficiency={avgEfficiency}
                   seasonStats={!!seasonStats}
                 />
@@ -1087,6 +1113,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         (p: any) => p.seriesId === opponent,
                       ) as PlayerImpactPoint[]
                     }
+                    adjBreakdownForSoS={adjBreakdownForSoS}
+                    scaleType={scaleType}
                     avgEfficiency={avgEfficiency}
                     seasonStats={!!seasonStats}
                   />
