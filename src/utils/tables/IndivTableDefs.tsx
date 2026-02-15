@@ -124,4 +124,62 @@ export class IndivTableDefs {
       GenericTableOps.pointsOrHtmlFormatter,
     ),
   };
+
+  /** Sort options for impact breakdown table (data columns only, asc/desc each) */
+  static readonly impactDecompSortOptions = ((): {
+    label: string;
+    value: string;
+  }[] => {
+    const table = IndivTableDefs.impactDecompTable;
+    const skipKeys = ["title", "sep1", "sep2", "sep3", "sep4", "sep5"];
+    return _.flatMap(
+      _.entries(table).filter(
+        ([k, col]) =>
+          !skipKeys.some((s) => k === s || k.startsWith("sep")) &&
+          (col as GenericTableColProps).widthUnits > 0,
+      ),
+      ([key, col]) => {
+        const name =
+          typeof (col as GenericTableColProps).colName === "string"
+            ? (col as GenericTableColProps).colName
+            : "Impact";
+        return [
+          { label: `${name} (Desc.)`, value: `desc:${key}` },
+          { label: `${name} (Asc.)`, value: `asc:${key}` },
+        ];
+      },
+    );
+  })();
+
+  static readonly defaultImpactDecompSortBy = "desc:team_poss_pct";
+
+  static readonly impactDecompSortField = (
+    sortBy: string,
+    defaultSort: string,
+  ): string | undefined => {
+    if (!sortBy || sortBy === defaultSort) return undefined;
+    const parts = sortBy.split(":");
+    return parts[1];
+  };
+
+  static readonly buildImpactDecompSortCallback = (
+    sortBy: string,
+    sortOptions: { label: string; value: string }[],
+    setSortMenuState: (s: TableSortPopupMenuState | undefined) => void,
+  ) => {
+    return (headerKey: string, ev: any) => {
+      const matchingOptions = sortOptions.filter((opt) => {
+        const field = opt.value.split(":")[1] || "";
+        return field === headerKey;
+      });
+      if (matchingOptions.length > 0) {
+        setSortMenuState({
+          columnKey: headerKey,
+          options: matchingOptions.concat([{ label: "Clear", value: "" }]),
+          anchorEl: ev.currentTarget as HTMLElement,
+          currentSortValue: sortBy,
+        });
+      }
+    };
+  };
 }

@@ -42,10 +42,12 @@ import PlayerImpactBreakdownTable, {
   PlayerImpactPoint,
 } from "./shared/PlayerImpactBreakdownTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faFilter } from "@fortawesome/free-solid-svg-icons";
 import ThemedSelect from "./shared/ThemedSelect";
 import { useTheme } from "next-themes";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import AsyncFormControl from "./shared/AsyncFormControl";
+import InputGroup from "react-bootstrap/InputGroup";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -145,6 +147,50 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultShowImpactBreakdown
       : startingState.showImpactBreakdown,
   );
+  const [breakdownShowFilter, setBreakdownShowFilter] = useState(false);
+  const [breakdownFilterStr, setBreakdownFilterStr] = useState("");
+  const [breakdownShowWalkOns, setBreakdownShowWalkOns] = useState(false);
+
+  // Filter breakdown table points (walk-ons excluded by default; optional text filter)
+  const fragmentDelimiter = breakdownFilterStr.includes(";") ? ";" : ",";
+  const breakdownFilterFragments = breakdownFilterStr
+    .split(fragmentDelimiter)
+    .map((f: string) => _.trim(f))
+    .filter(Boolean);
+  const breakdownFilterPve = breakdownFilterFragments.filter(
+    (f: string) => f[0] !== "-",
+  );
+  const breakdownFilterNve = breakdownFilterFragments
+    .filter((f: string) => f[0] === "-")
+    .map((f: string) => f.substring(1));
+
+  const filterBreakdownPoints = (
+    points: PlayerImpactPoint[],
+  ): PlayerImpactPoint[] =>
+    points.filter((point) => {
+      const possPct = point.stats?.off_team_poss_pct?.value ?? 0;
+      // Backend may store as decimal (0.016) or percentage (1.6); normalize to decimal
+      const walkOnThresh = seasonStats ? 0.1 : 0.05;
+      if (!breakdownShowWalkOns && possPct < walkOnThresh) return false;
+      if (breakdownFilterPve.length === 0 && breakdownFilterNve.length === 0)
+        return true;
+      const fullName = (point.stats as any)?.key ?? point.name ?? "";
+      const code =
+        (point.stats as any)?.code ??
+        point.onOffStats?.playerCode ??
+        point.name ??
+        "";
+      const strToTest = `${fullName} ${code}`.toLowerCase();
+      const matchesPve =
+        breakdownFilterPve.length === 0 ||
+        breakdownFilterPve.some((f: string) =>
+          strToTest.includes(f.toLowerCase()),
+        );
+      const matchesNve = breakdownFilterNve.some((f: string) =>
+        strToTest.includes(f.toLowerCase()),
+      );
+      return matchesPve && !matchesNve;
+    });
 
   // Viewport management
 
@@ -214,6 +260,12 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   // RAPM building
 
   const [cachedStats, setCachedStats] = useState<{ ab: any[] }>({ ab: [] });
+
+  const breakdownPoints = (cachedStats.ab as PlayerImpactPoint[]).filter(
+    (p): p is PlayerImpactPoint => !!p?.seriesId,
+  );
+  const filteredBreakdownPoints = filterBreakdownPoints(breakdownPoints);
+
   useEffect(() => {
     setCachedStats({ ab: [] });
   }, [dataEvent, adjustForLuck]);
@@ -601,6 +653,240 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   const scaleType = impactPerGame ? "/G" : factorMins ? "T%" : "P%";
   const wordForOffensive = isSmallScreen ? "Off." : "Offensive";
   const wordForImpact = impactPerGame ? "Impact /G" : "Impact";
+
+  const chart = React.useMemo(
+    () => (
+      <ResponsiveContainer width={screenWidth} height={screenHeight}>
+        <ScatterChart ref={globalScatterChartRef}>
+          <defs>
+            <linearGradient
+              id="xAxisGradient"
+              x1="0"
+              y1="0"
+              x2={screenWidth}
+              y2="0"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor={themedColorBuilder(-10)} />
+              <stop
+                offset="100%"
+                stopColor={themedColorBuilder(10)}
+                stopOpacity={1}
+              />
+            </linearGradient>
+            <linearGradient
+              id="yAxisGradient"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2={screenHeight}
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor={themedColorBuilder(10)} />
+              <stop
+                offset="100%"
+                stopColor={themedColorBuilder(-10)}
+                stopOpacity={1}
+              />
+            </linearGradient>
+          </defs>
+
+          <ReferenceLine y={0} strokeWidth={1} />
+          <ReferenceLine x={0} strokeWidth={1} />
+
+          <ReferenceArea
+            x1={-graphLimitX}
+            x2={0}
+            y1={graphLimitY}
+            y2={0}
+            fillOpacity={0}
+          >
+            <Label
+              position="insideTopLeft"
+              value={isSmallScreen ? "Good D" : "Negative=Good D"}
+            />
+          </ReferenceArea>
+          <ReferenceArea
+            x1={0}
+            x2={graphLimitX}
+            y1={0}
+            y2={-graphLimitY}
+            fillOpacity={0}
+          >
+            <Label
+              position="insideBottomRight"
+              value={isSmallScreen ? "Good O" : "Positive=Good O"}
+            />
+          </ReferenceArea>
+
+          <Legend
+            verticalAlign="bottom"
+            align="center"
+            iconSize={8}
+            content={iconType == "logo" ? renderCustomizedLegend : undefined}
+          />
+          <XAxis
+            type="number"
+            stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
+            dataKey="x"
+            domain={[-graphLimitX, graphLimitX]}
+            axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
+          >
+            <Label
+              value={
+                factorMins
+                  ? `${wordForOffensive} ${wordForImpact} (pts)`
+                  : `${wordForOffensive} RAPM (pts)`
+              }
+              position="top"
+              style={{ textAnchor: "middle" }}
+              fill={resolvedTheme == "dark" ? "#CCC" : undefined}
+            />
+          </XAxis>
+          <YAxis
+            type="number"
+            dataKey="y"
+            stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
+            domain={[-graphLimitY, graphLimitY]}
+            axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
+            tickFormatter={(s) => `-${s}`.replace("--", "")}
+          >
+            <Label
+              angle={-90}
+              value={
+                factorMins
+                  ? `Defensive ${wordForImpact} (pts)`
+                  : "Defensive RAPM (pts)"
+              }
+              position="insideLeft"
+              style={{ textAnchor: "middle" }}
+              fill={resolvedTheme == "dark" ? "#CCC" : undefined}
+            />
+          </YAxis>
+          {seasonStats ? (
+            <ZAxis type="number" dataKey="z" range={[10, 100]} />
+          ) : undefined}
+          <CartesianGrid strokeDasharray="4" />
+
+          <Scatter
+            data={cachedStats.ab}
+            fill={teamAColor}
+            fillOpacity={
+              iconType == "icon" || iconType == "logo" ? "100%" : "0%"
+            }
+            name={commonParams.team!}
+            shape={iconType == "logo" ? <CustomPngPoint /> : "triangle"}
+            legendType="triangle"
+          >
+            {iconType == "pos" ? (
+              <LabelList
+                style={{ fontSize: "12px", pointerEvents: "none" }}
+                valueAccessor={(p: any) => p.posInfo?.posClass || "??"}
+              />
+            ) : null}
+            {iconType == "jersey" ? (
+              <LabelList
+                style={{ fontSize: "12px", pointerEvents: "none" }}
+                valueAccessor={(p: any) =>
+                  `#${p.stats?.roster?.number || "??"}`
+                }
+              />
+            ) : null}
+            {ScatterChartUtils.buildTidiedLabelList({
+              maxHeight: screenHeight,
+              maxWidth: screenWidth,
+              chartRef: globalScatterChartRef,
+              iconHeightOverride: maybeIconSquareSize(),
+              iconWidthOverride: maybeIconSquareSize(),
+              mutableState: labelState,
+              dataKey: "name",
+              series: cachedStats.ab,
+            })}
+            {_.values(cachedStats.ab).map((p, index) => {
+              return p.seriesId == commonParams.team! ? (
+                <Cell
+                  key={`cellA-${index}`}
+                  fill={themedColorBuilder(p.color)}
+                  opacity={p.filteredOut ? 0.25 : 1}
+                />
+              ) : (
+                <Cell key={`cellA-${index}`} opacity={0} />
+              );
+            })}
+            ;
+          </Scatter>
+          <Scatter
+            data={cachedStats.ab}
+            fill={teamBColor}
+            fillOpacity={
+              iconType == "icon" || iconType == "logo" ? "100%" : "0%"
+            }
+            shape={iconType == "logo" ? <CustomPngPoint /> : "circle"}
+            name={opponent}
+            legendType="circle"
+          >
+            {iconType == "pos" ? (
+              <LabelList
+                style={{ fontSize: "12px", pointerEvents: "none" }}
+                valueAccessor={(p: any) => p.posInfo?.posClass || "??"}
+              />
+            ) : null}
+            {iconType == "jersey" ? (
+              <LabelList
+                style={{ fontSize: "12px", pointerEvents: "none" }}
+                valueAccessor={(p: any) =>
+                  `#${p.stats?.roster?.number || "??"}`
+                }
+              />
+            ) : null}
+            {ScatterChartUtils.buildTidiedLabelList({
+              maxHeight: screenHeight,
+              maxWidth: screenWidth,
+              chartRef: globalScatterChartRef,
+              iconHeightOverride: maybeIconSquareSize(),
+              iconWidthOverride: maybeIconSquareSize(),
+              mutableState: labelState,
+              dataKey: "name",
+              series: cachedStats.ab,
+            })}
+            {_.values(cachedStats.ab).map((p, index) => {
+              return p.seriesId == opponent ? (
+                <Cell
+                  key={`cellB-${index}`}
+                  fill={themedColorBuilder(p.color)}
+                  opacity={p.filteredOut ? 0.25 : 1}
+                />
+              ) : (
+                <Cell key={`cellB-${index}`} opacity={0} />
+              );
+            })}
+            ;
+          </Scatter>
+          <RechartTooltip
+            content={<CustomTooltip />}
+            wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
+            allowEscapeViewBox={{ x: true, y: false }}
+            itemSorter={(item: any) => item.value}
+          />
+        </ScatterChart>
+      </ResponsiveContainer>
+    ),
+    [
+      cachedStats,
+      screenWidth,
+      screenHeight,
+      posClasses,
+      showTeam,
+      showOppo,
+      factorMins,
+      impactPerGame,
+      lockAspect,
+      iconType,
+      resolvedTheme,
+      dataEvent,
+    ],
+  );
+
   return _.isEmpty(cachedStats.ab) ? (
     <Col className="text-center w-100">
       <i>(No Data)</i>
@@ -763,224 +1049,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         </Col>
       </Row>
       <Row>
-        <Col>
-          <ResponsiveContainer width={screenWidth} height={screenHeight}>
-            <ScatterChart ref={globalScatterChartRef}>
-              <defs>
-                <linearGradient
-                  id="xAxisGradient"
-                  x1="0"
-                  y1="0"
-                  x2={screenWidth}
-                  y2="0"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0%" stopColor={themedColorBuilder(-10)} />
-                  <stop
-                    offset="100%"
-                    stopColor={themedColorBuilder(10)}
-                    stopOpacity={1}
-                  />
-                </linearGradient>
-                <linearGradient
-                  id="yAxisGradient"
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2={screenHeight}
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop offset="0%" stopColor={themedColorBuilder(10)} />
-                  <stop
-                    offset="100%"
-                    stopColor={themedColorBuilder(-10)}
-                    stopOpacity={1}
-                  />
-                </linearGradient>
-              </defs>
-
-              <ReferenceLine y={0} strokeWidth={1} />
-              <ReferenceLine x={0} strokeWidth={1} />
-
-              <ReferenceArea
-                x1={-graphLimitX}
-                x2={0}
-                y1={graphLimitY}
-                y2={0}
-                fillOpacity={0}
-              >
-                <Label
-                  position="insideTopLeft"
-                  value={isSmallScreen ? "Good D" : "Negative=Good D"}
-                />
-              </ReferenceArea>
-              <ReferenceArea
-                x1={0}
-                x2={graphLimitX}
-                y1={0}
-                y2={-graphLimitY}
-                fillOpacity={0}
-              >
-                <Label
-                  position="insideBottomRight"
-                  value={isSmallScreen ? "Good O" : "Positive=Good O"}
-                />
-              </ReferenceArea>
-
-              <Legend
-                verticalAlign="bottom"
-                align="center"
-                iconSize={8}
-                content={
-                  iconType == "logo" ? renderCustomizedLegend : undefined
-                }
-              />
-              <XAxis
-                type="number"
-                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
-                dataKey="x"
-                domain={[-graphLimitX, graphLimitX]}
-                axisLine={{ stroke: "url(#xAxisGradient)", strokeWidth: 3 }}
-              >
-                <Label
-                  value={
-                    factorMins
-                      ? `${wordForOffensive} ${wordForImpact} (pts)`
-                      : `${wordForOffensive} RAPM (pts)`
-                  }
-                  position="top"
-                  style={{ textAnchor: "middle" }}
-                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
-                />
-              </XAxis>
-              <YAxis
-                type="number"
-                dataKey="y"
-                stroke={resolvedTheme == "dark" ? "#CCC" : undefined}
-                domain={[-graphLimitY, graphLimitY]}
-                axisLine={{ stroke: "url(#yAxisGradient)", strokeWidth: 3 }}
-                tickFormatter={(s) => `-${s}`.replace("--", "")}
-              >
-                <Label
-                  angle={-90}
-                  value={
-                    factorMins
-                      ? `Defensive ${wordForImpact} (pts)`
-                      : "Defensive RAPM (pts)"
-                  }
-                  position="insideLeft"
-                  style={{ textAnchor: "middle" }}
-                  fill={resolvedTheme == "dark" ? "#CCC" : undefined}
-                />
-              </YAxis>
-              {seasonStats ? (
-                <ZAxis type="number" dataKey="z" range={[10, 100]} />
-              ) : undefined}
-              <CartesianGrid strokeDasharray="4" />
-
-              <Scatter
-                data={cachedStats.ab}
-                fill={teamAColor}
-                fillOpacity={
-                  iconType == "icon" || iconType == "logo" ? "100%" : "0%"
-                }
-                name={commonParams.team!}
-                shape={iconType == "logo" ? <CustomPngPoint /> : "triangle"}
-                legendType="triangle"
-              >
-                {iconType == "pos" ? (
-                  <LabelList
-                    style={{ fontSize: "12px", pointerEvents: "none" }}
-                    valueAccessor={(p: any) => p.posInfo?.posClass || "??"}
-                  />
-                ) : null}
-                {iconType == "jersey" ? (
-                  <LabelList
-                    style={{ fontSize: "12px", pointerEvents: "none" }}
-                    valueAccessor={(p: any) =>
-                      `#${p.stats?.roster?.number || "??"}`
-                    }
-                  />
-                ) : null}
-                {ScatterChartUtils.buildTidiedLabelList({
-                  maxHeight: screenHeight,
-                  maxWidth: screenWidth,
-                  chartRef: globalScatterChartRef,
-                  iconHeightOverride: maybeIconSquareSize(),
-                  iconWidthOverride: maybeIconSquareSize(),
-                  mutableState: labelState,
-                  dataKey: "name",
-                  series: cachedStats.ab,
-                })}
-                {_.values(cachedStats.ab).map((p, index) => {
-                  return p.seriesId == commonParams.team! ? (
-                    <Cell
-                      key={`cellA-${index}`}
-                      fill={themedColorBuilder(p.color)}
-                      opacity={p.filteredOut ? 0.25 : 1}
-                    />
-                  ) : (
-                    <Cell key={`cellA-${index}`} opacity={0} />
-                  );
-                })}
-                ;
-              </Scatter>
-              <Scatter
-                data={cachedStats.ab}
-                fill={teamBColor}
-                fillOpacity={
-                  iconType == "icon" || iconType == "logo" ? "100%" : "0%"
-                }
-                shape={iconType == "logo" ? <CustomPngPoint /> : "circle"}
-                name={opponent}
-                legendType="circle"
-              >
-                {iconType == "pos" ? (
-                  <LabelList
-                    style={{ fontSize: "12px", pointerEvents: "none" }}
-                    valueAccessor={(p: any) => p.posInfo?.posClass || "??"}
-                  />
-                ) : null}
-                {iconType == "jersey" ? (
-                  <LabelList
-                    style={{ fontSize: "12px", pointerEvents: "none" }}
-                    valueAccessor={(p: any) =>
-                      `#${p.stats?.roster?.number || "??"}`
-                    }
-                  />
-                ) : null}
-                {ScatterChartUtils.buildTidiedLabelList({
-                  maxHeight: screenHeight,
-                  maxWidth: screenWidth,
-                  chartRef: globalScatterChartRef,
-                  iconHeightOverride: maybeIconSquareSize(),
-                  iconWidthOverride: maybeIconSquareSize(),
-                  mutableState: labelState,
-                  dataKey: "name",
-                  series: cachedStats.ab,
-                })}
-                {_.values(cachedStats.ab).map((p, index) => {
-                  return p.seriesId == opponent ? (
-                    <Cell
-                      key={`cellB-${index}`}
-                      fill={themedColorBuilder(p.color)}
-                      opacity={p.filteredOut ? 0.25 : 1}
-                    />
-                  ) : (
-                    <Cell key={`cellB-${index}`} opacity={0} />
-                  );
-                })}
-                ;
-              </Scatter>
-              <RechartTooltip
-                content={<CustomTooltip />}
-                wrapperStyle={{ opacity: "0.9", zIndex: 1000 }}
-                allowEscapeViewBox={{ x: true, y: false }}
-                itemSorter={(item: any) => item.value}
-              />
-            </ScatterChart>
-          </ResponsiveContainer>
-        </Col>
+        <Col>{chart}</Col>
       </Row>
       {FeatureFlags.showImpactBreakdown && !_.isEmpty(cachedStats.ab) ? (
         <>
@@ -1032,22 +1101,29 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       cachedStats.ab.some((p: any) => p.seriesId === opponent)
                         ? [
                             {
-                              label: "Side-Side",
-                              tooltip: "Two tables side by side",
-                              toggled: breakdownLayout === "side-by-side",
-                              onClick: () => setBreakdownLayout("side-by-side"),
-                            },
-                            {
-                              label: "Separate",
-                              tooltip: "Two tables in separate rows",
-                              toggled: breakdownLayout === "separate",
-                              onClick: () => setBreakdownLayout("separate"),
-                            },
-                            {
-                              label: "Combined",
-                              tooltip: "Single table with both teams",
-                              toggled: breakdownLayout === "combined",
-                              onClick: () => setBreakdownLayout("combined"),
+                              items: [
+                                {
+                                  label: "Side-Side",
+                                  tooltip: "Side-Side:Two tables side by side",
+                                  toggled: breakdownLayout === "side-by-side",
+                                  onClick: () =>
+                                    setBreakdownLayout("side-by-side"),
+                                },
+                                {
+                                  label: "Separate",
+                                  tooltip:
+                                    "Separate: Two tables, one after the other",
+                                  toggled: breakdownLayout === "separate",
+                                  onClick: () => setBreakdownLayout("separate"),
+                                },
+                                {
+                                  label: "Combined",
+                                  tooltip:
+                                    "Combined: Single table with players from both teams",
+                                  toggled: breakdownLayout === "combined",
+                                  onClick: () => setBreakdownLayout("combined"),
+                                },
+                              ],
                             },
                             {
                               label: "| ",
@@ -1070,6 +1146,66 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                               toggled: true,
                               onClick: () => {},
                               isLabelOnly: true,
+                            },
+                            {
+                              items: [
+                                {
+                                  label: (
+                                    <small>
+                                      P<sup>%</sup>
+                                    </small>
+                                  ),
+                                  tooltip: `P%: Player impact (pts above average) per 100 possessions when they are on the court`,
+                                  toggled: !factorMins && !impactPerGame,
+                                  onClick: () => {
+                                    setFactorMins(false);
+                                    setImpactPerGame(false);
+                                    setCachedStats({ ab: [] });
+                                  },
+                                },
+                                {
+                                  label: (
+                                    <small>
+                                      T<sup>%</sup>
+                                    </small>
+                                  ),
+                                  tooltip: `T%: Player impact (pts above average) per 100 team possessions (so factors in how many minutes they are on the court)`,
+                                  toggled: factorMins && !impactPerGame,
+                                  onClick: () => {
+                                    setFactorMins(true);
+                                    setImpactPerGame(false);
+                                    setCachedStats({ ab: [] });
+                                  },
+                                },
+                                {
+                                  label: (
+                                    <small>
+                                      <sup>/</sup>G
+                                    </small>
+                                  ),
+                                  tooltip: `/G: Player impact per game (pts above average)`,
+                                  toggled: impactPerGame,
+                                  onClick: () => {
+                                    setFactorMins(true);
+                                    setImpactPerGame(true);
+                                    setCachedStats({ ab: [] });
+                                  },
+                                },
+                              ],
+                            },
+                            {
+                              label: "| ",
+                              tooltip: "",
+                              toggled: true,
+                              onClick: () => {},
+                              isLabelOnly: true,
+                            },
+                            {
+                              label: <FontAwesomeIcon icon={faFilter} />,
+                              tooltip: "Show/hide filter for breakdown table",
+                              toggled: breakdownShowFilter,
+                              onClick: () =>
+                                setBreakdownShowFilter(!breakdownShowFilter),
                             },
                           ]
                         : [
@@ -1081,19 +1217,120 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                               onClick: () =>
                                 setAdjBreakdownForSoS(!adjBreakdownForSoS),
                             },
+                            {
+                              label: "| ",
+                              tooltip: "",
+                              toggled: true,
+                              onClick: () => {},
+                              isLabelOnly: true,
+                            },
+                            {
+                              items: [
+                                {
+                                  label: (
+                                    <small>
+                                      P<sup>%</sup>
+                                    </small>
+                                  ),
+                                  tooltip: `P%: Player impact (pts above average) per 100 possessions when they are on the court`,
+                                  toggled: !factorMins && !impactPerGame,
+                                  onClick: () => {
+                                    setFactorMins(false);
+                                    setImpactPerGame(false);
+                                    setCachedStats({ ab: [] });
+                                  },
+                                },
+                                {
+                                  label: (
+                                    <small>
+                                      T<sup>%</sup>
+                                    </small>
+                                  ),
+                                  tooltip: `T%: Player impact (pts above average) per 100 team possessions (so factors in how many minutes they are on the court)`,
+                                  toggled: factorMins && !impactPerGame,
+                                  onClick: () => {
+                                    setFactorMins(true);
+                                    setImpactPerGame(false);
+                                    setCachedStats({ ab: [] });
+                                  },
+                                },
+                                {
+                                  label: (
+                                    <small>
+                                      <sup>/</sup>G
+                                    </small>
+                                  ),
+                                  tooltip: `/G: Player impact per game (pts above average)`,
+                                  toggled: impactPerGame,
+                                  onClick: () => {
+                                    setFactorMins(true);
+                                    setImpactPerGame(true);
+                                    setCachedStats({ ab: [] });
+                                  },
+                                },
+                              ],
+                            },
+                            {
+                              label: "| ",
+                              tooltip: "",
+                              toggled: true,
+                              onClick: () => {},
+                              isLabelOnly: true,
+                            },
+                            {
+                              label: <FontAwesomeIcon icon={faFilter} />,
+                              tooltip: "Show/hide filter for breakdown table",
+                              toggled: breakdownShowFilter,
+                              onClick: () =>
+                                setBreakdownShowFilter(!breakdownShowFilter),
+                            },
                           ]
                     }
                   />
                 </Col>
               </Row>
+              {breakdownShowFilter && (
+                <Row className="mb-2">
+                  <Col xs={12} sm={9}>
+                    <InputGroup size="sm" className="mb-1">
+                      <InputGroup.Prepend>
+                        <InputGroup.Text id="filter">Filter</InputGroup.Text>
+                      </InputGroup.Prepend>
+                      <AsyncFormControl
+                        startingVal={breakdownFilterStr}
+                        onChange={(t) => setBreakdownFilterStr(t)}
+                        timeout={150}
+                        placeholder="e.g. Player1Surname,Player2FirstName,-Player3Name"
+                      />
+                    </InputGroup>
+                  </Col>
+                  <Col xs={12} sm={3} className="pt-1">
+                    <ToggleButtonGroup
+                      labelOverride=" "
+                      items={[
+                        {
+                          label: "Walk-Ons",
+                          tooltip:
+                            "Include players with <10% of possessions (filtered out by default)",
+                          toggled: breakdownShowWalkOns,
+                          onClick: () =>
+                            setBreakdownShowWalkOns(!breakdownShowWalkOns),
+                        },
+                      ]}
+                    />
+                  </Col>
+                </Row>
+              )}
               {breakdownLayout === "combined" &&
               opponent !== AvailableTeams.noOpponent &&
-              cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
+              filteredBreakdownPoints.some(
+                (p: PlayerImpactPoint) => p.seriesId === opponent,
+              ) ? (
                 <Row>
                   <Col xs={12}>
                     <PlayerImpactBreakdownTable
                       team={commonParams.team!}
-                      playerPoints={cachedStats.ab as PlayerImpactPoint[]}
+                      playerPoints={filteredBreakdownPoints}
                       avgEfficiency={avgEfficiency}
                       seasonStats={!!seasonStats}
                       showTeamColumn={true}
@@ -1113,17 +1350,17 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                 </Row>
               ) : breakdownLayout === "separate" &&
                 opponent !== AvailableTeams.noOpponent &&
-                cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
+                filteredBreakdownPoints.some(
+                  (p: PlayerImpactPoint) => p.seriesId === opponent,
+                ) ? (
                 <>
                   <Row>
                     <Col xs={12}>
                       <PlayerImpactBreakdownTable
                         team={commonParams.team!}
-                        playerPoints={
-                          cachedStats.ab.filter(
-                            (p: any) => p.seriesId === commonParams.team,
-                          ) as PlayerImpactPoint[]
-                        }
+                        playerPoints={filteredBreakdownPoints.filter(
+                          (p) => p.seriesId === commonParams.team,
+                        )}
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
                         avgEfficiency={avgEfficiency}
@@ -1135,11 +1372,9 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     <Col xs={12}>
                       <PlayerImpactBreakdownTable
                         team={opponent}
-                        playerPoints={
-                          cachedStats.ab.filter(
-                            (p: any) => p.seriesId === opponent,
-                          ) as PlayerImpactPoint[]
-                        }
+                        playerPoints={filteredBreakdownPoints.filter(
+                          (p) => p.seriesId === opponent,
+                        )}
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
                         avgEfficiency={avgEfficiency}
@@ -1154,18 +1389,18 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     xs={12}
                     md={
                       opponent !== AvailableTeams.noOpponent &&
-                      cachedStats.ab.some((p: any) => p.seriesId === opponent)
+                      filteredBreakdownPoints.some(
+                        (p: PlayerImpactPoint) => p.seriesId === opponent,
+                      )
                         ? 6
                         : 12
                     }
                   >
                     <PlayerImpactBreakdownTable
                       team={commonParams.team!}
-                      playerPoints={
-                        cachedStats.ab.filter(
-                          (p: any) => p.seriesId === commonParams.team,
-                        ) as PlayerImpactPoint[]
-                      }
+                      playerPoints={filteredBreakdownPoints.filter(
+                        (p) => p.seriesId === commonParams.team,
+                      )}
                       adjBreakdownForSoS={adjBreakdownForSoS}
                       scaleType={scaleType}
                       avgEfficiency={avgEfficiency}
@@ -1173,15 +1408,15 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     />
                   </Col>
                   {opponent !== AvailableTeams.noOpponent &&
-                  cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
+                  filteredBreakdownPoints.some(
+                    (p: PlayerImpactPoint) => p.seriesId === opponent,
+                  ) ? (
                     <Col xs={12} md={6}>
                       <PlayerImpactBreakdownTable
                         team={opponent}
-                        playerPoints={
-                          cachedStats.ab.filter(
-                            (p: any) => p.seriesId === opponent,
-                          ) as PlayerImpactPoint[]
-                        }
+                        playerPoints={filteredBreakdownPoints.filter(
+                          (p) => p.seriesId === opponent,
+                        )}
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
                         avgEfficiency={avgEfficiency}

@@ -9,10 +9,14 @@ import GenericTable, {
   GenericTableRow,
 } from "../GenericTable";
 import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
+import TableSortPopupMenu, {
+  TableSortPopupMenuState,
+} from "../shared/TableSortPopupMenu";
 import { GameAnalysisUtils } from "../../utils/tables/GameAnalysisUtils";
 import { RatingUtils, NetPoints } from "../../utils/stats/RatingUtils";
 import { IndivStatSet, IndivPosInfo } from "../../utils/StatModels";
 import { LineupUtils, PlayerOnOffStats } from "../../utils/stats/LineupUtils";
+import { CbbColors } from "../../utils/CbbColors";
 
 /** One player point from PlayerImpactChart's buildStats (scatter point) */
 export type PlayerImpactPoint = {
@@ -46,11 +50,10 @@ function getTableDefsWithTeam(): Record<string, any> {
   const { title, ...rest } = tableDefsBase;
   return {
     title,
-    team: GenericTableOps.addTitle(
+    team: GenericTableOps.addDataCol(
       "",
       "Team",
-      GenericTableOps.defaultRowSpanCalculator,
-      "",
+      CbbColors.applyThemedBackground,
       GenericTableOps.htmlFormatter,
     ),
     ...rest,
@@ -259,14 +262,24 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
   scaleType,
   teamDisplay,
 }) => {
-  const tableDefs = showTeamColumn ? getTableDefsWithTeam() : tableDefsBase;
-  const sortedByPoss = _.orderBy(
-    playerPoints,
-    [(p) => p.stats.off_team_poss_pct?.value ?? 0],
-    ["desc"],
+  const [sortBy, setSortBy] = React.useState(
+    IndivTableDefs.defaultImpactDecompSortBy,
   );
+  const [sortMenuState, setSortMenuState] = React.useState<
+    TableSortPopupMenuState | undefined
+  >(undefined);
 
-  const playerRowsData = sortedByPoss.map((point) =>
+  const sortOptions = IndivTableDefs.impactDecompSortOptions;
+  const handleSortMenuClick = (value: string) => {
+    setSortMenuState(undefined);
+    setSortBy(value || IndivTableDefs.defaultImpactDecompSortBy);
+  };
+
+  const tableDefs = showTeamColumn ? getTableDefsWithTeam() : tableDefsBase;
+  const sortKey = sortBy.split(":")[1];
+  const sortDir = sortBy.startsWith("desc") ? "desc" : "asc";
+
+  const unsortedRowsData = playerPoints.map((point) =>
     buildPlayerRow(
       point.seriesId ?? team,
       point,
@@ -277,29 +290,43 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
       teamDisplay,
     ),
   );
+  const playerRowsData = _.orderBy(
+    unsortedRowsData,
+    [
+      (row) => {
+        const v = row[sortKey];
+        return typeof v === "object" && v !== null && "value" in v
+          ? (v as { value: number }).value
+          : 0;
+      },
+    ],
+    [sortDir],
+  );
 
   const totalRowData = buildTotalRow(playerRowsData, showTeamColumn);
 
-  const subHeaderRow = showTeamColumn ? [] : [
-    GenericTableOps.buildSubHeaderRow(
-      [
-        [
-          <span
-            key="team"
-            style={{
-              display: "block",
-              width: "100%",
-              textAlign: "right",
-            }}
-          >
-            {team}:
-          </span>,
-          1,
-        ],
-      ],
-      "small",
-    )
-  ];
+  const subHeaderRow = showTeamColumn
+    ? []
+    : [
+        GenericTableOps.buildSubHeaderRow(
+          [
+            [
+              <span
+                key="team"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  textAlign: "right",
+                }}
+              >
+                {team}:
+              </span>,
+              1,
+            ],
+          ],
+          "small",
+        ),
+      ];
 
   const tableRows: GenericTableRow[] = subHeaderRow
     .concat(
@@ -326,11 +353,27 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
     );
 
   return (
-    <GenericTable
-      tableFields={tableDefs}
-      tableData={tableRows}
-      cellTooltipMode="missing"
-    />
+    <>
+      <GenericTable
+        tableFields={tableDefs}
+        tableData={tableRows}
+        cellTooltipMode="missing"
+        sortField={IndivTableDefs.impactDecompSortField(
+          sortBy,
+          IndivTableDefs.defaultImpactDecompSortBy,
+        )}
+        onHeaderClick={IndivTableDefs.buildImpactDecompSortCallback(
+          sortBy,
+          sortOptions,
+          setSortMenuState,
+        )}
+      />
+      <TableSortPopupMenu
+        state={sortMenuState}
+        onClick={handleSortMenuClick}
+        onClose={() => setSortMenuState(undefined)}
+      />
+    </>
   );
 };
 

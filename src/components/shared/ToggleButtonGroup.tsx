@@ -69,7 +69,7 @@ const ToggleButtonGroup: React.FunctionComponent<Props> = ({
             </div>
           );
           return maybeOverlayTrigger(
-            <ButtonGroup toggle>
+            <ButtonGroup className="pr-2" toggle>
               {item.items.map((it, itIdx) => (
                 <ToggleButton
                   type="radio"
