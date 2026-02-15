@@ -38,7 +38,6 @@ import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import { IndivPosInfo } from "../utils/StatModels";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import PlayerImpactBreakdownTable, {
   PlayerImpactPoint,
 } from "./shared/PlayerImpactBreakdownTable";
@@ -46,6 +45,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import ThemedSelect from "./shared/ThemedSelect";
 import { useTheme } from "next-themes";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -135,7 +135,16 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     "side-by-side" | "separate" | "combined"
   >("side-by-side");
 
-  const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState<boolean>(true);
+  const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState<boolean>(
+    _.isNil(startingState.adjImpactStats)
+      ? ParamDefaults.defaultAdjImpactStats
+      : startingState.adjImpactStats,
+  );
+  const [showImpactBreakdown, setShowImpactBreakdown] = useState<boolean>(
+    _.isNil(startingState.showImpactBreakdown)
+      ? ParamDefaults.defaultShowImpactBreakdown
+      : startingState.showImpactBreakdown,
+  );
 
   // Viewport management
 
@@ -187,6 +196,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       impactPerGame,
       lockAspect,
       iconType,
+      adjImpactStats: adjBreakdownForSoS,
+      showImpactBreakdown,
     });
   }, [
     posClasses,
@@ -196,6 +207,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     impactPerGame,
     lockAspect,
     iconType,
+    adjBreakdownForSoS,
+    showImpactBreakdown,
   ]);
 
   // RAPM building
@@ -972,156 +985,214 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       {FeatureFlags.showImpactBreakdown && !_.isEmpty(cachedStats.ab) ? (
         <>
           <Row className="mb-2">
-            <b>Impact Breakdown</b>&nbsp;(Net Points /average):
-          </Row>
-          {opponent !== AvailableTeams.noOpponent &&
-          cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
-            <Row className="mb-2">
-              <Col>
-                <ToggleButtonGroup
-                  items={[
-                    {
-                      label: "Side-Side",
-                      tooltip: "Two tables side by side",
-                      toggled: breakdownLayout === "side-by-side",
-                      onClick: () => setBreakdownLayout("side-by-side"),
-                    },
-                    {
-                      label: "Separate",
-                      tooltip: "Two tables in separate rows",
-                      toggled: breakdownLayout === "separate",
-                      onClick: () => setBreakdownLayout("separate"),
-                    },
-                    {
-                      label: "Combined",
-                      tooltip: "Single table with both teams",
-                      toggled: breakdownLayout === "combined",
-                      onClick: () => setBreakdownLayout("combined"),
-                    },
-                    {
-                      label: "| ",
-                      tooltip: "",
-                      toggled: true,
-                      onClick: () => {},
-                      isLabelOnly: true,
-                    },
-                    {
-                      label: "Adj",
-                      tooltip:
-                        "Include SoS adjustment in calcs (means total net won't sum to score differential)",
-                      toggled: adjBreakdownForSoS,
-                      onClick: () => setAdjBreakdownForSoS(!adjBreakdownForSoS),
-                    },
-                  ]}
-                />
-              </Col>
-            </Row>
-          ) : null}
-          {breakdownLayout === "combined" &&
-          opponent !== AvailableTeams.noOpponent &&
-          cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
-            <Row>
-              <Col xs={12}>
-                <PlayerImpactBreakdownTable
-                  team={commonParams.team!}
-                  playerPoints={cachedStats.ab as PlayerImpactPoint[]}
-                  avgEfficiency={avgEfficiency}
-                  seasonStats={!!seasonStats}
-                  showTeamColumn={true}
-                  adjBreakdownForSoS={adjBreakdownForSoS}
-                  scaleType={scaleType}
-                  teamDisplay={(teamId) => (
-                    <img
-                      style={{ width: 16, height: 16 }}
-                      src={`logos/${
-                        resolvedTheme === "dark" ? "dark" : "normal"
-                      }/${teamId}.png`}
-                      alt=""
-                    />
-                  )}
-                />
-              </Col>
-            </Row>
-          ) : breakdownLayout === "separate" &&
-            opponent !== AvailableTeams.noOpponent &&
-            cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
-            <>
-              <Row>
-                <Col xs={12}>
-                  <PlayerImpactBreakdownTable
-                    team={commonParams.team!}
-                    playerPoints={
-                      cachedStats.ab.filter(
-                        (p: any) => p.seriesId === commonParams.team,
-                      ) as PlayerImpactPoint[]
-                    }
-                    adjBreakdownForSoS={adjBreakdownForSoS}
-                    scaleType={scaleType}
-                    avgEfficiency={avgEfficiency}
-                    seasonStats={!!seasonStats}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12}>
-                  <PlayerImpactBreakdownTable
-                    team={opponent}
-                    playerPoints={
-                      cachedStats.ab.filter(
-                        (p: any) => p.seriesId === opponent,
-                      ) as PlayerImpactPoint[]
-                    }
-                    adjBreakdownForSoS={adjBreakdownForSoS}
-                    scaleType={scaleType}
-                    avgEfficiency={avgEfficiency}
-                    seasonStats={!!seasonStats}
-                  />
-                </Col>
-              </Row>
-            </>
-          ) : (
-            <Row>
-              <Col
-                xs={12}
-                md={
-                  opponent !== AvailableTeams.noOpponent &&
-                  cachedStats.ab.some((p: any) => p.seriesId === opponent)
-                    ? 6
-                    : 12
-                }
+            {showImpactBreakdown ? (
+              <>
+                <b>
+                  {impactPerGame
+                    ? "Impact /G Breakdown"
+                    : !factorMins
+                      ? "RAPM Breakdown"
+                      : "Impact Breakdown"}
+                </b>
+                &nbsp;
+                {"(Pts /average):"}
+                &nbsp;
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowImpactBreakdown(false);
+                  }}
+                >
+                  (hide)
+                </a>
+              </>
+            ) : (
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setShowImpactBreakdown(true);
+                }}
               >
-                <PlayerImpactBreakdownTable
-                  team={commonParams.team!}
-                  playerPoints={
-                    cachedStats.ab.filter(
-                      (p: any) => p.seriesId === commonParams.team,
-                    ) as PlayerImpactPoint[]
-                  }
-                  adjBreakdownForSoS={adjBreakdownForSoS}
-                  scaleType={scaleType}
-                  avgEfficiency={avgEfficiency}
-                  seasonStats={!!seasonStats}
-                />
-              </Col>
-              {opponent !== AvailableTeams.noOpponent &&
-              cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
-                <Col xs={12} md={6}>
-                  <PlayerImpactBreakdownTable
-                    team={opponent}
-                    playerPoints={
-                      cachedStats.ab.filter(
-                        (p: any) => p.seriesId === opponent,
-                      ) as PlayerImpactPoint[]
+                Click here to see a breakdown of player impact into shooting,
+                ball-handling, rebounding, and defense
+              </a>
+            )}
+          </Row>
+          {showImpactBreakdown ? (
+            <>
+              <Row className="mb-2">
+                <Col>
+                  <ToggleButtonGroup
+                    items={
+                      opponent !== AvailableTeams.noOpponent &&
+                      cachedStats.ab.some((p: any) => p.seriesId === opponent)
+                        ? [
+                            {
+                              label: "Side-Side",
+                              tooltip: "Two tables side by side",
+                              toggled: breakdownLayout === "side-by-side",
+                              onClick: () => setBreakdownLayout("side-by-side"),
+                            },
+                            {
+                              label: "Separate",
+                              tooltip: "Two tables in separate rows",
+                              toggled: breakdownLayout === "separate",
+                              onClick: () => setBreakdownLayout("separate"),
+                            },
+                            {
+                              label: "Combined",
+                              tooltip: "Single table with both teams",
+                              toggled: breakdownLayout === "combined",
+                              onClick: () => setBreakdownLayout("combined"),
+                            },
+                            {
+                              label: "| ",
+                              tooltip: "",
+                              toggled: true,
+                              onClick: () => {},
+                              isLabelOnly: true,
+                            },
+                            {
+                              label: "Adj",
+                              tooltip:
+                                "Include SoS adjustment in calcs (means total net won't sum to score differential)",
+                              toggled: adjBreakdownForSoS,
+                              onClick: () =>
+                                setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                            },
+                            {
+                              label: "| ",
+                              tooltip: "",
+                              toggled: true,
+                              onClick: () => {},
+                              isLabelOnly: true,
+                            },
+                          ]
+                        : [
+                            {
+                              label: "Adj",
+                              tooltip:
+                                "Include SoS adjustment in calcs (means total net won't sum to score differential)",
+                              toggled: adjBreakdownForSoS,
+                              onClick: () =>
+                                setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                            },
+                          ]
                     }
-                    adjBreakdownForSoS={adjBreakdownForSoS}
-                    scaleType={scaleType}
-                    avgEfficiency={avgEfficiency}
-                    seasonStats={!!seasonStats}
                   />
                 </Col>
-              ) : null}
-            </Row>
-          )}
+              </Row>
+              {breakdownLayout === "combined" &&
+              opponent !== AvailableTeams.noOpponent &&
+              cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
+                <Row>
+                  <Col xs={12}>
+                    <PlayerImpactBreakdownTable
+                      team={commonParams.team!}
+                      playerPoints={cachedStats.ab as PlayerImpactPoint[]}
+                      avgEfficiency={avgEfficiency}
+                      seasonStats={!!seasonStats}
+                      showTeamColumn={true}
+                      adjBreakdownForSoS={adjBreakdownForSoS}
+                      scaleType={scaleType}
+                      teamDisplay={(teamId) => (
+                        <img
+                          style={{ width: 16, height: 16 }}
+                          src={`logos/${
+                            resolvedTheme === "dark" ? "dark" : "normal"
+                          }/${teamId}.png`}
+                          alt=""
+                        />
+                      )}
+                    />
+                  </Col>
+                </Row>
+              ) : breakdownLayout === "separate" &&
+                opponent !== AvailableTeams.noOpponent &&
+                cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
+                <>
+                  <Row>
+                    <Col xs={12}>
+                      <PlayerImpactBreakdownTable
+                        team={commonParams.team!}
+                        playerPoints={
+                          cachedStats.ab.filter(
+                            (p: any) => p.seriesId === commonParams.team,
+                          ) as PlayerImpactPoint[]
+                        }
+                        adjBreakdownForSoS={adjBreakdownForSoS}
+                        scaleType={scaleType}
+                        avgEfficiency={avgEfficiency}
+                        seasonStats={!!seasonStats}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12}>
+                      <PlayerImpactBreakdownTable
+                        team={opponent}
+                        playerPoints={
+                          cachedStats.ab.filter(
+                            (p: any) => p.seriesId === opponent,
+                          ) as PlayerImpactPoint[]
+                        }
+                        adjBreakdownForSoS={adjBreakdownForSoS}
+                        scaleType={scaleType}
+                        avgEfficiency={avgEfficiency}
+                        seasonStats={!!seasonStats}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              ) : (
+                <Row>
+                  <Col
+                    xs={12}
+                    md={
+                      opponent !== AvailableTeams.noOpponent &&
+                      cachedStats.ab.some((p: any) => p.seriesId === opponent)
+                        ? 6
+                        : 12
+                    }
+                  >
+                    <PlayerImpactBreakdownTable
+                      team={commonParams.team!}
+                      playerPoints={
+                        cachedStats.ab.filter(
+                          (p: any) => p.seriesId === commonParams.team,
+                        ) as PlayerImpactPoint[]
+                      }
+                      adjBreakdownForSoS={adjBreakdownForSoS}
+                      scaleType={scaleType}
+                      avgEfficiency={avgEfficiency}
+                      seasonStats={!!seasonStats}
+                    />
+                  </Col>
+                  {opponent !== AvailableTeams.noOpponent &&
+                  cachedStats.ab.some((p: any) => p.seriesId === opponent) ? (
+                    <Col xs={12} md={6}>
+                      <PlayerImpactBreakdownTable
+                        team={opponent}
+                        playerPoints={
+                          cachedStats.ab.filter(
+                            (p: any) => p.seriesId === opponent,
+                          ) as PlayerImpactPoint[]
+                        }
+                        adjBreakdownForSoS={adjBreakdownForSoS}
+                        scaleType={scaleType}
+                        avgEfficiency={avgEfficiency}
+                        seasonStats={!!seasonStats}
+                      />
+                    </Col>
+                  ) : null}
+                </Row>
+              )}
+            </>
+          ) : null}
         </>
       ) : null}
     </Container>

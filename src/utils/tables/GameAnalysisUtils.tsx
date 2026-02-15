@@ -331,6 +331,8 @@ export class GameAnalysisUtils {
     const pts = 3 * _3pm + 2 * (_2pmidm + _2primm) + ftm;
     const trbs = orbs + drbs;
 
+    const missedGames = Math.round(games * (missingGameAdj - 1));
+
     const perG = (n: number) => {
       return seasonStats && n != 0 ? (n / games).toFixed(1) : n.toFixed(0);
     };
@@ -448,6 +450,23 @@ export class GameAnalysisUtils {
           <span>
             ORBs=[<b>{perG(orbs)}</b>] DRBs=[<b>{perG(drbs)}</b>]
           </span>
+          {missingGameAdj > 1 ? (
+            <>
+              <br />
+              <br />
+              <i
+                style={{
+                  maxWidth: "14em",
+                  display: "inline-block",
+                  lineHeight: 1.2,
+                }}
+              >
+                (!) Player has missed {missedGames} game
+                {missedGames > 1 ? "s" : ""}, rate stats shown are for games in
+                which they appeared
+              </i>
+            </>
+          ) : null}
           <br />
         </p>
       </span>

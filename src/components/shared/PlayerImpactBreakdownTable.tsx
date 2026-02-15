@@ -102,13 +102,17 @@ function buildPlayerRow(
     </Tooltip>
   );
   const maybePos = posInfo?.posClass ?? "??";
+  const missedTime = (missingGameAdj ?? 1) > 1.2;
   const title = (
     <span style={{ whiteSpace: "nowrap" }}>
       <sup>
         <small>{maybePos} </small>
       </sup>
       <OverlayTrigger placement="auto" overlay={tooltip}>
-        <b>{prettified}</b>
+        <b>
+          {prettified}
+          {missedTime ? <sup>!</sup> : null}
+        </b>
       </OverlayTrigger>
     </span>
   );
@@ -276,37 +280,50 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
 
   const totalRowData = buildTotalRow(playerRowsData, showTeamColumn);
 
-  const tableRows: GenericTableRow[] = [
+  const subHeaderRow = showTeamColumn ? [] : [
     GenericTableOps.buildSubHeaderRow(
       [
         [
-          showTeamColumn ? <b>Impact breakdown</b> : <b>{team}:</b>,
-          _.size(tableDefs),
+          <span
+            key="team"
+            style={{
+              display: "block",
+              width: "100%",
+              textAlign: "right",
+            }}
+          >
+            {team}:
+          </span>,
+          1,
         ],
       ],
-      "small text-center",
-    ),
-    ...playerRowsData.map((rowData) =>
-      GenericTableOps.buildDataRow(
-        rowData,
-        identityPrefix,
-        noCellMeta,
-        tableDefs,
+      "small",
+    )
+  ];
+
+  const tableRows: GenericTableRow[] = subHeaderRow
+    .concat(
+      playerRowsData.map((rowData) =>
+        GenericTableOps.buildDataRow(
+          rowData,
+          identityPrefix,
+          noCellMeta,
+          tableDefs,
+        ),
       ),
-    ),
-  ].concat(
-    scaleType != "P%"
-      ? [
-          //(total is meaningless for P% since a 5mpg player impact gets same weight as 35mpg)
-          GenericTableOps.buildDataRow(
-            totalRowData,
-            identityPrefix,
-            noCellMeta,
-            tableDefs,
-          ),
-        ]
-      : [],
-  );
+    )
+    .concat(
+      scaleType != "P%"
+        ? [
+            GenericTableOps.buildDataRow(
+              totalRowData,
+              identityPrefix,
+              noCellMeta,
+              tableDefs,
+            ),
+          ]
+        : [],
+    );
 
   return (
     <GenericTable

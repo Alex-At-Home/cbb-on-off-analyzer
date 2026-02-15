@@ -285,6 +285,15 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         rawParams.hideTimeline == ParamDefaults.defaultHideTimeline
           ? ["hideTimeline"]
           : [],
+        (rawParams.adjImpactStats ?? ParamDefaults.defaultAdjImpactStats) ==
+        ParamDefaults.defaultAdjImpactStats
+          ? ["adjImpactStats"]
+          : [],
+        (rawParams.showImpactBreakdown ??
+          ParamDefaults.defaultShowImpactBreakdown) ==
+        ParamDefaults.defaultShowImpactBreakdown
+          ? ["showImpactBreakdown"]
+          : [],
       ]),
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {

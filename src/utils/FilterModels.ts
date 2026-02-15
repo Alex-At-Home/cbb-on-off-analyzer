@@ -140,6 +140,10 @@ export type MatchupFilterParams = {
   shotChartsUseEfg?: boolean;
   customDisplayMode?: string; //(write only: CSV list: can be teamStats|playTypes)
   playStyleConfigStr?: string; //(chart configuration string)
+  /** Impact breakdown table: include SoS adjustment in calcs (adjBreakdownForSoS) */
+  adjImpactStats?: boolean;
+  /** Impact breakdown table: show the breakdown table below the chart */
+  showImpactBreakdown?: boolean;
 };
 
 /** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here
@@ -736,6 +740,8 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisLabelToShow = "No Labels";
   static readonly defaultMatchupAnalysisIconType = "logo";
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
+  static readonly defaultAdjImpactStats = true;
+  static readonly defaultShowImpactBreakdown = false;
   // Timeline view (aggregated stints) defaults:
   static readonly defaultTimelineShowPoss = true;
   static readonly defaultTimelineShowUsage = true;
