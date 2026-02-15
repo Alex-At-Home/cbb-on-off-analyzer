@@ -340,7 +340,7 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
       ),
     )
     .concat(
-      scaleType != "P%"
+      !showTeamColumn && scaleType != "P%"
         ? [
             GenericTableOps.buildDataRow(
               totalRowData,
