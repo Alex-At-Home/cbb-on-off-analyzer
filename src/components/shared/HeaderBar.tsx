@@ -95,8 +95,8 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     return UrlRouting.getLineupLeaderboardUrl(
       getCommonLboardFilterParams(
         commonWithCorrectedYearLboard,
-        tier
-      ) as LineupLeaderboardParams
+        tier,
+      ) as LineupLeaderboardParams,
     );
   }
   // Player Leaderboard
@@ -104,16 +104,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     return UrlRouting.getPlayerLeaderboardUrl(
       getCommonLboardFilterParams(
         commonWithCorrectedYearLboard,
-        tier
-      ) as PlayerLeaderboardParams
+        tier,
+      ) as PlayerLeaderboardParams,
     );
   }
   function getPlayerLeaderboardGeoUrl(tier: "High" | "Medium" | "Low" | "All") {
     return UrlRouting.getPlayerLeaderboardGeoUrl(
       getCommonLboardFilterParams(
         commonWithCorrectedYearLboard,
-        tier
-      ) as PlayerLeaderboardParams
+        tier,
+      ) as PlayerLeaderboardParams,
     );
   }
   function getPlayerLeaderboardTransferPortalUrl() {
@@ -157,12 +157,12 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           getCommonLboardFilterParams({
             ...common,
             year: DateUtils.mostRecentYearWithData,
-          }) as TeamLeaderboardParams
+          }) as TeamLeaderboardParams,
         );
       }
     } else {
       return UrlRouting.getTeamLeaderboardUrl(
-        getCommonLboardFilterParams(common) as TeamLeaderboardParams
+        getCommonLboardFilterParams(common) as TeamLeaderboardParams,
       );
     }
   }
@@ -178,28 +178,28 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     return UrlRouting.getGameUrl(
       {
         ...UrlRouting.removedSavedKeys(
-          HistoryManager.getLastQuery(ParamPrefixes.game) || ""
+          HistoryManager.getLastQuery(ParamPrefixes.game) || "",
         ),
         ...(extraParams || {}),
       } as GameFilterParams,
-      {}
+      {},
     );
   }
   function getLastLineupUrl(extraParams?: LineupFilterParams) {
     return UrlRouting.getLineupUrl(
       {
         ...UrlRouting.removedSavedKeys(
-          HistoryManager.getLastQuery(ParamPrefixes.lineup) || ""
+          HistoryManager.getLastQuery(ParamPrefixes.lineup) || "",
         ),
         ...(extraParams || {}),
       } as LineupFilterParams,
-      {}
+      {},
     );
   }
   function getLastReportUrl(extraParams?: TeamReportFilterParams) {
     return UrlRouting.getTeamReportUrl({
       ...UrlRouting.removedSavedKeys(
-        HistoryManager.getLastQuery(ParamPrefixes.report) || ""
+        HistoryManager.getLastQuery(ParamPrefixes.report) || "",
       ),
       ...(extraParams || {}),
     } as TeamReportFilterParams);
@@ -211,7 +211,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         ...getCommonFilterParams(common),
         ...(extraParams || {}),
       } as GameFilterParams,
-      {}
+      {},
     );
   }
   function getBaseLineupUrl(extraParams?: LineupFilterParams) {
@@ -220,7 +220,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         ...getCommonFilterParams(common),
         ...(extraParams || {}),
       } as LineupFilterParams,
-      {}
+      {},
     );
   }
   function getBaseReportUrl(extraParams?: TeamReportFilterParams) {
@@ -244,7 +244,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     return "";
   };
   const lineupLeaderboardTooltip = (
-    tier: "High" | "Medium" | "Low" | "All"
+    tier: "High" | "Medium" | "Low" | "All",
   ) => {
     return (
       <Tooltip id={"lineupLeaderboardTooltip" + tier}>
@@ -254,7 +254,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     );
   };
   const playerLeaderboardTooltip = (
-    tier: "High" | "Medium" | "Low" | "All"
+    tier: "High" | "Medium" | "Low" | "All",
   ) => {
     return (
       <Tooltip id={"playerLeaderboardTooltip" + tier}>
@@ -432,7 +432,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
     itemName: string,
     tooltip: React.ReactElement<any>,
     url: string,
-    dstPage: string
+    dstPage: string,
   ) => {
     return thisPage == dstPage ? (
       <OverlayTrigger rootClose placement="auto" overlay={tooltip}>
@@ -497,7 +497,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 UrlRouting.getOffseasonLeaderboard({
                   transferInOutMode: true,
                 } as OffseasonLeaderboardParams),
-                `${ParamPrefixes.team}_leaderboard`
+                `${ParamPrefixes.team}_leaderboard`,
               )}
             </Dropdown.Item>
           ) : undefined}
@@ -508,7 +508,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Editable off-season leaderboard!",
                   teamLeaderboardTooltip,
                   getTeamLeaderboardUrl(),
-                  `${ParamPrefixes.team}_leaderboard`
+                  `${ParamPrefixes.team}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Item>
@@ -516,7 +516,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Off-season Tier List!!",
                   offseasonTierListTooltip,
                   UrlRouting.getOffseasonTierList({}),
-                  `${ParamPrefixes.team}_tierList`
+                  `${ParamPrefixes.team}_tierList`,
                 )}
               </Dropdown.Item>
             </>
@@ -526,7 +526,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 "Build your own team leaderboard!",
                 teamLeaderboardTooltip,
                 getTeamLeaderboardUrl(),
-                `${ParamPrefixes.team}_leaderboard`
+                `${ParamPrefixes.team}_leaderboard`,
               )}
             </Dropdown.Item>
           )}
@@ -536,7 +536,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 "Last season's team leaderboard",
                 teamLeaderboardTooltip,
                 getTeamLeaderboardUrl(false),
-                `${ParamPrefixes.team}_leaderboard`
+                `${ParamPrefixes.team}_leaderboard`,
               )}
             </Dropdown.Item>
           ) : null}
@@ -546,7 +546,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "D1 Team Stats Explorer",
               teamStatsExplorerTooltip,
               getTeamStatsExplorerUrl(),
-              `${ParamPrefixes.team}_statsExplorer`
+              `${ParamPrefixes.team}_statsExplorer`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -557,7 +557,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 year: DateUtils.mostRecentYearWithLboardData,
                 title: "Efficiency Landscape",
               }),
-              `${ParamPrefixes.team}_chart`
+              `${ParamPrefixes.team}_chart`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -566,7 +566,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Team Analysis",
               baseGameTooltip,
               getBaseGameUrl(),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -574,7 +574,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Detailed Team Analysis",
               baseGameTooltip,
               getBaseGameUrl(teamAnalysisSettings),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -585,7 +585,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 showTeamPlayTypes: true,
                 teamPlayTypeConfig: "||||all||multi||",
               }),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -594,7 +594,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Team Shot Charts",
               shotChartsTooltip,
               getBaseGameUrl(teamShotChartSettings),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -602,7 +602,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Team On-Off Report",
               baseReportTooltip,
               getBaseReportUrl(),
-              `${ParamPrefixes.report}`
+              `${ParamPrefixes.report}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -611,7 +611,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Build your own off-season roster!",
               teamBuilderTooltip,
               getTeamBuilderUrl(),
-              `${ParamPrefixes.team}_editor`
+              `${ParamPrefixes.team}_editor`,
             )}
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -646,7 +646,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Leaderboard",
               playerLeaderboardTooltip(hasMidMajors ? "All" : "High"),
               getPlayerLeaderboardUrl(hasMidMajors ? "All" : "High"),
-              `${ParamPrefixes.player}_leaderboard`
+              `${ParamPrefixes.player}_leaderboard`,
             )}
           </Dropdown.Item>
           {DateUtils.showOffseasonMetrics ? (
@@ -655,7 +655,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 "Transfer Portal",
                 playerLeaderboardTransferTooltip,
                 getPlayerLeaderboardTransferPortalUrl(),
-                `${ParamPrefixes.player}_leaderboard`
+                `${ParamPrefixes.player}_leaderboard`,
               )}
             </Dropdown.Item>
           ) : null}
@@ -667,7 +667,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               UrlRouting.getPlayerCareer({
                 showExpanded: true,
               }),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <div className="px-3 py-2">
@@ -689,7 +689,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               UrlRouting.getPlayerCareer({
                 hidePlayerOverview: true,
               }),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -698,7 +698,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Roster Analysis",
               baseGameTooltip,
               getBaseGameUrl(basicAnalysisSettings),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -710,7 +710,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 showExpanded: true,
                 calcRapm: true,
               }),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -719,7 +719,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Player Shot Charts",
               shotChartsTooltip,
               getBaseGameUrl(playerShotChartSettings),
-              `${ParamPrefixes.game}`
+              `${ParamPrefixes.game}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -730,7 +730,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               UrlRouting.getPlayerSeasonComparisonUrl({
                 year: DateUtils.mostRecentYearWithLboardData,
               }),
-              `${ParamPrefixes.player}_chart`
+              `${ParamPrefixes.player}_chart`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -739,7 +739,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Player Hometown Maps! (HS 2023+)",
               playerLeaderboardTooltipGeo,
               getPlayerLeaderboardGeoUrl("All"),
-              `${ParamPrefixes.player}_leaderboard_geo`
+              `${ParamPrefixes.player}_leaderboard_geo`,
             )}
           </Dropdown.Item>
           <Dropdown drop="right" as="div" className="dropdown-submenu">
@@ -762,7 +762,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Md/DMV-area players (HS 2023+)",
                   playerLeaderboardTooltipMdDmv2023,
                   getPlayerLeaderboardRegionalUrl("hs_region_dmv"),
-                  `${ParamPrefixes.player}_leaderboard`
+                  `${ParamPrefixes.player}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Divider />
@@ -771,7 +771,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Md/DMV-area players (HS 2017-2024)",
                   playerLeaderboardTooltipMdDmv2017,
                   getPlayerLeaderboardTrackingUrl("__DMV_2017__"),
-                  `${ParamPrefixes.player}_leaderboard`
+                  `${ParamPrefixes.player}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Item>
@@ -779,7 +779,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "European players (HS 2017-2023)",
                   playerLeaderboardTooltipEuro2017,
                   getPlayerLeaderboardTrackingUrl("__EURO_2017__"),
-                  `${ParamPrefixes.player}_leaderboard`
+                  `${ParamPrefixes.player}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Item>
@@ -787,7 +787,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Canadian players (HS 2017-2023)",
                   playerLeaderboardTooltipCanada2017,
                   getPlayerLeaderboardTrackingUrl("__CANADA_2017__"),
-                  `${ParamPrefixes.player}_leaderboard`
+                  `${ParamPrefixes.player}_leaderboard`,
                 )}
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -798,7 +798,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Player On-Off/RAPM Report",
               baseReportTooltip,
               getBaseReportUrl({ incRapm: true }),
-              `${ParamPrefixes.report}`
+              `${ParamPrefixes.report}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -807,7 +807,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Player Positional Analysis",
               chartTooltip,
               "/Charts",
-              "chart"
+              "chart",
             )}
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -830,7 +830,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Lineup Analysis",
               baseLineupTooltip,
               getBaseLineupUrl(),
-              `${ParamPrefixes.lineup}`
+              `${ParamPrefixes.lineup}`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -838,7 +838,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Advanced Lineup Analysis",
               baseLineupTooltip,
               getBaseLineupUrl({ advancedMode: true }),
-              `${ParamPrefixes.lineup}`
+              `${ParamPrefixes.lineup}`,
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -849,7 +849,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 "Leaderboard",
                 lineupLeaderboardTooltip("All"),
                 getLineupLeaderboardUrl("All"),
-                `${ParamPrefixes.lineup}_leaderboard`
+                `${ParamPrefixes.lineup}_leaderboard`,
               )}
             </Dropdown.Item>
           ) : (
@@ -859,7 +859,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Leaderboard - 'high' tier",
                   lineupLeaderboardTooltip("High"),
                   getLineupLeaderboardUrl("High"),
-                  `${ParamPrefixes.lineup}_leaderboard`
+                  `${ParamPrefixes.lineup}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Item>
@@ -867,7 +867,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Leaderboard - 'medium' tier",
                   lineupLeaderboardTooltip("Medium"),
                   getLineupLeaderboardUrl("Medium"),
-                  `${ParamPrefixes.lineup}_leaderboard`
+                  `${ParamPrefixes.lineup}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Item>
@@ -875,7 +875,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                   "Leaderboard - 'low' tier",
                   lineupLeaderboardTooltip("Low"),
                   getLineupLeaderboardUrl("Low"),
-                  `${ParamPrefixes.lineup}_leaderboard`
+                  `${ParamPrefixes.lineup}_leaderboard`,
                 )}
               </Dropdown.Item>
             </>
@@ -901,9 +901,23 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Game Reports",
               gameReportTooltip,
               UrlRouting.getMatchupUrl(
-                getBaseFilterParams(common) as MatchupFilterParams
+                getBaseFilterParams(common) as MatchupFilterParams,
               ),
-              `${ParamPrefixes.gameInfo}_review`
+              `${ParamPrefixes.gameInfo}_review`,
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Game Reports - Net Pts",
+              gameReportTooltip,
+              UrlRouting.getMatchupUrl({
+                ...getBaseFilterParams(common),
+                showImpactBreakdown: true,
+                adjImpactStats: false,
+                impactPerGame: true,
+                factorMins: true,
+              } as MatchupFilterParams),
+              `${ParamPrefixes.gameInfo}_review`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
@@ -911,9 +925,9 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               "Game Previews",
               gameReportTooltip,
               UrlRouting.getMatchupPreviewUrl(
-                getBaseFilterParams(common) as MatchupFilterParams
+                getBaseFilterParams(common) as MatchupFilterParams,
               ),
-              `${ParamPrefixes.gameInfo}_preview`
+              `${ParamPrefixes.gameInfo}_preview`,
             )}
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -987,7 +1001,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
         <Col className="text-center small">
           {buildTeamDropdown(
             _.startsWith(thisPage, ParamPrefixes.team) ||
-              _.startsWith(thisPage, ParamPrefixes.game)
+              _.startsWith(thisPage, ParamPrefixes.game),
           )}
         </Col>
         <Col className="text-center small">
@@ -995,7 +1009,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             _.startsWith(thisPage, ParamPrefixes.player) ||
               _.startsWith(thisPage, ParamPrefixes.game) ||
               _.startsWith(thisPage, ParamPrefixes.report) ||
-              thisPage == "charts"
+              thisPage == "charts",
           )}
         </Col>
         <Col className="text-center small">
