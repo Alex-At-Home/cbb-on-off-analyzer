@@ -120,8 +120,7 @@ export type MatchupFilterParams = {
   // Timeline view (aggregated stints) params:
   showPoss?: boolean; // show possession% bars
   showNet?: boolean; // show net PPP instead of off/def
-  showTimelineFilter?: boolean; // show filter controls
-  timelineFilterStr?: string; // player filter string
+  timelineFilterStr?: string; // player filter string (filter UI shown when non-empty)
   showWalkOns?: boolean; // include walk-ons (<10% poss)
   // Collapse states for charts:
   hidePlayTypes?: boolean;
@@ -144,6 +143,10 @@ export type MatchupFilterParams = {
   adjImpactStats?: boolean;
   /** Impact breakdown table: show the breakdown table below the chart */
   showImpactBreakdown?: boolean;
+  /** Impact breakdown table: player filter string (e.g. "Name1,Name2,-Name3") */
+  breakdownFilterStr?: string;
+  /** Impact breakdown table: include walk-ons (<10% poss); default false */
+  breakdownShowWalkOns?: boolean;
 };
 
 /** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here
@@ -742,12 +745,13 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
   static readonly defaultAdjImpactStats = true;
   static readonly defaultShowImpactBreakdown = false;
+  static readonly defaultBreakdownFilterStr = "";
+  static readonly defaultBreakdownShowWalkOns = false;
   // Timeline view (aggregated stints) defaults:
   static readonly defaultTimelineShowPoss = true;
   static readonly defaultTimelineShowUsage = true;
   static readonly defaultTimelineShowPpp = false;
   static readonly defaultTimelineShowNet = true;
-  static readonly defaultTimelineShowFilter = false;
   static readonly defaultTimelineFilterStr = "";
   static readonly defaultTimelineShowWalkOns = false;
   // Chart collapse state defaults (false = expanded):

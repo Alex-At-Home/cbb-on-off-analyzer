@@ -147,9 +147,17 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultShowImpactBreakdown
       : startingState.showImpactBreakdown,
   );
-  const [breakdownShowFilter, setBreakdownShowFilter] = useState(false);
-  const [breakdownFilterStr, setBreakdownFilterStr] = useState("");
-  const [breakdownShowWalkOns, setBreakdownShowWalkOns] = useState(false);
+  const [breakdownShowFilter, setBreakdownShowFilter] = useState(
+    !!(startingState.breakdownFilterStr ?? "").trim(),
+  );
+  const [breakdownFilterStr, setBreakdownFilterStr] = useState(
+    startingState.breakdownFilterStr ?? ParamDefaults.defaultBreakdownFilterStr,
+  );
+  const [breakdownShowWalkOns, setBreakdownShowWalkOns] = useState(
+    _.isNil(startingState.breakdownShowWalkOns)
+      ? ParamDefaults.defaultBreakdownShowWalkOns
+      : startingState.breakdownShowWalkOns,
+  );
 
   // Filter breakdown table points (walk-ons excluded by default; optional text filter)
   const fragmentDelimiter = breakdownFilterStr.includes(";") ? ";" : ",";
@@ -244,6 +252,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       iconType,
       adjImpactStats: adjBreakdownForSoS,
       showImpactBreakdown,
+      breakdownFilterStr:
+        breakdownFilterStr !== ParamDefaults.defaultBreakdownFilterStr
+          ? breakdownFilterStr
+          : undefined,
+      breakdownShowWalkOns:
+        breakdownShowWalkOns !== ParamDefaults.defaultBreakdownShowWalkOns
+          ? breakdownShowWalkOns
+          : undefined,
     });
   }, [
     posClasses,
@@ -255,6 +271,8 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     iconType,
     adjBreakdownForSoS,
     showImpactBreakdown,
+    breakdownFilterStr,
+    breakdownShowWalkOns,
   ]);
 
   // RAPM building

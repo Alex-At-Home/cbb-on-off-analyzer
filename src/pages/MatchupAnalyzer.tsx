@@ -294,6 +294,14 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultShowImpactBreakdown
           ? ["showImpactBreakdown"]
           : [],
+        !rawParams.breakdownFilterStr ||
+        rawParams.breakdownFilterStr == ParamDefaults.defaultBreakdownFilterStr
+          ? ["breakdownFilterStr"]
+          : [],
+        _.isNil(rawParams.breakdownShowWalkOns) ||
+        rawParams.breakdownShowWalkOns == ParamDefaults.defaultBreakdownShowWalkOns
+          ? ["breakdownShowWalkOns"]
+          : [],
       ]),
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {

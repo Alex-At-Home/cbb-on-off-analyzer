@@ -138,11 +138,9 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     undefined,
   );
 
-  // Filter state
+  // Filter state (filter UI visible when filter string is non-empty, like player impact breakdown)
   const [showFilter, setShowFilter] = useState<boolean>(
-    _.isNil(startingState.showTimelineFilter)
-      ? ParamDefaults.defaultTimelineShowFilter
-      : startingState.showTimelineFilter,
+    !!(startingState.timelineFilterStr ?? "").trim(),
   );
   const [filterStr, setFilterStr] = useState<string>(
     _.isNil(startingState.timelineFilterStr)
@@ -178,10 +176,6 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
         showPpp !== ParamDefaults.defaultTimelineShowPpp ? showPpp : undefined,
       showNet:
         showNet !== ParamDefaults.defaultTimelineShowNet ? showNet : undefined,
-      showTimelineFilter:
-        showFilter !== ParamDefaults.defaultTimelineShowFilter
-          ? showFilter
-          : undefined,
       timelineFilterStr:
         filterStr !== ParamDefaults.defaultTimelineFilterStr
           ? filterStr
@@ -204,7 +198,6 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
     showUsage,
     showPpp,
     showNet,
-    showFilter,
     filterStr,
     showWalkOns,
     showLabels,

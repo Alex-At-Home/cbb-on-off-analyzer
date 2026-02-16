@@ -297,10 +297,6 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
         rawParams.showNet == ParamDefaults.defaultTimelineShowNet
           ? ["showNet"]
           : [],
-        _.isNil(rawParams.showTimelineFilter) ||
-        rawParams.showTimelineFilter == ParamDefaults.defaultTimelineShowFilter
-          ? ["showTimelineFilter"]
-          : [],
         !rawParams.timelineFilterStr ||
         rawParams.timelineFilterStr == ParamDefaults.defaultTimelineFilterStr
           ? ["timelineFilterStr"]
@@ -342,6 +338,14 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
           ParamDefaults.defaultShowImpactBreakdown) ==
         ParamDefaults.defaultShowImpactBreakdown
           ? ["showImpactBreakdown"]
+          : [],
+        !rawParams.breakdownFilterStr ||
+        rawParams.breakdownFilterStr == ParamDefaults.defaultBreakdownFilterStr
+          ? ["breakdownFilterStr"]
+          : [],
+        _.isNil(rawParams.breakdownShowWalkOns) ||
+        rawParams.breakdownShowWalkOns == ParamDefaults.defaultBreakdownShowWalkOns
+          ? ["breakdownShowWalkOns"]
           : [],
       ]),
     );
