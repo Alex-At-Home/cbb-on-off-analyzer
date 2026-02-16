@@ -45,7 +45,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faFilter } from "@fortawesome/free-solid-svg-icons";
 import ThemedSelect from "./shared/ThemedSelect";
 import { useTheme } from "next-themes";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import AsyncFormControl from "./shared/AsyncFormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 
@@ -1070,7 +1069,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       <Row>
         <Col>{chart}</Col>
       </Row>
-      {FeatureFlags.showImpactBreakdown && !_.isEmpty(cachedStats.ab) ? (
+      {!_.isEmpty(cachedStats.ab) ? (
         <>
           <Row className="mb-2">
             {showImpactBreakdown ? (

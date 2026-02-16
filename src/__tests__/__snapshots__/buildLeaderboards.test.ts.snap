@@ -86,10 +86,10 @@ Array [
         "value": 108.03972067039106,
       },
       "off_adj_prod": Object {
-        "value": 3.973522304645766,
+        "value": 3.5539622213383826,
       },
       "off_adj_rtg": Object {
-        "value": 4.579914443257079,
+        "value": 4.096326045349512,
       },
       "off_assist": Object {
         "value": 0.2916666666666667,
@@ -406,10 +406,10 @@ Array [
         "value": 107.7926845637584,
       },
       "off_adj_prod": Object {
-        "value": -0.5033100013198395,
+        "value": -1.019493445585104,
       },
       "off_adj_rtg": Object {
-        "value": -0.697381502829424,
+        "value": -1.4126003245365315,
       },
       "off_assist": Object {
         "value": 0.10185185185185185,
@@ -741,10 +741,10 @@ Array [
         "value": 108.03972067039106,
       },
       "off_adj_prod": Object {
-        "value": 3.973522304645766,
+        "value": 3.5539622213383826,
       },
       "off_adj_rtg": Object {
-        "value": 4.579914443257079,
+        "value": 4.096326045349512,
       },
       "off_assist": Object {
         "value": 0.2916666666666667,
@@ -1395,7 +1395,7 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "value": 4.579914443257079,
+          "value": 4.096326045349512,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -1452,7 +1452,7 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "value": -0.697381502829424,
+          "value": -1.4126003245365315,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -1906,7 +1906,7 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "value": 4.579914443257079,
+          "value": 4.096326045349512,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -1971,7 +1971,7 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "value": -0.697381502829424,
+          "value": -1.4126003245365315,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -2433,7 +2433,7 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "value": 4.579914443257079,
+          "value": 4.096326045349512,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -2490,7 +2490,7 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "value": -0.697381502829424,
+          "value": -1.4126003245365315,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -2957,7 +2957,7 @@ Array [
           "value": 0.4887640449438202,
         },
         "off_adj_rtg": Object {
-          "value": 4.579914443257079,
+          "value": 4.096326045349512,
         },
         "off_assist": Object {
           "value": 0.2916666666666667,
@@ -3014,7 +3014,7 @@ Array [
           "value": 0.5566666666666666,
         },
         "off_adj_rtg": Object {
-          "value": -0.697381502829424,
+          "value": -1.4126003245365315,
         },
         "off_assist": Object {
           "value": 0.10185185185185185,
@@ -24128,10 +24128,10 @@ Object {
       0.4887640449438202,
     ],
     "off_adj_prod": Array [
-      -0.5033100013198395,
+      -1.019493445585104,
     ],
     "off_adj_rtg": Array [
-      -0.697381502829424,
+      -1.4126003245365315,
     ],
     "off_assist": Array [
       0.10185185185185185,
@@ -24837,25 +24837,25 @@ Object {
     "off_adj_prod": Object {
       "isPct": undefined,
       "lut": Object {
-        "-5": Array [
+        "-10": Array [
           0,
-          -0.50331,
+          -1.01949345,
         ],
       },
       "lutMult": 10,
-      "min": -0.50331,
+      "min": -1.01949345,
       "size": 1,
     },
     "off_adj_rtg": Object {
       "isPct": undefined,
       "lut": Object {
-        "-7": Array [
+        "-14": Array [
           0,
-          -0.6973815,
+          -1.41260032,
         ],
       },
       "lutMult": 10,
-      "min": -0.6973815,
+      "min": -1.41260032,
       "size": 1,
     },
     "off_assist": Object {
