@@ -99,7 +99,7 @@ function buildPlayerRow(
         onOffStats,
         posInfo ?? ({} as IndivPosInfo),
         seasonStats,
-        perGamePoss,
+        scaleType === "/G" ? perGamePoss : undefined,
         missingGameAdj,
       )}
     </Tooltip>
@@ -121,7 +121,7 @@ function buildPlayerRow(
   );
 
   if (ortgDiag && drtgDiag) {
-    const teamGames = seasonStats
+    const playerTeamGames = seasonStats
       ? _.size(
           LineupUtils.isGameInfoStatSet(stats.game_info)
             ? LineupUtils.getGameInfo(stats.game_info || {})
@@ -135,12 +135,18 @@ function buildPlayerRow(
       drtgDiag,
       avgEfficiency,
       scaleType,
-      teamGames / (missingGameAdj || 1),
+      playerTeamGames,
+      scaleType === "T%" ? missingGameAdj : 1,
     );
 
-    // DEBUG:
+    //DEBUG:
     // if (team == "Maryland") {
-    //   console.log(`${prettified}`, ortgDiag, drtgDiag, netPoints);
+    //   console.log(
+    //     `${prettified}: [${playerTeamGames}]`,
+    //     ortgDiag,
+    //     drtgDiag,
+    //     netPoints,
+    //   );
     // }
 
     const offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
@@ -148,13 +154,6 @@ function buildPlayerRow(
     const offSosAdj = adjBreakdownForSoS ? 0 : netPoints.offNetPtsSos;
     const defSosAdj = adjBreakdownForSoS ? 0 : netPoints.defNetPtsSos;
 
-    //TODO: huge mess with players who miss games
-    // 1] T% impact on graph is over games in which has played, so need to dup that in table
-    //    Needs to indicate what's going on though (maybe have a option?), with "!" for player
-    //    and some *s for impacted stats, and show poss
-    // 2]   Currently T% is too low .. but /G is too high wtf (/G poss is correct, T% is too low)
-    //      ah T% is expected I think, I'm not adjusting .. perhaps never adjust inside the
-    //      buildNetRating? or perhaps just adjust consistently
     // 3] Payne's RAPM is v different to on roster stats table, maybe everyone else also?
     //    (need to look into this?!)
 
@@ -162,7 +161,11 @@ function buildPlayerRow(
       title,
       ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),
       team_poss_pct: {
-        value: possPct * (scaleType == "/G" ? missingGameAdj : 1),
+        value: possPct * missingGameAdj,
+        extraInfo:
+          missingGameAdj > 1
+            ? `Ignoring missing games, would be [${(possPct * 100).toFixed(1)}%]`
+            : undefined,
       }, //TODO: make be raw poss in game mode, or maybe convert to mins?
       diff_adj_rapm: {
         value:
@@ -209,7 +212,6 @@ function buildPlayerRow(
 }
 
 const dataColKeys = [
-  "team_poss_pct",
   "diff_adj_rapm",
   "off_adj_rapm",
   "def_adj_rapm",
@@ -229,22 +231,46 @@ const dataColKeys = [
 /** Build total row (appended at end, not sorted) */
 function buildTotalRow(
   rows: Record<string, { value: number } | React.ReactNode>[],
-  showTeamColumn?: boolean,
+  weightByPoss: boolean,
+  seasonStats: boolean,
 ): Record<string, { value: number } | React.ReactNode> {
   const total: Record<string, { value: number } | React.ReactNode> = {
-    title: <i>Total</i>,
-    ...(showTeamColumn ? { team: <i>Total</i> } : {}),
-    team_poss_pct: { value: 1.0 },
+    title: seasonStats ? (
+      <OverlayTrigger
+        placement="auto"
+        overlay={
+          <Tooltip id={`impactBreakdown-total`}>
+            {weightByPoss
+              ? "Note - for players who have missed games uses their season rates stats (not just for games in which they played)"
+              : "Note - for players who have missed games uses their rate stats from games in which they played, so totals aren't exactly weighted averages"}
+          </Tooltip>
+        }
+      >
+        <i>
+          Total<sup>*</sup>
+        </i>
+      </OverlayTrigger>
+    ) : (
+      <i>Total</i>
+    ),
   };
+  const totalTeamPossPct = weightByPoss
+    ? _.sumBy(rows, (r) => (r.team_poss_pct as any)?.value ?? 0)
+    : 1.0;
   for (const key of dataColKeys) {
-    if (key === "team_poss_pct") continue;
     const sum = _.sumBy(rows, (r) => {
       const v = r[key];
-      return typeof v === "object" && v !== null && "value" in v
-        ? (v as { value: number }).value
-        : 0;
+      const valToSum =
+        typeof v === "object" && v !== null && "value" in v
+          ? (v as { value: number }).value
+          : 0;
+      if (weightByPoss) {
+        return 5 * valToSum * ((r.team_poss_pct as any)?.value ?? 0);
+      } else {
+        return valToSum;
+      }
     });
-    total[key] = { value: sum };
+    total[key] = { value: sum / (totalTeamPossPct || 1) };
   }
   return total;
 }
@@ -303,7 +329,11 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
     [sortDir],
   );
 
-  const totalRowData = buildTotalRow(playerRowsData, showTeamColumn);
+  const totalRowData = buildTotalRow(
+    playerRowsData,
+    scaleType === "P%",
+    Boolean(seasonStats),
+  );
 
   const subHeaderRow = showTeamColumn
     ? []
@@ -340,7 +370,7 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
       ),
     )
     .concat(
-      !showTeamColumn && scaleType != "P%"
+      !showTeamColumn
         ? [
             GenericTableOps.buildDataRow(
               totalRowData,
@@ -355,6 +385,7 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
   return (
     <>
       <GenericTable
+        tableCopyId={`playTypeStats_${team.replace(/[^a-zA-Z]/g, "")}`}
         tableFields={tableDefs}
         tableData={tableRows}
         cellTooltipMode="missing"

@@ -934,6 +934,7 @@ export class RatingUtils {
     avgEff: number,
     scaleType: "T%" | "P%" | "/G",
     numGames: number = 1,
+    missingGameAdjument: number = 1,
   ): NetPoints => {
     const avgPpp = 0.01 * avgEff;
 
@@ -947,7 +948,8 @@ export class RatingUtils {
         ? 1.0 / (numGames || 1)
         : scaleType == "P%"
           ? 100 / (offPosWhileOnFloor || 1)
-          : (100 * offPossPct) / (offPosWhileOnFloor || 1);
+          : (100 * offPossPct * missingGameAdjument) /
+            (offPosWhileOnFloor || 1);
 
     // These are over the sample
     // eg in one game Player A has 15 possessions (on floor for 50) and scores say 3pts+, so
@@ -1019,7 +1021,8 @@ export class RatingUtils {
         ? 1.0 / (numGames || 1)
         : scaleType == "P%"
           ? 100 / (defPosWhileOnFloor || 1)
-          : (100 * defPossPct) / (defPosWhileOnFloor || 1);
+          : (100 * missingGameAdjument * defPossPct) /
+            (defPosWhileOnFloor || 1);
 
     const defNetPtsWowy = _.thru(
       playerRapmAndPossPct.def_adj_rapm as Statistic,

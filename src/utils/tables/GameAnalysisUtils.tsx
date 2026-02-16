@@ -86,6 +86,7 @@ export class GameAnalysisUtils {
     adjustForLuck: boolean,
     luckConfig: LuckParams,
     avgEfficiency: number,
+    singleGameMode: Boolean = true, //(use a stricted regression strategy than over big samples)
   ): GameStatsCache => {
     if (!lineupStats.lineups) {
       return { playerInfo: {}, positionInfo: {}, rapmInfo: undefined };
@@ -137,7 +138,7 @@ export class GameAnalysisUtils {
         undefined,
         {
           ...defaultRapmConfig,
-          fixedRegression: 0.8,
+          ...(singleGameMode ? { fixedRegression: 0.8 } : {}),
         },
       ) ||
       ({

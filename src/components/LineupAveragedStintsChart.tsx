@@ -326,6 +326,7 @@ const LineupAveragedStintsChart: React.FunctionComponent<Props> = ({
       adjustForLuck,
       luckConfig,
       avgEfficiency,
+      false,
     );
   };
 

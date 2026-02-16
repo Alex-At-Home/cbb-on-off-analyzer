@@ -405,6 +405,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         adjustForLuck,
         luckConfig,
         avgEfficiency,
+        !seasonStats,
       ),
       ({ playerInfo, positionInfo, rapmInfo }) => {
         return _.chain(rapmInfo?.enrichedPlayers || [])
@@ -1299,7 +1300,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       <AsyncFormControl
                         startingVal={breakdownFilterStr}
                         onChange={(t) => setBreakdownFilterStr(t)}
-                        timeout={150}
+                        timeout={500}
                         placeholder="e.g. Player1Surname,Player2FirstName,-Player3Name"
                       />
                     </InputGroup>

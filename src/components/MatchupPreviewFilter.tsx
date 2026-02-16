@@ -507,7 +507,6 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       : params.baseQuery,
     showRoster: true,
     calcRapm: true,
-    rapmRegressMode: "0.8",
     showExpanded: true,
     teamShotCharts: true,
   });

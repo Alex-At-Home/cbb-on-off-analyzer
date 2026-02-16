@@ -137,7 +137,7 @@ type Props = {
 const getRosterStats = (
   key: OnOffBaselineOtherEnum,
   rosterModel: RosterStatsModel,
-  otherIndex?: number
+  otherIndex?: number,
 ): Array<IndivStatSet> => {
   if (key == "other") {
     return rosterModel.other?.[otherIndex || 0] || [];
@@ -150,7 +150,7 @@ const getRosterStats = (
 const getTeamStats = (
   key: OnOffBaselineOtherEnum,
   teamModel: TeamStatsModel,
-  otherIndex?: number
+  otherIndex?: number,
 ): TeamStatSet => {
   if (key == "other") {
     return teamModel.other?.[otherIndex || 0] || StatModels.emptyTeam();
@@ -163,7 +163,7 @@ const getTeamStats = (
 const getPlayerShotChartStats = (
   key: OnOffBaselineOtherEnum,
   shotChartModel: PlayerShotStatsModel,
-  otherIndex?: number
+  otherIndex?: number,
 ): Record<PlayerId, ShotStats> => {
   if (key == "other") {
     return shotChartModel.other?.[otherIndex || 0] || {};
@@ -206,7 +206,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [showGrades, setShowGrades] = useState(
     _.isNil(gameFilterParams.showPlayerGrades)
       ? ParamDefaults.defaultEnabledGrade
-      : gameFilterParams.showPlayerGrades
+      : gameFilterParams.showPlayerGrades,
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);
@@ -217,7 +217,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [showShotCharts, setShowShotCharts] = useState<boolean>(
     _.isNil(gameFilterParams.playerShotCharts)
       ? false
-      : gameFilterParams.playerShotCharts
+      : gameFilterParams.playerShotCharts,
   );
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
@@ -228,48 +228,48 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       : {
           buildZones: gameFilterParams.playerShotChartsShowZones,
           useEfg: gameFilterParams.playerShotChartsUseEfg ?? false,
-        }
+        },
   );
 
   /** Splits out offensive and defensive metrics into separate rows */
   const [expandedView, setExpandedView] = useState(
     _.isNil(gameFilterParams.showExpanded)
       ? ParamDefaults.defaultPlayerShowExpanded
-      : gameFilterParams.showExpanded
+      : gameFilterParams.showExpanded,
   );
 
   /** Show baseline even if on/off are present */
   const [alwaysShowBaseline, setAlwaysShowBaseline] = useState(
     _.isNil(gameFilterParams.showBase)
       ? ParamDefaults.defaultPlayerShowBase
-      : gameFilterParams.showBase
+      : gameFilterParams.showBase,
   );
 
   /** Show a diagnostics mode explaining the off/def ratings */
   const [showDiagMode, setShowDiagMode] = useState(
     _.isNil(gameFilterParams.showDiag)
       ? ParamDefaults.defaultPlayerDiagMode
-      : gameFilterParams.showDiag
+      : gameFilterParams.showDiag,
   );
 
   /** Show a diagnostics mode explaining the positional evaluation */
   const [showPositionDiags, setShowPositionDiags] = useState(
     _.isNil(gameFilterParams.showPosDiag)
       ? ParamDefaults.defaultPlayerPosDiagMode
-      : gameFilterParams.showPosDiag
+      : gameFilterParams.showPosDiag,
   );
 
   /** Show the number of possessions as a % of total team count */
   const [possAsPct, setPossAsPct] = useState(
     _.isNil(gameFilterParams.possAsPct)
       ? ParamDefaults.defaultPlayerPossAsPct
-      : gameFilterParams.possAsPct
+      : gameFilterParams.possAsPct,
   );
   /** Show the number of possessions as a % of total team count */
   const [factorMins, setFactorMins] = useState(
     _.isNil(gameFilterParams.factorMins)
       ? ParamDefaults.defaultPlayerFactorMins
-      : gameFilterParams.factorMins
+      : gameFilterParams.factorMins,
   );
   /** When switching between rating and prod, also switch common sort bys over */
   const toggleFactorMins = () => {
@@ -284,27 +284,27 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
-    gameFilterParams.showInfoSubHeader || false
+    gameFilterParams.showInfoSubHeader || false,
   );
 
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
-    true as boolean
+    true as boolean,
   ); //(always defaults to on)
 
   /** Whether to make the quick toggle bar stick (default: on) */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(gameFilterParams.stickyQuickToggle)
       ? true
-      : gameFilterParams.stickyQuickToggle
+      : gameFilterParams.stickyQuickToggle,
   );
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    gameFilterParams.playerTablePreset
+    gameFilterParams.playerTablePreset,
   );
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
-    gameFilterParams.playerTableConfigExtraCols || []
+    gameFilterParams.playerTableConfigExtraCols || [],
   );
   /** Disabled table columns */
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
@@ -312,44 +312,46 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   >(gameFilterParams.playerTableConfigDisabledCols);
   const anyTableOverride = Boolean(
     tablePreset ||
-      !_.isEmpty(tableConfigExtraCols) ||
-      !_.isEmpty(tableConfigDisabledCols)
+    !_.isEmpty(tableConfigExtraCols) ||
+    !_.isEmpty(tableConfigDisabledCols),
   ); //(only works because there is no memo over the table)
 
   // Diff mode state:
   const [showDiffs, setShowDiffs] = useState(
-    _.isNil(gameFilterParams.playerDiffs) ? false : gameFilterParams.playerDiffs
+    _.isNil(gameFilterParams.playerDiffs)
+      ? false
+      : gameFilterParams.playerDiffs,
   );
 
   const [diffsHideDatasets, setDiffsHideDatasets] = useState(
-    gameFilterParams.playerDiffsHideDatasets || ""
+    gameFilterParams.playerDiffsHideDatasets || "",
   );
   const [diffsCompare, setDiffsCompare] = useState(
-    gameFilterParams.playerDiffsCompare || ""
+    gameFilterParams.playerDiffsCompare || "",
   );
   const [diffLock, setDiffLock] = useState(
-    _.isNil(gameFilterParams.diffLock) ? false : gameFilterParams.diffLock
+    _.isNil(gameFilterParams.diffLock) ? false : gameFilterParams.diffLock,
   );
 
   /** Which players to filter */
   const [filterStr, setFilterStr] = useState(
     _.isNil(gameFilterParams.filter)
       ? ParamDefaults.defaultPlayerFilter
-      : gameFilterParams.filter
+      : gameFilterParams.filter,
   );
 
   const [manualOverrides, setManualOverrides] = useState(
-    _.isNil(gameFilterParams.manual) ? [] : gameFilterParams.manual
+    _.isNil(gameFilterParams.manual) ? [] : gameFilterParams.manual,
   );
 
   const [onBallDefenseByCode, setOnBallDefenseByCode] = useState(
-    {} as Record<PlayerCode, OnBallDefenseModel>
+    {} as Record<PlayerCode, OnBallDefenseModel>,
   );
 
   const [showOnBallConfig, setShowOnBallConfig] = useState(
     _.isNil(gameFilterParams.showOnBallConfig)
       ? false
-      : gameFilterParams.showOnBallConfig
+      : gameFilterParams.showOnBallConfig,
   );
 
   // Transform the list into a map of maps of values
@@ -359,7 +361,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [showManualOverrides, setShowManualOverrides] = useState(
     _.isNil(gameFilterParams.showPlayerManual)
       ? false
-      : gameFilterParams.showPlayerManual
+      : gameFilterParams.showPlayerManual,
   );
 
   const fragmentDelimiter = filterStr.includes(";") ? ";" : ",";
@@ -368,7 +370,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     .map((fragment) => _.trim(fragment))
     .filter((fragment) => (fragment ? true : false));
   const filterFragmentsPve = filterFragments.filter(
-    (fragment) => fragment[0] != "-"
+    (fragment) => fragment[0] != "-",
   );
   const filterFragmentsNve = filterFragments
     .filter((fragment) => fragment[0] == "-")
@@ -378,7 +380,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [sortBy, setSortBy] = useState(
     _.isNil(gameFilterParams.sortBy)
       ? ParamDefaults.defaultPlayerSortBy
-      : gameFilterParams.sortBy
+      : gameFilterParams.sortBy,
   );
   const [sortMenuState, setSortMenuState] = useState<
     TableSortPopupMenuState | undefined
@@ -394,17 +396,17 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [adjustForLuck, setAdjustForLuck] = useState(
     _.isNil(gameFilterParams.onOffLuck)
       ? ParamDefaults.defaultOnOffLuckAdjust
-      : gameFilterParams.onOffLuck
+      : gameFilterParams.onOffLuck,
   );
   const [showLuckAdjDiags, setShowLuckAdjDiags] = useState(
     _.isNil(gameFilterParams.showPlayerOnOffLuckDiags)
       ? ParamDefaults.defaultOnOffLuckDiagMode
-      : gameFilterParams.showPlayerOnOffLuckDiags
+      : gameFilterParams.showPlayerOnOffLuckDiags,
   );
   const [luckConfig, setLuckConfig] = useState(
     _.isNil(gameFilterParams.luck)
       ? ParamDefaults.defaultLuckConfig
-      : gameFilterParams.luck
+      : gameFilterParams.luck,
   );
 
   // Advanced stats config:
@@ -412,15 +414,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     parseFloat(
       _.isNil(gameFilterParams.rapmPriorMode)
         ? ParamDefaults.defaultTeamReportRapmPriorMode
-        : gameFilterParams.rapmPriorMode
-    )
+        : gameFilterParams.rapmPriorMode,
+    ),
   );
   const [rapmRegressMode, setRapmRegresssMode] = useState(
     parseFloat(
       _.isNil(gameFilterParams.rapmRegressMode)
         ? ParamDefaults.defaultTeamReportRapmRegressMode
-        : gameFilterParams.rapmRegressMode
-    )
+        : gameFilterParams.rapmRegressMode,
+    ),
   );
   /** Whether we are showing the advanced on/off stats config modal */
   const [showTeamRosterStatsConfig, setShowTeamRosterStatsConfig] =
@@ -430,16 +432,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [showPlayTypes, setShowPlayTypes] = useState(
     _.isNil(gameFilterParams.showPlayerPlayTypes)
       ? ParamDefaults.defaultPlayerShowPlayTypes
-      : gameFilterParams.showPlayerPlayTypes
+      : gameFilterParams.showPlayerPlayTypes,
   );
   const [showPlayTypesAdjPpp, setShowPlayTypesAdjPpp] = useState<boolean>(
-    gameFilterParams.showPlayerPlayTypesAdjPpp ?? true
+    gameFilterParams.showPlayerPlayTypesAdjPpp ?? true,
   );
   const [showPlayTypesPlayType, setShowPlayTypesPlayType] = useState<
     string | undefined
   >(
     gameFilterParams.showPlayerPlayTypesPlayType ??
-      ParamDefaults.defaultPlayerShowPlayTypesPlayType
+      ParamDefaults.defaultPlayerShowPlayTypesPlayType,
   );
   //TODO CSV of yearly quickSwitch options
 
@@ -447,7 +449,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const [calcRapm, setCalcRapm] = useState(
     _.isNil(gameFilterParams.calcRapm)
       ? ParamDefaults.defaultPlayerCalcRapm
-      : gameFilterParams.calcRapm
+      : gameFilterParams.calcRapm,
   );
 
   /** Whether we are showing the luck config modal */
@@ -458,19 +460,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     setAdjustForLuck(
       _.isNil(gameFilterParams.onOffLuck)
         ? ParamDefaults.defaultOnOffLuckAdjust
-        : gameFilterParams.onOffLuck
+        : gameFilterParams.onOffLuck,
     );
     setLuckConfig(
       _.isNil(gameFilterParams.luck)
         ? ParamDefaults.defaultLuckConfig
-        : gameFilterParams.luck
+        : gameFilterParams.luck,
     );
     setManualOverrides(gameFilterParams.manual || []);
 
     setStickyQuickToggle(
       _.isNil(gameFilterParams.stickyQuickToggle)
         ? true
-        : gameFilterParams.stickyQuickToggle
+        : gameFilterParams.stickyQuickToggle,
     );
   }, [gameFilterParams]);
 
@@ -581,7 +583,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         if (!_.isEmpty(positionalStatsCache)) setPositionalStatsCache({}); //unset if set
         GradeTableUtils.populatePlayerDivisionStatsCache(
           gameFilterParams,
-          setDivisionStatsCache
+          setDivisionStatsCache,
         );
       }
       const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
@@ -602,7 +604,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               }));
             },
             undefined,
-            maybePosGroup
+            maybePosGroup,
           );
         }
       }
@@ -615,7 +617,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     expandedView,
     possAsPct,
     factorMins,
-    calcRapm
+    calcRapm,
   );
 
   // 3] Utils
@@ -643,7 +645,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   rosterStats.other?.[otherIdx] || [],
                   teamStats.global?.roster,
                   showPlayTypes,
-                  teamSeasonLookup
+                  teamSeasonLookup,
                 )
               : {};
           });
@@ -653,7 +655,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               rosterStats[key] || [],
               teamStats.global?.roster,
               key == "global" && showPlayTypes,
-              teamSeasonLookup
+              teamSeasonLookup,
             );
           }
         }
@@ -664,7 +666,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         global: {},
         baseline: {},
         other: [],
-      } as OnOffRosterStatsByCode
+      } as OnOffRosterStatsByCode,
     )
     .value();
 
@@ -679,13 +681,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(
     rosterStats.global,
-    teamSeasonLookup
+    teamSeasonLookup,
   );
 
   /** For a given lineup set, calculate RAPM as quickly as possible */
   const buildRapm = (
     lineupStats: LineupStatsModel | undefined,
-    playerInfo: Record<PlayerId, IndivStatSet>
+    playerInfo: Record<PlayerId, IndivStatSet>,
   ) => {
     const preRapmTableData = LineupTableUtils.buildEnrichedLineups(
       //(calcs for both luck and non-luck versions)
@@ -700,7 +702,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       false,
       teamSeasonLookup,
       positionFromPlayerKey,
-      playerInfo
+      playerInfo,
     );
     const rapmInfo = TeamReportTableUtils.buildOrInjectRapm(
       preRapmTableData,
@@ -713,7 +715,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         ...defaultRapmConfig,
         priorMode: rapmPriorMode,
         fixedRegression: rapmRegressMode,
-      }
+      },
     );
     return _.fromPairs(
       (rapmInfo?.enrichedPlayers || []).map((p) => [
@@ -722,7 +724,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           off_adj_rapm: p.rapm?.off_adj_ppp,
           def_adj_rapm: p.rapm?.def_adj_ppp,
         },
-      ])
+      ]),
     );
   };
 
@@ -731,7 +733,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       const buildSingleRapm = (
         teamStatSet: TeamStatSet,
         rosterStatSet: Array<IndivStatSet>,
-        lineupStatSet: LineupStatsModel
+        lineupStatSet: LineupStatsModel,
       ) => {
         const rapmPriorsBaseline = LineupTableUtils.buildBaselinePlayerInfo(
           rosterStatSet,
@@ -741,7 +743,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           adjustForLuck,
           luckConfig.base,
           manualOverridesAsMap,
-          onBallDefenseByCode
+          onBallDefenseByCode,
         );
         return buildRapm(lineupStatSet, rapmPriorsBaseline);
       };
@@ -759,15 +761,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   return buildSingleRapm(
                     teamStatSet || StatModels.emptyTeam(),
                     rosterStats.other?.[otherIdx] || [],
-                    lineupStats[3 + otherIdx] || StatModels.emptyLineup()
+                    lineupStats[3 + otherIdx] || StatModels.emptyLineup(),
                   );
-                }
+                },
               );
             } else {
               acc[key] = buildSingleRapm(
                 teamStats[key] || StatModels.emptyTeam(),
                 rosterStats[key] || [],
-                lineupStats[keyIdx]
+                lineupStats[keyIdx],
               );
             }
           },
@@ -776,7 +778,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             on: undefined,
             off: undefined,
             other: [],
-          } as Record<string, any>
+          } as Record<string, any>,
         )
         .value();
 
@@ -819,7 +821,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     };
     return (playerSet: OnOffPlayerStatSet) => {
       return onOrOff(playerSet).map((player) =>
-        LineupTableUtils.sorter(sortStr)(player)
+        LineupTableUtils.sorter(sortStr)(player),
       )[0];
     };
   };
@@ -831,7 +833,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const onOffBasePicker = (
     str: "On" | "Off" | "Baseline" | "Global",
-    arr: Array<IndivStatSet>
+    arr: Array<IndivStatSet>,
   ) => {
     return _.find(arr, (p) => _.startsWith(p.onOffKey, str));
   };
@@ -850,12 +852,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const onOffBaseToShortPhrase = (
     type: OnOffBaselineOtherEnum,
-    otherIndex?: number
+    otherIndex?: number,
   ) => {
     const maybePrefix = _.zip(
       gameFilterParams.splitPhrases || [],
       FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
-        []
+        [],
     ).map((options) => options?.[0] || options?.[1]);
     switch (type) {
       case "on":
@@ -866,7 +868,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         const maybeFilterPhrase =
           gameFilterParams.basePhrase ||
           FilterPresetUtils.getPresetFilterPhrase(
-            gameFilterParams.presetMode || "??"
+            gameFilterParams.presetMode || "??",
           );
         return maybeFilterPhrase ? `[${maybeFilterPhrase}]` : "Base";
       case "other":
@@ -882,31 +884,31 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   /** Longer equivalent to onOffBaseToShortPhrase */
   const onOffBaseToLongerPhrase = (
     type: OnOffBaselineOtherEnum,
-    otherIndex?: number
+    otherIndex?: number,
   ) => {
     const maybePrefix = _.zip(
       gameFilterParams.splitPhrases || [],
       FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
-        []
+        [],
     ).map((options) => options?.[0] || options?.[1]);
     switch (type) {
       case "on":
         return maybePrefix?.[0]
           ? `'${maybePrefix[0]}' set`
           : _.isEmpty(teamStats.other)
-          ? "On ('A')"
-          : "'A' set";
+            ? "On ('A')"
+            : "'A' set";
       case "off":
         return maybePrefix?.[1]
           ? `'${maybePrefix[1]}' set`
           : _.isEmpty(teamStats.other)
-          ? "Off ('B')"
-          : "'B' set";
+            ? "Off ('B')"
+            : "'B' set";
       case "baseline":
         const maybeFilterPhrase =
           gameFilterParams.basePhrase ||
           FilterPresetUtils.getPresetFilterPhrase(
-            gameFilterParams.presetMode || "??"
+            gameFilterParams.presetMode || "??",
           );
         return maybeFilterPhrase
           ? `'Base' set (${maybeFilterPhrase})`
@@ -927,7 +929,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     type: OnOffBaselineOtherEnum,
     pos: string,
     rapmInfo?: React.ReactElement,
-    otherIndex?: number
+    otherIndex?: number,
   ) => {
     const singleLineCase = type == "baseline" && baselineIsOnlyLine;
     //^ (if this is set we only show it together with on/off)
@@ -981,7 +983,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             gameFilterParams,
             type,
             otherIndex,
-            numTeamPoss
+            numTeamPoss,
           )}
           {rapmInfo ? " " : ""}
           {rapmInfo}
@@ -993,7 +995,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             </span>,
             gameFilterParams,
             type,
-            otherIndex
+            otherIndex,
           )}
           {rapmInfo ? " " : ""}
           {rapmInfo}
@@ -1015,28 +1017,28 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       (p) =>
         _.assign(p, {
           onOffKey: "On",
-        }) as IndivStatSet
+        }) as IndivStatSet,
     ),
     _.map(
       rosterStats.off || [],
       (p) =>
         _.assign(p, {
           onOffKey: "Off",
-        }) as IndivStatSet
+        }) as IndivStatSet,
     ),
     _.map(
       rosterStats.baseline || [],
       (p) =>
         _.assign(p, {
           onOffKey: "Baseline",
-        }) as IndivStatSet
+        }) as IndivStatSet,
     ),
     _.map(
       rosterStats.global || [],
       (p) =>
         _.assign(p, {
           onOffKey: "Global",
-        }) as IndivStatSet
+        }) as IndivStatSet,
     ),
     ...(rosterStats.other?.map((o, oIdx) =>
       _.map(
@@ -1044,8 +1046,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         (p) =>
           _.assign(p, {
             onOffKey: `Other${oIdx}`,
-          }) as IndivStatSet
-      )
+          }) as IndivStatSet,
+      ),
     ) || []),
   ])
     .flatten()
@@ -1071,7 +1073,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 | IndivStatSet
                 | undefined
               )[],
-            }
+            },
           )
           .value().other,
       };
@@ -1096,11 +1098,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   modelKeysDisplayOrder.forEach(([queryKey, otherQueryIndex]) => {
     const playerList = allPlayers
       .map((triple) =>
-        queryKey == "other" ? triple.other?.[otherQueryIndex] : triple[queryKey]
+        queryKey == "other"
+          ? triple.other?.[otherQueryIndex]
+          : triple[queryKey],
       )
       .flatMap(
         (maybePlayer: IndivStatSet | undefined) =>
-          maybePlayer ? [maybePlayer] : [] //(remove undefined and assert type)
+          maybePlayer ? [maybePlayer] : [], //(remove undefined and assert type)
       );
 
     const teamStat = getTeamStats(queryKey, teamStats, otherQueryIndex);
@@ -1113,7 +1117,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       adjustForLuck,
       luckConfig.base,
       manualOverridesAsMap,
-      onBallDefenseByCode
+      onBallDefenseByCode,
     );
   });
 
@@ -1122,7 +1126,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const getPlayerStats = (
     queryKey: OnOffBaselineOtherEnum,
     player: OnOffPlayerStatSet,
-    otherQueryIndex: number
+    otherQueryIndex: number,
   ) => {
     if (queryKey == "other") {
       return player.other?.[otherQueryIndex || 0];
@@ -1133,7 +1137,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const getRapmFromCache = (
     queryKey: OnOffBaselineOtherEnum,
     rapmInfo: Record<string, any>,
-    otherQueryIndex: number
+    otherQueryIndex: number,
   ) => {
     if (queryKey == "other") {
       return rapmInfo.other?.[otherQueryIndex || 0];
@@ -1188,7 +1192,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           stat,
           expandedView,
           true,
-          teamSeasonLookup
+          teamSeasonLookup,
         );
 
         // Positional info (NOTE - no dependencies on other processing like ORtg):
@@ -1199,14 +1203,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           posConfs,
           posConfsDiags.confsNoHeight,
           stat,
-          teamSeasonLookup
+          teamSeasonLookup,
         );
         stat.def_usage = (
           <OverlayTrigger
             placement="auto"
             overlay={TableDisplayUtils.buildPositionTooltip(
               pos,
-              onOffBaseToShortPhrase(queryKey, otherQueryIndex)
+              onOffBaseToShortPhrase(queryKey, otherQueryIndex),
             )}
           >
             <small>{pos}</small>
@@ -1332,7 +1336,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 mediumTier: divisionStatsCache.Medium,
                 lowTier: divisionStatsCache.Low,
               },
-              positionalStatsCache || {}
+              positionalStatsCache || {},
             );
 
           const predictedGrades = tierToUse
@@ -1340,14 +1344,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 tierToUse,
                 stat,
                 _.keys(GradeUtils.playerFields),
-                gradeFormat == "rank"
+                gradeFormat == "rank",
               )
             : {};
 
           GradeTableUtils.injectPlayerSampleSizeDisclaimers(
             //(adds "extraInfo" to predicted grades)
             stat,
-            predictedGrades
+            predictedGrades,
           );
           stat.grades = predictedGrades;
         }
@@ -1362,7 +1366,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 rapmMargin,
                 CbbColors.diff10_p100_redGreen[0],
                 "20px",
-                4
+                4,
               );
 
               const netGradeEl = _.thru(
@@ -1378,12 +1382,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       ],
                       GradeTableUtils.getGradeType(showGrades),
                       true,
-                      true
+                      true,
                     );
                   } else {
                     return undefined;
                   }
-                }
+                },
               );
 
               const adjMarginEl = (
@@ -1413,7 +1417,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             } else {
               return undefined;
             }
-          }
+          },
         );
 
         // Now we have the position we can build the titles:
@@ -1422,7 +1426,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           queryKey,
           pos,
           maybeRapm,
-          otherQueryIndex
+          otherQueryIndex,
         );
 
         // Create a table for the mutable overrides:
@@ -1449,14 +1453,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       (filterFragmentsPve.length == 0 ||
         (_.find(
           filterFragmentsPve,
-          (fragment) => strToTest.indexOf(fragment) >= 0
+          (fragment) => strToTest.indexOf(fragment) >= 0,
         )
           ? true
           : false)) &&
       (filterFragmentsNve.length == 0 ||
         (_.find(
           filterFragmentsNve,
-          (fragment) => strToTest.indexOf(fragment) >= 0
+          (fragment) => strToTest.indexOf(fragment) >= 0,
         )
           ? false
           : true))
@@ -1480,8 +1484,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const selectedDatasetKeys: string[] = isMultiMode
     ? diffsHideDatasets.slice("multi:".length).split(",").filter(Boolean)
     : diffsHideDatasets
-    ? [diffsHideDatasets]
-    : [];
+      ? [diffsHideDatasets]
+      : [];
   const selectedDatasetKey = selectedDatasetKeys[0] || ""; // For single mode or top dataset in multi
 
   // Build the list of available datasets for the diff mode UI
@@ -1551,7 +1555,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // Map dataset key (e.g., "on", "extra0") to the query key format
   const datasetKeyToQueryKey = (
-    key: string
+    key: string,
   ): { queryKey: OnOffBaselineOtherEnum; otherIndex: number } | undefined => {
     if (key === "on") return { queryKey: "on", otherIndex: 0 };
     if (key === "off") return { queryKey: "off", otherIndex: 0 };
@@ -1566,7 +1570,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   // Map queryKey/otherIndex back to dataset key format
   const queryKeyToDatasetKey = (
     queryKey: OnOffBaselineOtherEnum,
-    otherIndex: number
+    otherIndex: number,
   ): string => {
     if (queryKey === "on") return "on";
     if (queryKey === "off") return "off";
@@ -1645,7 +1649,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       const shotChartQuickSwitchOptions = (
         player: IndivStatSet | undefined,
         queryKey: OnOffBaselineOtherEnum,
-        otherQueryIndex: number
+        otherQueryIndex: number,
       ) =>
         [
           {
@@ -1681,12 +1685,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   getPlayerShotChartStats(
                     "other",
                     dataEvent.playerShotStats,
-                    idx
+                    idx,
                   )[player?.key || "???"] || {},
                 def: {},
                 gender: gameFilterParams.gender as "Men" | "Women",
               };
-            })
+            }),
           )
           .concat({
             title: onOffBaseToLongerPhrase("baseline"),
@@ -1705,7 +1709,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               !(
                 (queryKey == "other" && opt.key == `other${otherQueryIndex}`) ||
                 queryKey == opt.key
-              )
+              ),
           );
 
       const indivPlayTypeQuickSwitchOptions = [
@@ -1742,7 +1746,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               avgEfficiency,
               showHelp,
             };
-          })
+          }),
         )
         .concat([
           {
@@ -1764,7 +1768,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         displayKey: string,
         otherQueryIndex: number,
         firstRowIsThisSet: boolean,
-        tenthRowIsThisSet: boolean
+        tenthRowIsThisSet: boolean,
       ) => {
         const player = getPlayerStats(queryKey, p, otherQueryIndex);
         const isBaseline = queryKey == "baseline";
@@ -1776,7 +1780,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     GenericTableOps.buildHeaderRepeatRow(
                       CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                      "small"
+                      "small",
                     ),
                   ]
                 : [],
@@ -1784,7 +1788,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? [
                     GenericTableOps.buildHeaderRepeatRow(
                       CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                      "small"
+                      "small",
                     ),
                     GenericTableOps.buildRowSeparator("1px"),
                   ]
@@ -1793,7 +1797,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   player,
                   offPrefixFn,
-                  offCellMetaFn
+                  offCellMetaFn,
                 ),
               ],
               expandedView
@@ -1803,7 +1807,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       defPrefixFn,
                       defCellMetaFn,
                       undefined,
-                      rosterInfoSpanCalculator
+                      rosterInfoSpanCalculator,
                     ),
                   ]
                 : [],
@@ -1813,7 +1817,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               ...(() => {
                 const currentDatasetKey = queryKeyToDatasetKey(
                   queryKey,
-                  otherQueryIndex
+                  otherQueryIndex,
                 );
                 // Only add comparison rows if:
                 // 1. diffsCompareBase is set
@@ -1830,7 +1834,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 const compPlayer = getPlayerStats(
                   compMapping.queryKey,
                   p,
-                  compMapping.otherIndex
+                  compMapping.otherIndex,
                 );
                 if (!compPlayer?.off_title) return [];
 
@@ -1839,7 +1843,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   GenericTableOps.buildDataRow(
                     compPlayer,
                     offPrefixFn,
-                    offCellMetaFn
+                    offCellMetaFn,
                   ),
                   ...(expandedView
                     ? [
@@ -1848,7 +1852,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           defPrefixFn,
                           defCellMetaFn,
                           undefined,
-                          rosterInfoSpanCalculator
+                          rosterInfoSpanCalculator,
                         ),
                       ]
                     : []),
@@ -1891,7 +1895,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         ortgDiags={player?.diag_off_rtg}
                         drtgDiags={player?.diag_def_rtg}
                       />,
-                      "small"
+                      "small",
                     ),
                   ]
                 : [],
@@ -1904,7 +1908,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         teamSeason={teamSeasonLookup}
                         showHelp={showHelp}
                       />,
-                      "small"
+                      "small",
                     ),
                   ]
                 : [],
@@ -1922,7 +1926,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         individualMode={true}
                         showHelp={showHelp}
                       />,
-                      "small pt-2"
+                      "small pt-2",
                     ),
                   ]
                 : [],
@@ -1933,7 +1937,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       (() => {
                         const currentDatasetKey = queryKeyToDatasetKey(
                           queryKey,
-                          otherQueryIndex
+                          otherQueryIndex,
                         );
                         const isFirstEnabled =
                           isFirstEnabledDataset(currentDatasetKey);
@@ -1941,7 +1945,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         const quickSwitchFromDiffs =
                           isFirstEnabled && diffsCompareBase
                             ? `${keyToLongerName(
-                                diffsCompareBase
+                                diffsCompareBase,
                               )}${quickSwitchDelim}extra`
                             : undefined;
 
@@ -1949,14 +1953,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           <IndivPlayTypeTabbedView
                             title={onOffBaseToLongerPhrase(
                               queryKey,
-                              otherQueryIndex
+                              otherQueryIndex,
                             )}
                             player={player}
                             rosterStatsByCode={rosterStatsByCode.global}
                             teamStats={getTeamStats(
                               queryKey,
                               teamStats,
-                              otherQueryIndex
+                              otherQueryIndex,
                             )}
                             avgEfficiency={avgEfficiency}
                             showGrades={showGrades}
@@ -1965,7 +1969,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                             quickSwitchOptions={indivPlayTypeQuickSwitchOptions.filter(
                               (opt) =>
                                 (opt as any).sourceKey !==
-                                queryKeyToDatasetKey(queryKey, otherQueryIndex)
+                                queryKeyToDatasetKey(queryKey, otherQueryIndex),
                             )}
                             onChangeChartOpts={(opts: PlayerStyleOpts) => {
                               setShowPlayTypesPlayType(opts.playType);
@@ -1981,13 +1985,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
                                   const matchingOpt =
                                     indivPlayTypeQuickSwitchOptions.find(
-                                      (opt) => opt.title === title
+                                      (opt) => opt.title === title,
                                     );
                                   if ((matchingOpt as any)?.sourceKey) {
                                     setDiffsCompare(
                                       `${
                                         (matchingOpt as any).sourceKey
-                                      }${quickSwitchDelim}extra`
+                                      }${quickSwitchDelim}extra`,
                                     );
                                   }
                                 } else {
@@ -2022,7 +2026,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                                   href={UrlRouting.getGameUrl(
                                     {
                                       ...getCommonFilterParams(
-                                        gameFilterParams
+                                        gameFilterParams,
                                       ),
                                       onQuery: gameFilterParams.onQuery,
                                       offQuery: gameFilterParams.offQuery,
@@ -2031,7 +2035,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                                       showTeamPlayTypes: true,
                                       teamPlayTypeConfig: `||${player.code}||all||multi||`,
                                     },
-                                    {}
+                                    {},
                                   )}
                                 >
                                   Team View<sup>*</sup>
@@ -2041,7 +2045,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           />
                         );
                       })(),
-                      "small"
+                      "small",
                     ),
                   ]
                 : [],
@@ -2052,7 +2056,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                       (() => {
                         const currentDatasetKey = queryKeyToDatasetKey(
                           queryKey,
-                          otherQueryIndex
+                          otherQueryIndex,
                         );
                         const isFirstEnabled =
                           isFirstEnabledDataset(currentDatasetKey);
@@ -2060,26 +2064,26 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           shotChartQuickSwitchOptions(
                             player,
                             queryKey,
-                            otherQueryIndex
+                            otherQueryIndex,
                           );
                         // Build quickSwitch prop for diff mode sync
                         const quickSwitchFromDiffs =
                           isFirstEnabled && diffsCompareBase
                             ? `${keyToLongerName(
-                                diffsCompareBase
+                                diffsCompareBase,
                               )}${quickSwitchDelim}extra`
                             : shotChartConfig?.quickSwitch;
                         return (
                           <ShotChartDiagView
                             title={onOffBaseToLongerPhrase(
                               queryKey,
-                              otherQueryIndex
+                              otherQueryIndex,
                             )}
                             off={
                               getPlayerShotChartStats(
                                 queryKey,
                                 dataEvent.playerShotStats,
-                                otherQueryIndex
+                                otherQueryIndex,
                               )[player?.key || "???"] || {}
                             }
                             def={{}}
@@ -2100,13 +2104,13 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                                   const [title, mode] =
                                     newOpts.quickSwitch.split(quickSwitchDelim);
                                   const matchingOpt = theseQuickSwitchOpts.find(
-                                    (opt) => opt.title === title
+                                    (opt) => opt.title === title,
                                   );
                                   if ((matchingOpt as any)?.sourceKey) {
                                     setDiffsCompare(
                                       `${
                                         (matchingOpt as any).sourceKey
-                                      }${quickSwitchDelim}${mode || "extra"}`
+                                      }${quickSwitchDelim}${mode || "extra"}`,
                                     );
                                   }
                                 } else {
@@ -2123,7 +2127,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                           />
                         );
                       })(),
-                      "small"
+                      "small",
                     ),
                   ]
                 : [],
@@ -2137,7 +2141,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         otherIdx: number,
         displayKey: string,
         isFirst: boolean,
-        isTenth: boolean
+        isTenth: boolean,
       ) => {
         return shouldShowDataset(key)
           ? buildRowSet(p, queryKey, displayKey, otherIdx, isFirst, isTenth)
@@ -2160,7 +2164,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 otherIndex,
                 displayKey,
                 false,
-                false
+                false,
               );
             })
           : _.flatten([
@@ -2170,7 +2174,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 0,
                 onOffBaseToLongerPhrase("on"),
                 firstRowIsOn,
-                tenthRowIsOn
+                tenthRowIsOn,
               ),
               getRowsForDataset(
                 "off",
@@ -2178,7 +2182,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 0,
                 onOffBaseToLongerPhrase("off"),
                 firstRowIsOff,
-                tenthRowIsOff
+                tenthRowIsOff,
               ),
               ...(rosterStats?.other || []).map((_, otherIdx) => {
                 return getRowsForDataset(
@@ -2187,7 +2191,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   otherIdx,
                   onOffBaseToLongerPhrase("other", otherIdx),
                   false,
-                  false
+                  false,
                 );
               }),
               skipBaseline
@@ -2198,7 +2202,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     0,
                     "Baseline",
                     firstRowIsBaseline,
-                    tenthRowIsBaseline
+                    tenthRowIsBaseline,
                   ),
             ]);
 
@@ -2250,7 +2254,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           keycol[1].colName &&
           keycol[1].colName != "" &&
           (!_.isString(keycol[1].colName) ||
-            !_.startsWith(keycol[1].colName, "__"))
+            !_.startsWith(keycol[1].colName, "__")),
       )
       .map((keycol) => {
         return _.flatMap(
@@ -2272,7 +2276,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             return onOffCombos.map((onOff) => {
               return [...sort_offDef, onOff];
             }); // eg [ [ desc, off, on ], [ desc, off, off ], [ desc, off, delta ] ]
-          }
+          },
         ).flatMap((combo) => {
           if (
             combo[1] == "diff" &&
@@ -2331,10 +2335,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 {
                   label: !_.isNil(labelOverride)
                     ? `${onOffBaseToShortPhrase(
-                        combo[2] as OnOffBaselineEnum
+                        combo[2] as OnOffBaselineEnum,
                       )} ${label}`
                     : `${onOffBaseToShortPhrase(
-                        combo[2] as OnOffBaselineEnum
+                        combo[2] as OnOffBaselineEnum,
                       )} ${
                         keycol[1].colName
                       } (${ascOrDecLabel} / ${offOrDefLabel})`,
@@ -2343,10 +2347,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               ]
             : [];
         });
-      })
+      }),
   );
   const sortOptionsByValue = _.fromPairs(
-    sortOptions.map((opt) => [opt.value, opt])
+    sortOptions.map((opt) => [opt.value, opt]),
   );
   /** Put these options at the front */
   const mostUsefulSubset = _.flatMap([
@@ -2425,12 +2429,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
-          }
+          },
         );
       } else {
         return { controlRow: undefined };
       }
-    }
+    },
   );
 
   const quickToggleBar = (
@@ -2460,7 +2464,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             const newExpandedView = !expandedView;
             setExpandedView(newExpandedView);
             setSortBy(
-              CommonTableDefs.sortByTransforms(sortBy, newExpandedView)
+              CommonTableDefs.sortByTransforms(sortBy, newExpandedView),
             );
           },
         },
@@ -2534,7 +2538,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   onClick: () => setShowShotCharts(!showShotCharts),
                 },
               ]
-            : []
+            : [],
         )
         .concat([
           {
@@ -2579,7 +2583,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 ? selectedDatasetKeys.filter((k) => k !== dataset.key)
                 : [...selectedDatasetKeys, dataset.key];
               setDiffsHideDatasets(
-                newKeys.length > 0 ? `multi:${newKeys.join(",")}` : ""
+                newKeys.length > 0 ? `multi:${newKeys.join(",")}` : "",
               );
             } else {
               if (dataset.key === selectedDatasetKey) {
@@ -2613,7 +2617,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               setDiffsHideDatasets(
                 selectedDatasetKey
                   ? `multi:${selectedDatasetKey}`
-                  : `multi:${availableDatasets[0]?.key || ""}`
+                  : `multi:${availableDatasets[0]?.key || ""}`,
               );
             }
           },
@@ -2634,16 +2638,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         quickSwitch: string | undefined,
         newTitle: string | undefined,
         source: QuickSwitchSource,
-        fromTimer: boolean
+        fromTimer: boolean,
       ) => {
         if (quickSwitch) {
           const [title, mode] = quickSwitch.split(quickSwitchDelim);
           const matchingOpt = comparisonDatasetOptions.find(
-            (opt) => opt.title === title
+            (opt) => opt.title === title,
           );
           if (matchingOpt?.sourceKey) {
             setDiffsCompare(
-              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`
+              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`,
             );
           }
         } else {
@@ -2785,7 +2789,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ? RosterTableUtils.buildInformationalSubheader(
           calcRapm,
           expandedView,
-          resolvedTheme == "dark"
+          resolvedTheme == "dark",
         )
       : [];
 
@@ -2841,6 +2845,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
           onSave={(config: TeamRosterStatsConfig) => {
             setRapmPriorMode(config.rapmPriorMode);
             setRapmRegresssMode(config.rapmRegressMode);
+            // Rebuild RAPM:
+            setCachedRapm({});
           }}
           config={{
             rapmPriorMode,
@@ -2859,7 +2865,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               _.chain(onBallDefense)
                 .groupBy((p) => p.code)
                 .mapValues((l) => l[0]!)
-                .value()
+                .value(),
             );
           }}
           onBallDefense={_.values(onBallDefenseByCode)}
@@ -2965,7 +2971,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                         ? field.substring(rawFieldIndex + 1)
                         : field;
                     return rawField == headerKey;
-                  }
+                  },
                 );
 
                 if (matchingOptions.length > 1) {
@@ -3005,7 +3011,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                   ? {
                       hybridMode:
                         GradeTableUtils.showingHybridOrStandaloneGrades(
-                          showGrades
+                          showGrades,
                         ),
                       colorChooser: CbbColors.integratedColorsDefault,
                       customKeyMappings: {
