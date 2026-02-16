@@ -41,6 +41,7 @@ type Props = {
   teamDisplay?: (teamId: string) => React.ReactNode;
   adjBreakdownForSoS: boolean;
   scaleType: "P%" | "T%" | "/G";
+  showWalkOns: boolean;
 };
 
 const tableDefsBase = IndivTableDefs.impactDecompTable;
@@ -87,7 +88,9 @@ function buildPlayerRow(
   stats.off_adj_rapm = onOffStats.rapm?.off_adj_ppp;
   stats.def_adj_rapm = onOffStats.rapm?.def_adj_ppp;
 
-  const possPct = stats.off_team_poss_pct?.value ?? 0;
+  const offPossPct = stats.off_team_poss_pct?.value ?? 0;
+  const defPossPct = stats.def_team_poss_pct?.value ?? 0;
+  const possPct = 0.5 * offPossPct + 0.5 * defPossPct;
 
   const playerCode = stats.code ?? onOffStats.playerCode ?? point.name;
   const prettified = GameAnalysisUtils.namePrettifier(playerCode);
@@ -167,6 +170,12 @@ function buildPlayerRow(
             ? `Ignoring missing games, would be [${(possPct * 100).toFixed(1)}%]`
             : undefined,
       }, //TODO: make be raw poss in game mode, or maybe convert to mins?
+      off_team_poss_pct: {
+        value: offPossPct,
+      },
+      def_team_poss_pct: {
+        value: defPossPct,
+      },
       diff_adj_rapm: {
         value:
           netPoints.offNetPts - netPoints.defNetPts - offSosAdj - defSosAdj,
@@ -212,7 +221,6 @@ function buildPlayerRow(
 }
 
 const dataColKeys = [
-  "diff_adj_rapm",
   "off_adj_rapm",
   "def_adj_rapm",
   "off_sos_bonus",
@@ -231,9 +239,13 @@ const dataColKeys = [
 /** Build total row (appended at end, not sorted) */
 function buildTotalRow(
   rows: Record<string, { value: number } | React.ReactNode>[],
-  weightByPoss: boolean,
+  possPerGame: [number, number] | undefined,
+  avgEff: number,
+  scaleType: "P%" | "T%" | "/G",
   seasonStats: boolean,
 ): Record<string, { value: number } | React.ReactNode> {
+  const weightByPoss = scaleType === "P%";
+
   const total: Record<string, { value: number } | React.ReactNode> = {
     title: seasonStats ? (
       <OverlayTrigger
@@ -254,8 +266,11 @@ function buildTotalRow(
       <i>Total</i>
     ),
   };
-  const totalTeamPossPct = weightByPoss
-    ? _.sumBy(rows, (r) => (r.team_poss_pct as any)?.value ?? 0)
+  const totalOffTeamPossPct = weightByPoss
+    ? _.sumBy(rows, (r) => (r.off_team_poss_pct as any)?.value ?? 0)
+    : 1.0;
+  const totalDefTeamPossPct = weightByPoss
+    ? _.sumBy(rows, (r) => (r.def_team_poss_pct as any)?.value ?? 0)
     : 1.0;
   for (const key of dataColKeys) {
     const sum = _.sumBy(rows, (r) => {
@@ -265,13 +280,37 @@ function buildTotalRow(
           ? (v as { value: number }).value
           : 0;
       if (weightByPoss) {
-        return 5 * valToSum * ((r.team_poss_pct as any)?.value ?? 0);
+        const weightToUse = key.startsWith("off_")
+          ? ((r.off_team_poss_pct as any)?.value ?? 0)
+          : ((r.def_team_poss_pct as any)?.value ?? 0);
+        return 5 * valToSum * weightToUse;
       } else {
         return valToSum;
       }
     });
-    total[key] = { value: sum / (totalTeamPossPct || 1) };
+    const totalWeightToUse = key.startsWith("off_")
+      ? totalOffTeamPossPct
+      : totalDefTeamPossPct;
+    total[key] = { value: sum / (totalWeightToUse || 1) };
   }
+  // If different number of possessions then add a final adjustment:
+  if (scaleType === "/G" && possPerGame && possPerGame[0] != possPerGame[1]) {
+    const [offPoss, defPoss] = possPerGame;
+    const keyToAdjust = offPoss > defPoss ? "off_adj_rapm" : "def_adj_rapm";
+    const possDelta = (offPoss - defPoss) * 100;
+    const deltaPts = (offPoss - defPoss) * avgEff;
+    (total[keyToAdjust] as any).value =
+      ((total[keyToAdjust] as any).value ?? 0) + deltaPts;
+    (total[keyToAdjust] as any).extraInfo =
+      `Off-Def possession delta of [${possDelta.toFixed(1)}]: adjust by [${deltaPts.toFixed(1)}]pts`;
+  }
+  // Handle RAPM diff separately to work around possession differences:
+  total["diff_adj_rapm"] = {
+    value:
+      ((total["off_adj_rapm"] as any)?.value ?? 0) +
+      ((total["def_adj_rapm"] as any)?.value ?? 0),
+  };
+
   return total;
 }
 
@@ -286,6 +325,7 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
   showTeamColumn = false,
   adjBreakdownForSoS,
   scaleType,
+  showWalkOns,
   teamDisplay,
 }) => {
   const [sortBy, setSortBy] = React.useState(
@@ -331,7 +371,9 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
 
   const totalRowData = buildTotalRow(
     playerRowsData,
-    scaleType === "P%",
+    playerPoints[0]?.perGamePoss,
+    avgEfficiency,
+    scaleType,
     Boolean(seasonStats),
   );
 
@@ -360,14 +402,24 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
 
   const tableRows: GenericTableRow[] = subHeaderRow
     .concat(
-      playerRowsData.map((rowData) =>
-        GenericTableOps.buildDataRow(
-          rowData,
-          identityPrefix,
-          noCellMeta,
-          tableDefs,
+      playerRowsData
+        .filter((rowData) => {
+          return !(
+            !showWalkOns &&
+            ((rowData.off_team_poss_pct as any)?.value ?? 0) <
+              (seasonStats ? 0.1 : 0.05) &&
+            ((rowData.def_team_poss_pct as any)?.value ?? 0) <
+              (seasonStats ? 0.1 : 0.05)
+          );
+        })
+        .map((rowData) =>
+          GenericTableOps.buildDataRow(
+            rowData,
+            identityPrefix,
+            noCellMeta,
+            tableDefs,
+          ),
         ),
-      ),
     )
     .concat(
       !showTeamColumn

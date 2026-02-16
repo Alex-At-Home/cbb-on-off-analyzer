@@ -176,9 +176,6 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   ): PlayerImpactPoint[] =>
     points.filter((point) => {
       const possPct = point.stats?.off_team_poss_pct?.value ?? 0;
-      // Backend may store as decimal (0.016) or percentage (1.6); normalize to decimal
-      const walkOnThresh = seasonStats ? 0.1 : 0.05;
-      if (!breakdownShowWalkOns && possPct < walkOnThresh) return false;
       if (breakdownFilterPve.length === 0 && breakdownFilterNve.length === 0)
         return true;
       const fullName = (point.stats as any)?.key ?? point.name ?? "";
@@ -457,33 +454,27 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               missingGameAdjustmentXy *
               defPerGame;
 
-            // (in season mode, remove sub 5mpg players, likely walk-ons)
-            return seasonStats && offPoss < 0.12 && defPoss < 0.12
-              ? []
-              : [
-                  {
-                    seriesId: team,
-                    labelColor,
-                    x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)),
-                    y: -Math.min(
-                      graphLimit,
-                      Math.max(-graphLimit, defRapmProd),
-                    ),
-                    z: offPoss * missingGameAdjustmentXy,
-                    color: offRapmProd - defRapmProd,
-                    name: GameAnalysisUtils.namePrettifier(p.playerCode),
-                    posInfo: positionInfo[p.playerId],
-                    stats: statObj,
-                    onOffStats: p,
-                    perGamePoss: [offPerGame, defPerGame],
-                    missingGameAdj: missingGameAdjustmentImpact,
-                    filteredOut: isFilteredCachedAb(
-                      { posInfo: positionInfo[p.playerId] },
-                      posClassSet,
-                      team,
-                    ),
-                  },
-                ];
+            return [
+              {
+                seriesId: team,
+                labelColor,
+                x: Math.min(graphLimit, Math.max(-graphLimit, offRapmProd)),
+                y: -Math.min(graphLimit, Math.max(-graphLimit, defRapmProd)),
+                z: offPoss * missingGameAdjustmentXy,
+                color: offRapmProd - defRapmProd,
+                name: GameAnalysisUtils.namePrettifier(p.playerCode),
+                posInfo: positionInfo[p.playerId],
+                stats: statObj,
+                onOffStats: p,
+                perGamePoss: [offPerGame, defPerGame],
+                missingGameAdj: missingGameAdjustmentImpact,
+                filteredOut: isFilteredCachedAb(
+                  { posInfo: positionInfo[p.playerId] },
+                  posClassSet,
+                  team,
+                ),
+              },
+            ];
           })
           .value();
       },
@@ -1328,8 +1319,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       items={[
                         {
                           label: "Walk-Ons",
-                          tooltip:
-                            "Include players with <10% of possessions (filtered out by default)",
+                          tooltip: `Include players with <${seasonStats ? 10 : 5}% of possessions (filtered out by default)`,
                           toggled: breakdownShowWalkOns,
                           onClick: () =>
                             setBreakdownShowWalkOns(!breakdownShowWalkOns),
@@ -1354,6 +1344,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       showTeamColumn={true}
                       adjBreakdownForSoS={adjBreakdownForSoS}
                       scaleType={scaleType}
+                      showWalkOns={breakdownShowWalkOns}
                       teamDisplay={(teamId) => (
                         <img
                           style={{ width: 16, height: 16 }}
@@ -1381,6 +1372,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         )}
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
+                        showWalkOns={breakdownShowWalkOns}
                         avgEfficiency={avgEfficiency}
                         seasonStats={!!seasonStats}
                       />
@@ -1395,6 +1387,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         )}
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
+                        showWalkOns={breakdownShowWalkOns}
                         avgEfficiency={avgEfficiency}
                         seasonStats={!!seasonStats}
                       />
@@ -1421,6 +1414,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       )}
                       adjBreakdownForSoS={adjBreakdownForSoS}
                       scaleType={scaleType}
+                      showWalkOns={breakdownShowWalkOns}
                       avgEfficiency={avgEfficiency}
                       seasonStats={!!seasonStats}
                     />
@@ -1437,6 +1431,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         )}
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
+                        showWalkOns={breakdownShowWalkOns}
                         avgEfficiency={avgEfficiency}
                         seasonStats={!!seasonStats}
                       />
