@@ -299,7 +299,8 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           ? ["breakdownFilterStr"]
           : [],
         _.isNil(rawParams.breakdownShowWalkOns) ||
-        rawParams.breakdownShowWalkOns == ParamDefaults.defaultBreakdownShowWalkOns
+        rawParams.breakdownShowWalkOns ==
+          ParamDefaults.defaultBreakdownShowWalkOns
           ? ["breakdownShowWalkOns"]
           : [],
       ]),
@@ -389,7 +390,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         }
         onShowHide={(nowShown: boolean) => {
           onMatchupFilterParamsChange({
-            ...matchupFilterParams,
+            ...(matchupFilterParamsRef.current || matchupFilterParams),
             hidePlayerImpact: !nowShown,
           });
         }}
@@ -421,7 +422,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         }
         onShowHide={(nowShown: boolean) => {
           onMatchupFilterParamsChange({
-            ...matchupFilterParams,
+            ...(matchupFilterParamsRef.current || matchupFilterParams),
             hideTimeline: !nowShown,
           });
         }}
@@ -531,7 +532,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         }
         onShowHide={(nowShown: boolean) => {
           onMatchupFilterParamsChange({
-            ...matchupFilterParams,
+            ...(matchupFilterParamsRef.current || matchupFilterParams),
             hidePlayTypes: !nowShown,
           });
         }}
@@ -582,7 +583,7 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         }
         onShowHide={(nowShown: boolean) => {
           onMatchupFilterParamsChange({
-            ...matchupFilterParams,
+            ...(matchupFilterParamsRef.current || matchupFilterParams),
             hideShotCharts: !nowShown,
           });
         }}
