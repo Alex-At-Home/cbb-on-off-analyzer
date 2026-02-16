@@ -41,6 +41,17 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
     return Number.isInteger(n) ? n : n.toFixed(1);
   };
 
+  // DEBUG:
+  // console.log(
+  //   `[${drtgDiags.drb}] [${drtgDiags.teamDrb}] .. [${(
+  //     (drtgDiags.stopsIndPct * 100) /
+  //     drtgDiags.oppoPoss
+  //   ).toFixed(
+  //     2,
+  //   )}] [${((drtgDiags.stopsTeamPct * 100) / drtgDiags.oppoPoss).toFixed(2)}]`,
+  //   drtgDiags,
+  // );
+
   const o = ortgDiags;
   const d = drtgDiags;
   const dbd = drtgDiags.onBallDiags;

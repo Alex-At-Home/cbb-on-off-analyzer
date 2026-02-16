@@ -1125,10 +1125,11 @@ export class RatingUtils {
     const Opponent_TOV = statSet?.oppo_total_def_to?.value || 0;
     const Opponent_FTA = statSet?.oppo_total_def_fta?.value || 0;
     const Opponent_FTM = statSet?.oppo_total_def_ftm?.value || 0;
-    const Opponent_Possessions = statSet?.oppo_total_def_poss?.value || 0;
-    const Opponent_PTS = statGet("oppo_total_def_pts");
-
+    const Opponent_Possessions_PbP = statSet?.oppo_total_def_poss?.value || 0;
     const Opponent_FTposs = 0.475 * Opponent_FTA;
+    const Opponent_Possessions_Box =
+      Opponent_FTposs + Opponent_FGA + Opponent_TOV - Opponent_ORB;
+    const Opponent_PTS = statGet("oppo_total_def_pts");
 
     // The overall credit for a miss and a defensive rebound gets split between the ...
     // ... team for forcing the miss and the individual for getting the rebound
@@ -1145,7 +1146,8 @@ export class RatingUtils {
         : 0;
 
     // Block/Miss weighting - team has to rebound, and the credit is the chance opponent would have scored (bonus 7%)
-    const TeamMissWeight = FMwt * (1 - 1.07 * Team_DORpct);
+    const arbitraryRebFactor = 1.07; //(Is this supposed to handle Team_DRB - sum(DRB)?)
+    const TeamMissWeight = FMwt * (1 - arbitraryRebFactor * Team_DORpct);
     // Credit to the individual for stops
     const PFpct = Team_PF > 0 ? PF / Team_PF : 0;
     const Opponent_MissAllFTs =
@@ -1163,22 +1165,34 @@ export class RatingUtils {
 
     const Stops = Stops_Ind + Stops_Team;
 
+    //TODO:
+    // This isn't working _that_ well ... the issues seem to be:
+    // 1] (Box-)Derived Poss vs PbP Score Poss
+    // For now I use the PbP poss for team poss but then for the delta used the Box
+    // 2] Team DRB vs Sum(Player DRB) .. I think this is what the 0.7 is intended to represent
+
     const StopPct =
-      Opponent_Possessions > 0 ? Stops / (0.2 * Opponent_Possessions) : 0;
+      Opponent_Possessions_Box > 0
+        ? Stops / (0.2 * Opponent_Possessions_Box)
+        : 0;
 
     const Opponent_HitFTs = 1 - Opponent_MissAllFTs;
-    const Team_DRtg =
-      Opponent_Possessions > 0
-        ? 100 * (Opponent_PTS / Opponent_Possessions)
+    const Team_DRtg_PbP =
+      Opponent_Possessions_PbP > 0
+        ? 100 * (Opponent_PTS / Opponent_Possessions_PbP)
+        : 0;
+    const Team_DRtg_Box =
+      Opponent_Possessions_Box > 0
+        ? 100 * (Opponent_PTS / Opponent_Possessions_Box)
         : 0;
 
     const ScPoss = Opponent_FGM + Opponent_HitFTs * Opponent_FTposs;
     const D_Pts_Per_ScPoss = ScPoss > 0 ? Opponent_PTS / ScPoss : 0;
 
     const Player_DRtg = 100 * D_Pts_Per_ScPoss * (1 - StopPct);
-    const Player_Delta = 0.2 * (Player_DRtg - Team_DRtg);
+    const Player_Delta = 0.2 * (Player_DRtg - Team_DRtg_Box);
 
-    const DRtg = Team_DRtg + Player_Delta;
+    const DRtg = Team_DRtg_PbP + Player_Delta;
     const Off_SOS = statSet?.off_adj_opp?.value || avgEfficiency;
     const Adj_DRtg = Off_SOS > 0 ? DRtg * (avgEfficiency / Off_SOS) : 0;
     const Adj_DRtgPlus = 0.2 * (Adj_DRtg - avgEfficiency);
@@ -1197,8 +1211,8 @@ export class RatingUtils {
       : [undefined, undefined];
 
     return [
-      Opponent_Possessions > 0 ? { value: DRtg } : undefined,
-      Opponent_Possessions > 0 ? { value: Adj_DRtgPlus } : undefined,
+      Opponent_Possessions_Box > 0 ? { value: DRtg } : undefined,
+      Opponent_Possessions_Box > 0 ? { value: Adj_DRtgPlus } : undefined,
       rawDRtg,
       rawAdjRating,
       calcDiags
@@ -1216,17 +1230,17 @@ export class RatingUtils {
             reboundCredit: Rebound_Credit,
             missFtCredit: FTmiss_Credit,
             stopsIndPct:
-              Opponent_Possessions > 0
-                ? Stops_Ind / (0.2 * Opponent_Possessions)
+              Opponent_Possessions_Box > 0
+                ? Stops_Ind / (0.2 * Opponent_Possessions_Box)
                 : 0,
             stopsTeamPct:
-              Opponent_Possessions > 0
-                ? Stops_Team / (0.2 * Opponent_Possessions)
+              Opponent_Possessions_Box > 0
+                ? Stops_Team / (0.2 * Opponent_Possessions_Box)
                 : 0,
             // Basic team numbers
             teamBlk: Team_BLK,
             oppoPts: Opponent_PTS,
-            oppoPoss: Opponent_Possessions,
+            oppoPoss: Opponent_Possessions_PbP,
             oppoFga: Opponent_FGA,
             oppoFgm: Opponent_FGM,
             oppoFtm: Opponent_FTM,
@@ -1249,7 +1263,7 @@ export class RatingUtils {
             oppoProbFtHitOnePlus: Opponent_HitFTs,
             oppoScPoss: ScPoss,
             oppoPtsPerScore: D_Pts_Per_ScPoss,
-            teamRtg: Team_DRtg,
+            teamRtg: Team_DRtg_PbP,
             // Adjusted calcs:
             dRtg: DRtg,
             offSos: Off_SOS,
