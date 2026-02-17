@@ -143,6 +143,8 @@ export type MatchupFilterParams = {
   adjImpactStats?: boolean;
   /** Impact breakdown table: show the breakdown table below the chart */
   showImpactBreakdown?: boolean;
+  /** Impact breakdown table: layout (side-by-side | separate | combined); default side-by-side */
+  breakdownLayout?: "side-by-side" | "separate" | "combined";
   /** Impact breakdown table: player filter string (e.g. "Name1,Name2,-Name3") */
   breakdownFilterStr?: string;
   /** Impact breakdown table: include walk-ons (<10% poss); default false */
@@ -745,6 +747,7 @@ export class ParamDefaults {
   static readonly defaultMatchupAnalysisBreakdownConfig = "off;def";
   static readonly defaultAdjImpactStats = true;
   static readonly defaultShowImpactBreakdown = false;
+  static readonly defaultBreakdownLayout = "side-by-side";
   static readonly defaultBreakdownFilterStr = "";
   static readonly defaultBreakdownShowWalkOns = false;
   // Timeline view (aggregated stints) defaults:

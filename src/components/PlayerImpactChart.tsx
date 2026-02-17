@@ -134,7 +134,13 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
 
   const [breakdownLayout, setBreakdownLayout] = useState<
     "side-by-side" | "separate" | "combined"
-  >("side-by-side");
+  >(
+    (startingState.breakdownLayout as
+      | "side-by-side"
+      | "separate"
+      | "combined"
+      | undefined) ?? ParamDefaults.defaultBreakdownLayout,
+  );
 
   const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState<boolean>(
     _.isNil(startingState.adjImpactStats)
@@ -252,6 +258,10 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         breakdownFilterStr !== ParamDefaults.defaultBreakdownFilterStr
           ? breakdownFilterStr
           : undefined,
+      breakdownLayout:
+        breakdownLayout !== ParamDefaults.defaultBreakdownLayout
+          ? breakdownLayout
+          : undefined,
       breakdownShowWalkOns:
         breakdownShowWalkOns !== ParamDefaults.defaultBreakdownShowWalkOns
           ? breakdownShowWalkOns
@@ -267,6 +277,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     iconType,
     adjBreakdownForSoS,
     showImpactBreakdown,
+    breakdownLayout,
     breakdownFilterStr,
     breakdownShowWalkOns,
   ]);

@@ -339,6 +339,10 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
         ParamDefaults.defaultShowImpactBreakdown
           ? ["showImpactBreakdown"]
           : [],
+        (rawParams.breakdownLayout ?? ParamDefaults.defaultBreakdownLayout) ==
+        ParamDefaults.defaultBreakdownLayout
+          ? ["breakdownLayout"]
+          : [],
         !rawParams.breakdownFilterStr ||
         rawParams.breakdownFilterStr == ParamDefaults.defaultBreakdownFilterStr
           ? ["breakdownFilterStr"]
