@@ -275,6 +275,9 @@ export class RatingUtils {
   /** The % of average efficiency that represents replacement level */
   static readonly Replacement_Level = 0.92;
 
+  /** Arbitary/guess: 7% of the time possession is retained without an off. rebound */
+  static readonly retainPossWithReboundRate = 1.07;
+
   /** Builds the overrides to the raw fields based on stat overrides
    *  See also OverrideUtils.applyPlayerOverridesToTeam, which is tightly coupled to this
    */
@@ -609,7 +612,8 @@ export class RatingUtils {
 
     // Other factors:
 
-    const FGxPoss = (FGA - FGM) * (1 - 1.07 * Team_ORB_pct);
+    const FGxPoss =
+      (FGA - FGM) * (1 - RatingUtils.retainPossWithReboundRate * Team_ORB_pct);
 
     const FTxPoss =
       FTA > 0 ? Prob_Miss_Both_FT * Actual_FTA_to_Poss * FTA : 0.0;
@@ -620,7 +624,8 @@ export class RatingUtils {
     const shotPossDecomp = shotLocs.map((__, idx) => {
       return (
         FGM_Minus_AssistPenalty[idx] * (1 - Team_ORB_Contrib) +
-        (RealAttempts[idx] - Made[idx]) * (1 - 1.07 * Team_ORB_pct)
+        (RealAttempts[idx] - Made[idx]) *
+          (1 - RatingUtils.retainPossWithReboundRate * Team_ORB_pct)
       );
     });
     const [rimPoss, midPoss, threePoss] = shotPossDecomp!;
@@ -1146,8 +1151,8 @@ export class RatingUtils {
         : 0;
 
     // Block/Miss weighting - team has to rebound, and the credit is the chance opponent would have scored (bonus 7%)
-    const arbitraryRebFactor = 1.07; //(Is this supposed to handle Team_DRB - sum(DRB)?)
-    const TeamMissWeight = FMwt * (1 - arbitraryRebFactor * Team_DORpct);
+    const TeamMissWeight =
+      FMwt * (1 - RatingUtils.retainPossWithReboundRate * Team_DORpct);
     // Credit to the individual for stops
     const PFpct = Team_PF > 0 ? PF / Team_PF : 0;
     const Opponent_MissAllFTs =
@@ -1491,8 +1496,8 @@ export class RatingUtils {
       fgMissPct *
         (teamOrbAllowed / (teamFgMissAgainst || 1)) *
         defEfficiency *
-        1.07;
-    //(standard 7% bonus for efficiency post rebound)
+        RatingUtils.retainPossWithReboundRate;
+    //TODO: note in practice effectivePpp is higher, because ~35% of the time it's a put-back at ~1.2ppp
 
     // Off-ball
 
