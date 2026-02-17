@@ -6,14 +6,14 @@ exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
    "blk": 5,
    "drb": 96,
    "pfPct": 0.15789473684210525,
-   "playerRtg": 105.86789969595162,
-   "playerDelta": 1.7545855257825025,
-   "scPossConceded": 0.48933399202505,
+   "playerRtg": 106.99203655186903,
+   "playerDelta": 2.1769961181596957,
+   "scPossConceded": 0.49452988593499214,
    "noShotCredit": 32.260450315336996,
    "reboundCredit": 34.59731465653162,
    "missFtCredit": 2.5382812499999994,
-   "stopsIndPct": 0.19384370453035926,
-   "stopsTeamPct": 0.3168223034445907,
+   "stopsIndPct": 0.1918713952164029,
+   "stopsTeamPct": 0.313598718848605,
    "teamBlk": 108,
    "oppoPts": 1738,
    "oppoPoss": 1790,
@@ -39,11 +39,11 @@ exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
    "oppoScPoss": 803.32421875,
    "oppoPtsPerScore": 2.163510024264409,
    "teamRtg": 97.09497206703911,
-   "dRtg": 98.84955759282161,
+   "dRtg": 99.2719681851988,
    "offSos": 108.03972067039106,
    "avgEff": 100,
-   "adjDRtg": 91.49371821720374,
-   "adjDRtgPlus": -1.7012563565592531
+   "adjDRtg": 91.88469534094685,
+   "adjDRtgPlus": -1.6230609318106304
 }
 `;
 
@@ -157,7 +157,7 @@ exports[`RatingUtils RatingUtils - buildOnBallDefenseAdjustmentsPhase1 1`] = `
    "onBallDRtg": 92.93245812362909,
    "offBallDRtg": 95.59553266047733,
    "reboundDRtgBonus": -1.8547697356205646,
-   "unadjDRtg": 97.58800096195723,
+   "unadjDRtg": 97.91357892711824,
    "weightedClassicDRtgMean": 0,
    "weightedUnadjDRtgMean": 0,
    "uncategorizedAdjustment": 0,
@@ -172,17 +172,17 @@ exports[`RatingUtils RatingUtils - injectOnBallDefenseAdjustmentsPhase2 1`] = `
 {
    "targetedPct": 0.3967065868263473,
    "effectivePpp": 0.9420547533250715,
-   "onBallDRtg": 93.06930220889606,
-   "offBallDRtg": 95.7323767457443,
+   "onBallDRtg": 93.07773999119766,
+   "offBallDRtg": 95.7408145280459,
    "reboundDRtgBonus": -1.8547697356205646,
-   "unadjDRtg": 97.58800096195723,
-   "weightedClassicDRtgMean": 98.84955759282161,
-   "weightedUnadjDRtgMean": 97.13900652698453,
-   "uncategorizedAdjustment": 0.13684408526696645,
+   "unadjDRtg": 97.91357892711824,
+   "weightedClassicDRtgMean": 99.2719681851988,
+   "weightedUnadjDRtgMean": 97.45594484059175,
+   "uncategorizedAdjustment": 0.14528186756856373,
    "adjustedPossPct": 0.08000000000000002,
-   "dRtg": 97.7248450472242,
-   "adjDRtg": 90.45270058163553,
-   "adjDRtgPlus": -1.9094598836728949
+   "dRtg": 98.05886079468681,
+   "adjDRtg": 90.76186071773178,
+   "adjDRtgPlus": -1.8476278564536444
 }
 `;
 

@@ -58,9 +58,9 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
   const dbs = drtgDiags.onBallDef;
   return (
     <span>
-      ORtg: [<b>{o.oRtg.toFixed(1)}</b>] = Points_Produced [
-      <b>{o.ptsProd.toFixed(1)}</b>] / Adjusted_Possessions [
-      <b>{o.adjPoss.toFixed(1)}</b>] (
+      ORtg: [<b>{o.oRtg.toFixed(2)}</b>] = Points_Produced [
+      <b>{o.ptsProd.toFixed(2)}</b>] / Adjusted_Possessions [
+      <b>{o.adjPoss.toFixed(2)}</b>] (
       <a
         href="#"
         onClick={(event) => {

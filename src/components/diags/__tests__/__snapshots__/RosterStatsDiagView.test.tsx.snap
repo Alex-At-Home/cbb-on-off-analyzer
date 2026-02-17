@@ -4,15 +4,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
 <span>
   ORtg: [
   <b>
-    119.8
+    119.85
   </b>
   ] = Points_Produced [
   <b>
-    569.6
+    569.56
   </b>
   ] / Adjusted_Possessions [
   <b>
-    475.2
+    475.23
   </b>
   ] (
   <a
@@ -1022,7 +1022,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   </ul>
   DRtg: [
   <b>
-    98.8
+    99.3
   </b>
   ] = Team_DRtg [
   <b>
@@ -1030,7 +1030,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   </b>
   ] + Player_Delta [
   <b>
-    1.8
+    2.2
   </b>
   ]  (
   <a
@@ -1066,11 +1066,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     <li>
       Player_Delta: [
       <b>
-        1.8
+        2.2
       </b>
       ] = (Player_DRtg [
       <b>
-        105.9
+        107.0
       </b>
       ] - Team_DRtg [
       <b>
@@ -1086,7 +1086,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       <li>
         Player_DRtg: [
         <b>
-          105.9
+          107.0
         </b>
         ] = 100 * Pts_Per_Score [
         <b>
@@ -1094,7 +1094,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         </b>
         ] * Score_Conceded_By_Player% [
         <b>
-          48.9
+          49.5
           %
         </b>
         ]
@@ -1106,7 +1106,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </b>
       : [
       <b>
-        -1.7
+        -1.6
       </b>
       ] =
        
@@ -1115,11 +1115,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </em>
        [
       <b>
-        91.5
+        91.9
       </b>
       ] (DRtg [
       <b>
-        98.8
+        99.3
       </b>
       ] * (Avg_Efficiency [
       <b>
@@ -1142,7 +1142,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <em>
             (Note: you can also view this as DRtg [
             <b>
-              98.8
+              99.3
             </b>
             ] = ([
             <b>
@@ -1150,7 +1150,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
             </b>
             ] * Player_DRtg [
             <b>
-              105.9
+              107.0
             </b>
             ]) + ([
             <b>
@@ -1236,17 +1236,17 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <li>
           Score_Conceded_By_Player%: [
           <b>
-            48.9
+            49.5
             %
           </b>
           ] = 1 - Stops_Credit_Player% [
           <b>
-            19.4
+            19.2
             %
           </b>
           ] - Stops_Credit_Team% [
           <b>
-            31.7
+            31.4
             %
           </b>
           ]
@@ -1260,7 +1260,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <li>
             Stops_Credit_Player%: [
             <b>
-              19.4
+              19.2
               %
             </b>
             ] = (NoShot_Credit [
@@ -1454,7 +1454,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <li>
             Stops_Credit_Team%: [
             <b>
-              31.7
+              31.4
               %
             </b>
             ] = ((Opponent_FGMiss [
@@ -1521,11 +1521,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <li>
           Adj+ Rtg Normalization: Rtg+ [
           <b>
-            -1.7
+            -1.6
           </b>
           ] = 20% * (Rtg [
           <b>
-            91.5
+            91.9
           </b>
           ] - Avg_Efficiency [
           <b>
@@ -1543,15 +1543,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
 <span>
   ORtg: [
   <b>
-    119.8
+    119.85
   </b>
   ] = Points_Produced [
   <b>
-    569.6
+    569.56
   </b>
   ] / Adjusted_Possessions [
   <b>
-    475.2
+    475.23
   </b>
   ] (
   <a
@@ -2594,7 +2594,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   </span>
   DRtg: [
   <b>
-    98.8
+    99.3
   </b>
   ] = Team_DRtg [
   <b>
@@ -2602,7 +2602,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   </b>
   ] + Player_Delta [
   <b>
-    1.8
+    2.2
   </b>
   ]  (
   <a
@@ -2641,11 +2641,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     <li>
       Player_Delta: [
       <b>
-        1.8
+        2.2
       </b>
       ] = (Player_DRtg [
       <b>
-        105.9
+        107.0
       </b>
       ] - Team_DRtg [
       <b>
@@ -2661,7 +2661,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       <li>
         Player_DRtg: [
         <b>
-          105.9
+          107.0
         </b>
         ] = 100 * Pts_Per_Score [
         <b>
@@ -2669,7 +2669,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         </b>
         ] * Score_Conceded_By_Player% [
         <b>
-          48.9
+          49.5
           %
         </b>
         ]
@@ -2681,7 +2681,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </b>
       : [
       <b>
-        -1.7
+        -1.6
       </b>
       ] =
        
@@ -2690,11 +2690,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </em>
        [
       <b>
-        91.5
+        91.9
       </b>
       ] (DRtg [
       <b>
-        98.8
+        99.3
       </b>
       ] * (Avg_Efficiency [
       <b>
@@ -2720,7 +2720,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <em>
             (Note: you can also view this as DRtg [
             <b>
-              98.8
+              99.3
             </b>
             ] = ([
             <b>
@@ -2728,7 +2728,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
             </b>
             ] * Player_DRtg [
             <b>
-              105.9
+              107.0
             </b>
             ]) + ([
             <b>
@@ -2814,17 +2814,17 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <li>
           Score_Conceded_By_Player%: [
           <b>
-            48.9
+            49.5
             %
           </b>
           ] = 1 - Stops_Credit_Player% [
           <b>
-            19.4
+            19.2
             %
           </b>
           ] - Stops_Credit_Team% [
           <b>
-            31.7
+            31.4
             %
           </b>
           ]
@@ -2838,7 +2838,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <li>
             Stops_Credit_Player%: [
             <b>
-              19.4
+              19.2
               %
             </b>
             ] = (NoShot_Credit [
@@ -3032,7 +3032,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
           <li>
             Stops_Credit_Team%: [
             <b>
-              31.7
+              31.4
               %
             </b>
             ] = ((Opponent_FGMiss [
@@ -3099,11 +3099,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         <li>
           Adj+ Rtg Normalization: Rtg+ [
           <b>
-            -1.7
+            -1.6
           </b>
           ] = 20% * (Rtg [
           <b>
-            91.5
+            91.9
           </b>
           ] - Avg_Efficiency [
           <b>
@@ -3121,15 +3121,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
 <span>
   ORtg: [
   <b>
-    119.8
+    119.85
   </b>
   ] = Points_Produced [
   <b>
-    569.6
+    569.56
   </b>
   ] / Adjusted_Possessions [
   <b>
-    475.2
+    475.23
   </b>
   ] (
   <a
@@ -3360,7 +3360,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
   </ul>
   DRtg: [
   <b>
-    98.8
+    99.3
   </b>
   ] = Team_DRtg [
   <b>
@@ -3368,7 +3368,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
   </b>
   ] + Player_Delta [
   <b>
-    1.8
+    2.2
   </b>
   ]  (
   <a
@@ -3404,11 +3404,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Player_Delta: [
       <b>
-        1.8
+        2.2
       </b>
       ] = (Player_DRtg [
       <b>
-        105.9
+        107.0
       </b>
       ] - Team_DRtg [
       <b>
@@ -3424,7 +3424,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       <li>
         Player_DRtg: [
         <b>
-          105.9
+          107.0
         </b>
         ] = 100 * Pts_Per_Score [
         <b>
@@ -3432,7 +3432,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
         </b>
         ] * Score_Conceded_By_Player% [
         <b>
-          48.9
+          49.5
           %
         </b>
         ]
@@ -3444,7 +3444,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </b>
       : [
       <b>
-        -1.7
+        -1.6
       </b>
       ] =
        
@@ -3453,11 +3453,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </em>
        [
       <b>
-        91.5
+        91.9
       </b>
       ] (DRtg [
       <b>
-        98.8
+        99.3
       </b>
       ] * (Avg_Efficiency [
       <b>
@@ -3477,15 +3477,15 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
 <span>
   ORtg: [
   <b>
-    119.8
+    119.85
   </b>
   ] = Points_Produced [
   <b>
-    569.6
+    569.56
   </b>
   ] / Adjusted_Possessions [
   <b>
-    475.2
+    475.23
   </b>
   ] (
   <a
@@ -3742,7 +3742,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
   </span>
   DRtg: [
   <b>
-    98.8
+    99.3
   </b>
   ] = Team_DRtg [
   <b>
@@ -3750,7 +3750,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
   </b>
   ] + Player_Delta [
   <b>
-    1.8
+    2.2
   </b>
   ]  (
   <a
@@ -3789,11 +3789,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
     <li>
       Player_Delta: [
       <b>
-        1.8
+        2.2
       </b>
       ] = (Player_DRtg [
       <b>
-        105.9
+        107.0
       </b>
       ] - Team_DRtg [
       <b>
@@ -3809,7 +3809,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       <li>
         Player_DRtg: [
         <b>
-          105.9
+          107.0
         </b>
         ] = 100 * Pts_Per_Score [
         <b>
@@ -3817,7 +3817,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
         </b>
         ] * Score_Conceded_By_Player% [
         <b>
-          48.9
+          49.5
           %
         </b>
         ]
@@ -3829,7 +3829,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       </b>
       : [
       <b>
-        -1.7
+        -1.6
       </b>
       ] =
        
@@ -3838,11 +3838,11 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
       </em>
        [
       <b>
-        91.5
+        91.9
       </b>
       ] (DRtg [
       <b>
-        98.8
+        99.3
       </b>
       ] * (Avg_Efficiency [
       <b>

@@ -183,8 +183,8 @@ describe("RatingUtils", () => {
     );
     const [dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiags] =
       RatingUtils.buildDRtg(playerInfo, 100, true, false);
-    const expDRtg = { value: 98.84955759282161 };
-    const expDRtgAdj = { value: -1.7012563565592531 };
+    const expDRtg = { value: 99.2719681851988 };
+    const expDRtgAdj = { value: -1.6230609318106304 };
     expect(dRtg).toEqual(expDRtg);
     expect(adjDRtg).toEqual(expDRtgAdj);
     expect(rawDRtg).toEqual(undefined);
@@ -200,8 +200,8 @@ describe("RatingUtils", () => {
     };
     const [dRtg2, adjDRtg2, rawDRtg2, rawAdjDRtg2, dRtgDiags2] =
       RatingUtils.buildDRtg(playerInfo, 100, true, true);
-    expect(dRtg2).toEqual({ value: 89.6487161188261 });
-    expect(adjDRtg2).toEqual({ value: -3.404489466919759 });
+    expect(dRtg2).toEqual({ value: 90.04849177213895 });
+    expect(adjDRtg2).toEqual({ value: -3.3304841564964764 });
     expect(rawDRtg2).toEqual(expDRtg);
     expect(rawAdjDRtg2).toEqual(expDRtgAdj);
   });
