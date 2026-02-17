@@ -61,7 +61,12 @@ function getTableDefsWithTeam(): Record<string, any> {
   };
 }
 
-/** Build a single player row for the impact breakdown table */
+/** Build a single player row for the impact breakdown table
+ * TODO: issues this has highlighted:
+ * 1] sometimes (if  low vol players are removed?) RAPM sum has larger difference from game score
+ * 2] often see ~1.5 sum for O/D "Gdelta", indicating that weighted [OD]Rtg / AdjRtg+ are not summing to game
+ *    score (seems worse for game than season)
+ */
 function buildPlayerRow(
   team: string,
   point: PlayerImpactPoint,
@@ -156,9 +161,6 @@ function buildPlayerRow(
 
     const offSosAdj = adjBreakdownForSoS ? 0 : netPoints.offNetPtsSos;
     const defSosAdj = adjBreakdownForSoS ? 0 : netPoints.defNetPtsSos;
-
-    // 3] Payne's RAPM is v different to on roster stats table, maybe everyone else also?
-    //    (need to look into this?!)
 
     return {
       title,
