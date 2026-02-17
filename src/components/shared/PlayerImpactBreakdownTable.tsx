@@ -46,17 +46,87 @@ type Props = {
 
 const tableDefsBase = IndivTableDefs.impactDecompTable;
 
+/**/
+/** Enable to add a load of items to the table to help debug offensive adjustment credit */
+const offDebugMode = false;
+
+/** Enable to add a load of items to the table to help debug defensive adjustment credit */
+const defDebugMode = false;
+
 /** Table defs with team column after title for combined view */
-function getTableDefsWithTeam(): Record<string, any> {
+function adjustTableDefs(showTeamCol: boolean): Record<string, any> {
   const { title, ...rest } = tableDefsBase;
   return {
     title,
-    team: GenericTableOps.addDataCol(
-      "",
-      "Team",
-      CbbColors.applyThemedBackground,
-      GenericTableOps.htmlFormatter,
-    ),
+    ...(showTeamCol
+      ? {
+          team: GenericTableOps.addDataCol(
+            "",
+            "Team",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.htmlFormatter,
+          ),
+        }
+      : {}),
+    ...(offDebugMode
+      ? {
+          totPoss: GenericTableOps.addDataCol(
+            "Tot Poss",
+            "Tot Poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          scPoss: GenericTableOps.addDataCol(
+            "Sc Poss",
+            "Sc Poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          fgxPoss: GenericTableOps.addDataCol(
+            "FGx Poss",
+            "FGx Poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          ftxPoss: GenericTableOps.addDataCol(
+            "FTx Poss",
+            "FTx Poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          fgPts: GenericTableOps.addDataCol(
+            "FG pts",
+            "FG pts",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          fgPoss: GenericTableOps.addDataCol(
+            "FG poss",
+            "FG poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          ftPoss: GenericTableOps.addDataCol(
+            "FT poss",
+            "FT poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          astPoss: GenericTableOps.addDataCol(
+            "AST poss",
+            "AST poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+          orbPoss: GenericTableOps.addDataCol(
+            "ORB poss",
+            "ORB poss",
+            CbbColors.applyThemedBackground,
+            GenericTableOps.pointsOrHtmlFormatter,
+          ),
+        }
+      : {}),
+    ...(defDebugMode ? {} : {}),
     ...rest,
   };
 }
@@ -195,12 +265,24 @@ function buildPlayerRow(
           </span>
         ),
       },
-      off_net_3p: { value: netPoints.offNetPts3P },
-      off_net_mid: { value: netPoints.offNetPtsMid },
-      off_net_rim: { value: netPoints.offNetPtsRim },
-      off_net_ft: { value: netPoints.offNetPtsFt },
+      off_net_3p: {
+        value: offDebugMode ? ortgDiag.threePtsProd : netPoints.offNetPts3P,
+      },
+      off_net_mid: {
+        value: offDebugMode ? ortgDiag.midPtsProd : netPoints.offNetPtsMid,
+      },
+      off_net_rim: {
+        value: offDebugMode ? ortgDiag.rimPtsProd : netPoints.offNetPtsRim,
+      },
+      off_net_ft: {
+        value: offDebugMode
+          ? ortgDiag.ftPart * (1 - ortgDiag.teamOrbContribPct)
+          : netPoints.offNetPtsFt,
+      },
       off_net_ast: {
-        value: offNetAst,
+        value: offDebugMode
+          ? ortgDiag.astThreePProd + ortgDiag.astTwoPProd
+          : offNetAst,
         extraInfo: (
           <span>
             2P Assists: {netPoints.offNetPtsAst2.toFixed(2)}
@@ -209,10 +291,56 @@ function buildPlayerRow(
           </span>
         ),
       },
-      off_net_to: { value: netPoints.offNetPtsTo },
-      off_net_orb: { value: netPoints.offNetPtsOrb },
+      off_net_to: {
+        value: offDebugMode ? ortgDiag.rawTo : netPoints.offNetPtsTo,
+      },
+      off_net_orb: {
+        value: offDebugMode ? ortgDiag.ppOrb : netPoints.offNetPtsOrb,
+      },
       def_sos_bonus: { value: netPoints.defNetPtsSos },
       def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
+      ...(offDebugMode
+        ? {
+            totPoss: {
+              value: ortgDiag.adjPoss,
+            },
+            fgPts: {
+              value:
+                ortgDiag.threePtsProd +
+                ortgDiag.rimPtsProd +
+                ortgDiag.midPtsProd,
+            },
+            scPoss: {
+              //temp isolate from scoringPoss to just "fgScoringPoss"
+              // (components: fgPart, astPart, ftPart),
+              // and then * (1 - ortgDiag.teamOrbContribPct) to remove ORB bits
+              value:
+                (ortgDiag.fgPart + ortgDiag.astPart) *
+                (1 - ortgDiag.teamOrbContribPct),
+            },
+            fgxPoss: {
+              value: ortgDiag.fgxPoss,
+            },
+            ftxPoss: {
+              value: ortgDiag.ftxPoss,
+            },
+            fgPoss: {
+              value: ortgDiag.threePoss + ortgDiag.rimPoss + ortgDiag.midPoss,
+            },
+            ftPoss: {
+              value:
+                ortgDiag.ftPart * (1 - ortgDiag.teamOrbContribPct) +
+                ortgDiag.ftxPoss,
+              extraInfo: `Raw: [${ortgDiag.ftPoss.toFixed(1)}]`,
+            },
+            astPoss: {
+              value: ortgDiag.astThreePoss + ortgDiag.astTwoPoss,
+            },
+            orbPoss: {
+              value: ortgDiag.orbPart,
+            },
+          }
+        : {}),
     };
   } else {
     return {
@@ -236,7 +364,21 @@ const dataColKeys = [
   "off_net_orb",
   "def_sos_bonus",
   "def_gravity_bonus",
-] as const;
+].concat(
+  offDebugMode
+    ? [
+        "totPoss",
+        "scPoss",
+        "fgxPoss",
+        "ftxPoss",
+        "fgPoss",
+        "fgPts",
+        "ftPoss",
+        "astPoss",
+        "orbPoss",
+      ]
+    : [],
+);
 
 /** Build total row (appended at end, not sorted) */
 function buildTotalRow(
@@ -343,7 +485,10 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
     setSortBy(value || IndivTableDefs.defaultImpactDecompSortBy);
   };
 
-  const tableDefs = showTeamColumn ? getTableDefsWithTeam() : tableDefsBase;
+  const tableDefs =
+    showTeamColumn || offDebugMode || defDebugMode
+      ? adjustTableDefs(showTeamColumn)
+      : tableDefsBase;
   const sortKey = sortBy.split(":")[1];
   const sortDir = sortBy.startsWith("desc") ? "desc" : "asc";
 

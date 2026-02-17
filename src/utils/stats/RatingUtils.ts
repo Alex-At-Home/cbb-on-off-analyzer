@@ -568,6 +568,11 @@ export class RatingUtils {
       Team_Poss - (Team_TOV + Team_FGA - Team_ORB),
       FTA > 0 ? 1 : 0,
     );
+    //DEBUG:
+    // console.log(
+    //   `[${Actual_FT_Poss}] = [${Team_Poss}] - ([${Team_TOV}]+[${Team_FGA}]-[${Team_ORB}])`,
+    // );
+
     const Actual_FTA_to_Poss = Actual_FT_Poss / (Team_FTA || 1);
 
     const Prob_Miss_Both_FT = FTA > 0 ? (1 - FTM / FTA) ** 2 : 0.0;
@@ -612,6 +617,7 @@ export class RatingUtils {
 
     // Other factors:
 
+    // Note this is the main vector for leaking poss (more noticeable in small samples)
     const FGxPoss =
       (FGA - FGM) * (1 - RatingUtils.retainPossWithReboundRate * Team_ORB_pct);
 
@@ -745,56 +751,38 @@ export class RatingUtils {
     const Regressed_ORtg = avgEfficiency + SDs_Above_Mean * SD_at_Usage_20;
     // See AR3:
     // See AR2:
-    const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus, SoS_Bonus } = _.thru(
-      null,
-      (__) => {
-        if (false) {
-          // Legacy, replace this thru with commented out code once I'm committed
-          // Current "PPG!"-like
-          const Usage_Bonus =
-            usage > 20 ? (usage - 20) * 1.25 : (usage - 20) * 1.5;
-          const Adj_ORtg = (ORtg + Usage_Bonus) * o_adj;
-          const Adj_ORtgPlus = 0.2 * (Adj_ORtg - avgEfficiency);
-          const ORtgPlus = 0.2 * (ORtg + Usage_Bonus - avgEfficiency);
+    // Dean Oliver's "PUE" with some diagnostics
+    const Adj_ORtg = ORtg * o_adj;
+    const Unadjusted_Productivity = 0.01 * usage * (ORtg - avgEfficiency);
+    const Raw_Productivity =
+      0.01 * usage * (ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
+      0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
+    // Adjusted for both SoS and usage:
+    const Adj_ORtgPlus =
+      0.01 *
+        usage *
+        (Adj_ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
+      0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
 
-          // TODO: candidate new calc:
-          // const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
-          // const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
+    const Usage_Bonus = 5 * (Raw_Productivity - Unadjusted_Productivity);
+    //(^ this is now v small, most of the benefit comes from multiplying the efficiency gain by the usage)
+    const SoS_Bonus = Adj_ORtgPlus - Raw_Productivity;
 
-          // so sum(Adj_ORtgPlus) = sum(ORtg*usage)*sos_factor + 1.25*sum(delta_usage)*sos_factor - avgEff*(sum(usage))
-          //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
+    // Legacy, replace this thru with commented out code once I'm committed
+    // Current "PPG!"-like
+    // const Usage_Bonus =
+    //   usage > 20 ? (usage - 20) * 1.25 : (usage - 20) * 1.5;
+    // const Adj_ORtg = (ORtg + Usage_Bonus) * o_adj;
+    // const Adj_ORtgPlus = 0.2 * (Adj_ORtg - avgEfficiency);
+    // const ORtgPlus = 0.2 * (ORtg + Usage_Bonus - avgEfficiency);
+    // const SoS_Bonus = Adj_ORtgPlus - ORtgPlus;
 
-          return {
-            Adj_ORtg,
-            Adj_ORtgPlus,
-            Usage_Bonus,
-            SoS_Bonus: Adj_ORtgPlus - ORtgPlus,
-          };
-        } else {
-          // Dean Oliver's "PUE" with some diagnostics
-          const Adj_ORtg = ORtg * o_adj;
-          const Unadjusted_Productivity = 0.01 * usage * (ORtg - avgEfficiency);
-          const Raw_Productivity =
-            0.01 *
-              usage *
-              (ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
-            0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
-          // Adjusted for both SoS and usage:
-          const Adj_ORtgPlus =
-            0.01 *
-              usage *
-              (Adj_ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
-            0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
-          return {
-            Adj_ORtg,
-            Adj_ORtgPlus,
-            Usage_Bonus: 5 * (Raw_Productivity - Unadjusted_Productivity),
-            //(^ this is now v small, most of the benefit comes from multiplying the efficiency gain by the usage)
-            SoS_Bonus: Adj_ORtgPlus - Raw_Productivity,
-          };
-        }
-      },
-    );
+    // TODO: candidate new calc:
+    // const Adj_ORtg = 0.01*(ORtg*usage + Usage_Bonus*20)*o_adj;
+    // const Adj_ORtgPlus = Adj_ORtg - avgEfficiency*(usage*0.01);
+
+    // so sum(Adj_ORtgPlus) = sum(ORtg*usage)*sos_factor + 1.25*sum(delta_usage)*sos_factor - avgEff*(sum(usage))
+    //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
 
     // If the values have been overridden then calculate the un-overridden values
     const [rawORtg, rawAdjRating] = overrideAdjusted
@@ -965,9 +953,10 @@ export class RatingUtils {
     const offNetPtsMid = (ortg.midPtsProd - ortg.midPoss * avgPpp) * offScale;
     const offNetPtsRim = (ortg.rimPtsProd - ortg.rimPoss * avgPpp) * offScale;
     const offNetPtsOrb = (ortg.ppOrb - ortg.orbPart * avgPpp) * offScale;
+    const adjustedFtPoss =
+      ortg.ftPart * (1 - ortg.teamOrbContribPct) + ortg.ftxPoss;
     const offNetPtsFt =
-      (ortg.rawFtm - ortg.ftPoss * avgPpp) *
-      (1 - ortg.teamOrbContribPct) *
+      (ortg.rawFtm * (1 - ortg.teamOrbContribPct) - adjustedFtPoss * avgPpp) *
       offScale;
     const offNetPtsTo = -ortg.rawTo * avgPpp * offScale;
     const offNetPtsAst2 =
