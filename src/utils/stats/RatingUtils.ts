@@ -275,7 +275,7 @@ export class RatingUtils {
   /** The % of average efficiency that represents replacement level */
   static readonly Replacement_Level = 0.92;
 
-  /** Arbitary/guess: 7% of the time possession is retained without an off. rebound */
+  /** Arbitary/guess constant from original (NBA box scores) paper: 7% of the time possession is retained without an off. rebound */
   static readonly retainPossWithReboundRate = 1.07;
 
   /** Builds the overrides to the raw fields based on stat overrides

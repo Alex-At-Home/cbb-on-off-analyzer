@@ -119,7 +119,7 @@ const apPollMen_2021_22: () => Record<string, number> = () =>
 23	Boise State	27-7	165	NR
 24	Colorado State	25-5	82	23
 25	Texas	21-11	72	22
-`
+`,
   )
     .split("\n")
     .map((l) => {
@@ -160,14 +160,14 @@ const apPollMen_2022_23: () => Record<string, number> = () =>
 23	Kentucky	21-10	138	23
 24	Creighton	20-11	133	NR
 25	Missouri	23-8	66	NR
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -207,14 +207,14 @@ const apPollMen_2023_24: () => Record<string, number> = () =>
     23	Nevada	26-6	223	NR
     24	Dayton	24-6	155	25
     25	Texas Tech	22-9	149	NR
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -254,14 +254,14 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
 23	Missouri	22-11	159	23
 24	Gonzaga	25-8	151	NR
 25	Oregon	24-9	115	24
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -276,46 +276,46 @@ const apPollMen_2024_25: () => Record<string, number> = () =>
 const apPollMen_2025_26: () => Record<string, number> = () =>
   _.chain(
     `
-1	Arizona	22-0 (59)	1475	1
-2	Michigan	20-1	1388	3
-3	UConn	21-1	1367	2
-4	Duke	20-1	1314	4
-5	Illinois	19-3	1172	9
-6	Gonzaga	22-1	1167	6
-7	Iowa State	20-2	1130	8
-8	Houston	19-2	1067	10
-9	Nebraska	20-2	1036	5
-10	Michigan State	19-3	950	7
-11	Kansas	16-5	847	14
-12	Purdue	18-4	697	12
-13	Texas Tech	16-5	638	11
-14	North Carolina	17-4	633	12
-15	Vanderbilt	19-3	627	18
-16	BYU	17-4	622	13
-17	Florida	16-6	618	15
-18	Virginia	18-3	578	17
-19	Saint Louis	21-1	353	17
-20	Clemson	18-4	284	18
-21	Arkansas	16-6	276	15
-22	St. John's	16-5	199	25
-23	Miami (OH)	22-0	170	24
-24	Louisville	15-6	148	20
-25	Tennessee	15-6	134	25
-`
+1	Michigan (60)	24-1	1524	2
+2	Houston (1)	23-2	1402	3
+3	Duke	23-2	1397	4
+4	Arizona	23-2	1358	1
+5	UConn	24-2	1318	6
+6	Iowa State	22-3	1212	5
+7	Purdue	21-4	1042	13
+8	Kansas	19-6	1011	9
+9	Nebraska	22-3	982	7
+10	Illinois	21-5	938	8
+11	Gonzaga	25-2	903	12
+12	Florida	19-6	895	14
+13	Texas Tech	19-6	822	16
+14	Virginia	22-3	730	15
+15	Michigan State	20-5	681	10
+16	North Carolina	20-5	594	11
+17	St. John's	20-5	590	17
+18	Saint Louis	24-1	468	18
+19	Vanderbilt	21-4	449	19
+20	Arkansas	19-6	387	21
+21	Louisville	19-6	263	24
+22	Miami (OH)	25-0	238	23
+23	BYU	19-6	214	22
+24	Wisconsin	18-7	109	NR
+25	Alabama	18-7	104	NR
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
     })
     .fromPairs()
     .assign({
-      __week__: 13,
+      __week__: 14,
     })
     .value();
 
@@ -348,7 +348,7 @@ const apPollWomen_2021_22: () => Record<string, number> = () =>
 23	Texas A&M	3-1	233	23
 24	Rutgers	3-0	143	24
 25	Illinois	3-0	116	NR
-`
+`,
   )
     .split("\n")
     .map((l) => {
@@ -390,14 +390,14 @@ const apPollWomen_2022_23: () => Record<string, number> = () =>
 23	Tennessee	23-11	92	NR
 24	Arizona	21-9	89	21
 25	Middle Tennessee	25-4	62	24
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -437,14 +437,14 @@ const apPollWomen_2023_24: () => Record<string, number> = () =>
     23	Creighton	25-5	91	21
     24	Louisville	24-9	90	24
     25	Fairfield	28-1	88	25
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -484,14 +484,14 @@ const apPollWomen_2024_25: () => Record<string, number> = () =>
 23	Creighton	26-6	102	22
 24	South Dakota State	29-3	83	24
 25	Ole Miss	20-10	58	25
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -531,14 +531,14 @@ const apPollWomen_2025_26: () => Record<string, number> = () =>
 23	Princeton	18-2	88	19
 24	Washington	17-5	81	25
 25	North Carolina	17-5	67	25
-`
+`,
   )
     .split("\n")
     .map((l) => {
       const ab = l.split("\t");
       return [
         fixName(
-          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St.")
+          (ab[1] || "").replace(/ *[(][0-9]+[)]/, "").replace("State", "St."),
         ),
         parseInt(ab[0].replace("T-", "")),
       ];
@@ -625,7 +625,7 @@ const sCurveMen_2021_22: () => Record<string, number> = () =>
 49. Oklahoma (0 - 0)
 50. SMU (0 - 0)
 51. Texas A&M (0 - 0)
-`
+`,
   )
     .split("\n")
     .map((l) => {
@@ -692,7 +692,7 @@ Oregon State
 Boston College
 South Dakota State
 Marquette
-`
+`,
   )
     .split("\n")
     .map((l, rank) => {
