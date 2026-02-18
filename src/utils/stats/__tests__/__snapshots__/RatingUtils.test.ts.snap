@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RatingUtils RatingUtils - adjustRatingStats updates the right fields 1`] = `
+{
+   "oRtg": 146.48280326210516,
+   "adjORtg": 151.63561878375864,
+   "adjORtgPlus": 14.127286605934472,
+   "Usage_Bonus": 2.548921551707073,
+   "SoS_Bonus": 1.3589161677085286,
+   "adjPtsFactor": 1.1,
+   "adjPossFactor": 0.9
+}
+`;
+
 exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
 {
    "stl": 30,
@@ -44,6 +56,27 @@ exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
    "avgEff": 100,
    "adjDRtg": 91.88469534094685,
    "adjDRtgPlus": -1.6230609318106304
+}
+`;
+
+exports[`RatingUtils RatingUtils - buildNetPoints uses adjPtsFactor and adjPossFactor 1`] = `
+{
+   "offNetPts": 1.714103188989948,
+   "offNetPtsDerived": 3.1635880815724824,
+   "offNetPtsAst2": 0.5685335668352862,
+   "offNetPtsAst3": 0.3387512502393582,
+   "offNetPtsOrb": 0.09101566206993812,
+   "offNetPtsRim": 0.6567298379698561,
+   "offNetPts3P": 0.6065963817886674,
+   "offNetPtsMid": -0.06438603110365176,
+   "offNetPtsFt": 1.422483941274232,
+   "offNetPtsTo": -0.8615427302996671,
+   "offNetPtsVolume": 0.12744607758535387,
+   "offNetPtsWowy": 0,
+   "offNetPtsSos": 0.2779601252131088,
+   "defNetPts": -0.40576523295265754,
+   "defNetPtsWowy": 0,
+   "defNetPtsSos": 0.3693636422125976
 }
 `;
 
@@ -146,7 +179,9 @@ exports[`RatingUtils RatingUtils - buildORtg 1`] = `
    "midPtsProd": 36,
    "threePtsProd": 142.65517241379308,
    "astThreePProd": 51.224874371859286,
-   "astTwoPProd": 37.56490787269682
+   "astTwoPProd": 37.56490787269682,
+   "adjPtsFactor": 1,
+   "adjPossFactor": 1
 }
 `;
 

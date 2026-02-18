@@ -4,6 +4,7 @@ import {
   RatingUtils,
   DRtgDiagnostics,
   OnBallDefenseModel,
+  ORtgDiagnostics,
 } from "../RatingUtils";
 import {
   GameFilterParams,
@@ -42,8 +43,9 @@ describe("RatingUtils", () => {
     expect(rawORtg).toEqual(undefined);
     expect(rawAdjORtg).toEqual(undefined);
     expect(oRtgDiags).toMatchSnapshot();
-    // Then can be copied into here:
-    expect(oRtgDiags).toEqual(sampleOrtgDiagnostics);
+    expect(oRtgDiags).toMatchObject(sampleOrtgDiagnostics);
+    expect(oRtgDiags).toHaveProperty("adjPtsFactor", 1);
+    expect(oRtgDiags).toHaveProperty("adjPossFactor", 1);
 
     // Check with override:
     (playerInfo as any).off_3p = {
@@ -113,6 +115,72 @@ describe("RatingUtils", () => {
     expect(rawORtg2).toEqual(expORtg);
     expect(rawAdjORtg2).toEqual(expORtgAdj);
   });
+
+  test("RatingUtils - buildNetPoints uses adjPtsFactor and adjPossFactor", () => {
+    const playerInfo = _.cloneDeep(
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets
+        .baseline.player.buckets[0],
+    ) as any as IndivStatSet;
+    (playerInfo as any).off_team_poss_pct = { value: 0.25 };
+    (playerInfo as any).def_team_poss_pct = { value: 0.25 };
+    const [, , , , oRtgDiags] = RatingUtils.buildORtg(
+      playerInfo,
+      {},
+      { total_off_to: { value: 0 }, sum_total_off_to: {} },
+      100,
+      true,
+      false,
+    );
+    const [, , , , dRtgDiags] = RatingUtils.buildDRtg(
+      playerInfo,
+      100,
+      true,
+      false,
+    );
+    const ortgWithFactors = {
+      ...oRtgDiags,
+      adjPtsFactor: 1.1,
+      adjPossFactor: 0.9,
+    } as ORtgDiagnostics;
+    const netPoints = RatingUtils.buildNetPoints(
+      playerInfo,
+      ortgWithFactors,
+      dRtgDiags!,
+      100,
+      "T%",
+      1,
+      1,
+    );
+    expect(netPoints).toMatchSnapshot();
+  });
+
+  test("RatingUtils - adjustRatingStats updates the right fields", () => {
+    const playerInfo = _.cloneDeep(
+      samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets
+        .baseline.player.buckets[0],
+    ) as any as IndivStatSet;
+    const [, , rawORtg, , oRtgDiags] = RatingUtils.buildORtg(
+      playerInfo,
+      {},
+      { total_off_to: { value: 0 }, sum_total_off_to: {} },
+      100,
+      true,
+      false,
+    );
+    const mutableDiag = _.cloneDeep(oRtgDiags) as ORtgDiagnostics;
+    const maybeRawORtg = rawORtg?.value;
+    RatingUtils.adjustRatingStats(1.1, 0.9, mutableDiag, maybeRawORtg);
+    expect({
+      oRtg: mutableDiag.oRtg,
+      adjORtg: mutableDiag.adjORtg,
+      adjORtgPlus: mutableDiag.adjORtgPlus,
+      Usage_Bonus: mutableDiag.Usage_Bonus,
+      SoS_Bonus: mutableDiag.SoS_Bonus,
+      adjPtsFactor: mutableDiag.adjPtsFactor,
+      adjPossFactor: mutableDiag.adjPossFactor,
+    }).toMatchSnapshot();
+  });
+
   test("RatingUtils - buildOffOverrides", () => {
     const outputs = {
       total_off_fgm: { value: 0.0001 },
