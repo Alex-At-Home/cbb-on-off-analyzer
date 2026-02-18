@@ -133,12 +133,14 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   );
 
   const [breakdownLayout, setBreakdownLayout] = useState<
-    "side-by-side" | "separate" | "combined"
+    "side-by-side" | "separate" | "combined" | "team" | "oppo"
   >(
     (startingState.breakdownLayout as
       | "side-by-side"
       | "separate"
       | "combined"
+      | "team"
+      | "oppo"
       | undefined) ?? ParamDefaults.defaultBreakdownLayout,
   );
 
@@ -926,7 +928,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               {
                 label: <small>&#9679;</small>,
                 tooltip: `Show/fade players from ${
-                  startingState.oppoTeam || "??"
+                  opponent || startingState.oppoTeam || "??"
                 }`,
                 disabled: opponent == AvailableTeams.noOpponent,
                 toggled: showOppo && opponent != AvailableTeams.noOpponent,
@@ -1069,7 +1071,18 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         </Col>
       </Row>
       <Row>
-        <Col>{chart}</Col>
+        {showTeam || showOppo ? (
+          <Col>{chart}</Col>
+        ) : (
+          <>
+            <i>
+              (Show Team (&#9650;) or Opponent (&#9679;) from Quick Select
+              toolbar to display chart)
+            </i>
+            <br />
+            <br />
+          </>
+        )}
       </Row>
       {!_.isEmpty(cachedStats.ab) ? (
         <>
@@ -1122,6 +1135,18 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         ? [
                             {
                               items: [
+                                {
+                                  label: <span>&#9650;</span>,
+                                  tooltip: `Team: Show the breakdown impact chart for ${startingState.team || "??"}`,
+                                  toggled: breakdownLayout == "team",
+                                  onClick: () => setBreakdownLayout("team"),
+                                },
+                                {
+                                  label: <small>&#9679;</small>,
+                                  tooltip: `Opponent: Show the breakdown impact chart for ${opponent || startingState.oppoTeam || "??"}`,
+                                  toggled: breakdownLayout == "oppo",
+                                  onClick: () => setBreakdownLayout("oppo"),
+                                },
                                 {
                                   label: "Side-Side",
                                   tooltip: "Side-Side:Two tables side by side",
@@ -1368,42 +1393,50 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                     />
                   </Col>
                 </Row>
-              ) : breakdownLayout === "separate" &&
+              ) : (breakdownLayout === "separate" ||
+                  breakdownLayout === "team" ||
+                  breakdownLayout === "oppo") &&
                 opponent !== AvailableTeams.noOpponent &&
                 filteredBreakdownPoints.some(
                   (p: PlayerImpactPoint) => p.seriesId === opponent,
                 ) ? (
                 <>
-                  <Row>
-                    <Col xs={12}>
-                      <PlayerImpactBreakdownTable
-                        team={commonParams.team!}
-                        playerPoints={filteredBreakdownPoints.filter(
-                          (p) => p.seriesId === commonParams.team,
-                        )}
-                        adjBreakdownForSoS={adjBreakdownForSoS}
-                        scaleType={scaleType}
-                        showWalkOns={breakdownShowWalkOns}
-                        avgEfficiency={avgEfficiency}
-                        seasonStats={!!seasonStats}
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12}>
-                      <PlayerImpactBreakdownTable
-                        team={opponent}
-                        playerPoints={filteredBreakdownPoints.filter(
-                          (p) => p.seriesId === opponent,
-                        )}
-                        adjBreakdownForSoS={adjBreakdownForSoS}
-                        scaleType={scaleType}
-                        showWalkOns={breakdownShowWalkOns}
-                        avgEfficiency={avgEfficiency}
-                        seasonStats={!!seasonStats}
-                      />
-                    </Col>
-                  </Row>
+                  {(breakdownLayout === "team" ||
+                    breakdownLayout === "separate") && (
+                    <Row>
+                      <Col xs={12}>
+                        <PlayerImpactBreakdownTable
+                          team={commonParams.team!}
+                          playerPoints={filteredBreakdownPoints.filter(
+                            (p) => p.seriesId === commonParams.team,
+                          )}
+                          adjBreakdownForSoS={adjBreakdownForSoS}
+                          scaleType={scaleType}
+                          showWalkOns={breakdownShowWalkOns}
+                          avgEfficiency={avgEfficiency}
+                          seasonStats={!!seasonStats}
+                        />
+                      </Col>
+                    </Row>
+                  )}
+                  {(breakdownLayout === "oppo" ||
+                    breakdownLayout === "separate") && (
+                    <Row>
+                      <Col xs={12}>
+                        <PlayerImpactBreakdownTable
+                          team={opponent}
+                          playerPoints={filteredBreakdownPoints.filter(
+                            (p) => p.seriesId === opponent,
+                          )}
+                          adjBreakdownForSoS={adjBreakdownForSoS}
+                          scaleType={scaleType}
+                          showWalkOns={breakdownShowWalkOns}
+                          avgEfficiency={avgEfficiency}
+                          seasonStats={!!seasonStats}
+                        />
+                      </Col>
+                    </Row>
+                  )}
                 </>
               ) : (
                 <Row>

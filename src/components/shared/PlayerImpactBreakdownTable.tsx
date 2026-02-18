@@ -217,14 +217,16 @@ function buildPlayerRow(
     );
 
     //DEBUG:
-    // if (team == "Maryland") {
-    //   console.log(
-    //     `${prettified}: [${playerTeamGames}]`,
-    //     ortgDiag,
-    //     drtgDiag,
-    //     netPoints,
-    //   );
-    // }
+    if (offDebugMode || defDebugMode) {
+      if (team == "XXX") {
+        console.log(
+          `${prettified}: [${playerTeamGames}]`,
+          ortgDiag,
+          drtgDiag,
+          netPoints,
+        );
+      }
+    }
 
     const offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
 
@@ -306,6 +308,7 @@ function buildPlayerRow(
               value: ortgDiag.adjPoss,
             },
             fgPts: {
+              //ortgDiag.ptsProd, //(all pts)
               value:
                 ortgDiag.threePtsProd +
                 ortgDiag.rimPtsProd +
@@ -441,13 +444,13 @@ function buildTotalRow(
   // If different number of possessions then add a final adjustment:
   if (scaleType === "/G" && possPerGame && possPerGame[0] != possPerGame[1]) {
     const [offPoss, defPoss] = possPerGame;
-    const keyToAdjust = "def_adj_rapm"; //(always adjust defense, effectively by winning the tip you've saved a defensive possession)
     const possDelta = (offPoss - defPoss) * 100;
+    const keyToAdjust = possDelta > 0 ? "def_adj_rapm" : "off_adj_rapm"; // equivalent to a TO for the team with less possessions
     const deltaPts = (offPoss - defPoss) * avgEff;
     (total[keyToAdjust] as any).value =
       ((total[keyToAdjust] as any).value ?? 0) + deltaPts;
     (total[keyToAdjust] as any).extraInfo =
-      `Off-Def possession delta of [${possDelta.toFixed(1)}]: adjust by [${deltaPts.toFixed(1)}]pts`;
+      `Off-Def possession delta of [${possDelta.toFixed(1)}]: adjust by [${deltaPts.toFixed(1)}]pts: equivalent to a TO for the team with fewer possessions`;
   }
   // Handle RAPM diff separately to work around possession differences:
   total["diff_adj_rapm"] = {

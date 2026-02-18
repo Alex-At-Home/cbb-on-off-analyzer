@@ -143,8 +143,8 @@ export type MatchupFilterParams = {
   adjImpactStats?: boolean;
   /** Impact breakdown table: show the breakdown table below the chart */
   showImpactBreakdown?: boolean;
-  /** Impact breakdown table: layout (side-by-side | separate | combined); default side-by-side */
-  breakdownLayout?: "side-by-side" | "separate" | "combined";
+  /** Impact breakdown table: layout (side-by-side | separate | combined | team | oppo); default side-by-side */
+  breakdownLayout?: "side-by-side" | "separate" | "combined" | "team" | "oppo";
   /** Impact breakdown table: player filter string (e.g. "Name1,Name2,-Name3") */
   breakdownFilterStr?: string;
   /** Impact breakdown table: include walk-ons (<10% poss); default false */
