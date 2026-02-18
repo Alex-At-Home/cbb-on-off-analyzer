@@ -42,4 +42,6 @@ export const sampleDrtgDiagnostics = {
   avgEff: 100,
   adjDRtg: 91.88469534094685,
   adjDRtgPlus: -1.6230609318106304,
+  adjPossFactor: 1,
+  adjPtsFactor: 1,
 };

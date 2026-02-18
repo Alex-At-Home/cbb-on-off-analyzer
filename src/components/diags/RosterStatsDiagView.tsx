@@ -56,11 +56,13 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
   const d = drtgDiags;
   const dbd = drtgDiags.onBallDiags;
   const dbs = drtgDiags.onBallDef;
+  const Off_Misc = o.oRtg - (o.oRtg * o.adjPossFactor) / (o.adjPtsFactor || 1);
+  const Def_Misc = d.dRtg - (d.dRtg * d.adjPossFactor) / (d.adjPtsFactor || 1);
   return (
     <span>
       ORtg: [<b>{o.oRtg.toFixed(2)}</b>] = Points_Produced [
       <b>{o.ptsProd.toFixed(2)}</b>] / Adjusted_Possessions [
-      <b>{o.adjPoss.toFixed(2)}</b>] (
+      <b>{o.adjPoss.toFixed(2)}</b>] + Misc [<b>{Off_Misc.toFixed(2)}</b>] (
       <a
         href="#"
         onClick={(event) => {
@@ -507,6 +509,12 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
           </span>
         ) : null}
         <li>
+          Misc [<b>{Off_Misc.toFixed(2)}</b>]: Distributes unassigned Pts [
+          <b>{(100 * Math.abs(o.adjPtsFactor - 1)).toFixed(1)}%</b>] and Poss [
+          <b>{(100 * Math.abs(o.adjPossFactor - 1)).toFixed(1)}%</b>] equally
+          based on Poss% and Usage%
+        </li>
+        <li>
           <b>Adjusted+ ORtg</b>: [<b>{o.adjORtgPlus.toFixed(1)}</b>] ={" "}
           <em>Combine Usage</em> [<b>{o.Usage.toFixed(1)}%</b>]{" "}
           <em>with Adjusted ORtg</em> [<b>{o.adjORtg.toFixed(1)}</b>] (ORtg [
@@ -600,7 +608,8 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
       ) : null}
       {dbd && dbs ? <span>"Classic" </span> : null}DRtg: [
       <b>{d.dRtg.toFixed(1)}</b>] = Team_DRtg [<b>{d.teamRtg.toFixed(1)}</b>] +
-      Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>] &nbsp;(
+      Player_Delta [<b>{d.playerDelta.toFixed(1)}</b>] + Misc [
+      <b>{Def_Misc.toFixed(2)}</b>] &nbsp;(
       <a
         href="#"
         onClick={(event) => {
@@ -631,6 +640,12 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
             [<b>{(100 * d.scPossConceded).toFixed(1)}%</b>]
           </li>
         </ul>
+        <li>
+          Misc [<b>{Def_Misc.toFixed(2)}</b>]: Distributes unassigned Pts [
+          <b>{(100 * Math.abs(d.adjPtsFactor - 1)).toFixed(1)}%</b>] and Poss [
+          <b>{(100 * Math.abs(d.adjPossFactor - 1)).toFixed(1)}%</b>] equally
+          based on Poss%
+        </li>
         <li>
           <b>Adjusted+ DRtg</b>: [<b>{d.adjDRtgPlus.toFixed(1)}</b>] ={" "}
           <em>Normalize</em> [<b>{d.adjDRtg.toFixed(1)}</b>] (DRtg [
@@ -710,10 +725,16 @@ const RosterStatsDiagView: React.FunctionComponent<Props> = ({
                   <b>{(100 * d.stopsIndPct).toFixed(1)}%</b>] = (NoShot_Credit [
                   <b>{d.noShotCredit.toFixed(1)}</b>] + Rebound_Credit [
                   <b>{d.reboundCredit.toFixed(1)}</b>] + MissFT_Credit [
-                  <b>{d.missFtCredit.toFixed(1)}</b>]) / (20% * Opponent_Poss) [
-                  <b>{(0.2 * d.oppoPoss).toFixed(1)}</b>]
+                  <b>{d.missFtCredit.toFixed(1)}</b>]) / (20% *
+                  Adj_Opponent_Poss) [<b>~{(0.2 * d.oppoPoss).toFixed(1)}</b>]
                 </li>
                 <ul>
+                  <li>
+                    <i>
+                      (minor adjustment to Opponent_Poss for things like
+                      FTA/poss, mid-poss lineup breaks over smaller samples)
+                    </i>
+                  </li>
                   <li>
                     NoShot_Credit: [<b>{d.noShotCredit.toFixed(1)}</b>] = Steals
                     [<b>{d.stl.toFixed(0)}</b>] + (Block [

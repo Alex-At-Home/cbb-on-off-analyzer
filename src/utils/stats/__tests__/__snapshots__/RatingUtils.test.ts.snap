@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RatingUtils RatingUtils - adjustRatingStats updates the right fields 1`] = `
+exports[`RatingUtils RatingUtils - adjustOffRatingStats updates the right fields 1`] = `
 {
    "oRtg": 146.48280326210516,
    "adjORtg": 151.63561878375864,
-   "adjORtgPlus": 14.127286605934472,
-   "Usage_Bonus": 2.548921551707073,
-   "SoS_Bonus": 1.3589161677085286,
+   "adjORtgPlus": 12.554557945341028,
+   "Usage_Bonus": 1.4940293965363693,
+   "SoS_Bonus": 1.2230245509376765,
    "adjPtsFactor": 1.1,
    "adjPossFactor": 0.9
 }
@@ -55,7 +55,9 @@ exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
    "offSos": 108.03972067039106,
    "avgEff": 100,
    "adjDRtg": 91.88469534094685,
-   "adjDRtgPlus": -1.6230609318106304
+   "adjDRtgPlus": -1.6230609318106304,
+   "adjPossFactor": 1,
+   "adjPtsFactor": 1
 }
 `;
 

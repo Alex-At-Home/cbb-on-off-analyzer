@@ -14,6 +14,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   <b>
     475.23
   </b>
+  ] + Misc [
+  <b>
+    NaN
+  </b>
   ] (
   <a
     href="#"
@@ -889,6 +893,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </ul>
     </span>
     <li>
+      Misc [
+      <b>
+        NaN
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        NaN
+        %
+      </b>
+      ] and Poss [
+      <b>
+        NaN
+        %
+      </b>
+      ] equally based on Poss% and Usage%
+    </li>
+    <li>
       <b>
         Adjusted+ ORtg
       </b>
@@ -1032,6 +1053,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   <b>
     2.2
   </b>
+  ] + Misc [
+  <b>
+    0.00
+  </b>
   ]  (
   <a
     href="#"
@@ -1100,6 +1125,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         ]
       </li>
     </ul>
+    <li>
+      Misc [
+      <b>
+        0.00
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        0.0
+        %
+      </b>
+      ] and Poss [
+      <b>
+        0.0
+        %
+      </b>
+      ] equally based on Poss%
+    </li>
     <li>
       <b>
         Adjusted+ DRtg
@@ -1275,13 +1317,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
             <b>
               2.5
             </b>
-            ]) / (20% * Opponent_Poss) [
+            ]) / (20% * Adj_Opponent_Poss) [
             <b>
+              ~
               358.0
             </b>
             ]
           </li>
           <ul>
+            <li>
+              <i>
+                (minor adjustment to Opponent_Poss for things like FTA/poss, mid-poss lineup breaks over smaller samples)
+              </i>
+            </li>
             <li>
               NoShot_Credit: [
               <b>
@@ -1553,6 +1601,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   <b>
     475.23
   </b>
+  ] + Misc [
+  <b>
+    NaN
+  </b>
   ] (
   <a
     href="#"
@@ -2428,6 +2480,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
       </ul>
     </span>
     <li>
+      Misc [
+      <b>
+        NaN
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        NaN
+        %
+      </b>
+      ] and Poss [
+      <b>
+        NaN
+        %
+      </b>
+      ] equally based on Poss% and Usage%
+    </li>
+    <li>
       <b>
         Adjusted+ ORtg
       </b>
@@ -2604,6 +2673,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   <b>
     2.2
   </b>
+  ] + Misc [
+  <b>
+    0.00
+  </b>
   ]  (
   <a
     href="#"
@@ -2675,6 +2748,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
         ]
       </li>
     </ul>
+    <li>
+      Misc [
+      <b>
+        0.00
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        0.0
+        %
+      </b>
+      ] and Poss [
+      <b>
+        0.0
+        %
+      </b>
+      ] equally based on Poss%
+    </li>
     <li>
       <b>
         Adjusted+ DRtg
@@ -2853,13 +2943,19 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
             <b>
               2.5
             </b>
-            ]) / (20% * Opponent_Poss) [
+            ]) / (20% * Adj_Opponent_Poss) [
             <b>
+              ~
               358.0
             </b>
             ]
           </li>
           <ul>
+            <li>
+              <i>
+                (minor adjustment to Opponent_Poss for things like FTA/poss, mid-poss lineup breaks over smaller samples)
+              </i>
+            </li>
             <li>
               NoShot_Credit: [
               <b>
@@ -3131,6 +3227,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
   <b>
     475.23
   </b>
+  ] + Misc [
+  <b>
+    NaN
+  </b>
   ] (
   <a
     href="#"
@@ -3317,6 +3417,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </li>
     </ul>
     <li>
+      Misc [
+      <b>
+        NaN
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        NaN
+        %
+      </b>
+      ] and Poss [
+      <b>
+        NaN
+        %
+      </b>
+      ] equally based on Poss% and Usage%
+    </li>
+    <li>
       <b>
         Adjusted+ ORtg
       </b>
@@ -3369,6 +3486,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
   ] + Player_Delta [
   <b>
     2.2
+  </b>
+  ] + Misc [
+  <b>
+    0.00
   </b>
   ]  (
   <a
@@ -3439,6 +3560,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
       </li>
     </ul>
     <li>
+      Misc [
+      <b>
+        0.00
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        0.0
+        %
+      </b>
+      ] and Poss [
+      <b>
+        0.0
+        %
+      </b>
+      ] equally based on Poss%
+    </li>
+    <li>
       <b>
         Adjusted+ DRtg
       </b>
@@ -3486,6 +3624,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
   ] / Adjusted_Possessions [
   <b>
     475.23
+  </b>
+  ] + Misc [
+  <b>
+    NaN
   </b>
   ] (
   <a
@@ -3672,6 +3814,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
         </em>
       </li>
     </ul>
+    <li>
+      Misc [
+      <b>
+        NaN
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        NaN
+        %
+      </b>
+      ] and Poss [
+      <b>
+        NaN
+        %
+      </b>
+      ] equally based on Poss% and Usage%
+    </li>
     <li>
       <b>
         Adjusted+ ORtg
@@ -3752,6 +3911,10 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
   <b>
     2.2
   </b>
+  ] + Misc [
+  <b>
+    0.00
+  </b>
   ]  (
   <a
     href="#"
@@ -3823,6 +3986,23 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
         ]
       </li>
     </ul>
+    <li>
+      Misc [
+      <b>
+        0.00
+      </b>
+      ]: Distributes unassigned Pts [
+      <b>
+        0.0
+        %
+      </b>
+      ] and Poss [
+      <b>
+        0.0
+        %
+      </b>
+      ] equally based on Poss%
+    </li>
     <li>
       <b>
         Adjusted+ DRtg

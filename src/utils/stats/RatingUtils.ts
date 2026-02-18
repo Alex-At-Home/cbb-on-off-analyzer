@@ -203,6 +203,10 @@ export type DRtgDiagnostics = {
 
   onBallDef?: OnBallDefenseModel;
   onBallDiags?: OnBallDefenseDiags;
+
+  // Correction factor:
+  adjPtsFactor: number;
+  adjPossFactor: number;
 };
 
 /** Data pulled from proprietary sources to show pts/play */
@@ -950,7 +954,7 @@ export class RatingUtils {
   };
 
   /** If a correction has been applied to account for missing possesions, update the diags */
-  static adjustRatingStats = (
+  static adjustOffRatingStats = (
     ptsCorrectionFactor: number,
     possCorrectonFactor: number,
     mutableORtg: ORtgDiagnostics,
@@ -958,16 +962,18 @@ export class RatingUtils {
   ): [number, number] | undefined => {
     const correctionFactor = ptsCorrectionFactor / (possCorrectonFactor || 1);
     const newORtg = mutableORtg.oRtg * correctionFactor;
+    const newUsage = mutableORtg.Usage * possCorrectonFactor; //(since denom for usage is the team value)
+    mutableORtg.oRtg = newORtg;
+    mutableORtg.Usage = newUsage;
 
     const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus, SoS_Bonus } =
       RatingUtils.buildProductivity(
-        newORtg,
+        mutableORtg.oRtg,
         mutableORtg.avgEff / mutableORtg.defSos || 1,
         mutableORtg.Usage,
         mutableORtg.avgEff,
       );
 
-    mutableORtg.oRtg = newORtg;
     mutableORtg.adjORtg = Adj_ORtg;
     mutableORtg.adjORtgPlus = Adj_ORtgPlus;
     mutableORtg.Usage_Bonus = Usage_Bonus;
@@ -978,6 +984,7 @@ export class RatingUtils {
     if (_.isNil(mutableORtg.Raw_Usage) || _.isNil(maybeRawORtg)) {
       return undefined;
     } else {
+      mutableORtg.Raw_Usage = mutableORtg.Raw_Usage * possCorrectonFactor;
       const newRawORtg = maybeRawORtg * correctionFactor;
       const { Adj_ORtgPlus: Raw_Adj_ORtgPlus } = RatingUtils.buildProductivity(
         newRawORtg,
@@ -1358,10 +1365,49 @@ export class RatingUtils {
             avgEff: avgEfficiency,
             adjDRtg: Adj_DRtg,
             adjDRtgPlus: Adj_DRtgPlus,
+            adjPossFactor: 1,
+            adjPtsFactor: 1,
           }
         : undefined,
     ];
   }
+
+  /** If a correction has been applied to account for missing possesions, update the diags */
+  static adjustDefRatingStats = (
+    ptsCorrectionFactor: number,
+    possCorrectonFactor: number,
+    mutableDRtg: DRtgDiagnostics,
+    maybeRawDRtg: number | undefined,
+  ): [number, number] | undefined => {
+    const correctionFactor = ptsCorrectionFactor / (possCorrectonFactor || 1);
+    const newDRtg = mutableDRtg.dRtg * correctionFactor;
+
+    const Adj_DRtg =
+      mutableDRtg.offSos > 0
+        ? newDRtg * (mutableDRtg.avgEff / mutableDRtg.offSos)
+        : 0;
+    const Adj_DRtgPlus = 0.2 * (Adj_DRtg - mutableDRtg.avgEff);
+
+    mutableDRtg.dRtg = newDRtg;
+    mutableDRtg.adjDRtg = Adj_DRtg;
+    mutableDRtg.adjDRtgPlus = Adj_DRtgPlus;
+    mutableDRtg.adjPtsFactor = ptsCorrectionFactor;
+    mutableDRtg.adjPossFactor = possCorrectonFactor;
+
+    if (_.isNil(maybeRawDRtg)) {
+      return undefined;
+    } else {
+      const newRawDRtg = maybeRawDRtg * correctionFactor;
+
+      const Raw_Adj_DRtg =
+        mutableDRtg.offSos > 0
+          ? newRawDRtg * (mutableDRtg.avgEff / mutableDRtg.offSos)
+          : 0;
+      const Raw_Adj_DRtgPlus = 0.2 * (Raw_Adj_DRtg - mutableDRtg.avgEff);
+
+      return [newRawDRtg, Raw_Adj_DRtgPlus];
+    }
+  };
 
   // On-Ball defense calcs:
 

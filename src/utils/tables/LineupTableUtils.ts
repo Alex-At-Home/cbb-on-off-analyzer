@@ -257,20 +257,20 @@ export class LineupTableUtils {
       //     `x[${offCorrectionFactor.toFixed(3)}]=[${offPtsCorrectionFactor.toFixed(3)}]/[${offPossCorrectionFactor.toFixed(3)}]`,
       // );
       // At most 5%
-      const cappedPtsFactor = Math.min(
+      const cappedOffPtsFactor = Math.min(
         1.05,
         Math.max(0.95, offPtsCorrectionFactor),
       );
-      const cappedPossFactor = Math.min(
+      const cappedOffPossFactor = Math.min(
         1.05,
         Math.max(0.95, offPossCorrectionFactor),
       );
       // Lots of mutation :(
       _.values(baselinePlayerInfo).forEach((p) => {
         if (p.diag_off_rtg) {
-          const maybeRawVals = RatingUtils.adjustRatingStats(
-            cappedPtsFactor,
-            cappedPossFactor,
+          const maybeRawVals = RatingUtils.adjustOffRatingStats(
+            cappedOffPtsFactor,
+            cappedOffPossFactor,
             p.diag_off_rtg,
             p.off_rtg?.old_value,
           );
@@ -280,6 +280,9 @@ export class LineupTableUtils {
             if (maybeRawVals) {
               p.off_rtg.old_value = maybeRawVals[0];
             }
+          }
+          if (p.off_usage) {
+            p.off_usage.value = p.diag_off_rtg.Usage * 0.01;
           }
           if (p.off_adj_rtg) {
             p.off_adj_rtg.value = p.diag_off_rtg.adjORtgPlus;
@@ -304,11 +307,52 @@ export class LineupTableUtils {
       const defCorrectionFactor = defSampleEff / (sumDefPlayerEff || 1);
       const defPtsCorrectionFactor = defPts / (sumOppoPts || 1);
       const defPossCorrectionFactor = defPoss / (sumOppoPoss || 1);
+      //DEBUG
       // console.log(
       //   `DEF Compare [${defPts.toFixed(1)}]/[${defPoss.toFixed(1)}] vs [${sumOppoPts.toFixed(1)}]/[${sumOppoPoss.toFixed(1)}]:` +
       //     `x[${defCorrectionFactor.toFixed(3)}]=[${defPtsCorrectionFactor.toFixed(3)}]/[${defPossCorrectionFactor.toFixed(3)}]`,
       // );
-      // If we wanted to we could do the same thing here (on my spot checks mostly looked pretty accurate, so won't bother for now)
+      // At most 5%
+      const cappedDefPtsFactor = Math.min(
+        1.05,
+        Math.max(0.95, defPtsCorrectionFactor),
+      );
+      const cappedDefPossFactor = Math.min(
+        1.05,
+        Math.max(0.95, defPossCorrectionFactor),
+      );
+      // Lots of mutation :(
+      _.values(baselinePlayerInfo).forEach((p) => {
+        if (p.diag_def_rtg) {
+          const maybeRawVals = RatingUtils.adjustDefRatingStats(
+            cappedDefPtsFactor,
+            cappedDefPossFactor,
+            p.diag_def_rtg,
+            p.def_rtg?.old_value,
+          );
+
+          if (p.def_rtg) {
+            p.def_rtg.value = p.diag_def_rtg.dRtg;
+            if (maybeRawVals) {
+              p.def_rtg.old_value = maybeRawVals[0];
+            }
+          }
+          if (p.def_adj_rtg) {
+            p.def_adj_rtg.value = p.diag_def_rtg.adjDRtgPlus;
+            if (maybeRawVals) {
+              p.def_rtg.old_value = maybeRawVals[1];
+            }
+          }
+          if (p.def_adj_prod) {
+            p.def_adj_prod.value =
+              p.diag_def_rtg.adjDRtgPlus * (p.def_team_poss_pct.value || 0);
+            if (maybeRawVals) {
+              p.def_adj_prod.old_value =
+                maybeRawVals[1] * (p.def_team_poss_pct.value || 0);
+            }
+          }
+        }
+      });
     }
 
     // Finish off on-ball defense if there is any:
