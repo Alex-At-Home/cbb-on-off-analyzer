@@ -72,7 +72,7 @@ type Props = {
         off: ShotStats;
         def: ShotStats;
       };
-    }
+    },
   ) => void;
   startingState: MatchupFilterParams;
   onChangeState: (newParams: MatchupFilterParams) => void;
@@ -80,7 +80,7 @@ type Props = {
 
 /** Convert from the menu string into team + date */
 export const buildOppoFilter = (
-  menuItemStr: string
+  menuItemStr: string,
 ): { team: string; dateStr: string; gamePrefix: string } | undefined => {
   const regexExtractor = /^((?:@|vs) *)?(.*) [(]([^)]*).*$/;
   const regexResult = regexExtractor.exec(menuItemStr);
@@ -113,7 +113,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
-    startingCommonFilterParams as CommonFilterParams
+    startingCommonFilterParams as CommonFilterParams,
   );
 
   /** The list of opponents */
@@ -134,7 +134,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
         commonParams,
         (results) => setOpponentList(results),
         dataLastUpdated,
-        isDebug
+        isDebug,
       );
     }
   }, []);
@@ -154,7 +154,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
           params,
           (results) => setOpponentList(results),
           dataLastUpdated,
-          isDebug
+          isDebug,
         );
       }
     }
@@ -176,7 +176,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
    * NOTE: ugly hack I need to fix, needs to sync with CommonFilter.onSeeExample
    */
   function buildParamsFromState(
-    includeFilterParams: Boolean
+    includeFilterParams: Boolean,
   ): [LineupFilterParams, FilterRequestInfo[]] {
     const oppoQueryInfo = buildOppoFilter(game);
     if (!oppoQueryInfo) {
@@ -327,7 +327,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                 paramsObj: entireSeasonRequestB,
               },
             ]
-          : []
+          : [],
       ),
     ];
   }
@@ -367,11 +367,11 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       const loadPlayer = (
         mutableLineupStint: LineupStintInfo,
         playerCode: PlayerCode,
-        playerStatSet: any
+        playerStatSet: any,
       ) => {
         const playerInfo = _.find(
           mutableLineupStint.players,
-          (p) => p.code == playerCode
+          (p) => p.code == playerCode,
         );
         if (playerInfo) {
           playerInfo.stats = playerStatSet as LineupStintTeamStats;
@@ -402,19 +402,19 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
           stints: [] as LineupStintInfo[],
           startMin: -1,
           playerStash: {} as Record<string, any>,
-        }
+        },
       ).stints;
     };
 
     const lineupStintsA: LineupStintInfo[] = buildLineupStint(
       (jsonResps?.["game_lineupsA"]?.responses?.[0]?.hits?.hits || []).map(
-        (p: any) => p._source
-      )
+        (p: any) => p._source,
+      ),
     );
     const lineupStintsB: LineupStintInfo[] = buildLineupStint(
       (jsonResps?.["game_lineupsB"]?.responses?.[0]?.hits?.hits || []).map(
-        (p: any) => p._source
-      )
+        (p: any) => p._source,
+      ),
     );
 
     const fromLineups = (lineupJson: any) => ({
@@ -489,7 +489,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                 ?.def as ShotStats,
             },
           }
-        : undefined
+        : undefined,
     );
   }
 
@@ -510,7 +510,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
   const gameParams = (
     params: MatchupFilterParams,
     team: string,
-    subFor?: string
+    subFor?: string,
   ): GameFilterParams => {
     const opponentFilter = buildOppoFilter(params.oppoTeam || "");
     return {
@@ -522,7 +522,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       diffsHideDatasets: "on",
       playerDiffs: true,
       playerDiffsHideDatasets: "on",
-      sortBy: "desc:off_team_poss_pct%:on",
+      sortBy: "desc:off_team_poss_pct:on",
       splitText: subFor
         ? [
             opponentFilter
@@ -530,8 +530,8 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                   !opponentFilter.gamePrefix
                     ? "@ "
                     : opponentFilter.gamePrefix == "@ "
-                    ? ""
-                    : opponentFilter.gamePrefix
+                      ? ""
+                      : opponentFilter.gamePrefix
                 }${subFor} (${opponentFilter.dateStr.substring(5)}) Game`
               : "",
             "",
@@ -563,7 +563,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
   const lineupParams = (
     params: MatchupFilterParams,
     team: string,
-    subFor?: string
+    subFor?: string,
   ): LineupFilterParams => ({
     team,
     minRank: "1",
@@ -596,7 +596,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                 target="_blank"
                 href={UrlRouting.getGameUrl(
                   gameParams(params, params.team),
-                  {}
+                  {},
                 )}
               >
                 Team stats
@@ -605,7 +605,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                 target="_blank"
                 href={UrlRouting.getLineupUrl(
                   lineupParams(params, params.team),
-                  {}
+                  {},
                 )}
               >
                 Team lineups
@@ -614,7 +614,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                 target="_blank"
                 href={UrlRouting.getGameUrl(
                   gameParams(params, opponentName, params.team),
-                  {}
+                  {},
                 )}
               >
                 Opponent stats
@@ -623,7 +623,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                 target="_blank"
                 href={UrlRouting.getLineupUrl(
                   lineupParams(params, opponentName, params.team),
-                  {}
+                  {},
                 )}
               >
                 Opponent lineups
@@ -643,7 +643,7 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
                   styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
                   value={getCurrentTeamOrPlaceholder()}
                   options={opponentList.map((r) =>
-                    stringToOption(buildMenuItem(r))
+                    stringToOption(buildMenuItem(r)),
                   )}
                   onChange={(option: any) => {
                     setGame((option as any)?.value);
