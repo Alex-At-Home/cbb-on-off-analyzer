@@ -18,6 +18,7 @@ import {
   RatingUtils,
   OnBallDefenseModel,
   ORtgDiagnostics,
+  DRtgDiagnostics,
 } from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
@@ -209,7 +210,13 @@ export class LineupTableUtils {
 
     // Offense:
     // Adjust to ensure that points and poss - assign credit/blame equally across players
-    const { sumPlayerPts, sumPlayerPoss, playedCorrectionFailed } = _.transform(
+    const {
+      sumPlayerPts,
+      sumPlayerPoss,
+      sumOppoPts,
+      sumOppoPoss,
+      playedCorrectionFailed,
+    } = _.transform(
       baselinePlayerInfo,
       (acc, v) => {
         const oDiag = v.diag_off_rtg as ORtgDiagnostics;
@@ -219,31 +226,44 @@ export class LineupTableUtils {
         } else {
           acc.playedCorrectionFailed = true;
         }
+        const dDiag = v.diag_def_rtg as DRtgDiagnostics;
+        if (dDiag) {
+          acc.sumOppoPoss += 0.2 * dDiag.oppoPoss;
+          acc.sumOppoPts += 0.01 * dDiag.dRtg * 0.2 * dDiag.oppoPoss;
+        } else {
+          acc.playedCorrectionFailed = true;
+        }
       },
-      { sumPlayerPts: 0, sumPlayerPoss: 0, playedCorrectionFailed: false },
+      {
+        sumPlayerPts: 0,
+        sumPlayerPoss: 0,
+        sumOppoPts: 0,
+        sumOppoPoss: 0,
+        playedCorrectionFailed: false,
+      },
     );
 
     if (!playedCorrectionFailed) {
       const offPoss = teamStat.total_off_poss?.value || 0;
       const offPts = teamStat.total_off_pts?.value || 0;
-      const sampleEff = offPts / (offPoss || 1);
-      const sumPlayerEff = sumPlayerPts / (sumPlayerPoss || 1);
-      const correctionFactor = sampleEff / (sumPlayerEff || 1);
-      const ptsCorrectionFactor = offPts / (sumPlayerPts || 1);
-      const possCorrectionFactor = offPoss / (sumPlayerPoss || 1);
+      const offSampleEff = offPts / (offPoss || 1);
+      const sumOffPlayerEff = sumPlayerPts / (sumPlayerPoss || 1);
+      const offCorrectionFactor = offSampleEff / (sumOffPlayerEff || 1);
+      const offPtsCorrectionFactor = offPts / (sumPlayerPts || 1);
+      const offPossCorrectionFactor = offPoss / (sumPlayerPoss || 1);
       //DEBUG
       // console.log(
-      //   `Compare [${offPts.toFixed(1)}]/[${offPoss.toFixed(1)}] vs [${sumPlayerPts.toFixed(1)}]/[${sumPlayerPoss.toFixed(1)}]:` +
-      //     `x[${correctionFactor.toFixed(3)}]=[${ptsCorrectionFactor.toFixed(3)}]/[${possCorrectionFactor.toFixed(3)}]`,
+      //   `OFF Compare [${offPts.toFixed(1)}]/[${offPoss.toFixed(1)}] vs [${sumPlayerPts.toFixed(1)}]/[${sumPlayerPoss.toFixed(1)}]:` +
+      //     `x[${offCorrectionFactor.toFixed(3)}]=[${offPtsCorrectionFactor.toFixed(3)}]/[${offPossCorrectionFactor.toFixed(3)}]`,
       // );
       // At most 5%
       const cappedPtsFactor = Math.min(
         1.05,
-        Math.max(0.95, ptsCorrectionFactor),
+        Math.max(0.95, offPtsCorrectionFactor),
       );
       const cappedPossFactor = Math.min(
         1.05,
-        Math.max(0.95, possCorrectionFactor),
+        Math.max(0.95, offPossCorrectionFactor),
       );
       // Lots of mutation :(
       _.values(baselinePlayerInfo).forEach((p) => {
@@ -277,6 +297,18 @@ export class LineupTableUtils {
           }
         }
       });
+      const defPoss = teamStat.total_def_poss?.value || 0;
+      const defPts = teamStat.total_def_pts?.value || 0;
+      const defSampleEff = defPts / (defPoss || 1);
+      const sumDefPlayerEff = sumOppoPts / (sumOppoPoss || 1);
+      const defCorrectionFactor = defSampleEff / (sumDefPlayerEff || 1);
+      const defPtsCorrectionFactor = defPts / (sumOppoPts || 1);
+      const defPossCorrectionFactor = defPoss / (sumOppoPoss || 1);
+      // console.log(
+      //   `DEF Compare [${defPts.toFixed(1)}]/[${defPoss.toFixed(1)}] vs [${sumOppoPts.toFixed(1)}]/[${sumOppoPoss.toFixed(1)}]:` +
+      //     `x[${defCorrectionFactor.toFixed(3)}]=[${defPtsCorrectionFactor.toFixed(3)}]/[${defPossCorrectionFactor.toFixed(3)}]`,
+      // );
+      // If we wanted to we could do the same thing here (on my spot checks mostly looked pretty accurate, so won't bother for now)
     }
 
     // Finish off on-ball defense if there is any:

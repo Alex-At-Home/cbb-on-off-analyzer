@@ -1269,6 +1269,11 @@ export class RatingUtils {
         ? 100 * (Opponent_PTS / Opponent_Possessions_Box)
         : 0;
 
+    // How to think about this:
+    // say player X is on the floor for Player_Poss
+    // they are targeted for 0.2*Player_Poss
+    // their DRtg is X, so their pts conceded is 0.2*Player_Poss*X/100
+
     const ScPoss = Opponent_FGM + Opponent_HitFTs * Opponent_FTposs;
     const D_Pts_Per_ScPoss = ScPoss > 0 ? Opponent_PTS / ScPoss : 0;
 
