@@ -154,7 +154,7 @@ describe("RatingUtils", () => {
     expect(netPoints).toMatchSnapshot();
   });
 
-  test("RatingUtils - adjustRatingStats updates the right fields", () => {
+  test("RatingUtils - adjustOffRatingStats updates the right fields", () => {
     const playerInfo = _.cloneDeep(
       samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets
         .baseline.player.buckets[0],
@@ -169,7 +169,7 @@ describe("RatingUtils", () => {
     );
     const mutableDiag = _.cloneDeep(oRtgDiags) as ORtgDiagnostics;
     const maybeRawORtg = rawORtg?.value;
-    RatingUtils.adjustRatingStats(1.1, 0.9, mutableDiag, maybeRawORtg);
+    RatingUtils.adjustOffRatingStats(1.1, 0.9, mutableDiag, maybeRawORtg);
     expect({
       oRtg: mutableDiag.oRtg,
       adjORtg: mutableDiag.adjORtg,

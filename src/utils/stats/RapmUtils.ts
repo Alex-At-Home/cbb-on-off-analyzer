@@ -155,14 +155,15 @@ export type RapmPlayerContext = {
   /** The player name in each column */
   colToPlayer: Array<string>;
   /** A shallow copy of the lineups, minus ones with removed player or no off/def possessions */
-  filteredLineups: Array<any>;
+  filteredLineups: (prefix: "off" | "def") => Array<any>;
   /** An aggregated view of filteredLineups */
   teamInfo: LineupStatSet;
   /** The D1 average efficiency */
   avgEfficiency: number;
   // Handy counts:
   numPlayers: number;
-  numLineups: number;
+  numOffLineups: number;
+  numDefLineups: number;
   offLineupPoss: number;
   defLineupPoss: number;
   // Prios:
@@ -249,25 +250,33 @@ export class RapmUtils {
 
     // This handles the case where the prior is too close to 0 and the weak prior math breaks down
     // Pick a replacement value such that hte players have a RAPM of ~3
+    //
+    // NOTE: we now have a weak prior strategy that handles a prior of 0 (it just translates the RAPM
+    // numbers to make the average correct, so we don't need this)
     const getPriorBasis = (offOrDef: "off" | "def") => {
-      const priorSum = _.chain(playersBaseline)
-        .values()
-        .map(
-          (stats) =>
-            getVal(stats[`${offOrDef}_adj_rtg`]) *
-            getVal(stats[`${offOrDef}_team_poss_pct`]),
-        )
-        .sum()
-        .value();
-
-      const tieGoesPveIffOff = priorSum == 0 && offOrDef == "off";
-
-      if (priorSum > 0 || tieGoesPveIffOff) {
-        //reduce to lower "replacement value" for offense, raise the bar for defense
-        return Math.max(3.0 - priorSum, 0) * 0.2;
+      const disablePriorBasis = true;
+      if (disablePriorBasis) {
+        return 0;
       } else {
-        //opposite
-        return Math.min(0, -3.0 - priorSum) * 0.2;
+        const priorSum = _.chain(playersBaseline)
+          .values()
+          .map(
+            (stats) =>
+              getVal(stats[`${offOrDef}_adj_rtg`]) *
+              getVal(stats[`${offOrDef}_team_poss_pct`]),
+          )
+          .sum()
+          .value();
+
+        const tieGoesPveIffOff = priorSum == 0 && offOrDef == "off";
+
+        if (priorSum > 0 || tieGoesPveIffOff) {
+          //reduce to lower "replacement value" for offense, raise the bar for defense
+          return Math.max(3.0 - priorSum, 0) * 0.2;
+        } else {
+          //opposite
+          return Math.min(0, -3.0 - priorSum) * 0.2;
+        }
       }
     };
     const offBasis = noWeakPrior ? 0 : getPriorBasis("off");
@@ -462,19 +471,21 @@ export class RapmUtils {
 
     // Now need to go through lineups, remove any that don't include RAPM info
 
+    var varLineupsWithNoOffPoss = 0; //(hacky to save a few CPU cycles/code complexity)
+    var varLineupsWithNoDefPoss = 0;
     const currFilteredLineupSet = _.chain(lineups)
       .flatMap((l: any) => {
         // THIS FLATMAP HAS SIDE-EFFECTS - ADDS rapmRemove to some lineups
 
         const lineupPlayers =
           l?.players_array?.hits?.hits?.[0]?._source?.players || [];
-        const shouldRemoveLineup =
-          _.every(
-            lineupPlayers,
-            (p: any) => !_.isNil(removedPlayersSet[p.id as string]),
-          ) || //contains _only_ removed players
-          !l.off_poss?.value ||
-          !l.def_poss?.value; // only take lineup combos with both off and def combos
+        const shouldRemoveLineup = _.every(
+          lineupPlayers,
+          (p: any) => !_.isNil(removedPlayersSet[p.id as string]),
+        ); //contains _only_ removed players
+
+        if (!l.off_poss?.value) varLineupsWithNoOffPoss++;
+        if (!l.def_poss?.value) varLineupsWithNoDefPoss++;
 
         if (shouldRemoveLineup) {
           l.rapmRemove = true; //(temp flag for peformance in calculateAggregatedLineupStats)
@@ -505,11 +516,15 @@ export class RapmUtils {
         .fromPairs()
         .value(),
       colToPlayer: sortedPlayers,
-      filteredLineups: currFilteredLineupSet,
+      filteredLineups: (prefix: "off" | "def") =>
+        currFilteredLineupSet.filter((l) =>
+          Boolean(prefix == "off" ? l.off_poss?.value : l.def_poss?.value),
+        ),
       teamInfo: teamInfo,
       avgEfficiency: avgEfficiency,
       numPlayers: sortedPlayers.length,
-      numLineups: currFilteredLineupSet.length,
+      numOffLineups: currFilteredLineupSet.length - varLineupsWithNoOffPoss,
+      numDefLineups: currFilteredLineupSet.length - varLineupsWithNoDefPoss,
       offLineupPoss: teamInfo.off_poss?.value || 0,
       defLineupPoss: teamInfo.def_poss?.value || 0,
       priorInfo: RapmUtils.buildPriors(
@@ -529,12 +544,18 @@ export class RapmUtils {
     const extra = ctx.unbiasWeight > 0;
 
     // Build a matrix of the right size:
-    const offWeights = zeros(ctx.numLineups + (extra ? 1 : 0), ctx.numPlayers);
-    const defWeights = zeros(ctx.numLineups + (extra ? 1 : 0), ctx.numPlayers);
+    const offWeights = zeros(
+      ctx.numOffLineups + (extra ? 1 : 0),
+      ctx.numPlayers,
+    );
+    const defWeights = zeros(
+      ctx.numDefLineups + (extra ? 1 : 0),
+      ctx.numPlayers,
+    );
 
     // Fill it in with the players
     const populateMatrix = (inMatrix: any, prefix: "off" | "def") => {
-      ctx.filteredLineups.forEach((lineup, index) => {
+      ctx.filteredLineups(prefix).forEach((lineup, index) => {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const lineupRow = inMatrix.valueOf()[index];
         const lineupPossCount = (ctx as any)[`${prefix}LineupPoss`] || 1;
@@ -554,17 +575,20 @@ export class RapmUtils {
 
     // Add the possession %s for each players
     if (ctx.unbiasWeight > 0) {
-      const addExtraRow = (inMatrix: any) => {
+      const addExtraRow = (inMatrix: any, prefix: "off" | "def") => {
         const inMatrixT = transpose(inMatrix);
-        const bottomRow = inMatrix.valueOf()[ctx.numLineups];
+        const bottomRow =
+          inMatrix.valueOf()[
+            prefix == "off" ? ctx.numOffLineups : ctx.numDefLineups
+          ];
         inMatrixT.valueOf().forEach((row: number[], i: number) => {
           bottomRow[i] = _.sum(
             row.map((v: number) => ctx.unbiasWeight * v * v),
           );
         });
       };
-      addExtraRow(offWeights);
-      addExtraRow(defWeights);
+      addExtraRow(offWeights, "off");
+      addExtraRow(defWeights, "def");
     }
     return [offWeights, defWeights];
   }
@@ -624,7 +648,7 @@ export class RapmUtils {
       def: doGlobalLuckAdj("def"),
     };
     const calculateVector = (prefix: "off" | "def") => {
-      return ctx.filteredLineups.map((lineup: any) => {
+      return ctx.filteredLineups(prefix).map((lineup: any) => {
         const possCount = (lineup as any)[`${prefix}_poss`]?.value || 0;
         const lineupPossCount = (ctx as any)[`${prefix}LineupPoss`] || 1;
         const possCountWeight = Math.sqrt(possCount / lineupPossCount);
@@ -889,13 +913,16 @@ export class RapmUtils {
     priorInfo: RapmPriorInfo,
     debugMode: Boolean,
   ) {
-    const isOff = field == "off_adj_ppp";
+    const isPpp = field == "off_adj_ppp" || field == "def_adj_ppp";
 
     // It's often the case that the prior of the starters' performance doesn't match the error well, eg:
     // 1] priorSum = -7.2, error = -5.2: priorSum would make the offense works when the error => should be made better
     // 2] priorSum = 0.66, error = -4.5: priorSum has the right sign, but is so small you'd have to expand way too high to remove the error
     // The likely worst offender here is that adj_rtg has a usage adjustment which, esp on small samples like
     // single-game RAPM can make the prior sum a stupid value compared to the team efficiency
+
+    // In such cases we will simply translate the RAPM so that its average sums to the adj_rtg+ sum
+
     // For now I just have an alternate rating that doesn't give a bonus/penalty for efficiency, it just
     // weights it so it's guaranteed to hit the team rating (though not the "sum of all the lineups" rating,
     // so it's not perfect)
@@ -907,18 +934,15 @@ export class RapmUtils {
       .sum()
       .value();
 
-    const priorSumAlt = isOff
-      ? _.chain(priorInfo.playersWeak)
-          .map((p, ii) => {
-            //(the idea here is that we'll increase the positive or negative impact of players who have taken more shots)
-            //(can only do offensively, but the def_rtg should point in the right direction)
-            return (p.off_adj_ppp_alt || 0) * playerPossPcts[ii]!;
-          })
-          .sum()
-          .value()
-      : priorSum;
+    const sumPoss = _.chain(priorInfo.playersWeak)
+      .map((p, ii) => {
+        return playerPossPcts[ii]!;
+      })
+      .sum()
+      .value();
+    const sumPossInv = 1.0 / Math.min(5, Math.max(sumPoss, 4.5)); //(low volume players, with safety bounds)
 
-    const maxMultiplier = -0.5; //(accept an error rather than multiply the raw RAPMs by too large a number)
+    const maxMultiplier = -0.5; //(if the multiplier is too high then translate the RAPM instead)
 
     return (error: number, baseResults: Array<number>) => {
       const priorSumInv = priorSum != 0 ? 1 / priorSum : 0;
@@ -926,53 +950,35 @@ export class RapmUtils {
         0,
         Math.max(maxMultiplier, error * priorSumInv),
       );
-      const approxErrWithPrior = Math.abs(
-        Math.abs(error) - Math.abs(priorSum * priorSumInv),
-      );
+      const approxErrWithCappedPrior = error - priorSum * errorTimesSumInv; //(eg -4.5 - (-0.5)*8 = 3.5 -> -1.5)
+
       //(if the error is -ve, the actual eff is > RAPM, so need to add to RAPM (ie more +ve), hence errorTimesSumInv must be -ve, else ignore)
       //(if the error is +ve. the actual eff is < RAPM, so need to reduce RAPM (ie move -ve), hence errorsTimesSunInv ~must~ should be
       // .... still -ve ...! Because of priorInv factor (which will on average same sign as errorTimesSumInv)
       //(because it's -error*errorTimesSumInv*prior[player] below)
-      // Same for alt:
-      const priorSumInvAlt = priorSumAlt != 0 ? 1 / priorSumAlt : 0;
-      const errorTimesSumInvAlt = Math.min(
-        0,
-        Math.max(maxMultiplier, error * priorSumInvAlt),
-      );
-      const approxErrWithPriorAlt = Math.abs(
-        Math.abs(error) - Math.abs(priorSumAlt * errorTimesSumInvAlt),
-      );
 
       // Pick the best
       const useAltRating =
-        isOff &&
-        (errorTimesSumInv == 0 || errorTimesSumInv == maxMultiplier) &&
-        //(only consider the alt if the base value can't make the adjustment perfectly)
-        approxErrWithPriorAlt < approxErrWithPrior;
-
-      const priorSumToUse = useAltRating ? priorSumAlt : priorSum;
-      const errorTimesSumInvToUse = useAltRating
-        ? errorTimesSumInvAlt
-        : errorTimesSumInv;
-      const priorSumInvToUse = useAltRating ? priorSumInvAlt : priorSumInv;
+        isPpp && (errorTimesSumInv == 0 || errorTimesSumInv == maxMultiplier);
+      //(only consider the alt if the base value can't make the adjustment perfectly)
 
       // ... And then also can only take a <50% chunk of the priors
 
       //USEFUL DEBUG:
       if (debugMode)
         console.log(
-          `prior=[${priorSumToUse.toFixed(2)}](alts: [${priorSum.toFixed(
+          `prior=[${priorSum.toFixed(2)}][${sumPoss.toFixed(2)}x] error=[${error.toFixed(
             2,
-          )}] vs [${priorSumAlt.toFixed(2)}]) error=[${error.toFixed(
-            2,
-          )}] tot=[${error * priorSumInvToUse}] => [${errorTimesSumInvToUse}]`,
+          )}] tot=[${(error * priorSumInv).toFixed(4)}] => [${errorTimesSumInv.toFixed(4)}] (useAlt=[${useAltRating}]/err=[${approxErrWithCappedPrior.toFixed(3)}])`,
         );
 
       return baseResults.map((r, ii) => {
-        const weakPrior = useAltRating
-          ? priorInfo.playersWeak[ii]!.off_adj_ppp_alt || 0
-          : priorInfo.playersWeak[ii]![field] || 0;
-        return r - errorTimesSumInvToUse * weakPrior;
+        const weakPrior = priorInfo.playersWeak[ii]![field] || 0;
+        return (
+          r -
+          errorTimesSumInv * weakPrior -
+          (useAltRating ? approxErrWithCappedPrior * sumPossInv : 0) //(*0.2 because the sum of the poss% is 5)
+        );
       });
     };
   }
@@ -1075,6 +1081,7 @@ export class RapmUtils {
         `off: Eff components: rotation+combined=[${possUsedinRapm.toFixed(
           2,
         )}] bench=[${(actualEff.off - possUsedinRapm).toFixed(2)}]`,
+        ctx.teamInfo,
       );
     }
     if (offDefDebugMode.def) {
@@ -1084,6 +1091,7 @@ export class RapmUtils {
         `def: Eff components: rotation+combined=[${possUsedinRapm.toFixed(
           2,
         )}] bench=[${(actualEff.def - possUsedinRapm).toFixed(2)}]`,
+        ctx.teamInfo,
       );
     }
 
@@ -1093,7 +1101,9 @@ export class RapmUtils {
         if (ctx.unbiasWeight > 0) {
           return weights[onOrOff]
             .valueOf()
-            [ctx.numLineups].map((v: number) => v / ctx.unbiasWeight);
+            [
+              onOrOff == "off" ? ctx.numOffLineups : ctx.numDefLineups
+            ].map((v: number) => v / ctx.unbiasWeight);
         } else {
           const weightT = transpose(weights[onOrOff]);
           return weightT.valueOf().map((row: number[]) => {
@@ -1330,7 +1340,9 @@ export class RapmUtils {
                 residuals,
                 ctx,
               );
-              const dofInv = 1.0 / (ctx.numLineups - ctx.numPlayers); //(degrees of freedom)
+              const numLineups =
+                offOrDef == "off" ? ctx.numOffLineups : ctx.numDefLineups;
+              const dofInv = 1.0 / (numLineups - ctx.numPlayers); //(degrees of freedom)
 
               //if (debugMode) console.log(`RSS = [${offErrSq.toFixed(1)}] + [${defErrSq.toFixed(1)}]`);
               if (debugMode)
