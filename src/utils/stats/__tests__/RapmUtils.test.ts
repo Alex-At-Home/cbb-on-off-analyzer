@@ -384,7 +384,8 @@ export const semiRealRapmResults = {
     ],
     avgEfficiency: 102.4,
     numPlayers: 8,
-    numLineups: 31,
+    numOffLineups: 31,
+    numDefLineups: 31,
     offLineupPoss: 1351,
     defLineupPoss: 1349,
     priorInfo: {
@@ -419,7 +420,7 @@ export const semiRealRapmResults = {
       },
     },
     // Extra fields:
-    filteredLineups: reducedFilteredLineups,
+    filteredLineups: (prefix: "off" | "def") => reducedFilteredLineups,
     teamInfo: {
       key: "teamInfo",
       doc_count: 1,
@@ -445,7 +446,7 @@ describe("RapmUtils", () => {
           stat.old_value = stat.value;
           stat.override = "Test override";
         }
-      }
+      },
     );
     return mutableLineup;
   };
@@ -460,7 +461,7 @@ describe("RapmUtils", () => {
 
   const playersInfoByKey = _.chain(
     samplePlayerStatsResponse.responses[0].aggregations.tri_filter.buckets
-      .baseline.player.buckets
+      .baseline.player.buckets,
   )
     .map((p, ii) => {
       return {
@@ -480,14 +481,14 @@ describe("RapmUtils", () => {
         .replace("JaSmith", "DuData")
         .replace("Smith, Jalen", "Data, Dummy")
         .replace("ErAyala", "OtPlayer")
-        .replace("Ayala, Eric", "Player, Other")
+        .replace("Ayala, Eric", "Player, Other"),
     );
     dummyLineup1.off_poss = { value: 50 };
     dummyLineup1.def_poss = { value: 50 };
     const dummyLineup2 = JSON.parse(
       JSON.stringify(lineupReport.lineups[0])
         .replace("ErAyala", "OtPlayer")
-        .replace("Ayala, Eric", "Player, Other")
+        .replace("Ayala, Eric", "Player, Other"),
     );
     dummyLineup2.off_poss = { value: 100 };
     dummyLineup2.def_poss = { value: 100 };
@@ -509,14 +510,16 @@ describe("RapmUtils", () => {
         {
           ...defaultRapmConfig,
           removalPct: threshold,
-        }
+        },
       );
       expect(
-        _.omit(results, ["filteredLineups", "teamInfo"])
+        _.omit(results, ["filteredLineups", "teamInfo"]),
       ).toMatchSnapshot();
-      expect(results.filteredLineups.length).toEqual(threshold > 0.05 ? 5 : 5); //(filtering now v rare)
+      expect(results.filteredLineups("off").length).toEqual(
+        threshold > 0.05 ? 5 : 5,
+      ); //(filtering now v rare)
       expect(results.teamInfo.off_poss.value).toEqual(
-        threshold > 0.05 ? 959 : 959
+        threshold > 0.05 ? 959 : 959,
       );
     });
   });
@@ -535,7 +538,7 @@ describe("RapmUtils", () => {
         {
           ...defaultRapmConfig,
           removalPct: 0.0,
-        }
+        },
       );
       context.unbiasWeight = unbiasWeight;
       const results = RapmUtils.calcPlayerWeights(context);
@@ -552,8 +555,8 @@ describe("RapmUtils", () => {
             ["0.493", "0.493", "0.493", "0.000", "0.493", "0.493"],
             ["2.000", "2.000", "2.000", "1.513", "1.478", "1.009"], //(extra row if adding unbiasing obs)
           ],
-          (r, i) => unbiasWeight != 0 || i < 3
-        )
+          (r, i) => unbiasWeight != 0 || i < 3,
+        ),
       );
       expect(tidyResults(results[1])).toEqual(
         _.filter(
@@ -563,8 +566,8 @@ describe("RapmUtils", () => {
             ["0.493", "0.493", "0.493", "0.000", "0.493", "0.493"],
             ["2.000", "2.000", "2.000", "1.514", "1.463", "1.023"], //(extra row if adding unbiasing obs)
           ],
-          (r, i) => unbiasWeight != 0 || i < 3
-        )
+          (r, i) => unbiasWeight != 0 || i < 3,
+        ),
       );
     });
   });
@@ -583,11 +586,11 @@ describe("RapmUtils", () => {
           ...defaultRapmConfig,
           priorMode: strongWeight,
           removalPct: 0.0,
-        }
+        },
       );
       expect(context.priorInfo.basis).toEqual({
-        off: 0.6000000000000001,
-        def: -0.6000000000000001,
+        off: 0,
+        def: 0,
       });
       const adjustedBasisOffEff = 100.0 - 5 * context.priorInfo.basis.off;
       const adjustedBasisDefEff = 100.0 - 5 * context.priorInfo.basis.def;
@@ -598,7 +601,7 @@ describe("RapmUtils", () => {
         adjustedBasisOffEff,
         adjustedBasisDefEff,
         context,
-        strongWeight < 0 ? adapativeWeights : undefined
+        strongWeight < 0 ? adapativeWeights : undefined,
       );
 
       const tidyResults = (resMatrix: Array<Array<number>>) => {
@@ -607,8 +610,8 @@ describe("RapmUtils", () => {
         });
       };
       expect(tidyResults(results)).toEqual([
-        strongWeight ? ["14.12", "6.61", "8.44"] : [],
-        strongWeight ? ["-10.58", "-12.25", "-10.31"] : [],
+        strongWeight ? ["13.07", "5.84", "7.70"] : [],
+        strongWeight ? ["-8.48", "-10.69", "-8.83"] : [],
       ]);
       const oldValResults = RapmUtils.calcLineupOutputs(
         "adj_ppp",
@@ -616,11 +619,11 @@ describe("RapmUtils", () => {
         adjustedBasisDefEff,
         context,
         strongWeight < 0 ? adapativeWeights : undefined,
-        [false, true]
+        [false, true],
       );
       expect(tidyResults(oldValResults)).toEqual([
-        strongWeight ? ["14.12", "6.61", "8.44"] : [],
-        strongWeight ? ["-10.58", "-12.25", "-10.31"] : [],
+        strongWeight ? ["13.07", "5.84", "7.70"] : [],
+        strongWeight ? ["-8.48", "-10.69", "-8.83"] : [],
       ]);
     });
   });
@@ -643,7 +646,7 @@ describe("RapmUtils", () => {
         [
           luckAdjusted ? "old_value" : "value",
           luckAdjusted ? "old_value" : "value",
-        ]
+        ],
       );
       var testContext1 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext1.priorInfo.strongWeight = -1;
@@ -657,7 +660,7 @@ describe("RapmUtils", () => {
         [
           luckAdjusted ? "old_value" : "value",
           luckAdjusted ? "old_value" : "value",
-        ]
+        ],
       );
       var testContext2 = _.cloneDeep(semiRealRapmResults.testContext);
       testContext2.priorInfo.strongWeight = -1;
@@ -671,7 +674,7 @@ describe("RapmUtils", () => {
         [
           luckAdjusted ? "old_value" : "value",
           luckAdjusted ? "old_value" : "value",
-        ]
+        ],
       );
       expect(offResults1).toEqual(offResults); //(same adaptive weights)
       expect(offResults2).not.toEqual(offResults); //(same adaptive weights)
@@ -710,28 +713,28 @@ describe("RapmUtils", () => {
           };
         }),
       ]).toEqual(
-        // 3 iterations
+        // 3 iterations (both branches now produce same prevAttempts ex values)
         [
           luckAdjusted,
           [
-            { l: "1.10", ex: "4.79" },
-            { ex: "4.81", l: "1.32" },
-            { ex: "4.81", l: "1.54" },
+            { l: "1.10", ex: "2.83" },
+            { ex: "2.87", l: "1.32" },
+            { ex: "2.89", l: "1.54" },
           ],
-        ]
+        ],
       );
       expect(offResults.ridgeLambda.toFixed(3)).toEqual("1.536");
       expect(
         _.take(
           offResults.rapmAdjPpp.map((n) => n.toFixed(2)),
-          3
-        )
-      ).toEqual(["4.81", "4.71", "4.59"]);
+          3,
+        ),
+      ).toEqual(["2.89", "2.79", "2.67"]);
       expect(
         _.take(
           offResults.rapmRawAdjPpp.map((n) => n.toFixed(2)),
-          3
-        )
+          3,
+        ),
       ).toEqual(["4.81", "4.71", "4.59"]);
       expect([
         luckAdjusted,
@@ -750,20 +753,20 @@ describe("RapmUtils", () => {
             { l: "1.32", ex: "-5.73" },
             { l: "1.54", ex: "-5.64" },
           ],
-        ]
+        ],
       );
       expect(defResults.ridgeLambda.toFixed(3)).toEqual("1.536");
       expect(
         _.take(
           defResults.rapmAdjPpp.map((n) => n.toFixed(2)),
-          3
-        )
+          3,
+        ),
       ).toEqual(["-5.64", "-4.22", "-4.94"]);
       expect(
         _.take(
           defResults.rapmRawAdjPpp.map((n) => n.toFixed(2)),
-          3
-        )
+          3,
+        ),
       ).toEqual(["-5.06", "-3.70", "-4.48"]);
     });
   });
@@ -780,7 +783,7 @@ describe("RapmUtils", () => {
         [
           luckAdjusted ? "old_value" : "value",
           luckAdjusted ? "old_value" : "value",
-        ]
+        ],
         //^(note diag=true|false gives a different answer because the data is malformed so picks a really early lambda)
       );
       const onOffReport = LineupUtils.lineupToTeamReport(lineupReport);
@@ -799,7 +802,7 @@ describe("RapmUtils", () => {
           semiRealRapmResults.testContext,
           undefined,
           ["value", "old_value"],
-          "value"
+          "value",
         );
         RapmUtils.injectRapmIntoPlayers(
           players,
@@ -809,7 +812,7 @@ describe("RapmUtils", () => {
           semiRealRapmResults.testContext,
           undefined,
           ["old_value", "old_value"],
-          "old_value"
+          "old_value",
         );
       } else {
         //(not luck adjusted readKeyValue can be either value or old value, it doesn't matter)
@@ -821,7 +824,7 @@ describe("RapmUtils", () => {
           semiRealRapmResults.testContext,
           undefined,
           ["value", "value"],
-          "value"
+          "value",
         );
       }
 
@@ -844,7 +847,7 @@ describe("RapmUtils", () => {
             .mapValues((v: any) =>
               (v || {}).hasOwnProperty("value")
                 ? (v?.[keyToCheck] || 0).toFixed(2)
-                : v
+                : v,
             )
             .value();
         })
@@ -860,7 +863,7 @@ describe("RapmUtils", () => {
           def_poss: luckAdjusted ? "0.00" : "99.00", //(these don't get an old_value)
           def_to: luckAdjusted ? "0.00" : "0.01",
           key: "RAPM Wiggins, Aaron",
-          off_adj_ppp: "4.59",
+          off_adj_ppp: "2.67",
           off_poss: luckAdjusted ? "0.00" : "101.00",
           off_to: "0.00",
         },
@@ -884,10 +887,11 @@ describe("RapmUtils", () => {
       removedPlayers: {},
       playerToCol: { PlayerB: 1, PlayerC: 2, PlayerA: 0 },
       colToPlayer: ["PlayerA", "PlayerB", "PlayerC"],
-      filteredLineups: [],
+      filteredLineups: (prefix: "off" | "def") => [],
       teamInfo: {} as LineupStatSet,
       numPlayers: 3,
-      numLineups: 4,
+      numOffLineups: 4,
+      numDefLineups: 4,
       offLineupPoss: 10,
       defLineupPoss: 9,
       unbiasWeight: 0,
@@ -921,7 +925,7 @@ describe("RapmUtils", () => {
           return row.map((n: number) => n.toFixed(4));
         }),
         adaptiveCorrelWeights: t.adaptiveCorrelWeights.map((val) =>
-          val.toFixed(2)
+          val.toFixed(2),
         ),
       };
     };
@@ -958,7 +962,7 @@ describe("RapmUtils", () => {
       lineupReportFake.lineups || [],
       playersInfoByKey,
       {},
-      100.0
+      100.0,
     );
     const weights = RapmUtils.calcPlayerWeights(context);
     const results = RapmUtils.calcCollinearityDiag(weights[0], context);
