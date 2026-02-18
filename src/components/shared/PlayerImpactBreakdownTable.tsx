@@ -46,7 +46,6 @@ type Props = {
 
 const tableDefsBase = IndivTableDefs.impactDecompTable;
 
-/**/
 /** Enable to add a load of items to the table to help debug offensive adjustment credit */
 const offDebugMode = false;
 
@@ -302,6 +301,8 @@ function buildPlayerRow(
       ...(offDebugMode
         ? {
             totPoss: {
+              //(for testing the derived sum is right)
+              //value: netPoints.offNetPts - netPoints.offNetPtsDerived,
               value: ortgDiag.adjPoss,
             },
             fgPts: {
@@ -440,7 +441,7 @@ function buildTotalRow(
   // If different number of possessions then add a final adjustment:
   if (scaleType === "/G" && possPerGame && possPerGame[0] != possPerGame[1]) {
     const [offPoss, defPoss] = possPerGame;
-    const keyToAdjust = offPoss > defPoss ? "off_adj_rapm" : "def_adj_rapm";
+    const keyToAdjust = "def_adj_rapm"; //(always adjust defense, effectively by winning the tip you've saved a defensive possession)
     const possDelta = (offPoss - defPoss) * 100;
     const deltaPts = (offPoss - defPoss) * avgEff;
     (total[keyToAdjust] as any).value =

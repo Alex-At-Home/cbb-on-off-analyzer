@@ -102,6 +102,7 @@ export type ORtgDiagnostics = {
   SD_at_Usage_20: number; //(not used any more)
   Regressed_ORtg: number; //(not used any more)
   Usage: number;
+  Raw_Usage: number | undefined;
   Usage_Bonus: number;
   SoS_Bonus: number;
   adjORtg: number;
@@ -123,6 +124,10 @@ export type ORtgDiagnostics = {
   astTwoPProd: number;
   //(use rawFtm)
   //(use rawTo)
+
+  // Correction factor:
+  adjPtsFactor: number;
+  adjPossFactor: number;
 };
 
 export type NetPoints = {
@@ -752,21 +757,9 @@ export class RatingUtils {
     // See AR3:
     // See AR2:
     // Dean Oliver's "PUE" with some diagnostics
-    const Adj_ORtg = ORtg * o_adj;
-    const Unadjusted_Productivity = 0.01 * usage * (ORtg - avgEfficiency);
-    const Raw_Productivity =
-      0.01 * usage * (ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
-      0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
-    // Adjusted for both SoS and usage:
-    const Adj_ORtgPlus =
-      0.01 *
-        usage *
-        (Adj_ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
-      0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
 
-    const Usage_Bonus = 5 * (Raw_Productivity - Unadjusted_Productivity);
-    //(^ this is now v small, most of the benefit comes from multiplying the efficiency gain by the usage)
-    const SoS_Bonus = Adj_ORtgPlus - Raw_Productivity;
+    const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus, SoS_Bonus } =
+      RatingUtils.buildProductivity(ORtg, o_adj, usage, avgEfficiency);
 
     // Legacy, replace this thru with commented out code once I'm committed
     // Current "PPG!"-like
@@ -785,7 +778,7 @@ export class RatingUtils {
     //                      = AdjTeamOffEff + 0 {sum(delta_usage)=0} - avgEff {sum(usage)=1}
 
     // If the values have been overridden then calculate the un-overridden values
-    const [rawORtg, rawAdjRating] = overrideAdjusted
+    const [rawORtg, rawAdjRating, rawUsage] = overrideAdjusted
       ? RatingUtils.buildORtg(
           statSet,
           rosterStatsByCode,
@@ -794,12 +787,12 @@ export class RatingUtils {
           false,
           false,
         )
-      : [undefined, undefined];
+      : [undefined, undefined, undefined];
 
     return [
       TotPoss > 0 ? { value: ORtg } : undefined,
       TotPoss > 0 ? { value: Adj_ORtgPlus } : undefined,
-      rawORtg,
+      calcDiags || overrideAdjusted ? rawORtg : { value: usage }, //(special case, if called internally return usage here)
       rawAdjRating,
       (calcDiags
         ? {
@@ -898,6 +891,9 @@ export class RatingUtils {
             SD_at_Usage_20: SD_at_Usage_20,
             Regressed_ORtg: Regressed_ORtg,
             Usage: Math.max(usage, 0.0), //(this can replace off_usage, so ensure it's sane in edge cases)
+            Raw_Usage: _.isNil(rawUsage)
+              ? undefined
+              : Math.max(rawUsage.value, 0.0),
             Usage_Bonus,
             SoS_Bonus,
             adjORtg: Adj_ORtg,
@@ -914,10 +910,84 @@ export class RatingUtils {
             threePtsProd,
             astThreePProd,
             astTwoPProd,
+
+            // Adjustment for pts/possession discrepancies:
+            adjPtsFactor: 1,
+            adjPossFactor: 1,
           }
         : undefined) as ORtgDiagnostics | undefined,
     ];
   }
+
+  /** Converts ORtg and a few other numbers into productivity, use Dean Oliver PUE */
+  static buildProductivity = (
+    ORtg: number,
+    o_adj: number,
+    usage: number,
+    avgEfficiency: number,
+  ): {
+    Adj_ORtg: number;
+    Adj_ORtgPlus: number;
+    Usage_Bonus: number;
+    SoS_Bonus: number;
+  } => {
+    const Adj_ORtg = ORtg * o_adj;
+    const Unadjusted_Productivity = 0.01 * usage * (ORtg - avgEfficiency);
+    const Raw_Productivity =
+      0.01 * usage * (ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
+      0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
+    // Adjusted for both SoS and usage:
+    const Adj_ORtgPlus =
+      0.01 *
+        usage *
+        (Adj_ORtg - RatingUtils.Replacement_Level * avgEfficiency) -
+      0.2 * (1 - RatingUtils.Replacement_Level) * avgEfficiency;
+
+    const Usage_Bonus = 5 * (Raw_Productivity - Unadjusted_Productivity);
+    //(^ this is now v small, most of the benefit comes from multiplying the efficiency gain by the usage)
+    const SoS_Bonus = Adj_ORtgPlus - Raw_Productivity;
+    return { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus, SoS_Bonus };
+  };
+
+  /** If a correction has been applied to account for missing possesions, update the diags */
+  static adjustRatingStats = (
+    ptsCorrectionFactor: number,
+    possCorrectonFactor: number,
+    mutableORtg: ORtgDiagnostics,
+    maybeRawORtg: number | undefined,
+  ): [number, number] | undefined => {
+    const correctionFactor = ptsCorrectionFactor / (possCorrectonFactor || 1);
+    const newORtg = mutableORtg.oRtg * correctionFactor;
+
+    const { Adj_ORtg, Adj_ORtgPlus, Usage_Bonus, SoS_Bonus } =
+      RatingUtils.buildProductivity(
+        newORtg,
+        mutableORtg.avgEff / mutableORtg.defSos || 1,
+        mutableORtg.Usage,
+        mutableORtg.avgEff,
+      );
+
+    mutableORtg.oRtg = newORtg;
+    mutableORtg.adjORtg = Adj_ORtg;
+    mutableORtg.adjORtgPlus = Adj_ORtgPlus;
+    mutableORtg.Usage_Bonus = Usage_Bonus;
+    mutableORtg.SoS_Bonus = SoS_Bonus;
+    mutableORtg.adjPtsFactor = ptsCorrectionFactor;
+    mutableORtg.adjPossFactor = possCorrectonFactor;
+
+    if (_.isNil(mutableORtg.Raw_Usage) || _.isNil(maybeRawORtg)) {
+      return undefined;
+    } else {
+      const newRawORtg = maybeRawORtg * correctionFactor;
+      const { Adj_ORtgPlus: Raw_Adj_ORtgPlus } = RatingUtils.buildProductivity(
+        newRawORtg,
+        mutableORtg.avgEff / mutableORtg.defSos || 1,
+        mutableORtg.Raw_Usage,
+        mutableORtg.avgEff,
+      );
+      return [newRawORtg, Raw_Adj_ORtgPlus];
+    }
+  };
 
   /** Decompose ORtg and RAPM into something that looks a bit like Net points, if you squint */
   static buildNetPoints = (
@@ -948,23 +1018,42 @@ export class RatingUtils {
     // eg in one game Player A has 15 possessions (on floor for 50) and scores say 3pts+, so
     // P% is 2x (we want on floor for 100)
 
+    //(include poss/pts correction factor)
+
     const offNetPts3P =
-      (ortg.threePtsProd - ortg.threePoss * avgPpp) * offScale;
-    const offNetPtsMid = (ortg.midPtsProd - ortg.midPoss * avgPpp) * offScale;
-    const offNetPtsRim = (ortg.rimPtsProd - ortg.rimPoss * avgPpp) * offScale;
-    const offNetPtsOrb = (ortg.ppOrb - ortg.orbPart * avgPpp) * offScale;
+      (ortg.threePtsProd * ortg.adjPtsFactor -
+        ortg.threePoss * ortg.adjPossFactor * avgPpp) *
+      offScale;
+    const offNetPtsMid =
+      (ortg.midPtsProd * ortg.adjPtsFactor -
+        ortg.midPoss * ortg.adjPossFactor * avgPpp) *
+      offScale;
+    const offNetPtsRim =
+      (ortg.rimPtsProd * ortg.adjPtsFactor -
+        ortg.rimPoss * ortg.adjPossFactor * avgPpp) *
+      offScale;
+    const offNetPtsOrb =
+      (ortg.ppOrb * ortg.adjPtsFactor -
+        ortg.orbPart * ortg.adjPossFactor * avgPpp) *
+      offScale;
     const adjustedFtPoss =
       ortg.ftPart * (1 - ortg.teamOrbContribPct) + ortg.ftxPoss;
     const offNetPtsFt =
-      (ortg.rawFtm * (1 - ortg.teamOrbContribPct) - adjustedFtPoss * avgPpp) *
+      (ortg.rawFtm * (1 - ortg.teamOrbContribPct) * ortg.adjPtsFactor -
+        adjustedFtPoss * ortg.adjPossFactor * avgPpp) *
       offScale;
-    const offNetPtsTo = -ortg.rawTo * avgPpp * offScale;
+    const offNetPtsTo = -ortg.rawTo * ortg.adjPossFactor * avgPpp * offScale;
     const offNetPtsAst2 =
-      (ortg.astThreePProd - ortg.astThreePoss * avgPpp) * offScale;
+      (ortg.astThreePProd * ortg.adjPtsFactor -
+        ortg.astThreePoss * ortg.adjPossFactor * avgPpp) *
+      offScale;
     const offNetPtsAst3 =
-      (ortg.astTwoPProd - ortg.astTwoPoss * avgPpp) * offScale;
+      (ortg.astTwoPProd * ortg.adjPtsFactor -
+        ortg.astTwoPoss * ortg.adjPossFactor * avgPpp) *
+      offScale;
 
     // These are all in pts/T100 (because they are derived from RAPM/adj rtg+ which includes usgage)
+    // (also don't need to adjust these by adjPossFactor/adjPtsFactor, it's just the raw vals which aren't adjusted)
 
     const offNetPtsVolume =
       ortg.Usage_Bonus * 0.2 * ortg.teamPoss * 0.01 * offScale;
@@ -996,11 +1085,11 @@ export class RatingUtils {
       offNetPts3P +
       offNetPtsMid +
       offNetPtsRim +
-      offNetPtsOrb +
       offNetPtsFt +
-      offNetPtsTo +
       offNetPtsAst2 +
       offNetPtsAst3 +
+      offNetPtsTo +
+      offNetPtsOrb +
       offNetPtsVolume +
       offNetPtsWowy +
       offNetPtsSos;

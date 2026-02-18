@@ -14,7 +14,11 @@ import {
   IndivPosInfo,
   RosterEntry,
 } from "../StatModels";
-import { RatingUtils, OnBallDefenseModel } from "../stats/RatingUtils";
+import {
+  RatingUtils,
+  OnBallDefenseModel,
+  ORtgDiagnostics,
+} from "../stats/RatingUtils";
 import { PositionUtils } from "../stats/PositionUtils";
 import { LineupUtils } from "../stats/LineupUtils";
 import {
@@ -41,7 +45,7 @@ export class LineupTableUtils {
     return lineup.players_array
       ? lineup.players_array?.hits?.hits?.[0]?._source?.players || []
       : _.toPairs(
-          (lineup.player_info || {}) as Record<PlayerId, IndivStatSet>
+          (lineup.player_info || {}) as Record<PlayerId, IndivStatSet>,
         ).map((kv) => {
           return { code: kv[1].code as string, id: kv[0] };
         }); //(leaderboard mode)
@@ -56,7 +60,7 @@ export class LineupTableUtils {
     adjustForLuck: boolean,
     luckConfigBase: "baseline" | "season",
     manualOverridesAsMap: Record<string, Record<string, number>> = {},
-    onBallDefenseByCode: Record<PlayerCode, OnBallDefenseModel> = {}
+    onBallDefenseByCode: Record<PlayerCode, OnBallDefenseModel> = {},
   ): Record<PlayerId, IndivStatSet> {
     const sampleRosterByCode = _.fromPairs(
       // Needed for ORtg, also ensure the codes exist
@@ -65,7 +69,7 @@ export class LineupTableUtils {
         mutableP.code = (mutableP.player_array?.hits?.hits?.[0]?._source?.player
           ?.code || mutableP.key) as PlayerCode;
         return [mutableP.code, mutableP];
-      })
+      }),
     );
 
     const baselinePlayerInfo = _.fromPairs(
@@ -96,7 +100,7 @@ export class LineupTableUtils {
             ? LuckUtils.calcOffPlayerLuckAdj(
                 mutableP,
                 globalPlayerStats,
-                avgEfficiency
+                avgEfficiency,
               )
             : undefined;
           if (offLuckAdj) mutableP.off_luck = offLuckAdj;
@@ -105,7 +109,7 @@ export class LineupTableUtils {
             ? LuckUtils.calcDefPlayerLuckAdj(
                 mutableP,
                 globalPlayerStats,
-                avgEfficiency
+                avgEfficiency,
               )
             : undefined;
           if (defLuckAdj) mutableP.def_luck = defLuckAdj;
@@ -118,7 +122,7 @@ export class LineupTableUtils {
             mutableP,
             mutableP.onOffKey || "Baseline",
             manualOverridesAsMap,
-            adjustForLuck
+            adjustForLuck,
           );
 
         // Add ORtg to lineup stats:
@@ -136,7 +140,7 @@ export class LineupTableUtils {
             },
             avgEfficiency,
             true,
-            adjustForLuck || overrodeOffFields
+            adjustForLuck || overrodeOffFields,
           );
         const [dRtg, adjDRtg, rawDRtg, rawAdjDRtg, dRtgDiag] =
           RatingUtils.buildDRtg(mutableP, avgEfficiency, true, adjustForLuck);
@@ -158,7 +162,6 @@ export class LineupTableUtils {
           override: adjustmentReason,
         };
         mutableP.off_usage = {
-          //TODO: make this controllable
           value: !_.isNil(oRtgDiag)
             ? oRtgDiag.Usage! * 0.01
             : mutableP.off_usage?.value,
@@ -187,7 +190,7 @@ export class LineupTableUtils {
           const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(
             mutableP,
             dRtgDiag,
-            onBallDefense
+            onBallDefense,
           );
           dRtgDiag.onBallDef = onBallDefense;
           dRtgDiag.onBallDiags = onBallDiags;
@@ -201,14 +204,86 @@ export class LineupTableUtils {
         }
 
         return [mutableP.key, mutableP];
-      })
+      }),
     );
+
+    // Offense:
+    // Adjust to ensure that points and poss - assign credit/blame equally across players
+    const { sumPlayerPts, sumPlayerPoss, playedCorrectionFailed } = _.transform(
+      baselinePlayerInfo,
+      (acc, v) => {
+        const oDiag = v.diag_off_rtg as ORtgDiagnostics;
+        if (oDiag) {
+          acc.sumPlayerPts += oDiag.ptsProd;
+          acc.sumPlayerPoss += oDiag.adjPoss;
+        } else {
+          acc.playedCorrectionFailed = true;
+        }
+      },
+      { sumPlayerPts: 0, sumPlayerPoss: 0, playedCorrectionFailed: false },
+    );
+
+    if (!playedCorrectionFailed) {
+      const offPoss = teamStat.total_off_poss?.value || 0;
+      const offPts = teamStat.total_off_pts?.value || 0;
+      const sampleEff = offPts / (offPoss || 1);
+      const sumPlayerEff = sumPlayerPts / (sumPlayerPoss || 1);
+      const correctionFactor = sampleEff / (sumPlayerEff || 1);
+      const ptsCorrectionFactor = offPts / (sumPlayerPts || 1);
+      const possCorrectionFactor = offPoss / (sumPlayerPoss || 1);
+      //DEBUG
+      // console.log(
+      //   `Compare [${offPts.toFixed(1)}]/[${offPoss.toFixed(1)}] vs [${sumPlayerPts.toFixed(1)}]/[${sumPlayerPoss.toFixed(1)}]:` +
+      //     `x[${correctionFactor.toFixed(3)}]=[${ptsCorrectionFactor.toFixed(3)}]/[${possCorrectionFactor.toFixed(3)}]`,
+      // );
+      // At most 5%
+      const cappedPtsFactor = Math.min(
+        1.05,
+        Math.max(0.95, ptsCorrectionFactor),
+      );
+      const cappedPossFactor = Math.min(
+        1.05,
+        Math.max(0.95, possCorrectionFactor),
+      );
+      // Lots of mutation :(
+      _.values(baselinePlayerInfo).forEach((p) => {
+        if (p.diag_off_rtg) {
+          const maybeRawVals = RatingUtils.adjustRatingStats(
+            cappedPtsFactor,
+            cappedPossFactor,
+            p.diag_off_rtg,
+            p.off_rtg?.old_value,
+          );
+
+          if (p.off_rtg) {
+            p.off_rtg.value = p.diag_off_rtg.oRtg;
+            if (maybeRawVals) {
+              p.off_rtg.old_value = maybeRawVals[0];
+            }
+          }
+          if (p.off_adj_rtg) {
+            p.off_adj_rtg.value = p.diag_off_rtg.adjORtgPlus;
+            if (maybeRawVals) {
+              p.off_rtg.old_value = maybeRawVals[1];
+            }
+          }
+          if (p.off_adj_prod) {
+            p.off_adj_prod.value =
+              p.diag_off_rtg.adjORtgPlus * (p.off_team_poss_pct.value || 0);
+            if (maybeRawVals) {
+              p.off_adj_prod.old_value =
+                maybeRawVals[1] * (p.off_team_poss_pct.value || 0);
+            }
+          }
+        }
+      });
+    }
 
     // Finish off on-ball defense if there is any:
     if (!_.isEmpty(onBallDefenseByCode)) {
       RatingUtils.injectOnBallDefenseAdjustmentsPhase2(
         _.values(baselinePlayerInfo),
-        teamStat
+        teamStat,
       );
     }
     return baselinePlayerInfo;
@@ -233,7 +308,10 @@ export class LineupTableUtils {
           );
         case "year": //metadata
           return parseInt(
-            (stat?.year || ParamDefaults.defaultLeaderboardYear).substring(0, 4)
+            (stat?.year || ParamDefaults.defaultLeaderboardYear).substring(
+              0,
+              4,
+            ),
           );
         default:
           if (sortComps[1] == "off_drb") {
@@ -254,7 +332,7 @@ export class LineupTableUtils {
     players: IndivStatSet[] | undefined,
     teamSeasonLookup: string,
     externalRoster?: Record<PlayerId, RosterEntry>,
-    rosterGeoLookup?: Record<string, { lat: number; lon: number }>
+    rosterGeoLookup?: Record<string, { lat: number; lon: number }>,
   ): Record<PlayerId, IndivPosInfo> {
     const positionFromPlayerKey = _.chain(players || [])
       .map((player: IndivStatSet) => {
@@ -265,7 +343,7 @@ export class LineupTableUtils {
           posConfs,
           posConfsDiags.confsNoHeight,
           player,
-          teamSeasonLookup
+          teamSeasonLookup,
         );
 
         return [
@@ -295,7 +373,7 @@ export class LineupTableUtils {
 
   /** Builds a filter that ignores aggregation keys we don't want */
   static buildFilteredLineupKeys(
-    filterStr: string
+    filterStr: string,
   ): undefined | ((inKeys: PlayerCodeId[]) => boolean) {
     const orFragments = filterStr
       ? filterStr.split("||").map((orFrag) => {
@@ -311,7 +389,7 @@ export class LineupTableUtils {
             .split(separator)
             .map((fragment) => _.trim(fragment))
             .filter(
-              (fragment) => fragment?.[0] == "[" && _.last(fragment) == "]"
+              (fragment) => fragment?.[0] == "[" && _.last(fragment) == "]",
             ) //(use [key] to filter on aggregation keys instead of raw lineups)
             .map((frag) => frag.substring(1, frag.length - 1))
             .map((fragment) => _.trim(fragment))
@@ -319,7 +397,7 @@ export class LineupTableUtils {
 
           const [pveAndFrags, nveAndFrags] = _.partition(
             andFrags,
-            (frag) => frag[0] != "-"
+            (frag) => frag[0] != "-",
           );
           return [pveAndFrags, nveAndFrags.map((frag) => frag.substring(1))];
         })
@@ -339,10 +417,10 @@ export class LineupTableUtils {
                       const matches =
                         key.code.indexOf(fragment) >= 0 ||
                         (isNegativeAgg ? key.id.substring(1) : key.id).indexOf(
-                          fragment
+                          fragment,
                         ) >= 0;
                       return matches; //(currently we match on the presense of any key, +ve or -ve)
-                    })
+                    }),
                   )
                     ? true
                     : false)) &&
@@ -356,12 +434,12 @@ export class LineupTableUtils {
                           .substring(1)
                           .indexOf(fragment) >= 0;
                       return matches;
-                    })
+                    }),
                   )
                     ? false
                     : true))
               );
-            })
+            }),
           );
         };
   }
@@ -375,7 +453,7 @@ export class LineupTableUtils {
     maxTableSize: string,
     teamSeasonLookup: string | undefined,
     positionFromPlayerKey: Record<string, any> | undefined,
-    alsoReturnDroppedLineups: boolean = false
+    alsoReturnDroppedLineups: boolean = false,
   ): [LineupStatSet[], LineupStatSet[] | undefined] {
     const orFragments = filterStr
       .split("||")
@@ -401,7 +479,7 @@ export class LineupTableUtils {
           ? PositionUtils.orderLineup(
               codesAndIds,
               lineupPosFromPlayerKey,
-              lineupTeamSeason
+              lineupTeamSeason,
             )
           : codesAndIds;
         const teamFilter = lineup.team
@@ -417,7 +495,7 @@ export class LineupTableUtils {
             return PositionUtils.testPositionalAwareFilter(
               namesAndTeams,
               filterFragmentsPve,
-              filterFragmentsNve
+              filterFragmentsNve,
             );
           })
           .some()
@@ -430,11 +508,11 @@ export class LineupTableUtils {
     };
 
     const sortAndTruncLineups = (
-      lineupChain: _.CollectionChain<LineupStatSet>
+      lineupChain: _.CollectionChain<LineupStatSet>,
     ) =>
       lineupChain
         .sortBy(
-          sortBy ? [LineupTableUtils.sorter(sortBy)] : [] //(don't sort if sortBy not specified)
+          sortBy ? [LineupTableUtils.sorter(sortBy)] : [], //(don't sort if sortBy not specified)
         )
         .take(parseInt(maxTableSize))
         .value();
@@ -469,12 +547,12 @@ export class LineupTableUtils {
     teamSeasonLookup: string,
     positionFromPlayerKey: Record<PlayerId, any>,
     baselinePlayerInfo: Record<PlayerId, IndivStatSet>,
-    droppedLineups?: LineupStatSet[]
+    droppedLineups?: LineupStatSet[],
   ): Array<LineupStatSet> {
     // The luck baseline can either be the user-selecteed baseline or the entire season
     const baseLuckBuilder: () => [
       TeamStatSet,
-      Record<PlayerId, IndivStatSet>
+      Record<PlayerId, IndivStatSet>,
     ] = () => {
       if (adjustForLuck) {
         switch (luckConfigBase) {
@@ -501,7 +579,7 @@ export class LineupTableUtils {
           : PositionUtils.orderLineup(
               codesAndIds,
               positionFromPlayerKey,
-              teamSeasonLookup
+              teamSeasonLookup,
             );
 
       const perLineupPlayerLuckMap: Record<PlayerId, IndivStatSet> =
@@ -511,7 +589,7 @@ export class LineupTableUtils {
               cid.id,
               baseOrSeason3PMap[cid.id] || StatModels.emptyIndiv(),
             ];
-          })
+          }),
         );
       const luckAdj =
         lineup.key != LineupTableUtils.totalLineupId &&
@@ -525,7 +603,7 @@ export class LineupTableUtils {
                 baseOrSeasonTeamStats,
                 perLineupPlayerLuckMap,
                 avgEfficiency,
-                baselineTeamStats?.total_off_3p_attempts?.value
+                baselineTeamStats?.total_off_3p_attempts?.value,
                 //(ensure that the aggregation of the 3P-luck-adjusted lineups are equal to the 3P-adjusted set)
                 // (this means I'm technically under-regressing each lineup .. otherwise they'd mostly just be the 3P% average)
               ),
@@ -533,7 +611,7 @@ export class LineupTableUtils {
                 lineup,
                 baseOrSeasonTeamStats,
                 avgEfficiency,
-                baselineTeamStats?.total_def_3p_attempts?.value
+                baselineTeamStats?.total_def_3p_attempts?.value,
                 //(ensure that the aggregation of the 3P-luck-adjusted lineups are equal to the 3P-adjusted set)
                 // (this means I'm technically under-regressing each lineup .. otherwise they'd mostly just be the 3P SoS)
               ),
@@ -557,7 +635,7 @@ export class LineupTableUtils {
       return lineup;
     };
     const enrichedLineups = filteredLineups.map((lineup) =>
-      enrichLineup(lineup)
+      enrichLineup(lineup),
     );
     const totalLineup = showTotalLineups
       ? [
@@ -569,8 +647,8 @@ export class LineupTableUtils {
               {
                 key: LineupTableUtils.totalLineupId,
                 doc_count: filteredLineups.length, //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
-              }
-            )
+              },
+            ),
           ),
         ]
       : [];
@@ -583,13 +661,13 @@ export class LineupTableUtils {
             enrichLineup(
               _.assign(
                 LineupUtils.calculateAggregatedLineupStats(
-                  droppedLineups.map(enrichLineup)
+                  droppedLineups.map(enrichLineup),
                 ),
                 {
                   key: LineupTableUtils.droppedLineupId,
                   doc_count: droppedLineups.length, //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
-                }
-              )
+                },
+              ),
             ),
           ]
         : [];
@@ -601,7 +679,7 @@ export class LineupTableUtils {
   static getPositionalInfo(
     lineups: Array<LineupStatSet>,
     positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
-    teamSeasonLookup: string
+    teamSeasonLookup: string,
   ): PositionInfo[][] {
     return _.chain(lineups)
       .transform(
@@ -610,7 +688,7 @@ export class LineupTableUtils {
           const sortedCodesAndIds = PositionUtils.orderLineup(
             codesAndIds,
             positionFromPlayerId,
-            teamSeasonLookup
+            teamSeasonLookup,
           );
           sortedCodesAndIds.forEach((codeId, i) => {
             mutableAcc[i]!.push({
@@ -626,7 +704,7 @@ export class LineupTableUtils {
           [] as PositionInfo[],
           [] as PositionInfo[],
           [] as PositionInfo[],
-        ]
+        ],
       )
       .map((keyPosses) => {
         return _.chain(keyPosses)
@@ -639,7 +717,7 @@ export class LineupTableUtils {
               numPoss: _.reduce(
                 keyPosses,
                 (acc, keyPoss) => acc + keyPoss.numPoss,
-                0
+                0,
               ),
             };
           })
