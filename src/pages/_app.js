@@ -6,6 +6,7 @@ import "../styles/bootstrap.dark_united.css";
 
 // Global styles
 import "../styles/globals.css";
+import "../styles/landing_page_styles.css";
 
 // Import react-select dark theme globally
 import "../styles/react_select_dark.css";

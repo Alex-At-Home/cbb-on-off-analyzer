@@ -1804,13 +1804,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const maybeMoreDetails = (cardId: string): JSX.Element | null => {
     return moreDetailsByCardId[cardId] ? (
       <Card.Link
+        className="landing-page-more-details"
         href="#"
         onClick={(e: any) => {
           e.preventDefault();
           handleMoreDetailsOpen(cardId);
         }}
       >
-        <u>More Details</u>
+        More Details &gt;
       </Card.Link>
     ) : null;
   };
@@ -1840,7 +1841,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           {showIntro && (
-            <Card id="intro">
+            <Card id="intro" className="landing-page">
               <Card.Body>
                 <OverlayTrigger
                   placement="top"
@@ -2052,6 +2053,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         </Row>
       )}
       <Row xs={1} sm={1} md={1} lg={2} xl={3} className="g-4 mb-4">
+        {/*
         <TopicFilteredCard
           hide={true}
           topics={[
@@ -2070,7 +2072,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           ]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
                 <Card.Title>Practical Examples</Card.Title>
                 <Card.Text>
@@ -2080,39 +2082,98 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   <br />
                   Have a browse to get an idea of some of the features!
                 </Card.Text>
-                {/** TODO ADD CARD ONCE WE HAVE WRITTEN A MODAL TO DISPLAY EXAMPLES */}
+                {
+                //TODO ADD CARD ONCE WE HAVE WRITTEN A MODAL TO DISPLAY EXAMPLES
+                }
               </Card.Body>
             </Card>
           </Col>
         </TopicFilteredCard>
-        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
+      */}
+        <TopicFilteredCard
+          topics={[
+            "Players",
+            "Leaderboards",
+            "RAPM",
+            "CSV Export",
+            "Multi-Year",
+            "Shot Charts",
+            "Play Types",
+          ]}
+        >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
-                <Card.Title>Build Your Own T25</Card.Title>
+                <Card.Title>Player Rankings</Card.Title>
                 <Card.Text>
-                  The only team ranking <b>you</b> control! What matters to you
-                  most - Wins? Efficiency? Dominance? Recency?
+                  Every qualifying player ranked by the stats that matter --
+                  RAPM, efficiency, usage, and more. Sort, filter, visualize,
+                  and export.
                   <br />
                   <br />
-                  Pick the weights you want and see how the teams stack up...
+                  <small>
+                    <i>
+                      Includes advanced sorting options with conference and
+                      positional filters.
+                    </i>
+                  </small>
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Build Your Own T25"))}
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Player Leaderboards"))}
+                  <Card.Link
+                    href={UrlRouting.getPlayerLeaderboardUrl({ year, gender })}
+                    target="_blank"
+                  >
+                    <b>View Rankings</b>
+                  </Card.Link>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard
+          topics={[
+            "Teams",
+            "Leaderboards",
+            "CSV Export",
+            "Multi-Year",
+            "Shot Charts",
+            "Play Types",
+          ]}
+        >
+          <Col className="mt-2">
+            <Card className="landing-page">
+              <Card.Body>
+                <Card.Title>Team Rankings</Card.Title>
+                <Card.Text>
+                  Conference-adjusted efficiency rankings for every D1 team.
+                  Compare offensive and defensive efficiency, play style,
+                  shooting splits, and turnover rates side by side.
+                </Card.Text>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(
+                    getCardIdFromTitle("Team Efficiency Stats"),
+                  )}
+                  <Card.Link
+                    href={UrlRouting.getTeamStatsExplorerUrl({
+                      year,
+                      gender,
+                    })}
+                    target="_blank"
+                  >
+                    <b>View Rankings</b>
+                  </Card.Link>
+                </div>
+                {/*
                 <Card.Link
-                  href={UrlRouting.getTeamLeaderboardUrl({
-                    gender,
+                  href={UrlRouting.TeamStatsExplorerChart({
                     year,
+                    gender,
                   })}
                   target="_blank"
                 >
-                  <b>Just take me to the leaderboard!</b>
-                </Card.Link>
-                <Card.Link
-                  href={`https://hoop-explorer.blogspot.com/2019/12/a-very-simple-and-transparent-ncaa-seed.html?view=classic`}
-                  target="_blank"
-                >
-                  Blog Post
-                </Card.Link>
+                  Scatter Chart
+                </Card.Link>*/}
               </Card.Body>
             </Card>
           </Col>
@@ -2127,14 +2188,13 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           ]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
-                <Card.Title>Player Career View</Card.Title>
+                <Card.Title>Player Profiles</Card.Title>
                 <Card.Text>
-                  My newest page! Search for players (currently 2018+) using
-                  auto-complete; then view and compare their stats, shot charts,
-                  play styles, and more across seasons and All/Conference/T100
-                  samples. Just start typing below...
+                  Search any player from 2018 onward. View career stats, shot
+                  charts, play style breakdowns, and cross-season comparisons
+                  all in one place.
                   <br />
                   <br />
                   <PlayerFinderTextBox
@@ -2159,182 +2219,6 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
               </Card.Body>
             </Card>
           </Col>
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Play Type / Style Analysis</Card.Title>
-                <Card.Text>
-                  Maybe Hoop Explorer's most unique feature - break down a team
-                  or player's offense or defense into intuitive "style"
-                  categories ("Post-Up", "Transition", "Perimeter Sniper", etc)
-                  <br />
-                  <br />
-                  Accesible from lots of pages - see "More Details".
-                </Card.Text>
-                {maybeMoreDetails(
-                  getCardIdFromTitle("Play Type / Style Analysis"),
-                )}
-                <Card.Link
-                  href={UrlRouting.getTeamStatsExplorerUrl({
-                    year,
-                    gender,
-                    showPlayStyles: true,
-                    maxTableSize: "10",
-                  })}
-                  target="_blank"
-                >
-                  <b>Show Me For The Top 10 Teams!</b>
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard
-          topics={[
-            "Players",
-            "Leaderboards",
-            "RAPM",
-            "CSV Export",
-            "Multi-Year",
-            "Shot Charts",
-            "Play Types",
-          ]}
-        >
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Player Leaderboards</Card.Title>
-                <Card.Text>
-                  See all qualifying players sorted by various stats (eg the
-                  all-in-one production stat called RAPM)
-                  <br />
-                  <br />
-                  And lots and lots of options for sorting, filtering,
-                  visualizing, and exporting the data.
-                </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Player Leaderboards"))}
-                <Card.Link
-                  href={UrlRouting.getPlayerLeaderboardUrl({ year, gender })}
-                  target="_blank"
-                >
-                  <b>Just take me to the leaderboard!</b>
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard
-          topics={[
-            "Teams",
-            "Leaderboards",
-            "CSV Export",
-            "Multi-Year",
-            "Shot Charts",
-            "Play Types",
-          ]}
-        >
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Multi Team Stats Explorer</Card.Title>
-                <Card.Text>
-                  Team-focused, conference-adjusted team efficiency stats.
-                  <br />
-                  <br />
-                  Sort by Adjusted Efficiency Margin, Offensive Efficiency, or
-                  Defensive Efficiency, Play Style; see shooting stats, turnover
-                  percentages, etc.
-                </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team Efficiency Stats"))}
-                <Card.Link
-                  href={UrlRouting.getTeamStatsExplorerUrl({
-                    year,
-                    gender,
-                  })}
-                  target="_blank"
-                >
-                  <b>Straight to the page!</b>
-                </Card.Link>
-                <Card.Link
-                  href={UrlRouting.TeamStatsExplorerChart({
-                    year,
-                    gender,
-                  })}
-                  target="_blank"
-                >
-                  Scatter Chart
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        </TopicFilteredCard>
-        <TopicFilteredCard
-          topics={[
-            "Teams",
-            "Players",
-            "Splits",
-            "Shot Charts",
-            "On-Off",
-            "Play Types",
-            "RAPM",
-          ]}
-        >
-          <Col className="mt-2">
-            <Card>
-              <Card.Body>
-                <Card.Title>Team And Roster Analysis / Splits</Card.Title>
-                <Card.Text>
-                  The classic "KenPom"-like page showing team Adjusted
-                  Efficiency, 4-factors, etc and player offensive/defensive
-                  ratings, shooting stats, etc...
-                  <br />
-                  <br />
-                  ... And a lot more: Filters! Splits! Style! Shot Charts! etc
-                </Card.Text>
-                {maybeMoreDetails(
-                  getCardIdFromTitle("Team And Roster Analysis / Splits"),
-                )}
-                {buildCardLink(
-                  <b>I'm Sold! Let's Go...</b>,
-                  (year, gender, team) =>
-                    UrlRouting.getGameUrl(
-                      {
-                        year,
-                        gender,
-                        team,
-                        // Show these "advanced options" always
-                        showRoster: true,
-                        calcRapm: true,
-                      },
-                      {},
-                    ),
-                )}
-                {buildCardLink(
-                  <span>(Advanced View...)</span>,
-                  (year, gender, team) =>
-                    UrlRouting.getGameUrl(
-                      {
-                        year,
-                        gender,
-                        team,
-                        // Advanced settings
-                        advancedMode: true,
-                        showGrades: "rank:Combo",
-                        // Advanced settings - team
-                        showTeamPlayTypes: true,
-                        showRoster: true,
-                        calcRapm: true,
-                        showExtraInfo: true,
-                        // Advanced settings - player
-                        showPlayerPlayTypes: true,
-                        showExpanded: true,
-                      },
-                      {},
-                    ),
-                )}
-              </Card.Body>
-            </Card>
-          </Col>
         </TopicFilteredCard>
         <TopicFilteredCard
           topics={[
@@ -2346,28 +2230,36 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           ]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
                 <Card.Title>Team Lineup Analysis</Card.Title>
                 <Card.Text>
-                  All sorts of metrics about the different lineups played by the
-                  selected team.
+                  Deep-dive into every lineup combination your team has used.
+                  See how frontcourt, backcourt, and custom groupings perform
+                  together.
                   <br />
                   <br />
-                  The best bit is the ability to combine stats for lineups,
-                  based on various groupings (frontcourt, backcourt, etc).
+                  <small>
+                    <i>
+                      Combine and compare lineup stats across flexible
+                      positional groupings.
+                    </i>
+                  </small>
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team Lineup Analysis"))}
-                {buildCardLink(<b>Team Page...</b>, (year, gender, team) =>
-                  UrlRouting.getLineupUrl(
-                    {
-                      year,
-                      gender,
-                      team,
-                    },
-                    {},
-                  ),
-                )}
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Team Lineup Analysis"))}
+                  {buildCardLink(<b>Explore Lineups</b>, (year, gender, team) =>
+                    UrlRouting.getLineupUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                      },
+                      {},
+                    ),
+                  )}
+                </div>
+                {/*
                 <Card.Link
                   href={UrlRouting.getLineupLeaderboardUrl({
                     year,
@@ -2378,6 +2270,127 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                 >
                   Leaderboard...
                 </Card.Link>
+                */}
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard
+          topics={[
+            "Play Types",
+            "Players",
+            "RAPM",
+            "Shot Charts",
+            "Multi-Year",
+          ]}
+        >
+          <Col className="mt-2">
+            <Card className="landing-page">
+              <Card.Body>
+                <Card.Title>Play Style Breakdown</Card.Title>
+                <Card.Text>
+                  Categorize any team or player's offense and defense into
+                  intuitive styles -- Post-Up, Transition, Perimeter Sniper,
+                  Pick & Roll, and more.
+                  <br />
+                  <br />
+                  <small>
+                    <i>
+                      Available across multiple pages for both team-level and
+                      player-level analysis.
+                    </i>
+                  </small>
+                </Card.Text>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(
+                    getCardIdFromTitle("Play Type / Style Analysis"),
+                  )}
+                  <Card.Link
+                    href={UrlRouting.getTeamStatsExplorerUrl({
+                      year,
+                      gender,
+                      showPlayStyles: true,
+                      maxTableSize: "10",
+                    })}
+                    target="_blank"
+                  >
+                    <b>See Play Styles</b>
+                  </Card.Link>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+
+        <TopicFilteredCard
+          topics={[
+            "Teams",
+            "Players",
+            "Splits",
+            "Shot Charts",
+            "On-Off",
+            "Play Types",
+            "RAPM",
+          ]}
+        >
+          <Col className="mt-2">
+            <Card className="landing-page">
+              <Card.Body>
+                <Card.Title>Team And Roster Splits</Card.Title>
+                <Card.Text>
+                  The comprehensive team page: adjusted efficiency,
+                  four-factors, player ratings, shooting stats, with deep
+                  filtering and split options.
+                  <br />
+                  <br />
+                  <small>
+                    <i>
+                      Includes shot charts, style breakdowns, and CSV export for
+                      every view.
+                    </i>
+                  </small>
+                </Card.Text>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(
+                    getCardIdFromTitle("Team And Roster Analysis / Splits"),
+                  )}
+                  {buildCardLink(<b>Explore Teams</b>, (year, gender, team) =>
+                    UrlRouting.getGameUrl(
+                      {
+                        year,
+                        gender,
+                        team,
+                        // Show these "advanced options" always
+                        showRoster: true,
+                        calcRapm: true,
+                      },
+                      {},
+                    ),
+                  )}
+                  {/*buildCardLink(
+                    <span>(Advanced View...)</span>,
+                    (year, gender, team) =>
+                      UrlRouting.getGameUrl(
+                        {
+                          year,
+                          gender,
+                          team,
+                          // Advanced settings
+                          advancedMode: true,
+                          showGrades: "rank:Combo",
+                          // Advanced settings - team
+                          showTeamPlayTypes: true,
+                          showRoster: true,
+                          calcRapm: true,
+                          showExtraInfo: true,
+                          // Advanced settings - player
+                          showPlayerPlayTypes: true,
+                          showExpanded: true,
+                        },
+                        {},
+                      ),
+                  )*/}
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -2394,29 +2407,36 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           ]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
                 <Card.Title>Shot Charts</Card.Title>
                 <Card.Text>
-                  Many pages allow you to view a hex map of team or player
-                  shots, showing frequency and efficiency vs D1 averages.
+                  Hex-map visualizations of shot frequency and efficiency vs D1
+                  averages for any team or player. Apply filters and splits to
+                  find patterns.
                   <br />
                   <br />
-                  Accessible from lots of pages - see "More Details".
-                  Particularly interesting with filters and splits!
+                  <small>
+                    <i>
+                      Available across multiple pages for both team-level and
+                      player-level analysis.
+                    </i>
+                  </small>
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Shot Charts"))}
-                <Card.Link
-                  href={UrlRouting.getPlayerLeaderboardUrl({
-                    year,
-                    gender,
-                    shotCharts: true,
-                    maxTableSize: "50",
-                  })}
-                  target="_blank"
-                >
-                  <b>Show Me For The Top 50 Players!</b>
-                </Card.Link>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Shot Charts"))}
+                  <Card.Link
+                    href={UrlRouting.getPlayerLeaderboardUrl({
+                      year,
+                      gender,
+                      shotCharts: true,
+                      maxTableSize: "50",
+                    })}
+                    target="_blank"
+                  >
+                    <b>View Shot Charts</b>
+                  </Card.Link>
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -2433,28 +2453,33 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           ]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
                 <Card.Title>Game Reports</Card.Title>
                 <Card.Text>
-                  Advanced game analytics you won't find elsewhere:
+                  Advanced single-game analytics with unique insights you won't
+                  find elsewhere.
+                  <br />
+                  <br />
                   <ul>
-                    <li>Single game player offensive and defensive impact</li>
-                    <li>Time series charts showing lineups</li>
-                    <li>A style breakdown for each team</li>
+                    <li>Per-player offensive and defensive impact ratings</li>
+                    <li>Time-series lineup charts throughout the game</li>
+                    <li>Full style breakdown for each team</li>
                   </ul>
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Game Reports"))}
-                <Card.Link
-                  href={UrlRouting.getMatchupUrl({
-                    year,
-                    gender,
-                    team,
-                  })}
-                  target="_blank"
-                >
-                  <b>Straight to the page!</b>
-                </Card.Link>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Game Reports"))}
+                  <Card.Link
+                    href={UrlRouting.getMatchupUrl({
+                      year,
+                      gender,
+                      team,
+                    })}
+                    target="_blank"
+                  >
+                    <b>View Reports</b>
+                  </Card.Link>
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -2470,64 +2495,66 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           ]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
                 <Card.Title>Game Previews</Card.Title>
                 <Card.Text>
-                  Advanced match-up analytics between any two teams in D1, with
-                  charts showing:
+                  Head-to-head matchup analytics between any two D1 teams,
+                  complete with predictive charts.
+                  <br />
+                  <br />
                   <ul>
-                    <li>Players' offensive and defensive impact</li>
-                    <li>A breakdown of offense vs defense style matchups</li>
-                    <li>Shot charts</li>
+                    <li>Player impact comparisons on both ends</li>
+                    <li>Offense vs defense style matchup analysis</li>
+                    <li>Shot chart overlays</li>
                   </ul>
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Game Previews"))}
-                <Card.Link
-                  href={UrlRouting.getMatchupPreviewUrl({
-                    year,
-                    gender,
-                    team,
-                  })}
-                  target="_blank"
-                >
-                  <b>Straight to the page!</b>
-                </Card.Link>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Game Previews"))}
+                  <Card.Link
+                    href={UrlRouting.getMatchupPreviewUrl({
+                      year,
+                      gender,
+                      team,
+                    })}
+                    target="_blank"
+                  >
+                    <b>Preview A Game</b>
+                  </Card.Link>
+                </div>
               </Card.Body>
             </Card>
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard topics={["Players", "On-Off", "RAPM", "Splits"]}>
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
-                <Card.Title>Team On-Off</Card.Title>
+                <Card.Title>Team On-Off Analysis</Card.Title>
                 <Card.Text>
-                  See how the team stats vary with <i>each</i> player on/off the
-                  court. (Unlike the Splits Analysis page which shows you more
-                  detailed stats but for a selected player on/off)
-                  <br />
-                  <br />
-                  Also provides a more detailed breakdown of players' RAPM
-                  metric into 4-factors etc components.
+                  Measure how your team's stats shift with each player on and
+                  off the court. Includes a detailed RAPM breakdown into
+                  four-factor components.
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
-                {buildCardLink(
-                  <b>Straight to the page!</b>,
-                  (year, gender, team) =>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
+                  {buildCardLink(<b>Run On-Off</b>, (year, gender, team) =>
                     UrlRouting.getTeamReportUrl({
                       year,
                       gender,
                       team,
                       incRapm: true,
                     }),
-                )}
-                <Card.Link
-                  href={`https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html`}
-                  target="_blank"
-                >
-                  Blog Post
-                </Card.Link>
+                  )}
+                  {/*
+                  <Card.Link
+                    href={`https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html`}
+                    target="_blank"
+                  >
+                    Blog Post
+                  </Card.Link>
+                  */}
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -2537,65 +2564,112 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           topics={["Players", "Multi-Year", "RAPM", "CSV Export"]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
-                <Card.Title>X-Season Player Charts</Card.Title>
+                <Card.Title>Cross-Season Charts</Card.Title>
                 <Card.Text>
-                  Build Your Own Visualization of how player stats are related,
-                  or explore one of our built-in charts.
+                  Build custom visualizations showing how player stats relate
+                  and evolve. Each dataset includes current and prior seasons
+                  for year-over-year comparison.
                   <br />
-                  <br />A key feature of this page is that each "player season"
-                  data set contains both their current and previous seasons, so
-                  you can ask questions like "how did they improve"?
+                  <br />
+                  <small>
+                    <i>
+                      Ask questions like "how did they improve?" and see the
+                      answer instantly.
+                    </i>
+                  </small>
                 </Card.Text>
-                {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
-                <Card.Link
-                  href={UrlRouting.getPlayerSeasonComparisonUrl({
-                    gender,
-                    year,
-                  })}
-                  target="_blank"
-                >
-                  <b>Let's Go Charting!</b>
-                </Card.Link>
-                <Card.Link
-                  href={`https://hoop-explorer.blogspot.com/2023/04/multi-season-player-analysis-chart.html`}
-                  target="_blank"
-                >
-                  Blog Post
-                </Card.Link>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Team On-Off"))}
+                  <Card.Link
+                    href={UrlRouting.getPlayerSeasonComparisonUrl({
+                      gender,
+                      year,
+                    })}
+                    target="_blank"
+                  >
+                    <b>Start Charting</b>
+                  </Card.Link>
+                  {/*
+                  <Card.Link
+                    href={`https://hoop-explorer.blogspot.com/2023/04/multi-season-player-analysis-chart.html`}
+                    target="_blank"
+                  >
+                    Blog Post
+                  </Card.Link>
+                  */}
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </TopicFilteredCard>
+        <TopicFilteredCard topics={["Teams", "Leaderboards"]}>
+          <Col className="mt-2">
+            <Card className="landing-page">
+              <Card.Body>
+                <Card.Title>Build Your Own T25</Card.Title>
+                <Card.Text>
+                  Create a fully custom team ranking by weighting the factors
+                  you care about: wins, efficiency, dominance, recency -- your
+                  call.
+                </Card.Text>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(getCardIdFromTitle("Build Your Own T25"))}
+                  <Card.Link
+                    href={UrlRouting.getTeamLeaderboardUrl({
+                      gender,
+                      year,
+                    })}
+                    target="_blank"
+                  >
+                    <b>Build Rankings</b>
+                  </Card.Link>
+                  {/*
+                  <Card.Link
+                    href={`https://hoop-explorer.blogspot.com/2019/12/a-very-simple-and-transparent-ncaa-seed.html?view=classic`}
+                    target="_blank"
+                  >
+                    Blog Post
+                  </Card.Link>
+                  */}
+                </div>
               </Card.Body>
             </Card>
           </Col>
         </TopicFilteredCard>
         <TopicFilteredCard topics={["Players"]}>
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
                 <Card.Title>Positional Analysis</Card.Title>
                 <Card.Text>
-                  A feature used to power a lot of cool stuff in Hoop Explorer
-                  is the "positional role" categorization of each player based
-                  on their box score stats (mostly offensive) and height.
+                  Every player is classified into a positional role based on box
+                  score stats and height, powering many of Hoop Explorer's
+                  advanced features.
                   <br />
                   <br />
-                  <i>
-                    It's not perfect (especially for the women), let me know if
-                    you spot errors and I'll fix them.
-                  </i>
+                  <small>
+                    <i>
+                      Continuously refined -- report any misclassifications and
+                      they'll be corrected.
+                    </i>
+                  </small>
                 </Card.Text>
-                <Card.Link
-                  href={`https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html`}
-                  target="_blank"
-                >
-                  <b>Blog Post</b>
-                </Card.Link>
-                <Card.Link href={`/Charts`} target="_blank">
-                  Source Data
-                </Card.Link>
-                {buildCardLink(
-                  <span>Team Details</span>,
-                  (year, gender, team) =>
+                <div className="landing-page-card-actions">
+                  <Card.Link
+                    className="landing-page-more-details"
+                    href={`https://hoop-explorer.blogspot.com/2020/05/classifying-college-basketball.html`}
+                    target="_blank"
+                  >
+                    More Details &gt;
+                  </Card.Link>
+                  {/*
+                  <Card.Link href={`/Charts`} target="_blank">
+                    Source Data
+                  </Card.Link>
+                  */}
+                  {buildCardLink(<b>View Roles</b>, (year, gender, team) =>
                     UrlRouting.getGameUrl(
                       {
                         year,
@@ -2607,7 +2681,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       },
                       {},
                     ),
-                )}
+                  )}
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -2617,45 +2692,55 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           topics={["Details", "Off-Season", "Teams", "Leaderboards"]}
         >
           <Col className="mt-2">
-            <Card>
+            <Card className="landing-page">
               <Card.Body>
-                <Card.Title>Off-Season Predictions / Analysis</Card.Title>
+                <Card.Title>Off-Season Projections</Card.Title>
                 <Card.Text>
-                  Check out Hoop Explorer's very simple off-season predictions{" "}
-                  <small>(please don't be mad at me.)</small>
+                  Transparent preseason predictions built from public data. See
+                  exactly how they're constructed and adjust the inputs to match
+                  your own expectations. Check out Hoop Explorer's very simple
+                  off-season predictions
                   <br />
-                  <br />A key point is that I show in detail how they are
-                  constructed and let you play with them to fix the bits you
-                  don't like.
+                  <br />
+                  <small>
+                    <i>(please don't be mad at me.)</i>
+                  </small>
                 </Card.Text>
-                {maybeMoreDetails(
-                  getCardIdFromTitle("Offseason Predictions / Analysis"),
-                )}
-                {buildCardLink(<b>Tier List!</b>, (year, gender, team) => {
-                  const nextYear = DateUtils.getNextYear(year);
-                  const teamInfo =
-                    _.find(
-                      AvailableTeams.byName[team],
-                      (t) => t.year == nextYear,
-                    ) ||
-                    _.find(AvailableTeams.byName[team], (t) => t.year == year);
-                  const confFromTeam =
-                    IndexTemplateToNickname[teamInfo?.index_template || "???"];
-                  return UrlRouting.getOffseasonTierList({
-                    gender,
-                    confs: confFromTeam,
-                    year: nextYear,
-                  });
-                })}
-                <Card.Link
-                  href={UrlRouting.getOffseasonLeaderboard({
-                    year: DateUtils.getNextYear(year),
-                    gender,
-                  })}
-                  target="_blank"
-                >
-                  <span>Predictions</span>
-                </Card.Link>
+                <div className="landing-page-card-actions">
+                  {maybeMoreDetails(
+                    getCardIdFromTitle("Offseason Predictions / Analysis"),
+                  )}
+                  {/*buildCardLink(<b>Tier List!</b>, (year, gender, team) => {
+                    const nextYear = DateUtils.getNextYear(year);
+                    const teamInfo =
+                      _.find(
+                        AvailableTeams.byName[team],
+                        (t) => t.year == nextYear,
+                      ) ||
+                      _.find(
+                        AvailableTeams.byName[team],
+                        (t) => t.year == year,
+                      );
+                    const confFromTeam =
+                      IndexTemplateToNickname[
+                        teamInfo?.index_template || "???"
+                      ];
+                    return UrlRouting.getOffseasonTierList({
+                      gender,
+                      confs: confFromTeam,
+                      year: nextYear,
+                    });
+                  })*/}
+                  <Card.Link
+                    href={UrlRouting.getOffseasonLeaderboard({
+                      year: DateUtils.getNextYear(year),
+                      gender,
+                    })}
+                    target="_blank"
+                  >
+                    <span>See Projections</span>
+                  </Card.Link>
+                </div>
               </Card.Body>
             </Card>
           </Col>

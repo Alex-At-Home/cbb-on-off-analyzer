@@ -1,0 +1,266 @@
+/* Landing page card overrides – scoped so other pages keep default card styling */
+
+/* Equal height: card fills column so cards in a row match height (Bootstrap row already stretches cols) */
+.card.landing-page {
+  height: 100%;
+}
+
+/* Card body: flex column so actions can be pinned to bottom */
+.card.landing-page .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+}
+
+/* Actions row: one line, right-aligned, pushed to bottom of card */
+.card.landing-page .landing-page-card-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+/* Base (mirror theme, scoped to .landing-page) */
+[data-theme="dark"] .card.landing-page {
+  background-color: #272b30;
+  border: 1px solid #df691a44;
+  border-radius: 0;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+[data-theme="dark"] .card.landing-page:hover {
+  border-color: #df691a;
+  box-shadow: 0 0 0 1px #df691a;
+}
+
+[data-theme="dark"] .card.landing-page .card-header {
+  background-color: rgba(255, 255, 255, 0.075);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+[data-theme="dark"] .card.landing-page .card-footer {
+  background-color: rgba(255, 255, 255, 0.075);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+[data-theme="dark"] .card.landing-page .card-body {
+  color: #ebebeb;
+}
+
+[data-theme="dark"] .card.landing-page .card-title {
+  color: #fff;
+}
+
+[data-theme="dark"] .card.landing-page .card-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+[data-theme="dark"] .card.landing-page .card-body-link {
+  color: #f4ad7e;
+}
+
+[data-theme="dark"] .card.landing-page .card-body-link:hover {
+  color: #df691a;
+}
+
+[data-theme="dark"] .card.landing-page .card-header-tabs .nav-link.active {
+  background-color: #4e5d6c;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+
+[data-theme="dark"] .card.landing-page .card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 1] Card.Text – muted and a bit smaller */
+[data-theme="dark"] .card.landing-page .card-text {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+}
+
+/* 2] Card.Title – white (explicit) */
+[data-theme="dark"] .card.landing-page .card-title {
+  color: #fff;
+}
+
+/* 3] Card.Link – primary variant button look */
+[data-theme="dark"] .card.landing-page .card-link {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+  background-color: #df691a;
+  border: 1px solid #df691a;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+[data-theme="dark"] .card.landing-page .card-link:hover {
+  color: #fff;
+  background-color: #bd5916;
+  border-color: #b15315;
+  text-decoration: none;
+}
+
+[data-theme="dark"] .card.landing-page .card-link:focus {
+  color: #fff;
+  background-color: #bd5916;
+  border-color: #b15315;
+  box-shadow: 0 0 0 0.2rem rgba(228, 128, 60, 0.5);
+}
+
+/* More Details – muted text link, smaller (dark) */
+[data-theme="dark"] .card.landing-page .card-link.landing-page-more-details {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0;
+  font-weight: normal;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+[data-theme="dark"]
+  .card.landing-page
+  .card-link.landing-page-more-details:hover {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+[data-theme="dark"]
+  .card.landing-page
+  .card-link.landing-page-more-details:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* ========== Light theme equivalents ========== */
+
+[data-theme="light"] .card.landing-page {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+[data-theme="light"] .card.landing-page:hover {
+  border-color: #df691a;
+  box-shadow: 0 0 0 1px #df691a;
+}
+
+[data-theme="light"] .card.landing-page .card-header {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+[data-theme="light"] .card.landing-page .card-footer {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+[data-theme="light"] .card.landing-page .card-body {
+  color: #212529;
+}
+
+[data-theme="light"] .card.landing-page .card-title {
+  color: #000;
+}
+
+[data-theme="light"] .card.landing-page .card-subtitle {
+  color: #6c757d;
+}
+
+[data-theme="light"] .card.landing-page .card-body-link {
+  color: #df691a;
+}
+
+[data-theme="light"] .card.landing-page .card-body-link:hover {
+  color: #b15315;
+}
+
+[data-theme="light"] .card.landing-page .card-header-tabs .nav-link.active {
+  background-color: #e9ecef;
+  border-color: rgba(0, 0, 0, 0.125);
+}
+
+[data-theme="light"] .card.landing-page .card-img-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .card.landing-page .card-text {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+[data-theme="light"] .card.landing-page .card-link {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+  background-color: #df691a;
+  border: 1px solid #df691a;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+[data-theme="light"] .card.landing-page .card-link:hover {
+  color: #fff;
+  background-color: #bd5916;
+  border-color: #b15315;
+  text-decoration: none;
+}
+
+[data-theme="light"] .card.landing-page .card-link:focus {
+  color: #fff;
+  background-color: #bd5916;
+  border-color: #b15315;
+  box-shadow: 0 0 0 0.2rem rgba(223, 105, 26, 0.5);
+}
+
+/* More Details – muted text link, smaller (light) */
+[data-theme="light"] .card.landing-page .card-link.landing-page-more-details {
+  background: none;
+  border: none;
+  color: #6c757d;
+  padding: 0;
+  font-weight: normal;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+[data-theme="light"]
+  .card.landing-page
+  .card-link.landing-page-more-details:hover {
+  color: #495057;
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+[data-theme="light"]
+  .card.landing-page
+  .card-link.landing-page-more-details:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
