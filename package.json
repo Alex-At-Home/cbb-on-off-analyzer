@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "build_leaderboards": "node .next/server/buildLeaderboards.js"
+    "build_leaderboards": "node .next/server/buildLeaderboards.js",
+    "build_adj_stats": "node .next/server/buildStrengthAdjustedStats.js"
   },
   "repository": {
     "type": "git",

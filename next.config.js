@@ -26,6 +26,7 @@ module.exports = (phase, { defaultConfig }) => {
             return config.entry().then((entry) => {
               return Object.assign({}, entry, {
                 buildLeaderboards: "./src/bin/buildLeaderboards.ts",
+                buildStrengthAdjustedStats: "./src/bin/buildStrengthAdjustedStats.ts",
               });
             });
           },
