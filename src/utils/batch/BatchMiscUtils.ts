@@ -2,7 +2,12 @@ import _ from "lodash";
 import { RequestUtils } from "../RequestUtils";
 import { promises as fs } from "fs";
 import { DateUtils } from "../DateUtils";
-import { CompressedHexZone, IndivStatSet, TeamInfo as StatsTeamInfo } from "../StatModels";
+import {
+  CompressedHexZone,
+  IndivStatSet,
+  TeamInfo as StatsTeamInfo,
+  TeamStatSet,
+} from "../StatModels";
 import {
   AvailableTeams,
   AvailableTeamMeta,
@@ -39,7 +44,7 @@ export class BatchMiscUtils {
   /** Older years only have a high tier (+ misc_conf for non "high major conf" teams of interest) */
   static readonly onlyHasTopConferences = (
     inGender: string,
-    inYear: string
+    inYear: string,
   ): boolean =>
     inGender != "Men" || inYear < DateUtils.yearFromWhichAllMenD1Imported;
 
@@ -53,7 +58,7 @@ export class BatchMiscUtils {
     inYear: string,
     inGender: string,
     label: string,
-    rootFilePath: string
+    rootFilePath: string,
   ): Promise<Record<string, IndivStatSet[]>> => {
     console.log(`Fetching player leaderboard for [${inGender}] [${inYear}]`);
     const tiersForThisYear =
@@ -65,16 +70,16 @@ export class BatchMiscUtils {
         const subYear = inYear.substring(0, 4);
         return fs
           .readFile(
-            `${rootFilePath}/players_${label}_${inGender}_${subYear}_${tier}.json`
+            `${rootFilePath}/players_${label}_${inGender}_${subYear}_${tier}.json`,
           )
           .then((s: any) => JSON.parse(s))
           .catch((err: any) => {
             console.log(
-              `Couldn't load player data [${inGender}[${subYear}][${tier}]]: [${err}]`
+              `Couldn't load player data [${inGender}[${subYear}][${tier}]]: [${err}]`,
             );
             return {};
           });
-      })
+      }),
     );
     var numPlayers = 0;
     const allPlayerStatsCacheByTeam = _.chain(playerJsons)
@@ -88,8 +93,8 @@ export class BatchMiscUtils {
 
     console.log(
       `Cached [${numPlayers}] players in [${_.size(
-        allPlayerStatsCacheByTeam
-      )}] teams`
+        allPlayerStatsCacheByTeam,
+      )}] teams`,
     );
     return allPlayerStatsCacheByTeam;
   };
@@ -98,7 +103,7 @@ export class BatchMiscUtils {
   static readonly getBaseTeamList = (
     inYear: string,
     inGender: string,
-    testTeamFilter?: Set<string> | undefined
+    testTeamFilter?: Set<string> | undefined,
   ): _.CollectionChain<AvailableTeamMeta> => {
     const teamListChain =
       inYear == "Extra"
@@ -107,7 +112,7 @@ export class BatchMiscUtils {
 
     const teams = teamListChain
       .filter(
-        (team) => testTeamFilter == undefined || testTeamFilter.has(team.team)
+        (team) => testTeamFilter == undefined || testTeamFilter.has(team.team),
       )
       .filter((team) => {
         return (
@@ -124,14 +129,14 @@ export class BatchMiscUtils {
     inGender: string,
     inTier: string,
     completedEfficiencyInfo: Record<string, any>,
-    testTeamFilter: Set<string> | undefined
+    testTeamFilter: Set<string> | undefined,
   ): TeamInfo => {
     const mutableIncompleteConfs = new Set() as Set<string>;
 
     const teams = BatchMiscUtils.getBaseTeamList(
       inYear,
       inGender,
-      testTeamFilter
+      testTeamFilter,
     )
       .filter((team) => {
         const conference =
@@ -191,8 +196,44 @@ export class BatchMiscUtils {
     "total_off_trans_to",
   ];
 
+  /** Extra game-level stats from buildGameInfoRequest("final_scores", true); strip these for non-enriched team_details */
+  static readonly extraGameStatFields = [
+    "off_2pmid_attempts",
+    "off_2prim_attempts",
+    "off_3p_attempts",
+    "off_2pmid_made",
+    "off_2prim_made",
+    "off_3p_made",
+    "off_ft_attempt",
+    "off_to",
+    "def_2pmid_attempts",
+    "def_2prim_attempts",
+    "def_3p_attempts",
+    "def_2pmid_made",
+    "def_2prim_made",
+    "def_3p_made",
+    "def_ft_attempt",
+    "def_to",
+    "off_orb",
+    "def_orb",
+  ];
+
+  static readonly stripExtraTeamInfo = (t: TeamStatSet): TeamStatSet => {
+    const team = t as TeamStatSet & {
+      opponents?: Array<Record<string, unknown>>;
+    };
+    if (team.opponents && Array.isArray(team.opponents)) {
+      team.opponents.forEach((opp) => {
+        BatchMiscUtils.extraGameStatFields.forEach((f) => {
+          if (opp[f] !== undefined) delete opp[f];
+        });
+      });
+    }
+    return t;
+  };
+
   /** After writing the full player object, we want to build the cut-down version that we load in bulk */
-  static readonly stripExtraInfo = (p: IndivStatSet): IndivStatSet => {
+  static readonly stripExtraPlayerInfo = (p: IndivStatSet): IndivStatSet => {
     // 1] Remove Hex Data, leaving only zone information
     const shotInfo = p.shotInfo as CompressedHexZone | undefined;
     if (shotInfo && shotInfo.data) {
@@ -214,7 +255,7 @@ export class BatchMiscUtils {
     if (p.posFreqs) {
       const expandedPosFreqs = p.posFreqs as any as Record<string, number>;
       p.posFreqs = PositionUtils.tradPosList.map(
-        (pos) => expandedPosFreqs[pos.substring(4)] || 0
+        (pos) => expandedPosFreqs[pos.substring(4)] || 0,
       );
     }
     if (p.posConfidences) {
@@ -223,7 +264,7 @@ export class BatchMiscUtils {
         number
       >;
       p.posConfidences = PositionUtils.tradPosList.map(
-        (pos) => expandedPosConfs[pos.substring(4)] || 0
+        (pos) => expandedPosConfs[pos.substring(4)] || 0,
       );
     }
     return p;
@@ -233,27 +274,45 @@ export class BatchMiscUtils {
   static readonly validateTeamOpponentMatrix = async (
     inGender: string,
     inYear: string,
-    rootFilePath: string
-  ): Promise<{ 
+    rootFilePath: string,
+  ): Promise<{
     simple: Array<{ bad_team: string; oppo: string; location: string }>;
-    complex: Array<{ team: string; opponent: string; team_vs_oppo: Record<string, number>; oppo_vs_team: Record<string, number> }>
+    complex: Array<{
+      team: string;
+      opponent: string;
+      team_vs_oppo: Record<string, number>;
+      oppo_vs_team: Record<string, number>;
+    }>;
   }> => {
-    const simpleCases: Array<{ bad_team: string; oppo: string; location: string }> = [];
-    const complexCases: Array<{ team: string; opponent: string; team_vs_oppo: Record<string, number>; oppo_vs_team: Record<string, number> }> = [];
+    const simpleCases: Array<{
+      bad_team: string;
+      oppo: string;
+      location: string;
+    }> = [];
+    const complexCases: Array<{
+      team: string;
+      opponent: string;
+      team_vs_oppo: Record<string, number>;
+      oppo_vs_team: Record<string, number>;
+    }> = [];
     const subYear = inYear.substring(0, 4);
-    
+
     // Determine which tiers exist for this year
-    const tiersForThisYear = inYear < DateUtils.yearFromWhichAllMenD1Imported 
-      ? ["High"] 
-      : ["High", "Medium", "Low"];
+    const tiersForThisYear =
+      inYear < DateUtils.yearFromWhichAllMenD1Imported
+        ? ["High"]
+        : ["High", "Medium", "Low"];
 
     // Matrix to store team vs opponent game counts by location
-    const gameMatrix: Record<string, Record<string, Record<string, number>>> = {};
+    const gameMatrix: Record<
+      string,
+      Record<string, Record<string, number>>
+    > = {};
 
     // Read all team files for each tier
     for (const tier of tiersForThisYear) {
       const teamFilename = `${rootFilePath}/teams_all_${inGender}_${subYear}_${tier}.json`;
-      
+
       try {
         const fileContent = await fs.readFile(teamFilename);
         const teamData = JSON.parse(fileContent.toString());
@@ -268,12 +327,12 @@ export class BatchMiscUtils {
           team.opponents.forEach((opponent) => {
             const opponentName = opponent.oppo_name;
             const location = opponent.location_type;
-            
+
             // Initialize opponent record if needed
             if (!gameMatrix[team.team_name][opponentName]) {
               gameMatrix[team.team_name][opponentName] = {};
             }
-            
+
             // Count games by location
             if (!gameMatrix[team.team_name][opponentName][location]) {
               gameMatrix[team.team_name][opponentName][location] = 0;
@@ -289,10 +348,14 @@ export class BatchMiscUtils {
     // Helper function to get expected opponent location
     const getExpectedOpponentLocation = (teamLocation: string): string => {
       switch (teamLocation) {
-        case "Home": return "Away";
-        case "Away": return "Home";
-        case "Neutral": return "Neutral";
-        default: return teamLocation;
+        case "Home":
+          return "Away";
+        case "Away":
+          return "Home";
+        case "Neutral":
+          return "Neutral";
+        default:
+          return teamLocation;
       }
     };
 
@@ -301,66 +364,80 @@ export class BatchMiscUtils {
       Object.keys(gameMatrix[team]).forEach((opponent) => {
         const teamVsOppo = gameMatrix[team][opponent];
         const oppoVsTeam = gameMatrix[opponent]?.[team] || {};
-        
+
         // Check if this is a simple mismatch (one side has data, other is empty/missing)
         const teamLocations = Object.keys(teamVsOppo);
         const oppoLocations = Object.keys(oppoVsTeam);
-        const teamTotalGames = teamLocations.reduce((sum, loc) => sum + teamVsOppo[loc], 0);
-        const oppoTotalGames = oppoLocations.reduce((sum, loc) => sum + oppoVsTeam[loc], 0);
-        
+        const teamTotalGames = teamLocations.reduce(
+          (sum, loc) => sum + teamVsOppo[loc],
+          0,
+        );
+        const oppoTotalGames = oppoLocations.reduce(
+          (sum, loc) => sum + oppoVsTeam[loc],
+          0,
+        );
+
         // Simple case: one team has games, other has none
         if (teamTotalGames > 0 && oppoTotalGames === 0) {
           // Team has data but opponent doesn't - opponent is the bad team
           teamLocations.forEach((location) => {
-            const expectedOpponentLocation = getExpectedOpponentLocation(location);
+            const expectedOpponentLocation =
+              getExpectedOpponentLocation(location);
             for (let i = 0; i < teamVsOppo[location]; i++) {
               simpleCases.push({
                 bad_team: opponent,
                 oppo: team,
-                location: expectedOpponentLocation
+                location: expectedOpponentLocation,
               });
             }
           });
         } else if (teamTotalGames === 0 && oppoTotalGames > 0) {
           // Opponent has data but team doesn't - team is the bad team
           oppoLocations.forEach((opponentLocation) => {
-            const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
+            const expectedTeamLocation =
+              getExpectedOpponentLocation(opponentLocation);
             for (let i = 0; i < oppoVsTeam[opponentLocation]; i++) {
               simpleCases.push({
                 bad_team: team,
                 oppo: opponent,
-                location: expectedTeamLocation
+                location: expectedTeamLocation,
               });
             }
           });
         } else if (teamTotalGames > 0 || oppoTotalGames > 0) {
           // Check if there are any mismatches
           let hasMismatch = false;
-          
+
           // Special case: Allow Home/Neutral matching if both teams have exactly 1 game
           // (this happens if a MTE is on a team's home court, it's a bug in my logic
           //  but a pretty harmless one and not easy to fix so I'll leave it for now)
-          const isSpecialHomeNeutralCase = teamTotalGames === 1 && oppoTotalGames === 1 &&
-            teamLocations.length === 1 && oppoLocations.length === 1 &&
-            teamVsOppo[teamLocations[0]] === 1 && oppoVsTeam[oppoLocations[0]] === 1 &&
+          const isSpecialHomeNeutralCase =
+            teamTotalGames === 1 &&
+            oppoTotalGames === 1 &&
+            teamLocations.length === 1 &&
+            oppoLocations.length === 1 &&
+            teamVsOppo[teamLocations[0]] === 1 &&
+            oppoVsTeam[oppoLocations[0]] === 1 &&
             ((teamLocations[0] === "Home" && oppoLocations[0] === "Neutral") ||
-             (teamLocations[0] === "Neutral" && oppoLocations[0] === "Home"));
-          
+              (teamLocations[0] === "Neutral" && oppoLocations[0] === "Home"));
+
           if (!isSpecialHomeNeutralCase) {
             // Run normal mismatch detection for all non-special cases
             teamLocations.forEach((location) => {
               const teamGames = teamVsOppo[location];
-              const expectedOpponentLocation = getExpectedOpponentLocation(location);
+              const expectedOpponentLocation =
+                getExpectedOpponentLocation(location);
               const opponentGames = oppoVsTeam[expectedOpponentLocation] || 0;
-              
+
               if (teamGames !== opponentGames) {
                 hasMismatch = true;
               }
             });
-            
+
             // Also check if opponent has extra locations not accounted for
             oppoLocations.forEach((opponentLocation) => {
-              const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
+              const expectedTeamLocation =
+                getExpectedOpponentLocation(opponentLocation);
               if (!teamVsOppo[expectedTeamLocation]) {
                 hasMismatch = true;
               }
@@ -370,14 +447,19 @@ export class BatchMiscUtils {
           if (hasMismatch) {
             // Check if it's a simple mismatch within locations
             let isSimpleMismatch = true;
-            const allMismatches: Array<{ bad_team: string; oppo: string; location: string }> = [];
-            
+            const allMismatches: Array<{
+              bad_team: string;
+              oppo: string;
+              location: string;
+            }> = [];
+
             // Check team vs opponent mismatches
             teamLocations.forEach((location) => {
               const teamGames = teamVsOppo[location];
-              const expectedOpponentLocation = getExpectedOpponentLocation(location);
+              const expectedOpponentLocation =
+                getExpectedOpponentLocation(location);
               const opponentGames = oppoVsTeam[expectedOpponentLocation] || 0;
-              
+
               if (teamGames > opponentGames) {
                 // Team has more games - opponent is missing some
                 const missing = teamGames - opponentGames;
@@ -385,7 +467,7 @@ export class BatchMiscUtils {
                   allMismatches.push({
                     bad_team: opponent,
                     oppo: team,
-                    location: expectedOpponentLocation
+                    location: expectedOpponentLocation,
                   });
                 }
               } else if (opponentGames > teamGames) {
@@ -395,27 +477,31 @@ export class BatchMiscUtils {
                   allMismatches.push({
                     bad_team: team,
                     oppo: opponent,
-                    location: location
+                    location: location,
                   });
                 }
               }
             });
-            
+
             // Check opponent vs team mismatches not already covered
             oppoLocations.forEach((opponentLocation) => {
-              const expectedTeamLocation = getExpectedOpponentLocation(opponentLocation);
-              if (!teamVsOppo[expectedTeamLocation] && oppoVsTeam[opponentLocation] > 0) {
+              const expectedTeamLocation =
+                getExpectedOpponentLocation(opponentLocation);
+              if (
+                !teamVsOppo[expectedTeamLocation] &&
+                oppoVsTeam[opponentLocation] > 0
+              ) {
                 const missing = oppoVsTeam[opponentLocation];
                 for (let i = 0; i < missing; i++) {
                   allMismatches.push({
                     bad_team: team,
                     oppo: opponent,
-                    location: expectedTeamLocation
+                    location: expectedTeamLocation,
                   });
                 }
               }
             });
-            
+
             // If we can explain all mismatches as simple missing games, use simple format
             if (allMismatches.length > 0) {
               simpleCases.push(...allMismatches);
@@ -425,7 +511,7 @@ export class BatchMiscUtils {
                 team,
                 opponent,
                 team_vs_oppo: teamVsOppo,
-                oppo_vs_team: oppoVsTeam
+                oppo_vs_team: oppoVsTeam,
               });
             }
           }

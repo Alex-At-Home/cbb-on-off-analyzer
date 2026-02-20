@@ -222,6 +222,7 @@ export type GameFilterParams = {
   rapmRegressMode?: string; //0-1 to force the regression, or -1 to auto-choose (default: -1)
   // For leaderboard building:
   getGames?: boolean;
+  getGamesExtraInfo?: boolean; //(pulls more data from games, if getGames is set - API only)
   // Shot chart params:
   teamShotCharts?: boolean;
   teamShotChartsShowZones?: boolean;

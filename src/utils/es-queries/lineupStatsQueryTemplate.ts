@@ -9,7 +9,8 @@ import { LineupFilterParams } from "../FilterModels";
    chance you could combine same opponent on consecutive days (have a low bound for poss for doing?)
 */
 export const buildGameInfoRequest = function (
-  infoType: "game_aggs" | "final_scores"
+  infoType: "game_aggs" | "final_scores",
+  extraStats: boolean = false,
 ) {
   /** For lineups, some stats to display */
   const getGameInfo = () => {
@@ -40,6 +41,64 @@ export const buildGameInfoRequest = function (
         def_poss: {
           sum: { field: "opponent_stats.num_possessions" },
         },
+        ...(extraStats
+          ? {
+              off_2pmid_attempts: {
+                sum: { field: "team_stats.fg_mid.attempts.total" },
+              },
+              off_2prim_attempts: {
+                sum: { field: "team_stats.fg_rim.attempts.total" },
+              },
+              off_3p_attempts: {
+                sum: { field: "team_stats.fg_3p.attempts.total" },
+              },
+              off_2pmid_made: {
+                sum: { field: "team_stats.fg_mid.made.total" },
+              },
+              off_2prim_made: {
+                sum: { field: "team_stats.fg_rim.made.total" },
+              },
+              off_3p_made: {
+                sum: { field: "team_stats.fg_3p.made.total" },
+              },
+              off_ft_attempt: {
+                sum: { field: "team_stats.ft.attempts.total" },
+              },
+              off_to: {
+                sum: { field: "team_stats.to.total" },
+              },
+              def_2pmid_attempts: {
+                sum: { field: "opponent_stats.fg_mid.attempts.total" },
+              },
+              def_2prim_attempts: {
+                sum: { field: "opponent_stats.fg_rim.attempts.total" },
+              },
+              def_3p_attempts: {
+                sum: { field: "opponent_stats.fg_3p.attempts.total" },
+              },
+              def_2pmid_made: {
+                sum: { field: "opponent_stats.fg_mid.made.total" },
+              },
+              def_2prim_made: {
+                sum: { field: "opponent_stats.fg_rim.made.total" },
+              },
+              def_3p_made: {
+                sum: { field: "opponent_stats.fg_3p.made.total" },
+              },
+              def_ft_attempt: {
+                sum: { field: "opponent_stats.ft.attempts.total" },
+              },
+              def_to: {
+                sum: { field: "opponent_stats.to.total" },
+              },
+              off_orb: {
+                sum: { field: "team_stats.orb.total" },
+              },
+              def_orb: {
+                sum: { field: "opponent_stats.orb.total" },
+              },
+            }
+          : {}),
         avg_lead: {
           sum: {
             script: `
@@ -103,7 +162,7 @@ export const lineupStatsQuery = function (
   publicEfficiency: any,
   lookup: any,
   avgEfficiency: number,
-  hca: number
+  hca: number,
 ) {
   return {
     ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
@@ -121,7 +180,7 @@ export const lineupStatsQuery = function (
             lookup,
             avgEfficiency,
             hca,
-            true
+            true,
           ),
           players_array: {
             top_hits: {
@@ -153,7 +212,7 @@ export const lineupStatsQuery = function (
               params.invertBaseQueryFilters,
               params.gender,
               params.year,
-              lastDate
+              lastDate,
             )
               .map((clause) => {
                 return {
@@ -167,7 +226,7 @@ export const lineupStatsQuery = function (
                   query_string: {
                     query: `NOT (${QueryUtils.basicOrAdvancedQuery(
                       params.invertBase,
-                      "NOT *"
+                      "NOT *",
                     )})`,
                   },
                 },
@@ -180,7 +239,7 @@ export const lineupStatsQuery = function (
             query_string: {
               query: `${QueryUtils.basicOrAdvancedQuery(
                 params.baseQuery,
-                "*"
+                "*",
               )}`,
             },
           },

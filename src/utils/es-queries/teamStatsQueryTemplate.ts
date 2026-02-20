@@ -16,7 +16,7 @@ export const teamStatsQuery = function (
   publicEfficiency: any,
   lookup: any,
   avgEfficiency: number,
-  hca: number
+  hca: number,
 ) {
   // For checking conf/D1 results:
   // see also CommonApiUtils.handleRequest to switch to D1
@@ -51,7 +51,7 @@ export const teamStatsQuery = function (
                   publicEfficiency,
                   lookup,
                   avgEfficiency,
-                  hca
+                  hca,
                 ),
                 [
                   // I foget what this is needed for (3P luck maybe?)
@@ -64,7 +64,7 @@ export const teamStatsQuery = function (
                   "total_off_scramble_to",
                   "total_off_trans_to",
                   "off_adj_opp",
-                ]
+                ],
               ),
               ..._.pick(
                 commonAggregations(
@@ -73,7 +73,7 @@ export const teamStatsQuery = function (
                   publicEfficiency,
                   lookup,
                   avgEfficiency,
-                  hca
+                  hca,
                 ),
                 [
                   "def_3p",
@@ -83,7 +83,7 @@ export const teamStatsQuery = function (
                   "total_def_3p_made",
                   "def_3p_opp",
                   "def_adj_opp",
-                ]
+                ],
               ),
             },
           },
@@ -91,12 +91,17 @@ export const teamStatsQuery = function (
       },
       tri_filter: {
         aggregations: {
-          ...(params.getGames ? buildGameInfoRequest("final_scores") : {}),
+          ...(params.getGames
+            ? buildGameInfoRequest(
+                "final_scores",
+                Boolean(params.getGamesExtraInfo),
+              )
+            : {}),
           ...commonLineupAggregations(
             publicEfficiency,
             lookup,
             avgEfficiency,
-            hca
+            hca,
           ),
         },
         filters: commonOnOffBaseQuery(params, lastDate),

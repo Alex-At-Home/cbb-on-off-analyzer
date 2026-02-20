@@ -191,7 +191,7 @@ if (commandLine?.[1]?.endsWith("buildLeaderboards.js")) {
   console.log("Start processing with args: " + _.drop(commandLine, 2));
 } else {
   console.log(
-    "Unit test mode - just export methods [main, completeLineupLeaderboard]"
+    "Unit test mode - just export methods [main, completeLineupLeaderboard]",
   );
   commandLine = [];
 }
@@ -204,7 +204,7 @@ if (_.find(commandLine, (p) => _.startsWith(p, "--enrich-rosters"))) {
 
 /** Enable this to generate an extra version of the file in ./enrichedPlayers with additional info */
 const injectExtraDataForNbaFolks = _.find(commandLine, (p) =>
-  _.startsWith(p, "--extra-data")
+  _.startsWith(p, "--extra-data"),
 );
 
 const inTier = (
@@ -222,7 +222,6 @@ const inYear = (
     testMode ? DateUtils.yearToUseForTests : DateUtils.mostRecentYearWithData
   }`
 ).substring(7);
-if (!testMode) console.log(`Args: gender=[${inGender}] year=[${inYear}]`);
 
 //TODO: move to BatchMiscUtils
 const onlyHasTopConferences =
@@ -231,6 +230,11 @@ const onlyHasTopConferences =
 
 var testTeamFilter = undefined as Set<string> | undefined;
 const isDebugMode = _.find(commandLine, (p) => _.startsWith(p, "--debug"));
+
+if (!testMode)
+  console.log(
+    `Args: gender=[${inGender}] year=[${inYear}] debug=[${isDebugMode}] extra=[${injectExtraDataForNbaFolks}]`,
+  );
 
 //(generic test set for debugging)
 // testTeamFilter = new Set([
@@ -248,14 +252,14 @@ if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
       `WARNING: [testTeamFilter] set (=[${_.toArray(
-        testTeamFilter
-      )}]) but [--debug] not specified, unsetting [testTeamFilter]`
+        testTeamFilter,
+      )}]) but [--debug] not specified, unsetting [testTeamFilter]`,
   );
   testTeamFilter = undefined;
 }
 if (testTeamFilter) {
   console.log(
-    `INFO: using the following test filter: [${_.toArray(testTeamFilter)}]`
+    `INFO: using the following test filter: [${_.toArray(testTeamFilter)}]`,
   );
 }
 
@@ -286,7 +290,7 @@ const averagePossInCompletedYear =
 const getRosterFilename = (team: string, teamYear: string) => {
   return `./public/rosters/${inGender}_${(teamYear || "").substring(
     0,
-    4
+    4,
   )}/${BatchMiscUtils.getTeamFilename(team)}.json`;
 };
 /** Handy filename util - logos */
@@ -342,7 +346,7 @@ export async function main() {
           inYear,
           inGender,
           "all",
-          "./public/leaderboards/lineups" //(always use the production leaderboard for this, not debug/extended)
+          "./public/leaderboards/lineups", //(always use the production leaderboard for this, not debug/extended)
         )
       : {};
 
@@ -352,7 +356,7 @@ export async function main() {
     inGender,
     inTier,
     completedEfficiencyInfo,
-    testTeamFilter
+    testTeamFilter,
   );
 
   //Test code:
@@ -362,7 +366,7 @@ export async function main() {
   async function handleTeam(
     teamObj: AvailableTeamMeta,
     retry: number,
-    retryInputCase?: "all" | "t100" | "conf"
+    retryInputCase?: "all" | "t100" | "conf",
   ) {
     const team = teamObj.team;
     const teamYear = teamObj.year;
@@ -383,10 +387,10 @@ export async function main() {
       excludeFromMidMajor.has(team)
         ? "High"
         : teamObj.category == "low" ||
-          teamObj.category == "midlow" ||
-          rank >= 275
-        ? "Low"
-        : "Medium";
+            teamObj.category == "midlow" ||
+            rank >= 275
+          ? "Low"
+          : "Medium";
 
     const inNaturalTier = naturalTier == inTier;
 
@@ -397,7 +401,7 @@ export async function main() {
 
     if (!testMode)
       console.log(
-        `Processing [${inGender}] [${team}] [${teamYear}] [${retryInputCase}]?`
+        `Processing [${inGender}] [${team}] [${teamYear}] [${retryInputCase}]?`,
       );
 
     const fullRequestModel = {
@@ -453,13 +457,13 @@ export async function main() {
       inputCases
         .filter(
           //(if retry due to failure we only want to process the failed case)
-          (inputCase) => !retryInputCase || inputCase[0] == retryInputCase
+          (inputCase) => !retryInputCase || inputCase[0] == retryInputCase,
         )
         .map(
           async ([label, requestModel, teamRequestModel]: [
             "all" | "conf" | "t100",
             any,
-            any
+            any,
           ]) => {
             const requestParams = QueryUtils.stringify(requestModel);
             const playerRequestParams = QueryUtils.stringify({
@@ -467,7 +471,11 @@ export async function main() {
               getGames: true,
             });
             const teamRequestParms = teamRequestModel
-              ? QueryUtils.stringify({ ...teamRequestModel, getGames: true })
+              ? QueryUtils.stringify({
+                  ...teamRequestModel,
+                  getGames: true,
+                  getGamesExtraInfo: true,
+                })
               : QueryUtils.stringify({ ...requestModel, getGames: true });
 
             const lineupResponse = new MutableAsyncResponse();
@@ -489,19 +497,19 @@ export async function main() {
                   {
                     url: `https://hoop-explorer.com/?${requestParams}`,
                   } as unknown as NextApiRequest,
-                  lineupResponse as unknown as NextApiResponse
+                  lineupResponse as unknown as NextApiResponse,
                 ),
                 calculateOnOffStats(
                   {
                     url: `https://hoop-explorer.com/?${teamRequestParms}`,
                   } as unknown as NextApiRequest,
-                  teamResponse as unknown as NextApiResponse
+                  teamResponse as unknown as NextApiResponse,
                 ),
                 calculateOnOffPlayerStats(
                   {
                     url: `https://hoop-explorer.com/?${playerRequestParams}`,
                   } as unknown as NextApiRequest,
-                  playerResponse as unknown as NextApiResponse
+                  playerResponse as unknown as NextApiResponse,
                 ),
               ]
                 .concat(
@@ -511,10 +519,10 @@ export async function main() {
                           {
                             url: `https://hoop-explorer.com/?${requestParams}`,
                           } as unknown as NextApiRequest,
-                          playerShotChartsResponse as unknown as NextApiResponse
+                          playerShotChartsResponse as unknown as NextApiResponse,
                         ),
                       ]
-                    : []
+                    : [],
                 )
                 .concat(
                   isCalculatingTeamDefense
@@ -523,11 +531,11 @@ export async function main() {
                           {
                             url: `https://hoop-explorer.com/?${requestParams}`,
                           } as unknown as NextApiRequest,
-                          teamDefenseResponse as unknown as NextApiResponse
+                          teamDefenseResponse as unknown as NextApiResponse,
                         ),
                       ]
-                    : []
-                )
+                    : [],
+                ),
             );
 
             // In NBA mode we're going to grab the player percentiles from the previous run
@@ -538,7 +546,7 @@ export async function main() {
                   //(currently only build these %iles for all)
                   const divisionStatsComboPathname = `${extraDataFilePath}/stats_players_${label}_${inGender}_${inYear.substring(
                     0,
-                    4
+                    4,
                   )}_Combo.json`;
 
                   return fs
@@ -546,7 +554,7 @@ export async function main() {
                     .then((s: any) => JSON.parse(s) as DivisionStatistics)
                     .catch((err: any) => {
                       console.log(
-                        `WARNING: Couldn't load player grades [${inGender}][${teamYear}][${label}]: [${err}]`
+                        `WARNING: Couldn't load player grades [${inGender}][${teamYear}][${label}]: [${err}]`,
                       );
                       return undefined;
                     });
@@ -573,10 +581,10 @@ export async function main() {
                   if (rosterEntry.year_class) {
                     rosterEntry.year_class = rosterEntry.year_class.replace(
                       ".",
-                      ""
+                      "",
                     );
                   }
-                }
+                },
               );
             }
             // Build a structured model of the roster info from disk - later we will add
@@ -594,11 +602,11 @@ export async function main() {
             const errs = (minCode: number, maxCode: number) =>
               [lineupResponse, teamResponse, playerResponse]
                 .concat(
-                  isCalculatingShotCharts ? [playerShotChartsResponse] : []
+                  isCalculatingShotCharts ? [playerShotChartsResponse] : [],
                 )
                 .concat(isCalculatingTeamDefense ? [teamDefenseResponse] : [])
                 .filter(
-                  (p) => p.statusCode >= minCode && p.statusCode < maxCode
+                  (p) => p.statusCode >= minCode && p.statusCode < maxCode,
                 )
                 .map((p) => JSON.stringify(p));
 
@@ -609,15 +617,15 @@ export async function main() {
             if (errs400.length > 0) {
               console.log(
                 `TERMINATING ERROR #[${retry}] [${team} ${label}]: [${errs400.join(
-                  "+"
-                )}]`
+                  "+",
+                )}]`,
               );
               process.exit(-1);
             } else if (retry < 10 && errs500.length > 0) {
               console.log(
                 `RETRYABLE ERROR #[${retry}] [${team} ${label}]: [${errs500.join(
-                  "+"
-                )}]`
+                  "+",
+                )}]`,
               );
 
               await sleep(10000); //(wait 10s and try again)
@@ -625,8 +633,8 @@ export async function main() {
             } else if (errsOther.length > 0) {
               console.log(
                 `MAX_OR_UNKNOWN ERROR #[${retry}] [${team} ${label}]: [${errsOther.join(
-                  "+"
-                )}]`
+                  "+",
+                )}]`,
               );
               process.exit(-1);
             }
@@ -639,13 +647,13 @@ export async function main() {
 
             const rosterShotChartMap: Dictionary<CompressedHexZone> = _.chain(
               playerShotChartsResponse.getJsonResponse().aggregations
-                ?.tri_filter?.buckets?.baseline?.player?.buckets || []
+                ?.tri_filter?.buckets?.baseline?.player?.buckets || [],
             )
               .map((playerShotChartInfo) => [
                 playerShotChartInfo.key || "???",
                 ShotChartUtils.compressHexZones(
                   ShotChartUtils.shotStatsToHexData(playerShotChartInfo).zones,
-                  injectExtraDataForNbaFolks ? playerShotChartInfo : undefined
+                  injectExtraDataForNbaFolks ? playerShotChartInfo : undefined,
                 ),
               ])
               .fromPairs()
@@ -679,7 +687,7 @@ export async function main() {
               RosterTableUtils.buildRosterTableByCode(
                 rosterGlobalButActuallyBaseline,
                 rosterInfoJson,
-                true //(injects positional info into the player stats, needed for play style analysis below)
+                true, //(injects positional info into the player stats, needed for play style analysis below)
               );
 
             // Inject the better positional info into the roster file:
@@ -704,7 +712,7 @@ export async function main() {
                       currRoleFromStats != rosterEntry.role;
                     if (roleHasChanged) {
                       console.log(
-                        `Should update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`
+                        `Should update roster info for [${playerCode}], old_role=[${currRoleFromStats}], new_role=[${rosterEntry.role}]`,
                       );
                     }
                     return acc.push(playerCode);
@@ -712,19 +720,19 @@ export async function main() {
                     return acc;
                   }
                 },
-                [] as Array<PlayerCode>
+                [] as Array<PlayerCode>,
               );
 
               if (!_.isEmpty(rosterChanges)) {
                 // Write a new roster file
                 if (!ignoreRosterEnrichment) {
                   console.log(
-                    `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`
+                    `Updating roster info at [${rosterInfoFile}] (changes [${rosterChanges}])`,
                   );
                   //(don't currently need this, the plan was to use it for positional info in PbP)
                   await fs.writeFile(
                     rosterInfoFile,
-                    JSON.stringify(rosterInfoJsonToWrite)
+                    JSON.stringify(rosterInfoJsonToWrite),
                   );
                 }
               }
@@ -764,7 +772,7 @@ export async function main() {
               // Add other derived stats:
               const extraFields = DerivedStatsUtils.injectTeamDerivedStats(
                 teamBaseline,
-                {}
+                {},
               );
 
               // Build all the samples ready for percentiles:
@@ -774,7 +782,7 @@ export async function main() {
                   teamBaseline,
                   extraFields,
                   mutableDivisionStats,
-                  inNaturalTier
+                  inNaturalTier,
                 );
               }
 
@@ -783,12 +791,12 @@ export async function main() {
                 PlayTypeUtils.buildTopLevelPlayStyles(
                   rosterGlobalButActuallyBaseline,
                   globalRosterStatsByCode,
-                  teamBaseline
+                  teamBaseline,
                 );
 
               const defSos = teamBaseline?.def_adj_opp?.value || avgEfficiency;
               const topLevelPlayTypeStylesAdj: TopLevelPlayAnalysis = _.chain(
-                topLevelPlayTypeStyles
+                topLevelPlayTypeStyles,
               )
                 .mapValues((stat) => {
                   return {
@@ -808,8 +816,8 @@ export async function main() {
                         teamDefenseResponse.getJsonResponse(0),
                         teamDefenseResponse.getJsonResponse(1),
                       ]),
-                      allPlayerStatsCacheByTeam
-                    )
+                      allPlayerStatsCacheByTeam,
+                    ),
                   ) //(adj_pts gets injected by buildTeamDefenseBreakdown but not buildTopLevelPlayStyles)
                     .mapValues((stat) => _.omit(stat, "adj_pts"))
                     .value()
@@ -837,7 +845,7 @@ export async function main() {
                   topLevelPlayTypeStylesAdj,
                   topLevelDefensePlayTypeStylesAdj,
                   mutableDivisionStats,
-                  inNaturalTier
+                  inNaturalTier,
                 );
               }
 
@@ -846,12 +854,12 @@ export async function main() {
               const defLuckInfo = LuckUtils.calcDefTeamLuckAdj(
                 teamBaselineWithLuck,
                 teamBaseline,
-                avgEfficiency
+                avgEfficiency,
               );
               LuckUtils.injectLuck(
                 teamBaselineWithLuck,
                 undefined,
-                defLuckInfo
+                defLuckInfo,
               );
               //(currently injectTeamDerivedStats does not support luck)
 
@@ -881,7 +889,7 @@ export async function main() {
                           "sos",
                         ];
                         return fields.map((field) => `${prefix}_${field}`);
-                      }).concat(["tempo"])
+                      }).concat(["tempo"]),
                     ),
 
                     // Derived stats
@@ -900,6 +908,11 @@ export async function main() {
                   retVal.avgLead =
                     (l?.avg_lead?.value || 0) /
                     (0.5 * (retVal.offPoss + retVal.defPoss) || 1);
+                  // Extra game stats from buildGameInfoRequest(extraStats: true); only present when getGamesExtraInfo was used
+                  BatchMiscUtils.extraGameStatFields.forEach((f) => {
+                    const v = (l as any)?.[f]?.value;
+                    if (v !== undefined) (retVal as any)[f] = v;
+                  });
                   return retVal;
                 })
                 .sortBy((g) => g.date)
@@ -925,8 +938,13 @@ export async function main() {
                     locationType == "Home"
                       ? baseHca
                       : locationType == "Away"
-                      ? -baseHca
-                      : 0;
+                        ? -baseHca
+                        : 0;
+
+                  const extraGameStats = _.pick(
+                    g,
+                    BatchMiscUtils.extraGameStatFields,
+                  );
 
                   return isValid
                     ? [
@@ -950,15 +968,16 @@ export async function main() {
                             teamDef,
                             eliteOffenseInfo,
                             eliteDefenseInfo,
-                            actualHca
+                            actualHca,
                           ),
                           wab: TeamEvalUtils.calcWinsAbove(
                             teamOff,
                             teamDef,
                             bubbleOffenseInfo,
                             bubbleDefenseInfo,
-                            actualHca
+                            actualHca,
                           ),
+                          ...extraGameStats,
                         },
                       ]
                     : [];
@@ -1036,8 +1055,8 @@ export async function main() {
                 onBallDefenseByCode = _.chain(
                   OnBallDefenseUtils.parseContents(
                     rosterBaseline,
-                    onBallDefenseText
-                  ).matchedPlayerStats
+                    onBallDefenseText,
+                  ).matchedPlayerStats,
                 )
                   .groupBy((p) => p.code)
                   .mapValues((l) => l[0]!)
@@ -1045,8 +1064,8 @@ export async function main() {
 
                 console.log(
                   `Incorporated on-ball defense from [${onBallDefenseLoc}] into [${_.size(
-                    onBallDefenseByCode
-                  )}] players`
+                    onBallDefenseByCode,
+                  )}] players`,
                 );
               }
             }
@@ -1060,21 +1079,21 @@ export async function main() {
               true,
               "baseline",
               {},
-              onBallDefenseByCode //(always adjust for luck)
+              onBallDefenseByCode, //(always adjust for luck)
             );
             const positionFromPlayerKey =
               LineupTableUtils.buildPositionPlayerMap(
                 rosterGlobalButActuallyBaseline,
                 teamSeasonLookup,
                 undefined,
-                rosterGeoMap
+                rosterGeoMap,
               );
 
             // Using positional info, get the %s the players have at each position:
             const rosterPositionalInfo = LineupTableUtils.getPositionalInfo(
               lineups,
               positionFromPlayerKey,
-              teamSeasonLookup
+              teamSeasonLookup,
             );
 
             const [sortedLineups, ignoreDroppedLineups] =
@@ -1085,7 +1104,7 @@ export async function main() {
                 "0",
                 "500", //take all players (sorted by off_pos) with no min poss - will filter later
                 teamSeasonLookup,
-                positionFromPlayerKey
+                positionFromPlayerKey,
               );
 
             // Need these to break down play types a bit (in advance of doing it properly)
@@ -1097,7 +1116,7 @@ export async function main() {
             const enrichAndFilter = (
               playerMap: Record<string, IndivStatSet>,
               shotChartMap: Record<string, CompressedHexZone>,
-              cutdownLowVolume: boolean
+              cutdownLowVolume: boolean,
             ): IndivStatSet[] =>
               _.toPairs(playerMap)
                 .filter((kv) => {
@@ -1146,22 +1165,22 @@ export async function main() {
                     offPoss < 500
                       ? 0.25
                       : offPoss < 1000
-                      ? 0.5
-                      : offPoss < 1500
-                      ? 0.75
-                      : 1;
+                        ? 0.5
+                        : offPoss < 1500
+                          ? 0.75
+                          : 1;
 
                   // Calculate the % of the time they spend at each position
                   const countsPerPos = rosterPositionalInfo.map(
                     (playersPerPos) => {
                       return _.sumBy(playersPerPos, (posInfo) =>
-                        posInfo.id == kv[0] ? posInfo.numPoss : 0
+                        posInfo.id == kv[0] ? posInfo.numPoss : 0,
                       );
-                    }
+                    },
                   );
                   const totalPositionedPoss = _.sum(countsPerPos);
                   const posFreqs = countsPerPos.map(
-                    (count) => count / (totalPositionedPoss || 1)
+                    (count) => count / (totalPositionedPoss || 1),
                   );
 
                   // For each player we're going to calculate two different play type analyzes:
@@ -1177,8 +1196,8 @@ export async function main() {
                       player,
                       globalRosterStatsByCode,
                       teamBaseline,
-                      false
-                    )
+                      false,
+                    ),
                   )
                     .mapValues((stat) => {
                       return {
@@ -1196,7 +1215,7 @@ export async function main() {
                   (player as any).style = injectExtraDataForNbaFolks
                     ? playerPlayStyleBreakdowns
                     : PlayTypeUtils.compressIndivPlayType(
-                        playerPlayStyleBreakdowns
+                        playerPlayStyleBreakdowns,
                       );
 
                   // And write to grade file:
@@ -1205,7 +1224,7 @@ export async function main() {
                     // (these stats have too few to grade)
                     // TODO; move this into GradeUtils
                     const playStyleBreakdownsTypesToIgnore = _.chain(
-                      playerPlayStyleBreakdowns
+                      playerPlayStyleBreakdowns,
                     )
                       .flatMap((stat, val) => {
                         const teamPossForStyle =
@@ -1230,11 +1249,11 @@ export async function main() {
                     GradeUtils.buildAndInjectIndivPlayStyleStats(
                       _.omit(
                         playerPlayStyleBreakdowns,
-                        playStyleBreakdownsTypesToIgnore
+                        playStyleBreakdownsTypesToIgnore,
                       ) as TopLevelIndivPlayAnalysis,
                       undefined, //(no defence currently)
                       mutablePlayerDivisionStats,
-                      inNaturalTier
+                      inNaturalTier,
                     );
                     // Also per position grouping:
                     (
@@ -1246,11 +1265,11 @@ export async function main() {
                         GradeUtils.buildAndInjectIndivPlayStyleStats(
                           _.omit(
                             playerPlayStyleBreakdowns,
-                            playStyleBreakdownsTypesToIgnore
+                            playStyleBreakdownsTypesToIgnore,
                           ) as TopLevelIndivPlayAnalysis,
                           undefined, //(no defence currently)
                           mutablePosGroupDivStats,
-                          inNaturalTier
+                          inNaturalTier,
                         );
                       }
                     });
@@ -1277,7 +1296,7 @@ export async function main() {
                         //Note: also copied into RAPM below
                         if (!_.isNil(player[field]))
                           player[field].extraInfo = "PREPROCESSING_WARNING"; //(used in PlayerLeaderboardTable)
-                      }
+                      },
                     );
                   }
                   if ("all" == label) {
@@ -1287,7 +1306,7 @@ export async function main() {
                       mutablePlayerDivisionStats,
                       inNaturalTier,
                       undefined,
-                      criteriaMult
+                      criteriaMult,
                     );
                     // Also per position grouping:
                     (
@@ -1301,7 +1320,7 @@ export async function main() {
                           mutablePosGroupDivStats,
                           inNaturalTier,
                           undefined,
-                          criteriaMult
+                          criteriaMult,
                         );
                       }
                     });
@@ -1309,16 +1328,19 @@ export async function main() {
 
                   /** From eg [0, 1, 2, 3, 4] to { pg: 0, sg: 1, etc } */
                   const maybeConvertPosInfo = (
-                    posInfo: number[]
+                    posInfo: number[],
                   ): Record<string, number> | number[] => {
                     if (injectExtraDataForNbaFolks) {
                       return _.chain(posInfo || [])
-                        .transform((acc, val, valIndex) => {
-                          const posKey = (
-                            PositionUtils.tradPosList[valIndex] || "pos_unk"
-                          ).substring(4); //(skip over pos_)
-                          acc[posKey] = val;
-                        }, {} as Record<string, number>)
+                        .transform(
+                          (acc, val, valIndex) => {
+                            const posKey = (
+                              PositionUtils.tradPosList[valIndex] || "pos_unk"
+                            ).substring(4); //(skip over pos_)
+                            acc[posKey] = val;
+                          },
+                          {} as Record<string, number>,
+                        )
                         .value();
                     } else {
                       return posInfo;
@@ -1332,7 +1354,7 @@ export async function main() {
                         ?.ncaa_id ||
                       `${player.code || kv[0]}${player.team || ""}`.replace(
                         /[^A-Z]/gi,
-                        ""
+                        "",
                       )
                     }_${inGender}_${inYear.substring(0, 4)}_${label}`,
                     key: kv[0],
@@ -1346,7 +1368,7 @@ export async function main() {
                       .toPairs()
                       .filter(
                         (
-                          t2 //Reduce down to the field we'll actually need
+                          t2, //Reduce down to the field we'll actually need
                         ) =>
                           t2[0] == "off_team_poss" ||
                           t2[0] == "off_team_poss_pct" ||
@@ -1372,7 +1394,7 @@ export async function main() {
                             t2[0] != "game_info" &&
                             t2[0] != "player_array" &&
                             t2[0] != "role" &&
-                            t2[0] != "roster")
+                            t2[0] != "roster"),
                       )
                       .fromPairs()
                       .value() as PureStatSet),
@@ -1385,7 +1407,7 @@ export async function main() {
             const enrichedAndFilteredPlayers = enrichAndFilter(
               baselinePlayerInfo,
               rosterShotChartMap,
-              false
+              false,
             );
             // In "all" mode (ie for predictions) we keep a list of players with fewer minutes but who are still noteworthy
             const cutdownEnrichedPlayers =
@@ -1404,7 +1426,7 @@ export async function main() {
               false,
               teamSeasonLookup,
               positionFromPlayerKey,
-              baselinePlayerInfo
+              baselinePlayerInfo,
             );
 
             // Now do all the RAPM work (after luck has been adjusted)
@@ -1415,13 +1437,13 @@ export async function main() {
                 baselinePlayerInfo,
                 true, //<-always adjust for luck
                 avgEfficiency,
-                genderYearLookup
+                genderYearLookup,
               );
               const enrichedAndFilteredPlayersMap = _.fromPairs(
-                enrichedAndFilteredPlayers.map((p) => [p.key, p])
+                enrichedAndFilteredPlayers.map((p) => [p.key, p]),
               );
               const cutdownEnrichedPlayersMap = _.fromPairs(
-                cutdownEnrichedPlayers.map((p) => [p.key, p])
+                cutdownEnrichedPlayers.map((p) => [p.key, p]),
               );
               (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
                 const player = (enrichedAndFilteredPlayersMap[rapmP.playerId] ||
@@ -1436,7 +1458,7 @@ export async function main() {
                   player.def_adj_rapm = rapmP.rapm?.def_adj_ppp;
 
                   const cutdownMode = _.isNil(
-                    enrichedAndFilteredPlayersMap[rapmP.playerId]
+                    enrichedAndFilteredPlayersMap[rapmP.playerId],
                   );
 
                   if (injectExtraDataForNbaFolks) {
@@ -1452,15 +1474,15 @@ export async function main() {
                       .toPairs()
                       .filter(
                         ([key, val]) =>
-                          _.startsWith(key, "off_") || _.startsWith(key, "def")
+                          _.startsWith(key, "off_") || _.startsWith(key, "def"),
                       )
                       .filter(
                         (
-                          [key, val] //(remove scramble and transition stats, which don't seem to be included)
+                          [key, val], //(remove scramble and transition stats, which don't seem to be included)
                         ) =>
                           !_.includes(key, "f_scramble_") &&
                           !_.includes(key, "f_trans_") &&
-                          !_.endsWith(key, "_luck_diags")
+                          !_.endsWith(key, "_luck_diags"),
                       )
                       .fromPairs()
                       .value();
@@ -1468,15 +1490,15 @@ export async function main() {
                       .toPairs()
                       .filter(
                         ([key, val]) =>
-                          _.startsWith(key, "off_") || _.startsWith(key, "def")
+                          _.startsWith(key, "off_") || _.startsWith(key, "def"),
                       )
                       .filter(
                         (
-                          [key, val] //(remove scramble and transition stats, which don't seem to be included)
+                          [key, val], //(remove scramble and transition stats, which don't seem to be included)
                         ) =>
                           !_.includes(key, "f_scramble_") &&
                           !_.includes(key, "f_trans_") &&
-                          !_.endsWith(key, "_luck_diags")
+                          !_.endsWith(key, "_luck_diags"),
                       )
                       .fromPairs()
                       .value();
@@ -1515,7 +1537,7 @@ export async function main() {
                     };
                     const simpleRapmFieldsToGrade = _.flatMap(
                       ["adj_rapm", "adj_rapm_prod"],
-                      (k) => [`off_${k}`, `def_${k}`]
+                      (k) => [`off_${k}`, `def_${k}`],
                     );
                     const derivedRapmFieldsToGrade = [
                       "off_adj_rtg_margin",
@@ -1574,7 +1596,7 @@ export async function main() {
                         player,
                         mutablePlayerDivisionStats,
                         inNaturalTier,
-                        simpleRapmFieldsToGrade
+                        simpleRapmFieldsToGrade,
                       );
                       const otherRapmValues = {
                         off_team_poss_pct: {
@@ -1605,7 +1627,7 @@ export async function main() {
                         otherRapmValues,
                         mutablePlayerDivisionStats,
                         inNaturalTier,
-                        derivedRapmFieldsToGrade
+                        derivedRapmFieldsToGrade,
                       );
 
                       // When creating extra data for NBA folks, add on/off percentiles
@@ -1616,7 +1638,7 @@ export async function main() {
                           inNaturalTier,
                           onOffFieldsToGrade,
                           1.0,
-                          onOffStatAccessor
+                          onOffStatAccessor,
                         );
 
                         // Also in "extra NBA mode" we'll add player percentiles if they exist:
@@ -1626,14 +1648,14 @@ export async function main() {
                               playerGradesJson,
                               player,
                               simpleRapmFieldsToGrade,
-                              false //(percentile not rank)
+                              false, //(percentile not rank)
                             );
                           const nbaPercentilesExtraRapm =
                             GradeUtils.buildPlayerPercentiles(
                               playerGradesJson,
                               otherRapmValues,
                               derivedRapmFieldsToGrade,
-                              false //(percentile not rank)
+                              false, //(percentile not rank)
                             );
                           const nbaPercentilesOnOff =
                             GradeUtils.buildPercentiles(
@@ -1647,7 +1669,7 @@ export async function main() {
                                 .value(),
                               false,
                               false,
-                              onOffStatAccessor
+                              onOffStatAccessor,
                             );
                           _.chain(nbaPercentiles)
                             .toPairs()
@@ -1723,13 +1745,13 @@ export async function main() {
                             player,
                             mutablePosGroupDivStats,
                             inNaturalTier,
-                            simpleRapmFieldsToGrade
+                            simpleRapmFieldsToGrade,
                           );
                           GradeUtils.buildAndInjectPlayerDivisionStats(
                             otherRapmValues,
                             mutablePosGroupDivStats,
                             inNaturalTier,
-                            derivedRapmFieldsToGrade
+                            derivedRapmFieldsToGrade,
                           );
                         }
                       });
@@ -1821,7 +1843,7 @@ export async function main() {
                         positionFromPlayerKey[playerSubset.key]?.posConfidences,
                     } as IndivStatSet & IndivPosInfo,
                   ];
-                })
+                }),
               );
               //(now don't need this:)
               delete lineup.players_array;
@@ -1836,7 +1858,7 @@ export async function main() {
                 if (inNaturalTier) {
                   savedPlayers.push(...enrichedAndFilteredPlayers);
                   savedLowVolumePlayers.push(
-                    ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck)
+                    ...cutdownEnrichedPlayers.filter(lowVolumePlayerCheck),
                   );
                 }
                 break;
@@ -1856,8 +1878,8 @@ export async function main() {
               default:
                 console.log(`WARNING unexpected label: ${label}`);
             }
-          }
-        )
+          },
+        ),
     ); //(end loop over leaderboards)
 
     await getAllDataPromise;
@@ -1883,7 +1905,7 @@ const lowVolumePlayerCheck = (p: IndivStatSet): boolean => {
   const lowVolThresholdMid = lowVolThreshold / 2;
   const playerPossPctCapped = Math.min(
     p.off_team_poss_pct?.value || 0,
-    lowVolThreshold
+    lowVolThreshold,
   );
   const alpha =
     Math.max(playerPossPctCapped - lowVolThresholdMid) / lowVolThresholdMid;
@@ -1891,7 +1913,7 @@ const lowVolumePlayerCheck = (p: IndivStatSet): boolean => {
 
   // Simplier version .. just include anyone who played >=8% of mins (3.2+mpg)
   return Boolean(
-    p.off_adj_rapm && p.def_adj_rapm && playerPossPctCapped >= 0.08
+    p.off_adj_rapm && p.def_adj_rapm && playerPossPctCapped >= 0.08,
   ).valueOf();
 
   // return Boolean(
@@ -1940,7 +1962,7 @@ const lowVolumeStripPlayerInfo = (p: IndivStatSet) =>
 export function completePlayerLeaderboard(
   key: string,
   leaderboard: any[],
-  topTableSize: number
+  topTableSize: number,
 ) {
   if (key == "lowvol") {
     return [leaderboard, []]; //(no sorting or anything for lowvol, just get it out)
@@ -1948,7 +1970,7 @@ export function completePlayerLeaderboard(
     // Take [topTableSize] by possessions
     const sortedByPoss = _.sortBy(
       leaderboard,
-      (player) => -1 * (player.off_team_poss?.value || 0)
+      (player) => -1 * (player.off_team_poss?.value || 0),
     );
     const [topByPoss, processedCastOffs] = [
       sortedByPoss.splice(0, topTableSize),
@@ -1958,7 +1980,7 @@ export function completePlayerLeaderboard(
       topByPoss,
       (player) =>
         (player[`def_adj_rapm`]?.value || 0) -
-        (player[`off_adj_rapm`]?.value || 0)
+        (player[`off_adj_rapm`]?.value || 0),
     );
     return [
       sortedLeaderboard,
@@ -1972,7 +1994,7 @@ export function completePlayerLeaderboard(
 export function completeLineupLeaderboard(
   key: string,
   leaderboard: any[],
-  topLineupSize: number
+  topLineupSize: number,
 ) {
   const bareMinPoss = 40;
   // Take top lineups by possessions
@@ -1989,7 +2011,7 @@ if (!testMode) {
   if (inTier == "Combo") {
     // Check files:
     console.log(
-      `(Checking roster and maybe [${onBallDefenseEnabled}] on-ball filenames)`
+      `(Checking roster and maybe [${onBallDefenseEnabled}] on-ball filenames)`,
     );
     BatchMiscUtils.getBaseTeamList(inYear, inGender, testTeamFilter)
       .forEach(async (team: AvailableTeamMeta, index: number) => {
@@ -2003,19 +2025,19 @@ if (!testMode) {
           const logoFileNormal = getLogoFilename(team.team, "normal");
           await fs.lstat(logoFileNormal).catch((err: any) => {
             console.log(
-              `ERROR LOGO Couldn't load icon file [${logoFileNormal}]: [${err}]`
+              `ERROR LOGO Couldn't load icon file [${logoFileNormal}]: [${err}]`,
             );
           });
           const logoFileDark = getLogoFilename(team.team, "dark");
           await fs.lstat(logoFileDark).catch((err: any) => {
             console.log(
-              `ERROR LOGO Couldn't load icon file [${logoFileDark}]: [${err}]`
+              `ERROR LOGO Couldn't load icon file [${logoFileDark}]: [${err}]`,
             );
           });
           if (onBallDefenseEnabled) {
             const onBallDefenseFile = getOnBallDefenseFilename(
               team.team,
-              team.year
+              team.year,
             );
             await fs.readFile(onBallDefenseFile).catch((err: any) => {
               console.log(`Couldn't load [${onBallDefenseFile}]: [${err}]`);
@@ -2034,16 +2056,16 @@ if (!testMode) {
         result.simple.forEach((problem, problemIndex) => {
           const teamMeta = _.find(
             AvailableTeams.byName[problem.bad_team],
-            (t) => t.year == inYear && t.gender == inGender
+            (t) => t.year == inYear && t.gender == inGender,
           );
           console.log(
-            `MISMATCH ERROR: bad_team=[${problem.bad_team}] conf=[${teamMeta?.index_template}] [${inGender}] [${inYear}] / oppo=[${problem.oppo}] / loc=[${problem.location}]`
+            `MISMATCH ERROR: bad_team=[${problem.bad_team}] conf=[${teamMeta?.index_template}] [${inGender}] [${inYear}] / oppo=[${problem.oppo}] / loc=[${problem.location}]`,
           );
           const currTimeOffset = 10;
           if (teamMeta) {
             const urlName = RequestUtils.fixLocalhostRosterUrl(
               problem.bad_team,
-              false
+              false,
             );
             // 1] File exists but corrupt
             if (!mutableTeamFix[problem.bad_team]) {
@@ -2053,29 +2075,29 @@ if (!testMode) {
                   teamMeta.index_template
                 }/${inYear.substring(
                   0,
-                  4
-                )}/${urlName} DRY_RUN=yes sh artefacts/scripts/analyze_ncaa_crawls.sh` //TODO: need to URL-ify name?
+                  4,
+                )}/${urlName} DRY_RUN=yes sh artefacts/scripts/analyze_ncaa_crawls.sh`, //TODO: need to URL-ify name?
               );
               console.log(
-                `Case 1b] If that's the issue then delete and re-process`
+                `Case 1b] If that's the issue then delete and re-process`,
               );
               console.log(
                 `OVERRIDE_DIR=$PBP_CRAWL_PATH/${
                   teamMeta.index_template
                 }/${inYear.substring(
                   0,
-                  4
-                )}/${urlName} DRY_RUN=no sh artefacts/scripts/analyze_ncaa_crawls.sh` //TODO: need to URL-ify name?
+                  4,
+                )}/${urlName} DRY_RUN=no sh artefacts/scripts/analyze_ncaa_crawls.sh`, //TODO: need to URL-ify name?
               );
               console.log(
                 `PING="lping" DOWNLOAD=yes PARSE=yes UPLOAD=yes CURR_TIME=$(date +"%s") CONFS=${
                   teamMeta.index_template || "FAIL"
-                } TEAM_URL_FILTER="${urlName}" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
+                } TEAM_URL_FILTER="${urlName}" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`,
               );
             }
             // 2] File exists, but the processing failed (this gets one line per failure)
             console.log(
-              `Case 2a] File exists, but the processing failed (check)`
+              `Case 2a] File exists, but the processing failed (check)`,
             );
             console.log(
               `PING="lping" DOWNLOAD=no PARSE=yes UPLOAD=no CURR_TIME=${
@@ -2084,10 +2106,10 @@ if (!testMode) {
                 problem.bad_team
               }" OPPO_FILTER="${problem.location}:${
                 problem.oppo
-              }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
+              }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`,
             );
             console.log(
-              `Case 2b] File exists, but the processing failed (fix if so)`
+              `Case 2b] File exists, but the processing failed (fix if so)`,
             );
             console.log(
               `PING="lping" DOWNLOAD=no PARSE=yes UPLOAD=yes CURR_TIME=${
@@ -2096,7 +2118,7 @@ if (!testMode) {
                 problem.bad_team
               }" OPPO_FILTER="${problem.location}:${
                 problem.oppo
-              }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`
+              }" ../../cbb-explorer/artefacts/scripts/bulk_lineup_import.sh && sleep 2`,
             );
             if (!mutableTeamFix[problem.bad_team]) {
               // 3] File failed to upload
@@ -2106,7 +2128,7 @@ if (!testMode) {
                   2 * currTimeOffset + problemIndex
                 } CONF=${teamMeta.index_template || "FAIL"} TEAM_NAME="${
                   problem.bad_team
-                }" ../../cbb-explorer/artefacts/scripts/replace_team.sh && sleep 2`
+                }" ../../cbb-explorer/artefacts/scripts/replace_team.sh && sleep 2`,
               );
             }
             mutableTeamFix[problem.bad_team] = true;
@@ -2118,7 +2140,7 @@ if (!testMode) {
           console.log(
             `[ERROR] complex game mismatch [${problem.team}][${
               problem.opponent
-            }]: ${JSON.stringify(problem)}`
+            }]: ${JSON.stringify(problem)}`,
           );
         });
         // Now actual processing:
@@ -2127,7 +2149,7 @@ if (!testMode) {
           inGender,
           inYear,
           rootFilePath,
-          false
+          false,
         );
       })
       .then(async (dummy) => {
@@ -2135,7 +2157,7 @@ if (!testMode) {
           inGender,
           inYear,
           rootFilePath,
-          true //(team==false then players==true)
+          true, //(team==false then players==true)
         );
       })
       .then(async (dummy) => {
@@ -2145,7 +2167,7 @@ if (!testMode) {
               inGender,
               inYear,
               extraDataFilePath,
-              true //(team==false then players==true)
+              true, //(team==false then players==true)
             )
           : Promise.resolve();
       })
@@ -2184,7 +2206,7 @@ if (!testMode) {
           const sortedLineups = completeLineupLeaderboard(
             label,
             lineupsToWrite,
-            topLineupSize
+            topLineupSize,
           );
           const sortedLineupsStr = JSON.stringify(
             {
@@ -2193,16 +2215,16 @@ if (!testMode) {
               confs: _.keys(mutableConferenceMap),
               lineups: sortedLineups,
             },
-            BatchMiscUtils.reduceNumberSize
+            BatchMiscUtils.reduceNumberSize,
           );
 
           const playersToWriteMaybePlusLowVol = playersToWrite.concat(
-            label == "lowvol" ? savedCastoffs : []
+            label == "lowvol" ? savedCastoffs : [],
           );
           const [players, castOffs] = completePlayerLeaderboard(
             label,
             playersToWriteMaybePlusLowVol,
-            topPlayersSize
+            topPlayersSize,
           );
           if (label == "all") savedCastoffs = castOffs;
 
@@ -2216,43 +2238,43 @@ if (!testMode) {
             ? JSON.stringify(basePlayersObj, BatchMiscUtils.reduceNumberSize)
             : "";
           const basePlayers = injectExtraDataForNbaFolks
-            ? players.map(BatchMiscUtils.stripExtraInfo)
+            ? players.map(BatchMiscUtils.stripExtraPlayerInfo)
             : players;
           const playersStr = JSON.stringify(
             {
               ...basePlayersObj,
               players: basePlayers,
             },
-            BatchMiscUtils.reduceNumberSize
+            BatchMiscUtils.reduceNumberSize,
           );
 
           // Write to file
           console.log(
-            `${label} lineup count: [${sortedLineups.length}] ([${lineupsToWrite.length}])`
+            `${label} lineup count: [${sortedLineups.length}] ([${lineupsToWrite.length}])`,
           );
           console.log(`${label} lineup length: [${sortedLineupsStr.length}]`);
           const lineupFilename = `${rootFilePath}/lineups_${label}_${inGender}_${inYear.substring(
             0,
-            4
+            4,
           )}_${inTier}.json`;
           const lineupsWritePromise = _.isEmpty(sortedLineups)
             ? Promise.resolve()
             : fs.writeFile(`${lineupFilename}`, sortedLineupsStr);
           console.log(
-            `${label} player count: [${players.length}] ([${playersToWrite.length}])`
+            `${label} player count: [${players.length}] ([${playersToWrite.length}])`,
           );
           console.log(`${label} player length: [${playersStr.length}]`);
           const playersFilename = `${rootFilePath}/players_${label}_${inGender}_${inYear.substring(
             0,
-            4
+            4,
           )}_${inTier}.json`;
           const playersWritePromise = fs.writeFile(
             `${playersFilename}`,
-            playersStr
+            playersStr,
           );
           const playersExtraFilename = `${extraDataFilePath}/players_${label}_${inGender}_${inYear.substring(
             0,
-            4
+            4,
           )}_${inTier}.json`;
           const playersExtraWritePromise = injectExtraDataForNbaFolks
             ? fs.writeFile(`${playersExtraFilename}`, playersExtraStr)
@@ -2260,7 +2282,7 @@ if (!testMode) {
 
           const teamFilename = `${rootFilePath}/teams_${label}_${inGender}_${inYear.substring(
             0,
-            4
+            4,
           )}_${inTier}.json`;
           console.log(`${label} team count: ${teamInfo.length}`);
 
@@ -2279,40 +2301,67 @@ if (!testMode) {
 
                       teams: teamInfo,
                     },
-                    BatchMiscUtils.reduceNumberSize
-                  )
+                    BatchMiscUtils.reduceNumberSize,
+                  ),
                 )
               : Promise.resolve();
 
           const detailedTeamFilename = `${rootFilePath}/team_details_${label}_${inGender}_${inYear.substring(
             0,
-            4
+            4,
           )}_${inTier}.json`;
 
+          const baseDetailedTeamsObj = {
+            lastUpdated: lastUpdated,
+            confMap: mutableConferenceMap,
+            confs: _.keys(mutableConferenceMap),
+
+            //(so can build an approximate power ranking without pulling in an extra set of files)
+            bubbleOffense: bubbleOffenseInfo,
+            bubbleDefense: bubbleDefenseInfo,
+
+            teams: teamsToWrite,
+          };
+          const detailedTeamsExtraStr = injectExtraDataForNbaFolks
+            ? JSON.stringify(
+                baseDetailedTeamsObj,
+                BatchMiscUtils.reduceNumberSize,
+              )
+            : "";
+          const baseDetailedTeams = injectExtraDataForNbaFolks
+            ? teamsToWrite.map((t) =>
+                BatchMiscUtils.stripExtraTeamInfo(t as TeamStatSet),
+              )
+            : teamsToWrite;
           const detailedTeamWritePromise =
             teamsToWrite.length > 0
               ? fs.writeFile(
                   `${detailedTeamFilename}`,
                   JSON.stringify(
                     {
-                      lastUpdated: lastUpdated,
-                      confMap: mutableConferenceMap,
-                      confs: _.keys(mutableConferenceMap),
-
-                      //(so can build an approximate power ranking without pulling in an extra set of files)
-                      bubbleOffense: bubbleOffenseInfo,
-                      bubbleDefense: bubbleDefenseInfo,
-
-                      teams: teamsToWrite,
+                      ...baseDetailedTeamsObj,
+                      teams: baseDetailedTeams,
                     },
-                    BatchMiscUtils.reduceNumberSize
-                  )
+                    BatchMiscUtils.reduceNumberSize,
+                  ),
+                )
+              : Promise.resolve();
+
+          const detailedTeamExtraFilename = `${extraDataFilePath}/team_details_${label}_${inGender}_${inYear.substring(
+            0,
+            4,
+          )}_${inTier}.json`;
+          const detailedTeamExtraWritePromise =
+            injectExtraDataForNbaFolks && teamsToWrite.length > 0
+              ? fs.writeFile(
+                  `${detailedTeamExtraFilename}`,
+                  detailedTeamsExtraStr,
                 )
               : Promise.resolve();
 
           const teamStatFilename = `${rootFilePath}/team_stats_${label}_${inGender}_${inYear.substring(
             0,
-            4
+            4,
           )}_${inTier}.json`;
           console.log(`${label} team stats count: ${teamStatInfo.length}`);
 
@@ -2328,8 +2377,8 @@ if (!testMode) {
 
                       teams: teamStatInfo,
                     },
-                    BatchMiscUtils.reduceNumberSize
-                  )
+                    BatchMiscUtils.reduceNumberSize,
+                  ),
                 )
               : Promise.resolve();
 
@@ -2345,7 +2394,7 @@ if (!testMode) {
                 rootFilePath,
                 mutableDivisionStats,
                 mutablePlayerDivisionStats,
-                mutablePlayerDivisionStats_byPosGroup
+                mutablePlayerDivisionStats_byPosGroup,
               )
             : [Promise.resolve()];
 
@@ -2360,7 +2409,7 @@ if (!testMode) {
                   extraDataFilePath,
                   mutableDivisionStats,
                   mutablePlayerDivisionStats,
-                  mutablePlayerDivisionStats_byPosGroup
+                  mutablePlayerDivisionStats_byPosGroup,
                 )
               : [Promise.resolve()];
 
@@ -2372,6 +2421,7 @@ if (!testMode) {
             playersExtraWritePromise,
             teamWritePromise,
             detailedTeamWritePromise,
+            detailedTeamExtraWritePromise,
             teamWriteStatPromise,
           ]
             .concat(divisionStatsPromises)
@@ -2381,7 +2431,7 @@ if (!testMode) {
           // zlib.gzip(sortedLineupsStr, (_, result) => {
           //   fs.writeFile(`${filename}.gz`,result, err => {});
           // });
-        })
+        }),
       );
       console.log("File creation Complete!");
       if (!testMode) {
