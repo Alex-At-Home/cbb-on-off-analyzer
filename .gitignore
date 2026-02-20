@@ -19,6 +19,7 @@ leaderboardDebug/*
 enrichedPlayers/*
 enrichedPlayersDebug/*
 *.diff
+/scratch_folders
 
 *.tsbuildinfo
 .vercel

@@ -52,14 +52,14 @@ type Props = {
 const LandingPage: NextPage<Props> = ({ testMode }) => {
   const [gaInited, setGaInited] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(
-    new Set(["All"])
+    new Set(["All"]),
   );
 
   // Team selection state - will be initialized properly in useEffect
   const [year, setYear] = useState<string>(ParamDefaults.defaultYear);
   const [gender, setGender] = useState<string>(ParamDefaults.defaultGender);
   const [specificGender, setSpecificGender] = useState<string | undefined>(
-    undefined
+    undefined,
   );
   const [team, setTeam] = useState<string>("");
   const [showTeamModal, setShowTeamModal] = useState<boolean>(false);
@@ -109,7 +109,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const buildLink = (
     toDisplay: React.ReactElement | string,
     visitOnSave: (year: string, gender: string, team: string) => string,
-    teamNotNeeded: Boolean = false
+    teamNotNeeded: Boolean = false,
   ) => {
     return (team || teamNotNeeded) && year && gender ? (
       <a
@@ -137,7 +137,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   /** Builds a link that either opens a new, or opens a dialog box to specify the  */
   const buildCardLink = (
     toDisplay: React.ReactElement | string,
-    visitOnSave: (year: string, gender: string, team: string) => string
+    visitOnSave: (year: string, gender: string, team: string) => string,
   ) => {
     return team && year && gender ? (
       <Card.Link href={visitOnSave(year, gender, team)} target="_blank">
@@ -188,7 +188,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       year: DateUtils.getNextYear(year),
                     }),
-                  true
+                  true,
                 )}
                 <ul>
                   <li>
@@ -210,11 +210,11 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     const teamInfo =
                       _.find(
                         AvailableTeams.byName[team],
-                        (t) => t.year == nextYear
+                        (t) => t.year == nextYear,
                       ) ||
                       _.find(
                         AvailableTeams.byName[team],
-                        (t) => t.year == year
+                        (t) => t.year == year,
                       );
                     const confFromTeam =
                       IndexTemplateToNickname[
@@ -226,7 +226,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       year: nextYear,
                     });
                   },
-                  true
+                  true,
                 )}
                 <ul>
                   <li>
@@ -254,7 +254,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       year: DateUtils.getNextYear(year),
                       team,
-                    })
+                    }),
                 )}
                 <ul>
                   <li>
@@ -282,7 +282,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       year: DateUtils.getNextYear(year),
                       transferInOutMode: true,
                     } as OffseasonLeaderboardParams),
-                  true
+                  true,
                 )}
                 <ul>
                   <li>
@@ -302,7 +302,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       year,
                       evalMode: true,
                     } as OffseasonLeaderboardParams),
-                  true
+                  true,
                 )}
                 <ul>
                   <li>
@@ -400,8 +400,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showRoster: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}{" "}
                   (and compare vs other splits)
                 </li>
@@ -421,7 +421,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                             playStyleConfig: "def",
                             maxTableSize: "10",
                           }),
-                        true
+                        true,
                       )}{" "}
                       or{" "}
                       {buildLink(
@@ -432,7 +432,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                             gender,
                             team,
                             oppoTeam: "No Opponent",
-                          })
+                          }),
                       )}
                     </i>
                   </li>
@@ -448,8 +448,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                               gender,
                               team,
                             },
-                            {}
-                          )
+                            {},
+                          ),
                       )}
                       , and click the lineup in which you're interested
                       (leftmost column) to open a new tab including Play Style
@@ -474,8 +474,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showRoster: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}
                   <ul>
                     <li>
@@ -498,7 +498,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         showPlayStyles: true,
                         maxTableSize: "10",
                       }),
-                    true
+                    true,
                   )}
                 </li>
                 <li>
@@ -511,7 +511,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                         oppoTeam: "No Opponent",
-                      })
+                      }),
                   )}{" "}
                   for that game (and you can compare vs their season)
                 </li>
@@ -524,7 +524,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         year,
                         gender,
                         team,
-                      })
+                      }),
                   )}{" "}
                   you can see/compare their Offensive and Defensive Play Style
                   Breakdowns (including SoS filters.)
@@ -546,7 +546,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           gender,
                           team,
                           oppoTeam: "No Opponent",
-                        })
+                        }),
                       )}
                       . Otherwise the Team Stats Explorer is probably better.
                     </i>
@@ -571,8 +571,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           //(always show these)
                           calcRapm: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}{" "}
                   (and compare vs other splits)
                 </li>
@@ -590,8 +590,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                               gender,
                               team,
                             },
-                            {}
-                          )
+                            {},
+                          ),
                       )}
                       , and click the lineup in which you're interested
                       (leftmost column) to open a new tab including Play Style
@@ -616,8 +616,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showRoster: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}
                   <ul>
                     <li>
@@ -641,7 +641,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       showPlayerPlayTypes: true,
                       maxTableSize: "50",
                     }),
-                  true
+                  true,
                 )}
                 <ul>
                   <li>
@@ -713,8 +713,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       calcRapm: true,
                       showRoster: true,
                     },
-                    {}
-                  )
+                    {},
+                  ),
                 )}{" "}
                 (and compare vs other splits)
               </li>
@@ -731,8 +731,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                             gender,
                             team,
                           },
-                          {}
-                        )
+                          {},
+                        ),
                     )}
                     , and click the lineup in which you're interested (leftmost
                     column) to open a new tab including Shot Chart info.)
@@ -747,7 +747,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       year,
                       gender,
                       team,
-                    })
+                    }),
                 )}{" "}
                 for that game (and you can compare vs their season)
               </li>
@@ -760,7 +760,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       year,
                       gender,
                       team,
-                    })
+                    }),
                 )}{" "}
                 you can see/compare their Offensive and Defensive Shot Charts
               </li>
@@ -781,8 +781,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       //(always show these)
                       calcRapm: true,
                     },
-                    {}
-                  )
+                    {},
+                  ),
                 )}{" "}
                 (and compare vs other splits)
               </li>
@@ -799,8 +799,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                             gender,
                             team,
                           },
-                          {}
-                        )
+                          {},
+                        ),
                     )}
                     , and click the lineup in which you're interested (leftmost
                     column) to open a new tab including Shot Chart info.)
@@ -818,7 +818,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       shotCharts: true,
                       maxTableSize: "50",
                     }),
-                  true
+                  true,
                 )}
               </li>
             </ul>
@@ -852,8 +852,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   gender,
                   team,
                 },
-                {}
-              )
+                {},
+              ),
             )}{" "}
             were one of the first pages I added to Hoop Explorer, but I never
             found them very useful in practice, outside of being an early
@@ -875,7 +875,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   year,
                   gender,
                 }),
-              true
+              true,
             )}
             , and observing how the best performing lineups typically are on the
             lower end of possessions counts, and typically have a big plus net
@@ -887,7 +887,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   year,
                   gender,
                 }),
-              true
+              true,
             )}{" "}
             gives a more stable (but much smaller) list.
             <br />
@@ -901,8 +901,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   lineupLuck: true,
                   showLineupLuckDiags: true,
                 },
-                {}
-              )
+                {},
+              ),
             )}{" "}
             (and the leaderboard does use that), but even the full Team Analysis
             luck calculations aren't great, and the Lineup Analysis versions are
@@ -940,8 +940,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by PG",
                         aggByPos: "PG",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Aggregate all the lineups with each PG{" "}
                   <i>("How did the team do with each floor general?")</i>
@@ -956,8 +956,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by Center",
                         aggByPos: "C",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Aggregate all the lineups with each PG
                 </li>
@@ -971,8 +971,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by PG+C",
                         aggByPos: "PG+C",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Aggregate all the lineups with a specific PG and Center (PnR
                   buddies!)
@@ -987,8 +987,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by Backcourt",
                         aggByPos: "Backcourt",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Aggregate all the lineups for a given 3-player backcourt (or
                   4-player if it's a 4-guard lineup) -{" "}
@@ -1004,8 +1004,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by Frontcourt",
                         aggByPos: "Frontcourt",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Aggregate all the lineups for a given Frontcourt (PF/C,
                   includes the guard playing the 4) - <i>also very useful!</i>
@@ -1034,8 +1034,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by Pairs",
                         aggByPos: "Pairs",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Group by pairs of players
                 </li>
@@ -1049,8 +1049,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by Triples",
                         aggByPos: "Triples",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Group by triples of players
                 </li>
@@ -1064,8 +1064,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "Grouped by Quads",
                         aggByPos: "Quads",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Group by quads of players
                 </li>
@@ -1090,8 +1090,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "With-Or-Without-You",
                         aggByPos: "WOWY",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Pick lineups based on who is playing / not-playing
                   <ul>
@@ -1133,8 +1133,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         presetGroup: "With-Or-Without-You (automatic)",
                         aggByPos: "On-Off",
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   : Automatically builds on/off combos from selected players (or
                   by default the top lineup)
@@ -1153,7 +1153,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                               presetGroup: "Grouped by On/Off Combos",
                               aggByPos: "On-Off",
                             },
-                            {}
+                            {},
                           )}
                           target="_blank"
                         >
@@ -1170,7 +1170,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                               presetGroup: "Grouped by On/Off Combos",
                               aggByPos: "On-Off",
                             },
-                            {}
+                            {},
                           )}
                           target="_blank"
                         >
@@ -1212,8 +1212,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showExpanded: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}{" "}
                   (or from the{" "}
                   {buildLink(`Main Lineup Page`, (year, gender, team) =>
@@ -1223,8 +1223,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         gender,
                         team,
                       },
-                      {}
-                    )
+                      {},
+                    ),
                   )}
                   , click the '5/4/3/2 "Starter Analysis" link): A similar
                   concept to the On/Off Analysis above with two differences
@@ -1291,8 +1291,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showExpanded: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}
                 </i>
               </li>
@@ -1317,8 +1317,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showExpanded: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}
                 </i>
               </li>
@@ -1343,8 +1343,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           calcRapm: true,
                           showExpanded: true,
                         },
-                        {}
-                      )
+                        {},
+                      ),
                   )}
                 </i>
               </li>
@@ -1375,8 +1375,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     team,
                     showGameInfo: true,
                   },
-                  {}
-                )
+                  {},
+                ),
             )}
             , which shows how lineups wane and wax in popularity over the
             season. (in the Team/Roster Analysis Page it's also very useful as a
@@ -1443,7 +1443,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       const cachedValue = ClientRequestCache.decacheResponse(
         "landing_show_intro",
         "",
-        undefined
+        undefined,
       );
       // If we have a cached value of false, use it; otherwise default to true
       return cachedValue === null || cachedValue.value !== false;
@@ -1462,7 +1462,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           "landing_show_intro",
           "",
           {},
-          undefined
+          undefined,
         );
       } else {
         // Update cache when set to false
@@ -1470,7 +1470,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           "landing_show_intro",
           "",
           { value: false },
-          undefined
+          undefined,
         );
       }
     }
@@ -1721,7 +1721,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   const handleTeamSave = (
     newYear: string,
     newGender: string,
-    newTeam: string
+    newTeam: string,
   ) => {
     if (newTeam && newGender && newYear) {
       // Update state
@@ -1737,19 +1737,19 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           "landing_show_year",
           "",
           { value: newYear },
-          undefined
+          undefined,
         );
         ClientRequestCache.cacheResponse(
           "landing_show_gender",
           "",
           { value: newGender },
-          undefined
+          undefined,
         );
         ClientRequestCache.cacheResponse(
           "landing_show_team",
           "",
           { value: newTeam },
-          undefined
+          undefined,
         );
       }
     } else if (newGender) {
@@ -1762,7 +1762,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         "landing_show_gender",
         "",
         { value: newGender },
-        undefined
+        undefined,
       );
     }
   };
@@ -1783,7 +1783,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
         "landing_show_gender",
         "",
         {},
-        undefined
+        undefined,
       );
       ClientRequestCache.cacheResponse("landing_show_team", "", {}, undefined);
     }
@@ -1796,7 +1796,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
     // If the URL already has query parameters, append team parameters
     const separator = url.includes("?") ? "&" : "?";
     return `${url}${separator}team=${encodeURIComponent(
-      team
+      team,
     )}&year=${encodeURIComponent(year)}&gender=${encodeURIComponent(gender)}`;
   };
 
@@ -1830,7 +1830,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
             year:
               year ||
               DateUtils.getLastSeasonWithDataFrom(
-                ParamDefaults.defaultLeaderboardYear
+                ParamDefaults.defaultLeaderboardYear,
               ),
             team: team,
           }}
@@ -1858,32 +1858,25 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   />
                 </OverlayTrigger>
                 <Card.Text style={{ fontSize: "1.2rem" }}>
-                  <p>
-                    Created in 2019, Hoop Explorer is a free and open Web App
-                    intended for folks who want to, well, <i>explore</i> college
-                    basketball stats ... one notch deeper than is possible with
-                    most other sites.
+                  <p style={{ fontWeight: 600 }}>
+                    Created in 2019, Hoop Explorer is a free and open college
+                    basketball analytics platform. <i>Explore</i> the game
+                    through interactive stats and visualizations you can't find
+                    elsewhere.
                   </p>
                   <p>
-                    It's used by college teams, NBA teams, Draft Twitter, sports
+                    Used by college teams, NBA teams, Draft Twitter, sports
                     bettors, analytics gurus, basketball journalists and
-                    bloggers, and (the group that includes me!) fans who enjoy
-                    digging into stats when there are no games to watch.
+                    bloggers, and fans like me who enjoy digging into stats when
+                    there are no games to watch.
                   </p>
-                  <span>
-                    The list below gives an idea of the different ways you can
-                    use Hoop Explorer both to get everything from high-level
-                    summaries of how teams play, through game reports with
-                    insights not found elsewhere, to the most detailed samples
-                    and splits you can imagine.
-                  </span>
                 </Card.Text>
               </Card.Body>
             </Card>
           )}
         </Col>
       </Row>
-      <Row className="mt-2 mb-2">
+      <Row className="mt-2">
         <Col xs={12} className="text-center" style={{ position: "relative" }}>
           <div style={{ position: "absolute", right: 20 }}>
             <br className="d-block d-md-none" />
@@ -1935,127 +1928,129 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
           </p>
         </Col>
       </Row>
-      <Row>
-        <Col xs={12} className="text-center">
-          <ToggleButtonGroup
-            labelOverride="Topic Filter: "
-            items={[
-              {
-                label: "All",
-                tooltip: "Show all topic cards",
-                toggled: selectedTopics.has("All"),
-                onClick: () => handleTopicToggle("All"),
-              },
-              {
-                label: "Details",
-                tooltip:
-                  "Show cards with extra details that I think are worth reading! (Click on 'More Details')",
-                toggled: selectedTopics.has("Details"),
-                onClick: () => handleTopicToggle("Details"),
-              },
-              {
-                label: "| ",
-                isLabelOnly: true,
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
-              },
-              {
-                label: "Teams",
-                tooltip: "Show/hide topic cards related to Teams",
-                toggled: selectedTopics.has("Teams"),
-                onClick: () => handleTopicToggle("Teams"),
-              },
-              {
-                label: "Players",
-                tooltip: "Show/hide topic cards related to Players",
-                toggled: selectedTopics.has("Players"),
-                onClick: () => handleTopicToggle("Players"),
-              },
-              {
-                label: "Lineups",
-                tooltip: "Show/hide topic cards related to Lineups",
-                toggled: selectedTopics.has("Lineups"),
-                onClick: () => handleTopicToggle("Lineups"),
-              },
-              {
-                label: "Games",
-                tooltip: "Show/hide topic cards related to Games",
-                toggled: selectedTopics.has("Games"),
-                onClick: () => handleTopicToggle("Games"),
-              },
-              {
-                label: "| ",
-                isLabelOnly: true,
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
-              },
-              {
-                label: "Leaderboards",
-                tooltip: "Show/hide topic cards related to Leaderboards",
-                toggled: selectedTopics.has("Leaderboards"),
-                onClick: () => handleTopicToggle("Leaderboards"),
-              },
-              {
-                label: "RAPM",
-                tooltip: "Show/hide topic cards related to RAPM",
-                toggled: selectedTopics.has("RAPM"),
-                onClick: () => handleTopicToggle("RAPM"),
-              },
-              {
-                label: "On-Off",
-                tooltip: "Show/hide topic cards related to On-Off",
-                toggled: selectedTopics.has("On-Off"),
-                onClick: () => handleTopicToggle("On-Off"),
-              },
-              {
-                label: "Splits",
-                tooltip: "Show/hide topic cards related to Splits",
-                toggled: selectedTopics.has("Splits"),
-                onClick: () => handleTopicToggle("Splits"),
-              },
-              {
-                label: "CSV Export",
-                tooltip: "Show/hide topic cards related to CSV Export",
-                toggled: selectedTopics.has("CSV Export"),
-                onClick: () => handleTopicToggle("CSV Export"),
-              },
-              {
-                label: "Off-Season",
-                tooltip: "Show/hide topic cards related to Off-Season",
-                toggled: selectedTopics.has("Off-Season"),
-                onClick: () => handleTopicToggle("Off-Season"),
-              },
-              {
-                label: "Multi-Year",
-                tooltip: "Show/hide topic cards related to Multi-Year",
-                toggled: selectedTopics.has("Multi-Year"),
-                onClick: () => handleTopicToggle("Multi-Year"),
-              },
-              {
-                label: "| ",
-                isLabelOnly: true,
-                tooltip: "",
-                toggled: false,
-                onClick: () => {},
-              },
-              {
-                label: "Shot Charts",
-                tooltip: "Show/hide topic cards related to Shot Charts",
-                toggled: selectedTopics.has("Shot Charts"),
-                onClick: () => handleTopicToggle("Shot Charts"),
-              },
-              {
-                label: "Play Types",
-                tooltip: "Show/hide topic cards related to Play Types",
-                toggled: selectedTopics.has("Play Types"),
-                onClick: () => handleTopicToggle("Play Types"),
-              },
-            ]}
-          />
-        </Col>
-      </Row>
+      {false && (
+        <Row className="mt-2">
+          <Col xs={12} className="text-center">
+            <ToggleButtonGroup
+              labelOverride="Topic Filter: "
+              items={[
+                {
+                  label: "All",
+                  tooltip: "Show all topic cards",
+                  toggled: selectedTopics.has("All"),
+                  onClick: () => handleTopicToggle("All"),
+                },
+                {
+                  label: "Details",
+                  tooltip:
+                    "Show cards with extra details that I think are worth reading! (Click on 'More Details')",
+                  toggled: selectedTopics.has("Details"),
+                  onClick: () => handleTopicToggle("Details"),
+                },
+                {
+                  label: "| ",
+                  isLabelOnly: true,
+                  tooltip: "",
+                  toggled: false,
+                  onClick: () => {},
+                },
+                {
+                  label: "Teams",
+                  tooltip: "Show/hide topic cards related to Teams",
+                  toggled: selectedTopics.has("Teams"),
+                  onClick: () => handleTopicToggle("Teams"),
+                },
+                {
+                  label: "Players",
+                  tooltip: "Show/hide topic cards related to Players",
+                  toggled: selectedTopics.has("Players"),
+                  onClick: () => handleTopicToggle("Players"),
+                },
+                {
+                  label: "Lineups",
+                  tooltip: "Show/hide topic cards related to Lineups",
+                  toggled: selectedTopics.has("Lineups"),
+                  onClick: () => handleTopicToggle("Lineups"),
+                },
+                {
+                  label: "Games",
+                  tooltip: "Show/hide topic cards related to Games",
+                  toggled: selectedTopics.has("Games"),
+                  onClick: () => handleTopicToggle("Games"),
+                },
+                {
+                  label: "| ",
+                  isLabelOnly: true,
+                  tooltip: "",
+                  toggled: false,
+                  onClick: () => {},
+                },
+                {
+                  label: "Leaderboards",
+                  tooltip: "Show/hide topic cards related to Leaderboards",
+                  toggled: selectedTopics.has("Leaderboards"),
+                  onClick: () => handleTopicToggle("Leaderboards"),
+                },
+                {
+                  label: "RAPM",
+                  tooltip: "Show/hide topic cards related to RAPM",
+                  toggled: selectedTopics.has("RAPM"),
+                  onClick: () => handleTopicToggle("RAPM"),
+                },
+                {
+                  label: "On-Off",
+                  tooltip: "Show/hide topic cards related to On-Off",
+                  toggled: selectedTopics.has("On-Off"),
+                  onClick: () => handleTopicToggle("On-Off"),
+                },
+                {
+                  label: "Splits",
+                  tooltip: "Show/hide topic cards related to Splits",
+                  toggled: selectedTopics.has("Splits"),
+                  onClick: () => handleTopicToggle("Splits"),
+                },
+                {
+                  label: "CSV Export",
+                  tooltip: "Show/hide topic cards related to CSV Export",
+                  toggled: selectedTopics.has("CSV Export"),
+                  onClick: () => handleTopicToggle("CSV Export"),
+                },
+                {
+                  label: "Off-Season",
+                  tooltip: "Show/hide topic cards related to Off-Season",
+                  toggled: selectedTopics.has("Off-Season"),
+                  onClick: () => handleTopicToggle("Off-Season"),
+                },
+                {
+                  label: "Multi-Year",
+                  tooltip: "Show/hide topic cards related to Multi-Year",
+                  toggled: selectedTopics.has("Multi-Year"),
+                  onClick: () => handleTopicToggle("Multi-Year"),
+                },
+                {
+                  label: "| ",
+                  isLabelOnly: true,
+                  tooltip: "",
+                  toggled: false,
+                  onClick: () => {},
+                },
+                {
+                  label: "Shot Charts",
+                  tooltip: "Show/hide topic cards related to Shot Charts",
+                  toggled: selectedTopics.has("Shot Charts"),
+                  onClick: () => handleTopicToggle("Shot Charts"),
+                },
+                {
+                  label: "Play Types",
+                  tooltip: "Show/hide topic cards related to Play Types",
+                  toggled: selectedTopics.has("Play Types"),
+                  onClick: () => handleTopicToggle("Play Types"),
+                },
+              ]}
+            />
+          </Col>
+        </Row>
+      )}
       <Row xs={1} sm={1} md={1} lg={2} xl={3} className="g-4 mb-4">
         <TopicFilteredCard
           hide={true}
@@ -2147,7 +2142,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                     currGender={specificGender}
                     onSelectPlayer={function (
                       ncaaId: string,
-                      gender: string
+                      gender: string,
                     ): void {
                       window.open(
                         UrlRouting.getPlayerCareer({
@@ -2156,7 +2151,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                           showInfoSubHeader: true,
                         }),
                         "_blank",
-                        "noopener,noreferrer"
+                        "noopener,noreferrer",
                       );
                     }}
                   />
@@ -2177,7 +2172,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   Accesible from lots of pages - see "More Details".
                 </Card.Text>
                 {maybeMoreDetails(
-                  getCardIdFromTitle("Play Type / Style Analysis")
+                  getCardIdFromTitle("Play Type / Style Analysis"),
                 )}
                 <Card.Link
                   href={UrlRouting.getTeamStatsExplorerUrl({
@@ -2297,7 +2292,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   ... And a lot more: Filters! Splits! Style! Shot Charts! etc
                 </Card.Text>
                 {maybeMoreDetails(
-                  getCardIdFromTitle("Team And Roster Analysis / Splits")
+                  getCardIdFromTitle("Team And Roster Analysis / Splits"),
                 )}
                 {buildCardLink(
                   <b>I'm Sold! Let's Go...</b>,
@@ -2311,8 +2306,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         showRoster: true,
                         calcRapm: true,
                       },
-                      {}
-                    )
+                      {},
+                    ),
                 )}
                 {buildCardLink(
                   <span>(Advanced View...)</span>,
@@ -2334,8 +2329,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         showPlayerPlayTypes: true,
                         showExpanded: true,
                       },
-                      {}
-                    )
+                      {},
+                    ),
                 )}
               </Card.Body>
             </Card>
@@ -2370,8 +2365,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       team,
                     },
-                    {}
-                  )
+                    {},
+                  ),
                 )}
                 <Card.Link
                   href={UrlRouting.getLineupLeaderboardUrl({
@@ -2525,7 +2520,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                       gender,
                       team,
                       incRapm: true,
-                    })
+                    }),
                 )}
                 <Card.Link
                   href={`https://hoop-explorer.blogspot.com/2020/03/understanding-team-report-onoff-page.html`}
@@ -2610,8 +2605,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                         showExpanded: true,
                         calcRapm: true,
                       },
-                      {}
-                    )
+                      {},
+                    ),
                 )}
               </Card.Body>
             </Card>
@@ -2634,14 +2629,14 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
                   don't like.
                 </Card.Text>
                 {maybeMoreDetails(
-                  getCardIdFromTitle("Offseason Predictions / Analysis")
+                  getCardIdFromTitle("Offseason Predictions / Analysis"),
                 )}
                 {buildCardLink(<b>Tier List!</b>, (year, gender, team) => {
                   const nextYear = DateUtils.getNextYear(year);
                   const teamInfo =
                     _.find(
                       AvailableTeams.byName[team],
-                      (t) => t.year == nextYear
+                      (t) => t.year == nextYear,
                     ) ||
                     _.find(AvailableTeams.byName[team], (t) => t.year == year);
                   const confFromTeam =
