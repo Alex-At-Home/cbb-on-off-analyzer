@@ -1215,6 +1215,12 @@ export class RapmUtils {
       0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75,
       4.0,
     ];
+    // consider adding some more for single game RAPM (and maybe space existing ones out?)
+    // (maybe only for offense? Defense is already quite boring normally)
+    // eg
+    // [
+    //   0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5,
+    // ];
     const firstNonDiagLambdaIndex = 3;
     const usedLambdaRange = _.thru(
       ctx.config.fixedRegression,

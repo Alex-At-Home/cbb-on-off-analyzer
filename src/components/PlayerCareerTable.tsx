@@ -134,7 +134,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     efficiencyAverages[genderYearLookup] || efficiencyAverages.fallback;
 
   const [similarPlayers, setSimilarPlayers] = useState<IndivCareerStatSet[]>(
-    []
+    [],
   );
   const [retrievingPlayers, setRetrievingPlayers] = useState<boolean>(false);
   const [similarityDiagnostics, setSimilarityDiagnostics] = useState<
@@ -161,23 +161,23 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         playerCareerParams.unpinnedIds?.split(",").filter((id) => id.trim()) ||
         [];
       return new Set(unpinnedIds);
-    }
+    },
   );
 
   // Filter state
   const [filterStr, setFilterStr] = useState<string>(
-    playerCareerParams.filterStr || ParamDefaults.defaultFilterStr
+    playerCareerParams.filterStr || ParamDefaults.defaultFilterStr,
   );
   const [showPinnedOnly, setShowPinnedOnly] = useState<boolean>(
-    playerCareerParams.showPinnedOnly || ParamDefaults.defaultShowPinnedOnly
+    playerCareerParams.showPinnedOnly || ParamDefaults.defaultShowPinnedOnly,
   );
   const [showSimilaritySliders, setShowSimilaritySliders] = useState<boolean>(
     playerCareerParams.showSimilaritySliders ??
-      ParamDefaults.defaultShowSimilaritySliders
+      ParamDefaults.defaultShowSimilaritySliders,
   );
   const [separatePlayerSeasons, setSeparatePlayerSeasons] = useState<boolean>(
     playerCareerParams.separatePlayerSeasons ??
-      ParamDefaults.defaultSeparatePlayerSeasons
+      ParamDefaults.defaultSeparatePlayerSeasons,
   );
 
   const [comparisonPlayer, setComparisonPlayer] = useState<
@@ -192,7 +192,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     .map((fragment) => _.trim(fragment))
     .filter((fragment) => (fragment ? true : false));
   const filterFragmentsPve = filterFragments.filter(
-    (fragment) => fragment[0] != "-"
+    (fragment) => fragment[0] != "-",
   );
   const filterFragmentsNve = filterFragments
     .filter((fragment) => fragment[0] == "-")
@@ -209,7 +209,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     };
     return (
       `${player.key || ""}:${usefulFormatBuilder(
-        `${player.code || ""}+${firstName}`
+        `${player.code || ""}+${firstName}`,
       )} ${usefulFormatBuilder(player.code || "")}` +
       (player.roster?.ncaa_id
         ? ` ${player.code || ""}_${player.roster?.ncaa_id || ""}`
@@ -231,14 +231,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       (filterFragmentsPve.length == 0 ||
         (_.find(
           filterFragmentsPve,
-          (fragment) => strToTest.indexOf(fragment) >= 0
+          (fragment) => strToTest.indexOf(fragment) >= 0,
         )
           ? true
           : false)) &&
       (filterFragmentsNve.length == 0 ||
         (_.find(
           filterFragmentsNve,
-          (fragment) => strToTest.indexOf(fragment) >= 0
+          (fragment) => strToTest.indexOf(fragment) >= 0,
         )
           ? false
           : true));
@@ -251,8 +251,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showPinnedOnly
       ? pinnedPlayers
       : _.isEmpty(similarPlayers)
-      ? pinnedPlayers
-      : similarPlayers
+        ? pinnedPlayers
+        : similarPlayers,
   );
   const firstSimilarOrPinnedPlayer =
     comparisonPlayer ||
@@ -346,7 +346,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         };
       }
       return baseConfig;
-    }
+    },
   );
   const [showSimilaritySettings, setShowSimilaritySettings] =
     useState<boolean>(false);
@@ -356,7 +356,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showGrades, setShowGrades] = useState(
     _.isNil(playerCareerParams.showGrades)
       ? ParamDefaults.defaultEnabledGrade
-      : playerCareerParams.showGrades
+      : playerCareerParams.showGrades,
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);
@@ -368,14 +368,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showPlayerPlayTypes, setShowPlayerPlayTypes] = useState(
     _.isNil(playerCareerParams.showPlayerPlayTypes)
       ? false
-      : playerCareerParams.showPlayerPlayTypes
+      : playerCareerParams.showPlayerPlayTypes,
   );
   const [showPlayerPlayTypesAdjPpp, setShowPlayerPlayTypesAdjPpp] =
     useState<boolean>(playerCareerParams.showPlayerPlayTypesAdjPpp ?? true);
   const [showPlayerPlayTypesPlayType, setShowPlayerPlayTypesPlayType] =
     useState<string | undefined>(
       playerCareerParams.showPlayerPlayTypesPlayType ??
-        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType,
     );
   //TODO CSV of yearly quickSwitch options
 
@@ -383,7 +383,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [showShotCharts, setShowShotCharts] = useState<boolean>(
     _.isNil(playerCareerParams.playerShotCharts)
       ? false
-      : playerCareerParams.playerShotCharts
+      : playerCareerParams.playerShotCharts,
   );
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
@@ -398,25 +398,25 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const [expandedView, setExpandedView] = useState(
     _.isNil(playerCareerParams.showExpanded)
       ? ParamDefaults.defaultPlayerShowExpanded
-      : playerCareerParams.showExpanded
+      : playerCareerParams.showExpanded,
   );
 
   /** Show the number of possessions as a % of total team count */
   const [possAsPct, setPossAsPct] = useState(
     _.isNil(playerCareerParams.possAsPct)
       ? ParamDefaults.defaultPlayerPossAsPct
-      : playerCareerParams.possAsPct
+      : playerCareerParams.possAsPct,
   );
   /** Show the number of possessions as a % of total team count */
   const [factorMins, setFactorMins] = useState(
     _.isNil(playerCareerParams.factorMins)
       ? ParamDefaults.defaultPlayerFactorMins
-      : playerCareerParams.factorMins
+      : playerCareerParams.factorMins,
   );
 
   /** T100 and conf */
   const [showAll, setShowAll] = useState(
-    _.isNil(playerCareerParams.d1) ? true : playerCareerParams.d1
+    _.isNil(playerCareerParams.d1) ? true : playerCareerParams.d1,
   );
   const [showT100, setShowT100] = useState(playerCareerParams.t100 || false);
   const [showConf, setShowConf] = useState(playerCareerParams.conf || false);
@@ -426,48 +426,48 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       (playerCareerParams.yearsToShow || "")
         .split(",")
         .map(_.trim)
-        .filter((p) => !_.isEmpty(p))
-    )
+        .filter((p) => !_.isEmpty(p)),
+    ),
   );
 
   /** The NCAA id corresponding to yearsToShow */
   const [currNcaaId, setCurrNcaaId] = useState<string | undefined>(
-    playerCareerParams.ncaaId
+    playerCareerParams.ncaaId,
   );
 
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
-    playerCareerParams.showInfoSubHeader || false
+    playerCareerParams.showInfoSubHeader || false,
   );
 
   /** Whether to show next year data for similar players */
   const [showNextYear, setShowNextYear] = useState(
-    playerCareerParams.showNextYear ?? ParamDefaults.defaultShowNextYear
+    playerCareerParams.showNextYear ?? ParamDefaults.defaultShowNextYear,
   );
 
   /** Whether to enable diff mode (focus UI on comparing source player vs comps) */
   const [diffMode, setDiffMode] = useState(
-    playerCareerParams.diffMode ?? ParamDefaults.defaultDiffMode
+    playerCareerParams.diffMode ?? ParamDefaults.defaultDiffMode,
   );
 
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
-    true as boolean
+    true as boolean,
   ); //(always defaults to on)
 
   /** Whether to make the quick toggle bar stick (default: on) - TODO: unused currently */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(playerCareerParams.stickyQuickToggle)
       ? true
-      : playerCareerParams.stickyQuickToggle
+      : playerCareerParams.stickyQuickToggle,
   );
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    playerCareerParams.tablePreset
+    playerCareerParams.tablePreset,
   );
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
-    playerCareerParams.tableConfigExtraCols || []
+    playerCareerParams.tableConfigExtraCols || [],
   );
   /** Disabled table columns */
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
@@ -475,13 +475,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   >(playerCareerParams.tableConfigDisabledCols);
   const anyTableOverride = Boolean(
     tablePreset ||
-      !_.isEmpty(tableConfigExtraCols) ||
-      !_.isEmpty(tableConfigDisabledCols)
+    !_.isEmpty(tableConfigExtraCols) ||
+    !_.isEmpty(tableConfigDisabledCols),
   ); //(only works because there is no memo over the table)
 
   /** Selected player for comparison in diff mode - TODO probably can simplify by removing this and using comparisonPlayer.key? */
   const [diffQuickSwitch, setDiffQuickSwitch] = useState(
-    playerCareerParams.diffQuickSwitch ?? ParamDefaults.defaultDiffQuickSwitch
+    playerCareerParams.diffQuickSwitch ?? ParamDefaults.defaultDiffQuickSwitch,
   );
 
   /** If changing player to show clear selection */
@@ -518,21 +518,24 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // 2] Data Model
 
   const playerSeasonInfo = _.chain(playerSeasons)
-    .transform((acc, v) => {
-      const year = v.year;
-      if (year) {
-        const playerYear = acc[year] || {};
-        const playerId: string = (v as any)._id;
-        if (_.endsWith(playerId, "_all")) {
-          playerYear.season = v;
-        } else if (_.endsWith(playerId, "_conf")) {
-          playerYear.conf = v;
-        } else if (_.endsWith(playerId, "_t100")) {
-          playerYear.t100 = v;
+    .transform(
+      (acc, v) => {
+        const year = v.year;
+        if (year) {
+          const playerYear = acc[year] || {};
+          const playerId: string = (v as any)._id;
+          if (_.endsWith(playerId, "_all")) {
+            playerYear.season = v;
+          } else if (_.endsWith(playerId, "_conf")) {
+            playerYear.conf = v;
+          } else if (_.endsWith(playerId, "_t100")) {
+            playerYear.t100 = v;
+          }
+          acc[year] = playerYear;
         }
-        acc[year] = playerYear;
-      }
-    }, {} as Record<string, IndivCareerInfo>)
+      },
+      {} as Record<string, IndivCareerInfo>,
+    )
     .toPairs()
     .orderBy(([key, __]) => key, "desc")
     .value();
@@ -643,7 +646,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       const yearsToCheck = _.uniq(
         playerSeasons
           .map((info) => info.year || "")
-          .concat(similarPlayers.map((info) => info.year || ""))
+          .concat(similarPlayers.map((info) => info.year || "")),
       );
       yearsToCheck
         .filter((y) => y != "")
@@ -678,7 +681,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   [yearToCheck]: newCache,
                 }));
                 setDivisionStatsRefresh((curr) => curr + 1);
-              }
+              },
             );
           }
 
@@ -707,7 +710,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     setDivisionStatsRefresh((curr) => curr + 1);
                   },
                   undefined,
-                  maybePosGroup
+                  maybePosGroup,
                 );
               }
             }
@@ -735,7 +738,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   /** Teams for selected seasons */
   const selectedYearsChain = _.chain(playerSeasonInfo).filter(
-    (info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0])
+    (info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0]),
   );
   const currPlayerSelected = playerSimilarityMode
     ? selectedYearsChain
@@ -779,12 +782,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     return response
                       .json()
                       .then((json: any) => [json, response.ok, response]);
-                  }
+                  },
                 );
               },
               Number.NaN, //(bypass cache)
-              isDebug
-            )
+              isDebug,
+            ),
           );
 
           allPromises
@@ -813,7 +816,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const selectedYearsDataTypeChain: [
     string,
     DataType | undefined,
-    IndivCareerStatSet
+    IndivCareerStatSet,
   ][] = selectedYearsChain
     .flatMap(([year, playerCareerInfo]) => {
       return (
@@ -824,12 +827,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         .concat(
           showConf && playerCareerInfo.conf
             ? [[year, "Conf Stats", playerCareerInfo.conf]]
-            : []
+            : [],
         )
         .concat(
           showT100 && playerCareerInfo.t100
             ? [[year, "vs T100", playerCareerInfo.t100]]
-            : []
+            : [],
         ) as [string, DataType | undefined, IndivCareerStatSet][];
     })
     .value();
@@ -843,15 +846,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   /** Ugh covid year messes up using player/class as a unique-ish key */
   const multiYearClassPlayers = _.chain(similarPlayers.concat(pinnedPlayers))
-    .transform((acc, v) => {
-      const _id = v._id as string;
-      const title = `${v.key} (${v.roster?.year_class || "??"}`; //(deliberately missing ) see below
-      if (acc[title]) {
-        acc[title].push(_id);
-      } else {
-        acc[title] = [_id];
-      }
-    }, {} as Record<string, string[]>)
+    .transform(
+      (acc, v) => {
+        const _id = v._id as string;
+        const title = `${v.key} (${v.roster?.year_class || "??"}`; //(deliberately missing ) see below
+        if (acc[title]) {
+          acc[title].push(_id);
+        } else {
+          acc[title] = [_id];
+        }
+      },
+      {} as Record<string, string[]>,
+    )
     .mapValues((v) => _.uniq(v).length > 1)
     .pickBy((v, key) => v)
     .value();
@@ -872,7 +878,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     topYear: boolean,
     titleOverride?: DataType,
     titleSuffix?: DataType,
-    playerDiffMode?: boolean
+    playerDiffMode?: boolean,
   ): GenericTableRow[] => {
     // Misc stats
 
@@ -883,7 +889,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     //(they are in format {pg,sg,sf,pf,c} from this index so we can use them for searching)
     const posFreqs = ["pg", "sg", "sf", "pf", "c"].map(
-      (pos) => (player.posFreqs as unknown as Record<string, number>)[pos] || 0
+      (pos) => (player.posFreqs as unknown as Record<string, number>)[pos] || 0,
     );
     const posBreakdown =
       _.size(posFreqs) >= 5
@@ -902,7 +908,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           player.posClass || "G?",
           "season",
           true,
-          posBreakdown
+          posBreakdown,
         )}
       >
         <small>
@@ -977,7 +983,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     // Inject like this so we don't need to recalculate every time
     if (!player.off_style && player.style) {
       (player as any).off_style = PlayTypeUtils.compressIndivPlayType(
-        player.style //(quick hack to re-use PlayerLeaderboardTable logic)
+        player.style, //(quick hack to re-use PlayerLeaderboardTable logic)
       );
     }
 
@@ -999,7 +1005,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               showTeamPlayTypes: true,
               teamPlayTypeConfig: `||${player.code}||all||multi||`,
             },
-            {}
+            {},
           )}
         >
           Team View<sup>*</sup>
@@ -1033,8 +1039,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       showPinnedOnly
         ? pinnedPlayers
         : _.isEmpty(similarPlayers)
-        ? pinnedPlayers
-        : similarPlayers
+          ? pinnedPlayers
+          : similarPlayers
     )
       .filter((p) => !unpinnedPlayerIds.has(p._id as string))
       .filter(filterPlayer);
@@ -1051,7 +1057,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             avgEfficiency:
               efficiencyAverages[
                 `${playerCareerParams.gender}_${DateUtils.getLongFormYear(
-                  currPlayerSelected.year || ""
+                  currPlayerSelected.year || "",
                 )}`
               ] || efficiencyAverages.fallback,
             showGrades,
@@ -1060,7 +1066,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             compressedPlayTypeStats: currPlayerSelected.off_style as any,
             navigationLinkOverride: navigationOverride(
               DateUtils.fullYearFromShortYear(currPlayerSelected.year || "") ||
-                ""
+                "",
             ),
           },
         ];
@@ -1073,7 +1079,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           avgEfficiency:
             efficiencyAverages[
               `${playerCareerParams.gender}_${DateUtils.getLongFormYear(
-                player.year || ""
+                player.year || "",
               )}`
             ] || efficiencyAverages.fallback,
           showGrades,
@@ -1081,7 +1087,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           showHelp,
           compressedPlayTypeStats: player.off_style as any,
           navigationLinkOverride: navigationOverride(
-            DateUtils.fullYearFromShortYear(player.year || "") || ""
+            DateUtils.fullYearFromShortYear(player.year || "") || "",
           ),
         }));
       } else {
@@ -1093,14 +1099,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             const infix = !dataType
               ? "All"
               : dataType == "Conf Stats"
-              ? "Conf"
-              : "T100";
+                ? "Conf"
+                : "T100";
 
             // Inject like this so we don't need to recalculate every time
             if (!playerSeason.off_style && playerSeason.style) {
               (playerSeason as any).off_style =
                 PlayTypeUtils.compressIndivPlayType(
-                  playerSeason.style //(quick hack to re-use PlayerLeaderboardTable logic)
+                  playerSeason.style, //(quick hack to re-use PlayerLeaderboardTable logic)
                 );
             }
 
@@ -1112,7 +1118,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               avgEfficiency:
                 efficiencyAverages[
                   `${playerCareerParams.gender}_${DateUtils.getLongFormYear(
-                    year
+                    year,
                   )}`
                 ] || efficiencyAverages.fallback,
               showGrades,
@@ -1120,7 +1126,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               showHelp,
               compressedPlayTypeStats: playerSeason.off_style as any,
               navigationLinkOverride: navigationOverride(
-                DateUtils.fullYearFromShortYear(year) || ""
+                DateUtils.fullYearFromShortYear(year) || "",
               ),
             };
           });
@@ -1132,7 +1138,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     // Inject like this so we don't need to recalculate every time
     if (!player.off_shots && player.shotInfo) {
       (player as any).off_shots = ShotChartUtils.decompressHexData(
-        player.shotInfo as any
+        player.shotInfo as any,
       );
     }
 
@@ -1161,8 +1167,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             const infix = !dataType
               ? "All"
               : dataType == "Conf Stats"
-              ? "Conf"
-              : "T100";
+                ? "Conf"
+                : "T100";
 
             // Inject like this so we don't need to recalculate every time
             if (!playerSeason.off_shots && playerSeason.shotInfo) {
@@ -1193,7 +1199,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             mediumTier: divisionStatsCacheByYear.Medium,
             lowTier: divisionStatsCacheByYear.Low,
           },
-          positionalStatsCache[player.year || ParamDefaults.defaultYear] || {}
+          positionalStatsCache[player.year || ParamDefaults.defaultYear] || {},
         );
 
       const predictedGrades = tierToUse
@@ -1201,14 +1207,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             tierToUse,
             player,
             _.keys(GradeUtils.playerFields),
-            gradeFormat == "rank"
+            gradeFormat == "rank",
           )
         : {};
 
       GradeTableUtils.injectPlayerSampleSizeDisclaimers(
         //(adds "extraInfo" to predicted grades)
         player,
-        predictedGrades
+        predictedGrades,
       );
       player.grades = predictedGrades;
     }
@@ -1219,21 +1225,21 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       titleSuffix == "Conf Stats"
         ? " (Conf)"
         : titleSuffix == "vs T100"
-        ? " (T100)"
-        : "";
+          ? " (T100)"
+          : "";
     const confNickname = ConferenceToNickname[player.conf || "??"] || "???";
 
     const titleSuffixKey =
       titleSuffix == "Conf Stats"
         ? "conf"
         : titleSuffix == "vs T100"
-        ? "t100"
-        : "all";
+          ? "t100"
+          : "all";
     const adjMarginShadow = CommonTableDefs.getTextShadow(
       { value: adjMargin },
       CbbColors.diff10_p100_redGreen[0],
       "20px",
-      4
+      4,
     );
     const adjMarginEl = (
       <OverlayTrigger
@@ -1267,14 +1273,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       ],
                       GradeTableUtils.getGradeType(showGrades),
                       true,
-                      true
+                      true,
                     )}
                   </div>
                 );
               } else {
                 return undefined;
               }
-            }
+            },
           )}
         </span>
       </OverlayTrigger>
@@ -1290,7 +1296,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               player.posClass || "??",
               "season",
               true,
-              posBreakdown
+              posBreakdown,
             )}
           >
             <small>{player.posClass || "??"}</small>
@@ -1321,7 +1327,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 playerShotCharts: showShotCharts,
                 showGrades: showGrades,
               },
-              {}
+              {},
             )}
           >
             <b>{titleOverride}</b>
@@ -1424,7 +1430,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       playerShotCharts: showShotCharts,
                       showGrades: showGrades,
                     },
-                    {}
+                    {},
                   )}
                 >
                   {player.team}
@@ -1454,7 +1460,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   defPrefixFn,
                   defCellMetaFn,
                   undefined,
-                  rosterInfoSpanCalculator
+                  rosterInfoSpanCalculator,
                 ),
               ]
             : [],
@@ -1473,7 +1479,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     onUnpinPlayer={() => unpinPlayer(player._id as string)}
                     onHidePlayer={() => hidePlayer(player._id as string)}
                   />,
-                  "p-0"
+                  "p-0",
                 ),
               ]
             : [],
@@ -1483,7 +1489,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
                   CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -1495,7 +1501,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   defPrefixFn,
                   defCellMetaFn,
                   undefined,
-                  rosterInfoSpanCalculator
+                  rosterInfoSpanCalculator,
                 ),
               ]
             : [],
@@ -1506,7 +1512,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 true,
                 undefined,
                 undefined,
-                true
+                true,
               )
             : [],
           diffMode && isPlayerCompSource && !_.isEmpty(similarOrPinnedPlayers)
@@ -1524,13 +1530,13 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       quickSwitch: string | undefined,
                       newTitle: string | undefined,
                       source: any,
-                      fromTimer: boolean
+                      fromTimer: boolean,
                     ) => {
                       setDiffQuickSwitch(newTitle || "");
                       setComparisonPlayer(
                         similarOrPinnedPlayers.find(
-                          (p) => playerTitle(p) == newTitle
-                        )
+                          (p) => playerTitle(p) == newTitle,
+                        ),
                       );
                     }}
                     quickSwitchTimer={undefined}
@@ -1538,7 +1544,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     modes={["extra_down"]}
                     theme={resolvedTheme}
                   />,
-                  "text-center small"
+                  "text-center small",
                 ),
               ]
             : [],
@@ -1575,7 +1581,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         off={
                           (player.off_shots ||
                             ShotChartUtils.decompressHexData(
-                              player.shotInfo as any
+                              player.shotInfo as any,
                             )) as any
                         }
                         def={{}}
@@ -1588,7 +1594,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           ...shotChartConfig,
                           quickSwitch: comparisonPlayer?.key
                             ? `${playerTitle(
-                                comparisonPlayer
+                                comparisonPlayer,
                               )}${quickSwitchDelim}extra`
                             : undefined,
                         }}
@@ -1602,11 +1608,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                               (p) =>
                                 p &&
                                 `${playerTitle(p)}${quickSwitchDelim}extra` ==
-                                  newOpts.quickSwitch
+                                  newOpts.quickSwitch,
                             );
                             setComparisonPlayer(newPlayer);
                             setDiffQuickSwitch(
-                              newPlayer ? playerTitle(newPlayer) : ""
+                              newPlayer ? playerTitle(newPlayer) : "",
                             );
                           }
                         }}
@@ -1618,7 +1624,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         }
                         quickSwitchAtBottom={diffMode && isPlayerCompSource}
                       />,
-                      "small"
+                      "small",
                     )
                   : GenericTableOps.buildTextRow(
                       <ShotZoneChartDiagView
@@ -1632,7 +1638,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           setShotChartConfig(newOpts);
                         }}
                       />,
-                      "small"
+                      "small",
                     ),
               ]
             : [],
@@ -1663,11 +1669,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         const newPlayer = similarOrPinnedPlayers.find(
                           (p) =>
                             `${playerTitle(p)}${quickSwitchDelim}extra` ==
-                            opts.quickSwitch
+                            opts.quickSwitch,
                         );
                         setComparisonPlayer(newPlayer);
                         setDiffQuickSwitch(
-                          newPlayer ? playerTitle(newPlayer) : ""
+                          newPlayer ? playerTitle(newPlayer) : "",
                         );
                       }
                     }}
@@ -1676,7 +1682,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                       rawPpp: !showPlayerPlayTypesAdjPpp,
                       quickSwitch: comparisonPlayer?.key
                         ? `${playerTitle(
-                            comparisonPlayer
+                            comparisonPlayer,
                           )}${quickSwitchDelim}extra`
                         : undefined,
                     }}
@@ -1694,7 +1700,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     }
                     quickSwitchAtBottom={diffMode && isPlayerCompSource}
                   />,
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -1715,7 +1721,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               year,
               topYear || showAll,
               showAll && !extraCharts ? "Conf Stats" : undefined,
-              "Conf Stats"
+              "Conf Stats",
             )
           : [];
       const t100Rows =
@@ -1725,7 +1731,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               year,
               topYear || showAll || showConf,
               (showAll || showConf) && !extraCharts ? "vs T100" : undefined,
-              "vs T100"
+              "vs T100",
             )
           : [];
 
@@ -1761,7 +1767,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const addPinnedPlayer = (
     ncaaId: string,
     gender: string,
-    maybeSingleSeason?: string
+    maybeSingleSeason?: string,
   ) => {
     const currentJsonEpoch =
       dataLastUpdated[`${gender}_${DateUtils.coreYears[0]}`] || -1;
@@ -1777,12 +1783,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               return response
                 .json()
                 .then((json: any) => [json, response.ok, response]);
-            }
+            },
           );
         },
         currentJsonEpoch,
-        isDebug
-      )
+        isDebug,
+      ),
     );
     allPromises.then((jsons) => {
       const playerJsons = (jsons?.[0]?.responses?.[0]?.hits?.hits || [])
@@ -1795,26 +1801,26 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           (p: any) =>
             !_.isEmpty(p) &&
             _.endsWith(p._id, "_all") &&
-            (!maybeSingleSeason || maybeSingleSeason == p._id)
+            (!maybeSingleSeason || maybeSingleSeason == p._id),
         );
 
       // The key should be the same everywhere so we'll pick the first one
       setPinnedPlayers((curr) => {
         const newPinnedPlayers = _.uniqBy(
           curr.concat(playerJsons),
-          (p) => p._id
+          (p) => p._id,
         );
         if (_.isEmpty(similarPlayers)) {
           // Special cutdown request similar players mode before we have a full dashboard
           setTimeout(
             () => requestSimilarPlayers(false, true, newPinnedPlayers),
-            0
+            0,
           );
         } else {
           // Just wait for pinned players and re-request
           setTimeout(
             () => requestSimilarPlayers(false, false, newPinnedPlayers),
-            0
+            0,
           );
         }
         return newPinnedPlayers;
@@ -1825,7 +1831,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // Helper functions for pinning/unpinning players
   const pinPlayer = (
     player: IndivCareerStatSet,
-    diag: SimilarityDiagnostics
+    diag: SimilarityDiagnostics,
   ) => {
     setPinnedPlayers((prev) => _.uniqBy([...prev, player], (p) => p._id));
     setPinnedPlayerDiags((prev) => ({
@@ -1872,7 +1878,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const requestSimilarPlayers = (
     showNextYearOverride?: boolean,
     pinnedPlayersOnlyMode?: boolean,
-    updatedPinnedPlayers?: IndivCareerStatSet[]
+    updatedPinnedPlayers?: IndivCareerStatSet[],
   ) => {
     if (currPlayerSelected) {
       const gender = playerCareerParams.gender || ParamDefaults.defaultGender;
@@ -1888,7 +1894,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       const similarityFilters =
         PlayerSimilarityUtils.buildSimilarityQueryFilters(
           currPlayerSelected,
-          similarityConfig
+          similarityConfig,
         );
 
       // Build style grades to help make decision
@@ -1902,7 +1908,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               possPctUsgDivisonStats,
               undefined,
               true,
-              true
+              true,
             )
           : undefined;
 
@@ -1933,7 +1939,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 size: PlayerSimilarityUtils.firstPassPlayersRetrieved,
                 queryVector:
                   PlayerSimilarityUtils.buildSimplePlayerSimilarityVector(
-                    currPlayerSelected
+                    currPlayerSelected,
                   ).join(","),
                 queryPos: currPlayerSelected.posClass,
                 extraSimilarityQuery: combinedQuery,
@@ -1952,12 +1958,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     return response
                       .json()
                       .then((json: any) => [json, response.ok, response]);
-                  }
+                  },
                 );
               },
               Number.NaN, //(bypass cache)
-              isDebug
-            )
+              isDebug,
+            ),
           ).then(async (jsons) => {
             // Parse lean candidate data from docvalue_fields (keep in flat format)
             const candidateHits = jsons?.[0]?.responses?.[0]?.hits?.hits || [];
@@ -1984,11 +1990,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               (candidate: any) =>
                 PlayerSimilarityUtils.buildUnweightedPlayerSimilarityVectorFromFlat(
                   candidate.fields,
-                  similarityConfig
-                ).vector
+                  similarityConfig,
+                ).vector,
             );
             const candidateIds = flatCandidates.map(
-              (c: any) => c._id as string
+              (c: any) => c._id as string,
             );
 
             const { diags, zScores } =
@@ -1998,7 +2004,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 candidateVectors,
                 (idx: number) => candidateIds[idx],
                 undefined,
-                possPctUsgGrades
+                possPctUsgGrades,
               );
 
             // Store in cache for future use
@@ -2040,7 +2046,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   candidateVectors,
                   (idx: number) => candidateIds[idx],
                   undefined,
-                  possPctUsgGrades
+                  possPctUsgGrades,
                 );
 
             if (pinnedPlayersOnlyMode && updatedPinnedPlayers) {
@@ -2054,7 +2060,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 },
                 updatedPinnedPlayers,
                 zScores,
-                possPctUsgGrades
+                possPctUsgGrades,
               );
               setPinnedPlayerDiags((curr) => ({
                 ...curr,
@@ -2073,7 +2079,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               let idsToFetch = [...topNIds];
               if (showNextYearOverride ?? showNextYear) {
                 const currentSeasonYear = parseInt(
-                  DateUtils.inSeasonYear.split("/")[0]
+                  DateUtils.inSeasonYear.split("/")[0],
                 );
                 topNIds.forEach((id) => {
                   const parts = id.split("_");
@@ -2103,12 +2109,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         return response
                           .json()
                           .then((json: any) => [json, response.ok, response]);
-                      }
+                      },
                     );
                   },
                   Number.NaN, //(bypass cache)
-                  isDebug
-                )
+                  isDebug,
+                ),
               );
 
               const fullDocsResponse = await fullDocsPromise;
@@ -2153,10 +2159,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               const pinnedPlayersToUse = updatedPinnedPlayers || pinnedPlayers;
               const allCandidates = _.uniqBy(
                 [...fullPlayers, ...pinnedPlayersToUse],
-                (p) => p._id
+                (p) => p._id,
               );
               const pinnedIdSet = new Set(
-                pinnedPlayersToUse.map((p) => p._id as string)
+                pinnedPlayersToUse.map((p) => p._id as string),
               );
               const finalResults = PlayerSimilarityUtils.findSimilarPlayers(
                 currPlayerSelected,
@@ -2168,20 +2174,20 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 },
                 allCandidates,
                 zScores,
-                possPctUsgGrades
+                possPctUsgGrades,
               );
 
               // Set results
               const formattedResults = finalResults.map((result) => result.obj);
               const diagnostics = finalResults.map(
-                (result) => result.diagnostics
+                (result) => result.diagnostics,
               );
               const pinnedIdDiags: Record<string, SimilarityDiagnostics> =
                 _.chain(formattedResults)
                   .flatMap((p, idx) =>
                     pinnedIdSet.has(p._id as string)
                       ? [{ _id: p._id as string, idx }]
-                      : []
+                      : [],
                   )
                   .map(({ _id, idx }) => [_id, diagnostics[idx]])
                   .fromPairs()
@@ -2226,7 +2232,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   // Convert to table row
   const similarityControlsRow = GenericTableOps.buildTextRow(
     similarityControlsComponent,
-    "text-center"
+    "text-center",
   );
 
   const playerFinderElement = (
@@ -2289,7 +2295,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               {playerFinderElement}
             </Col>
           </Row>,
-          "text-center"
+          "text-center",
         );
 
         return tableDataPhase1Chain
@@ -2359,7 +2365,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   </>
                 ) : undefined}
               </>,
-              "text-center"
+              "text-center",
             ),
           ])
           .concat(
@@ -2368,7 +2374,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               .filter(filterPlayer)
               .map((p) => ({ p, diags: pinnedPlayerDiags[p._id as string] }))
               .sortBy(({ p, diags }, i) =>
-                diags ? diags.totalSimilarity : -10000000
+                diags ? diags.totalSimilarity : -10000000,
               )
               .flatMap(({ p, diags }, i) => {
                 const players = playerRowBuilder(p, p.year || "????", i == 0);
@@ -2389,14 +2395,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                               onUnpinPlayer={() => unpinPlayer(p._id as string)}
                               onHidePlayer={() => hidePlayer(p._id as string)}
                             />,
-                            "p-0"
+                            "p-0",
                           ),
                         ]
-                      : []
+                      : [],
                   )
                   .concat([GenericTableOps.buildRowSeparator("1px")]);
               })
-              .value()
+              .value(),
           )
           .value();
       } else {
@@ -2462,7 +2468,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               </Col>
             )}
           </Row>,
-          "text-center"
+          "text-center",
         );
 
         const experimentButtonRow = showSimilaritySettings
@@ -2484,7 +2490,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   {playerFinderElement}
                 </Col>
               </Row>,
-              "text-center"
+              "text-center",
             )
           : null;
 
@@ -2497,11 +2503,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               similarPlayers
                 .filter(
                   (p) =>
-                    !Array.from(unpinnedPlayerIds).includes(p._id as string)
+                    !Array.from(unpinnedPlayerIds).includes(p._id as string),
                 )
                 .filter(filterPlayer)
                 .filter(
-                  (p) => !showPinnedOnly || pinnedPlayerDiags[p._id as string]
+                  (p) => !showPinnedOnly || pinnedPlayerDiags[p._id as string],
                 ),
               (p, i) => {
                 const players = playerRowBuilder(p, p.year || "????", i == 0);
@@ -2511,7 +2517,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   ? playerRowBuilder(
                       p.nextYear as IndivCareerStatSet,
                       (p.nextYear as any).year || "????",
-                      false
+                      false,
                     )
                   : [];
 
@@ -2528,7 +2534,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             playerId={p._id as string}
                             playerName={p.key}
                             isPinned={Boolean(
-                              pinnedPlayerDiags[p._id as string]
+                              pinnedPlayerDiags[p._id as string],
                             )}
                             isPinnedPlayersOnlyView={false}
                             onPinPlayer={() =>
@@ -2537,14 +2543,14 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             onUnpinPlayer={() => unpinPlayer(p._id as string)}
                             onHidePlayer={() => hidePlayer(p._id as string)}
                           />,
-                          "p-0"
+                          "p-0",
                         ),
                         GenericTableOps.buildRowSeparator("1px"),
                       ]
                     : [];
                 return players.concat(nextYearRows).concat(extraSimilarityRows);
-              }
-            )
+              },
+            ),
           )
           .concat(
             // Add muted players row if there are any unpinned players
@@ -2557,7 +2563,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                         {Array.from(unpinnedPlayerIds)
                           .map((playerId, index) => {
                             const mutedPlayer = similarPlayers.find(
-                              (p) => p._id === playerId
+                              (p) => p._id === playerId,
                             );
                             if (!mutedPlayer) return null;
 
@@ -2579,10 +2585,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                           .filter(Boolean)}
                       </small>
                     </div>,
-                    "small"
+                    "small",
                   ),
                 ]
-              : []
+              : [],
           )
           .value();
       }
@@ -2597,7 +2603,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       ? RosterTableUtils.buildInformationalSubheader(
           true,
           true,
-          resolvedTheme == "dark"
+          resolvedTheme == "dark",
         )
       : [];
 
@@ -2624,7 +2630,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         expandedView,
         possAsPct,
         factorMins,
-        true
+        true,
       )}
       tableData={maybeSubheaderRow.concat(tableData)}
       cellTooltipMode="none"
@@ -2684,12 +2690,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
-          }
+          },
         );
       } else {
         return { controlRow: undefined };
       }
-    }
+    },
   );
 
   const quickToggleBar = (
@@ -2725,7 +2731,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                   setYearsToShow(newYearSet);
                 }
               },
-            } as ToggleButtonItem)
+            }) as ToggleButtonItem,
         )
         .concat(
           [
@@ -2889,8 +2895,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     },
                   },
                 ]
-              : []
-          )
+              : [],
+          ),
         )}
     />
   );
