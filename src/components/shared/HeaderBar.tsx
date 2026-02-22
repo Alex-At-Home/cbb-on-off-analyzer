@@ -912,6 +912,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               gameReportTooltip,
               UrlRouting.getMatchupUrl({
                 ...getBaseFilterParams(common),
+                showBreakdownMinMaxRings: true,
                 showImpactBreakdown: true,
                 adjImpactStats: false,
                 impactPerGame: true,

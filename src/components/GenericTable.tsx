@@ -44,7 +44,7 @@ export type { TableColumnConfig };
 
 type GenericTableColorPickerFn = (
   val: any,
-  cellMeta: string
+  cellMeta: string,
 ) => string | undefined;
 export class GenericTableColProps {
   constructor(
@@ -54,12 +54,12 @@ export class GenericTableColProps {
     isTitle: boolean = false,
     formatter: (
       val: any,
-      key?: string
+      key?: string,
     ) => string | React.ReactNode = GenericTableOps.defaultFormatter,
     colorPicker: GenericTableColorPickerFn = GenericTableOps.defaultColorPicker,
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
     missingData: any | undefined = undefined,
-    className: string = ""
+    className: string = "",
   ) {
     this.colName = colName;
     this.toolTip = toolTip;
@@ -87,7 +87,7 @@ class GenericTableDataRow {
     prefixFn: (key: string) => string,
     cellMetaFn: (key: string, value: any) => string,
     tableFieldsOverride: Record<string, GenericTableColProps> | undefined,
-    colSpanOverride: undefined | ((key: string) => number)
+    colSpanOverride: undefined | ((key: string) => number),
   ) {
     this.dataObj = dataObj;
     this.prefixFn = prefixFn;
@@ -157,7 +157,7 @@ export class GenericTableOps {
     stat: { value?: number },
     colorMapper: (val: number) => string | undefined,
     radius: string = "15px",
-    strength = 3
+    strength = 3,
   ) => {
     const shadow = _.range(0, strength)
       .map((__) => `0px 0px ${radius} ${colorMapper(stat?.value || 0) || ""}`)
@@ -169,7 +169,7 @@ export class GenericTableOps {
 
   static readonly defaultFormatter = (val: any) => "" + val;
   static readonly offHighlightFormatter = (
-    formatter: (val: any) => string | React.ReactNode
+    formatter: (val: any) => string | React.ReactNode,
   ) => {
     return (val: any, key?: string) => {
       return _.startsWith(key, "off_") ? (
@@ -218,7 +218,7 @@ export class GenericTableOps {
     }
   };
   static readonly shadowPercentFormatter = (
-    colorOverride: (val: number) => string
+    colorOverride: (val: number) => string,
   ) => {
     return (val: any) => {
       return (
@@ -235,7 +235,7 @@ export class GenericTableOps {
   };
   /** Top row is %, bottom row is also % but has a shadow instead of a full background */
   static readonly dualRowPercentFormatter = (
-    colorOverride: (val: number) => string
+    colorOverride: (val: number) => string,
   ) => {
     return (val: any, key?: string) => {
       if (!key || key.startsWith("off_")) {
@@ -284,7 +284,7 @@ export class GenericTableOps {
   /** Single row uses a shadow and displays points */
   static readonly singleRowShadowPointsFormatter = (
     colorOverride: (val: number) => string | undefined,
-    intIfPossible: boolean = false
+    intIfPossible: boolean = false,
   ) => {
     return (val: any) => {
       const shouldBeInt = intIfPossible && !val.override;
@@ -293,7 +293,7 @@ export class GenericTableOps {
           style={{
             ...GenericTableOps.getTextShadow(
               { value: val?.colorOverride ?? val?.value },
-              colorOverride
+              colorOverride,
             ),
             ...(val.extraInfo ? { display: "inline" } : {}),
             fontSize: "0.875em", //(use this instead of small so as to inherit the fontWeight from the parent)
@@ -307,25 +307,25 @@ export class GenericTableOps {
   /** Dual row - both uses a shadow and displays points */
   static readonly doubleRowShadowPointsFormatter = (
     colorOverride: CbbColorTuple,
-    intIfPossible: boolean = false
+    intIfPossible: boolean = false,
   ) => {
     return (val: any, key?: string) => {
       if (!key || key.startsWith("off_")) {
         return GenericTableOps.singleRowShadowPointsFormatter(
           colorOverride[0],
-          intIfPossible
+          intIfPossible,
         )(val);
       } else {
         return GenericTableOps.singleRowShadowPointsFormatter(
           colorOverride[1],
-          intIfPossible
+          intIfPossible,
         )(val);
       }
     };
   }; /** Top row is %, bottom row is also % but has a shadow instead of a full background */
   static readonly dualRowPointsFormatter = (
     colorOverride: (val: number) => string,
-    intIfPossible: boolean
+    intIfPossible: boolean,
   ) => {
     return (val: any, key?: string) => {
       if (!key || key.startsWith("off_")) {
@@ -333,7 +333,7 @@ export class GenericTableOps {
       } else {
         return GenericTableOps.singleRowShadowPointsFormatter(
           colorOverride,
-          intIfPossible
+          intIfPossible,
         )(val);
       }
     };
@@ -364,19 +364,19 @@ export class GenericTableOps {
     tableFieldsOverride:
       | Record<string, GenericTableColProps>
       | undefined = undefined,
-    colSpanOverride: undefined | ((key: string) => number) = undefined
+    colSpanOverride: undefined | ((key: string) => number) = undefined,
   ): GenericTableRow {
     return new GenericTableDataRow(
       dataObj,
       prefixFn,
       cellMetaFn,
       tableFieldsOverride,
-      colSpanOverride
+      colSpanOverride,
     );
   }
   static buildTextRow(
     text: React.ReactNode,
-    className: string = ""
+    className: string = "",
   ): GenericTableRow {
     return new GenericTableTextRow(text, className);
   }
@@ -385,13 +385,13 @@ export class GenericTableOps {
   }
   static buildSubHeaderRow(
     cols: [React.ReactNode, number][],
-    className: string = ""
+    className: string = "",
   ): GenericTableRow {
     return new GenericTableSubHeaderRow(cols, className);
   }
   static buildHeaderRepeatRow(
     colRename: Record<string, string>,
-    className: string = ""
+    className: string = "",
   ): GenericTableRow {
     return new GenericTableRepeatHeaderRow(colRename, className);
   }
@@ -401,7 +401,7 @@ export class GenericTableOps {
   static addPctCol(
     colName: string | React.ReactNode,
     toolTip: string,
-    colorPicker: GenericTableColorPickerFn
+    colorPicker: GenericTableColorPickerFn,
   ) {
     return new GenericTableColProps(
       colName,
@@ -411,13 +411,13 @@ export class GenericTableOps {
       GenericTableOps.percentFormatter,
       colorPicker,
       GenericTableOps.defaultRowSpanCalculator,
-      undefined
+      undefined,
     );
   }
   static addPtsCol(
     colName: string | React.ReactNode,
     toolTip: string,
-    colorPicker: GenericTableColorPickerFn
+    colorPicker: GenericTableColorPickerFn,
   ) {
     return new GenericTableColProps(
       colName,
@@ -427,13 +427,13 @@ export class GenericTableOps {
       GenericTableOps.pointsFormatter,
       colorPicker,
       GenericTableOps.defaultRowSpanCalculator,
-      undefined
+      undefined,
     );
   }
   static addIntCol(
     colName: string | React.ReactNode,
     toolTip: string,
-    colorPicker: GenericTableColorPickerFn
+    colorPicker: GenericTableColorPickerFn,
   ) {
     return new GenericTableColProps(
       colName,
@@ -443,14 +443,14 @@ export class GenericTableOps {
       GenericTableOps.intFormatter,
       colorPicker,
       GenericTableOps.defaultRowSpanCalculator,
-      undefined
+      undefined,
     );
   }
   static addDataCol(
     colName: string | React.ReactNode,
     toolTip: string,
     colorPicker: GenericTableColorPickerFn,
-    formatter: (val: any, key?: string) => string | React.ReactNode
+    formatter: (val: any, key?: string) => string | React.ReactNode,
   ) {
     return new GenericTableColProps(
       colName,
@@ -460,7 +460,7 @@ export class GenericTableOps {
       formatter,
       colorPicker,
       GenericTableOps.defaultRowSpanCalculator,
-      undefined
+      undefined,
     );
   }
   static addTitle(
@@ -469,9 +469,9 @@ export class GenericTableOps {
     rowSpan: (key: string) => number = GenericTableOps.defaultRowSpanCalculator,
     className: string = "",
     colFormatterOverride: (
-      val: any
+      val: any,
     ) => string | React.ReactNode = GenericTableOps.defaultFormatter,
-    widthOverride: number = 8
+    widthOverride: number = 8,
   ) {
     return new GenericTableColProps(
       colName,
@@ -482,7 +482,7 @@ export class GenericTableOps {
       GenericTableOps.defaultColorPicker,
       rowSpan,
       undefined,
-      className
+      className,
     );
   }
   static addColSeparator(width: number = 0.5) {
@@ -499,7 +499,7 @@ export class GenericTableOps {
       | "__adj__"
       | "__raw__"
       | "__ft__",
-    width: number = 0.5
+    width: number = 0.5,
   ) {
     return new GenericTableColProps(specialCase, "", width);
   }
@@ -670,10 +670,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
 }) => {
   const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
-    (cellTooltipMode || "missing") as LockModes
+    (cellTooltipMode || "missing") as LockModes,
   );
   const [cellOverlayShowStates, setCellOverlayShowStates] = useState(
-    {} as Record<string, boolean>
+    {} as Record<string, boolean>,
   );
   const [showColumnConfig, setShowColumnConfig] = useState(false);
   const [columnConfig, setColumnConfig] = useState<
@@ -790,7 +790,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
     .reduce((acc, v) => acc + v);
 
   function renderTableHeaders(
-    maybeRepeatingHeader?: GenericTableRepeatHeaderRow
+    maybeRepeatingHeader?: GenericTableRepeatHeaderRow,
   ) {
     const isRepeatingHeaderRow = maybeRepeatingHeader != undefined;
     function insertCopyButton(insert: boolean) {
@@ -1063,7 +1063,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   }
   function renderTableRow(
     row: GenericTableDataRow,
-    mutableRowOffsetMap: Record<string, number>
+    mutableRowOffsetMap: Record<string, number>,
   ) {
     var rowIndex = 0;
     var tooltipColIndex = 0;
@@ -1091,7 +1091,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
           const bottomPctle = gradeSettings.bottomPctle || 0.25;
           const maybeAddWarning = (
             el: React.ReactNode,
-            extraInfo: string | undefined
+            extraInfo: string | undefined,
           ) => {
             if (extraInfo) {
               const tooltipId = `gradeTooltip_${rowIndex}_${prefixType}`;
@@ -1124,12 +1124,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
               if (samples > 0 && !_.isNil(maybePctile)) {
                 return maybeAddWarning(
                   GenericTableOps.gradeOrHtmlFormatter(tmpGrade),
-                  tmpGrade?.extraInfo
+                  tmpGrade?.extraInfo,
                 );
               } else if (!_.isNil(maybePctile)) {
                 return maybeAddWarning(
                   <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
-                  tmpGrade?.extraInfo
+                  tmpGrade?.extraInfo,
                 );
               } else {
                 return undefined;
@@ -1147,7 +1147,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             ) {
               return maybeAddWarning(
                 GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
-                tmpGrade?.extraInfo
+                tmpGrade?.extraInfo,
               );
             } else if (
               samples > 0 &&
@@ -1156,7 +1156,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             ) {
               return maybeAddWarning(
                 <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
-                tmpGrade?.extraInfo
+                tmpGrade?.extraInfo,
               );
             } else if (
               !_.isNil(maybePctile) &&
@@ -1164,7 +1164,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
             ) {
               return maybeAddWarning(
                 <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
-                tmpGrade?.extraInfo
+                tmpGrade?.extraInfo,
               );
             } else {
               return undefined;
@@ -1176,12 +1176,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
                 gradeSettings.exactRanks
                   ? GenericTableOps.gradeOrHtmlFormatter(tmpGrade)
                   : GenericTableOps.approxRankOrHtmlFormatter(tmpGrade),
-                tmpGrade?.extraInfo
+                tmpGrade?.extraInfo,
               );
             } else if (!_.isNil(maybePctile)) {
               return maybeAddWarning(
                 <small>{`${(pctile * 100).toFixed(0)}%`}</small>,
-                tmpGrade?.extraInfo
+                tmpGrade?.extraInfo,
               );
             } else {
               return undefined;
@@ -1201,17 +1201,17 @@ const GenericTable: React.FunctionComponent<Props> = ({
                 const cellMeta = row.cellMetaFn(key, tmpVal);
                 const actualResult = colProp.colorPicker(
                   { value: choice.valToTest },
-                  cellMeta
+                  cellMeta,
                 );
                 const matches = choice.expectedResult == actualResult;
                 return matches;
-              }
+              },
             );
             return colorChoice?.gradeColor(pctileToUse);
           } else {
             return undefined;
           }
-        }
+        },
       );
       const style = getRowStyle(
         key,
@@ -1219,12 +1219,12 @@ const GenericTable: React.FunctionComponent<Props> = ({
         colProp,
         row,
         !_.isNil(rankOrPctile),
-        gradeColorOverride
+        gradeColorOverride,
       );
       const valBuilder = (inVal: any) => {
         if (_.isNil(tmpVal)) {
           const maybeSpecialCase = GenericTableOps.maybeSpecialCase(
-            colProp.colName
+            colProp.colName,
           );
           if (maybeSpecialCase) {
             return (
@@ -1318,12 +1318,97 @@ const GenericTable: React.FunctionComponent<Props> = ({
             ? "left"
             : "right"
           : tooltipColIndex % 2 == 0
-          ? "top"
-          : "bottom";
+            ? "top"
+            : "bottom";
       const cellMeta = row.cellMetaFn(key, val);
       const rowSpan = colProp.rowSpan(cellMeta);
       const className = colProp.className;
       const colSpan = row.colSpanOverride ? row.colSpanOverride(key) : 1;
+      const ringedColor =
+        tmpVal?.ringed && typeof tmpVal.ringed === "string"
+          ? tmpVal.ringed
+          : undefined;
+      const mainContent =
+        cellTooltip != null ? (
+          lockMode == "row" || lockMode == "col" ? (
+            <GroupedOverlayTrigger
+              placement={placement}
+              show={cellOverlayShowStates[cellTooltipId]}
+              onShowOrHide={(show) =>
+                setCellOverlayShowStates({ [cellTooltipId]: show })
+              }
+              overlay={cellTooltip}
+            >
+              {addTooltipIndicator(val, tmpVal)}
+            </GroupedOverlayTrigger>
+          ) : (
+            <OverlayTrigger placement="auto" overlay={cellTooltip}>
+              {addTooltipIndicator(val, tmpVal)}
+            </OverlayTrigger>
+          )
+        ) : _.isString(val) ? (
+          val
+            .split("\n")
+            .map((l, index2) => <div key={"s" + `${index}_${index2}`}>{l}</div>)
+        ) : (
+          val
+        );
+      const tdChildren = ringedColor ? (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: "50%",
+            border: "1px solid black",
+            background: ringedColor,
+            padding: "3px",
+            boxSizing: "border-box",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              boxSizing: "border-box",
+              border: "1px solid black",
+              borderRadius: "50%",
+              background: style.backgroundColor ?? "transparent",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            {mainContent}
+            {rankOrPctile && (
+              <div
+                style={{
+                  textAlign: "center",
+                  fontSize: "0.8em",
+                  marginTop: "0px",
+                }}
+              >
+                {rankOrPctile}
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <>
+          {mainContent}
+          {rankOrPctile && (
+            <div
+              style={{
+                textAlign: "center",
+                fontSize: "0.8em",
+                marginTop: "0px",
+              }}
+            >
+              {rankOrPctile}
+            </div>
+          )}
+        </>
+      );
       return rowSpan > 0 && colSpan > 0 ? (
         <td
           className={className}
@@ -1337,46 +1422,15 @@ const GenericTable: React.FunctionComponent<Props> = ({
                   fontWeight: 550,
                 }
               : {}),
+            ...(ringedColor
+              ? {
+                  position: "relative" as const,
+                  padding: 0,
+                }
+              : {}),
           }}
         >
-          {cellTooltip != null ? (
-            lockMode == "row" || lockMode == "col" ? (
-              <GroupedOverlayTrigger
-                placement={placement}
-                show={cellOverlayShowStates[cellTooltipId]}
-                onShowOrHide={(show) =>
-                  setCellOverlayShowStates({ [cellTooltipId]: show })
-                }
-                overlay={cellTooltip}
-              >
-                {addTooltipIndicator(val, tmpVal)}
-              </GroupedOverlayTrigger>
-            ) : (
-              <OverlayTrigger placement="auto" overlay={cellTooltip}>
-                {addTooltipIndicator(val, tmpVal)}
-              </OverlayTrigger>
-            )
-          ) : _.isString(val) ? (
-            val
-              .split("\n")
-              .map((l, index2) => (
-                <div key={"s" + `${index}_${index2}`}>{l}</div>
-              ))
-          ) : (
-            //(if not string must be element)
-            val
-          )}
-          {rankOrPctile && (
-            <div
-              style={{
-                textAlign: "center",
-                fontSize: "0.8em",
-                marginTop: "0px",
-              }}
-            >
-              {rankOrPctile}
-            </div>
-          )}
+          {tdChildren}
         </td>
       ) : null;
     });
@@ -1453,7 +1507,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
     colProps: GenericTableColProps,
     row: GenericTableDataRow,
     hasRank: boolean,
-    gradeColorOverride?: string
+    gradeColorOverride?: string,
   ) {
     const backgroundColorFn = () => {
       if (!_.isNil(val)) {

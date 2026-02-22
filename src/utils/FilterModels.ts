@@ -149,6 +149,8 @@ export type MatchupFilterParams = {
   breakdownFilterStr?: string;
   /** Impact breakdown table: include walk-ons (<10% poss); default false */
   breakdownShowWalkOns?: boolean;
+  /** Impact breakdown table: ring min (red) / max (green) per stat; default false */
+  showBreakdownMinMaxRings?: boolean;
 };
 
 /** Combined params for game filtering - Don't forget need to update GameFilter as well when adding to here
@@ -751,6 +753,7 @@ export class ParamDefaults {
   static readonly defaultBreakdownLayout = "side-by-side";
   static readonly defaultBreakdownFilterStr = "";
   static readonly defaultBreakdownShowWalkOns = false;
+  static readonly defaultShowBreakdownMinMaxRings = false;
   // Timeline view (aggregated stints) defaults:
   static readonly defaultTimelineShowPoss = true;
   static readonly defaultTimelineShowUsage = true;

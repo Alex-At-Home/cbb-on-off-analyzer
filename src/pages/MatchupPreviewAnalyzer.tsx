@@ -352,6 +352,11 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
           ParamDefaults.defaultBreakdownShowWalkOns
           ? ["breakdownShowWalkOns"]
           : [],
+        _.isNil(rawParams.showBreakdownMinMaxRings) ||
+        rawParams.showBreakdownMinMaxRings ==
+          ParamDefaults.defaultShowBreakdownMinMaxRings
+          ? ["showBreakdownMinMaxRings"]
+          : [],
       ]),
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {

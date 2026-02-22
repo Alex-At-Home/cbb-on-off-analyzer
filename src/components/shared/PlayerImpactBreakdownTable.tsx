@@ -42,6 +42,8 @@ type Props = {
   adjBreakdownForSoS: boolean;
   scaleType: "P%" | "T%" | "/G";
   showWalkOns: boolean;
+  /** When true, ring min (red) / max (green) per stat across players (only if |value| >= 0.7; excludes Poss%, SoS, no max for TO, no min for AST/ORB) */
+  showMinMaxRings?: boolean;
 };
 
 const tableDefsBase = IndivTableDefs.impactDecompTable;
@@ -354,6 +356,60 @@ function buildPlayerRow(
   }
 }
 
+/** Stat keys we consider for min/max ringing (excludes Poss%, both SoS fields) */
+const RINGABLE_KEYS = [
+  "diff_adj_rapm",
+  "off_adj_rapm",
+  "def_adj_rapm",
+  "off_gravity_bonus",
+  "off_net_3p",
+  "off_net_mid",
+  "off_net_rim",
+  "off_net_ft",
+  "off_net_ast",
+  "off_net_to",
+  "off_net_orb",
+  "def_gravity_bonus",
+] as const;
+const NO_MAX_KEYS = new Set<string>(["off_net_to"]);
+const NO_MIN_KEYS = new Set<string>(["off_net_ast", "off_net_orb"]);
+const MIN_RING_THRESHOLD = 0.7;
+
+function applyMinMaxRings(
+  playerRowsData: Record<string, { value: number } | React.ReactNode>[],
+) {
+  for (const key of RINGABLE_KEYS) {
+    let minVal = Infinity;
+    let maxVal = -Infinity;
+    let minRow: Record<string, unknown> | null = null;
+    let maxRow: Record<string, unknown> | null = null;
+    for (const row of playerRowsData) {
+      const cell = row[key];
+      const num =
+        typeof cell === "object" && cell !== null && "value" in cell
+          ? (cell as { value: number }).value
+          : NaN;
+      if (!Number.isFinite(num)) continue;
+      if (num < minVal) {
+        minVal = num;
+        minRow = row as Record<string, unknown>;
+      }
+      if (num > maxVal) {
+        maxVal = num;
+        maxRow = row as Record<string, unknown>;
+      }
+    }
+    if (minRow && minVal <= -MIN_RING_THRESHOLD && !NO_MIN_KEYS.has(key)) {
+      const cell = minRow[key] as { value: number; ringed?: string };
+      if (cell && typeof cell === "object") cell.ringed = "red";
+    }
+    if (maxRow && maxVal >= MIN_RING_THRESHOLD && !NO_MAX_KEYS.has(key)) {
+      const cell = maxRow[key] as { value: number; ringed?: string };
+      if (cell && typeof cell === "object") cell.ringed = "green";
+    }
+  }
+}
+
 const dataColKeys = [
   "off_adj_rapm",
   "def_adj_rapm",
@@ -474,6 +530,7 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
   adjBreakdownForSoS,
   scaleType,
   showWalkOns,
+  showMinMaxRings = false,
   teamDisplay,
 }) => {
   const [sortBy, setSortBy] = React.useState(
@@ -519,6 +576,8 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
     ],
     [sortDir],
   );
+
+  if (showMinMaxRings) applyMinMaxRings(playerRowsData);
 
   const totalRowData = buildTotalRow(
     playerRowsData,

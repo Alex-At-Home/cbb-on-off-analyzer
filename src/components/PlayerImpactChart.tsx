@@ -42,7 +42,11 @@ import PlayerImpactBreakdownTable, {
   PlayerImpactPoint,
 } from "./shared/PlayerImpactBreakdownTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock, faFilter } from "@fortawesome/free-solid-svg-icons";
+import {
+  faLock,
+  faFilter,
+  faArrowsAltV,
+} from "@fortawesome/free-solid-svg-icons";
 import ThemedSelect from "./shared/ThemedSelect";
 import { useTheme } from "next-themes";
 import AsyncFormControl from "./shared/AsyncFormControl";
@@ -169,6 +173,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
       ? ParamDefaults.defaultBreakdownShowWalkOns
       : startingState.breakdownShowWalkOns,
   );
+  const [showBreakdownMinMaxRings, setShowBreakdownMinMaxRings] = useState(
+    _.isNil(startingState.showBreakdownMinMaxRings)
+      ? ParamDefaults.defaultShowBreakdownMinMaxRings
+      : startingState.showBreakdownMinMaxRings,
+  );
 
   // Filter breakdown table points (walk-ons excluded by default; optional text filter)
   const fragmentDelimiter = breakdownFilterStr.includes(";") ? ";" : ",";
@@ -272,6 +281,11 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
         breakdownShowWalkOns !== ParamDefaults.defaultBreakdownShowWalkOns
           ? breakdownShowWalkOns
           : undefined,
+      showBreakdownMinMaxRings:
+        showBreakdownMinMaxRings !==
+        ParamDefaults.defaultShowBreakdownMinMaxRings
+          ? showBreakdownMinMaxRings
+          : undefined,
     });
   }, [
     posClasses,
@@ -286,6 +300,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
     breakdownLayout,
     breakdownFilterStr,
     breakdownShowWalkOns,
+    showBreakdownMinMaxRings,
   ]);
 
   // RAPM building
@@ -1190,6 +1205,18 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                                 setAdjBreakdownForSoS(!adjBreakdownForSoS),
                             },
                             {
+                              label: (
+                                <FontAwesomeIcon icon={faArrowsAltV} />
+                              ),
+                              tooltip:
+                                "Highlight min / max values for each stat (if they are >0.7 from average)",
+                              toggled: showBreakdownMinMaxRings,
+                              onClick: () =>
+                                setShowBreakdownMinMaxRings(
+                                  !showBreakdownMinMaxRings,
+                                ),
+                            },
+                            {
                               label: "| ",
                               tooltip: "",
                               toggled: true,
@@ -1265,6 +1292,25 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                               toggled: adjBreakdownForSoS,
                               onClick: () =>
                                 setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                            },
+                            {
+                              label: "| ",
+                              tooltip: "",
+                              toggled: true,
+                              onClick: () => {},
+                              isLabelOnly: true,
+                            },
+                            {
+                              label: (
+                                <FontAwesomeIcon icon={faArrowsAltV} />
+                              ),
+                              tooltip:
+                                "Show min / max values for each stat (if they are >0.7 from average)",
+                              toggled: showBreakdownMinMaxRings,
+                              onClick: () =>
+                                setShowBreakdownMinMaxRings(
+                                  !showBreakdownMinMaxRings,
+                                ),
                             },
                             {
                               label: "| ",
@@ -1394,6 +1440,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       adjBreakdownForSoS={adjBreakdownForSoS}
                       scaleType={scaleType}
                       showWalkOns={breakdownShowWalkOns}
+                      showMinMaxRings={showBreakdownMinMaxRings}
                       teamDisplay={(teamId) => (
                         <img
                           style={{ width: 16, height: 16 }}
@@ -1426,6 +1473,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                           adjBreakdownForSoS={adjBreakdownForSoS}
                           scaleType={scaleType}
                           showWalkOns={breakdownShowWalkOns}
+                          showMinMaxRings={showBreakdownMinMaxRings}
                           avgEfficiency={avgEfficiency}
                           seasonStats={!!seasonStats}
                         />
@@ -1444,6 +1492,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                           adjBreakdownForSoS={adjBreakdownForSoS}
                           scaleType={scaleType}
                           showWalkOns={breakdownShowWalkOns}
+                          showMinMaxRings={showBreakdownMinMaxRings}
                           avgEfficiency={avgEfficiency}
                           seasonStats={!!seasonStats}
                         />
@@ -1472,6 +1521,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                       adjBreakdownForSoS={adjBreakdownForSoS}
                       scaleType={scaleType}
                       showWalkOns={breakdownShowWalkOns}
+                      showMinMaxRings={showBreakdownMinMaxRings}
                       avgEfficiency={avgEfficiency}
                       seasonStats={!!seasonStats}
                     />
@@ -1489,6 +1539,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                         adjBreakdownForSoS={adjBreakdownForSoS}
                         scaleType={scaleType}
                         showWalkOns={breakdownShowWalkOns}
+                        showMinMaxRings={showBreakdownMinMaxRings}
                         avgEfficiency={avgEfficiency}
                         seasonStats={!!seasonStats}
                       />
