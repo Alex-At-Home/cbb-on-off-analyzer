@@ -1211,9 +1211,14 @@ export class RapmUtils {
       def: defAdjPoss,
     };
     const pickRidgeThresh = { off: 0.061, def: 0.091 }; //(more confident in offensive priors)
+
     const lambdaRange = [
       0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75,
       4.0,
+    ];
+    const lowPossCountLambdaRange = [
+      0.7, 1.1, 1.5, 1.9, 2.3, 2.7, 3.1, 3.5, 3.9, 4.3, 4.7, 5.1, 5.5, 5.9, 6.3,
+      6.7,
     ];
     // consider adding some more for single game RAPM (and maybe space existing ones out?)
     // (maybe only for offense? Defense is already quite boring normally)
@@ -1222,21 +1227,29 @@ export class RapmUtils {
     //   0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5,
     // ];
     const firstNonDiagLambdaIndex = 3;
-    const usedLambdaRange = _.thru(
-      ctx.config.fixedRegression,
-      (fixedRegression) => {
-        if (fixedRegression < 0) {
-          return _.drop(lambdaRange, diagMode ? 0 : firstNonDiagLambdaIndex);
-        } else {
-          const lowerBound = lambdaRange[firstNonDiagLambdaIndex];
-          const upperBound = _.last(lambdaRange)!;
-          return [lowerBound + fixedRegression * (upperBound - lowerBound)];
-        }
-      },
-    );
     const testResults = (["off", "def"] as Array<"off" | "def">).map(
-      (offOrDef: "off" | "def") =>
-        _.transform(
+      (offOrDef: "off" | "def") => {
+        const isLowPossCountOff = ctx.offLineupPoss < 200 && offOrDef == "off";
+        const lambdaRangeToUse = isLowPossCountOff
+          ? lowPossCountLambdaRange
+          : lambdaRange;
+
+        const usedLambdaRange = _.thru(
+          ctx.config.fixedRegression,
+          (fixedRegression) => {
+            if (fixedRegression < 0) {
+              return _.drop(
+                lambdaRangeToUse,
+                diagMode ? 0 : firstNonDiagLambdaIndex,
+              );
+            } else {
+              const lowerBound = lambdaRangeToUse[firstNonDiagLambdaIndex];
+              const upperBound = _.last(lambdaRangeToUse)!;
+              return [lowerBound + fixedRegression * (upperBound - lowerBound)];
+            }
+          },
+        );
+        return _.transform(
           usedLambdaRange,
           (acc, lambda) => {
             const notFirstStep = lambda > usedLambdaRange[0];
@@ -1427,13 +1440,15 @@ export class RapmUtils {
                 const lastError = Math.abs(
                   (acc.lastAttempt.adjEffErr || adjEffErr) as number,
                 );
-                const errorExitThresh = 1.05;
+                const errorExitThresh = isLowPossCountOff ? 1.35 : 1.05; //(steps are bigger in low poss count mode)
 
                 // (if in diag mode we're injecting some extra steps at the start - can't actually pick them though)
                 const canPickPrev =
-                  !diagMode || lambda > lambdaRange[firstNonDiagLambdaIndex];
+                  !diagMode ||
+                  lambda > lambdaRangeToUse[firstNonDiagLambdaIndex];
                 const canPick =
-                  !diagMode || lambda >= lambdaRange[firstNonDiagLambdaIndex];
+                  !diagMode ||
+                  lambda >= lambdaRangeToUse[firstNonDiagLambdaIndex];
 
                 if (
                   canPickPrev &&
@@ -1507,7 +1522,8 @@ export class RapmUtils {
             lastAttempt: {} as Record<string, any>,
             foundLambda: false,
           },
-        ),
+        );
+      },
     );
     return [testResults[0].output, testResults[1].output];
   }
