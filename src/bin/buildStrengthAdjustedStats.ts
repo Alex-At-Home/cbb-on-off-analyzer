@@ -20,7 +20,7 @@ import { BatchMiscUtils } from "../utils/batch/BatchMiscUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 
 const TIERS = ["High", "Medium", "Low"] as const;
-const STRENGTH_ADJUSTED_FIELDS = ["efg", "3p", "2pmid", "2prim"] as const;
+const STRENGTH_ADJUSTED_FIELDS = ["efg", "3p", "2pmid", "2prim"];
 const MAX_ITERATIONS = 100;
 const TOLERANCE = 1e-6;
 const IMBALANCE_MIN = 1e-6;
@@ -79,12 +79,22 @@ function fieldKeys(field: string): { off: string; def: string } {
 }
 
 /** Per-game raw rate from opponent row. efg = (2pmid+2prim+1.5*3p)_made / FGA; 3p/2pmid/2prim = made/attempts. */
-function getPerGameRaw(opp: OpponentGame, field: string, side: "off" | "def"): number | undefined {
+function getPerGameRaw(
+  opp: OpponentGame,
+  field: string,
+  side: "off" | "def",
+): number | undefined {
   const pre = side === "off" ? "off_" : "def_";
   if (field === "efg") {
-    const a2m = (opp[`${pre}2pmid_attempts`] ?? 0) + (opp[`${pre}2prim_attempts`] ?? 0) + (opp[`${pre}3p_attempts`] ?? 0);
+    const a2m =
+      (opp[`${pre}2pmid_attempts`] ?? 0) +
+      (opp[`${pre}2prim_attempts`] ?? 0) +
+      (opp[`${pre}3p_attempts`] ?? 0);
     if (a2m <= 0) return undefined;
-    const made = (opp[`${pre}2pmid_made`] ?? 0) + (opp[`${pre}2prim_made`] ?? 0) + 1.5 * (opp[`${pre}3p_made`] ?? 0);
+    const made =
+      (opp[`${pre}2pmid_made`] ?? 0) +
+      (opp[`${pre}2prim_made`] ?? 0) +
+      1.5 * (opp[`${pre}3p_made`] ?? 0);
     return made / a2m;
   }
   if (field === "3p") {
@@ -106,11 +116,18 @@ function getPerGameRaw(opp: OpponentGame, field: string, side: "off" | "def"): n
 }
 
 /** Weight for this game/field/side: FGA for efg, 3PA for 3p, 2pmid_attempts for 2pmid, 2prim_attempts for 2prim; fallback off_poss/def_poss. */
-function getGameWeight(opp: OpponentGame, field: string, side: "off" | "def"): number {
+function getGameWeight(
+  opp: OpponentGame,
+  field: string,
+  side: "off" | "def",
+): number {
   const pre = side === "off" ? "off_" : "def_";
   let w = 0;
   if (field === "efg") {
-    w = (opp[`${pre}2pmid_attempts`] ?? 0) + (opp[`${pre}2prim_attempts`] ?? 0) + (opp[`${pre}3p_attempts`] ?? 0);
+    w =
+      (opp[`${pre}2pmid_attempts`] ?? 0) +
+      (opp[`${pre}2prim_attempts`] ?? 0) +
+      (opp[`${pre}3p_attempts`] ?? 0);
   } else if (field === "3p") {
     w = opp[`${pre}3p_attempts`] ?? 0;
   } else if (field === "2pmid") {
@@ -258,8 +275,10 @@ function computeOpponentStrengths(
       if (wOff <= 0 && wDef <= 0) continue;
 
       const oppAdj = adjValues.get(opp.oppo_name);
-      const oppDefX = oppAdj?.[field]?.def ?? getTeamRawFromPerGame(oppTeam, field).def;
-      const oppOffX = oppAdj?.[field]?.off ?? getTeamRawFromPerGame(oppTeam, field).off;
+      const oppDefX =
+        oppAdj?.[field]?.def ?? getTeamRawFromPerGame(oppTeam, field).def;
+      const oppOffX =
+        oppAdj?.[field]?.off ?? getTeamRawFromPerGame(oppTeam, field).off;
 
       if (wOff > 0 && typeof oppDefX === "number") {
         weightedOppDef += wOff * oppDefX;
@@ -335,14 +354,20 @@ function runIterativeAdjustmentWithHCA(
 
         const debugThisField = debug && (!debugField || field === debugField);
         if (debugThisField && iter < 3) {
-          console.log(`\n--- ${team.team_name} field=${field} iter=${iter} ---`);
+          console.log(
+            `\n--- ${team.team_name} field=${field} iter=${iter} ---`,
+          );
         }
 
         for (const opp of team.opponents ?? []) {
           const oppTeam = teamByName.get(opp.oppo_name);
           const oppAdj = oppTeam ? adjValues.get(opp.oppo_name) : undefined;
-          const oppDefX = oppAdj?.[field]?.def ?? (oppTeam ? getTeamRawFromPerGame(oppTeam, field).def : undefined);
-          const oppOffX = oppAdj?.[field]?.off ?? (oppTeam ? getTeamRawFromPerGame(oppTeam, field).off : undefined);
+          const oppDefX =
+            oppAdj?.[field]?.def ??
+            (oppTeam ? getTeamRawFromPerGame(oppTeam, field).def : undefined);
+          const oppOffX =
+            oppAdj?.[field]?.off ??
+            (oppTeam ? getTeamRawFromPerGame(oppTeam, field).off : undefined);
 
           const rawOffG = getPerGameRaw(opp, field, "off");
           const rawDefG = getPerGameRaw(opp, field, "def");
@@ -389,7 +414,9 @@ function runIterativeAdjustmentWithHCA(
           Math.abs(newDef - cur[field].def),
         );
         if (debugThisField && iter < 3) {
-          console.log(`  => team adj_off=${newOff.toFixed(4)} adj_def=${newDef.toFixed(4)}`);
+          console.log(
+            `  => team adj_off=${newOff.toFixed(4)} adj_def=${newDef.toFixed(4)}`,
+          );
         }
       }
       next.set(team.team_name, nextEntry);
@@ -403,7 +430,14 @@ function runIterativeAdjustmentWithHCA(
         sumOffDen = 0,
         sumDefNum = 0,
         sumDefDen = 0;
-      const debugContribs: { team: string; raw: number; pred: number; residual: number; imbalance: number; contrib: number }[] = [];
+      const debugContribs: {
+        team: string;
+        raw: number;
+        pred: number;
+        residual: number;
+        imbalance: number;
+        contrib: number;
+      }[] = [];
 
       for (const team of teams) {
         const splits = possSplits.get(team.team_name)!;
@@ -461,14 +495,28 @@ function runIterativeAdjustmentWithHCA(
       hcaPerField[field].hca_off = hcaOff;
       hcaPerField[field].hca_def = hcaDef;
 
-      if (debugTeamName && (!debugField || field === debugField) && debugContribs.length > 0) {
-        console.log(`\n--- HCA from residuals field=${field} (iter ${iter}) ---`);
-        console.log(`  Formula: hca = (raw - pred) / imbalance, weighted avg by |imbalance|`);
+      if (
+        debugTeamName &&
+        (!debugField || field === debugField) &&
+        debugContribs.length > 0
+      ) {
+        console.log(
+          `\n--- HCA from residuals field=${field} (iter ${iter}) ---`,
+        );
+        console.log(
+          `  Formula: hca = (raw - pred) / imbalance, weighted avg by |imbalance|`,
+        );
         debugContribs.forEach((c) => {
-          console.log(`  ${c.team}: raw=${c.raw.toFixed(4)} pred=${c.pred.toFixed(4)} residual=${c.residual.toFixed(4)} imbalance=${c.imbalance.toFixed(4)} contrib=${c.contrib.toFixed(4)}`);
+          console.log(
+            `  ${c.team}: raw=${c.raw.toFixed(4)} pred=${c.pred.toFixed(4)} residual=${c.residual.toFixed(4)} imbalance=${c.imbalance.toFixed(4)} contrib=${c.contrib.toFixed(4)}`,
+          );
         });
-        console.log(`  sumOffNum=${sumOffNum.toFixed(6)} sumOffDen=${sumOffDen.toFixed(6)} => hca_off=${hcaOff.toFixed(6)}`);
-        console.log(`  sumDefNum=${sumDefNum.toFixed(6)} sumDefDen=${sumDefDen.toFixed(6)} => hca_def=${hcaDef.toFixed(6)}`);
+        console.log(
+          `  sumOffNum=${sumOffNum.toFixed(6)} sumOffDen=${sumOffDen.toFixed(6)} => hca_off=${hcaOff.toFixed(6)}`,
+        );
+        console.log(
+          `  sumDefNum=${sumDefNum.toFixed(6)} sumDefDen=${sumDefDen.toFixed(6)} => hca_def=${hcaDef.toFixed(6)}`,
+        );
       }
     }
 
@@ -488,11 +536,20 @@ async function main(): Promise<void> {
     (commandLine.find((p) => p.startsWith("--year=")) ?? "").split("=")[1] ??
     "";
   const debugArg = commandLine.find((p) => p.startsWith("--debug="));
-  const debugTeamName = debugArg ? debugArg.split("=")[1]?.trim() || null : null;
+  const debugTeamName = debugArg
+    ? debugArg.split("=")[1]?.trim() || null
+    : null;
   const debugFieldArg = commandLine.find((p) => p.startsWith("--debug_field="));
-  let debugField: string | null = debugFieldArg ? debugFieldArg.split("=")[1]?.trim() || null : null;
-  if (debugField && !STRENGTH_ADJUSTED_FIELDS.includes(debugField)) {
-    console.error(`Invalid --debug_field=${debugField}; must be one of: ${STRENGTH_ADJUSTED_FIELDS.join(", ")}`);
+  let debugField: string | null = debugFieldArg
+    ? debugFieldArg.split("=")[1]?.trim() || null
+    : null;
+  if (
+    debugField &&
+    !(STRENGTH_ADJUSTED_FIELDS as string[]).includes(debugField)
+  ) {
+    console.error(
+      `Invalid --debug_field=${debugField}; must be one of: ${STRENGTH_ADJUSTED_FIELDS.join(", ")}`,
+    );
     process.exit(1);
   }
 
@@ -506,10 +563,14 @@ async function main(): Promise<void> {
   const rootFilePath = "./enrichedPlayers";
 
   if (debugTeamName) {
-    console.log(`Debug: printing calculation details for team "${debugTeamName}" only${debugField ? `, field=${debugField}` : ""}.`);
+    console.log(
+      `Debug: printing calculation details for team "${debugTeamName}" only${debugField ? `, field=${debugField}` : ""}.`,
+    );
   }
 
-  console.log(`Reading tier files from ${rootFilePath} for ${inGender} ${yearShort}...`);
+  console.log(
+    `Reading tier files from ${rootFilePath} for ${inGender} ${yearShort}...`,
+  );
   const teamByName = new Map<string, TeamDetail>();
 
   for (const tier of TIERS) {
@@ -538,7 +599,10 @@ async function main(): Promise<void> {
     possSplits.set(t.team_name, computePossessionSplits(t));
   }
 
-  const leagueAverages = computeLeagueAveragesFromPerGame(teams, STRENGTH_ADJUSTED_FIELDS);
+  const leagueAverages = computeLeagueAveragesFromPerGame(
+    teams,
+    STRENGTH_ADJUSTED_FIELDS,
+  );
   const { adjValues, hcaPerField } = runIterativeAdjustmentWithHCA(
     teams,
     teamByName,
