@@ -287,7 +287,7 @@ export class LineupTableUtils {
           if (p.off_adj_rtg) {
             p.off_adj_rtg.value = p.diag_off_rtg.adjORtgPlus;
             if (maybeRawVals) {
-              p.off_rtg.old_value = maybeRawVals[1];
+              p.off_adj_rtg.old_value = maybeRawVals[1];
             }
           }
           if (p.off_adj_prod) {
