@@ -9,7 +9,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
   </b>
    adj_off=[
   <b>
-    4.59
+    2.67
   </b>
   ], adj_def=[
   <b>
@@ -91,7 +91,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
       <li>
          + POST RAPM adjustment: off=[
         <b>
-          0.00
+          -1.92
         </b>
         ], def=[
         <b>
@@ -99,7 +99,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
         </b>
         ], total=[
         <b>
-          0.47
+          -1.45
         </b>
         ]
       </li>
@@ -178,7 +178,7 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
             </b>
             ]) sums to the team value: off=[
             <b>
-              0.00
+              -1.92
             </b>
             ], def=[
             <b>
@@ -226,7 +226,8 @@ Object {
     "removalPct": 0,
   },
   "defLineupPoss": 944,
-  "numLineups": 5,
+  "numDefLineups": 5,
+  "numOffLineups": 5,
   "numPlayers": 8,
   "offLineupPoss": 959,
   "playerToCol": Object {
@@ -241,8 +242,8 @@ Object {
   },
   "priorInfo": Object {
     "basis": Object {
-      "def": -0.6000000000000001,
-      "off": 0.6000000000000001,
+      "def": 0,
+      "off": 0,
     },
     "includeStrong": Object {},
     "keyUsed": "value",
@@ -259,7 +260,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 5.1,
+        "off_adj_ppp": 4.5,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -277,7 +278,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 5.6,
+        "off_adj_ppp": 5,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -295,7 +296,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -313,7 +314,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -331,7 +332,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -349,7 +350,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -367,7 +368,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -385,7 +386,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -395,51 +396,51 @@ Object {
     ],
     "playersWeak": Array [
       Object {
-        "def_adj_ppp": -5.1,
-        "off_adj_ppp": 5.1,
-        "off_adj_ppp_alt": -20.264782871120424,
+        "def_adj_ppp": -4.5,
+        "off_adj_ppp": 4.5,
+        "off_adj_ppp_alt": -20.864782871120426,
         "off_usage": 0.20864782871120427,
       },
       Object {
-        "def_adj_ppp": -5.6,
-        "off_adj_ppp": 5.6,
-        "off_adj_ppp_alt": -24.4546350615718,
+        "def_adj_ppp": -5,
+        "off_adj_ppp": 5,
+        "off_adj_ppp_alt": -25.0546350615718,
         "off_usage": 0.250546350615718,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
     ],
@@ -468,7 +469,8 @@ Object {
     "removalPct": 0.2,
   },
   "defLineupPoss": 944,
-  "numLineups": 5,
+  "numDefLineups": 5,
+  "numOffLineups": 5,
   "numPlayers": 6,
   "offLineupPoss": 959,
   "playerToCol": Object {
@@ -481,8 +483,8 @@ Object {
   },
   "priorInfo": Object {
     "basis": Object {
-      "def": -0.6000000000000001,
-      "off": 0.6000000000000001,
+      "def": 0,
+      "off": 0,
     },
     "includeStrong": Object {},
     "keyUsed": "value",
@@ -499,7 +501,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 5.1,
+        "off_adj_ppp": 4.5,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -517,7 +519,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 5.6,
+        "off_adj_ppp": 5,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -535,7 +537,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -553,7 +555,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -571,7 +573,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -589,7 +591,7 @@ Object {
         "off_2primr": undefined,
         "off_3p": undefined,
         "off_3pr": undefined,
-        "off_adj_ppp": 0.6000000000000001,
+        "off_adj_ppp": 0,
         "off_assist": undefined,
         "off_efg": undefined,
         "off_ftr": undefined,
@@ -599,39 +601,39 @@ Object {
     ],
     "playersWeak": Array [
       Object {
-        "def_adj_ppp": -5.1,
-        "off_adj_ppp": 5.1,
-        "off_adj_ppp_alt": -20.264782871120424,
+        "def_adj_ppp": -4.5,
+        "off_adj_ppp": 4.5,
+        "off_adj_ppp_alt": -20.864782871120426,
         "off_usage": 0.20864782871120427,
       },
       Object {
-        "def_adj_ppp": -5.6,
-        "off_adj_ppp": 5.6,
-        "off_adj_ppp_alt": -24.4546350615718,
+        "def_adj_ppp": -5,
+        "off_adj_ppp": 5,
+        "off_adj_ppp_alt": -25.0546350615718,
         "off_usage": 0.250546350615718,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
       Object {
-        "def_adj_ppp": -0.6000000000000001,
-        "off_adj_ppp": 0.6000000000000001,
-        "off_adj_ppp_alt": 0.6000000000000001,
+        "def_adj_ppp": 0,
+        "off_adj_ppp": 0,
+        "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
     ],

@@ -13363,7 +13363,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   >
                     <div>
                       <u>
-                        25.4
+                        25.5
                       </u>
                     </div>
                     <div
@@ -13400,7 +13400,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <div>
                       <div>
                         <u>
-                          110.7
+                          110.9
                         </u>
                         <small>
                           <sup
@@ -13418,7 +13418,7 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                   >
                     <div>
                       <u>
-                        116.9
+                        117.1
                       </u>
                     </div>
                     <div
@@ -13743,10 +13743,10 @@ exports[`TeamStatsTable TeamStatsTable - should create snapshot, positional over
                     <div>
                       <u>
                         <div
-                          style="text-shadow: 0px 0px 15px #94ca94,0px 0px 15px #94ca94,0px 0px 15px #94ca94; font-size: 0.875em;"
+                          style="text-shadow: 0px 0px 15px #93c993,0px 0px 15px #93c993,0px 0px 15px #93c993; font-size: 0.875em;"
                         >
                           <i>
-                            14.7
+                            14.9
                           </i>
                         </div>
                       </u>

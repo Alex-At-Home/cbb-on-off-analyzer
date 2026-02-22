@@ -16,7 +16,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   </b>
   ] + Misc [
   <b>
-    NaN
+    0.00
   </b>
   ] (
   <a
@@ -895,16 +895,16 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     <li>
       Misc [
       <b>
-        NaN
+        0.00
       </b>
       ]: Distributes unassigned Pts [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] and Poss [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] equally based on Poss% and Usage%
@@ -1603,7 +1603,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
   </b>
   ] + Misc [
   <b>
-    NaN
+    0.00
   </b>
   ] (
   <a
@@ -2482,16 +2482,16 @@ exports[`RosterStatsDiagView RosterStatsDiagView - expanded, should create snaps
     <li>
       Misc [
       <b>
-        NaN
+        0.00
       </b>
       ]: Distributes unassigned Pts [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] and Poss [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] equally based on Poss% and Usage%
@@ -3229,7 +3229,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
   </b>
   ] + Misc [
   <b>
-    NaN
+    0.00
   </b>
   ] (
   <a
@@ -3419,16 +3419,16 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 1`] = 
     <li>
       Misc [
       <b>
-        NaN
+        0.00
       </b>
       ]: Distributes unassigned Pts [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] and Poss [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] equally based on Poss% and Usage%
@@ -3627,7 +3627,7 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
   </b>
   ] + Misc [
   <b>
-    NaN
+    0.00
   </b>
   ] (
   <a
@@ -3817,16 +3817,16 @@ exports[`RosterStatsDiagView RosterStatsDiagView - should create snapshot 2`] = 
     <li>
       Misc [
       <b>
-        NaN
+        0.00
       </b>
       ]: Distributes unassigned Pts [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] and Poss [
       <b>
-        NaN
+        0.0
         %
       </b>
       ] equally based on Poss% and Usage%

@@ -40,6 +40,7 @@ describe("PlayerImpactBreakdownTable", () => {
     seasonStats: false,
     adjBreakdownForSoS: false,
     scaleType: "P%" as const,
+    showWalkOns: true, // true so minimal mock rows (no poss% in row) are not filtered out
   };
 
   test("renders table with player names (no diag stats)", () => {
@@ -75,6 +76,7 @@ describe("PlayerImpactBreakdownTable", () => {
         avgEfficiency={100}
         adjBreakdownForSoS={false}
         scaleType="P%"
+        showWalkOns={true}
         showTeamColumn={true}
         teamDisplay={(id) => <span>{id}</span>}
       />,

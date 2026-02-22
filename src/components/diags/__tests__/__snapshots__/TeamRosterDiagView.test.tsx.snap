@@ -61,7 +61,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             <br />
                           </span>
                           <span>
-                            ORtg 107 on 27% (+3.7)
+                            ORtg 107 on 29% (+3.9)
                             <br />
                           </span>
                           <span>
@@ -98,7 +98,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#a2d1a280",
+                                  "backgroundColor": "#9bcd9b80",
                                 }
                               }
                               variant="light"
@@ -108,7 +108,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                                   Object {
                                     "color": undefined,
                                     "fontSize": "small",
-                                    "fontWeight": 600,
+                                    "fontWeight": 700,
                                     "opacity": undefined,
                                   }
                                 }
@@ -292,7 +292,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             <br />
                           </span>
                           <span>
-                            ORtg 87 on 23% (-1.9)
+                            ORtg 87 on 24% (-1.9)
                             <br />
                           </span>
                           <span>
@@ -329,7 +329,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#ffcfcf80",
+                                  "backgroundColor": "#ffcece80",
                                 }
                               }
                               variant="light"
@@ -968,7 +968,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             <br />
                           </span>
                           <span>
-                            ORtg 107 on 27% (+3.7)
+                            ORtg 107 on 29% (+3.9)
                             <br />
                           </span>
                           <span>
@@ -1005,7 +1005,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#a2d1a280",
+                                  "backgroundColor": "#9bcd9b80",
                                 }
                               }
                               variant="light"
@@ -1015,7 +1015,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                                   Object {
                                     "color": undefined,
                                     "fontSize": "small",
-                                    "fontWeight": 600,
+                                    "fontWeight": 700,
                                     "opacity": undefined,
                                   }
                                 }
@@ -1199,7 +1199,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             <br />
                           </span>
                           <span>
-                            ORtg 87 on 23% (-1.9)
+                            ORtg 87 on 24% (-1.9)
                             <br />
                           </span>
                           <span>
@@ -1236,7 +1236,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#ffcfcf80",
+                                  "backgroundColor": "#ffcece80",
                                 }
                               }
                               variant="light"
@@ -1645,7 +1645,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             <br />
                           </span>
                           <span>
-                            ORtg 107 on 27% (+3.7)
+                            ORtg 107 on 29% (+3.9)
                             <br />
                           </span>
                           <span>
@@ -1682,7 +1682,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#a2d1a280",
+                                  "backgroundColor": "#9bcd9b80",
                                 }
                               }
                               variant="light"
@@ -1692,7 +1692,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                                   Object {
                                     "color": undefined,
                                     "fontSize": "small",
-                                    "fontWeight": 600,
+                                    "fontWeight": 700,
                                     "opacity": undefined,
                                   }
                                 }
@@ -1876,7 +1876,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             <br />
                           </span>
                           <span>
-                            ORtg 87 on 23% (-1.9)
+                            ORtg 87 on 24% (-1.9)
                             <br />
                           </span>
                           <span>
@@ -1913,7 +1913,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                               pill={false}
                               style={
                                 Object {
-                                  "backgroundColor": "#ffcfcf80",
+                                  "backgroundColor": "#ffcece80",
                                 }
                               }
                               variant="light"
