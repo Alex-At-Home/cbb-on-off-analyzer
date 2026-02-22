@@ -257,9 +257,7 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
     const optionItems = selectProps.items ?? [];
     const t = optionValueToToken(data.value, optionItems);
     const item = t ? _.find(optionItems, (i) => i.code === t.code) : null;
-    const displayName = item
-      ? item.name
-      : (t?.code ?? data.label);
+    const displayName = item ? item.name : (t?.code ?? data.label);
     const label =
       t && t.option != null && t.option !== ""
         ? `${displayName} [${t.option}]`
