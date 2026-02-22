@@ -95,10 +95,12 @@ describe("parseCodeOptionString", () => {
     ]);
   });
 
-  test("unknown code -> invalid", () => {
+  test("unknown code still parses as valid (token accepted, used for display)", () => {
     const result = parseCodeOptionString("UnknownCode", SAMPLE_ITEMS);
-    expect(result.valid).toBe(false);
-    expect(result.tokens).toEqual([]);
+    expect(result.valid).toBe(true);
+    expect(result.tokens).toEqual([
+      { negated: false, code: "UnknownCode", option: undefined },
+    ]);
   });
 
   test("malformed token =PG (no code) -> invalid", () => {
@@ -125,10 +127,33 @@ describe("parseCodeOptionString", () => {
     expect(result.tokens).toEqual([]);
   });
 
-  test("one valid one invalid -> invalid", () => {
-    const result = parseCodeOptionString("DaCoit;BadCode", SAMPLE_ITEMS);
+  test("one valid one malformed -> invalid", () => {
+    const result = parseCodeOptionString("DaCoit;=PG", SAMPLE_ITEMS);
     expect(result.valid).toBe(false);
     expect(result.tokens).toEqual([]);
+  });
+
+  test("An.Mills (code with dot): single token parses and yields 1 token", () => {
+    const items: PlayerOptionFilterItem[] = [
+      { code: "An.Mills", name: "An.Mills", allowedOptions: [""] },
+    ];
+    const result = parseCodeOptionString("An.Mills", items);
+    expect(result.valid).toBe(true);
+    expect(result.tokens).toEqual([
+      { negated: false, code: "An.Mills", option: undefined },
+    ]);
+  });
+
+  test("An.Mills (code with dot): -An.Mills;An.Mills parses and yields 2 tokens", () => {
+    const items: PlayerOptionFilterItem[] = [
+      { code: "An.Mills", name: "An.Mills", allowedOptions: [""] },
+    ];
+    const result = parseCodeOptionString("-An.Mills;An.Mills", items);
+    expect(result.valid).toBe(true);
+    expect(result.tokens).toEqual([
+      { negated: true, code: "An.Mills", option: undefined },
+      { negated: false, code: "An.Mills", option: undefined },
+    ]);
   });
 });
 
@@ -157,22 +182,22 @@ describe("PlayerOptionFilterControl", () => {
     ).toBeTruthy();
   });
 
-  test("with invalid value renders text mode (input + prepend button)", () => {
+  test("with invalid value (malformed token) renders text mode (input + prepend button)", () => {
     render(
       <PlayerOptionFilterControl
         {...defaultProps}
-        value="garbage"
+        value="=noCode"
         placeholder="Type here"
       />,
     );
     const input = document.querySelector("input") as HTMLInputElement | null;
     expect(input).toBeTruthy();
-    expect(input && input.value).toBe("garbage");
+    expect(input && input.value).toBe("=noCode");
     expect(document.querySelector("button")).toBeTruthy();
   });
 
   test("text mode: prepend button click sets selector mode (still text UI if value invalid)", () => {
-    render(<PlayerOptionFilterControl {...defaultProps} value="garbage" />);
+    render(<PlayerOptionFilterControl {...defaultProps} value="=noCode" />);
     const button = document.querySelector("button");
     expect(button).toBeTruthy();
     fireEvent.click(button!);
@@ -181,21 +206,27 @@ describe("PlayerOptionFilterControl", () => {
     expect(input).toBeTruthy();
   });
 
-  test("selector mode with valid value shows nuggets (Badges)", () => {
+  test("selector mode with valid value shows nuggets (multi-value elements)", () => {
     render(
       <PlayerOptionFilterControl {...defaultProps} value="DaCoit;-DaCoit=SG" />,
     );
     expect(
       document.querySelector(".hoop-explorer-select-container"),
     ).toBeTruthy();
-    const badges = document.querySelectorAll(".badge");
-    expect(badges.length).toBeGreaterThanOrEqual(2);
+    const multiValues = document.querySelectorAll(
+      ".hoop-explorer-select__multi-value",
+    );
+    expect(multiValues.length).toBeGreaterThanOrEqual(2);
   });
 
   test("onChange called when typing in text mode", () => {
     jest.useFakeTimers();
     render(
-      <PlayerOptionFilterControl {...defaultProps} value="x" timeout={500} />,
+      <PlayerOptionFilterControl
+        {...defaultProps}
+        value="=invalid"
+        timeout={500}
+      />,
     );
     const input = document.querySelector("input");
     expect(input).toBeTruthy();

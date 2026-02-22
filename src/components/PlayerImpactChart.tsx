@@ -47,6 +47,10 @@ import ThemedSelect from "./shared/ThemedSelect";
 import { useTheme } from "next-themes";
 import AsyncFormControl from "./shared/AsyncFormControl";
 import InputGroup from "react-bootstrap/InputGroup";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import PlayerOptionFilterControl, {
+  formatDisplayName,
+} from "./shared/PlayerOptionFilterControl";
 
 type Props = {
   startingState: MatchupFilterParams;
@@ -1336,20 +1340,40 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
               </Row>
               {breakdownShowFilter && (
                 <Row className="mb-2">
-                  <Col xs={12} sm={9}>
-                    <InputGroup size="sm" className="mb-1">
+                  <Col xs={12} sm={10}>
+                    <InputGroup size="sm" className="mb-1 flex-nowrap">
                       <InputGroup.Prepend>
                         <InputGroup.Text id="filter">Filter</InputGroup.Text>
                       </InputGroup.Prepend>
-                      <AsyncFormControl
-                        startingVal={breakdownFilterStr}
-                        onChange={(t) => setBreakdownFilterStr(t)}
-                        timeout={500}
-                        placeholder="e.g. Player1Surname,Player2FirstName,-Player3Name"
-                      />
+                      {FeatureFlags.isActiveWindow(
+                        FeatureFlags.advancedPlayerEditor,
+                      ) ? (
+                        <PlayerOptionFilterControl
+                          className="w-100"
+                          value={breakdownFilterStr}
+                          onChange={(t) => setBreakdownFilterStr(t)}
+                          emptyLabel="Start typing player names..."
+                          placeholder="e.g. Player1Surname,Player2FirstName,-Player3Name"
+                          items={breakdownPoints.map((p) => {
+                            return {
+                              name: `${formatDisplayName(p.stats.key)}`,
+                              dropdownText: `${formatDisplayName(p.stats.key)} (${p.seriesId})`,
+                              code: p.stats.code || p.name,
+                              allowedOptions: [],
+                            };
+                          })}
+                        />
+                      ) : (
+                        <AsyncFormControl
+                          startingVal={breakdownFilterStr}
+                          onChange={(t) => setBreakdownFilterStr(t)}
+                          timeout={500}
+                          placeholder="e.g. Player1Surname,Player2FirstName,-Player3Name"
+                        />
+                      )}
                     </InputGroup>
                   </Col>
-                  <Col xs={12} sm={3} className="pt-1">
+                  <Col xs={12} sm={2} className="pt-1">
                     <ToggleButtonGroup
                       labelOverride=" "
                       items={[

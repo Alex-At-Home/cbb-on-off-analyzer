@@ -7,8 +7,9 @@
 import React, { useState, useMemo } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 // @ts-ignore
 import { components, createFilter } from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,6 +23,7 @@ import AsyncFormControl from "./AsyncFormControl";
 
 export type PlayerOptionFilterItem = {
   name: string;
+  dropdownText?: string;
   code: string;
   allowedOptions: string[];
 };
@@ -60,7 +62,6 @@ export function parseCodeOptionString(
   value: string,
   items: PlayerOptionFilterItem[],
 ): ParseResult {
-  const codeSet = new Set((items || []).map((i) => i.code));
   const itemByCode = _.keyBy(items || [], "code");
 
   const rawTokens = (value || "")
@@ -81,13 +82,17 @@ export function parseCodeOptionString(
     const code = m[2].trim();
     const optionPart = m[4] !== undefined ? m[4].trim() : undefined;
 
-    if (!codeSet.has(code)) {
+    if (!code) {
       valid = false;
       break;
     }
     const item = itemByCode[code];
     const allowed = item?.allowedOptions ?? [];
-    if (optionPart !== undefined && !allowed.includes(optionPart)) {
+    if (
+      optionPart !== undefined &&
+      item != null &&
+      !allowed.includes(optionPart)
+    ) {
       valid = false;
       break;
     }
@@ -126,7 +131,7 @@ function buildSelectOptions(items: PlayerOptionFilterItem[]): SelectOption[] {
   const list: SelectOption[] = [switchOption];
 
   for (const item of items || []) {
-    const displayName = formatDisplayName(item.name);
+    const dropdownLabel = item.dropdownText ?? item.name;
     const opts = item.allowedOptions ?? [];
     const optionSet = new Set(opts);
     if (!optionSet.has("")) {
@@ -134,7 +139,7 @@ function buildSelectOptions(items: PlayerOptionFilterItem[]): SelectOption[] {
     }
     const optionsList = Array.from(optionSet);
     for (const opt of optionsList) {
-      const label = opt === "" ? displayName : `${displayName} [${opt}]`;
+      const label = opt === "" ? dropdownLabel : `${dropdownLabel} [${opt}]`;
       const value = opt === "" ? item.code : `${item.code}=${opt}`;
       list.push({ label, value });
       list.push({ label: `NOT ${label}`, value: `-${value}` });
@@ -194,7 +199,16 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
 
   const showSelector = !isTextMode && parsed.valid;
 
-  const selectOptions = useMemo(() => buildSelectOptions(items), [items]);
+  const selectOptions = useMemo(() => {
+    const all = buildSelectOptions(items);
+    if (!parsed.valid || parsed.tokens.length === 0) return all;
+    const excludeOpposite = new Set(
+      parsed.tokens.map((t) => tokenToValue({ ...t, negated: !t.negated })),
+    );
+    return all.filter(
+      (o) => o.value === SWITCH_TO_TEXT_VALUE || !excludeOpposite.has(o.value),
+    );
+  }, [items, parsed.valid, parsed.tokens]);
 
   const selectValue = useMemo(() => {
     if (!parsed.valid || parsed.tokens.length === 0) {
@@ -205,7 +219,7 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
       const opt = selectOptions.find((o) => o.value === val);
       if (opt) return opt;
       const item = _.find(items, (i) => i.code === t.code);
-      const displayName = item ? formatDisplayName(item.name) : t.code;
+      const displayName = item ? item.name : t.code;
       const label =
         t.option != null && t.option !== ""
           ? `${displayName} [${t.option}]`
@@ -238,52 +252,51 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
     onChange(tokensToValue(tokens));
   };
 
-  const itemByCode = useMemo(() => _.keyBy(items || [], "code"), [items]);
-
-  const MultiValueNuggets = (props: any) => {
-    const { data, selectProps } = props;
-    const optionValues = (selectProps.value as SelectOption[]) ?? [];
+  const MultiValueLabelNugget = (props: any) => {
+    const { data, selectProps, innerProps } = props;
+    const optionItems = selectProps.items ?? [];
+    const t = optionValueToToken(data.value, optionItems);
+    const item = t ? _.find(optionItems, (i) => i.code === t.code) : null;
+    const displayName = item
+      ? item.name
+      : (t?.code ?? data.label);
+    const label =
+      t && t.option != null && t.option !== ""
+        ? `${displayName} [${t.option}]`
+        : displayName;
+    const isNegated = t?.negated ?? false;
     return (
-      <components.MultiValueContainer {...props}>
-        {optionValues.map((opt: SelectOption) => {
-          const t = optionValueToToken(opt.value, items);
-          if (!t) return null;
-          const item = itemByCode[t.code];
-          const displayName = item ? formatDisplayName(item.name) : t.code;
-          const label =
-            t.option != null && t.option !== ""
-              ? `${displayName} [${t.option}]`
-              : displayName;
-          const isNegated = t.negated;
-          return (
-            <Badge
-              key={opt.value}
-              variant="light"
-              style={{
-                backgroundColor: isNegated ? "#1a015aff" : "grey",
-                marginRight: 4,
-                marginTop: 2,
-                marginBottom: 2,
-              }}
-            >
-              <span
-                style={{
-                  color: isNegated ? "lightgrey" : undefined,
-                  fontWeight: isNegated ? 100 : undefined,
-                }}
-              >
-                {isNegated && (
-                  <>
-                    <FontAwesomeIcon icon={faBan} />{" "}
-                  </>
-                )}
-                {label}
-              </span>
-            </Badge>
-          );
-        })}
-      </components.MultiValueContainer>
+      <div {...innerProps}>
+        {isNegated && (
+          <>
+            <FontAwesomeIcon icon={faBan} />{" "}
+          </>
+        )}
+        {label}
+      </div>
     );
+  };
+
+  const getMultiValueStyles = (base: any, props: any) => {
+    const optionItems = props.selectProps?.items ?? [];
+    const t = optionValueToToken(props.data?.value, optionItems);
+    const isNegated = t?.negated ?? false;
+    return {
+      ...base,
+      backgroundColor: isNegated ? "#1a015aff" : "grey",
+    };
+  };
+
+  const getMultiValueLabelStyles = (base: any, props: any) => {
+    const optionItems = props.selectProps?.items ?? [];
+    const t = optionValueToToken(props.data?.value, optionItems);
+    const isNegated = t?.negated ?? false;
+    return {
+      ...base,
+      fontSize: "85%",
+      color: isNegated ? "lightgrey" : base.color,
+      fontWeight: isNegated ? 100 : base.fontWeight,
+    };
   };
 
   if (showSelector) {
@@ -293,8 +306,15 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
         isMulti
         size={size}
         className={className}
-        styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-        components={{ MultiValueContainer: MultiValueNuggets }}
+        style={{ minWidth: 0 }}
+        items={items}
+        styles={{
+          menu: (base: any) => ({ ...base, zIndex: 1000 }),
+          multiValue: getMultiValueStyles,
+          multiValueLabel: getMultiValueLabelStyles,
+          option: (base: any) => ({ ...base, textAlign: "left" }),
+        }}
+        components={{ MultiValueLabel: MultiValueLabelNugget }}
         value={selectValue}
         placeholder={emptyLabel}
         options={selectOptions}
@@ -315,25 +335,26 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
     );
   }
 
+  const switchBackTooltip = (
+    <Tooltip id="player-option-filter-switch-back">
+      Switch back to dropdown mode
+      {!parsed.valid && (
+        <>
+          <br />
+          <br />
+          Current filter expression cannot be rendered as dropdown, you have to
+          delete it to return to dropdown mode.
+        </>
+      )}
+    </Tooltip>
+  );
+
   return (
-    <InputGroup size={size} className={className}>
-      <InputGroup.Prepend>
-        <Button
-          variant="outline-secondary"
-          onClick={() => setIsTextMode(false)}
-          style={{
-            width: 36,
-            height: size === "sm" ? 31 : 38,
-            padding: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          title="Switch to selector"
-        >
-          <FontAwesomeIcon icon={faChevronDown} />
-        </Button>
-      </InputGroup.Prepend>
+    <InputGroup
+      size={size}
+      className={className}
+      style={{ minWidth: 0, flexWrap: "nowrap" }}
+    >
       <AsyncFormControl
         startingVal={value}
         onChange={onChange}
@@ -342,6 +363,24 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
         allowExternalChange
         size={size}
       />
+      <InputGroup.Append>
+        <OverlayTrigger placement="auto" overlay={switchBackTooltip}>
+          <Button
+            variant="outline-secondary"
+            onClick={() => setIsTextMode(false)}
+            style={{
+              width: 36,
+              height: size === "sm" ? 31 : 38,
+              padding: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <FontAwesomeIcon icon={faChevronDown} />
+          </Button>
+        </OverlayTrigger>
+      </InputGroup.Append>
     </InputGroup>
   );
 };
