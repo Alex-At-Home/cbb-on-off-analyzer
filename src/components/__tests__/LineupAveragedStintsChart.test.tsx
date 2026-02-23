@@ -16,6 +16,7 @@ import fs from "fs";
 
 // Mock ResizeObserver for react-bootstrap components
 const ResizeObserver = (window as any).ResizeObserver;
+const originalRandom = Math.random;
 
 describe("LineupAveragedStintsChart", () => {
   beforeEach(() => {
@@ -25,20 +26,23 @@ describe("LineupAveragedStintsChart", () => {
       unobserve: jest.fn(),
       disconnect: jest.fn(),
     }));
+    // Mock Math.random for consistent table IDs in snapshots
+    Math.random = () => 0.123456789;
   });
 
   afterEach(() => {
     (window as any).ResizeObserver = ResizeObserver;
+    Math.random = originalRandom;
   });
 
   // Load sample data
   const sampleData = JSON.parse(
     fs.readFileSync("./src/sample-data/sampleLineupStintAverages.json", {
       encoding: "utf-8",
-    })
+    }),
   );
-  const aggregations =
-    sampleData.responses[0].aggregations as TimeBinnedAggregation;
+  const aggregations = sampleData.responses[0]
+    .aggregations as TimeBinnedAggregation;
 
   // Mock data for required props
   const mockLineupStats: LineupStatsModel = { lineups: [] };
@@ -68,7 +72,7 @@ describe("LineupAveragedStintsChart", () => {
         }}
         startingState={{}}
         onChangeState={(newParams: MatchupFilterParams) => {}}
-      />
+      />,
     );
     await waitFor(() => {
       expect(container).toMatchSnapshot();
@@ -91,7 +95,7 @@ describe("LineupAveragedStintsChart", () => {
           showLabels: false,
         }}
         onChangeState={(newParams: MatchupFilterParams) => {}}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -113,7 +117,7 @@ describe("LineupAveragedStintsChart", () => {
           labelToShow: "Points",
         }}
         onChangeState={(newParams: MatchupFilterParams) => {}}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -135,7 +139,7 @@ describe("LineupAveragedStintsChart", () => {
           labelToShow: "Plus Minus",
         }}
         onChangeState={(newParams: MatchupFilterParams) => {}}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -160,7 +164,7 @@ describe("LineupAveragedStintsChart", () => {
           showPpp: true,
         }}
         onChangeState={(newParams: MatchupFilterParams) => {}}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
