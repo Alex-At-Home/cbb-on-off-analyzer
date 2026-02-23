@@ -300,6 +300,11 @@ export type LineupLeaderboardParams = {
   tableConfigDisabledCols?: string[];
 };
 
+/** Params for Season Matchup Analyzer page (gender/year/team only; game list from fetchOpponents). */
+export type SeasonMatchupFilterParams = {
+  [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+};
+
 export type TeamEditorParams = {
   [P in keyof PlayerLeaderboardParams]?: PlayerLeaderboardParams[P];
 } & {

@@ -21,6 +21,7 @@ import {
 import {
   PlayerSeasonComparisonParams,
   MatchupFilterParams,
+  SeasonMatchupFilterParams,
 } from "./FilterModels";
 
 /** Url routing utils */
@@ -70,6 +71,12 @@ export class UrlRouting {
   /** The URL to use to view the "Lineup Leaderboard" page */
   static getLineupLeaderboardUrl(params: LineupLeaderboardParams) {
     return `/LineupLeaderboard?${UrlRouting.getUrl({
+      [UrlRouting.noPrefix]: params,
+    })}`;
+  }
+  /** The URL to use to view the "Season Matchup Analyzer" page */
+  static getSeasonMatchupUrl(params: SeasonMatchupFilterParams) {
+    return `/SeasonMatchupAnalyzer?${UrlRouting.getUrl({
       [UrlRouting.noPrefix]: params,
     })}`;
   }
