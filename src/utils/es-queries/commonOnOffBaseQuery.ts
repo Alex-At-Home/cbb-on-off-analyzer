@@ -1,31 +1,102 @@
 import _ from "lodash";
 
-import { GameFilterParams } from "../FilterModels";
+import {
+  CommonFilterParams,
+  GameFilterParams,
+  QueryWithFilters,
+} from "../FilterModels";
 import { QueryUtils } from "../QueryUtils";
 import { buildQueryFiltersBoolArray } from "./commonTeamQuery";
 
+/**
+ * Builds the named filter object for otherQueries (other_0, other_1, ...) for use in a filters aggregation.
+ */
+export function buildOtherQueryFilters(
+  baselineQueryIn: string | undefined,
+  commonParams: CommonFilterParams,
+  otherQueries: QueryWithFilters[] | undefined,
+  lastDate: number,
+  opponentMode: boolean = false,
+): Record<string, any> {
+  const baselineQuery =
+    baselineQueryIn ??
+    QueryUtils.basicOrAdvancedQuery(commonParams.baseQuery, "*");
+
+  return _.isEmpty(otherQueries ?? [])
+    ? {}
+    : _.chain(otherQueries)
+        .map((queryInfo, index) => {
+          return [
+            `other_${index}`,
+            buildQueryAndFilter(
+              baselineQuery,
+              queryInfo.query,
+              queryInfo.queryFilters,
+              commonParams,
+              lastDate,
+              opponentMode,
+            ),
+          ];
+        })
+        .fromPairs()
+        .value();
+}
+
+/** Creates a simple query element for on/off and lineup query elements */
+const buildQueryAndFilter = (
+  baselineQuery: string,
+  queryStr: string | undefined,
+  queryFilterStr: string | undefined,
+  commonParams: CommonFilterParams,
+  lastDate: number,
+  opponentMode: boolean = false,
+) => {
+  const fallbackQuery = queryFilterStr ? "*" : "NOT *"; //(if any filters are specified need fallbackQuery to always be true inside the AND)
+  const query = {
+    //(note: ignored in the autoOff case)
+    query_string: {
+      query: `(${QueryUtils.basicOrAdvancedQuery(
+        queryStr,
+        fallbackQuery,
+      )}) AND (${baselineQuery})`,
+    },
+  };
+  if (queryFilterStr) {
+    //(not auto-off mode)
+    return {
+      bool: {
+        must: _.flatten([
+          [query],
+          buildQueryFiltersBoolArray(
+            queryFilterStr,
+            commonParams.gender,
+            commonParams.year,
+            lastDate,
+            opponentMode,
+          ),
+        ] as any[]),
+        must_not: [],
+      },
+    };
+  } else {
+    return query as any;
+  }
+};
+
+/** For player / team on-off - builds the ES query from the logical-ish object */
 export const commonOnOffBaseQuery = function (
   params: GameFilterParams,
   lastDate: number,
-  opponentMode: boolean = false
+  opponentMode: boolean = false,
 ) {
   const baselineQuery = QueryUtils.basicOrAdvancedQuery(params.baseQuery, "*");
 
-  const buildQueryAndFilter = (
+  /** buildQueryAndFilter But with an exception for auto-off cases */
+  const buildQueryAndFilterIncAutoOff = (
     queryStr: string | undefined,
     queryFilterStr: string | undefined,
-    offAndAutoOff: boolean
+    offAndAutoOff: boolean,
   ) => {
-    const fallbackQuery = queryFilterStr ? "*" : "NOT *"; //(if any filters are specified need fallbackQuery to always be true inside the AND)
-    const query = {
-      //(note: ignored in the autoOff case)
-      query_string: {
-        query: `(${QueryUtils.basicOrAdvancedQuery(
-          queryStr,
-          fallbackQuery
-        )}) AND (${baselineQuery})`,
-      },
-    };
     if (offAndAutoOff && params.onQueryFilters) {
       return {
         bool: {
@@ -43,7 +114,7 @@ export const commonOnOffBaseQuery = function (
                 query_string: {
                   query: `${QueryUtils.basicOrAdvancedQuery(
                     queryStr,
-                    "NOT *"
+                    "NOT *",
                   )}`, //(the clause is an OR, so an empty query needs to return false)
                 },
               },
@@ -53,7 +124,7 @@ export const commonOnOffBaseQuery = function (
               params.gender,
               params.year,
               lastDate,
-              opponentMode
+              opponentMode,
             ).map((clause) => {
               return {
                 bool: {
@@ -65,56 +136,42 @@ export const commonOnOffBaseQuery = function (
           minimum_should_match: 1,
         },
       };
-    } else if (queryFilterStr) {
-      //(not auto-off mode)
-      return {
-        bool: {
-          must: _.flatten([
-            [query],
-            buildQueryFiltersBoolArray(
-              queryFilterStr,
-              params.gender,
-              params.year,
-              lastDate,
-              opponentMode
-            ),
-          ] as any[]),
-          must_not: [],
-        },
-      };
     } else {
-      return query as any;
+      return buildQueryAndFilter(
+        baselineQuery,
+        queryStr,
+        queryFilterStr,
+        params,
+        lastDate,
+        opponentMode,
+      );
     }
   };
 
   return {
     filters: {
-      off: buildQueryAndFilter(
+      off: buildQueryAndFilterIncAutoOff(
         params.offQuery,
         params.autoOffQuery ? undefined : params.offQueryFilters,
-        params.autoOffQuery || false
+        params.autoOffQuery || false,
       ),
-      on: buildQueryAndFilter(params.onQuery, params.onQueryFilters, false),
+      on: buildQueryAndFilterIncAutoOff(
+        params.onQuery,
+        params.onQueryFilters,
+        false,
+      ),
       baseline: {
         query_string: {
           query: baselineQuery,
         },
       },
-      ...(_.isEmpty(params.otherQueries)
-        ? {}
-        : _.chain(params.otherQueries)
-            .map((queryInfo, index) => {
-              return [
-                `other_${index}`,
-                buildQueryAndFilter(
-                  queryInfo.query,
-                  queryInfo.queryFilters,
-                  false
-                ),
-              ];
-            })
-            .fromPairs()
-            .value()),
+      ...buildOtherQueryFilters(
+        baselineQuery,
+        params,
+        params.otherQueries,
+        lastDate,
+        opponentMode,
+      ),
     },
   };
 };

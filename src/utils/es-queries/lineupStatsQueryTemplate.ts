@@ -1,6 +1,8 @@
+import _ from "lodash";
 import { commonRuntimeMappings } from "./commonRuntimeMappings";
 import { commonTeamQuery, buildQueryFiltersBoolArray } from "./commonTeamQuery";
 import { commonLineupAggregations } from "./commonLineupAggregations";
+import { buildOtherQueryFilters } from "./commonOnOffBaseQuery";
 import { QueryUtils } from "../QueryUtils";
 import { LineupFilterParams } from "../FilterModels";
 
@@ -164,6 +166,48 @@ export const lineupStatsQuery = function (
   avgEfficiency: number,
   hca: number,
 ) {
+  const lineupAggs = {
+    ...(params.showGameInfo ? buildGameInfoRequest("game_aggs") : {}),
+    ...commonLineupAggregations(
+      publicEfficiency,
+      lookup,
+      avgEfficiency,
+      hca,
+      true,
+    ),
+    players_array: {
+      top_hits: {
+        size: 1,
+        _source: {
+          includes: "players",
+        },
+      },
+    },
+    sort_by_poss: {
+      bucket_sort: {
+        sort: [{ off_poss: { order: "desc" } }],
+      },
+    },
+  };
+
+  const otherQueryFilters = buildOtherQueryFilters(
+    undefined,
+    params,
+    params.otherQueries,
+    lastDate,
+    false,
+  );
+  const otherQueryAggs = _.isEmpty(params.otherQueries || [])
+    ? {}
+    : {
+        other_queries: {
+          filters: {
+            filters: otherQueryFilters,
+          },
+          aggregations: lineupAggs,
+        },
+      };
+
   return {
     ...commonRuntimeMappings(params, lastDate, publicEfficiency, lookup),
     _source: {
@@ -173,34 +217,13 @@ export const lineupStatsQuery = function (
     size: 0,
     aggregations: {
       lineups: {
-        aggregations: {
-          ...(params.showGameInfo ? buildGameInfoRequest("game_aggs") : {}),
-          ...commonLineupAggregations(
-            publicEfficiency,
-            lookup,
-            avgEfficiency,
-            hca,
-            true,
-          ),
-          players_array: {
-            top_hits: {
-              size: 1,
-              _source: {
-                includes: "players",
-              },
-            },
-          },
-          sort_by_poss: {
-            bucket_sort: {
-              sort: [{ off_poss: { order: "desc" } }],
-            },
-          },
-        },
+        aggregations: lineupAggs,
         terms: {
           field: "lineup_id.keyword",
           size: 1000,
         },
       },
+      ...otherQueryAggs,
     },
     query: {
       bool: {

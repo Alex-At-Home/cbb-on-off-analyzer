@@ -264,6 +264,8 @@ export type LineupFilterParams = {
   sortBy?: string;
   // Filtering:
   filter?: string;
+  /** In addition to main lineup query, allows for per-game (or other) sub-queries; same shape as GameFilterParams.otherQueries */
+  otherQueries?: QueryWithFilters[];
   // Luck adjustments
   luck?: LuckParams; //(missing iff default)
   lineupLuck?: boolean;
