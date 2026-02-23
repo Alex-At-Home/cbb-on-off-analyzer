@@ -1,0 +1,13 @@
+---
+description: Run TypeScript check before considering code finished
+alwaysApply: true
+---
+
+# Verify TypeScript Before Marking Code Complete
+
+Before treating a change as finished:
+
+1. Run **`npx tsc --noEmit`** and fix any TypeScript errors in the files you modified.
+2. Optionally run **Read Lints** on those files and address any reported issues.
+
+Do not leave type errors or syntax errors in "finished" code. If `tsc` reports errors elsewhere in the repo, you only need to fix errors in files you changed.
