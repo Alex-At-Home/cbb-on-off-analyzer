@@ -90,7 +90,7 @@ export const sampleOrtgDiagnostics = {
   rimPtsProd: 120.55555555555556,
   threePoss: 125.77469161760582,
   threePtsProd: 142.65517241379308,
-  Raw_Usage: 26.37230387926769,
+  Raw_Usage: undefined,
   adjPtsFactor: 1.0,
   adjPossFactor: 1.0,
 };
