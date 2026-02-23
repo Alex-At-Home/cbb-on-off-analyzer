@@ -137,9 +137,15 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       !commonParams.year ||
       commonParams.year >= DateUtils.firstYearWithShotChartData;
 
+    //(only query supported is conf)
+
     const primaryRequestA: MatchupFilterParams = {
       ...commonParams,
       baseQuery: "",
+      queryFilters:
+        commonParams.queryFilters == "Conf"
+          ? commonParams.queryFilters
+          : undefined,
 
       // Hacky: because of how this logic works, the primary request needs to have all the
       // filter and query params:
@@ -155,6 +161,10 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
       ...commonParams,
       team: game,
       baseQuery: "",
+      queryFilters:
+        commonParams.queryFilters == "Conf"
+          ? commonParams.queryFilters
+          : undefined,
     };
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequestA);
@@ -455,41 +465,61 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
   }
 
   function getCurrentGameFilter() {
-    const objToCheck =
-      (commonParams.minRank || "1") + "-" + (commonParams.maxRank || "400");
+    const buildStr = (p: CommonFilterParams) => {
+      if (
+        p.queryFilters == "Conf" &&
+        (_.isNil(p.minRank) ||
+          p.minRank == ParamDefaults.defaultMinRank ||
+          p.minRank == "1") &&
+        (_.isNil(p.maxRank) || p.maxRank == ParamDefaults.defaultMaxRank)
+      ) {
+        return "Conf";
+      } else {
+        return p.minRank + "-" + p.maxRank;
+      }
+    };
+    const objToCheck = buildStr(commonParams);
     const key = _.findKey(
       gameFilterOptions,
-      (v, k) => v.minRank + "-" + v.maxRank == objToCheck,
+      (v, k) => buildStr(v) == objToCheck,
     );
     return key || "Based On All Games";
   }
 
   const gameFilterOptions = {
     "Based On All Games": {
-      minRank: "1",
+      minRank: "0",
+      maxRank: "400",
+    },
+    "Based On Conference Games": {
+      queryFilters: "Conf",
+      minRank: "0",
       maxRank: "400",
     },
     "Based on T50 Games": {
-      minRank: "1",
+      minRank: "0",
       maxRank: "50",
     },
     "Based on T100 Games": {
-      minRank: "1",
+      minRank: "0",
       maxRank: "100",
     },
     "Based on T150 Games": {
-      minRank: "1",
+      minRank: "0",
       maxRank: "150",
     },
     "Based on T200 Games": {
-      minRank: "1",
+      minRank: "0",
       maxRank: "200",
     },
     "Based on Weak Opponents": {
       minRank: "200",
       maxRank: "400",
     },
-  } as Record<string, { minRank: string; maxRank: string }>;
+  } as Record<
+    string,
+    { minRank: string; maxRank: string; queryFilters?: string }
+  >;
 
   // Link building
   const gameParams = (
@@ -498,13 +528,14 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     subFor?: string,
   ): GameFilterParams => ({
     team,
-    minRank: "1",
-    maxRank: "400",
+    minRank: params.minRank ?? "0",
+    maxRank: params.maxRank ?? "400",
     gender: params.gender,
     year: params.year,
     baseQuery: subFor
       ? (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
       : params.baseQuery,
+    queryFilters: params.queryFilters,
     showRoster: true,
     calcRapm: true,
     showExpanded: true,
@@ -516,14 +547,15 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
     subFor?: string,
   ): LineupFilterParams => ({
     team,
-    minRank: "1",
-    maxRank: "400",
+    minRank: params.minRank ?? "0",
+    maxRank: params.maxRank ?? "400",
     gender: params.gender,
     year: params.year,
     minPoss: "0",
     baseQuery: subFor
       ? (params.baseQuery || "").replace(`"${team}"`, `"${subFor}"`)
       : params.baseQuery,
+    queryFilters: params.queryFilters,
   });
 
   return (
@@ -603,6 +635,8 @@ const MatchupPreviewFilter: React.FunctionComponent<Props> = ({
                     if (chosenFilter) {
                       setCommonParams({
                         ...commonParams,
+                        queryFilters:
+                          gameFilterOptions[option.value]?.queryFilters,
                         minRank: gameFilterOptions[option.value]?.minRank,
                         maxRank: gameFilterOptions[option.value]?.maxRank,
                       });
