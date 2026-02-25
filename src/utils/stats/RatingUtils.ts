@@ -251,6 +251,7 @@ export type OnBallDefenseModel = {
 /** All the info needed to explain on ball defense adjustments to DRtg */
 export type OnBallDefenseDiags = {
   targetedPct: number;
+  estimatedDefUsage: number;
 
   effectivePpp: number;
   onBallDRtg: number;
@@ -1831,6 +1832,7 @@ export class RatingUtils {
 
     return {
       targetedPct,
+      estimatedDefUsage: 0, //(fill in later)
       effectivePpp,
 
       onBallDRtg,
@@ -1977,6 +1979,24 @@ export class RatingUtils {
     const uncategorizedAdjustment =
       adjustedPossPct * (weightedClassicDRtgMean - weightedUnadjDRtgMean);
 
+    const accountedForPoss = Math.min(
+      1,
+      Math.max(
+        0,
+        _.sumBy(players, (stat) => {
+          const diag = stat.diag_def_rtg;
+          const onBallDiags = diag?.onBallDiags;
+          if (diag && onBallDiags) {
+            return (
+              onBallDiags.targetedPct * (stat.def_team_poss_pct.value ?? 0)
+            );
+          } else {
+            return 0;
+          }
+        }),
+      ),
+    );
+
     _.forEach(players, (stat) => {
       const diag = stat.diag_def_rtg;
       const onBallDef = diag?.onBallDef;
@@ -2017,16 +2037,30 @@ export class RatingUtils {
         onBallDiags.offBallDRtg =
           onBallDiags.offBallDRtg + uncategorizedAdjustment;
 
+        // Estimate total usage based on accounted-for possessions
+        const approxUsage =
+          0.3 * (onBallDiags.targetedPct / (accountedForPoss || 1)) +
+          0.7 * (onBallDiags.targetedPct + 0.2 * (1 - accountedForPoss));
+        onBallDiags.estimatedDefUsage = approxUsage;
+
         const Adj_DRtg =
           diag.offSos > 0 ? onBallDiags.dRtg * (diag.avgEff / diag.offSos) : 0;
-        const Adj_DRtgPlus = 0.2 * (Adj_DRtg - diag.avgEff);
+
+        // Adjusted for both SoS and usage:
+        // Using Dean Oliver's PUE (just like offense)
+        const Adj_DRtgPlus =
+          -1 *
+          (approxUsage *
+            ((2 - RatingUtils.Replacement_Level) * diag.avgEff - Adj_DRtg) -
+            0.2 * (1 - RatingUtils.Replacement_Level) * diag.avgEff);
+
         onBallDiags.adjDRtg = Adj_DRtg;
         onBallDiags.adjDRtgPlus = Adj_DRtgPlus;
 
         const pctOfTotalPlays =
           (100 * onBallDef.plays) / (onBallDef.totalPlays || 1);
         if (pctOfTotalPlays >= 0.25) {
-          // (don't adjust if there are too few possessions, empirically 0.25% seems like a good number)
+          // (don't adjust if there are too few possessions, empirically 25% seems like a good number)
           if (stat.def_rtg) {
             stat.def_rtg.value = onBallDiags.dRtg;
             stat.def_rtg.extraInfo = `Using on-ball defense stats - classic value would be [${diag.dRtg.toFixed(

@@ -55,7 +55,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
   const [parseStatus, setParseStatus] = useState(
     <span>
       <li>Awaiting input</li>
-    </span>
+    </span>,
   );
 
   const onApply = (clipboard?: string) => {
@@ -76,7 +76,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
       setParseStatus(
         <span>
           <li>Import succeeded</li>
-        </span>
+        </span>,
       );
     } else if (!_.isEmpty(res.matchedPlayers.found)) {
       setParseStatus(
@@ -143,7 +143,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
               )
             }
             {_.isEmpty(res.colsNotMatched) ? null : _.isEmpty(
-                res.matchedPlayers.notFound
+                res.matchedPlayers.notFound,
               ) ? (
               <ul>
                 <li>
@@ -158,19 +158,19 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
               </ul>
             )}
           </ul>
-        </span>
+        </span>,
       );
     } else if (contents) {
       setParseStatus(
         <span>
           <li>Import failure, no players matched.</li>
-        </span>
+        </span>,
       );
     } else {
       setParseStatus(
         <span>
           <li>Awaiting input</li>
-        </span>
+        </span>,
       );
     }
 
@@ -190,98 +190,98 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
         "",
         CommonTableDefs.singleLineRowSpanCalculator,
         "small",
-        GenericTableOps.htmlFormatter
+        GenericTableOps.htmlFormatter,
       ),
       "sep-1": GenericTableOps.addColSeparator(),
       delta: GenericTableOps.addPtsCol(
         "Delta Rtg+",
         "Difference between the 'classic' Adj Rtg+ and the adjusted for on-ball defense (positive means on-ball stats improve the DRtg)",
-        CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+        CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       ),
       delta_rapm: GenericTableOps.addPtsCol(
         "RAPM comp",
         "Delta betwen (on-ball) Adj Rtg+ and RAPM - you'd expect 'Delta Rtg+' and 'RAPM comp' to be very +correlated -  differences are likely to be off-ball/help defense (backcourt) or rebounding gravity (frontcourt)",
-        CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+        CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       ),
       sep0: GenericTableOps.addColSeparator(),
       classic_drtg: GenericTableOps.addPtsCol(
         "Box DRtg",
         "Box DRtg (no on-ball adjustments)",
-        CbbColors.varPicker(CbbColors.def_pp100)
+        CbbColors.varPicker(CbbColors.def_pp100),
       ),
       onball_drtg: GenericTableOps.addPtsCol(
         "new",
         "DRtg after on-ball adjustments",
-        CbbColors.varPicker(CbbColors.def_pp100)
+        CbbColors.varPicker(CbbColors.def_pp100),
       ),
       classic_rtg: GenericTableOps.addPtsCol(
         "Adj Rtg+",
         "Adjusted Rating+ based on Box DRtg (no on-ball adjustments)",
-        CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+        CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
       ),
       onball_rtg: GenericTableOps.addPtsCol(
         "new",
         "Adjusted Rating+ after on-ball adjustments",
-        CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+        CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
       ),
       sep1: GenericTableOps.addColSeparator(),
       target: GenericTableOps.addPctCol(
         "Ball Tgt%",
         "% of plays where on-ball defender was targeted",
-        CbbColors.varPicker(CbbColors.usg_offDef, 1.5)
+        CbbColors.varPicker(CbbColors.usg_offDef, 1.5),
       ),
       ppp: GenericTableOps.addDataCol(
         "Ball PPP",
         "On-Ball Points/Play conceded (each possession can include multiple plays)",
         CbbColors.varPicker(CbbColors.applyThemedBackground),
-        GenericTableOps.twoDpFormatter
+        GenericTableOps.twoDpFormatter,
       ),
       eff_ppp: GenericTableOps.addDataCol(
         "Eff PPP",
         "On-Ball Points/Play adjusted to take into account that missed field goals can be rebounded",
         CbbColors.varPicker(CbbColors.def_ppp),
-        GenericTableOps.twoDpFormatter
+        GenericTableOps.twoDpFormatter,
       ),
       "sep1.5": GenericTableOps.addColSeparator(),
       tov: GenericTableOps.addPctCol(
         "Ball TO%",
         "% of plays where defender forced a TO",
-        CbbColors.varPicker(CbbColors.p_def_TO, 0.25)
+        CbbColors.varPicker(CbbColors.p_def_TO, 0.25),
       ),
       sf: GenericTableOps.addPctCol(
         "Ball SF%",
         "% of plays where defender fouled a shooter",
-        CbbColors.varPicker(CbbColors.p_def_TO, 0.25)
+        CbbColors.varPicker(CbbColors.p_def_TO, 0.25),
       ),
       sep2: GenericTableOps.addColSeparator(),
       ball_drtg: GenericTableOps.addPtsCol(
         "Ball DRtg",
         "The approximate Defensive Rating taking only on-ball defense (and rebounds) into account",
-        CbbColors.varPicker(CbbColors.def_pp100)
+        CbbColors.varPicker(CbbColors.def_pp100),
       ),
       off_drtg: GenericTableOps.addPtsCol(
         "Off DRtg",
         "The approximate Defensive Rating taking only off-ball defense (and rebounds) into account",
-        CbbColors.varPicker(CbbColors.def_pp100)
+        CbbColors.varPicker(CbbColors.def_pp100),
       ),
       reb_credit: GenericTableOps.addPtsCol(
         "DRB Bonus",
         "The gain/loss to Defensive Rating due to a player's rebounding",
-        CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+        CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
       ),
       sep3: GenericTableOps.addColSeparator(),
       plays: GenericTableOps.addIntCol(
         "Plays",
         "Number of targeted plays recorded (each possession can include multiple plays)",
-        CbbColors.varPicker(CbbColors.applyThemedBackground)
+        CbbColors.varPicker(CbbColors.applyThemedBackground),
       ),
       poss: GenericTableOps.addPctCol(
         "Poss%",
         "% of team possessions the player is on the floor",
-        CbbColors.varPicker(CbbColors.applyThemedBackground)
+        CbbColors.varPicker(CbbColors.applyThemedBackground),
       ),
     },
-    hasRapm ? [] : ["delta_rapm"]
+    hasRapm ? [] : ["delta_rapm"],
   );
 
   const unassignedData: Record<string, any> = onBallDefense[0]
@@ -312,7 +312,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
     .filter(
       (p) =>
         !_.isNil(p.diag_def_rtg?.onBallDiags) &&
-        !_.isNil(p.diag_def_rtg?.onBallDef)
+        !_.isNil(p.diag_def_rtg?.onBallDef),
     )
     .flatMap((p) => {
       const diag = p.diag_def_rtg!;
@@ -339,7 +339,10 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
               ppp: { value: onBallStats.pts / (onBallStats.plays || 1) },
               eff_ppp: { value: onBallDiag.effectivePpp },
 
-              target: { value: onBallDiag.targetedPct },
+              target: {
+                value: onBallDiag.targetedPct,
+                extraInfo: `(Estimated usage: [${(onBallDiag.estimatedDefUsage * 100).toFixed(1)}%])`,
+              },
               // fgMiss: { value: onBallStats.fgMiss/(onBallStats.plays||1) },
               tov: { value: 0.01 * onBallStats.tovPct },
               sf: { value: 0.01 * onBallStats.sfPct },
@@ -359,8 +362,8 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
       GenericTableOps.buildDataRow(
         o,
         GenericTableOps.defaultFormatter,
-        GenericTableOps.defaultCellMeta
-      )
+        GenericTableOps.defaultCellMeta,
+      ),
     )
     .value();
 
@@ -382,7 +385,7 @@ const OnBallDefenseModal: React.FunctionComponent<Props> = ({
         ? contents?.[0] || ""
         : OnBallDefenseUtils.combineTeamAndPlayerFiles(
             contents?.[0] || "",
-            contents?.[1] || ""
+            contents?.[1] || "",
           );
 
       setInputChanged(true);
