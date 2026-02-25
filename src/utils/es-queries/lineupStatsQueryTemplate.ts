@@ -204,7 +204,15 @@ export const lineupStatsQuery = function (
           filters: {
             filters: otherQueryFilters,
           },
-          aggregations: lineupAggs,
+          aggregations: {
+            lineups: {
+              terms: {
+                field: "lineup_id.keyword",
+                size: 1000,
+              },
+              aggregations: lineupAggs,
+            },
+          },
         },
       };
 

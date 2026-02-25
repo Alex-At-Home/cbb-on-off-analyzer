@@ -117,12 +117,14 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     for (let i = 0; i < n; i++) {
       const tk = bucketKeyForGameIndex(i);
       const lk = `other_${i}`;
+      const lineupBucket = lineupBuckets[lk] || {};
+      const lineupBucketsList = lineupBucket.lineups?.buckets || [];
       perGame.push({
         gameLabel: buildGameLabel(games[i]),
         gameInfo: games[i],
         teamStats: teamBuckets[tk] || {},
         rosterStats: playerBuckets[tk]?.player?.buckets || [],
-        lineupStats: lineupBuckets[lk] || {},
+        lineupStats: { lineups: lineupBucketsList },
       });
     }
     onStats({ games: perGame });

@@ -29,11 +29,15 @@ import QuickSwitchBar, {
   QuickSwitchSource,
 } from "../components/shared/QuickSwitchBar";
 import GenericTable, { GenericTableOps } from "../components/GenericTable";
+import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import {
-  computeNetRatingPerGame,
+  buildPerGameRapmCaches,
+  buildGameImpactRowsFromCaches,
   buildGameImpactTableRows,
+  SEASON_MATCHUP_TEAM_KEY,
 } from "../utils/SeasonMatchupImpactUtils";
+import type { GameStatsCache } from "../utils/tables/GameAnalysisUtils";
 
 const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const isServer = typeof window === "undefined";
@@ -45,16 +49,18 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [dataEvent, setDataEvent] = useState<{
     games: SeasonMatchupPerGame[];
   }>({ games: [] });
-  const [selectedPlayer, setSelectedPlayer] = useState<string | undefined>();
+  const [selectedPlayer, setSelectedPlayer] = useState<string>(SEASON_MATCHUP_TEAM_KEY);
   const [quickSwitchExtra, setQuickSwitchExtra] = useState<
     "extra" | "diff" | undefined
   >(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
-  const [impactCache, setImpactCache] = useState<
-    Record<string, Record<string, { value: number } | string>[]>
-  >({});
+  const [perGameRapmCaches, setPerGameRapmCaches] = useState<
+    GameStatsCache[]
+  >([]);
+  const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">("P%");
+  const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState(false);
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
   paramsRef.current = params;
@@ -65,38 +71,48 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     efficiencyAverages[genderYear] || efficiencyAverages.fallback;
 
   const playerOptions = useMemo(() => {
+    const teamOption = { title: SEASON_MATCHUP_TEAM_KEY };
     const codes = new Set<string>();
     dataEvent.games.forEach((g) => {
       (g.rosterStats || []).forEach((r: { key?: string }) => {
         if (r.key) codes.add(r.key);
       });
     });
-    return Array.from(codes).map((code) => ({ title: code }));
+    return [teamOption, ...Array.from(codes).map((code) => ({ title: code }))];
   }, [dataEvent.games]);
 
   useEffect(() => {
-    setImpactCache({});
-  }, [dataEvent.games]);
-
-  useEffect(() => {
-    if (!selectedPlayer || !dataEvent.games.length) return;
-    setImpactCache((c) => {
-      if (c[selectedPlayer]) return c;
-      const impacts = computeNetRatingPerGame(
-        selectedPlayer,
-        dataEvent.games,
-        common,
-        avgEfficiency
-      );
-      const rows = buildGameImpactTableRows(impacts);
-      return { ...c, [selectedPlayer]: rows };
-    });
-  }, [selectedPlayer, dataEvent.games, common, avgEfficiency]);
+    if (!dataEvent.games.length) {
+      setPerGameRapmCaches([]);
+      return;
+    }
+    setPerGameRapmCaches([]);
+    const commonParams = getCommonFilterParams(params);
+    const caches = buildPerGameRapmCaches(
+      dataEvent.games,
+      commonParams,
+      avgEfficiency
+    );
+    setPerGameRapmCaches(caches);
+  }, [dataEvent.games, params.team, params.year, params.gender, avgEfficiency]);
 
   const tableRows = useMemo(() => {
-    if (!selectedPlayer) return [];
-    const rows = impactCache[selectedPlayer];
-    if (!rows) return [];
+    if (
+      !selectedPlayer ||
+      !dataEvent.games.length ||
+      perGameRapmCaches.length !== dataEvent.games.length
+    ) {
+      return [];
+    }
+    const impacts = buildGameImpactRowsFromCaches(
+      perGameRapmCaches,
+      dataEvent.games,
+      selectedPlayer,
+      avgEfficiency,
+      scaleType,
+      adjBreakdownForSoS
+    );
+    const rows = buildGameImpactTableRows(impacts);
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
     const tableDefs = IndivTableDefs.impactDecompTable;
@@ -108,7 +124,14 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         tableDefs
       )
     );
-  }, [selectedPlayer, impactCache]);
+  }, [
+    selectedPlayer,
+    dataEvent.games,
+    perGameRapmCaches,
+    avgEfficiency,
+    scaleType,
+    adjBreakdownForSoS,
+  ]);
 
   const onSeasonMatchupStats: SeasonMatchupOnStats = (data) => {
     setDataEvent({ games: data.games });
@@ -188,11 +211,67 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                   _source: QuickSwitchSource,
                   _fromTimer: boolean
                 ) => {
-                  setSelectedPlayer(quickSwitch);
+                  setSelectedPlayer(quickSwitch ?? SEASON_MATCHUP_TEAM_KEY);
                 }}
                 quickSwitchTimer={quickSwitchTimer}
                 setQuickSwitchTimer={setQuickSwitchTimer}
               />
+              <div className="mb-2 mt-2">
+                <ToggleButtonGroup
+                  labelOverride="Quick Select:"
+                  items={[
+                    {
+                      label: "Adj",
+                      tooltip:
+                        "Include SoS adjustment in calcs (means total net won't sum to score differential)",
+                      toggled: adjBreakdownForSoS,
+                      onClick: () =>
+                        setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                    },
+                    {
+                      label: "| ",
+                      tooltip: "",
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                    },
+                    {
+                      items: [
+                        {
+                          label: (
+                            <small>
+                              P<sup>%</sup>
+                            </small>
+                          ),
+                          tooltip: `P%: Impact per 100 possessions when on court`,
+                          toggled: scaleType === "P%",
+                          onClick: () => setScaleType("P%"),
+                        },
+                        {
+                          label: (
+                            <small>
+                              T<sup>%</sup>
+                            </small>
+                          ),
+                          tooltip: `T%: Impact per 100 team possessions`,
+                          toggled: scaleType === "T%",
+                          onClick: () => setScaleType("T%"),
+                        },
+                        {
+                          label: (
+                            <small>
+                              <sup>/</sup>G
+                            </small>
+                          ),
+                          tooltip: `/G: Impact per game`,
+                          toggled: scaleType === "/G",
+                          onClick: () => setScaleType("/G"),
+                        },
+                      ],
+                    },
+                  ]}
+                />
+              </div>
               {selectedPlayer && tableRows.length > 0 ? (
                 <GenericTable
                   tableCopyId="seasonMatchup_impact"
@@ -202,9 +281,11 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                 />
               ) : (
                 <p className="small text-muted mb-0">
-                  {selectedPlayer
-                    ? "Loading…"
-                    : "Select a player above to see per-game impact."}
+                  {!selectedPlayer
+                    ? "Select a player above to see per-game impact."
+                    : perGameRapmCaches.length !== dataEvent.games.length
+                      ? "Computing RAPM…"
+                      : "Loading…"}
                 </p>
               )}
             </GenericCollapsibleCard>
