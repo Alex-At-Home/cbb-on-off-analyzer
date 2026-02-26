@@ -343,7 +343,7 @@ export class LineupTableUtils {
           if (p.def_adj_rtg) {
             p.def_adj_rtg.value = p.diag_def_rtg.adjDRtgPlus;
             if (maybeRawVals) {
-              p.def_rtg.old_value = maybeRawVals[1];
+              p.def_adj_rtg.old_value = maybeRawVals[1];
             }
           }
           if (p.def_adj_prod) {
