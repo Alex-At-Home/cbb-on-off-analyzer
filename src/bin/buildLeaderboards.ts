@@ -305,7 +305,7 @@ const getOnBallDefenseFilename = (team: string, teamYear: string) => {
 };
 
 /** On ball defense - Only had this data between 2020 and 2023 */
-const onBallDefenseEnabled = inYear > "2019" && inYear < "2024";
+const onBallDefenseEnabled = inYear > "2019" && inYear < "2026";
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {

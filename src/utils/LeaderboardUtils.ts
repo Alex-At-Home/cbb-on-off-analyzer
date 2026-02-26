@@ -26,7 +26,7 @@ export class LeaderboardUtils {
     fullYear: string,
     tier: string,
     transferYears: string[],
-    otherYears: string[]
+    otherYears: string[],
   ): Promise<any[]> {
     return LeaderboardUtils.getMultiYearLboards(
       gender,
@@ -45,9 +45,9 @@ export class LeaderboardUtils {
                 dataSubEventKey,
                 gender,
                 subYear,
-                inTier
+                inTier,
               ),
-            ]
+            ],
     );
   }
 
@@ -60,7 +60,7 @@ export class LeaderboardUtils {
     tier: string,
     transferYears: string[],
     otherYears: string[],
-    getUrl: (gender: string, subYear: string, inTier: string) => string[]
+    getUrl: (gender: string, subYear: string, inTier: string) => string[],
   ): Promise<any[]> {
     const year = fullYear.substring(0, 4);
 
@@ -71,15 +71,15 @@ export class LeaderboardUtils {
           (inYear) =>
             year == DateUtils.AllYears ||
             inYear == fullYear ||
-            _.some(otherYears, (y) => y == inYear)
+            _.some(otherYears, (y) => y == inYear),
         );
     const tiers = _.filter(
       ["High", "Medium", "Low"],
-      (inTier) => tier == "All" || inTier == tier
+      (inTier) => tier == "All" || inTier == tier,
     );
 
     const yearsAndTiers = _.flatMap(years, (inYear) =>
-      tiers.map((inTier) => [inYear, inTier])
+      tiers.map((inTier) => [inYear, inTier]),
     );
 
     const fetchAll = Promise.all(
@@ -94,9 +94,9 @@ export class LeaderboardUtils {
                   return j;
                 })
               : Promise.resolve({ error: "No data available" });
-          })
+          }),
         );
-      }).concat(LeaderboardUtils.getTransferInfo(transferYears))
+      }).concat(LeaderboardUtils.getTransferInfo(transferYears)),
     );
     return fetchAll;
   }
@@ -114,7 +114,7 @@ export class LeaderboardUtils {
         } else {
           return `/leaderboards/roster_movement/transfers_${transferYear.substring(
             0,
-            4
+            4,
           )}.json`;
         }
       });
@@ -131,14 +131,14 @@ export class LeaderboardUtils {
     dataSubEventKey: "all" | "t100" | "conf",
     gender: string,
     fullYear: string,
-    tier: string
+    tier: string,
   ): Promise<any> {
     return LeaderboardUtils.getSingleYearLboards(
       gender,
       fullYear,
       tier,
       (gender: string, subYear: string, inTier: string) =>
-        LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier)
+        LeaderboardUtils.getPlayerUrl(dataSubEventKey, gender, subYear, inTier),
     );
   }
 
@@ -147,7 +147,7 @@ export class LeaderboardUtils {
     gender: string,
     fullYear: string,
     tier: string,
-    getUrl: (gender: string, subYear: string, inTier: string) => string
+    getUrl: (gender: string, subYear: string, inTier: string) => string,
   ): Promise<any> {
     const year = fullYear.substring(0, 4);
 
@@ -156,7 +156,7 @@ export class LeaderboardUtils {
         return response.ok
           ? response.json()
           : Promise.resolve({ error: "No data available" });
-      }
+      },
     );
   }
 
@@ -166,7 +166,7 @@ export class LeaderboardUtils {
     gender: string,
     fullYear: string,
     tier: string,
-    otherYears: string[]
+    otherYears: string[],
   ): Promise<any[]> {
     const year = fullYear.substring(0, 4);
 
@@ -177,22 +177,22 @@ export class LeaderboardUtils {
           (inYear) =>
             year == DateUtils.AllYears ||
             inYear == fullYear ||
-            _.some(otherYears, (y) => y == inYear)
+            _.some(otherYears, (y) => y == inYear),
         );
     const tiers = _.filter(
       ["High", "Medium", "Low"],
-      (inTier) => tier == "All" || inTier == tier
+      (inTier) => tier == "All" || inTier == tier,
     );
 
     const yearsAndTiers = _.flatMap(years, (inYear) =>
-      tiers.map((inTier) => [inYear, inTier])
+      tiers.map((inTier) => [inYear, inTier]),
     );
 
     const fetchAll = Promise.all(
       yearsAndTiers.map(([inYear, inTier]) => {
         const subYear = inYear.substring(0, 4);
         return fetch(
-          LeaderboardUtils.getTeamStatsUrl(gender, subYear, inTier)
+          LeaderboardUtils.getTeamStatsUrl(gender, subYear, inTier),
         ).then((response: fetch.IsomorphicResponse) => {
           return response.ok
             ? response.json().then((j: any) => {
@@ -202,7 +202,7 @@ export class LeaderboardUtils {
               })
             : Promise.resolve({ error: "No data available" });
         });
-      })
+      }),
     );
     return fetchAll;
   }
@@ -214,7 +214,7 @@ export class LeaderboardUtils {
     gender: string,
     fullYear: string,
     tier: string,
-    otherYears: string[]
+    otherYears: string[],
   ): Promise<any[]> {
     const year = fullYear.substring(0, 4);
 
@@ -225,22 +225,22 @@ export class LeaderboardUtils {
           (inYear) =>
             year == DateUtils.AllYears ||
             inYear == fullYear ||
-            _.some(otherYears, (y) => y == inYear)
+            _.some(otherYears, (y) => y == inYear),
         );
     const tiers = _.filter(
       ["High", "Medium", "Low"],
-      (inTier) => tier == "All" || inTier == tier
+      (inTier) => tier == "All" || inTier == tier,
     );
 
     const yearsAndTiers = _.flatMap(years, (inYear) =>
-      tiers.map((inTier) => [inYear, inTier])
+      tiers.map((inTier) => [inYear, inTier]),
     );
 
     const fetchAll = Promise.all(
       yearsAndTiers.map(([inYear, inTier]) => {
         const subYear = inYear.substring(0, 4);
         return fetch(
-          LeaderboardUtils.getTeamDetailsUrl(oppo, gender, subYear, inTier)
+          LeaderboardUtils.getTeamDetailsUrl(oppo, gender, subYear, inTier),
         ).then((response: fetch.IsomorphicResponse) => {
           return response.ok
             ? response.json().then((j: any) => {
@@ -250,7 +250,7 @@ export class LeaderboardUtils {
               })
             : Promise.resolve({ error: "No data available" });
         });
-      })
+      }),
     );
     return fetchAll;
   }
@@ -259,14 +259,20 @@ export class LeaderboardUtils {
 
   // Lower level utils
 
+  /** Debug param to fetch leaderboard URLs from local file */
+  static readonly fetchLocally = false;
+
   /** Fetch the requested player leaderboard either from GCS or static storage */
   static readonly getPlayerUrl = (
     oppo: string,
     gender: string,
     subYear: string,
-    inTier: string
+    inTier: string,
   ) => {
-    if (DateUtils.inSeasonYear.startsWith(subYear)) {
+    if (
+      DateUtils.inSeasonYear.startsWith(subYear) &&
+      !LeaderboardUtils.fetchLocally
+    ) {
       // Access from dynamic storage
       return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
     } else {
@@ -280,9 +286,12 @@ export class LeaderboardUtils {
     oppo: string,
     gender: string,
     subYear: string,
-    inTier: string
+    inTier: string,
   ) => {
-    if (DateUtils.inSeasonYear.startsWith(subYear)) {
+    if (
+      DateUtils.inSeasonYear.startsWith(subYear) &&
+      !LeaderboardUtils.fetchLocally
+    ) {
       // Access from dynamic storage
       return `/api/getLeaderboard?src=lineups&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
     } else {
@@ -296,9 +305,12 @@ export class LeaderboardUtils {
     oppo: string,
     gender: string,
     subYear: string,
-    inTier: string
+    inTier: string,
   ) => {
-    if (DateUtils.inSeasonYear.startsWith(subYear)) {
+    if (
+      DateUtils.inSeasonYear.startsWith(subYear) &&
+      !LeaderboardUtils.fetchLocally
+    ) {
       // Access from dynamic storage
       return `/api/getLeaderboard?src=teams&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
     } else {
@@ -311,9 +323,12 @@ export class LeaderboardUtils {
   static readonly getTeamStatsUrl = (
     gender: string,
     subYear: string,
-    inTier: string
+    inTier: string,
   ) => {
-    if (DateUtils.inSeasonYear.startsWith(subYear)) {
+    if (
+      DateUtils.inSeasonYear.startsWith(subYear) &&
+      !LeaderboardUtils.fetchLocally
+    ) {
       // Access from dynamic storage
       return `/api/getTeamStats?gender=${gender}&year=${subYear}&tier=${inTier}`;
     } else {
@@ -327,9 +342,12 @@ export class LeaderboardUtils {
     oppo: "all" | "t100" | "conf",
     gender: string,
     subYear: string,
-    inTier: string
+    inTier: string,
   ) => {
-    if (DateUtils.inSeasonYear.startsWith(subYear)) {
+    if (
+      DateUtils.inSeasonYear.startsWith(subYear) &&
+      !LeaderboardUtils.fetchLocally
+    ) {
       // Access from dynamic storage
       return `/api/getTeamDetails?oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
     } else {

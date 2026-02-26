@@ -188,13 +188,16 @@ export class LineupTableUtils {
         // Apply on-ball defense if it exists for this player
         if (dRtgDiag && onBallDefenseByCode.hasOwnProperty(mutableP.code!)) {
           const onBallDefense = onBallDefenseByCode[mutableP.code!]!;
-          const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(
-            mutableP,
-            dRtgDiag,
-            onBallDefense,
-          );
-          dRtgDiag.onBallDef = onBallDefense;
-          dRtgDiag.onBallDiags = onBallDiags;
+          // Quick check since there's an edge case of players with a "same code" low possession "ghost"
+          if (dRtgDiag.oppoPoss >= onBallDefense.plays) {
+            const onBallDiags = RatingUtils.buildOnBallDefenseAdjustmentsPhase1(
+              mutableP,
+              dRtgDiag,
+              onBallDefense,
+            );
+            dRtgDiag.onBallDef = onBallDefense;
+            dRtgDiag.onBallDiags = onBallDiags;
+          }
         }
 
         // If roster info is available then add:

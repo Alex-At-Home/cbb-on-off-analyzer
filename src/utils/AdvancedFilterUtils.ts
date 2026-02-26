@@ -10,7 +10,7 @@ import values from "lodash";
 type TypeScriptWorkaround1 = (element: any, index: number) => boolean;
 type TypeScriptWorkaround2 = (element: any) => unknown;
 type EnumToEnum = (
-  e: Enumerable.IEnumerable<any>
+  e: Enumerable.IEnumerable<any>,
 ) => Enumerable.IEnumerable<any>;
 
 /** Utils to build LINQ filter/sort capabilities */
@@ -443,7 +443,7 @@ export class AdvancedFilterUtils {
         AdvancedFilterUtils.teamExplorerGradedStats
           .filter(AdvancedFilterUtils.teamFieldHasRank)
           .map((field) => `pctile_${field}`),
-      ])
+      ]),
     );
 
   /** Auto-complete names to data model mapping */
@@ -546,7 +546,7 @@ export class AdvancedFilterUtils {
         "minAngle",
         "maxAngle",
       ].map((stat) => `${zoneName}_${stat}`);
-    }
+    },
   );
 
   static readonly playerLeaderBoardAutocomplete = AdvancedFilterUtils.operators
@@ -692,8 +692,8 @@ export class AdvancedFilterUtils {
           } else {
             return `${prefix}${field}`;
           }
-        })
-      )
+        }),
+      ),
     )
     .concat([
       // another special case, we do duplicate rebounding with nicer names (but keep the old ones)
@@ -705,9 +705,9 @@ export class AdvancedFilterUtils {
     .concat(
       ["rank_", "pctile_"].flatMap((prefix) =>
         AdvancedFilterUtils.playerLeaderboardPlayStyles.map(
-          (field) => `${prefix}${field}`
-        )
-      )
+          (field) => `${prefix}${field}`,
+        ),
+      ),
     );
 
   static readonly playerLboardWithTeamStatsAutocomplete =
@@ -718,15 +718,15 @@ export class AdvancedFilterUtils {
             _.startsWith(field, "off_") ||
             _.startsWith(field, "def_") ||
             _.startsWith(field, "adj_") ||
-            _.startsWith(field, "raw_")
+            _.startsWith(field, "raw_"),
         )
         .flatMap((field) =>
           [`team_stats.${field}`].concat(
             AdvancedFilterUtils.teamFieldHasRank(field)
               ? [`rank_team_stats.${field}`, `pctile_team_stats.${field}`]
-              : []
-          )
-        )
+              : [],
+          ),
+        ),
     );
 
   static playerSeasonComparisonAutocomplete = _.flatMap(
@@ -752,7 +752,7 @@ export class AdvancedFilterUtils {
           } else {
             return [`${prefix}${field}`];
           }
-        }
+        },
       ).concat(
         _.flatMap(["pred_ok_", "pred_good_", "pred_bad_"], (prefix) => {
           //(a small subset of fields have good/bad/ok predictions for the following year)
@@ -764,9 +764,9 @@ export class AdvancedFilterUtils {
             "off_team_poss_pct",
             "adj_rapm_margin",
           ].map((field) => `${prefix}${field}`);
-        })
+        }),
       );
-    }
+    },
   );
 
   /** Common boolean operations */
@@ -787,6 +787,73 @@ export class AdvancedFilterUtils {
       .replace(/(off|def)_poss/g, "$1_team_poss");
   }
 
+  /** Have a list of these since we don't currently default to them (TODO: should do later?) */
+  static readonly advancedSingleYearFields = [
+    "def_onball_delta",
+    "off_style_halfcourt_pct",
+    "off_style_halfcourt_usg",
+    "off_style_halfcourt_ppp",
+    "off_style_onball_pct",
+    "off_style_onball_usg",
+    "off_style_onball_ppp",
+    "off_style_offball_pct",
+    "off_style_offball_usg",
+    "off_style_offball_ppp",
+  ];
+
+  /** "Clever" replacements that happen after singleYearfixObjectFormat */
+  static advancedSingleYearPostFieldReplacements(s: string) {
+    return s.replace(
+      /[$][.]p[.]def_onball_delta[?][.]value/g,
+      "($.p.def_adj_rtg?.value - ($.p.def_adj_rtg?.old_value ?? $.p.def_adj_rtg?.value))",
+    );
+  }
+  /** "Clever" replacements that happen after singleYearfixObjectFormat */
+  static advancedSingleYearPreFieldReplacements(s: string) {
+    // On-Ball
+    //off_style_rim_attack_pct + off_style_attack_kick_pct + off_style_dribble_jumper_pct + 0.5*off_style_mid_range_pct + off_style_hits_cutter_pct + off_style_hits_cutter_pct + off_style_pnr_passer_pct + off_style_post_up_pct + off_style_post_kick_pct + 0.5*off_style_high_low_pct
+    // Off-Ball
+    //off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct
+
+    return s
+      .replace(
+        /off_style_halfcourt_pct/g,
+        "(off_style_onball_pct + off_style_offball_pct)",
+      )
+      .replace(
+        /off_style_halfcourt_usg/g,
+        "(off_style_onball_usg + off_style_offball_usg)",
+      )
+      .replace(
+        /off_style_halfcourt_ppp/g,
+        "(off_style_onball_pct*off_style_onball_ppp + off_style_offball_pct*off_style_offball_ppp)/(off_style_onball_pct + off_style_offball_pct)",
+      ) //(these 3 will then get replaced as below)
+      .replace(
+        /off_style_onball_pct/g,
+        "(off_style_rim_attack_pct + off_style_attack_kick_pct + off_style_dribble_jumper_pct + 0.5*off_style_mid_range_pct + off_style_hits_cutter_pct + off_style_hits_cutter_pct + off_style_pnr_passer_pct + off_style_post_up_pct + off_style_post_kick_pct + 0.5*off_style_high_low_pct)",
+      )
+      .replace(
+        /off_style_onball_usg/g,
+        "(off_style_rim_attack_usg + off_style_attack_kick_usg + off_style_dribble_jumper_usg + 0.5*off_style_mid_range_usg + off_style_hits_cutter_usg + off_style_hits_cutter_usg + off_style_pnr_passer_usg + off_style_post_up_usg + off_style_post_kick_usg + 0.5*off_style_high_low_usg)",
+      )
+      .replace(
+        /off_style_onball_ppp/g,
+        "(off_style_rim_attack_pct*off_style_rim_attack_ppp + off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_dribble_jumper_pct*off_style_dribble_jumper_ppp + 0.5*off_style_mid_range_pct*off_style_mid_range_ppp + off_style_hits_cutter_pct*off_style_hits_cutter_ppp + off_style_hits_cutter_pct*off_style_hits_cutter_ppp + off_style_pnr_passer_pct*off_style_pnr_passer_ppp + off_style_post_up_pct*off_style_post_up_ppp + off_style_post_kick_pct*off_style_post_kick_ppp + 0.5*off_style_high_low_pct*off_style_high_low_ppp)/(off_style_rim_attack_pct + off_style_attack_kick_pct + off_style_dribble_jumper_pct + 0.5*off_style_mid_range_pct + off_style_hits_cutter_pct + off_style_hits_cutter_pct + off_style_pnr_passer_pct + off_style_post_up_pct + off_style_post_kick_pct + 0.5*off_style_high_low_pct)",
+      )
+      .replace(
+        /off_style_offball_pct/g,
+        "(off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct)",
+      )
+      .replace(
+        /off_style_offball_usg/g,
+        "(off_style_perimeter_sniper_usg + 0.5*off_style_mid_range_usg + off_style_perimeter_cut_usg + off_style_big_cut_roll_usg + off_style_pick_pop_usg + 0.5*off_style_high_low_usg)",
+      )
+      .replace(
+        /off_style_offball_ppp/g,
+        "(off_style_perimeter_sniper_pct*off_style_perimeter_sniper_ppp + 0.5*off_style_mid_range_pct*off_style_mid_range_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp + off_style_pick_pop_pct*off_style_pick_pop_ppp + 0.5*off_style_high_low_pct*off_style_high_low_ppp)/(off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct)",
+      );
+  }
+
   /** Misc transforms to map nice auto-complete-y terms to the ugly objects (normal mode, eg player leaderboard) */
   static singleYearfixObjectFormat(s: string) {
     return s
@@ -798,38 +865,38 @@ export class AdvancedFilterUtils {
             offDef == "def" ? "style_def" : "style" //(have to reverse prefix to avoid colliding with def_ below)
           }?.${AdvancedFilterUtils.playerStyleFromAutocomplete(
             styleType,
-            pctPpp
-          )}?.value`
+            pctPpp,
+          )}?.value`,
       )
       .replace(
         /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
         (
           substr: string,
           ignoredCaptureGroup: string,
-          maybeTeamStats: string | undefined
+          maybeTeamStats: string | undefined,
         ) => {
           return maybeTeamStats
             ? `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
-                substr.substring(maybeTeamStats.length)
+                substr.substring(maybeTeamStats.length),
               ).substring(4)}` //(replace $.p. with team stats prefix)
             : `$.p.${substr}?.value`;
-        }
+        },
       )
       .replace(
         /((team_stats[.])(?:adj|raw)_[0-9a-zA-Z_]+)/g, //adj and raw when team stats _is_ specified
         (
           substr: string,
           ignoredCaptureGroup: string,
-          maybeTeamStats: string
+          maybeTeamStats: string,
         ) => {
           return `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
-            substr.substring(maybeTeamStats.length)
+            substr.substring(maybeTeamStats.length),
           ).substring(4)}`; //(replace $.p. with team stats prefix)
-        }
+        },
       )
       .replace(
         /(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g,
-        "$1$.margins.off_$2?.value"
+        "$1$.margins.off_$2?.value",
       ) //adj for players (team_stats above)
       .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.margins.prev_off_$1?.value") //adj for players (prev year only)
       .replace(/roster[.]height/g, "$.normht")
@@ -837,7 +904,7 @@ export class AdvancedFilterUtils {
       .replace(/player_(name|code)/g, '$.player_$1.replace(/"/g, "\'")')
       .replace(
         /(^| |[(!*+/-]|prev_)(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
-        "$1$.p.$2"
+        "$1$.p.$2",
       )
       .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
       .replace(/roster[.]/g, "roster?.") //(roster not always present)
@@ -848,11 +915,11 @@ export class AdvancedFilterUtils {
     return s
       .replace(
         /(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g,
-        "$.$1?.p.$2?.value"
+        "$.$1?.p.$2?.value",
       )
       .replace(
         /(^| |[(!*+/-])(prev|next|pred_(?:[a-z]+))_(adj_[0-9a-zA-Z_]+)/g,
-        "$1$.$2?.margins?.off_$3?.value"
+        "$1$.$2?.margins?.off_$3?.value",
       )
       .replace(/(prev|next|pred_[a-z]+)_roster[.]height/g, "$.$1?.normht")
       .replace(/(^|[^_])transfer_(src|dest)/g, "$1$.transfer_$2")
@@ -860,11 +927,11 @@ export class AdvancedFilterUtils {
       .replace(/player_(name|code)/g, "$.player_$1")
       .replace(
         /(^| |[(!*+/-])(prev|next|pred_[a-z]+)_(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
-        "$1$.$2?.p.$3"
+        "$1$.$2?.p.$3",
       )
       .replace(
         /[$][.](prev|next|pred_[a-z]+)[.]def_ftr[?][.]value/g,
-        "(100*$.$1?.p.def_ftr?.value)"
+        "(100*$.$1?.p.def_ftr?.value)",
       ) //(fouls called/50)
       .replace(/roster[.]/g, "roster?.") //(roster not always present)
       .replace(/ALL/g, "($.player_code)");
@@ -874,19 +941,19 @@ export class AdvancedFilterUtils {
   static readonly styleFromAutocomplete = (str: string, suffix: string) => {
     return `["${_.thru(
       str,
-      (__) => AdvancedFilterUtils.styleFromAutocompleteLut[str] || "unknown"
+      (__) => AdvancedFilterUtils.styleFromAutocompleteLut[str] || "unknown",
     )}"]?.${suffix == "pct" ? "possPct" : "pts"}`;
   };
 
   /** Creates an accessor into p.style for play type analysis */
   static readonly playerStyleFromAutocomplete = (
     str: string,
-    suffix: string
+    suffix: string,
   ) => {
     return `["${_.thru(
       str,
       (__) =>
-        AdvancedFilterUtils.playerStyleFromAutocompleteLut[str] || "unknown"
+        AdvancedFilterUtils.playerStyleFromAutocompleteLut[str] || "unknown",
     )}"]?.${
       suffix == "pct" ? "possPct" : suffix == "usg" ? "possPctUsg" : "pts"
     }`;
@@ -897,7 +964,7 @@ export class AdvancedFilterUtils {
     return s
       .replace(
         /(_id|team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)/g,
-        "$.p.$1"
+        "$.p.$1",
       )
       .replace(/ALL/g, "($.p.team_name)")
       .replace(/tempo/g, "$.p.tempo?.value")
@@ -908,8 +975,8 @@ export class AdvancedFilterUtils {
             offDef == "def" ? "style_def" : "style" //(have to reverse prefix to avoid colliding with def_ below)
           }?.${AdvancedFilterUtils.styleFromAutocomplete(
             styleType,
-            pctPpp
-          )}?.value`
+            pctPpp,
+          )}?.value`,
       )
       .replace(/((?:off|def)_[0-9a-zA-Z_]+)/g, "$.p.$1?.value")
       .replace(/adj_net/g, "$.p.off_net?.value")
@@ -929,24 +996,24 @@ export class AdvancedFilterUtils {
         (
           substr: string,
           ignoredCaptureGroup: string,
-          maybeTeamStats: string | undefined
+          maybeTeamStats: string | undefined,
         ) => {
           return maybeTeamStats
             ? `$.p.${
                 maybeTeamStats.startsWith("team") ? "team_" : maybeTeamStats
               }${AdvancedFilterUtils.teamFixObjectFormat(
-                substr.substring(maybeTeamStats.length)
+                substr.substring(maybeTeamStats.length),
               ).substring(4)}` //(replace $.p. with team stats prefix)
             : `$.p.${substr}?.value`;
-        }
+        },
       )
       .replace(
         /(player_stats\[[0-5]\])[.](key|code)/g,
-        '$.p.$1.$2.replace(/"/g, "\'")'
+        '$.p.$1.$2.replace(/"/g, "\'")',
       )
       .replace(
         /(player_stats\[[0-5]\])[.](height_in|year_class|ncaa_id|posClass)/g,
-        "$.p.$1.$2"
+        "$.p.$1.$2",
       )
       .replace(/duration_mins/g, "$.p.duration_mins?.value")
       .replace(/adj_net/g, "$.p.off_net?.value")
@@ -1011,7 +1078,7 @@ export class AdvancedFilterUtils {
   static convertRegionalBounds(s: string) {
     return s.replace(
       "hs_region_dmv",
-      "(roster.lat >= 38.3201 && roster.lat <= 39.6395 && roster.lon >= -78.5330 && roster.lon <= -75.4816)"
+      "(roster.lat >= 38.3201 && roster.lat <= 39.6395 && roster.lon >= -78.5330 && roster.lon <= -75.4816)",
     );
   }
 
@@ -1024,9 +1091,11 @@ export class AdvancedFilterUtils {
         AdvancedFilterUtils.avoidAssigmentOperator,
         AdvancedFilterUtils.fieldReplacements,
         AdvancedFilterUtils.playerSpecificFieldReplacements,
+        AdvancedFilterUtils.advancedSingleYearPreFieldReplacements,
         multiYear
           ? AdvancedFilterUtils.multiYearfixObjectFormat
           : AdvancedFilterUtils.singleYearfixObjectFormat,
+        AdvancedFilterUtils.advancedSingleYearPostFieldReplacements,
         AdvancedFilterUtils.gradeConvert,
         AdvancedFilterUtils.prevYearConvert,
         AdvancedFilterUtils.convertPositions,
@@ -1052,7 +1121,7 @@ export class AdvancedFilterUtils {
   /** The Linq to data model pipeline for team explorer expressions */
   static readonly tidyTeamExplorerClauses: (
     s: string,
-    multiYear: boolean
+    multiYear: boolean,
   ) => string = (s: string, multiYear: boolean) =>
     _.flow([
       AdvancedFilterUtils.fixBoolOps,
@@ -1069,21 +1138,21 @@ export class AdvancedFilterUtils {
   private static buildTeamExplorerRows(
     filterStr: string,
     extraParams: Record<string, string>,
-    divStats: (year: string) => DivisionStatistics | undefined
+    divStats: (year: string) => DivisionStatistics | undefined,
   ): (p: any, index: number) => any {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
       "rank_",
       extraParams,
-      false
+      false,
     );
     const [pctileFields, stylePctileFields] =
       AdvancedFilterUtils.buildGradeQueries(
         filterStr,
         "pctile_",
         extraParams,
-        false
+        false,
       );
 
     //DIAG:
@@ -1101,14 +1170,14 @@ export class AdvancedFilterUtils {
           divStatsForYear,
           pctileFields,
           stylePctileFields,
-          false
+          false,
         ),
         rank: AdvancedFilterUtils.buildGrades(
           p,
           divStatsForYear,
           rankFields,
           styleRankFields,
-          true
+          true,
         ),
       };
       //More debugging:
@@ -1134,7 +1203,7 @@ export class AdvancedFilterUtils {
     inData: any[],
     filterStr: string,
     divStats: (year: string) => DivisionStatistics | undefined,
-    extraParams: Record<string, string> = {}
+    extraParams: Record<string, string> = {},
   ): [any[], string | undefined] {
     // Ranking / Pctile debug
     // console.log(`rank: ${JSON.stringify(rankFields)}`);
@@ -1151,15 +1220,15 @@ export class AdvancedFilterUtils {
       AdvancedFilterUtils.buildTeamExplorerRows(
         filterStr,
         extraParams,
-        divStats
-      )
+        divStats,
+      ),
     );
   }
 
   /** A common accessor for both Linq filter/sort and CSV building */
   private static buildLineupRows(
     filterStr: string,
-    teamDivStats: (year: string) => DivisionStatistics | undefined
+    teamDivStats: (year: string) => DivisionStatistics | undefined,
   ): (p: any, index: number) => any {
     return (p: any, index: number) => {
       p.style_def = p.def_style; // (ugly, need def_style to not collide with other def_* fields)
@@ -1177,35 +1246,35 @@ export class AdvancedFilterUtils {
     playerDivStats: (year: string) => DivisionStatistics | undefined,
     teamDivStats: (year: string) => DivisionStatistics | undefined,
     extraParams: Record<string, string>,
-    multiYear: boolean
+    multiYear: boolean,
   ): (p: any, index: number) => any {
     /** Field manipulation to list the field info for which I need to calc rank/%ile */
     const [rankFields, styleRankFields] = AdvancedFilterUtils.buildGradeQueries(
       filterStr,
       "rank_",
       extraParams,
-      true
+      true,
     );
     const [teamRankFields, teamStyleRankFields] =
       AdvancedFilterUtils.buildGradeQueries(
         filterStr,
         "rank_team_stats[.]",
         extraParams,
-        true
+        true,
       );
     const [pctileFields, stylePctileFields] =
       AdvancedFilterUtils.buildGradeQueries(
         filterStr,
         "pctile_",
         extraParams,
-        true
+        true,
       );
     const [teamPctileFields, teamStylePctileFields] =
       AdvancedFilterUtils.buildGradeQueries(
         filterStr,
         "pctile_team_stats[.]",
         extraParams,
-        true
+        true,
       );
 
     //DIAG:
@@ -1263,7 +1332,7 @@ export class AdvancedFilterUtils {
         normht: AdvancedFilterUtils.normHeightString(p.roster?.height || ""),
         prev_normht: p.prevYear
           ? AdvancedFilterUtils.normHeightString(
-              p.prevYear.roster?.height || ""
+              p.prevYear.roster?.height || "",
             )
           : undefined,
         // These need to be derived
@@ -1275,28 +1344,28 @@ export class AdvancedFilterUtils {
           divStatsForYear,
           pctileFields,
           stylePctileFields,
-          false
+          false,
         ),
         rank: AdvancedFilterUtils.buildPlayerGrades(
           { p: p, style: decompStyle, margins },
           divStatsForYear,
           rankFields,
           styleRankFields,
-          true
+          true,
         ),
         pctile_team_stats: AdvancedFilterUtils.buildGrades(
           p.team_stats,
           teamDivStatsForYear,
           teamPctileFields,
           teamStylePctileFields,
-          false
+          false,
         ),
         rank_team_stats: AdvancedFilterUtils.buildGrades(
           p.team_stats,
           teamDivStatsForYear,
           teamRankFields,
           teamStyleRankFields,
-          true
+          true,
         ),
       };
       //DIAG:
@@ -1344,7 +1413,7 @@ export class AdvancedFilterUtils {
     playerDivStats: (year: string) => DivisionStatistics | undefined,
     teamDivStats: (year: string) => DivisionStatistics | undefined,
     extraParams: Record<string, string> = {},
-    multiYear: boolean = false
+    multiYear: boolean = false,
   ): [any[], string | undefined] {
     return AdvancedFilterUtils.applyFilter(
       inData,
@@ -1357,8 +1426,8 @@ export class AdvancedFilterUtils {
         playerDivStats,
         teamDivStats,
         extraParams,
-        multiYear
-      )
+        multiYear,
+      ),
     );
   }
 
@@ -1367,7 +1436,7 @@ export class AdvancedFilterUtils {
     inData: any[],
     filterStr: string,
     teamDivStats: (year: string) => DivisionStatistics | undefined,
-    extraParams: Record<string, string> = {}
+    extraParams: Record<string, string> = {},
   ): [any[], string | undefined] {
     return AdvancedFilterUtils.applyFilter(
       inData,
@@ -1375,7 +1444,7 @@ export class AdvancedFilterUtils {
       extraParams,
       false,
       AdvancedFilterUtils.tidyPlayerClauses,
-      AdvancedFilterUtils.buildLineupRows(filterStr, teamDivStats)
+      AdvancedFilterUtils.buildLineupRows(filterStr, teamDivStats),
     );
   }
 
@@ -1386,7 +1455,7 @@ export class AdvancedFilterUtils {
     extraParams: Record<string, string> = {},
     multiYear: boolean = false,
     tidyClauses: (s: string, multiYear: boolean) => string,
-    buildRetVal: (p: any, index: number) => any
+    buildRetVal: (p: any, index: number) => any,
   ): [any[], string | undefined] {
     const filterFrags = filterStr
       .split("SORT_BY")
@@ -1428,21 +1497,21 @@ export class AdvancedFilterUtils {
             return isAsc
               ? enumerable.orderBy(sortBy as unknown as TypeScriptWorkaround2)
               : enumerable.orderByDescending(
-                  sortBy as unknown as TypeScriptWorkaround2
+                  sortBy as unknown as TypeScriptWorkaround2,
                 );
           };
         } else {
           return (enumerable: Enumerable.IEnumerable<any>) => {
             return isAsc
               ? (enumerable as Enumerable.IOrderedEnumerable<any>).thenBy(
-                  sortBy as unknown as TypeScriptWorkaround2
+                  sortBy as unknown as TypeScriptWorkaround2,
                 )
               : (
                   enumerable as Enumerable.IOrderedEnumerable<any>
                 ).thenByDescending(sortBy as unknown as TypeScriptWorkaround2);
           };
         }
-      }
+      },
     );
 
     try {
@@ -1454,12 +1523,12 @@ export class AdvancedFilterUtils {
           //   console.log(tidiedData);
           // }
           return tidiedData;
-        })
+        }),
       );
       const filteredData =
         wherePlusMaybeInsert.length > 0
           ? enumData.where(
-              wherePlusMaybeInsert as unknown as TypeScriptWorkaround1
+              wherePlusMaybeInsert as unknown as TypeScriptWorkaround1,
             )
           : enumData;
       const sortedData =
@@ -1500,7 +1569,7 @@ export class AdvancedFilterUtils {
             {},
             multiYear,
             tidyClauses,
-            buildRetVal
+            buildRetVal,
           );
         return [
           filteredSortedData,
@@ -1520,28 +1589,28 @@ export class AdvancedFilterUtils {
   /** Team explorer CSV logic */
   static generateTeamExplorerCsv = (
     inData: any[],
-    divStats?: (year: string) => DivisionStatistics | undefined
+    divStats?: (year: string) => DivisionStatistics | undefined,
   ): [string, string[]] => {
     const headerFields = divStats
       ? _.drop(
           AdvancedFilterUtils.teamExplorerAutocomplete,
-          AdvancedFilterUtils.operators.length
+          AdvancedFilterUtils.operators.length,
         )
       : AdvancedFilterUtils.teamExplorerMetadata.concat(
-          AdvancedFilterUtils.teamExplorerGradedStats
+          AdvancedFilterUtils.teamExplorerGradedStats,
         );
 
     const rawExpressionString = headerFields.join(" , ");
     const expressionString = AdvancedFilterUtils.tidyTeamExplorerClauses(
       `JSON.stringify([ ${rawExpressionString} ])`,
-      false
+      false,
     );
 
     const divStatsWithFallback = divStats || ((y: string) => undefined);
     const rowBuilder = AdvancedFilterUtils.buildTeamExplorerRows(
       rawExpressionString,
       {},
-      divStatsWithFallback
+      divStatsWithFallback,
     );
     const enumData = Enumerable.from(inData.map(rowBuilder));
     const results = enumData
@@ -1560,23 +1629,23 @@ export class AdvancedFilterUtils {
     inData: any[],
     includesPrevYear: boolean,
     playerDivStats?: (year: string) => DivisionStatistics | undefined,
-    teamDivStats?: (year: string) => DivisionStatistics | undefined
+    teamDivStats?: (year: string) => DivisionStatistics | undefined,
   ): [string, string[]] => {
     const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
     const headerFieldsPhase1 = _.drop(
       AdvancedFilterUtils.playerLeaderBoardAutocomplete,
-      AdvancedFilterUtils.operators.length
+      AdvancedFilterUtils.operators.length,
     )
       .filter(
         (field) =>
           playerDivStats || //(remove rank/pctile fields if grades not being added)
-          (!_.startsWith(field, "rank_") && !_.startsWith(field, "pctile_"))
+          (!_.startsWith(field, "rank_") && !_.startsWith(field, "pctile_")),
       )
       .filter(
         (field) =>
           !_.startsWith(field, "hs_region") &&
           field != "posConfidences" &&
-          field != "posFreqs"
+          field != "posFreqs",
       ) //(expand these into their arrays)
       .concat(posGroups.map((pos) => `posConfidences[${pos}]`))
       .concat(posGroups.map((pos) => `posFreqs[${pos}]`));
@@ -1590,10 +1659,10 @@ export class AdvancedFilterUtils {
                   !_.startsWith(field, "rank_") &&
                   !_.startsWith(field, "pctile_") && //(don't currently support prev_ ranks)
                   !_.startsWith(field, "player_") &&
-                  !_.startsWith(field, "transfer_") //(didn't generate prev_ for theses)
+                  !_.startsWith(field, "transfer_"), //(didn't generate prev_ for theses)
               )
               .map((field) => `prev_${field}`)
-          : []
+          : [],
       )
       .concat(
         // If the user includes team stats then we'll append these at the end:
@@ -1601,15 +1670,21 @@ export class AdvancedFilterUtils {
         filterStr.match(
           new RegExp(
             `(?:rank_|pctile_)?team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`,
-            "g"
-          )
-        ) || []
+            "g",
+          ),
+        ) || [],
+      )
+      .concat(
+        // Currently only include these if specified
+        AdvancedFilterUtils.advancedSingleYearFields.filter((f) =>
+          filterStr.includes(f),
+        ),
       );
 
     const rawExpressionString = headerFields.join(" , ");
     const expressionString = AdvancedFilterUtils.tidyPlayerClauses(
       `JSON.stringify([ ${rawExpressionString} ])`,
-      false
+      false,
     );
 
     //DEBUG
@@ -1623,7 +1698,7 @@ export class AdvancedFilterUtils {
       playerDivStatsWithFallback,
       teamDivStatsWithFallback,
       {},
-      false
+      false,
     );
     const enumData = Enumerable.from(inData.map(rowBuilder));
     const results = enumData
@@ -1640,18 +1715,18 @@ export class AdvancedFilterUtils {
   static generateLineupLeaderboardCsv = (
     filterStr: string,
     inData: any[],
-    teamDivStats?: (year: string) => DivisionStatistics | undefined
+    teamDivStats?: (year: string) => DivisionStatistics | undefined,
   ): [string, string[]] => {
     const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
     const headerFieldsPhase1 = _.concat(
       AdvancedFilterUtils.lineupMetadata,
-      AdvancedFilterUtils.lineupStats
+      AdvancedFilterUtils.lineupStats,
     ).concat(
       _.flatMap(posGroups, (__, posIndex) =>
         AdvancedFilterUtils.lineupPlayerStats.map(
-          (p) => `player_stats[${posIndex}].${p}`
-        )
-      )
+          (p) => `player_stats[${posIndex}].${p}`,
+        ),
+      ),
     );
     const headerFields = headerFieldsPhase1.concat(
       // If the user includes team stats then we'll append these at the end:
@@ -1659,14 +1734,14 @@ export class AdvancedFilterUtils {
       filterStr.match(
         new RegExp(
           `(?:rank_|pctile_)?team_stats[.](?:off|def|adj|raw)_[a-zA-Z_0-9]+`,
-          "g"
-        )
-      ) || []
+          "g",
+        ),
+      ) || [],
     );
 
     const rawExpressionString = headerFields.join(" , ");
     const expressionString = AdvancedFilterUtils.tidyLineupClauses(
-      `JSON.stringify([ ${rawExpressionString} ])`
+      `JSON.stringify([ ${rawExpressionString} ])`,
     );
 
     //DEBUG
@@ -1675,7 +1750,7 @@ export class AdvancedFilterUtils {
     const teamDivStatsWithFallback = teamDivStats || ((y: string) => undefined);
     const rowBuilder = AdvancedFilterUtils.buildLineupRows(
       rawExpressionString,
-      teamDivStatsWithFallback
+      teamDivStatsWithFallback,
     );
     const enumData = Enumerable.from(inData.map(rowBuilder));
 
@@ -1704,14 +1779,14 @@ export class AdvancedFilterUtils {
     filterStrIn: string,
     prefix: string,
     extraParams: Record<string, string>,
-    isPlayer: boolean
+    isPlayer: boolean,
   ): [string[], string[]] => {
     const allGradeQueries =
       (filterStrIn + _.values(extraParams).join(" ")).match(
         new RegExp(
           `${prefix}(?:off|def|adj|raw)_[a-zA-Z_0-9]+|${prefix}tempo`,
-          "g"
-        )
+          "g",
+        ),
       ) || [];
 
     const gradeFieldsIncStyle = isPlayer
@@ -1719,25 +1794,25 @@ export class AdvancedFilterUtils {
           // Converts to the field name in the input object
           AdvancedFilterUtils.tidyPlayerClauses(
             preField.substring(_.startsWith(prefix, "rank") ? 5 : 7),
-            false
+            false,
           ) //(both rank and margins get mapped to the same arg, and then in buildGrades, we split them back based on ending _margin)
             .replace(
               /[$][.](?:p|margins)[.](?:off_|def_)([a-zA-Z_0-9]+).*/,
-              "$1"
+              "$1",
             )
             .replace(
               /[$][.]p[.]team_stats[.](?:off_|def_)([a-zA-Z_0-9]+).*/,
-              "$1"
-            )
+              "$1",
+            ),
         )
       : allGradeQueries.map((preField) =>
           // Converts to the field name in the input object
           AdvancedFilterUtils.tidyTeamExplorerClauses(
             preField.substring(_.startsWith(prefix, "rank") ? 5 : 7),
-            false
+            false,
           )
             .replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
-            .replace(/[$][.]p[.](tempo).*/, "$1")
+            .replace(/[$][.]p[.](tempo).*/, "$1"),
         );
 
     //DEBUG
@@ -1752,7 +1827,7 @@ export class AdvancedFilterUtils {
       _.startsWith(field, "$.p.team_stats.style_def");
 
     const gradeFieldsNotStyle = gradeFieldsIncStyle.filter(
-      (field) => !isStyleField(field)
+      (field) => !isStyleField(field),
     );
     const styleGradesFields = _.chain(gradeFieldsIncStyle)
       .filter(isStyleField)
@@ -1760,30 +1835,30 @@ export class AdvancedFilterUtils {
         field
           .replace(
             /[$][.]p[.]style_def.*["]([^"]+)["].*[.]possPct.*/,
-            "$1|DefPct"
+            "$1|DefPct",
           )
           .replace(
             /[$][.]p[.]team_stats[.]style_def.*["]([^"]+)["].*[.]possPct.*/,
-            "$1|DefPct"
+            "$1|DefPct",
           )
           .replace(/[$][.]p[.]style_def.*["]([^"]+)["].*[.]pts.*/, "$1|DefPpp")
           .replace(
             /[$][.]p[.]team_stats[.]style_def.*["]([^"]+)["].*[.]pts.*/,
-            "$1|DefPpp"
+            "$1|DefPpp",
           )
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct")
           .replace(/[$][.]style.*["]([^"]+)["].*[.]possPctUsg.*/, "$1|UsgPct") //(player play styles, off only)
           .replace(/[$][.]style.*["]([^"]+)["].*[.]possPct.*/, "$1|Pct") //(player play styles, off only)
           .replace(
             /[$][.]p[.]team_stats[.]style.*["]([^"]+)["].*[.]possPct.*/,
-            "$1|Pct"
+            "$1|Pct",
           )
           .replace(/[$][.]p[.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp")
           .replace(/[$][.]style.*["]([^"]+)["].*[.]pts.*/, "$1|Ppp") //(player play styles, off only)
           .replace(
             /[$][.]p[.]team_stats[.]style.*["]([^"]+)["].*[.]pts.*/,
-            "$1|Ppp"
-          )
+            "$1|Ppp",
+          ),
       )
       .value();
 
@@ -1806,11 +1881,11 @@ export class AdvancedFilterUtils {
     p: any,
     divStatsForYear: DivisionStatistics,
     styleGrades: string[],
-    convertToRank: boolean = false
+    convertToRank: boolean = false,
   ) => {
     const buildField = (
       styleField: string,
-      offDef: "off" | "def"
+      offDef: "off" | "def",
     ): [string, Statistic | undefined] => {
       const styleDecomp = styleField.split("|");
       const isPpp = styleDecomp[1] == "Ppp" || styleDecomp[1] == "DefPpp";
@@ -1825,17 +1900,17 @@ export class AdvancedFilterUtils {
           divStatsForYear,
           styleField,
           p[styleKey]?.[styleDecomp[0]]?.[nestedField]?.value,
-          false
+          false,
         ),
         (raw) =>
           _.isNil(raw)
             ? raw
             : offDef == "off" || !isPpp
-            ? raw
-            : {
-                ...raw,
-                value: 1 - (raw?.value || 0), //(for defense, switch the %ile around)
-              }
+              ? raw
+              : {
+                  ...raw,
+                  value: 1 - (raw?.value || 0), //(for defense, switch the %ile around)
+                },
       );
       return [
         styleDecomp[0],
@@ -1850,40 +1925,46 @@ export class AdvancedFilterUtils {
     // style: { "Dribble Jumper": { possPct|possPctUsg|pts: { value: XXX } } }
     const [offStyleGrades, defStyleGrades] = _.partition(
       styleGrades,
-      (field) => !field.includes("|Def")
+      (field) => !field.includes("|Def"),
     );
     return divStatsForYear
       ? {
           style: _.chain(offStyleGrades)
-            .transform((acc, styleField) => {
-              const [styleKey, styleVal] = buildField(styleField, "off");
-              if (!acc[styleKey]) {
-                acc[styleKey] = styleVal;
-              } else {
-                acc[styleKey] = {
-                  ...acc[styleKey],
-                  ...styleVal,
-                };
-              }
-            }, {} as Record<string, any>)
+            .transform(
+              (acc, styleField) => {
+                const [styleKey, styleVal] = buildField(styleField, "off");
+                if (!acc[styleKey]) {
+                  acc[styleKey] = styleVal;
+                } else {
+                  acc[styleKey] = {
+                    ...acc[styleKey],
+                    ...styleVal,
+                  };
+                }
+              },
+              {} as Record<string, any>,
+            )
             .value(),
           style_def: _.chain(defStyleGrades)
-            .transform((acc, styleField) => {
-              const [styleKey, styleVal] = buildField(
-                styleField.replace("|Def", "|"),
-                "def"
-              );
-              //(TODO: for now we'll continue to use the offensive grades to build the %iles
-              // until I've had a chance to move them over everywhere)
-              if (!acc[styleKey]) {
-                acc[styleKey] = styleVal;
-              } else {
-                acc[styleKey] = {
-                  ...acc[styleKey],
-                  ...styleVal,
-                };
-              }
-            }, {} as Record<string, any>)
+            .transform(
+              (acc, styleField) => {
+                const [styleKey, styleVal] = buildField(
+                  styleField.replace("|Def", "|"),
+                  "def",
+                );
+                //(TODO: for now we'll continue to use the offensive grades to build the %iles
+                // until I've had a chance to move them over everywhere)
+                if (!acc[styleKey]) {
+                  acc[styleKey] = styleVal;
+                } else {
+                  acc[styleKey] = {
+                    ...acc[styleKey],
+                    ...styleVal,
+                  };
+                }
+              },
+              {} as Record<string, any>,
+            )
             .value(),
         }
       : {};
@@ -1895,7 +1976,7 @@ export class AdvancedFilterUtils {
     divStatsForYear: DivisionStatistics | undefined,
     statGrades: string[],
     styleGrades: string[],
-    convertToRank: boolean = false
+    convertToRank: boolean = false,
   ) => {
     return divStatsForYear
       ? _.merge(
@@ -1904,16 +1985,16 @@ export class AdvancedFilterUtils {
               divStatsForYear,
               p,
               statGrades,
-              convertToRank
+              convertToRank,
             ),
-            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
+            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s),
           ),
           AdvancedFilterUtils.buildStyleGrades(
             p,
             divStatsForYear,
             styleGrades,
-            convertToRank
-          )
+            convertToRank,
+          ),
         )
       : {};
   };
@@ -1924,11 +2005,11 @@ export class AdvancedFilterUtils {
     divStatsForYear: DivisionStatistics | undefined,
     statGrades: string[],
     styleGrades: string[],
-    convertToRank: boolean = false
+    convertToRank: boolean = false,
   ) => {
     const [marginGrades, offDefGrades] = _.partition(
       statGrades,
-      (p) => _.endsWith(p, "_margin") || _.endsWith(p, "_margin_pred")
+      (p) => _.endsWith(p, "_margin") || _.endsWith(p, "_margin_pred"),
     );
     return divStatsForYear
       ? _.merge(
@@ -1937,25 +2018,25 @@ export class AdvancedFilterUtils {
               divStatsForYear,
               playerObj.p,
               offDefGrades,
-              convertToRank
+              convertToRank,
             ),
-            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
+            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s),
           ),
           _.mapValues(
             GradeUtils.buildTeamPercentiles(
               divStatsForYear,
               playerObj.margins,
               marginGrades,
-              convertToRank
+              convertToRank,
             ),
-            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s)
+            (s) => (convertToRank ? AdvancedFilterUtils.pctileToRank(s) : s),
           ),
           AdvancedFilterUtils.buildStyleGrades(
             playerObj, //(style under $.style for players)
             divStatsForYear,
             styleGrades,
-            convertToRank
-          )
+            convertToRank,
+          ),
         )
       : {};
   };
