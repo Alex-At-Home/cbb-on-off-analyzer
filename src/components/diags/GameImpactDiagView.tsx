@@ -61,11 +61,11 @@ function BarWithBorder(props: any) {
   const { x, y, width, height, payload } = props;
   const color = payload?.barColor ?? "#888";
   const opacity = BAR_FILL_OPACITY;
-  if (height <= 0 || width <= 0) return null;
+  if (width <= 0 || height === 0) return null;
   const x0 = Math.floor(x);
-  const y0 = Math.floor(y);
   const w = Math.max(1, Math.floor(width));
-  const h = Math.max(1, Math.floor(height));
+  const h = Math.max(1, Math.floor(Math.abs(height)));
+  const y0 = height < 0 ? Math.floor(y + height) : Math.floor(y);
   return (
     <g>
       {/* Outer 1px white */}
@@ -73,7 +73,7 @@ function BarWithBorder(props: any) {
       {/* 2px row color */}
       <rect x={x0 + 1} y={y0 + 1} width={w - 2} height={h - 2} fill="none" stroke={color} strokeWidth={2} />
       {/* Inner 1px white then transparent fill */}
-      <rect x={x0 + 3} y={y0 + 3} width={w - 6} height={h - 6} fill="white" fillOpacity={0} stroke="white" strokeWidth={1} />
+      <rect x={x0 + 3} y={y0 + 3} width={w - 6} height={Math.max(0, h - 6)} fill="white" fillOpacity={0} stroke="white" strokeWidth={1} />
       <rect x={x0 + 4} y={y0 + 4} width={Math.max(0, w - 8)} height={Math.max(0, h - 8)} fill={color} fillOpacity={opacity} />
     </g>
   );
@@ -84,8 +84,8 @@ const CustomTooltip: React.FunctionComponent<{
   payload?: any;
 }> = ({ active, payload }) => {
   const { resolvedTheme } = useTheme();
-  if (active && payload?.[0]) {
-    const p = payload[0].payload as GameImpactChartPoint;
+  if (active && payload?.length) {
+    const p = (payload.find((e: any) => e.dataKey === "value") ?? payload[0]).payload as GameImpactChartPoint;
     return (
       <div
         className="custom-tooltip"
@@ -101,7 +101,7 @@ const CustomTooltip: React.FunctionComponent<{
           <b>{p.gameLabel}</b>
         </div>
         <div>
-          {payload[0].name}: <b>{typeof p.value === "number" ? p.value.toFixed(2) : p.value}</b>
+          value: <b>{typeof p.value === "number" ? p.value.toFixed(2) : p.value}</b>
         </div>
         <div>
           Score diff: <b>{p.scoreDiff > 0 ? "+" : ""}{p.scoreDiff}</b>
@@ -142,10 +142,14 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
     );
   }
 
+  const barColorScale =
+    resolvedTheme === "dark"
+      ? CbbColors.off_diff10_p100_redGreen_darkMode
+      : CbbColors.off_diff10_p100_redBlackGreen;
   const chartData = data.map((d) => ({
     ...d,
     max: 100,
-    barColor: CbbColors.off_diff150_redGreen(d.scoreDiff),
+    barColor: barColorScale(d.value) ?? "#888",
     xAxisLabel: gameLabelToXAxisLabel(d.gameLabel),
   }));
 

@@ -69,9 +69,6 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [quickSwitchExtra, setQuickSwitchExtra] = useState<
     "extra" | "diff" | undefined
   >(undefined);
-  const [quickSwitchTimer, setQuickSwitchTimer] = useState<
-    NodeJS.Timer | undefined
-  >(undefined);
   const [perGameRapmCaches, setPerGameRapmCaches] = useState<GameStatsCache[]>(
     [],
   );
@@ -370,23 +367,33 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
               screenSize="medium_screen"
               title="Player impact by game"
             >
-              <QuickSwitchBar
-                title="Select a player"
-                quickSwitch={selectedPlayer}
-                quickSwitchExtra={quickSwitchExtra}
-                quickSwitchOptions={playerOptions}
-                updateQuickSwitch={(
-                  quickSwitch: string | undefined,
-                  _newTitle: string | undefined,
-                  _source: QuickSwitchSource,
-                  _fromTimer: boolean,
-                ) => {
-                  setSelectedPlayer(quickSwitch ?? SEASON_MATCHUP_TEAM_KEY);
-                }}
-                quickSwitchTimer={quickSwitchTimer}
-                setQuickSwitchTimer={setQuickSwitchTimer}
-              />
-              <div className="d-flex align-items-center flex-wrap gap-2 mb-2 mt-2">
+              <div className="px-3">
+                <QuickSwitchBar
+                  title=" "
+                  titlePrefix=" "
+                  quickSwitch={selectedPlayer}
+                  quickSwitchExtra={undefined}
+                  quickSwitchOptions={playerOptions}
+                  updateQuickSwitch={(
+                    quickSwitch: string | undefined,
+                    _newTitle: string | undefined,
+                    _source: QuickSwitchSource,
+                    _fromTimer: boolean,
+                  ) => {
+                    setSelectedPlayer(quickSwitch ?? SEASON_MATCHUP_TEAM_KEY);
+                  }}
+                  quickSwitchTimer={undefined}
+                  modes={["link"]}
+                  setQuickSwitchTimer={() => null}
+                />
+                <Row>
+                  <Col className="text-center">
+                    <h2 className="h3 mb-2 mt-2">
+                      [{selectedPlayer ?? SEASON_MATCHUP_TEAM_KEY}] Analysis
+                    </h2>
+                  </Col>
+                </Row>
+                <div className="d-flex align-items-center flex-wrap gap-2 mb-2 mt-2">
                 <ToggleButtonGroup
                   labelOverride="Quick Select:"
                   items={[
@@ -457,10 +464,16 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                         },
                       ],
                     },
+                    {
+                      label: "| ",
+                      tooltip: "",
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                    },
                   ]}
                 />
-                <span className="text-muted small">|</span>
-                <span className="small text-muted">Chart Field:</span>
+                <span className="small text-muted pr-2">Chart Field:</span>
                 <Form.Control
                   as="select"
                   size="sm"
@@ -507,6 +520,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       : "Loading…"}
                 </p>
               )}
+              </div>
             </GenericCollapsibleCard>
           </Col>
         </Row>
