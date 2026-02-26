@@ -59,14 +59,15 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [perGameRapmCaches, setPerGameRapmCaches] = useState<
     GameStatsCache[]
   >([]);
-  const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">("P%");
+  const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">("/G");
   const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState(false);
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
   paramsRef.current = params;
 
   const common = getCommonFilterParams(params);
-  const genderYear = `${params.gender || ""}_${params.year || ""}`;
+  const genderYear =
+    `${params.gender ?? ParamDefaults.defaultGender}_${params.year ?? ParamDefaults.defaultYear}`;
   const avgEfficiency =
     efficiencyAverages[genderYear] || efficiencyAverages.fallback;
 

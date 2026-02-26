@@ -128,7 +128,8 @@ function buildOnePlayerGameRow(
     const offSosAdj = adjBreakdownForSoS ? 0 : netPoints.offNetPtsSos;
     const defSosAdj = adjBreakdownForSoS ? 0 : netPoints.defNetPtsSos;
     const offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
-    return {
+
+    const row: GameImpactRow = {
       gameLabel: g.gameLabel,
       gameInfo: g.gameInfo as Record<string, unknown>,
       title: g.gameLabel,
@@ -148,6 +149,7 @@ function buildOnePlayerGameRow(
       def_sos_bonus: { value: netPoints.defNetPtsSos },
       def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
     };
+    return row;
   }
   return {
     gameLabel: g.gameLabel,
