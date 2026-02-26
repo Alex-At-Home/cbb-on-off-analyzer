@@ -303,6 +303,12 @@ export type LineupLeaderboardParams = {
 /** Params for Season Matchup Analyzer page (gender/year/team only; game list from fetchOpponents). */
 export type SeasonMatchupFilterParams = {
   [P in keyof CommonFilterParams]?: CommonFilterParams[P];
+} & {
+  advancedMode?: boolean;
+  presetMode?: string;
+  presetGroup?: string;
+  adjustForOpponentStrength?: boolean;
+  showChart?: boolean;
 };
 
 export type TeamEditorParams = {

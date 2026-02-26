@@ -4,8 +4,8 @@
  */
 import _ from "lodash";
 import { GameInfoStatSet } from "./StatModels";
-import { QueryWithFilters } from "./FilterModels";
-import { CommonFilterParams } from "./FilterModels";
+import { QueryWithFilters, CommonFilterParams } from "./FilterModels";
+import { QueryUtils } from "./QueryUtils";
 
 /** Extract team id from GameInfoStatSet.opponent (e.g. "A:Duke" -> "Duke"). */
 function opponentTeamFromGame(gameInfo: GameInfoStatSet): string {
@@ -28,6 +28,22 @@ export function buildGameLabel(gameInfo: GameInfoStatSet): string {
     .replace(/^N:/, "vs ");
   const date = (gameInfo.date as string) || "????-??-??";
   return `${oppoAndLocation} (${date})`;
+}
+
+/** QueryFilters string for a single game (for MatchupAnalyzer link). */
+export function getMatchupQueryFiltersForGame(gameInfo: GameInfoStatSet): string {
+  const date = (gameInfo.date as string) || "????-??-??";
+  const raw = (gameInfo.opponent as string) || "";
+  const location = raw.startsWith("A:")
+    ? "Away"
+    : raw.startsWith("H:")
+    ? "Home"
+    : "Neutral";
+  const opponent = opponentTeamFromGame(gameInfo);
+  const sel = QueryUtils.buildGameSelectionFilter([
+    { date, location, opponent, score: "" },
+  ]);
+  return QueryUtils.buildFilterStr([sel]);
 }
 
 /**

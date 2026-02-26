@@ -1,13 +1,17 @@
 /**
  * Filter for Season Matchup Analyzer: gender/year/team only.
  * Fetches game list, builds 3 requests (team, player, lineup) with on/off/otherQueries,
- * parses responses into per-game array. No changes to existing components.
+ * parses responses into per-game array. Supports simple (preset) and advanced mode.
  */
 import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import CommonFilter, { GlobalKeypressManager } from "./CommonFilter";
 import {
   ParamPrefixes,
@@ -19,6 +23,7 @@ import {
   LineupFilterParams,
   ParamDefaults,
 } from "../utils/FilterModels";
+import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { GameInfoStatSet } from "../utils/StatModels";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import { RequestUtils } from "../utils/RequestUtils";
@@ -26,6 +31,10 @@ import {
   buildGameRequestParams,
   buildGameLabel,
 } from "../utils/SeasonMatchupUtils";
+import ThemedSelect from "./shared/ThemedSelect";
+import GenericTogglingMenu from "./shared/GenericTogglingMenu";
+import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
+import { SEASON_MATCHUP_TEAM_KEY } from "../utils/SeasonMatchupImpactUtils";
 
 export type SeasonMatchupPerGame = {
   gameLabel: string;
@@ -43,6 +52,8 @@ type Props = {
   onStats: SeasonMatchupOnStats;
   startingState: SeasonMatchupFilterParams;
   onChangeState: (newParams: SeasonMatchupFilterParams) => void;
+  /** Team + player options for preset "who" dropdown (from parent after games load). */
+  playerOptions?: { title: string }[];
 };
 
 function bucketKeyForGameIndex(i: number): string {
@@ -55,9 +66,38 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   onStats,
   startingState,
   onChangeState,
+  playerOptions = [],
 }) => {
   const [params, setParams] = useState<SeasonMatchupFilterParams>(startingState);
   const [games, setGames] = useState<GameInfoStatSet[]>([]);
+  const advancedView = params.advancedMode ?? false;
+  const [presetMode, setPresetMode] = useState(
+    params.presetMode ?? ParamDefaults.defaultPresetMode
+  );
+  const [presetGroup, setPresetGroup] = useState(
+    params.presetGroup ?? SEASON_MATCHUP_TEAM_KEY
+  );
+  const [visualizeState, setVisualizeState] = useState({
+    adjustForOpponentStrength: params.adjustForOpponentStrength ?? false,
+    showChart: params.showChart ?? true,
+  });
+
+  useEffect(() => {
+    if (params.presetMode !== undefined) setPresetMode(params.presetMode);
+    if (params.presetGroup !== undefined) setPresetGroup(params.presetGroup);
+    if (params.adjustForOpponentStrength !== undefined)
+      setVisualizeState((v) => ({
+        ...v,
+        adjustForOpponentStrength: params.adjustForOpponentStrength!,
+      }));
+    if (params.showChart !== undefined)
+      setVisualizeState((v) => ({ ...v, showChart: params.showChart! }));
+  }, [
+    params.presetMode,
+    params.presetGroup,
+    params.adjustForOpponentStrength,
+    params.showChart,
+  ]);
 
   const isDebug = process.env.NODE_ENV !== "production";
 
@@ -80,16 +120,69 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     gender: params.gender,
     minRank: ParamDefaults.defaultMinRank,
     maxRank: ParamDefaults.defaultMaxRank,
+    ...(advancedView
+      ? {}
+      : FilterPresetUtils.commonFilterPresets[presetMode]?.commonParams ?? {}),
   };
+
+  function applyPresetFilter(
+    newPresetMode: string,
+    newPresetGroup: string
+  ): void {
+    if (newPresetMode === FilterPresetUtils.switchToAdvancedFilter) {
+      onChangeState({ ...params, advancedMode: true });
+      setParams((prev) => ({ ...prev, advancedMode: true }));
+      return;
+    }
+    setPresetMode(newPresetMode);
+    setPresetGroup(newPresetGroup);
+    const presetCommon =
+      FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ?? {};
+    onChangeState({
+      ...params,
+      presetMode: newPresetMode,
+      presetGroup: newPresetGroup,
+      ...presetCommon,
+    });
+    setParams((prev) => ({
+      ...prev,
+      presetMode: newPresetMode,
+      presetGroup: newPresetGroup,
+      ...presetCommon,
+    }));
+  }
 
   function buildParamsFromState(
     _includeFilterParams: Boolean,
     _forQuery?: Boolean
   ): [GameFilterParams, FilterRequestInfo[]] {
+    const baseCommon = {
+      team: params.team,
+      year: params.year,
+      gender: params.gender,
+      minRank: ParamDefaults.defaultMinRank,
+      maxRank: ParamDefaults.defaultMaxRank,
+    };
+    const mergedCommon = advancedView
+      ? { ...baseCommon, ...params }
+      : {
+          ...baseCommon,
+          ...(FilterPresetUtils.commonFilterPresets[presetMode]?.commonParams ??
+            {}),
+        };
     const { teamPlayerParams, lineupParams } = buildGameRequestParams(
       games,
-      commonParams
+      mergedCommon as CommonFilterParams
     );
+    const primaryRequest = {
+      ...teamPlayerParams,
+      ...mergedCommon,
+      advancedMode: advancedView,
+      presetMode,
+      presetGroup,
+      adjustForOpponentStrength: visualizeState.adjustForOpponentStrength,
+      showChart: visualizeState.showChart,
+    } as GameFilterParams;
     const otherRequests: FilterRequestInfo[] = [
       {
         context: ParamPrefixes.player as ParamPrefixesType,
@@ -100,7 +193,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
         paramsObj: lineupParams as LineupFilterParams,
       },
     ];
-    return [teamPlayerParams, otherRequests];
+    return [primaryRequest, otherRequests];
   }
 
   function handleResponse(jsons: any[], _wasError: Boolean) {
@@ -130,16 +223,57 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     onStats({ games: perGame });
   }
 
+  const presetModeOptions = Object.keys(
+    FilterPresetUtils.commonFilterPresets
+  ).filter((k) => k !== FilterPresetUtils.switchToAdvancedFilter);
+  const presetGroupOptions = [
+    { title: SEASON_MATCHUP_TEAM_KEY },
+    ...playerOptions.filter((o) => o.title !== SEASON_MATCHUP_TEAM_KEY),
+  ];
+  const stringToOption = (s: string) => ({ label: s, value: s });
+
   return (
     <CommonFilter
-      startingState={{ ...commonParams, ...params } as GameFilterParams}
-      onChangeState={(p: GameFilterParams) =>
-        onChangeState({
+      startingState={{
+        ...commonParams,
+        ...params,
+        advancedMode: advancedView,
+        presetMode,
+        presetGroup,
+        adjustForOpponentStrength: visualizeState.adjustForOpponentStrength,
+        showChart: visualizeState.showChart,
+      } as GameFilterParams}
+      onChangeState={(p: GameFilterParams) => {
+        const next: SeasonMatchupFilterParams = {
+          ...params,
           team: p.team,
           year: p.year,
           gender: p.gender,
-        })
-      }
+        };
+        if ((p as any).advancedMode !== undefined)
+          next.advancedMode = (p as any).advancedMode;
+        if ((p as any).presetMode !== undefined)
+          next.presetMode = (p as any).presetMode;
+        if ((p as any).presetGroup !== undefined)
+          next.presetGroup = (p as any).presetGroup;
+        if ((p as any).adjustForOpponentStrength !== undefined)
+          next.adjustForOpponentStrength = (p as any).adjustForOpponentStrength;
+        if ((p as any).showChart !== undefined)
+          next.showChart = (p as any).showChart;
+        setParams(next);
+        if ((p as any).presetMode !== undefined)
+          setPresetMode((p as any).presetMode);
+        if ((p as any).presetGroup !== undefined)
+          setPresetGroup((p as any).presetGroup);
+        if ((p as any).adjustForOpponentStrength !== undefined)
+          setVisualizeState((v) => ({
+            ...v,
+            adjustForOpponentStrength: (p as any).adjustForOpponentStrength,
+          }));
+        if ((p as any).showChart !== undefined)
+          setVisualizeState((v) => ({ ...v, showChart: (p as any).showChart }));
+        onChangeState(next);
+      }}
       onChangeCommonState={(common) =>
         setParams((prev) => ({ ...prev, ...common }))
       }
@@ -148,18 +282,127 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
       buildLinks={() => []}
-      hideSemiAdvancedOptions={false}
+      hideSemiAdvancedOptions={!advancedView}
+      extraButton={
+        <GenericTogglingMenu size="sm">
+          <GenericTogglingMenuItem
+            text={advancedView ? "Simple Query Mode" : "Manual Filters..."}
+            truthVal={false}
+            onSelect={() => {
+              const next = !advancedView;
+              setParams((prev) => ({ ...prev, advancedMode: next }));
+              onChangeState({
+                ...params,
+                advancedMode: next,
+              });
+            }}
+          />
+        </GenericTogglingMenu>
+      }
     >
       <GlobalKeypressManager.Consumer>
         {() => (
-          <Row className="mb-2">
-            <Col>
-              <Form.Text className="text-muted">
-                Season Matchup: select team, year, and gender, then Submit to load
-                per-game stats. {games.length > 0 && `${games.length} games loaded.`}
-              </Form.Text>
-            </Col>
-          </Row>
+          <>
+            {!advancedView && (
+              <Form.Group as={Row}>
+                <Form.Label column xs={12} lg={12} xl={2}>
+                  <b>What interests you?</b>
+                </Form.Label>
+                <Col xs={12} lg={6} xl={3}>
+                  <ThemedSelect
+                    isClearable={false}
+                    styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+                    value={stringToOption(presetMode)}
+                    options={[
+                      ...presetModeOptions.map(stringToOption),
+                      {
+                        label: FilterPresetUtils.switchToAdvancedFilter,
+                        value: FilterPresetUtils.switchToAdvancedFilter,
+                      },
+                    ]}
+                    onChange={(option: any) => {
+                      const v = option?.value ?? presetMode;
+                      if (v === FilterPresetUtils.switchToAdvancedFilter) {
+                        setParams((prev) => ({ ...prev, advancedMode: true }));
+                        onChangeState({ ...params, advancedMode: true });
+                      } else applyPresetFilter(v, presetGroup);
+                    }}
+                  />
+                </Col>
+                <Col xs={12} lg={6} xl={3}>
+                  <ThemedSelect
+                    isClearable={false}
+                    styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+                    value={{ label: presetGroup, value: presetGroup }}
+                    options={presetGroupOptions.map((o) => ({
+                      label: o.title,
+                      value: o.title,
+                    }))}
+                    onChange={(option: any) => {
+                      const v = option?.value ?? presetGroup;
+                      setPresetGroup(v);
+                      onChangeState({ ...params, presetGroup: v });
+                      setParams((prev) => ({ ...prev, presetGroup: v }));
+                    }}
+                  />
+                </Col>
+                <Col xs={12} lg={6} xl={2}>
+                  <GenericTogglingMenu drop="down" label={<span>+ Visualize...</span>}>
+                    <GenericTogglingMenuItem
+                      text="Adjust for Opponent Strength"
+                      truthVal={visualizeState.adjustForOpponentStrength}
+                      onSelect={() => {
+                        const next = !visualizeState.adjustForOpponentStrength;
+                        setVisualizeState((v) => ({
+                          ...v,
+                          adjustForOpponentStrength: next,
+                        }));
+                        onChangeState({
+                          ...params,
+                          adjustForOpponentStrength: next,
+                        });
+                        setParams((prev) => ({
+                          ...prev,
+                          adjustForOpponentStrength: next,
+                        }));
+                      }}
+                    />
+                    <GenericTogglingMenuItem
+                      text="Show Chart"
+                      truthVal={visualizeState.showChart}
+                      onSelect={() => {
+                        const next = !visualizeState.showChart;
+                        setVisualizeState((v) => ({ ...v, showChart: next }));
+                        onChangeState({ ...params, showChart: next });
+                        setParams((prev) => ({ ...prev, showChart: next }));
+                      }}
+                    />
+                  </GenericTogglingMenu>
+                </Col>
+                <Col xs={2} lg={2} xl={1} className="mt-1 text-center">
+                  <OverlayTrigger
+                    placement="auto"
+                    overlay={
+                      <Tooltip id="advancedMode">
+                        Switch to advanced query mode
+                      </Tooltip>
+                    }
+                  >
+                    <Button
+                      variant="outline-secondary"
+                      size="sm"
+                      onClick={() => {
+                        setParams((prev) => ({ ...prev, advancedMode: true }));
+                        onChangeState({ ...params, advancedMode: true });
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faSlidersH} />
+                    </Button>
+                  </OverlayTrigger>
+                </Col>
+              </Form.Group>
+            )}
+          </>
         )}
       </GlobalKeypressManager.Consumer>
     </CommonFilter>

@@ -17,6 +17,10 @@ import { RatingUtils, NetPoints } from "../../utils/stats/RatingUtils";
 import { IndivStatSet, IndivPosInfo } from "../../utils/StatModels";
 import { LineupUtils, PlayerOnOffStats } from "../../utils/stats/LineupUtils";
 import { CbbColors } from "../../utils/CbbColors";
+import {
+  buildTotalRow as buildTotalRowUtil,
+  IMPACT_DECOMP_DATA_COL_KEYS,
+} from "../../utils/ImpactBreakdownTableUtils";
 
 /** One player point from PlayerImpactChart's buildStats (scatter point) */
 export type PlayerImpactPoint = {
@@ -410,21 +414,7 @@ function applyMinMaxRings(
   }
 }
 
-const dataColKeys = [
-  "off_adj_rapm",
-  "def_adj_rapm",
-  "off_sos_bonus",
-  "off_gravity_bonus",
-  "off_net_3p",
-  "off_net_mid",
-  "off_net_rim",
-  "off_net_ft",
-  "off_net_ast",
-  "off_net_to",
-  "off_net_orb",
-  "def_sos_bonus",
-  "def_gravity_bonus",
-].concat(
+const dataColKeys = IMPACT_DECOMP_DATA_COL_KEYS.concat(
   offDebugMode
     ? [
         "totPoss",
@@ -440,7 +430,7 @@ const dataColKeys = [
     : [],
 );
 
-/** Build total row (appended at end, not sorted) */
+/** Build total row (appended at end, not sorted). Uses shared util + adds title. */
 function buildTotalRow(
   rows: Record<string, { value: number } | React.ReactNode>[],
   possPerGame: [number, number] | undefined,
@@ -449,72 +439,62 @@ function buildTotalRow(
   seasonStats: boolean,
 ): Record<string, { value: number } | React.ReactNode> {
   const weightByPoss = scaleType === "P%";
-
+  const totalFromUtil = buildTotalRowUtil(
+    rows as Record<string, { value: number } | unknown>[],
+    possPerGame,
+    avgEff,
+    scaleType,
+  );
   const total: Record<string, { value: number } | React.ReactNode> = {
-    title: seasonStats ? (
-      <OverlayTrigger
-        placement="auto"
-        overlay={
-          <Tooltip id={`impactBreakdown-total`}>
-            {weightByPoss
-              ? "Note - for players who have missed games uses their season rates stats (not just for games in which they played)"
-              : "Note - for players who have missed games uses their rate stats from games in which they played, so totals aren't exactly weighted averages"}
-          </Tooltip>
+    ...totalFromUtil,
+  };
+  if (offDebugMode) {
+    const totalOffTeamPossPct = weightByPoss
+      ? _.sumBy(rows, (r) => (r.off_team_poss_pct as any)?.value ?? 0)
+      : 1.0;
+    const totalDefTeamPossPct = weightByPoss
+      ? _.sumBy(rows, (r) => (r.def_team_poss_pct as any)?.value ?? 0)
+      : 1.0;
+    for (const key of dataColKeys) {
+      if (IMPACT_DECOMP_DATA_COL_KEYS.includes(key)) continue;
+      const sum = _.sumBy(rows, (r) => {
+        const v = r[key];
+        const valToSum =
+          typeof v === "object" && v !== null && "value" in v
+            ? (v as { value: number }).value
+            : 0;
+        if (weightByPoss) {
+          const weightToUse = key.startsWith("off_")
+            ? ((r.off_team_poss_pct as any)?.value ?? 0)
+            : ((r.def_team_poss_pct as any)?.value ?? 0);
+          return 5 * valToSum * weightToUse;
         }
-      >
-        <i>
-          Total<sup>*</sup>
-        </i>
-      </OverlayTrigger>
-    ) : (
-      <i>Total</i>
-    ),
-  };
-  const totalOffTeamPossPct = weightByPoss
-    ? _.sumBy(rows, (r) => (r.off_team_poss_pct as any)?.value ?? 0)
-    : 1.0;
-  const totalDefTeamPossPct = weightByPoss
-    ? _.sumBy(rows, (r) => (r.def_team_poss_pct as any)?.value ?? 0)
-    : 1.0;
-  for (const key of dataColKeys) {
-    const sum = _.sumBy(rows, (r) => {
-      const v = r[key];
-      const valToSum =
-        typeof v === "object" && v !== null && "value" in v
-          ? (v as { value: number }).value
-          : 0;
-      if (weightByPoss) {
-        const weightToUse = key.startsWith("off_")
-          ? ((r.off_team_poss_pct as any)?.value ?? 0)
-          : ((r.def_team_poss_pct as any)?.value ?? 0);
-        return 5 * valToSum * weightToUse;
-      } else {
         return valToSum;
+      });
+      const totalWeightToUse = key.startsWith("off_")
+        ? totalOffTeamPossPct
+        : totalDefTeamPossPct;
+      total[key] = { value: sum / (totalWeightToUse || 1) };
+    }
+  }
+  total.title = seasonStats ? (
+    <OverlayTrigger
+      placement="auto"
+      overlay={
+        <Tooltip id={`impactBreakdown-total`}>
+          {weightByPoss
+            ? "Note - for players who have missed games uses their season rates stats (not just for games in which they played)"
+            : "Note - for players who have missed games uses their rate stats from games in which they played, so totals aren't exactly weighted averages"}
+        </Tooltip>
       }
-    });
-    const totalWeightToUse = key.startsWith("off_")
-      ? totalOffTeamPossPct
-      : totalDefTeamPossPct;
-    total[key] = { value: sum / (totalWeightToUse || 1) };
-  }
-  // If different number of possessions then add a final adjustment:
-  if (scaleType === "/G" && possPerGame && possPerGame[0] != possPerGame[1]) {
-    const [offPoss, defPoss] = possPerGame;
-    const possDelta = (offPoss - defPoss) * 100;
-    const keyToAdjust = possDelta > 0 ? "def_adj_rapm" : "off_adj_rapm"; // equivalent to a TO for the team with less possessions
-    const deltaPts = (offPoss - defPoss) * avgEff;
-    (total[keyToAdjust] as any).value =
-      ((total[keyToAdjust] as any).value ?? 0) + deltaPts;
-    (total[keyToAdjust] as any).extraInfo =
-      `Off-Def possession delta of [${possDelta.toFixed(1)}]: adjust by [${deltaPts.toFixed(1)}]pts: equivalent to a TO for the team with fewer possessions`;
-  }
-  // Handle RAPM diff separately to work around possession differences:
-  total["diff_adj_rapm"] = {
-    value:
-      ((total["off_adj_rapm"] as any)?.value ?? 0) +
-      ((total["def_adj_rapm"] as any)?.value ?? 0),
-  };
-
+    >
+      <i>
+        Total<sup>*</sup>
+      </i>
+    </OverlayTrigger>
+  ) : (
+    <i>Total</i>
+  );
   return total;
 }
 
@@ -623,12 +603,7 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
           );
         })
         .map((rowData) =>
-          GenericTableOps.buildDataRow(
-            rowData,
-            identityPrefix,
-            noCellMeta,
-            tableDefs,
-          ),
+          GenericTableOps.buildDataRow(rowData, identityPrefix, noCellMeta),
         ),
     )
     .concat(
@@ -638,7 +613,24 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
               totalRowData,
               identityPrefix,
               noCellMeta,
-              tableDefs,
+              {
+                off_gravity_bonus: GenericTableOps.addDataCol(
+                  "",
+                  "",
+                  CbbColors.varPicker((val: number) =>
+                    CbbColors.p_ast_breakdown(val * 0.1),
+                  ),
+                  GenericTableOps.pointsOrHtmlFormatter,
+                ),
+                def_gravity_bonus: GenericTableOps.addDataCol(
+                  "",
+                  "",
+                  CbbColors.varPicker((val: number) =>
+                    CbbColors.p_ast_breakdown(val * 0.1),
+                  ),
+                  GenericTableOps.pointsOrHtmlFormatter,
+                ),
+              },
             ),
           ]
         : [],

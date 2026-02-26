@@ -32,7 +32,10 @@ export class IndivTableDefs {
       "Poss%",
       "% of team possessions in selected lineups that player was on the floor",
       GenericTableOps.defaultColorPicker,
-      GenericTableOps.percentFormatter,
+      (val: any) =>
+        val?.value == null || val?.value === ""
+          ? ""
+          : GenericTableOps.percentFormatter(val),
     ),
     diff_adj_rapm: GenericTableOps.addDataCol(
       "Net",

@@ -9,6 +9,10 @@ import _ from "lodash";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useTheme } from "next-themes";
+import { CbbColors } from "../utils/CbbColors";
 import {
   SeasonMatchupFilterParams,
   ParamDefaults,
@@ -36,7 +40,17 @@ import {
   buildGameImpactRowsFromCaches,
   buildGameImpactTableRows,
   SEASON_MATCHUP_TEAM_KEY,
+  CHART_FIELD_OPTIONS,
+  getScoreDiffForGame,
+  getScoreStrForGame,
 } from "../utils/SeasonMatchupImpactUtils";
+import type { GameImpactRow } from "../utils/SeasonMatchupImpactUtils";
+import { getMatchupQueryFiltersForGame } from "../utils/SeasonMatchupUtils";
+import GameImpactDiagView, {
+  GameImpactChartPoint,
+  gameLabelToXAxisLabel,
+  estimateXAxisLabelHeight,
+} from "../components/diags/GameImpactDiagView";
 import type { GameStatsCache } from "../utils/tables/GameAnalysisUtils";
 
 const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
@@ -44,30 +58,38 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const allParams = isServer ? "" : window.location.search;
 
   const [params, setParams] = useState<SeasonMatchupFilterParams>(
-    UrlRouting.removedSavedKeys(allParams) as SeasonMatchupFilterParams
+    UrlRouting.removedSavedKeys(allParams) as SeasonMatchupFilterParams,
   );
   const [dataEvent, setDataEvent] = useState<{
     games: SeasonMatchupPerGame[];
   }>({ games: [] });
-  const [selectedPlayer, setSelectedPlayer] = useState<string>(SEASON_MATCHUP_TEAM_KEY);
+  const [selectedPlayer, setSelectedPlayer] = useState<string>(
+    SEASON_MATCHUP_TEAM_KEY,
+  );
   const [quickSwitchExtra, setQuickSwitchExtra] = useState<
     "extra" | "diff" | undefined
   >(undefined);
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
-  const [perGameRapmCaches, setPerGameRapmCaches] = useState<
-    GameStatsCache[]
-  >([]);
+  const [perGameRapmCaches, setPerGameRapmCaches] = useState<GameStatsCache[]>(
+    [],
+  );
   const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">("/G");
-  const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState(false);
+  const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState(
+    params.adjustForOpponentStrength ?? false,
+  );
+  const [showChart, setShowChart] = useState(params.showChart ?? true);
+  const [chartLarge, setChartLarge] = useState(false);
+  const [chartFieldKey, setChartFieldKey] =
+    useState<keyof GameImpactRow>("diff_adj_rapm");
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
   paramsRef.current = params;
+  const { resolvedTheme } = useTheme();
 
   const common = getCommonFilterParams(params);
-  const genderYear =
-    `${params.gender ?? ParamDefaults.defaultGender}_${params.year ?? ParamDefaults.defaultYear}`;
+  const genderYear = `${params.gender ?? ParamDefaults.defaultGender}_${params.year ?? ParamDefaults.defaultYear}`;
   const avgEfficiency =
     efficiencyAverages[genderYear] || efficiencyAverages.fallback;
 
@@ -83,6 +105,26 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   }, [dataEvent.games]);
 
   useEffect(() => {
+    if (
+      params.presetGroup &&
+      playerOptions.some((o) => o.title === params.presetGroup)
+    ) {
+      setSelectedPlayer(params.presetGroup);
+    }
+    if (params.adjustForOpponentStrength !== undefined) {
+      setAdjBreakdownForSoS(params.adjustForOpponentStrength);
+    }
+    if (params.showChart !== undefined) {
+      setShowChart(params.showChart);
+    }
+  }, [
+    params.presetGroup,
+    params.adjustForOpponentStrength,
+    params.showChart,
+    playerOptions,
+  ]);
+
+  useEffect(() => {
     if (!dataEvent.games.length) {
       setPerGameRapmCaches([]);
       return;
@@ -92,7 +134,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     const caches = buildPerGameRapmCaches(
       dataEvent.games,
       commonParams,
-      avgEfficiency
+      avgEfficiency,
     );
     setPerGameRapmCaches(caches);
   }, [dataEvent.games, params.team, params.year, params.gender, avgEfficiency]);
@@ -111,19 +153,110 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       selectedPlayer,
       avgEfficiency,
       scaleType,
-      adjBreakdownForSoS
+      adjBreakdownForSoS,
     );
     const rows = buildGameImpactTableRows(impacts);
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
     const tableDefs = IndivTableDefs.impactDecompTable;
-    return rows.map((rowData) =>
-      GenericTableOps.buildDataRow(
-        rowData,
+    const themedColorBuilder =
+      resolvedTheme === "dark"
+        ? CbbColors.off_diff10_p100_redGreen_darkMode
+        : CbbColors.off_diff10_p100_redBlackGreen;
+    return rows.map((rowData, i) => {
+      const game = dataEvent.games[i];
+      const impact = impacts[i];
+      const scoreDiff = game ? getScoreDiffForGame(game) : 0;
+      const scoreStr = game ? getScoreStrForGame(game) : "";
+      const color = themedColorBuilder(scoreDiff) ?? "#888";
+      const opponent = (impact?.gameLabel ?? "")
+        .replace(/\s*\(\d{4}-\d{2}-\d{2}\)\s*$/, "")
+        .trim();
+      const dateMatch = (impact?.gameLabel ?? "").match(
+        /\((\d{4})-(\d{2})-(\d{2})\)/,
+      );
+      const mmDd = dateMatch ? `${dateMatch[2]}-${dateMatch[3]}` : "";
+      const href = UrlRouting.getMatchupUrl({
+        ...params,
+        queryFilters: game
+          ? getMatchupQueryFiltersForGame(game.gameInfo)
+          : undefined,
+      } as any);
+      const titleNode = (
+        <>
+          <span style={{ color }}>{scoreStr}</span>{" "}
+          <OverlayTrigger
+            overlay={
+              <Tooltip id="game-detail-link">
+                Click here to view details for this game
+              </Tooltip>
+            }
+          >
+            <a href={href} target="_blank" rel="noopener noreferrer">
+              {opponent} <sup>{mmDd}</sup>
+            </a>
+          </OverlayTrigger>
+        </>
+      );
+      const data: Record<string, unknown> = {
+        ...rowData,
+        title: titleNode,
+      };
+      if (selectedPlayer === SEASON_MATCHUP_TEAM_KEY) {
+        (data as any).team_poss_pct = { value: null };
+      }
+      return GenericTableOps.buildDataRow(
+        data,
         identityPrefix,
         noCellMeta,
-        tableDefs
-      )
+        selectedPlayer === SEASON_MATCHUP_TEAM_KEY
+          ? {
+              off_gravity_bonus: GenericTableOps.addDataCol(
+                "",
+                "",
+                CbbColors.varPicker((val: number) =>
+                  CbbColors.p_ast_breakdown(val * 0.1),
+                ),
+                GenericTableOps.pointsOrHtmlFormatter,
+              ),
+              def_gravity_bonus: GenericTableOps.addDataCol(
+                "",
+                "",
+                CbbColors.varPicker((val: number) =>
+                  CbbColors.p_ast_breakdown(val * 0.1),
+                ),
+                GenericTableOps.pointsOrHtmlFormatter,
+              ),
+            }
+          : undefined,
+      );
+    });
+  }, [
+    selectedPlayer,
+    dataEvent.games,
+    perGameRapmCaches,
+    avgEfficiency,
+    scaleType,
+    adjBreakdownForSoS,
+    resolvedTheme,
+    params,
+  ]);
+
+  const impactRows = useMemo(() => {
+    if (
+      !selectedPlayer ||
+      !dataEvent.games.length ||
+      perGameRapmCaches.length !== dataEvent.games.length
+    ) {
+      return [];
+    }
+    return buildGameImpactRowsFromCaches(
+      perGameRapmCaches,
+      dataEvent.games,
+      selectedPlayer,
+      avgEfficiency,
+      scaleType,
+      adjBreakdownForSoS,
     );
   }, [
     selectedPlayer,
@@ -133,6 +266,42 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     scaleType,
     adjBreakdownForSoS,
   ]);
+
+  const chartData = useMemo((): GameImpactChartPoint[] => {
+    if (impactRows.length !== dataEvent.games.length) return [];
+    return impactRows.map((row, i) => {
+      const g = dataEvent.games[i];
+      const cell = row[chartFieldKey];
+      const value =
+        cell && typeof cell === "object" && "value" in cell
+          ? (cell as { value: number }).value
+          : 0;
+      return {
+        gameLabel: row.gameLabel,
+        value,
+        scoreDiff: g ? getScoreDiffForGame(g) : 0,
+      };
+    });
+  }, [impactRows, dataEvent.games, chartFieldKey]);
+
+  const paddingBelowChart = 8;
+  const chartHeightAndLabelSpace = useMemo(() => {
+    const topMargin = 5;
+    const barArea = chartLarge ? 420 : 140;
+    if (chartData.length === 0)
+      return {
+        chartHeight: topMargin + barArea + 70 + paddingBelowChart,
+        labelAreaHeight: 70,
+      };
+    const maxLabelLen = Math.max(
+      ...chartData.map((d) => gameLabelToXAxisLabel(d.gameLabel).length)
+    );
+    const labelAreaHeight = estimateXAxisLabelHeight(maxLabelLen);
+    return {
+      chartHeight: topMargin + barArea + labelAreaHeight + paddingBelowChart,
+      labelAreaHeight,
+    };
+  }, [chartData, chartLarge]);
 
   const onSeasonMatchupStats: SeasonMatchupOnStats = (data) => {
     setDataEvent({ games: data.games });
@@ -156,9 +325,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   if (isServer) return null;
 
   const server =
-    typeof window === "undefined"
-      ? "server"
-      : window.location.hostname;
+    typeof window === "undefined" ? "server" : window.location.hostname;
 
   return (
     <Container className="medium_screen">
@@ -174,22 +341,24 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         </Col>
       </Row>
       <Row>
-        <HeaderBar
-          common={common}
-          thisPage="season-matchup"
-        />
+        <HeaderBar common={common} thisPage="season-matchup" />
       </Row>
       <Row>
         <GenericCollapsibleCard
           minimizeMargin={false}
           screenSize="medium_screen"
           title="Team and season"
-          summary={params.team && params.year ? `${params.team} ${params.year}` : "Select team and year"}
+          summary={
+            params.team && params.year
+              ? `${params.team} ${params.year}`
+              : "Select team and year"
+          }
         >
           <SeasonMatchupFilter
             onStats={onSeasonMatchupStats}
             startingState={params}
             onChangeState={onChangeState}
+            playerOptions={playerOptions}
           />
         </GenericCollapsibleCard>
       </Row>
@@ -210,24 +379,42 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                   quickSwitch: string | undefined,
                   _newTitle: string | undefined,
                   _source: QuickSwitchSource,
-                  _fromTimer: boolean
+                  _fromTimer: boolean,
                 ) => {
                   setSelectedPlayer(quickSwitch ?? SEASON_MATCHUP_TEAM_KEY);
                 }}
                 quickSwitchTimer={quickSwitchTimer}
                 setQuickSwitchTimer={setQuickSwitchTimer}
               />
-              <div className="mb-2 mt-2">
+              <div className="d-flex align-items-center flex-wrap gap-2 mb-2 mt-2">
                 <ToggleButtonGroup
                   labelOverride="Quick Select:"
                   items={[
+                    {
+                      label: "Chart",
+                      tooltip: "Show per-game impact chart",
+                      toggled: showChart,
+                      onClick: () => setShowChart(!showChart),
+                    },
+                    {
+                      label: "L",
+                      tooltip: "Make chart 3× taller",
+                      toggled: chartLarge,
+                      onClick: () => setChartLarge(!chartLarge),
+                    },
+                    {
+                      label: "| ",
+                      tooltip: "",
+                      toggled: true,
+                      onClick: () => {},
+                      isLabelOnly: true,
+                    },
                     {
                       label: "Adj",
                       tooltip:
                         "Include SoS adjustment in calcs (means total net won't sum to score differential)",
                       toggled: adjBreakdownForSoS,
-                      onClick: () =>
-                        setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                      onClick: () => setAdjBreakdownForSoS(!adjBreakdownForSoS),
                     },
                     {
                       label: "| ",
@@ -272,7 +459,38 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                     },
                   ]}
                 />
+                <span className="text-muted small">|</span>
+                <span className="small text-muted">Chart Field:</span>
+                <Form.Control
+                  as="select"
+                  size="sm"
+                  style={{ width: "auto" }}
+                  value={chartFieldKey}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setChartFieldKey(e.target.value as keyof GameImpactRow)
+                  }
+                >
+                  {CHART_FIELD_OPTIONS.map((opt) => (
+                    <option key={opt.key} value={opt.key}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </Form.Control>
               </div>
+              {showChart && chartData.length > 0 && (
+                <div className="mb-2">
+                  <GameImpactDiagView
+                    data={chartData}
+                    fieldLabel={
+                      CHART_FIELD_OPTIONS.find((o) => o.key === chartFieldKey)
+                        ?.label ?? "Net"
+                    }
+                    height={chartHeightAndLabelSpace.chartHeight}
+                    labelAreaHeight={chartHeightAndLabelSpace.labelAreaHeight}
+                    paddingBelowChart={paddingBelowChart}
+                  />
+                </div>
+              )}
               {selectedPlayer && tableRows.length > 0 ? (
                 <GenericTable
                   tableCopyId="seasonMatchup_impact"
@@ -293,11 +511,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
           </Col>
         </Row>
       )}
-      <Footer
-        year={params.year}
-        gender={params.gender}
-        server={server}
-      />
+      <Footer year={params.year} gender={params.gender} server={server} />
     </Container>
   );
 };

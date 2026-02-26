@@ -91,6 +91,10 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({
                   } else if (newVal.target?.value == "Medium Adj Rtg+ Prior") {
                     mutableNewConfig.rapmPriorMode = 0.5;
                   } else if (
+                    newVal.target?.value == "Strongish Adj Rtg+ Prior"
+                  ) {
+                    mutableNewConfig.rapmPriorMode = 0.66;
+                  } else if (
                     newVal.target?.value == "Adaptive Adj Rtg+ Prior"
                   ) {
                     mutableNewConfig.rapmPriorMode = -1;
@@ -109,11 +113,14 @@ const TeamRosterStatsConfigModal: React.FunctionComponent<Props> = ({
                 <option selected={config.rapmPriorMode == 0}>
                   Weak Adj Rtg+ Prior
                 </option>
+                <option selected={config.rapmPriorMode == -1}>
+                  Adaptive Adj Rtg+ Prior
+                </option>
                 <option selected={config.rapmPriorMode == 0.5}>
                   Medium Adj Rtg+ Prior
                 </option>
-                <option selected={config.rapmPriorMode == -1}>
-                  Adaptive Adj Rtg+ Prior
+                <option selected={config.rapmPriorMode == 0.66}>
+                  Strongish Adj Rtg+ Prior
                 </option>
                 <option selected={config.rapmPriorMode == 1}>
                   Strong Adj Rtg+ Prior

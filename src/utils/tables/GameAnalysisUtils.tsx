@@ -31,6 +31,12 @@ export type GameStatsCache = {
 
 /** Utils for performing analyses of single game stats */
 export class GameAnalysisUtils {
+  /** Prior makes up 66% of the result */
+  static rapmPriorMode = 0.66;
+
+  /** Fixed, regress as much as possible */
+  static rapmRegressionMode = 1.0;
+
   /** Turns the ugly PlayerCode into something marginally less ugly
    * TODO: have a set of player codes and always add ".", also see LineupUtils.namePrettifier
    * it would be nice to unify the two
@@ -138,7 +144,12 @@ export class GameAnalysisUtils {
         undefined,
         {
           ...defaultRapmConfig,
-          ...(singleGameMode ? { fixedRegression: 0.8 } : {}),
+          ...(singleGameMode
+            ? {
+                priorMode: GameAnalysisUtils.rapmPriorMode,
+                fixedRegression: GameAnalysisUtils.rapmRegressionMode,
+              }
+            : {}),
         },
       ) ||
       ({

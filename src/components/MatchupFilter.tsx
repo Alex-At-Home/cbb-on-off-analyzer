@@ -48,6 +48,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { DateUtils } from "../utils/DateUtils";
 import { RequestUtils } from "../utils/RequestUtils";
 import ThemedSelect from "./shared/ThemedSelect";
+import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
 
 type Props = {
   onStats: (
@@ -555,7 +556,8 @@ const MatchupFilter: React.FunctionComponent<Props> = ({
       showRoster: true,
       calcRapm: true,
       showTeamPlayTypes: true,
-      rapmRegressMode: "0.8",
+      rapmPriorMode: `${GameAnalysisUtils.rapmPriorMode}`,
+      rapmRegressMode: `${GameAnalysisUtils.rapmRegressionMode}`,
       showExpanded: true,
       teamShotCharts: true,
     };
