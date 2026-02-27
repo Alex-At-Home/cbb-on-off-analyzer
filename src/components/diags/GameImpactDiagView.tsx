@@ -55,7 +55,10 @@ type Props = {
   /** Extra px below axis before next content (e.g. table); default 8. */
   paddingBelowChart?: number;
   /** When provided, tooltip shows default content (gameLabel, value, scoreDiff) then this content below. */
-  customTooltipContent?: (point: GameImpactChartPoint, index: number) => React.ReactNode;
+  customTooltipContent?: (
+    point: GameImpactChartPoint,
+    index: number,
+  ) => React.ReactNode;
 };
 
 /** Bar shape: transparent fill (configurable opacity), boundary 1px white, 2px row color, 1px white. */
@@ -71,18 +74,53 @@ function BarWithBorder(props: any) {
   return (
     <g>
       {/* Outer 1px white */}
-      <rect x={x0} y={y0} width={w} height={h} fill="none" stroke="white" strokeWidth={1} />
+      <rect
+        x={x0}
+        y={y0}
+        width={w}
+        height={h}
+        fill="none"
+        stroke="white"
+        strokeWidth={1}
+      />
       {/* 2px row color */}
-      <rect x={x0 + 1} y={y0 + 1} width={w - 2} height={h - 2} fill="none" stroke={color} strokeWidth={2} />
+      <rect
+        x={x0 + 1}
+        y={y0 + 1}
+        width={w - 2}
+        height={h - 2}
+        fill="none"
+        stroke={color}
+        strokeWidth={2}
+      />
       {/* Inner 1px white then transparent fill */}
-      <rect x={x0 + 3} y={y0 + 3} width={w - 6} height={Math.max(0, h - 6)} fill="white" fillOpacity={0} stroke="white" strokeWidth={1} />
-      <rect x={x0 + 4} y={y0 + 4} width={Math.max(0, w - 8)} height={Math.max(0, h - 8)} fill={color} fillOpacity={opacity} />
+      <rect
+        x={x0 + 3}
+        y={y0 + 3}
+        width={w - 6}
+        height={Math.max(0, h - 6)}
+        fill="white"
+        fillOpacity={0}
+        stroke="white"
+        strokeWidth={1}
+      />
+      <rect
+        x={x0 + 4}
+        y={y0 + 4}
+        width={Math.max(0, w - 8)}
+        height={Math.max(0, h - 8)}
+        fill={color}
+        fillOpacity={opacity}
+      />
     </g>
   );
 }
 
 function makeCustomTooltip(
-  customContent?: (point: GameImpactChartPoint, index: number) => React.ReactNode,
+  customContent?: (
+    point: GameImpactChartPoint,
+    index: number,
+  ) => React.ReactNode,
   data?: GameImpactChartPoint[],
 ) {
   const CustomTooltip: React.FunctionComponent<{
@@ -93,22 +131,28 @@ function makeCustomTooltip(
     if (!active || !payload?.length) return null;
     const p = (payload.find((e: any) => e.dataKey === "value") ?? payload[0])
       .payload as GameImpactChartPoint;
-    const index =
-      data?.findIndex((d) => d.gameLabel === p.gameLabel) ?? 0;
+    const index = data?.findIndex((d) => d.gameLabel === p.gameLabel) ?? 0;
+    const extraContent = customContent ? customContent(p, index) : null;
     const defaultBlock = (
       <>
+        {extraContent ? undefined : (
+          <div>
+            <b>{p.gameLabel}</b>
+          </div>
+        )}
         <div>
-          <b>{p.gameLabel}</b>
+          value:{" "}
+          <b>{typeof p.value === "number" ? p.value.toFixed(2) : p.value}</b>
         </div>
         <div>
-          value: <b>{typeof p.value === "number" ? p.value.toFixed(2) : p.value}</b>
-        </div>
-        <div>
-          Score diff: <b>{p.scoreDiff > 0 ? "+" : ""}{p.scoreDiff}</b>
+          Score diff:{" "}
+          <b>
+            {p.scoreDiff > 0 ? "+" : ""}
+            {p.scoreDiff}
+          </b>
         </div>
       </>
     );
-    const extraContent = customContent ? customContent(p, index) : null;
     return (
       <div
         className="custom-tooltip"
@@ -187,7 +231,11 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
       <Row>
         <Col style={{ overflow: "visible" }}>
           <br />
-          <ResponsiveContainer width="100%" height={height} style={{ overflow: "visible" }}>
+          <ResponsiveContainer
+            width="100%"
+            height={height}
+            style={{ overflow: "visible" }}
+          >
             <ComposedChart
               data={chartData}
               margin={{ top: 5, right: 30, left: 20, bottom: marginBottom }}
@@ -238,14 +286,12 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
                   >
                     {chartData.map((point, i) => {
                       const color = CbbColors.off_diff150_redGreen(
-                        point.scoreDiff
+                        point.scoreDiff,
                       );
                       return (
                         <stop
                           key={i}
-                          offset={
-                            numGames === 1 ? 0.5 : i / (numGames - 1)
-                          }
+                          offset={numGames === 1 ? 0.5 : i / (numGames - 1)}
                           stopColor={color}
                           stopOpacity={1}
                         />

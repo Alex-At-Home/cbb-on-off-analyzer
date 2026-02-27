@@ -128,19 +128,23 @@ function perGameToModels(
     : [];
 
   const rosterInfo = (game as SeasonMatchupPerGame & { rosterInfo?: Record<string, any> }).rosterInfo;
+  const teamBaseline = (game as SeasonMatchupPerGame & { teamStatsBaseline?: any }).teamStatsBaseline;
+  const rosterBaseline = (game as SeasonMatchupPerGame & { rosterStatsBaseline?: any[] }).rosterStatsBaseline;
+  const seasonTeam = teamBaseline && _.size(teamBaseline) > 0 ? teamBaseline : teamBucket;
+  const seasonRoster = Array.isArray(rosterBaseline) && rosterBaseline.length > 0 ? rosterBaseline : playerBuckets;
   const teamStats: TeamStatsModel = {
     on: emptyTeam,
     off: emptyTeam,
     other: [],
     baseline: teamBucket as any,
-    global: { ...(teamBucket as any), roster: rosterInfo ?? {} },
+    global: { ...(seasonTeam as any), roster: rosterInfo ?? {} },
   };
   const rosterStats: RosterStatsModel = {
     on: [],
     off: [],
     other: [],
     baseline: playerBuckets as any,
-    global: playerBuckets as any,
+    global: seasonRoster as any,
   };
   const lineupStats: LineupStatsModel = {
     lineups: lineupBucketsList,
@@ -232,7 +236,7 @@ function buildOnePlayerGameRow(
 
 /** Derive [offPoss, defPoss] per game for possession-differential adjustment.
  * Returns fractions (e.g. 0.53, 0.56) to match buildTotalRow / PlayerImpactChart perGamePoss. */
-function getPossPerGame(g: SeasonMatchupPerGame): [number, number] | undefined {
+export function getPossPerGame(g: SeasonMatchupPerGame): [number, number] | undefined {
   const ts = g.teamStats as any;
   const gi = g.gameInfo as any;
   const offRaw =

@@ -43,6 +43,10 @@ export type SeasonMatchupPerGame = {
   lineupStats: any;
   /** Roster keyed by player code (from API). Passed to buildGameRapmStats via teamStats.global.roster. */
   rosterInfo?: Record<string, any>;
+  /** Season-level baseline (tri_filter.buckets.baseline). Used for .global so position/roster logic has enough possessions. */
+  teamStatsBaseline?: any;
+  /** Season-level player buckets (tri_filter.buckets.baseline.player.buckets). Used for rosterStats.global. */
+  rosterStatsBaseline?: any[];
 };
 
 export type SeasonMatchupOnStats = (data: {
@@ -290,6 +294,9 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       lineupJson?.aggregations?.other_queries?.buckets || {};
     // Roster is attached by RequestUtils to the request-level response, not to responses[0]
     const rosterInfo = playerRequestPayload?.roster ?? playerJson?.roster;
+    // Season-level baseline (used for .global so position/roster logic has enough possessions)
+    const teamStatsBaseline = teamBuckets?.baseline;
+    const rosterStatsBaseline = playerBuckets?.baseline?.player?.buckets ?? [];
 
     const gamesForResponse =
       games.length > 0 ? games : lastRequestGamesRef.current;
@@ -329,6 +336,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
         rosterStats,
         lineupStats: { lineups: lineupBucketsList },
         rosterInfo: rosterInfo ?? undefined,
+        teamStatsBaseline,
+        rosterStatsBaseline,
       });
     }
     onStats({ games: perGame });

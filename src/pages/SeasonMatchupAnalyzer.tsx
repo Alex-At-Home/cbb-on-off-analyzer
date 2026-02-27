@@ -44,6 +44,7 @@ import {
   getScoreDiffForGame,
   getScoreStrForGame,
   getPlayerTooltipDataForGame,
+  getPossPerGame,
 } from "../utils/SeasonMatchupImpactUtils";
 import type { GameImpactRow } from "../utils/SeasonMatchupImpactUtils";
 import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
@@ -252,9 +253,8 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       gameTooltipData.onOffStats,
                       gameTooltipData.posInfo,
                       false,
+                      scaleType === "/G" ? getPossPerGame(game) : undefined,
                     )}
-                    <br />
-                    <br />
                     Click to open in new page
                   </>
                 ) : (
@@ -657,12 +657,18 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                                 selectedPlayer,
                               );
                               if (!tooltipData) return null;
+                              const game = dataEvent.games[index];
+                              const perGamePossIn =
+                                scaleType === "/G" && game
+                                  ? getPossPerGame(game)
+                                  : undefined;
                               return GameAnalysisUtils.buildPlayerTooltipContents(
                                 point.gameLabel,
                                 tooltipData.stats,
                                 tooltipData.onOffStats,
                                 tooltipData.posInfo,
                                 false,
+                                perGamePossIn,
                               );
                             }
                           : undefined

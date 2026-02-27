@@ -137,38 +137,40 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
 
   const [maxTableSize, setMaxTableSize] = useState(
-    startingState.maxTableSize || ParamDefaults.defaultTeamExplorerMaxTableSize
+    startingState.maxTableSize || ParamDefaults.defaultTeamExplorerMaxTableSize,
   );
 
   const [showExtraInfo, setShowExtraInfo] = useState(
-    _.isNil(startingState.showExtraInfo) ? false : startingState.showExtraInfo
+    _.isNil(startingState.showExtraInfo) ? false : startingState.showExtraInfo,
   );
 
   const [showPlayStyles, setShowPlayStyles] = useState(
-    _.isNil(startingState.showPlayStyles) ? false : startingState.showPlayStyles
+    _.isNil(startingState.showPlayStyles)
+      ? false
+      : startingState.showPlayStyles,
   );
   const [playStyleConfig, setPlayStyleConfig] = useState(
     startingState.playStyleConfig ||
-      ParamDefaults.defaultTeamExplorerPlayStyleConfig
+      ParamDefaults.defaultTeamExplorerPlayStyleConfig,
   );
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState(
-    startingState.playStyleConfigStr || ParamDefaults.defaultTeamPlayTypeConfig
+    startingState.playStyleConfigStr || ParamDefaults.defaultTeamPlayTypeConfig,
   );
 
   /** Whether to make the quick toggle bar stick (default: on) */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(startingState.stickyQuickToggle)
       ? true
-      : startingState.stickyQuickToggle
+      : startingState.stickyQuickToggle,
   );
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    startingState.tablePreset
+    startingState.tablePreset,
   );
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
-    startingState.tableConfigExtraCols || []
+    startingState.tableConfigExtraCols || [],
   );
   /** Disabled table columns */
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
@@ -179,10 +181,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const manualFilterSelected =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0; //(if so this will override the ordering)
   const [queryFilters, setQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const [tmpQueryFilters, setTmpQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const separatorKeyword = "BREAK"; //(not used but leave the logic in here in case we change our mind later)
   const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
@@ -204,7 +206,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     {
       queryFiltersAsMap: {} as Record<string, number>,
       queryFilterRowBreaks: new Set<number>(),
-    }
+    },
   );
   const maybeFilterPromptTooltip = (
     <Tooltip id="maybeFilterPromptTooltip">
@@ -220,28 +222,28 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
 
   // Advanced filter:
   const [advancedFilterStr, setAdvancedFilterStr] = useState(
-    _.trim(startingState.advancedFilter || "")
+    _.trim(startingState.advancedFilter || ""),
   );
   const isCustomRanking = advancedFilterStr.includes("SORT_BY");
 
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(
     _.isNil(startingState.showAdvancedFilter)
       ? true
-      : startingState.showAdvancedFilter
+      : startingState.showAdvancedFilter,
   );
   const [advancedFilterError, setAdvancedFilterError] = useState(
-    undefined as string | undefined
+    undefined as string | undefined,
   );
   const [secretQuery, setSecretQuery] = useState<string | undefined>(
-    _.trim(startingState.secretQuery)
+    _.trim(startingState.secretQuery),
   );
 
   const [year, setYear] = useState(
-    startingState.year || DateUtils.mostRecentYearWithData
+    startingState.year || DateUtils.mostRecentYearWithData,
   );
 
   const [gender, setGender] = useState(
-    startingState.gender || ParamDefaults.defaultGender
+    startingState.gender || ParamDefaults.defaultGender,
   );
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "power");
@@ -262,21 +264,21 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           _.flatMap(AvailableTeams.byName, (teams, teamName) => {
             return [teamName].concat(
               // Just do "ADD_SEASON" and let user fill it in
-              `${teamName}:ADD_SEASON`
+              `${teamName}:ADD_SEASON`,
               // Not doing: add every year, more intuitive but doesn't scale
               // teams
               //   .filter((t) => t.year && t.gender == gender)
               //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
             );
-          })
+          }),
         )
           .flatMap((team) => {
             const teamFrags = team.split(`:`);
             // Add aliases in:
             return [team].concat(
               (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
-                teamFrags[1] ? `${s}:${teamFrags[1]}` : s
-              )
+                teamFrags[1] ? `${s}:${teamFrags[1]}` : s,
+              ),
             );
           })
           .uniq()
@@ -284,10 +286,10 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       : _.chain(
           _.flatMap(AvailableTeams.byName, (teams, __) => {
             const maybeTeam = teams.find(
-              (t) => t.year == year && t.gender == gender
+              (t) => t.year == year && t.gender == gender,
             );
             return maybeTeam ? [maybeTeam.team] : [];
-          })
+          }),
         )
           .flatMap((team) => {
             // Add aliases in:
@@ -299,7 +301,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [showGrades, setShowGrades] = useState(
     _.isNil(startingState.showGrades)
       ? ParamDefaults.defaultEnabledGrade
-      : startingState.showGrades
+      : startingState.showGrades,
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);
@@ -310,7 +312,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const [luckConfig, setLuckConfig] = useState(
     _.isNil(startingState.luck)
       ? ParamDefaults.defaultLuckConfig
-      : startingState.luck
+      : startingState.luck,
   );
 
   // Grades:
@@ -361,7 +363,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 [yearToCheck]: newCache,
               }));
               setDivisionStatsRefresh((curr) => curr + 1);
-            }
+            },
           );
         }
       });
@@ -496,7 +498,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -512,7 +514,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     React.useMemo(() => {
       return TeamTableDefs.sortBuilder(
         "Dual",
-        _.chain(TeamTableDefs.onOffTable()).toPairs()
+        _.chain(TeamTableDefs.onOffTable()).toPairs(),
       );
     }, []).concat([
       {
@@ -534,7 +536,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     ]);
 
   const sortOptionsByValue = _.fromPairs(
-    sortOptions.map((opt) => [opt.value, opt])
+    sortOptions.map((opt) => [opt.value, opt]),
   );
   /** Put these options at the front */
   const mostUsefulSubset = [
@@ -568,8 +570,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     </div>
   );
 
-  function stringToOption(s: string) {
+  function stringToOptionSort(s: string) {
     return sortOptionsByValue[s];
+  }
+  function stringToOptionGender(s: string) {
+    return { label: s, value: s };
   }
 
   // 2] Processing
@@ -582,7 +587,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         ? !_.isNil(
             queryFiltersAsMap[t.team] ||
               queryFiltersAsMap[`${t.team}:${t.year}`] ||
-              queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`]
+              queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`],
           )
         : !_.isNil(queryFiltersAsMap[t.team])
       : confs == "" ||
@@ -606,7 +611,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             acc.wins += isWin ? 1 : 0;
             acc.losses += isWin ? 0 : 1;
           },
-          { wab: 0.0, wae: 0.0, wins: 0, losses: 0 }
+          { wab: 0.0, wae: 0.0, wins: 0, losses: 0 },
         );
         team.conf_nick = confNick;
         team.wab = wab;
@@ -619,9 +624,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           [team.team_name]
             .concat(AvailableTeams.teamAliases[team.team_name] || [])
             .map(
-              (teamAlias) => AvailableTeams.byName[teamAlias]?.[0]?.source_id
+              (teamAlias) => AvailableTeams.byName[teamAlias]?.[0]?.source_id,
             ),
-          (sourceId) => !_.isEmpty(sourceId)
+          (sourceId) => !_.isEmpty(sourceId),
         );
 
         // Ugh, so some fields are luck adjusted but we don't want that
@@ -668,7 +673,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           team.def_adj_ppp?.value || 100,
           dataEvent.bubbleOffenses[team.year] || fallbackBubbleOffense,
           dataEvent.bubbleDefenses[team.year] || fallbackBubbleDefense,
-          0.0
+          0.0,
         );
         const expWab = (expWinPctVsBubble - 0.5) * (wins + losses);
         team.exp_wab = expWab;
@@ -736,8 +741,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                   divisionStatsCache,
                   year,
                   gender,
-                  showGrades
-                )
+                  showGrades,
+                ),
             )
           : [phase1, undefined];
 
@@ -752,9 +757,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               divisionStatsCache,
               year,
               gender,
-              showGrades
+              showGrades,
             )
-        : undefined
+        : undefined,
     );
 
     return [header].concat(dataRows).join("\n");
@@ -776,8 +781,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 divisionStatsCache,
                 year,
                 gender,
-                showGrades
-              )
+                showGrades,
+              ),
           )
         : [teamsPhase1, undefined];
 
@@ -927,7 +932,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           },
 
           luckConfig,
-          divisionStatsCache[team.year] || {}
+          divisionStatsCache[team.year] || {},
         );
         return tableInfo;
       });
@@ -939,15 +944,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
           (showExtraInfo || showPlayStyles) && ii < MAX_EXTRA_INFO_IN_ROWS
             ? 1
             : showGrades
-            ? 5
-            : 10;
+              ? 5
+              : 10;
 
         return [
           ...(ii > 0 && ii % repeatingHeader == 0
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
                   TeamTableDefs.repeatingOnOffHeaderFields,
-                  "small"
+                  "small",
                 ),
               ]
             : []),
@@ -961,7 +966,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
       <GenericTable
         sortField={TeamTableDefs.sortField(
           sortBy,
-          ParamDefaults.defaultLineupSortBy
+          ParamDefaults.defaultLineupSortBy,
         )}
         onHeaderClick={
           !isCustomRanking && !manualFilterSelected
@@ -969,7 +974,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 "Dual",
                 sortBy,
                 sortOptions,
-                setSortMenuState
+                setSortMenuState,
               )
             : undefined
         }
@@ -1106,12 +1111,12 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
-          }
+          },
         );
       } else {
         return undefined;
       }
-    }
+    },
   );
 
   const quickToggleBar = (
@@ -1194,7 +1199,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 });
                 friendlyChange(
                   () => setPlayStyleConfig(newVal),
-                  newVal != playStyleConfig
+                  newVal != playStyleConfig,
                 );
               } //(else ignore clicks, style not enabled)
             },
@@ -1220,7 +1225,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                 });
                 friendlyChange(
                   () => setPlayStyleConfig(newVal),
-                  newVal != playStyleConfig
+                  newVal != playStyleConfig,
                 );
               } //(else ignore clicks, style not enabled)
             },
@@ -1415,15 +1420,15 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={6} lg={2} style={{ zIndex: 12 }}>
             <ThemedSelect
-              value={stringToOption(gender)}
-              options={["Men", "Women"].map((g) => stringToOption(g))}
+              value={stringToOptionGender(gender)}
+              options={["Men", "Women"].map((g) => stringToOptionGender(g))}
               isSearchable={false}
               onChange={(option: any) => {
                 if ((option as any)?.value) {
                   const newGender = (option as any)?.value;
                   friendlyChange(
                     () => setGender(newGender),
-                    newGender != gender
+                    newGender != gender,
                   );
                 }
               }}
@@ -1530,8 +1535,8 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
               styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={
                 isCustomRanking || manualFilterSelected
-                  ? stringToOption("power")
-                  : stringToOption(sortBy)
+                  ? stringToOptionSort("power")
+                  : stringToOptionSort(sortBy)
               }
               options={groupedOptions}
               components={{ MenuList }}
@@ -1541,7 +1546,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                   const newSortBy = (option as any)?.value || "net";
                   friendlyChange(
                     () => setSortBy(newSortBy),
-                    sortBy != newSortBy
+                    sortBy != newSortBy,
                   );
                 }
               }}
@@ -1560,11 +1565,11 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
                   ? `${
                       _.endsWith(advancedFilterStr, " ") ? "" : " "
                     }SECRET_QUERY ` + secretQuery
-                  : ""
+                  : "",
               )}
               error={advancedFilterError}
               autocomplete={AdvancedFilterUtils.teamExplorerAutocomplete.concat(
-                "SECRET_QUERY"
+                "SECRET_QUERY",
               )}
               richTextReplacements={undefined}
               callback={(newVal: string) =>
