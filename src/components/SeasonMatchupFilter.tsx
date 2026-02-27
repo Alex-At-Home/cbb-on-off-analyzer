@@ -3,8 +3,9 @@
  * Fetches game list, builds 3 requests (team, player, lineup) with on/off/otherQueries,
  * parses responses into per-game array. Supports simple (preset) and advanced mode.
  */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
+import { FilteredGameSelection } from "../utils/QueryUtils";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -62,6 +63,16 @@ function bucketKeyForGameIndex(i: number): string {
   return `other_${i - 2}`;
 }
 
+/** Convert CommonFilter gameSelection.games to GameInfoStatSet[] for buildGameRequestParams */
+function gameSelectionToGameInfo(games: FilteredGameSelection["games"]): GameInfoStatSet[] {
+  if (!games?.length) return [];
+  return games.map((g) => {
+    const loc =
+      g.location === "Away" ? "A" : g.location === "Home" ? "H" : "N";
+    return { date: g.date, opponent: `${loc}:${g.opponent}` } as GameInfoStatSet;
+  });
+}
+
 export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   onStats,
   startingState,
@@ -82,6 +93,10 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     showChart: params.showChart ?? true,
   });
 
+  const gameSelectionRef = useRef<FilteredGameSelection | undefined>();
+  const rosterRef = useRef<string[] | undefined>();
+  const lastRequestGamesRef = useRef<GameInfoStatSet[]>([]);
+
   useEffect(() => {
     if (params.presetMode !== undefined) setPresetMode(params.presetMode);
     if (params.presetGroup !== undefined) setPresetGroup(params.presetGroup);
@@ -97,6 +112,32 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     params.presetGroup,
     params.adjustForOpponentStrength,
     params.showChart,
+  ]);
+
+  // Sync from page when results section pushes presetGroup / visualization (e.g. quick switch)
+  useEffect(() => {
+    if (startingState.presetGroup !== undefined) {
+      setPresetGroup(startingState.presetGroup);
+      setParams((prev) => ({ ...prev, presetGroup: startingState.presetGroup }));
+    }
+    if (startingState.showChart !== undefined) {
+      setVisualizeState((v) => ({ ...v, showChart: startingState.showChart! }));
+      setParams((prev) => ({ ...prev, showChart: startingState.showChart }));
+    }
+    if (startingState.adjustForOpponentStrength !== undefined) {
+      setVisualizeState((v) => ({
+        ...v,
+        adjustForOpponentStrength: startingState.adjustForOpponentStrength!,
+      }));
+      setParams((prev) => ({
+        ...prev,
+        adjustForOpponentStrength: startingState.adjustForOpponentStrength,
+      }));
+    }
+  }, [
+    startingState.presetGroup,
+    startingState.showChart,
+    startingState.adjustForOpponentStrength,
   ]);
 
   const isDebug = process.env.NODE_ENV !== "production";
@@ -153,7 +194,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   }
 
   function buildParamsFromState(
-    _includeFilterParams: Boolean,
+    includeFilterParams: Boolean,
     _forQuery?: Boolean
   ): [GameFilterParams, FilterRequestInfo[]] {
     const baseCommon = {
@@ -170,19 +211,28 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
           ...(FilterPresetUtils.commonFilterPresets[presetMode]?.commonParams ??
             {}),
         };
+    const gamesToUse =
+      games.length > 0
+        ? games
+        : gameSelectionToGameInfo(gameSelectionRef.current?.games ?? []);
+    lastRequestGamesRef.current = gamesToUse;
     const { teamPlayerParams, lineupParams } = buildGameRequestParams(
-      games,
+      gamesToUse,
       mergedCommon as CommonFilterParams
     );
-    const primaryRequest = {
-      ...teamPlayerParams,
-      ...mergedCommon,
-      advancedMode: advancedView,
-      presetMode,
-      presetGroup,
-      adjustForOpponentStrength: visualizeState.adjustForOpponentStrength,
-      showChart: visualizeState.showChart,
-    } as GameFilterParams;
+    const primaryRequest = (
+      includeFilterParams
+        ? {
+            ...teamPlayerParams,
+            ...mergedCommon,
+            advancedMode: advancedView,
+            presetMode,
+            presetGroup,
+            adjustForOpponentStrength: visualizeState.adjustForOpponentStrength,
+            showChart: visualizeState.showChart,
+          }
+        : { ...teamPlayerParams }
+    ) as GameFilterParams;
     const otherRequests: FilterRequestInfo[] = [
       {
         context: ParamPrefixes.player as ParamPrefixesType,
@@ -205,7 +255,9 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     const playerBuckets = playerJson?.aggregations?.tri_filter?.buckets || {};
     const lineupBuckets = lineupJson?.aggregations?.other_queries?.buckets || {};
 
-    const n = games.length;
+    const gamesForResponse =
+      games.length > 0 ? games : lastRequestGamesRef.current;
+    const n = gamesForResponse.length;
     const perGame: SeasonMatchupPerGame[] = [];
     for (let i = 0; i < n; i++) {
       const tk = bucketKeyForGameIndex(i);
@@ -213,8 +265,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       const lineupBucket = lineupBuckets[lk] || {};
       const lineupBucketsList = lineupBucket.lineups?.buckets || [];
       perGame.push({
-        gameLabel: buildGameLabel(games[i]),
-        gameInfo: games[i],
+        gameLabel: buildGameLabel(gamesForResponse[i]),
+        gameInfo: gamesForResponse[i],
         teamStats: teamBuckets[tk] || {},
         rosterStats: playerBuckets[tk]?.player?.buckets || [],
         lineupStats: { lineups: lineupBucketsList },
@@ -234,6 +286,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
 
   return (
     <CommonFilter
+      gameSelectionRef={gameSelectionRef}
+      rosterRef={rosterRef}
       startingState={{
         ...commonParams,
         ...params,
@@ -250,6 +304,14 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
           year: p.year,
           gender: p.gender,
         };
+        const primaryFilterChanged =
+          p.team !== params.team ||
+          p.year !== params.year ||
+          p.gender !== params.gender;
+        if (primaryFilterChanged) {
+          setPresetGroup(SEASON_MATCHUP_TEAM_KEY);
+          next.presetGroup = SEASON_MATCHUP_TEAM_KEY;
+        }
         if ((p as any).advancedMode !== undefined)
           next.advancedMode = (p as any).advancedMode;
         if ((p as any).presetMode !== undefined)
@@ -274,9 +336,25 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
           setVisualizeState((v) => ({ ...v, showChart: (p as any).showChart }));
         onChangeState(next);
       }}
-      onChangeCommonState={(common) =>
-        setParams((prev) => ({ ...prev, ...common }))
-      }
+      onChangeCommonState={(common) => {
+        const primaryChanged =
+          (common.team !== undefined && common.team !== params.team) ||
+          (common.year !== undefined && common.year !== params.year) ||
+          (common.gender !== undefined && common.gender !== params.gender);
+        setParams((prev) => {
+          const next = { ...prev, ...common };
+          if (primaryChanged) next.presetGroup = SEASON_MATCHUP_TEAM_KEY;
+          return next;
+        });
+        if (primaryChanged) {
+          setPresetGroup(SEASON_MATCHUP_TEAM_KEY);
+          onChangeState({
+            ...params,
+            ...common,
+            presetGroup: SEASON_MATCHUP_TEAM_KEY,
+          });
+        }
+      }}
       tablePrefix={ParamPrefixes.game as ParamPrefixesType}
       tablePrefixForPrimaryRequest={ParamPrefixes.game as ParamPrefixesType}
       buildParamsFromState={buildParamsFromState}

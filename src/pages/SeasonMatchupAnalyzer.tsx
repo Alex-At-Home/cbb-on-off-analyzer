@@ -83,7 +83,21 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
   paramsRef.current = params;
+  const [lastSubmittedCommon, setLastSubmittedCommon] = useState<{
+    team: string | undefined;
+    year: string | undefined;
+    gender: string | undefined;
+  }>(() => ({
+    team: params.team,
+    year: params.year,
+    gender: params.gender,
+  }));
   const { resolvedTheme } = useTheme();
+
+  const submitIsPending =
+    params.team !== lastSubmittedCommon.team ||
+    params.year !== lastSubmittedCommon.year ||
+    params.gender !== lastSubmittedCommon.gender;
 
   const common = getCommonFilterParams(params);
   const genderYear = `${params.gender ?? ParamDefaults.defaultGender}_${params.year ?? ParamDefaults.defaultYear}`;
@@ -302,6 +316,11 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
 
   const onSeasonMatchupStats: SeasonMatchupOnStats = (data) => {
     setDataEvent({ games: data.games });
+    setLastSubmittedCommon({
+      team: paramsRef.current.team,
+      year: paramsRef.current.year,
+      gender: paramsRef.current.gender,
+    });
   };
 
   const getRootUrl = (p: SeasonMatchupFilterParams) =>
@@ -331,10 +350,6 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         <Col xs={12} className="text-center">
           <LandingPageIcon />
           <h3>Season Matchup Analyzer</h3>
-          <p className="text-muted small">
-            Per-game breakdown for a team&apos;s season. Select team, year, and
-            gender, then Submit.
-          </p>
         </Col>
       </Row>
       <Row>
@@ -380,7 +395,14 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                     _source: QuickSwitchSource,
                     _fromTimer: boolean,
                   ) => {
-                    setSelectedPlayer(quickSwitch ?? SEASON_MATCHUP_TEAM_KEY);
+                    const next = quickSwitch ?? SEASON_MATCHUP_TEAM_KEY;
+                    setSelectedPlayer(next);
+                    if (!submitIsPending) {
+                      onChangeState({
+                        ...params,
+                        presetGroup: next,
+                      });
+                    }
                   }}
                   quickSwitchTimer={undefined}
                   modes={["link"]}
@@ -401,7 +423,13 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       label: "Chart",
                       tooltip: "Show per-game impact chart",
                       toggled: showChart,
-                      onClick: () => setShowChart(!showChart),
+                      onClick: () => {
+                        const next = !showChart;
+                        setShowChart(next);
+                        if (!submitIsPending) {
+                          onChangeState({ ...params, showChart: next });
+                        }
+                      },
                     },
                     {
                       label: "L",
@@ -421,7 +449,16 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       tooltip:
                         "Include SoS adjustment in calcs (means total net won't sum to score differential)",
                       toggled: adjBreakdownForSoS,
-                      onClick: () => setAdjBreakdownForSoS(!adjBreakdownForSoS),
+                      onClick: () => {
+                        const next = !adjBreakdownForSoS;
+                        setAdjBreakdownForSoS(next);
+                        if (!submitIsPending) {
+                          onChangeState({
+                            ...params,
+                            adjustForOpponentStrength: next,
+                          });
+                        }
+                      },
                     },
                     {
                       label: "| ",
