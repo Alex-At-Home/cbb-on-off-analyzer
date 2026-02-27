@@ -41,6 +41,8 @@ export type SeasonMatchupPerGame = {
   teamStats: any;
   rosterStats: any;
   lineupStats: any;
+  /** Roster keyed by player code (from API). Passed to buildGameRapmStats via teamStats.global.roster. */
+  rosterInfo?: Record<string, any>;
 };
 
 export type SeasonMatchupOnStats = (data: {
@@ -266,6 +268,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       {
         context: ParamPrefixes.player as ParamPrefixesType,
         paramsObj: teamPlayerParams,
+        includeRoster: true,
       },
       {
         context: ParamPrefixes.lineup as ParamPrefixesType,
@@ -277,13 +280,16 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
 
   function handleResponse(jsons: any[], _wasError: Boolean) {
     const teamJson = jsons?.[0]?.responses?.[0] || {};
-    const playerJson = jsons?.[1]?.responses?.[0] || {};
+    const playerRequestPayload = jsons?.[1];
+    const playerJson = playerRequestPayload?.responses?.[0] || {};
     const lineupJson = jsons?.[2]?.responses?.[0] || {};
 
     const teamBuckets = teamJson?.aggregations?.tri_filter?.buckets || {};
     const playerBuckets = playerJson?.aggregations?.tri_filter?.buckets || {};
     const lineupBuckets =
       lineupJson?.aggregations?.other_queries?.buckets || {};
+    // Roster is attached by RequestUtils to the request-level response, not to responses[0]
+    const rosterInfo = playerRequestPayload?.roster ?? playerJson?.roster;
 
     const gamesForResponse =
       games.length > 0 ? games : lastRequestGamesRef.current;
@@ -294,12 +300,35 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       const lk = `other_${i}`;
       const lineupBucket = lineupBuckets[lk] || {};
       const lineupBucketsList = lineupBucket.lineups?.buckets || [];
+      const rosterStats = playerBuckets[tk]?.player?.buckets || [];
+      if (rosterInfo && Array.isArray(rosterStats)) {
+        const rosterByCode = rosterInfo as Record<string, { player_code_id?: { id: string }; number?: string; height?: string }>;
+        const rosterById = _.isEmpty(rosterByCode)
+          ? {}
+          : _.keyBy(
+              _.filter(
+                _.toPairs(rosterByCode),
+                (kv): kv is [string, { player_code_id?: { id: string } }] =>
+                  !!kv[1]?.player_code_id?.id,
+              ),
+              ([, v]) => v.player_code_id!.id,
+            );
+        for (const p of rosterStats) {
+          const code =
+            p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key;
+          const entry =
+            rosterByCode[code] ||
+            (p.key && rosterById[p.key]?.[1]);
+          if (entry) p.roster = entry;
+        }
+      }
       perGame.push({
         gameLabel: buildGameLabel(gamesForResponse[i]),
         gameInfo: gamesForResponse[i],
         teamStats: teamBuckets[tk] || {},
-        rosterStats: playerBuckets[tk]?.player?.buckets || [],
+        rosterStats,
         lineupStats: { lineups: lineupBucketsList },
+        rosterInfo: rosterInfo ?? undefined,
       });
     }
     onStats({ games: perGame });

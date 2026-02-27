@@ -54,6 +54,8 @@ type Props = {
   labelAreaHeight?: number;
   /** Extra px below axis before next content (e.g. table); default 8. */
   paddingBelowChart?: number;
+  /** When provided, tooltip shows default content (gameLabel, value, scoreDiff) then this content below. */
+  customTooltipContent?: (point: GameImpactChartPoint, index: number) => React.ReactNode;
 };
 
 /** Bar shape: transparent fill (configurable opacity), boundary 1px white, 2px row color, 1px white. */
@@ -79,13 +81,34 @@ function BarWithBorder(props: any) {
   );
 }
 
-const CustomTooltip: React.FunctionComponent<{
-  active?: boolean;
-  payload?: any;
-}> = ({ active, payload }) => {
-  const { resolvedTheme } = useTheme();
-  if (active && payload?.length) {
-    const p = (payload.find((e: any) => e.dataKey === "value") ?? payload[0]).payload as GameImpactChartPoint;
+function makeCustomTooltip(
+  customContent?: (point: GameImpactChartPoint, index: number) => React.ReactNode,
+  data?: GameImpactChartPoint[],
+) {
+  const CustomTooltip: React.FunctionComponent<{
+    active?: boolean;
+    payload?: any;
+  }> = ({ active, payload }) => {
+    const { resolvedTheme } = useTheme();
+    if (!active || !payload?.length) return null;
+    const p = (payload.find((e: any) => e.dataKey === "value") ?? payload[0])
+      .payload as GameImpactChartPoint;
+    const index =
+      data?.findIndex((d) => d.gameLabel === p.gameLabel) ?? 0;
+    const defaultBlock = (
+      <>
+        <div>
+          <b>{p.gameLabel}</b>
+        </div>
+        <div>
+          value: <b>{typeof p.value === "number" ? p.value.toFixed(2) : p.value}</b>
+        </div>
+        <div>
+          Score diff: <b>{p.scoreDiff > 0 ? "+" : ""}{p.scoreDiff}</b>
+        </div>
+      </>
+    );
+    const extraContent = customContent ? customContent(p, index) : null;
     return (
       <div
         className="custom-tooltip"
@@ -97,20 +120,18 @@ const CustomTooltip: React.FunctionComponent<{
           padding: "6px 10px",
         }}
       >
-        <div>
-          <b>{p.gameLabel}</b>
-        </div>
-        <div>
-          value: <b>{typeof p.value === "number" ? p.value.toFixed(2) : p.value}</b>
-        </div>
-        <div>
-          Score diff: <b>{p.scoreDiff > 0 ? "+" : ""}{p.scoreDiff}</b>
-        </div>
+        {defaultBlock}
+        {extraContent != null && (
+          <>
+            <br />
+            {extraContent}
+          </>
+        )}
       </div>
     );
-  }
-  return null;
-};
+  };
+  return CustomTooltip;
+}
 
 let chartInstanceId = 0;
 
@@ -122,10 +143,15 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
   height = DEFAULT_CHART_HEIGHT,
   labelAreaHeight,
   paddingBelowChart = PADDING_BELOW_CHART,
+  customTooltipContent,
 }) => {
   const { resolvedTheme } = useTheme();
   const id = ++chartInstanceId;
   const numGames = data.length;
+  const TooltipContent = React.useMemo(
+    () => makeCustomTooltip(customTooltipContent, data),
+    [customTooltipContent, data],
+  );
   const strokeColor = resolvedTheme === "dark" ? "#ccc" : "#333";
   // Only reserve padding below axis; label area is inside content (xAxis height uses it)
   const marginBottom = paddingBelowChart;
@@ -194,7 +220,7 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
                 tickFormatter={() => ""}
                 width={0}
               />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<TooltipContent />} />
               <ReferenceLine
                 yAxisId="left"
                 y={0}

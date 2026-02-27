@@ -43,8 +43,10 @@ import {
   CHART_FIELD_OPTIONS,
   getScoreDiffForGame,
   getScoreStrForGame,
+  getPlayerTooltipDataForGame,
 } from "../utils/SeasonMatchupImpactUtils";
 import type { GameImpactRow } from "../utils/SeasonMatchupImpactUtils";
+import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
 import {
   buildGameQueryString,
   buildGameLabel,
@@ -232,13 +234,32 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
             }
           : {}),
       } as any);
+      const gameTooltipData =
+        selectedPlayer !== SEASON_MATCHUP_TEAM_KEY && perGameRapmCaches[i]
+          ? getPlayerTooltipDataForGame(perGameRapmCaches[i], selectedPlayer)
+          : null;
       const titleNode = (
         <>
           <span style={{ color }}>{scoreStr}</span>{" "}
           <OverlayTrigger
             overlay={
-              <Tooltip id="game-detail-link">
-                Click here to view details for this game
+              <Tooltip id={`game-detail-${i}`}>
+                {gameTooltipData ? (
+                  <>
+                    {GameAnalysisUtils.buildPlayerTooltipContents(
+                      impact?.gameLabel ?? "",
+                      gameTooltipData.stats,
+                      gameTooltipData.onOffStats,
+                      gameTooltipData.posInfo,
+                      false,
+                    )}
+                    <br />
+                    <br />
+                    Click to open in new page
+                  </>
+                ) : (
+                  "Click here to view details for this game"
+                )}
               </Tooltip>
             }
           >
@@ -627,6 +648,25 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       height={chartHeightAndLabelSpace.chartHeight}
                       labelAreaHeight={chartHeightAndLabelSpace.labelAreaHeight}
                       paddingBelowChart={paddingBelowChart}
+                      customTooltipContent={
+                        selectedPlayer !== SEASON_MATCHUP_TEAM_KEY &&
+                        perGameRapmCaches.length === chartData.length
+                          ? (point, index) => {
+                              const tooltipData = getPlayerTooltipDataForGame(
+                                perGameRapmCaches[index],
+                                selectedPlayer,
+                              );
+                              if (!tooltipData) return null;
+                              return GameAnalysisUtils.buildPlayerTooltipContents(
+                                point.gameLabel,
+                                tooltipData.stats,
+                                tooltipData.onOffStats,
+                                tooltipData.posInfo,
+                                false,
+                              );
+                            }
+                          : undefined
+                      }
                     />
                   </div>
                 )}

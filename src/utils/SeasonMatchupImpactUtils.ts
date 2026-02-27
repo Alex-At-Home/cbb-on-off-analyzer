@@ -10,6 +10,8 @@ import { RosterStatsModel } from "../components/RosterStatsTable";
 import { TeamStatsModel } from "../components/TeamStatsTable";
 import { GameAnalysisUtils, GameStatsCache } from "./tables/GameAnalysisUtils";
 import { StatModels } from "./StatModels";
+import type { IndivStatSet, IndivPosInfo } from "./StatModels";
+import { LineupUtils, PlayerOnOffStats } from "./stats/LineupUtils";
 import { RatingUtils } from "./stats/RatingUtils";
 import {
   buildTotalRow,
@@ -125,12 +127,13 @@ function perGameToModels(
     ? (game.lineupStats as any).lineups
     : [];
 
+  const rosterInfo = (game as SeasonMatchupPerGame & { rosterInfo?: Record<string, any> }).rosterInfo;
   const teamStats: TeamStatsModel = {
     on: emptyTeam,
     off: emptyTeam,
     other: [],
     baseline: teamBucket as any,
-    global: teamBucket as any,
+    global: { ...(teamBucket as any), roster: rosterInfo ?? {} },
   };
   const rosterStats: RosterStatsModel = {
     on: [],
@@ -444,6 +447,92 @@ export function buildGameImpactRowsFromCaches(
   }
 
   return rows;
+}
+
+/**
+ * Get stats + onOffStats + posInfo for one player in one game (for tooltip).
+ * Returns null if player not in that game's cache.
+ */
+export function getPlayerTooltipDataForGame(
+  cache: GameStatsCache,
+  playerCode: string,
+): {
+  stats: IndivStatSet;
+  onOffStats: PlayerOnOffStats;
+  posInfo: IndivPosInfo;
+} | null {
+  const enriched = cache.rapmInfo?.enrichedPlayers?.find(
+    (p) => p.playerCode === playerCode || p.playerId === playerCode,
+  );
+  if (!enriched) return null;
+  const stats = cache.playerInfo[enriched.playerId];
+  const posInfo = cache.positionInfo?.[enriched.playerId];
+  if (!stats) return null;
+  return {
+    stats,
+    onOffStats: enriched,
+    posInfo: posInfo ?? ({} as IndivPosInfo),
+  };
+}
+
+/**
+ * Aggregate stats across games for one player for season-level tooltip.
+ * Sets game_info to array of length numGames so tooltip per-game math is correct.
+ */
+export function getPlayerSeasonTooltipData(
+  caches: GameStatsCache[],
+  playerCode: string,
+  numGames: number,
+): {
+  stats: IndivStatSet;
+  onOffStats: PlayerOnOffStats;
+  posInfo: IndivPosInfo;
+} | null {
+  const items: { stats: IndivStatSet; onOffStats: PlayerOnOffStats }[] = [];
+  let posInfo: IndivPosInfo = {} as IndivPosInfo;
+  for (const cache of caches) {
+    const data = getPlayerTooltipDataForGame(cache, playerCode);
+    if (!data) continue;
+    items.push({ stats: data.stats, onOffStats: data.onOffStats });
+    if (Object.keys(data.posInfo).length) posInfo = data.posInfo;
+  }
+  if (items.length === 0) return null;
+  const first = items[0].stats as Record<string, unknown>;
+  const aggregated: Record<string, unknown> = {};
+  for (const key of Object.keys(first)) {
+    const v = first[key];
+    if (v && typeof v === "object" && "value" in v && typeof (v as any).value === "number") {
+      let sum = 0;
+      for (const { stats: s } of items) {
+        const o = (s as Record<string, unknown>)[key];
+        if (o && typeof o === "object" && "value" in o) sum += (o as any).value ?? 0;
+      }
+      aggregated[key] = { value: sum };
+    } else {
+      aggregated[key] = v;
+    }
+  }
+  aggregated.game_info = Array(numGames);
+  let offSum = 0;
+  let defSum = 0;
+  for (const { onOffStats } of items) {
+    offSum += onOffStats.rapm?.off_adj_ppp?.value ?? 0;
+    defSum += onOffStats.rapm?.def_adj_ppp?.value ?? 0;
+  }
+  const n = items.length;
+  const avgOnOff: PlayerOnOffStats = {
+    ...items[0].onOffStats,
+    rapm: {
+      ...items[0].onOffStats.rapm,
+      off_adj_ppp: { value: offSum / n },
+      def_adj_ppp: { value: defSum / n },
+    } as any,
+  };
+  return {
+    stats: aggregated as IndivStatSet,
+    onOffStats: avgOnOff,
+    posInfo,
+  };
 }
 
 /**
