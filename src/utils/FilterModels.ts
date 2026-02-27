@@ -309,6 +309,12 @@ export type SeasonMatchupFilterParams = {
   presetGroup?: string;
   adjustForOpponentStrength?: boolean;
   showChart?: boolean;
+  /** Chart 3× taller when true. */
+  chartLarge?: boolean;
+  /** Scale for impact: P% (per 100 poss on court), T% (per 100 team poss), /G (per game). */
+  scaleType?: "P%" | "T%" | "/G";
+  /** Data key for the chart Y-axis (e.g. diff_adj_rapm). */
+  chartFieldKey?: string;
 };
 
 export type TeamEditorParams = {
@@ -662,6 +668,10 @@ export class ParamDefaults {
   static readonly defaultLuckConfig: LuckParams = { base: "season" };
   static readonly defaultEnabledGrade = "rank:Combo";
   static readonly defaultPresetMode = "Season Stats";
+  // Season Matchup Analyzer
+  static readonly defaultChartLarge = false;
+  static readonly defaultScaleType = "/G";
+  static readonly defaultChartFieldKey = "diff_adj_rapm";
   // Game
   static readonly defaultPresetSplit = "No Splits";
   static readonly defaultAutoOffQuery = true;

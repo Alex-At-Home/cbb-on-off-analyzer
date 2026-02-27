@@ -45,7 +45,10 @@ import {
   getScoreStrForGame,
 } from "../utils/SeasonMatchupImpactUtils";
 import type { GameImpactRow } from "../utils/SeasonMatchupImpactUtils";
-import { getMatchupQueryFiltersForGame } from "../utils/SeasonMatchupUtils";
+import {
+  buildGameQueryString,
+  buildGameLabel,
+} from "../utils/SeasonMatchupUtils";
 import GameImpactDiagView, {
   GameImpactChartPoint,
   gameLabelToXAxisLabel,
@@ -72,14 +75,20 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [perGameRapmCaches, setPerGameRapmCaches] = useState<GameStatsCache[]>(
     [],
   );
-  const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">("/G");
+  const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">(
+    (params.scaleType as "P%" | "T%" | "/G") ?? ParamDefaults.defaultScaleType,
+  );
   const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState(
     params.adjustForOpponentStrength ?? false,
   );
   const [showChart, setShowChart] = useState(params.showChart ?? true);
-  const [chartLarge, setChartLarge] = useState(false);
-  const [chartFieldKey, setChartFieldKey] =
-    useState<keyof GameImpactRow>("diff_adj_rapm");
+  const [chartLarge, setChartLarge] = useState(
+    params.chartLarge ?? ParamDefaults.defaultChartLarge,
+  );
+  const [chartFieldKey, setChartFieldKey] = useState<keyof GameImpactRow>(
+    (params.chartFieldKey as keyof GameImpactRow) ??
+      ParamDefaults.defaultChartFieldKey,
+  );
   const [primaryFilterPending, setPrimaryFilterPending] = useState(false);
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
@@ -130,11 +139,23 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     if (params.showChart !== undefined) {
       setShowChart(params.showChart);
     }
+    if (params.chartLarge !== undefined) {
+      setChartLarge(params.chartLarge);
+    }
+    if (params.scaleType !== undefined) {
+      setScaleType(params.scaleType as "P%" | "T%" | "/G");
+    }
+    if (params.chartFieldKey !== undefined) {
+      setChartFieldKey(params.chartFieldKey as keyof GameImpactRow);
+    }
   }, [
     primaryFilterPending,
     params.presetGroup,
     params.adjustForOpponentStrength,
     params.showChart,
+    params.chartLarge,
+    params.scaleType,
+    params.chartFieldKey,
     playerOptions,
   ]);
 
@@ -190,11 +211,26 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         /\((\d{4})-(\d{2})-(\d{2})\)/,
       );
       const mmDd = dateMatch ? `${dateMatch[2]}-${dateMatch[3]}` : "";
+      const oppoTeamSuffix =
+        game && scoreStr
+          ? `${scoreDiff >= 0 ? "W " : "L "}${scoreStr}`
+          : scoreStr;
       const href = UrlRouting.getMatchupUrl({
-        ...params,
-        queryFilters: game
-          ? getMatchupQueryFiltersForGame(game.gameInfo)
-          : undefined,
+        team: params.team,
+        year: params.year,
+        gender: params.gender ?? ParamDefaults.defaultGender,
+        minRank: params.minRank ?? ParamDefaults.defaultMinRank,
+        maxRank: params.maxRank ?? ParamDefaults.defaultMaxRank,
+        ...(game
+          ? {
+              baseQuery: buildGameQueryString(game.gameInfo),
+              oppoTeam: `${buildGameLabel(game.gameInfo)}: ${oppoTeamSuffix}`,
+              adjImpactStats: adjBreakdownForSoS,
+              impactPerGame: scaleType == "/G",
+              factorMins: scaleType != "P%",
+              showImpactBreakdown: true,
+            }
+          : {}),
       } as any);
       const titleNode = (
         <>
@@ -308,7 +344,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         labelAreaHeight: 70,
       };
     const maxLabelLen = Math.max(
-      ...chartData.map((d) => gameLabelToXAxisLabel(d.gameLabel).length)
+      ...chartData.map((d) => gameLabelToXAxisLabel(d.gameLabel).length),
     );
     const labelAreaHeight = estimateXAxisLabelHeight(maxLabelLen);
     return {
@@ -335,6 +371,29 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     if (!raw.team) keysToOmit.push("team");
     if (!raw.year) keysToOmit.push("year");
     if (raw.gender === ParamDefaults.defaultGender) keysToOmit.push("gender");
+    if (raw.advancedMode === false) keysToOmit.push("advancedMode");
+    if (raw.presetMode === ParamDefaults.defaultPresetMode)
+      keysToOmit.push("presetMode");
+    if (raw.presetGroup === SEASON_MATCHUP_TEAM_KEY)
+      keysToOmit.push("presetGroup");
+    if (raw.adjustForOpponentStrength === false)
+      keysToOmit.push("adjustForOpponentStrength");
+    if (raw.showChart === true) keysToOmit.push("showChart");
+    if (
+      raw.chartLarge == null ||
+      raw.chartLarge === ParamDefaults.defaultChartLarge
+    )
+      keysToOmit.push("chartLarge");
+    if (
+      raw.scaleType == null ||
+      raw.scaleType === ParamDefaults.defaultScaleType
+    )
+      keysToOmit.push("scaleType");
+    if (
+      raw.chartFieldKey == null ||
+      raw.chartFieldKey === ParamDefaults.defaultChartFieldKey
+    )
+      keysToOmit.push("chartFieldKey");
     const next = keysToOmit.length > 0 ? _.omit(raw, keysToOmit) : raw;
     if (!_.isEqual(next, paramsRef.current)) {
       Router.replace(getRootUrl(next), undefined, { shallow: true });
@@ -421,147 +480,172 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                   </Col>
                 </Row>
                 <div className="d-flex align-items-center flex-wrap gap-2 mb-2 mt-2">
-                <ToggleButtonGroup
-                  labelOverride="Quick Select:"
-                  items={[
-                    {
-                      label: "Chart",
-                      tooltip: "Show per-game impact chart",
-                      toggled: showChart,
-                      onClick: () => {
-                        const next = !showChart;
-                        setShowChart(next);
-                        if (!submitIsPending) {
-                          onChangeState({ ...params, showChart: next });
-                        }
+                  <ToggleButtonGroup
+                    labelOverride="Quick Select:"
+                    items={[
+                      {
+                        label: "Chart",
+                        tooltip: "Show per-game impact chart",
+                        toggled: showChart,
+                        onClick: () => {
+                          const next = !showChart;
+                          setShowChart(next);
+                          if (!submitIsPending) {
+                            onChangeState({ ...params, showChart: next });
+                          }
+                        },
                       },
-                    },
-                    {
-                      label: "L",
-                      tooltip: "Make chart 3× taller",
-                      toggled: chartLarge,
-                      onClick: () => setChartLarge(!chartLarge),
-                    },
-                    {
-                      label: "| ",
-                      tooltip: "",
-                      toggled: true,
-                      onClick: () => {},
-                      isLabelOnly: true,
-                    },
-                    {
-                      label: "Adj",
-                      tooltip:
-                        "Include SoS adjustment in calcs (means total net won't sum to score differential)",
-                      toggled: adjBreakdownForSoS,
-                      onClick: () => {
-                        const next = !adjBreakdownForSoS;
-                        setAdjBreakdownForSoS(next);
-                        if (!submitIsPending) {
-                          onChangeState({
-                            ...params,
-                            adjustForOpponentStrength: next,
-                          });
-                        }
+                      {
+                        label: "L",
+                        tooltip: "Make chart 3× taller",
+                        toggled: chartLarge,
+                        onClick: () => {
+                          const next = !chartLarge;
+                          setChartLarge(next);
+                          if (!submitIsPending) {
+                            onChangeState({ ...params, chartLarge: next });
+                          }
+                        },
                       },
-                    },
-                    {
-                      label: "| ",
-                      tooltip: "",
-                      toggled: true,
-                      onClick: () => {},
-                      isLabelOnly: true,
-                    },
-                    {
-                      items: [
-                        {
-                          label: (
-                            <small>
-                              P<sup>%</sup>
-                            </small>
-                          ),
-                          tooltip: `P%: Impact per 100 possessions when on court`,
-                          toggled: scaleType === "P%",
-                          onClick: () => setScaleType("P%"),
+                      {
+                        label: "| ",
+                        tooltip: "",
+                        toggled: true,
+                        onClick: () => {},
+                        isLabelOnly: true,
+                      },
+                      {
+                        label: "Adj",
+                        tooltip:
+                          "Include SoS adjustment in calcs (means total net won't sum to score differential)",
+                        toggled: adjBreakdownForSoS,
+                        onClick: () => {
+                          const next = !adjBreakdownForSoS;
+                          setAdjBreakdownForSoS(next);
+                          if (!submitIsPending) {
+                            onChangeState({
+                              ...params,
+                              adjustForOpponentStrength: next,
+                            });
+                          }
                         },
-                        {
-                          label: (
-                            <small>
-                              T<sup>%</sup>
-                            </small>
-                          ),
-                          tooltip: `T%: Impact per 100 team possessions`,
-                          toggled: scaleType === "T%",
-                          onClick: () => setScaleType("T%"),
-                        },
-                        {
-                          label: (
-                            <small>
-                              <sup>/</sup>G
-                            </small>
-                          ),
-                          tooltip: `/G: Impact per game`,
-                          toggled: scaleType === "/G",
-                          onClick: () => setScaleType("/G"),
-                        },
-                      ],
-                    },
-                    {
-                      label: "| ",
-                      tooltip: "",
-                      toggled: true,
-                      onClick: () => {},
-                      isLabelOnly: true,
-                    },
-                  ]}
-                />
-                <span className="small text-muted pr-2">Chart Field:</span>
-                <Form.Control
-                  as="select"
-                  size="sm"
-                  style={{ width: "auto" }}
-                  value={chartFieldKey}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    setChartFieldKey(e.target.value as keyof GameImpactRow)
-                  }
-                >
-                  {CHART_FIELD_OPTIONS.map((opt) => (
-                    <option key={opt.key} value={opt.key}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </Form.Control>
-              </div>
-              {showChart && chartData.length > 0 && (
-                <div className="mb-2">
-                  <GameImpactDiagView
-                    data={chartData}
-                    fieldLabel={
-                      CHART_FIELD_OPTIONS.find((o) => o.key === chartFieldKey)
-                        ?.label ?? "Net"
-                    }
-                    height={chartHeightAndLabelSpace.chartHeight}
-                    labelAreaHeight={chartHeightAndLabelSpace.labelAreaHeight}
-                    paddingBelowChart={paddingBelowChart}
+                      },
+                      {
+                        label: "| ",
+                        tooltip: "",
+                        toggled: true,
+                        onClick: () => {},
+                        isLabelOnly: true,
+                      },
+                      {
+                        items: [
+                          {
+                            label: (
+                              <small>
+                                P<sup>%</sup>
+                              </small>
+                            ),
+                            tooltip: `P%: Impact per 100 possessions when on court`,
+                            toggled: scaleType === "P%",
+                            onClick: () => {
+                              setScaleType("P%");
+                              if (!submitIsPending) {
+                                onChangeState({ ...params, scaleType: "P%" });
+                              }
+                            },
+                          },
+                          {
+                            label: (
+                              <small>
+                                T<sup>%</sup>
+                              </small>
+                            ),
+                            tooltip: `T%: Impact per 100 team possessions`,
+                            toggled: scaleType === "T%",
+                            onClick: () => {
+                              setScaleType("T%");
+                              if (!submitIsPending) {
+                                onChangeState({ ...params, scaleType: "T%" });
+                              }
+                            },
+                          },
+                          {
+                            label: (
+                              <small>
+                                <sup>/</sup>G
+                              </small>
+                            ),
+                            tooltip: `/G: Impact per game`,
+                            toggled: scaleType === "/G",
+                            onClick: () => {
+                              setScaleType("/G");
+                              if (!submitIsPending) {
+                                onChangeState({ ...params, scaleType: "/G" });
+                              }
+                            },
+                          },
+                        ],
+                      },
+                      {
+                        label: "| ",
+                        tooltip: "",
+                        toggled: true,
+                        onClick: () => {},
+                        isLabelOnly: true,
+                      },
+                    ]}
                   />
+                  <span className="small text-muted pr-2">Chart Field:</span>
+                  <Form.Control
+                    as="select"
+                    size="sm"
+                    style={{ width: "auto" }}
+                    value={chartFieldKey}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      const next = e.target.value as keyof GameImpactRow;
+                      setChartFieldKey(next);
+                      if (!submitIsPending) {
+                        onChangeState({ ...params, chartFieldKey: next });
+                      }
+                    }}
+                  >
+                    {CHART_FIELD_OPTIONS.map((opt) => (
+                      <option key={opt.key} value={opt.key}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </div>
-              )}
-              {selectedPlayer && tableRows.length > 0 ? (
-                <GenericTable
-                  tableCopyId="seasonMatchup_impact"
-                  tableFields={IndivTableDefs.impactDecompTable}
-                  tableData={tableRows}
-                  cellTooltipMode="missing"
-                />
-              ) : (
-                <p className="small text-muted mb-0">
-                  {!selectedPlayer
-                    ? "Select a player above to see per-game impact."
-                    : perGameRapmCaches.length !== dataEvent.games.length
-                      ? "Computing RAPM…"
-                      : "Loading…"}
-                </p>
-              )}
+                {showChart && chartData.length > 0 && (
+                  <div className="mb-2">
+                    <GameImpactDiagView
+                      data={chartData}
+                      fieldLabel={
+                        CHART_FIELD_OPTIONS.find((o) => o.key === chartFieldKey)
+                          ?.label ?? "Net"
+                      }
+                      height={chartHeightAndLabelSpace.chartHeight}
+                      labelAreaHeight={chartHeightAndLabelSpace.labelAreaHeight}
+                      paddingBelowChart={paddingBelowChart}
+                    />
+                  </div>
+                )}
+                {selectedPlayer && tableRows.length > 0 ? (
+                  <GenericTable
+                    tableCopyId="seasonMatchup_impact"
+                    tableFields={IndivTableDefs.impactDecompTable}
+                    tableData={tableRows}
+                    cellTooltipMode="missing"
+                  />
+                ) : (
+                  <p className="small text-muted mb-0">
+                    {!selectedPlayer
+                      ? "Select a player above to see per-game impact."
+                      : perGameRapmCaches.length !== dataEvent.games.length
+                        ? "Computing RAPM…"
+                        : "Loading…"}
+                  </p>
+                )}
               </div>
             </GenericCollapsibleCard>
           </Col>
