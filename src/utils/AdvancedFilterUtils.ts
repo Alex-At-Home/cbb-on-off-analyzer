@@ -791,6 +791,7 @@ export class AdvancedFilterUtils {
   static readonly advancedSingleYearFields = [
     "def_onball_delta",
     "off_style_halfcourt_pct",
+    "off_style_total_halfcourt_pct",
     "off_style_halfcourt_usg",
     "off_style_halfcourt_ppp",
     "off_style_onball_pct",
@@ -815,10 +816,17 @@ export class AdvancedFilterUtils {
     // Off-Ball
     //off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct
 
+    // (note because we double counts assists, these numbers don't add up to 1)
+    // For half court %, I construct it so that it does, otherwise it would look weird when those 3 stats are shown together
+    // For on- / off- ball % I make them add up to 100% (ie they are % of maybe-double-counted half court play that are on/off)
+    // For the usages I make them raw since there isn't a "plays usage" stat that will look odd and these usages being
+    // "the % of the time a play involves this player doing this thing" seem intuitive
+    // (even though it makes _usg / _pct have a different relationship than it does for the non-derived style fields)
+
     return s
       .replace(
         /off_style_halfcourt_pct/g,
-        "(off_style_onball_pct + off_style_offball_pct)",
+        "(1 - off_style_transition_pct - off_style_reb_scramble_pct)",
       )
       .replace(
         /off_style_halfcourt_usg/g,
@@ -830,7 +838,7 @@ export class AdvancedFilterUtils {
       ) //(these 3 will then get replaced as below)
       .replace(
         /off_style_onball_pct/g,
-        "(off_style_rim_attack_pct + off_style_attack_kick_pct + off_style_dribble_jumper_pct + 0.5*off_style_mid_range_pct + off_style_hits_cutter_pct + off_style_hits_cutter_pct + off_style_pnr_passer_pct + off_style_post_up_pct + off_style_post_kick_pct + 0.5*off_style_high_low_pct)",
+        "(off_style_rim_attack_pct + off_style_attack_kick_pct + off_style_dribble_jumper_pct + 0.5*off_style_mid_range_pct + off_style_hits_cutter_pct + off_style_hits_cutter_pct + off_style_pnr_passer_pct + off_style_post_up_pct + off_style_post_kick_pct + 0.5*off_style_high_low_pct)/(off_style_total_halfcourt_pct)",
       )
       .replace(
         /off_style_onball_usg/g,
@@ -842,7 +850,7 @@ export class AdvancedFilterUtils {
       )
       .replace(
         /off_style_offball_pct/g,
-        "(off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct)",
+        "(off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct)/(off_style_total_halfcourt_pct)",
       )
       .replace(
         /off_style_offball_usg/g,
@@ -851,6 +859,11 @@ export class AdvancedFilterUtils {
       .replace(
         /off_style_offball_ppp/g,
         "(off_style_perimeter_sniper_pct*off_style_perimeter_sniper_ppp + 0.5*off_style_mid_range_pct*off_style_mid_range_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp + off_style_pick_pop_pct*off_style_pick_pop_ppp + 0.5*off_style_high_low_pct*off_style_high_low_ppp)/(off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct)",
+      )
+      .replace(
+        //(mainly used as a replacement val above)
+        /off_style_total_halfcourt_pct/g,
+        "(off_style_rim_attack_pct + off_style_attack_kick_pct + off_style_dribble_jumper_pct + 0.5*off_style_mid_range_pct + off_style_hits_cutter_pct + off_style_hits_cutter_pct + off_style_pnr_passer_pct + off_style_post_up_pct + off_style_post_kick_pct + 0.5*off_style_high_low_pct)/(off_style_onball_pct + off_style_offball_pct + off_style_perimeter_sniper_pct + 0.5*off_style_mid_range_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_pick_pop_pct + 0.5*off_style_high_low_pct)/(off_style_onball_pct + off_style_offball_pct)",
       );
   }
 
