@@ -927,6 +927,10 @@ export class AdvancedFilterUtils {
   static multiYearfixObjectFormat(s: string) {
     return s
       .replace(
+        /(prev|next)_def_onball_delta/g,
+        "($.$1?.p.def_adj_rtg?.value - ($.$1?.p.def_adj_rtg?.old_value ?? $.$1?.p.def_adj_rtg?.value))",
+      )
+      .replace(
         /(prev|next|pred_[a-z]+)_((?:off|def)_[0-9a-zA-Z_]+)/g,
         "$.$1?.p.$2?.value",
       )
