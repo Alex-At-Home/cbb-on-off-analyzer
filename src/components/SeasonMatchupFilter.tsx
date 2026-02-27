@@ -26,8 +26,6 @@ import {
 } from "../utils/FilterModels";
 import { FilterPresetUtils } from "../utils/FilterPresetUtils";
 import { GameInfoStatSet } from "../utils/StatModels";
-import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
-import { RequestUtils } from "../utils/RequestUtils";
 import {
   buildGameRequestParams,
   buildGameLabel,
@@ -55,6 +53,8 @@ type Props = {
   onChangeState: (newParams: SeasonMatchupFilterParams) => void;
   /** Team + player options for preset "who" dropdown (from parent after games load). */
   playerOptions?: { title: string }[];
+  /** Called when user changes team/year/gender but has not submitted (true) or when filter is in sync with page (false). Page can use this to avoid syncing selectedPlayer from params until submit. */
+  onPrimaryFilterPendingChange?: (pending: boolean) => void;
 };
 
 function bucketKeyForGameIndex(i: number): string {
@@ -64,12 +64,16 @@ function bucketKeyForGameIndex(i: number): string {
 }
 
 /** Convert CommonFilter gameSelection.games to GameInfoStatSet[] for buildGameRequestParams */
-function gameSelectionToGameInfo(games: FilteredGameSelection["games"]): GameInfoStatSet[] {
+function gameSelectionToGameInfo(
+  games: FilteredGameSelection["games"],
+): GameInfoStatSet[] {
   if (!games?.length) return [];
   return games.map((g) => {
-    const loc =
-      g.location === "Away" ? "A" : g.location === "Home" ? "H" : "N";
-    return { date: g.date, opponent: `${loc}:${g.opponent}` } as GameInfoStatSet;
+    const loc = g.location === "Away" ? "A" : g.location === "Home" ? "H" : "N";
+    return {
+      date: g.date,
+      opponent: `${loc}:${g.opponent}`,
+    } as GameInfoStatSet;
   });
 }
 
@@ -78,15 +82,17 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   startingState,
   onChangeState,
   playerOptions = [],
+  onPrimaryFilterPendingChange,
 }) => {
-  const [params, setParams] = useState<SeasonMatchupFilterParams>(startingState);
+  const [params, setParams] =
+    useState<SeasonMatchupFilterParams>(startingState);
   const [games, setGames] = useState<GameInfoStatSet[]>([]);
   const advancedView = params.advancedMode ?? false;
   const [presetMode, setPresetMode] = useState(
-    params.presetMode ?? ParamDefaults.defaultPresetMode
+    params.presetMode ?? ParamDefaults.defaultPresetMode,
   );
   const [presetGroup, setPresetGroup] = useState(
-    params.presetGroup ?? SEASON_MATCHUP_TEAM_KEY
+    params.presetGroup ?? SEASON_MATCHUP_TEAM_KEY,
   );
   const [visualizeState, setVisualizeState] = useState({
     adjustForOpponentStrength: params.adjustForOpponentStrength ?? false,
@@ -96,6 +102,15 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   const gameSelectionRef = useRef<FilteredGameSelection | undefined>();
   const rosterRef = useRef<string[] | undefined>();
   const lastRequestGamesRef = useRef<GameInfoStatSet[]>([]);
+
+  const pTeam = params.team ?? ParamDefaults.defaultTeam;
+  const pYear = params.year ?? ParamDefaults.defaultYear;
+  const pGender = params.gender ?? ParamDefaults.defaultGender;
+  const sTeam = startingState.team ?? ParamDefaults.defaultTeam;
+  const sYear = startingState.year ?? ParamDefaults.defaultYear;
+  const sGender = startingState.gender ?? ParamDefaults.defaultGender;
+  const primaryPending =
+    pTeam !== sTeam || pYear !== sYear || pGender !== sGender;
 
   useEffect(() => {
     if (params.presetMode !== undefined) setPresetMode(params.presetMode);
@@ -114,11 +129,29 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     params.showChart,
   ]);
 
-  // Sync from page when results section pushes presetGroup / visualization (e.g. quick switch)
+  // Sync from page when results section pushes presetGroup / visualization (e.g. quick switch).
+  // When primary is pending we still sync presetGroup only if it's valid for current options
+  // (e.g. user clicked quick switch and we pushed to page) so we don't overwrite "Team" with stale roster value.
   useEffect(() => {
-    if (startingState.presetGroup !== undefined) {
+    if (primaryPending) {
+      onPrimaryFilterPendingChange?.(true);
+    } else {
+      onPrimaryFilterPendingChange?.(false);
+    }
+    const rosterTitles =
+      rosterRef.current?.map((n) => n.replace(/^"|"$/g, "")) ?? [];
+    const presetGroupValidWhenPending =
+      startingState.presetGroup === SEASON_MATCHUP_TEAM_KEY ||
+      rosterTitles.includes(startingState.presetGroup ?? "");
+    if (
+      startingState.presetGroup !== undefined &&
+      (!primaryPending || presetGroupValidWhenPending)
+    ) {
       setPresetGroup(startingState.presetGroup);
-      setParams((prev) => ({ ...prev, presetGroup: startingState.presetGroup }));
+      setParams((prev) => ({
+        ...prev,
+        presetGroup: startingState.presetGroup,
+      }));
     }
     if (startingState.showChart !== undefined) {
       setVisualizeState((v) => ({ ...v, showChart: startingState.showChart! }));
@@ -135,25 +168,17 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       }));
     }
   }, [
+    primaryPending,
     startingState.presetGroup,
     startingState.showChart,
     startingState.adjustForOpponentStrength,
+    onPrimaryFilterPendingChange,
   ]);
 
-  const isDebug = process.env.NODE_ENV !== "production";
-
-  useEffect(() => {
-    if (params.team && params.year && params.gender) {
-      RequestUtils.fetchOpponents(
-        params,
-        (results) => setGames(results || []),
-        dataLastUpdated,
-        isDebug
-      );
-    } else {
-      setGames([]);
-    }
-  }, [params.team, params.year, params.gender]);
+  // Rely on CommonFilter's fetchOpponents (gameSelectionRef); do not duplicate fetch here.
+  // When team/year/gender change we setGames([]) in onChangeCommonState; buildParamsFromState
+  // uses gameSelectionRef when games is empty, so we avoid a second slow fetch and setGames()
+  // that could trigger downstream work (e.g. RAPM) before submit.
 
   const commonParams: CommonFilterParams = {
     team: params.team,
@@ -163,39 +188,43 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     maxRank: ParamDefaults.defaultMaxRank,
     ...(advancedView
       ? {}
-      : FilterPresetUtils.commonFilterPresets[presetMode]?.commonParams ?? {}),
+      : (FilterPresetUtils.commonFilterPresets[presetMode]?.commonParams ??
+        {})),
   };
 
   function applyPresetFilter(
     newPresetMode: string,
-    newPresetGroup: string
+    newPresetGroup: string,
   ): void {
     if (newPresetMode === FilterPresetUtils.switchToAdvancedFilter) {
-      onChangeState({ ...params, advancedMode: true });
       setParams((prev) => ({ ...prev, advancedMode: true }));
+      if (!primaryPending)
+        onChangeState({ ...params, advancedMode: true });
       return;
     }
     setPresetMode(newPresetMode);
     setPresetGroup(newPresetGroup);
     const presetCommon =
       FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ?? {};
-    onChangeState({
-      ...params,
-      presetMode: newPresetMode,
-      presetGroup: newPresetGroup,
-      ...presetCommon,
-    });
     setParams((prev) => ({
       ...prev,
       presetMode: newPresetMode,
       presetGroup: newPresetGroup,
       ...presetCommon,
     }));
+    if (!primaryPending) {
+      onChangeState({
+        ...params,
+        presetMode: newPresetMode,
+        presetGroup: newPresetGroup,
+        ...presetCommon,
+      });
+    }
   }
 
   function buildParamsFromState(
     includeFilterParams: Boolean,
-    _forQuery?: Boolean
+    _forQuery?: Boolean,
   ): [GameFilterParams, FilterRequestInfo[]] {
     const baseCommon = {
       team: params.team,
@@ -218,7 +247,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
     lastRequestGamesRef.current = gamesToUse;
     const { teamPlayerParams, lineupParams } = buildGameRequestParams(
       gamesToUse,
-      mergedCommon as CommonFilterParams
+      mergedCommon as CommonFilterParams,
     );
     const primaryRequest = (
       includeFilterParams
@@ -253,7 +282,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
 
     const teamBuckets = teamJson?.aggregations?.tri_filter?.buckets || {};
     const playerBuckets = playerJson?.aggregations?.tri_filter?.buckets || {};
-    const lineupBuckets = lineupJson?.aggregations?.other_queries?.buckets || {};
+    const lineupBuckets =
+      lineupJson?.aggregations?.other_queries?.buckets || {};
 
     const gamesForResponse =
       games.length > 0 ? games : lastRequestGamesRef.current;
@@ -276,27 +306,45 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   }
 
   const presetModeOptions = Object.keys(
-    FilterPresetUtils.commonFilterPresets
+    FilterPresetUtils.commonFilterPresets,
   ).filter((k) => k !== FilterPresetUtils.switchToAdvancedFilter);
-  const presetGroupOptions = [
-    { title: SEASON_MATCHUP_TEAM_KEY },
-    ...playerOptions.filter((o) => o.title !== SEASON_MATCHUP_TEAM_KEY),
-  ];
+
+  const presetGroupOptions: { title: string }[] = primaryPending
+    ? rosterRef.current?.length
+      ? [
+          { title: SEASON_MATCHUP_TEAM_KEY },
+          ...rosterRef.current.map((name) => ({
+            title: name.replace(/^"|"$/g, ""),
+          })),
+        ]
+      : [{ title: "Loading players..." }]
+    : [
+        { title: SEASON_MATCHUP_TEAM_KEY },
+        ...playerOptions.filter((o) => o.title !== SEASON_MATCHUP_TEAM_KEY),
+      ];
+
+  const presetGroupSelectOptions =
+    primaryPending && !rosterRef.current?.length
+      ? [{ label: "Loading players...", value: SEASON_MATCHUP_TEAM_KEY }]
+      : presetGroupOptions.map((o) => ({ label: o.title, value: o.title }));
+
   const stringToOption = (s: string) => ({ label: s, value: s });
 
   return (
     <CommonFilter
       gameSelectionRef={gameSelectionRef}
       rosterRef={rosterRef}
-      startingState={{
-        ...commonParams,
-        ...params,
-        advancedMode: advancedView,
-        presetMode,
-        presetGroup,
-        adjustForOpponentStrength: visualizeState.adjustForOpponentStrength,
-        showChart: visualizeState.showChart,
-      } as GameFilterParams}
+      startingState={
+        {
+          ...commonParams,
+          ...params,
+          advancedMode: advancedView,
+          presetMode,
+          presetGroup,
+          adjustForOpponentStrength: visualizeState.adjustForOpponentStrength,
+          showChart: visualizeState.showChart,
+        } as GameFilterParams
+      }
       onChangeState={(p: GameFilterParams) => {
         const next: SeasonMatchupFilterParams = {
           ...params,
@@ -341,18 +389,18 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
           (common.team !== undefined && common.team !== params.team) ||
           (common.year !== undefined && common.year !== params.year) ||
           (common.gender !== undefined && common.gender !== params.gender);
+        if (primaryChanged) {
+          setGames([]);
+          setPresetGroup(SEASON_MATCHUP_TEAM_KEY);
+          onPrimaryFilterPendingChange?.(true);
+        }
         setParams((prev) => {
           const next = { ...prev, ...common };
           if (primaryChanged) next.presetGroup = SEASON_MATCHUP_TEAM_KEY;
           return next;
         });
-        if (primaryChanged) {
-          setPresetGroup(SEASON_MATCHUP_TEAM_KEY);
-          onChangeState({
-            ...params,
-            ...common,
-            presetGroup: SEASON_MATCHUP_TEAM_KEY,
-          });
+        if (!primaryChanged && !primaryPending) {
+          onChangeState({ ...params, ...common });
         }
       }}
       tablePrefix={ParamPrefixes.game as ParamPrefixesType}
@@ -369,10 +417,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
             onSelect={() => {
               const next = !advancedView;
               setParams((prev) => ({ ...prev, advancedMode: next }));
-              onChangeState({
-                ...params,
-                advancedMode: next,
-              });
+              if (!primaryPending)
+                onChangeState({ ...params, advancedMode: next });
             }}
           />
         </GenericTogglingMenu>
@@ -389,7 +435,9 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
                 <Col xs={12} lg={6} xl={3}>
                   <ThemedSelect
                     isClearable={false}
-                    styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+                    styles={{
+                      menu: (base: any) => ({ ...base, zIndex: 1000 }),
+                    }}
                     value={stringToOption(presetMode)}
                     options={[
                       ...presetModeOptions.map(stringToOption),
@@ -402,7 +450,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
                       const v = option?.value ?? presetMode;
                       if (v === FilterPresetUtils.switchToAdvancedFilter) {
                         setParams((prev) => ({ ...prev, advancedMode: true }));
-                        onChangeState({ ...params, advancedMode: true });
+                        if (!primaryPending)
+                          onChangeState({ ...params, advancedMode: true });
                       } else applyPresetFilter(v, presetGroup);
                     }}
                   />
@@ -410,22 +459,29 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
                 <Col xs={12} lg={6} xl={3}>
                   <ThemedSelect
                     isClearable={false}
-                    styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-                    value={{ label: presetGroup, value: presetGroup }}
-                    options={presetGroupOptions.map((o) => ({
-                      label: o.title,
-                      value: o.title,
-                    }))}
+                    styles={{
+                      menu: (base: any) => ({ ...base, zIndex: 1000 }),
+                    }}
+                    value={
+                      presetGroupSelectOptions.find(
+                        (o) => o.value === presetGroup,
+                      ) ?? stringToOption(presetGroup)
+                    }
+                    options={presetGroupSelectOptions}
                     onChange={(option: any) => {
                       const v = option?.value ?? presetGroup;
                       setPresetGroup(v);
-                      onChangeState({ ...params, presetGroup: v });
                       setParams((prev) => ({ ...prev, presetGroup: v }));
+                      if (!primaryPending)
+                        onChangeState({ ...params, presetGroup: v });
                     }}
                   />
                 </Col>
                 <Col xs={12} lg={6} xl={2}>
-                  <GenericTogglingMenu drop="down" label={<span>+ Visualize...</span>}>
+                  <GenericTogglingMenu
+                    drop="down"
+                    label={<span>+ Visualize...</span>}
+                  >
                     <GenericTogglingMenuItem
                       text="Adjust for Opponent Strength"
                       truthVal={visualizeState.adjustForOpponentStrength}
@@ -435,14 +491,15 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
                           ...v,
                           adjustForOpponentStrength: next,
                         }));
-                        onChangeState({
-                          ...params,
-                          adjustForOpponentStrength: next,
-                        });
                         setParams((prev) => ({
                           ...prev,
                           adjustForOpponentStrength: next,
                         }));
+                        if (!primaryPending)
+                          onChangeState({
+                            ...params,
+                            adjustForOpponentStrength: next,
+                          });
                       }}
                     />
                     <GenericTogglingMenuItem
@@ -451,8 +508,9 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
                       onSelect={() => {
                         const next = !visualizeState.showChart;
                         setVisualizeState((v) => ({ ...v, showChart: next }));
-                        onChangeState({ ...params, showChart: next });
                         setParams((prev) => ({ ...prev, showChart: next }));
+                        if (!primaryPending)
+                          onChangeState({ ...params, showChart: next });
                       }}
                     />
                   </GenericTogglingMenu>
@@ -471,7 +529,8 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
                       size="sm"
                       onClick={() => {
                         setParams((prev) => ({ ...prev, advancedMode: true }));
-                        onChangeState({ ...params, advancedMode: true });
+                        if (!primaryPending)
+                          onChangeState({ ...params, advancedMode: true });
                       }}
                     >
                       <FontAwesomeIcon icon={faSlidersH} />

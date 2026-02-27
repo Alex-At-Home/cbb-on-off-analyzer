@@ -80,6 +80,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [chartLarge, setChartLarge] = useState(false);
   const [chartFieldKey, setChartFieldKey] =
     useState<keyof GameImpactRow>("diff_adj_rapm");
+  const [primaryFilterPending, setPrimaryFilterPending] = useState(false);
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
   paramsRef.current = params;
@@ -117,6 +118,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (
+      !primaryFilterPending &&
       params.presetGroup &&
       playerOptions.some((o) => o.title === params.presetGroup)
     ) {
@@ -129,6 +131,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       setShowChart(params.showChart);
     }
   }, [
+    primaryFilterPending,
     params.presetGroup,
     params.adjustForOpponentStrength,
     params.showChart,
@@ -327,6 +330,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     UrlRouting.getSeasonMatchupUrl(p);
 
   const onChangeState = (raw: SeasonMatchupFilterParams) => {
+    setPrimaryFilterPending(false);
     const keysToOmit: string[] = [];
     if (!raw.team) keysToOmit.push("team");
     if (!raw.year) keysToOmit.push("year");
@@ -371,6 +375,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
             startingState={params}
             onChangeState={onChangeState}
             playerOptions={playerOptions}
+            onPrimaryFilterPendingChange={setPrimaryFilterPending}
           />
         </GenericCollapsibleCard>
       </Row>
