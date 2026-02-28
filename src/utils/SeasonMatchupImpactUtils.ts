@@ -806,7 +806,10 @@ function buildTeamAverageImpactRow(impacts: GameImpactRow[]): GameImpactRow {
     let sum = 0;
     for (let i = 0; i < n; i++) {
       const c = impacts[i][key];
-      sum += (c && typeof c === "object" && "value" in c ? (c as Statistic).value : 0) ?? 0;
+      sum +=
+        (c && typeof c === "object" && "value" in c
+          ? (c as Statistic).value
+          : 0) ?? 0;
     }
     (avgCells as any)[key] = cv(sum / n);
   }
@@ -859,7 +862,10 @@ export function buildGameImpactTableRows(
   }
   if (options.playerCode === SEASON_MATCHUP_TEAM_KEY) {
     const teamAverageRow = buildTeamAverageImpactRow(perGameImpacts);
-    return [toTableRecord(teamAverageRow), ...perGameImpacts.map(toTableRecord)];
+    return [
+      toTableRecord(teamAverageRow),
+      ...perGameImpacts.map(toTableRecord),
+    ];
   }
   if (options.perGameCaches) {
     const averageRow = buildAverageImpactRow(

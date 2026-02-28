@@ -61,6 +61,36 @@ import GameImpactDiagView, {
 import type { GameStatsCache } from "../utils/tables/GameAnalysisUtils";
 import { Statistic } from "../utils/StatModels";
 
+export type ChartBackgroundType =
+  | "Score Diff"
+  | "SoS"
+  | "SoS Offense"
+  | "SoS Defense";
+
+const CHART_BACKGROUND_OPTIONS: {
+  value: ChartBackgroundType;
+  label: string;
+}[] = [
+  { value: "Score Diff", label: "Score" },
+  { value: "SoS", label: "SoS" },
+  { value: "SoS Offense", label: "SoS Off." },
+  { value: "SoS Defense", label: "SoS Def." },
+];
+
+/** Read off_adj_opp / def_adj_opp from game's teamStats (calculateOnOffStats bucket). */
+function getSoSForGame(g: SeasonMatchupPerGame): {
+  off: number;
+  def: number;
+} {
+  const ts = (g as any).teamStats;
+  const off = ts?.off_adj_opp?.value ?? 100;
+  const def = ts?.def_adj_opp?.value ?? 100;
+  return {
+    off: typeof off === "number" ? off : 100,
+    def: typeof def === "number" ? def : 100,
+  };
+}
+
 const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const isServer = typeof window === "undefined";
   const allParams = isServer ? "" : window.location.search;
@@ -74,9 +104,10 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [selectedPlayer, setSelectedPlayer] = useState<string>(
     SEASON_MATCHUP_TEAM_KEY,
   );
-  const [quickSwitchExtra, setQuickSwitchExtra] = useState<
-    "extra" | "diff" | undefined
-  >(undefined);
+  /** Allows easy toggling between two players */
+  const [lastSelectedPlayer, setLastSelectedPlayer] = useState<string>(
+    SEASON_MATCHUP_TEAM_KEY,
+  );
   const [perGameRapmCaches, setPerGameRapmCaches] = useState<GameStatsCache[]>(
     [],
   );
@@ -96,6 +127,10 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [chartFieldKey, setChartFieldKey] = useState<keyof GameImpactRow>(
     (params.chartFieldKey as keyof GameImpactRow) ??
       ParamDefaults.defaultChartFieldKey,
+  );
+  const [chartBackground, setChartBackground] = useState<ChartBackgroundType>(
+    (params.chartBackground as ChartBackgroundType) ??
+      ParamDefaults.defaultChartBackground,
   );
   const [primaryFilterPending, setPrimaryFilterPending] = useState(false);
 
@@ -122,6 +157,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const avgEfficiency =
     efficiencyAverages[genderYear] || efficiencyAverages.fallback;
 
+  /** Player dropdown: Team first, then players in rosterStatsBaseline order (already sorted by poss). */
   const playerOptions = useMemo(() => {
     const teamOption = { title: SEASON_MATCHUP_TEAM_KEY };
     const codes = new Set<string>();
@@ -130,7 +166,25 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         if (r.key) codes.add(r.key);
       });
     });
-    return [teamOption, ...Array.from(codes).map((code) => ({ title: code }))];
+    const baseline =
+      (
+        dataEvent.games[0] as SeasonMatchupPerGame & {
+          rosterStatsBaseline?: any[];
+        }
+      )?.rosterStatsBaseline ?? [];
+    const inBaselineOrder = Array.isArray(baseline)
+      ? baseline
+          .map(
+            (b: any) =>
+              b.key ?? b.player_array?.hits?.hits?.[0]?._source?.player?.code,
+          )
+          .filter((code: string) => code && codes.has(code))
+      : [];
+    const rest = Array.from(codes)
+      .filter((c) => !inBaselineOrder.includes(c))
+      .sort();
+    const sorted = [...inBaselineOrder, ...rest];
+    return [teamOption, ...sorted.map((code) => ({ title: code }))];
   }, [dataEvent.games]);
 
   useEffect(() => {
@@ -156,6 +210,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     if (params.chartFieldKey !== undefined) {
       setChartFieldKey(params.chartFieldKey as keyof GameImpactRow);
     }
+    if (params.chartBackground !== undefined) {
+      setChartBackground(params.chartBackground as ChartBackgroundType);
+    }
   }, [
     primaryFilterPending,
     params.presetGroup,
@@ -164,6 +221,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     params.chartLarge,
     params.scaleType,
     params.chartFieldKey,
+    params.chartBackground,
     playerOptions,
   ]);
 
@@ -398,13 +456,46 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         cell && typeof cell === "object" && "value" in cell
           ? (cell as { value: number }).value
           : 0;
+      const scoreDiff = g ? getScoreDiffForGame(g) : 0;
+      let backgroundValue: number | undefined;
+      if (chartBackground !== "Score Diff" && g) {
+        const sos = getSoSForGame(g);
+        if (chartBackground === "SoS") backgroundValue = sos.off - sos.def;
+        else if (chartBackground === "SoS Offense") backgroundValue = sos.off;
+        else if (chartBackground === "SoS Defense") backgroundValue = sos.def;
+      }
       return {
         gameLabel: row.gameLabel,
         value,
-        scoreDiff: g ? getScoreDiffForGame(g) : 0,
+        scoreDiff,
+        ...(backgroundValue !== undefined && { backgroundValue }),
       };
     });
-  }, [impactRows, dataEvent.games, chartFieldKey]);
+  }, [impactRows, dataEvent.games, chartFieldKey, chartBackground]);
+
+  /** Themed red-to-green scale: delta from avgEfficiency, domain [-15,0,15] for SoS; domain [-30,0,30] for Score Diff. */
+  const chartBackgroundColorFn = useMemo((): ((val: number) => string) => {
+    const scale =
+      resolvedTheme === "dark"
+        ? CbbColors.getRedToGreenViaDarkBackground()
+        : CbbColors.getRedToGreen();
+    const scoreDiffDomain: [number, number, number] = [-30, 0, 30];
+    const sosDeltaDomain: [number, number, number] = [-15, 0, 15];
+    if (chartBackground === "Score Diff") {
+      return (val: number) =>
+        scale.domain(scoreDiffDomain)(val).toString();
+    } else if (chartBackground === "SoS Offense") {
+      return (val: number) =>
+        scale.domain(sosDeltaDomain)(avgEfficiency - val).toString();
+    } else if (chartBackground === "SoS Defense") {
+    return (val: number) =>
+      scale.domain(sosDeltaDomain)(val - avgEfficiency).toString();
+  } else { //(SoS)
+    return (val: number) =>
+      scale.domain(scoreDiffDomain)(val).toString();
+
+  }
+  }, [chartBackground, resolvedTheme, avgEfficiency]);
 
   const paddingBelowChart = 8;
   const chartHeightAndLabelSpace = useMemo(() => {
@@ -466,6 +557,11 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       raw.chartFieldKey === ParamDefaults.defaultChartFieldKey
     )
       keysToOmit.push("chartFieldKey");
+    if (
+      raw.chartBackground == null ||
+      raw.chartBackground === ParamDefaults.defaultChartBackground
+    )
+      keysToOmit.push("chartBackground");
     const next = keysToOmit.length > 0 ? _.omit(raw, keysToOmit) : raw;
     if (!_.isEqual(next, paramsRef.current)) {
       Router.replace(getRootUrl(next), undefined, { shallow: true });
@@ -522,6 +618,8 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                 <QuickSwitchBar
                   title=" "
                   titlePrefix=" "
+                  toggleText="Select:"
+                  hideSelected={true}
                   quickSwitch={selectedPlayer}
                   quickSwitchExtra={undefined}
                   quickSwitchOptions={playerOptions}
@@ -531,7 +629,8 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                     _source: QuickSwitchSource,
                     _fromTimer: boolean,
                   ) => {
-                    const next = quickSwitch ?? SEASON_MATCHUP_TEAM_KEY;
+                    const next = quickSwitch ?? lastSelectedPlayer;
+                    setLastSelectedPlayer(selectedPlayer);
                     setSelectedPlayer(next);
                     if (!submitIsPending) {
                       onChangeState({
@@ -547,7 +646,11 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                 <Row>
                   <Col className="text-center">
                     <h2 className="h3 mb-2 mt-2">
-                      [{selectedPlayer ?? SEASON_MATCHUP_TEAM_KEY}] Analysis
+                      [
+                      {SEASON_MATCHUP_TEAM_KEY == selectedPlayer
+                        ? lastSubmittedCommon.team
+                        : selectedPlayer}
+                      ] Analysis
                     </h2>
                   </Col>
                 </Row>
@@ -687,6 +790,27 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       </option>
                     ))}
                   </Form.Control>
+                  <span className="small px-2">|</span>
+                  <span className="small text-muted pr-2">Background:</span>
+                  <Form.Control
+                    as="select"
+                    size="sm"
+                    style={{ width: "auto" }}
+                    value={chartBackground}
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      const next = e.target.value as ChartBackgroundType;
+                      setChartBackground(next);
+                      if (!submitIsPending) {
+                        onChangeState({ ...params, chartBackground: next });
+                      }
+                    }}
+                  >
+                    {CHART_BACKGROUND_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </div>
                 {showChart && chartData.length > 0 && (
                   <div className="mb-2">
@@ -699,6 +823,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                       height={chartHeightAndLabelSpace.chartHeight}
                       labelAreaHeight={chartHeightAndLabelSpace.labelAreaHeight}
                       paddingBelowChart={paddingBelowChart}
+                      backgroundColorFn={chartBackgroundColorFn}
                       customTooltipContent={
                         selectedPlayer !== SEASON_MATCHUP_TEAM_KEY &&
                         perGameRapmCaches.length === chartData.length

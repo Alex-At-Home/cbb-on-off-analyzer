@@ -25,6 +25,8 @@ export type GameImpactChartPoint = {
   gameLabel: string;
   value: number;
   scoreDiff: number;
+  /** When set, used with backgroundColorFn for chart background gradient (e.g. SoS). */
+  backgroundValue?: number;
 };
 
 const DEFAULT_CHART_HEIGHT = 140;
@@ -54,6 +56,8 @@ type Props = {
   labelAreaHeight?: number;
   /** Extra px below axis before next content (e.g. table); default 8. */
   paddingBelowChart?: number;
+  /** When provided, used with point.backgroundValue (or scoreDiff) for background gradient. */
+  backgroundColorFn?: (val: number) => string;
   /** When provided, tooltip shows default content (gameLabel, value, scoreDiff) then this content below. */
   customTooltipContent?: (
     point: GameImpactChartPoint,
@@ -187,6 +191,7 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
   height = DEFAULT_CHART_HEIGHT,
   labelAreaHeight,
   paddingBelowChart = PADDING_BELOW_CHART,
+  backgroundColorFn,
   customTooltipContent,
 }) => {
   const { resolvedTheme } = useTheme();
@@ -285,9 +290,10 @@ const GameImpactDiagView: React.FunctionComponent<Props> = ({
                     y2="0"
                   >
                     {chartData.map((point, i) => {
-                      const color = CbbColors.off_diff150_redGreen(
-                        point.scoreDiff,
-                      );
+                      const raw = point.backgroundValue ?? point.scoreDiff;
+                      const color = backgroundColorFn
+                        ? backgroundColorFn(raw)
+                        : CbbColors.off_diff150_redGreen(point.scoreDiff);
                       return (
                         <stop
                           key={i}

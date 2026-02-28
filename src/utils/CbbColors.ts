@@ -57,6 +57,7 @@ export class CbbColors {
 
   static readonly malformedDataColor = "#ccCCcc";
   static readonly lightBackground = "#ffFFff";
+  static readonly darkThemedBackground = "#272b30";
 
   private static readonly redToGreen = chroma.scale([
     "red",
@@ -86,6 +87,11 @@ export class CbbColors {
   private static readonly redBlackGreen = chroma.scale([
     "red",
     "grey",
+    "green",
+  ]);
+  private static readonly redDarkBackgroundGreen = chroma.scale([
+    "red",
+    CbbColors.darkThemedBackground,
     "green",
   ]);
   private static readonly greenBlackRed = chroma.scale([
@@ -123,6 +129,7 @@ export class CbbColors {
   public static readonly getRedToGreen = () =>
     chroma.scale(["red", "#ffFFff", "green"]);
   public static readonly getRedToGreenViaGrey = () => CbbColors.redBlackGreen;
+  public static readonly getRedToGreenViaDarkBackground = () => CbbColors.redDarkBackgroundGreen;
   public static readonly getBlueToOrange = () =>
     chroma.scale(["lightblue", "#ffFFff", "orange"]);
 

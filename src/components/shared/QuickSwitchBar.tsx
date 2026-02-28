@@ -45,6 +45,8 @@ export type QuickSwitchBarProps = {
   titlePrefix?: string;
   //(replaces " | quick-toggles:" if specified)
   toggleText?: string;
+  /** Whether to show the currently selected option */
+  hideSelected?: boolean;
   /** The currently selected quick switch value (not including the delimiter/extra mode) */
   quickSwitch: string | undefined;
   /** The extra mode currently active ("extra" or "diff") */
@@ -56,7 +58,7 @@ export type QuickSwitchBarProps = {
     quickSwitch: string | undefined,
     newTitle: string | undefined,
     source: QuickSwitchSource,
-    fromTimer: boolean
+    fromTimer: boolean,
   ) => void;
   /** The current timer interval (if any) */
   quickSwitchTimer: NodeJS.Timer | undefined;
@@ -72,6 +74,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
   title,
   titlePrefix,
   toggleText,
+  hideSelected,
   quickSwitch,
   quickSwitchExtra,
   quickSwitchOptions,
@@ -169,7 +172,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
       setQuickSwitchTimer(
         setInterval(() => {
           updateQuickSwitch(newQuickSwitch, newQuickSwitch, "timer", true);
-        }, 4000)
+        }, 4000),
       );
     } else {
       setQuickSwitchTimer(undefined);
@@ -181,7 +184,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
     quickSwitchTimer
       ? [{ title: `Cancel 4s timer` }]
       : quickSwitchOptions || [],
-    (opt) => opt.title
+    (opt) => opt.title,
   ).map((t, index) => {
     const isSelected = t === quickSwitch;
 
@@ -194,7 +197,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
                 { value: 0 },
                 (val: number) => "#772953",
                 "15px",
-                theme === "dark" ? 4 : 1
+                theme === "dark" ? 4 : 1,
               )
             : {}),
           whiteSpace: "nowrap",
@@ -264,7 +267,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
                         `${t}${quickSwitchDelim}extra`,
                         t,
                         "extra",
-                        false
+                        false,
                       );
                     }
                   }}
@@ -286,7 +289,7 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
                         `${t}${quickSwitchDelim}diff`,
                         t,
                         "diff",
-                        false
+                        false,
                       );
                     }
                   }}
@@ -310,11 +313,12 @@ const QuickSwitchBar: React.FunctionComponent<QuickSwitchBarProps> = ({
     <div style={{ display: "flex", flexWrap: "wrap", alignItems: "baseline" }}>
       <span style={{ whiteSpace: "nowrap" }}>
         <b>
-          {fullTitlePrefix} {displayedTitle ? `[${displayedTitle}]` : ""}
+          {fullTitlePrefix}{" "}
+          {displayedTitle && !hideSelected ? `[${displayedTitle}]` : ""}
         </b>
       </span>
       {_.isEmpty(quickSwitchOptions) ? null : !_.isUndefined(toggleText) ? (
-        <span style={{ whiteSpace: "nowrap" }}>{toggleText}</span>
+        <span style={{ whiteSpace: "nowrap" }}>{toggleText}&nbsp;</span>
       ) : (
         <span style={{ whiteSpace: "nowrap" }}>
           &nbsp;|&nbsp;<i>quick-toggles:</i>&nbsp;

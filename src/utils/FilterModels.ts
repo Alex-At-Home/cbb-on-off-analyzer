@@ -315,6 +315,8 @@ export type SeasonMatchupFilterParams = {
   scaleType?: "P%" | "T%" | "/G";
   /** Data key for the chart Y-axis (e.g. diff_adj_rapm). */
   chartFieldKey?: string;
+  /** Background gradient in Game Impact chart: Score Diff | SoS | SoS Offense | SoS Defense. */
+  chartBackground?: "Score Diff" | "SoS" | "SoS Offense" | "SoS Defense";
 };
 
 export type TeamEditorParams = {
@@ -672,6 +674,7 @@ export class ParamDefaults {
   static readonly defaultChartLarge = false;
   static readonly defaultScaleType = "/G";
   static readonly defaultChartFieldKey = "diff_adj_rapm";
+  static readonly defaultChartBackground = "Score Diff";
   // Game
   static readonly defaultPresetSplit = "No Splits";
   static readonly defaultAutoOffQuery = true;
