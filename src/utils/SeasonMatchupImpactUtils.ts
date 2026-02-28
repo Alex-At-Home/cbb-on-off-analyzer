@@ -787,6 +787,41 @@ function weightedAvg(
   return wSum !== 0 ? sum / wSum : 0;
 }
 
+/** Pure per-game average of team total rows (sum of each column / n). No poss% (same as team rows). */
+function buildTeamAverageImpactRow(impacts: GameImpactRow[]): GameImpactRow {
+  const n = impacts.length;
+  const noPossCell: Statistic = { value: undefined };
+  if (n === 0) {
+    return {
+      gameLabel: "",
+      gameInfo: {},
+      title: "Average (0 games)",
+      team_poss_pct: noPossCell,
+    };
+  }
+  const cv = (v: number) => ({ value: v });
+  const avgCells: Partial<GameImpactRow> = {};
+  for (const key of NUMERIC_KEYS) {
+    if (key === "team_poss_pct") continue;
+    let sum = 0;
+    for (let i = 0; i < n; i++) {
+      const c = impacts[i][key];
+      sum += (c && typeof c === "object" && "value" in c ? (c as Statistic).value : 0) ?? 0;
+    }
+    (avgCells as any)[key] = cv(sum / n);
+  }
+  const title = `Average (${n} game${n !== 1 ? "s" : ""})`;
+  return {
+    gameLabel: title,
+    gameInfo: {},
+    title,
+    team_poss_pct: noPossCell,
+    off_team_poss_pct: noPossCell,
+    def_team_poss_pct: noPossCell,
+    ...avgCells,
+  } as GameImpactRow;
+}
+
 /**
  * Build table row data (record of field keys → { value } or ReactNode) for impactDecompTable.
  * If options are provided, prepends an "Average (N game(s))" row.
@@ -796,8 +831,8 @@ export function buildGameImpactTableRows(
   options?: {
     games: SeasonMatchupPerGame[];
     scaleType: "P%" | "T%" | "/G";
-    perGameCaches: GameStatsCache[];
     playerCode: string;
+    perGameCaches?: GameStatsCache[];
     seasonCache?: GameStatsCache | null;
   },
 ): Record<string, Statistic | string | undefined>[] {
@@ -819,16 +854,23 @@ export function buildGameImpactTableRows(
     def_sos_bonus: row.def_sos_bonus,
     def_gravity_bonus: row.def_gravity_bonus,
   });
-  if (!options || options.playerCode === SEASON_MATCHUP_TEAM_KEY) {
+  if (!options) {
     return perGameImpacts.map(toTableRecord);
   }
-  const averageRow = buildAverageImpactRow(
-    options.perGameCaches,
-    options.games,
-    perGameImpacts,
-    options.playerCode,
-    options.scaleType,
-    options.seasonCache,
-  );
-  return [toTableRecord(averageRow), ...perGameImpacts.map(toTableRecord)];
+  if (options.playerCode === SEASON_MATCHUP_TEAM_KEY) {
+    const teamAverageRow = buildTeamAverageImpactRow(perGameImpacts);
+    return [toTableRecord(teamAverageRow), ...perGameImpacts.map(toTableRecord)];
+  }
+  if (options.perGameCaches) {
+    const averageRow = buildAverageImpactRow(
+      options.perGameCaches,
+      options.games,
+      perGameImpacts,
+      options.playerCode,
+      options.scaleType,
+      options.seasonCache,
+    );
+    return [toTableRecord(averageRow), ...perGameImpacts.map(toTableRecord)];
+  }
+  return perGameImpacts.map(toTableRecord);
 }

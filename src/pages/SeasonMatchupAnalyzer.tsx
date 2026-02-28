@@ -206,16 +206,17 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       scaleType,
       adjBreakdownForSoS,
     );
-    const options =
-      selectedPlayer !== SEASON_MATCHUP_TEAM_KEY
+    const options = {
+      games: dataEvent.games,
+      scaleType,
+      ...(selectedPlayer !== SEASON_MATCHUP_TEAM_KEY
         ? {
-            games: dataEvent.games,
-            scaleType,
             perGameCaches: perGameRapmCaches,
             playerCode: selectedPlayer,
             seasonCache: seasonRapmCache,
           }
-        : undefined;
+        : { playerCode: selectedPlayer }),
+    };
     const rows = buildGameImpactTableRows(impacts, options);
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
