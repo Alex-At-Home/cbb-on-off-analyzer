@@ -31,14 +31,16 @@ export function buildGameLabel(gameInfo: GameInfoStatSet): string {
 }
 
 /** QueryFilters string for a single game (for MatchupAnalyzer link). */
-export function getMatchupQueryFiltersForGame(gameInfo: GameInfoStatSet): string {
+export function getMatchupQueryFiltersForGame(
+  gameInfo: GameInfoStatSet,
+): string {
   const date = (gameInfo.date as string) || "????-??-??";
   const raw = (gameInfo.opponent as string) || "";
   const location = raw.startsWith("A:")
     ? "Away"
     : raw.startsWith("H:")
-    ? "Home"
-    : "Neutral";
+      ? "Home"
+      : "Neutral";
   const opponent = opponentTeamFromGame(gameInfo);
   const sel = QueryUtils.buildGameSelectionFilter([
     { date, location, opponent, score: "" },
@@ -52,7 +54,7 @@ export function getMatchupQueryFiltersForGame(gameInfo: GameInfoStatSet): string
  */
 export function buildGameRequestParams(
   games: GameInfoStatSet[],
-  commonParams: CommonFilterParams
+  commonParams: CommonFilterParams,
 ): {
   gameQueries: string[];
   teamPlayerParams: CommonFilterParams & {
@@ -73,7 +75,7 @@ export function buildGameRequestParams(
     offQuery: gameQueries[1] ?? "",
     otherQueries:
       gameQueries.length > 2
-        ? gameQueries.slice(2).map((q) => ({ query: q } as QueryWithFilters))
+        ? gameQueries.slice(2).map((q) => ({ query: q }) as QueryWithFilters)
         : undefined,
   };
 
@@ -82,7 +84,7 @@ export function buildGameRequestParams(
     baseQuery,
     otherQueries: _.isEmpty(gameQueries)
       ? undefined
-      : gameQueries.map((q) => ({ query: q } as QueryWithFilters)),
+      : gameQueries.map((q) => ({ query: q }) as QueryWithFilters),
   };
 
   return { gameQueries, teamPlayerParams, lineupParams };

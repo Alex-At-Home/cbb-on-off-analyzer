@@ -37,6 +37,7 @@ import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import {
   buildPerGameRapmCaches,
+  buildSeasonRapmCache,
   buildGameImpactRowsFromCaches,
   buildGameImpactTableRows,
   SEASON_MATCHUP_TEAM_KEY,
@@ -58,6 +59,7 @@ import GameImpactDiagView, {
   estimateXAxisLabelHeight,
 } from "../components/diags/GameImpactDiagView";
 import type { GameStatsCache } from "../utils/tables/GameAnalysisUtils";
+import { Statistic } from "../utils/StatModels";
 
 const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const isServer = typeof window === "undefined";
@@ -77,6 +79,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   >(undefined);
   const [perGameRapmCaches, setPerGameRapmCaches] = useState<GameStatsCache[]>(
     [],
+  );
+  const [seasonRapmCache, setSeasonRapmCache] = useState<GameStatsCache | null>(
+    null,
   );
   const [scaleType, setScaleType] = useState<"P%" | "T%" | "/G">(
     (params.scaleType as "P%" | "T%" | "/G") ?? ParamDefaults.defaultScaleType,
@@ -165,9 +170,11 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   useEffect(() => {
     if (!dataEvent.games.length) {
       setPerGameRapmCaches([]);
+      setSeasonRapmCache(null);
       return;
     }
     setPerGameRapmCaches([]);
+    setSeasonRapmCache(null);
     const commonParams = getCommonFilterParams(params);
     const caches = buildPerGameRapmCaches(
       dataEvent.games,
@@ -175,6 +182,12 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       avgEfficiency,
     );
     setPerGameRapmCaches(caches);
+    const seasonCache = buildSeasonRapmCache(
+      dataEvent.games,
+      commonParams,
+      avgEfficiency,
+    );
+    setSeasonRapmCache(seasonCache);
   }, [dataEvent.games, params.team, params.year, params.gender, avgEfficiency]);
 
   const tableRows = useMemo(() => {
@@ -193,7 +206,17 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       scaleType,
       adjBreakdownForSoS,
     );
-    const rows = buildGameImpactTableRows(impacts);
+    const options =
+      selectedPlayer !== SEASON_MATCHUP_TEAM_KEY
+        ? {
+            games: dataEvent.games,
+            scaleType,
+            perGameCaches: perGameRapmCaches,
+            playerCode: selectedPlayer,
+            seasonCache: seasonRapmCache,
+          }
+        : undefined;
+    const rows = buildGameImpactTableRows(impacts, options);
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
     const tableDefs = IndivTableDefs.impactDecompTable;
@@ -201,9 +224,21 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       resolvedTheme === "dark"
         ? CbbColors.off_diff10_p100_redGreen_darkMode
         : CbbColors.off_diff10_p100_redBlackGreen;
-    return rows.map((rowData, i) => {
-      const game = dataEvent.games[i];
-      const impact = impacts[i];
+
+    const buildOneDataRow = (
+      rowData: Record<string, Statistic | string | undefined>,
+      gameIndex: number,
+    ) => {
+      if (gameIndex < 0) {
+        return GenericTableOps.buildDataRow(
+          rowData,
+          identityPrefix,
+          noCellMeta,
+          undefined,
+        );
+      }
+      const game = dataEvent.games[gameIndex];
+      const impact = impacts[gameIndex];
       const scoreDiff = game ? getScoreDiffForGame(game) : 0;
       const scoreStr = game ? getScoreStrForGame(game) : "";
       const color = themedColorBuilder(scoreDiff) ?? "#888";
@@ -236,15 +271,19 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
           : {}),
       } as any);
       const gameTooltipData =
-        selectedPlayer !== SEASON_MATCHUP_TEAM_KEY && perGameRapmCaches[i]
-          ? getPlayerTooltipDataForGame(perGameRapmCaches[i], selectedPlayer)
+        selectedPlayer !== SEASON_MATCHUP_TEAM_KEY &&
+        perGameRapmCaches[gameIndex]
+          ? getPlayerTooltipDataForGame(
+              perGameRapmCaches[gameIndex],
+              selectedPlayer,
+            )
           : null;
       const titleNode = (
         <>
           <span style={{ color }}>{scoreStr}</span>{" "}
           <OverlayTrigger
             overlay={
-              <Tooltip id={`game-detail-${i}`}>
+              <Tooltip id={`game-detail-${gameIndex}`}>
                 {gameTooltipData ? (
                   <>
                     {GameAnalysisUtils.buildPlayerTooltipContents(
@@ -301,11 +340,22 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
             }
           : undefined,
       );
-    });
+    };
+
+    if (options) {
+      const averageRow = buildOneDataRow(rows[0], -1);
+      const separator = GenericTableOps.buildRowSeparator("1px");
+      const gameRows = rows
+        .slice(1)
+        .map((rowData, i) => buildOneDataRow(rowData, i));
+      return [averageRow, separator, ...gameRows];
+    }
+    return rows.map((rowData, i) => buildOneDataRow(rowData, i));
   }, [
     selectedPlayer,
     dataEvent.games,
     perGameRapmCaches,
+    seasonRapmCache,
     avgEfficiency,
     scaleType,
     adjBreakdownForSoS,
