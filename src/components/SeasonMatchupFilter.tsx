@@ -333,16 +333,19 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
           if (entry) p.roster = entry;
         }
       }
-      perGame.push({
-        gameLabel: buildGameLabel(gamesForResponse[i]),
-        gameInfo: gamesForResponse[i],
-        teamStats: teamBuckets[tk] || {},
-        rosterStats,
-        lineupStats: { lineups: lineupBucketsList },
-        rosterInfo: rosterInfo ?? undefined,
-        teamStatsBaseline,
-        rosterStatsBaseline,
-      });
+      if (teamBuckets[tk] && teamBuckets[tk].doc_count > 0) {
+        //(ignore games without stats)
+        perGame.push({
+          gameLabel: buildGameLabel(gamesForResponse[i]),
+          gameInfo: gamesForResponse[i],
+          teamStats: teamBuckets[tk] || {},
+          rosterStats,
+          lineupStats: { lineups: lineupBucketsList },
+          rosterInfo: rosterInfo ?? undefined,
+          teamStatsBaseline,
+          rosterStatsBaseline,
+        });
+      }
     }
     onStats({ games: perGame });
   }
