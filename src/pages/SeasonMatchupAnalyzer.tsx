@@ -157,13 +157,13 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const avgEfficiency =
     efficiencyAverages[genderYear] || efficiencyAverages.fallback;
 
-  /** Player dropdown: Team first, then players in rosterStatsBaseline order (already sorted by poss). */
+  /** Player dropdown: Team first, then players in rosterStatsBaseline order (already sorted by poss). .key is id. */
   const playerOptions = useMemo(() => {
     const teamOption = { title: SEASON_MATCHUP_TEAM_KEY };
-    const codes = new Set<string>();
+    const ids = new Set<string>();
     dataEvent.games.forEach((g) => {
       (g.rosterStats || []).forEach((r: { key?: string }) => {
-        if (r.key) codes.add(r.key);
+        if (r.key) ids.add(r.key);
       });
     });
     const baseline =
@@ -178,13 +178,13 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
             (b: any) =>
               b.key ?? b.player_array?.hits?.hits?.[0]?._source?.player?.code,
           )
-          .filter((code: string) => code && codes.has(code))
+          .filter((id: string) => id && ids.has(id))
       : [];
-    const rest = Array.from(codes)
-      .filter((c) => !inBaselineOrder.includes(c))
+    const rest = Array.from(ids)
+      .filter((id) => !inBaselineOrder.includes(id))
       .sort();
     const sorted = [...inBaselineOrder, ...rest];
-    return [teamOption, ...sorted.map((code) => ({ title: code }))];
+    return [teamOption, ...sorted.map((id) => ({ title: id }))];
   }, [dataEvent.games]);
 
   useEffect(() => {
@@ -482,19 +482,21 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     const scoreDiffDomain: [number, number, number] = [-30, 0, 30];
     const sosDeltaDomain: [number, number, number] = [-15, 0, 15];
     if (chartBackground === "Score Diff") {
-      return (val: number) =>
-        scale.domain(scoreDiffDomain)(val).toString();
+      return (val: number) => scale.domain(scoreDiffDomain)(val).toString();
     } else if (chartBackground === "SoS Offense") {
       return (val: number) =>
-        scale.domain(sosDeltaDomain)(avgEfficiency - val).toString();
+        scale
+          .domain(sosDeltaDomain)(avgEfficiency - val)
+          .toString();
     } else if (chartBackground === "SoS Defense") {
-    return (val: number) =>
-      scale.domain(sosDeltaDomain)(val - avgEfficiency).toString();
-  } else { //(SoS)
-    return (val: number) =>
-      scale.domain(scoreDiffDomain)(val).toString();
-
-  }
+      return (val: number) =>
+        scale
+          .domain(sosDeltaDomain)(val - avgEfficiency)
+          .toString();
+    } else {
+      //(SoS)
+      return (val: number) => scale.domain(scoreDiffDomain)(val).toString();
+    }
   }, [chartBackground, resolvedTheme, avgEfficiency]);
 
   const paddingBelowChart = 8;
@@ -603,6 +605,22 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
             onChangeState={onChangeState}
             playerOptions={playerOptions}
             onPrimaryFilterPendingChange={setPrimaryFilterPending}
+            selectedPlayerNcaaId={
+              selectedPlayer &&
+              selectedPlayer !== SEASON_MATCHUP_TEAM_KEY &&
+              dataEvent.games[0]?.rosterInfo
+                ? (() => {
+                    const roster = dataEvent.games[0].rosterInfo as Record<
+                      string,
+                      { player_code_id?: { id?: string; ncaa_id?: string } }
+                    >;
+                    const entry = Object.values(roster).find(
+                      (r) => r?.player_code_id?.id === selectedPlayer,
+                    );
+                    return entry?.player_code_id?.ncaa_id;
+                  })()
+                : undefined
+            }
           />
         </GenericCollapsibleCard>
       </Row>

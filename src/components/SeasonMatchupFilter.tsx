@@ -30,6 +30,7 @@ import {
   buildGameRequestParams,
   buildGameLabel,
 } from "../utils/SeasonMatchupUtils";
+import { UrlRouting } from "../utils/UrlRouting";
 import ThemedSelect from "./shared/ThemedSelect";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
@@ -61,6 +62,8 @@ type Props = {
   playerOptions?: { title: string }[];
   /** Called when user changes team/year/gender but has not submitted (true) or when filter is in sync with page (false). Page can use this to avoid syncing selectedPlayer from params until submit. */
   onPrimaryFilterPendingChange?: (pending: boolean) => void;
+  /** When a player is selected, their NCAA ID for the "Player career" link (from roster). */
+  selectedPlayerNcaaId?: string;
 };
 
 function bucketKeyForGameIndex(i: number): string {
@@ -89,6 +92,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   onChangeState,
   playerOptions = [],
   onPrimaryFilterPendingChange,
+  selectedPlayerNcaaId,
 }) => {
   const [params, setParams] =
     useState<SeasonMatchupFilterParams>(startingState);
@@ -204,8 +208,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
   ): void {
     if (newPresetMode === FilterPresetUtils.switchToAdvancedFilter) {
       setParams((prev) => ({ ...prev, advancedMode: true }));
-      if (!primaryPending)
-        onChangeState({ ...params, advancedMode: true });
+      if (!primaryPending) onChangeState({ ...params, advancedMode: true });
       return;
     }
     setPresetMode(newPresetMode);
@@ -309,7 +312,10 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       const lineupBucketsList = lineupBucket.lineups?.buckets || [];
       const rosterStats = playerBuckets[tk]?.player?.buckets || [];
       if (rosterInfo && Array.isArray(rosterStats)) {
-        const rosterByCode = rosterInfo as Record<string, { player_code_id?: { id: string }; number?: string; height?: string }>;
+        const rosterByCode = rosterInfo as Record<
+          string,
+          { player_code_id?: { id: string }; number?: string; height?: string }
+        >;
         const rosterById = _.isEmpty(rosterByCode)
           ? {}
           : _.keyBy(
@@ -323,9 +329,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
         for (const p of rosterStats) {
           const code =
             p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key;
-          const entry =
-            rosterByCode[code] ||
-            (p.key && rosterById[p.key]?.[1]);
+          const entry = rosterByCode[code] || (p.key && rosterById[p.key]?.[1]);
           if (entry) p.roster = entry;
         }
       }
@@ -445,7 +449,55 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       tablePrefixForPrimaryRequest={ParamPrefixes.game as ParamPrefixesType}
       buildParamsFromState={buildParamsFromState}
       childHandleResponse={handleResponse}
-      buildLinks={() => []}
+      defaultUrl={UrlRouting.getSeasonMatchupUrl({
+        gender: params.gender ?? ParamDefaults.defaultGender,
+        year: params.year ?? ParamDefaults.defaultYear,
+        team: params.team ?? ParamDefaults.defaultTeam,
+      })}
+      buildLinks={(linkParams) => {
+        const team = linkParams.team ?? ParamDefaults.defaultTeam;
+        const year = linkParams.year ?? ParamDefaults.defaultYear;
+        const gender = linkParams.gender ?? ParamDefaults.defaultGender;
+        const teamPageUrl = UrlRouting.getGameUrl(
+          {
+            team,
+            year,
+            gender,
+            presetMode,
+            showPlayerPlayTypes: true,
+            showExpanded: true,
+            calcRapm: true,
+          } as GameFilterParams,
+          {},
+        );
+        const links: React.ReactNode[] = [
+          <a
+            key="team"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={teamPageUrl}
+          >
+            Team / Roster Stats
+          </a>,
+        ];
+        if (selectedPlayerNcaaId) {
+          links.push(
+            <a
+              key="player"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={UrlRouting.getPlayerCareer({
+                year,
+                gender,
+                ncaaId: selectedPlayerNcaaId,
+              })}
+            >
+              Player Stats
+            </a>,
+          );
+        }
+        return links;
+      }}
       hideSemiAdvancedOptions={!advancedView}
       extraButton={
         <GenericTogglingMenu size="sm">

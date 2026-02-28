@@ -82,7 +82,7 @@ interface Props<PARAMS> {
   /** If all FilterRequestInfo[] have tags then first FilterRequestInfo[] must equal PARAMS and all must have tags */
   buildParamsFromState: (
     includeFilterParams: Boolean,
-    forQuery?: Boolean
+    forQuery?: Boolean,
   ) => [PARAMS, FilterRequestInfo[]];
   /** if the FilterRequestInfo's all contains tags then its input is a Record<string, (json)>, else it's an array */
   childHandleResponse:
@@ -101,6 +101,8 @@ interface Props<PARAMS> {
   hideSemiAdvancedOptions?: boolean; //(only show team selector)
   propKey?: number;
   extraButton?: React.ReactElement;
+  /** When set, clear (trash) button navigates to this URL instead of getUrl(). */
+  defaultUrl?: string;
 }
 
 /** Used to pass the submitListener to child components */
@@ -137,6 +139,7 @@ const CommonFilter: CommonFilterI = ({
   hideSemiAdvancedOptions,
   propKey,
   extraButton,
+  defaultUrl,
 }) => {
   //console.log("Loading CommonFilter " + JSON.stringify(startingState));
 
@@ -155,19 +158,19 @@ const CommonFilter: CommonFilterI = ({
   const [team, setTeam] = useState(
     startingState.team ||
       ClientRequestCache.getSavedTeam() ||
-      ParamDefaults.defaultTeam
+      ParamDefaults.defaultTeam,
   );
   const [year, setYear] = useState(
     DateUtils.cleanYear(
       startingState.year,
       ClientRequestCache.getSavedYear() || ParamDefaults.defaultYear,
-      [DateUtils.ExtraYears]
-    )
+      [DateUtils.ExtraYears],
+    ),
   );
   const [gender, setGender] = useState(
     startingState.gender ||
       ClientRequestCache.getSavedGender() ||
-      ParamDefaults.defaultGender
+      ParamDefaults.defaultGender,
   );
   /** Pre-calculate this */
   const teamList = AvailableTeams.getTeams(null, year, gender);
@@ -175,17 +178,17 @@ const CommonFilter: CommonFilterI = ({
   // Generic filters:
 
   const [minRankFilter, setMinRankFilter] = useState(
-    startingState.minRank || ParamDefaults.defaultMinRank
+    startingState.minRank || ParamDefaults.defaultMinRank,
   );
   const [maxRankFilter, setMaxRankFilter] = useState(
-    startingState.maxRank || ParamDefaults.defaultMaxRank
+    startingState.maxRank || ParamDefaults.defaultMaxRank,
   );
   const [baseQuery, setBaseQuery] = useState(startingState.baseQuery || "");
 
   const [garbageTimeFiltered, setGarbageTimeFiltered] = useState(
     _.isNil(startingState.filterGarbage)
       ? ParamDefaults.defaultFilterGarbage
-      : startingState.filterGarbage
+      : startingState.filterGarbage,
   );
 
   const [queryFilters, setQueryFilters] = useState(
@@ -193,8 +196,8 @@ const CommonFilter: CommonFilterI = ({
       _.isNil(startingState.queryFilters)
         ? ParamDefaults.defaultQueryFilters
         : startingState.queryFilters,
-      year
-    )
+      year,
+    ),
   );
 
   const [showDateRangeModal, setShowDateRangeModal] = useState(false);
@@ -236,7 +239,7 @@ const CommonFilter: CommonFilterI = ({
         { team, year, gender },
         handleRosterResponse,
         dataLastUpdated,
-        rosterFetchDebug
+        rosterFetchDebug,
       );
 
       // Fetch the team's set of games
@@ -251,7 +254,7 @@ const CommonFilter: CommonFilterI = ({
               gameSelection.filter.gender != gender)
           ) {
             setQueryFilters(
-              QueryUtils.setCustomGameSelection(queryFilters, undefined)
+              QueryUtils.setCustomGameSelection(queryFilters, undefined),
             );
           }
           setGameSelection({
@@ -279,7 +282,7 @@ const CommonFilter: CommonFilterI = ({
           });
         },
         dataLastUpdated,
-        isDebug
+        isDebug,
       );
     }
   }, [team, year, gender]);
@@ -385,7 +388,7 @@ const CommonFilter: CommonFilterI = ({
   const registerSessionActivity = (sessionActive: boolean) => {
     if (!sessionActive) {
       console.log(
-        "Set browser session active, will auto-retrieve non-cached requests"
+        "Set browser session active, will auto-retrieve non-cached requests",
       );
     }
     (ls as any).set(sessionActiveKey, "" + new Date().getTime());
@@ -412,7 +415,7 @@ const CommonFilter: CommonFilterI = ({
               .then((json: any) => [json, response.ok, response]);
           })
         : Promise.reject(
-            new Error("Needed request, currently forcing user to press submit")
+            new Error("Needed request, currently forcing user to press submit"),
           );
     };
     const [primaryRequest, filterRequests] = buildParamsFromState(false, true);
@@ -426,8 +429,8 @@ const CommonFilter: CommonFilterI = ({
         _.drop(filterRequests, newFormat ? 1 : 0),
         fetchUrl,
         currentJsonEpoch,
-        isDebug
-      )
+        isDebug,
+      ),
     );
     allPromises.then(
       (jsons: any[]) => {
@@ -436,13 +439,16 @@ const CommonFilter: CommonFilterI = ({
           if (!_.every(filterRequests, (req) => req.tag)) {
             throw new Error(
               `In new format, all requests must have a tag [${filterRequests.map(
-                (r, index) => r.tag || `MISSING=${index}`
-              )}])`
+                (r, index) => r.tag || `MISSING=${index}`,
+              )}])`,
             );
           }
           handleResponse(
             jsons,
-            _.map(filterRequests, (req, index) => req.tag || `MISSING=${index}`)
+            _.map(
+              filterRequests,
+              (req, index) => req.tag || `MISSING=${index}`,
+            ),
           );
         } else {
           handleResponse(jsons);
@@ -452,7 +458,7 @@ const CommonFilter: CommonFilterI = ({
         if (isDebug) {
           console.log(`(no cached entry found)`);
         }
-      }
+      },
     );
   };
 
@@ -461,7 +467,7 @@ const CommonFilter: CommonFilterI = ({
     initClipboard();
     setSubmitDisabled(shouldSubmitBeDisabled());
     setReportIsDisabled(
-      _.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year)
+      _.isEmpty(team) || _.isEmpty(gender) || _.isEmpty(year),
     );
 
     const submitListener = submitListenerFactory(false);
@@ -485,7 +491,7 @@ const CommonFilter: CommonFilterI = ({
       ) {
         if (isDebug)
           console.log(
-            `Auto-reloading query on page reload ([${gameSelection.games.length} games][${rosterNames.length} roster entries])`
+            `Auto-reloading query on page reload ([${gameSelection.games.length} games][${rosterNames.length} roster entries])`,
           );
         setPageJustLoaded(false); //(ensures this code only gets called once)
         // Load the data if it's cached
@@ -493,7 +499,7 @@ const CommonFilter: CommonFilterI = ({
       } else {
         if (isDebug)
           console.log(
-            "Disabling auto-reload query on page reload (because game selection not loaded)"
+            "Disabling auto-reload query on page reload (because game selection not loaded)",
           );
       }
     } else if (forceReload) {
@@ -548,7 +554,7 @@ const CommonFilter: CommonFilterI = ({
         })
         .every(
           (key: string) =>
-            (newParamsObj as any)[key] == (currStateObj as any)[key]
+            (newParamsObj as any)[key] == (currStateObj as any)[key],
         );
       const garbageSpecialCase =
         (newParamsObj?.filterGarbage || ParamDefaults.defaultFilterGarbage) ==
@@ -577,7 +583,7 @@ const CommonFilter: CommonFilterI = ({
           currState.otherQueries?.[otherQueryIndex] || {
             query: "",
             queryFilters: ParamDefaults.defaultQueryFilters,
-          }
+          },
         );
       });
 
@@ -593,7 +599,7 @@ const CommonFilter: CommonFilterI = ({
     setQueryIsLoading(false);
     const newParams = buildParamsFromState(true)[0];
     const wasError = _.some(jsons, (json) =>
-      RequestUtils.isResponseError(json)
+      RequestUtils.isResponseError(json),
     );
     if (!wasError) {
       setAtLeastOneQueryMade(true);
@@ -604,7 +610,7 @@ const CommonFilter: CommonFilterI = ({
       //(new format)
       const newFormatResponse = childHandleResponse as (
         json: Record<string, any>,
-        wasError: Boolean
+        wasError: Boolean,
       ) => void;
       const jsonMap = _.zipObject(tags, jsons);
       newFormatResponse(jsonMap, wasError);
@@ -612,7 +618,7 @@ const CommonFilter: CommonFilterI = ({
       //(legacy format)
       const oldFormatResponse = childHandleResponse as (
         jsons: any[],
-        wasError: Boolean
+        wasError: Boolean,
       ) => void;
       oldFormatResponse(jsons, wasError);
     }
@@ -640,11 +646,11 @@ const CommonFilter: CommonFilterI = ({
       setQueryIsLoading(true);
 
       const newParamsStrWithFilterParams = QueryUtils.stringify(
-        newParamsWithFilterParams
+        newParamsWithFilterParams,
       );
       HistoryManager.addParamsToHistory(
         newParamsStrWithFilterParams,
-        tablePrefix
+        tablePrefix,
       );
 
       // Load the data via request
@@ -714,7 +720,7 @@ const CommonFilter: CommonFilterI = ({
       gender,
       (aliasUpdate) => {
         setTeam(aliasUpdate);
-      }
+      },
     ) || {
       value: undefined,
       label: "Choose Team...",
@@ -740,11 +746,11 @@ const CommonFilter: CommonFilterI = ({
       newClipboard.on("success", (event: ClipboardJS.Event) => {
         // Add the saved entry to the clipbaorrd
         const newParamsStrWithFilterParams = QueryUtils.stringify(
-          buildParamsFromState(true)[0]
+          buildParamsFromState(true)[0],
         );
         HistoryManager.addParamsToHistory(
           newParamsStrWithFilterParams,
-          tablePrefix
+          tablePrefix,
         );
         // Clear the selection in some visually pleasing way
         setTimeout(function () {
@@ -837,7 +843,7 @@ const CommonFilter: CommonFilterI = ({
           return undefined;
         }
       };
-      const newUrl = getUrl();
+      const newUrl = defaultUrl ?? getUrl();
       if (newUrl) {
         window.location.href = newUrl;
       }
@@ -987,8 +993,8 @@ const CommonFilter: CommonFilterI = ({
               queryFilters,
               gameSelection.games.length > 0
                 ? QueryUtils.buildGameSelectionFilter(selectedGame)
-                : undefined
-            )
+                : undefined,
+            ),
           );
           setShowGamesModal(false);
         }}
@@ -1001,8 +1007,10 @@ const CommonFilter: CommonFilterI = ({
               value={stringToOption(gender)}
               options={Array.from(
                 new Set(
-                  AvailableTeams.getTeams(team, year, null).map((r) => r.gender)
-                )
+                  AvailableTeams.getTeams(team, year, null).map(
+                    (r) => r.gender,
+                  ),
+                ),
               ).map((gender) => stringToOption(gender))}
               isSearchable={false}
               onChange={(option: any) => {
@@ -1020,10 +1028,10 @@ const CommonFilter: CommonFilterI = ({
                   //(reverse because years are descending we want them ascending)
                   new Set(
                     AvailableTeams.getTeams(team, null, gender).map(
-                      (r) => r.year
-                    )
-                  )
-                )
+                      (r) => r.year,
+                    ),
+                  ),
+                ),
               )
                 .concat([AvailableTeams.extraTeamName])
                 .map((year) => stringToOption(year))}
@@ -1122,11 +1130,11 @@ const CommonFilter: CommonFilterI = ({
                                 </span>
                                 {QueryDisplayUtils.showInvertedQueryAndFilters(
                                   startingState.invertBase,
-                                  startingState.invertBaseQueryFilters
+                                  startingState.invertBaseQueryFilters,
                                 )}
                               </span>,
                             ]
-                          : []
+                          : [],
                       )}
                   </Row>
                 ) : null}
