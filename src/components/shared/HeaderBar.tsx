@@ -36,6 +36,7 @@ import {
   OffseasonLeaderboardParams,
   TeamStatsExplorerParams,
   ParamDefaults,
+  SeasonMatchupFilterParams,
 } from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
 import { HistoryManager } from "../../utils/HistoryManager";
@@ -401,6 +402,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
   const gameReportTooltip = (
     <Tooltip id="gameReportTooltip">
       Charts and tables for individual games
+    </Tooltip>
+  );
+  const seasonReportTooltip = (
+    <Tooltip id="seasonReportTooltip">
+      Net point breakdowns for every game in a season
     </Tooltip>
   );
   const playerSeasonAnalysisTooltip = (
@@ -919,6 +925,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
                 factorMins: true,
               } as MatchupFilterParams),
               `${ParamPrefixes.gameInfo}_review`,
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
+              "Season Reports - Net Pts",
+              seasonReportTooltip,
+              UrlRouting.getSeasonMatchupUrl(
+                getBaseFilterParams(common) as SeasonMatchupFilterParams,
+              ),
+              `${ParamPrefixes.gameInfo}_seasonReview`,
             )}
           </Dropdown.Item>
           <Dropdown.Item>
