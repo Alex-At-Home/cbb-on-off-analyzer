@@ -17,6 +17,7 @@ import {
   TopLevelPlayType,
 } from "../../utils/stats/PlayTypeUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
+import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
@@ -123,7 +124,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
   // Configurable settings:
   const [adjustForSos, setAdjustForSos] = useState<boolean>(
-    !(userOpts?.rawPpp ?? false)
+    !(userOpts?.rawPpp ?? false),
   );
   const [possFreqType, setPossFreqType] = useState<
     "P%le" | "T%le" | "P%" | "T%"
@@ -132,12 +133,14 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       | "P%le"
       | "T%le"
       | "P%"
-      | "T%"
+      | "T%",
   );
 
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
-    userOpts?.quickSwitch
+    userOpts?.quickSwitch,
   );
+
+  const [cardView, setCardView] = useState<boolean>(false);
 
   useEffect(() => {
     setAdjustForSos(!(userOpts?.rawPpp ?? false));
@@ -147,7 +150,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         | "P%le"
         | "T%le"
         | "P%"
-        | "T%"
+        | "T%",
     );
     // Quick switch by default isn't safely dynamically changeable (lots of charts), but if it _is_:
     if (dynamicQuickSwitch) {
@@ -197,7 +200,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       highTier: grades?.High,
       mediumTier: grades?.Medium,
       lowTier: grades?.Low,
-    }
+    },
   );
   const possFactor = _.isNumber(playCountToUse) ? playCountToUse / 100 : 1.0;
   const showingRawFreq = possFreqType == "P%" || possFreqType == "T%";
@@ -252,7 +255,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         ? CbbColors.off_diff10_p100_redGreen_darkMode
         : CbbColors.off_diff10_p100_redBlackGreen;
     const rawColor = themedRawColorBuilder(
-      (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
+      (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment,
     );
     const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
     const selectedBarColor = resolvedTheme == "dark" ? "#666666" : "#aaaaaa";
@@ -475,7 +478,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     maxRawFreq: number | undefined,
     ticksToUse: number | undefined,
     rowTitle?: string,
-    cellKeyPrefix: string = "cell-"
+    cellKeyPrefix: string = "cell-",
   ) =>
     pctile ? (
       <Row className="recharts-container">
@@ -559,7 +562,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       fill={(defOverride
                         ? CbbColors.def_pctile_qual
                         : CbbColors.off_pctile_qual)(
-                        p.pts * 0.01 * (adjustForSos ? sosAdj : 1.0)
+                        p.pts * 0.01 * (adjustForSos ? sosAdj : 1.0),
                       )}
                     />
                   );
@@ -581,16 +584,16 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         PlayTypeUtils.buildTopLevelIndivPlayStyles(
           mainPlayer,
           rosterStatsByCode,
-          mainTeamStats
+          mainTeamStats,
         );
 
     const mainTopLevelPlayTypeStylesPctile = mainTierToUse
       ? GradeUtils.getIndivPlayStyleStats(
           mainTopLevelPlayTypeStyles,
           mainTierToUse,
-          mainSosAdjustment,
+          adjustForSos ? mainSosAdjustment : undefined,
           possFreqType == "T%le" || possFreqType == "T%",
-          true
+          true,
         )
       : undefined;
 
@@ -637,14 +640,19 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     (possFreqType == "T%"
                       ? stat.possPctUsg?.value || 0
                       : //(this only exists as a raw value, when a %tle it's ALWAYS called possPct)
-                        stat.possPct.value || 0) * 100
+                        stat.possPct.value || 0) * 100,
                   ),
             pctile:
               //(always the %ile)
               showingRawFreq
                 ? Math.min(100, (stat.possPct?.old_value || 0) * 100)
                 : Math.min(100, (stat.possPct?.value || 0) * 100),
-            pts: Math.min(100, (stat.pts.value || 0) * 100),
+            pts: Math.min(
+              100,
+              (adjustForSos
+                ? stat.adj_pts?.value || stat.pts.value || 0
+                : stat.pts.value || 0) * 100,
+            ),
             rawPct,
             rawPts: rawVal?.pts?.value || 0,
           };
@@ -655,13 +663,21 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     let extraTopLevelPlayTypeStylesPctile: any = undefined;
     let extraTopLevelPlayTypeStyles: TopLevelPlayAnalysis | undefined =
       undefined;
-    let extraData: any[] = [];
+    let extraData: {
+      name: string;
+      playType: string;
+      pct: number;
+      pts: number;
+      rawPct: number;
+      pctile: number;
+      rawPts: number;
+    }[] = [];
     let extraDefOverride: any = undefined;
     let extraSosAdjustment: number | undefined = undefined;
     if (quickSwitchBase && quickSwitchOptions) {
       const extraOpt = _.find(
         quickSwitchOptions,
-        (opt) => opt.title == quickSwitchBase
+        (opt) => opt.title == quickSwitchBase,
       );
       if (extraOpt) {
         const extraTeamStats = extraOpt.teamStats || StatModels.emptyTeam();
@@ -680,7 +696,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             PlayTypeUtils.buildTopLevelIndivPlayStyles(
               extraPlayer,
               rosterStatsByCode,
-              extraTeamStats
+              extraTeamStats,
             );
 
         extraTopLevelPlayTypeStylesPctile = mainTierToUse
@@ -689,7 +705,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               mainTierToUse,
               extraSosAdjustment,
               possFreqType == "T%le" || possFreqType == "T%",
-              true
+              true,
             )
           : undefined;
 
@@ -726,7 +742,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               return {
                 name: PlayTypeDiagUtils.getPlayTypeName(playType).replace(
                   "-",
-                  " - "
+                  " - ",
                 ),
                 playType: playType,
                 pct:
@@ -738,7 +754,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                         (possFreqType == "T%"
                           ? stat.possPctUsg?.value || 0
                           : //(this only exists as a raw value, when a %tle it's ALWAYS called possPct)
-                            stat.possPct.value || 0) * 100
+                            stat.possPct.value || 0) * 100,
                       ),
                 pts: Math.min(100, (stat.pts.value || 0) * 100),
                 rawPct,
@@ -766,7 +782,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       : extraDefOverride;
     const topSosAdjustment = showMainOnTop
       ? mainSosAdjustment
-      : extraSosAdjustment ?? 1.0;
+      : (extraSosAdjustment ?? 1.0);
     const topTitle = undefined; // never show a title for the top chart
     const topCellPrefix = showMainOnTop ? "cell-" : "cell-extra-";
 
@@ -803,12 +819,93 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
       commonNumTicksToUse =
         _.minBy(smallestNumTicks.concat([10, 9, 8]), (ticks) =>
-          Math.abs(tmpMax - ticks * Math.ceil(tmpMax / ticks))
+          Math.abs(tmpMax - ticks * Math.ceil(tmpMax / ticks)),
         ) || 10;
 
       commonMaxBetweenMainAndExtra =
         commonNumTicksToUse * Math.ceil(tmpMax / commonNumTicksToUse);
     }
+
+    // Card view: Pts = (PPP × Freq) × 100 (points per 100 poss)
+    const sumPlayTypePoints = _.sumBy(topData, (row) => {
+      const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
+      return ppp * row.rawPct * 100;
+    });
+    const sumPlayTypeUsage = _.sumBy(topData, (row) => {
+      return row.rawPct * 100;
+    });
+    const identityPrefix = (k: string) => k;
+    const noCellMeta = () => "";
+    const cardTableRows = _.chain(topData)
+      .map((row) => {
+        const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
+        const pts = ppp * row.rawPct * 100;
+        return GenericTableOps.buildDataRow(
+          {
+            title: row.name,
+            pts: { value: pts },
+            pts_pct: (
+              <div>
+                {sumPlayTypePoints > 0
+                  ? ((100 * pts) / sumPlayTypePoints).toFixed(1)
+                  : 0}
+                %
+              </div>
+            ),
+            // {
+            //   value: sumPlayTypePoints > 0 ? pts / sumPlayTypePoints : 0,
+            // },
+            ppp: (
+              <div
+                style={{
+                  ...CommonTableDefs.getTextShadow(
+                    { value: row.pts * 0.01 },
+                    resolvedTheme == "dark"
+                      ? CbbColors.percentile_greenBlackRed
+                      : CbbColors.off_pctile_qual,
+                  ),
+                }}
+              >
+                {ppp.toFixed(2)} <sup>{row.pts.toFixed(0)}%</sup>
+              </div>
+            ),
+            freq: (
+              <div
+                style={{
+                  ...CommonTableDefs.getTextShadow(
+                    { value: row.pctile * 0.01 },
+                    resolvedTheme == "dark"
+                      ? CbbColors.percentile_blueBlackOrange
+                      : CbbColors.all_pctile_freq,
+                  ),
+                }}
+              >
+                {(row.rawPct * 100).toFixed(1)}%{" "}
+                <sup>{row.pctile.toFixed(0)}%</sup>
+              </div>
+            ),
+          },
+          identityPrefix,
+          noCellMeta,
+        );
+      })
+      .concat([
+        GenericTableOps.buildDataRow(
+          {
+            title: "Total",
+            pts: { value: sumPlayTypePoints },
+            ppp: { value: null },
+            freq:
+              possFreqType == "T%" || possFreqType == "T%le" ? (
+                <div>{sumPlayTypeUsage.toFixed(1)}%</div>
+              ) : undefined,
+            pts_pct: { value: null },
+          },
+          identityPrefix,
+          noCellMeta,
+        ),
+      ])
+      .value();
 
     const maybeQuickSwitchBar = //(Note this isn't used in the team views (we inherit the one in TeamPlayTypeDiagView), only the game views)
       title ? (
@@ -821,7 +918,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             newQuickSwitch: string | undefined,
             newTitle: string | undefined,
             source: QuickSwitchSource,
-            fromTimer: boolean
+            fromTimer: boolean,
           ) => {
             if (fromTimer) {
               setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
@@ -861,7 +958,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     playType: possFreqType,
                     quickSwitch,
                   });
-                }
+                },
               )}
               {" | "}
               {PlayTypeDiagUtils.buildIndivFreqType(
@@ -873,34 +970,51 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     playType: newPossFreqType,
                     quickSwitch,
                   });
-                }
+                },
               )}
+              {" | "}
+              {PlayTypeDiagUtils.buildViewModeToggle(cardView, setCardView)}
               {navigationLinkOverride ? " | " : null}
               {navigationLinkOverride}
             </Col>
           </Row>
-          {renderBarChartRow(
-            topData,
-            topPctile,
-            topDefOverride,
-            topSosAdjustment,
-            commonMaxBetweenMainAndExtra,
-            commonNumTicksToUse,
-            topTitle,
-            topCellPrefix
-          )}
-          {showBottom
-            ? renderBarChartRow(
-                extraData,
-                extraTopLevelPlayTypeStylesPctile,
-                extraDefOverride,
-                extraSosAdjustment ?? 1.0,
+          {cardView ? (
+            <Row>
+              <Col xs={{ span: 7, offset: 2 }} className="pt-1">
+                <GenericTable
+                  growsToFit={false}
+                  tableCopyId="indivPlayTypeCard"
+                  tableFields={IndivTableDefs.playTypeCardTable}
+                  tableData={cardTableRows}
+                />
+              </Col>
+            </Row>
+          ) : (
+            <>
+              {renderBarChartRow(
+                topData,
+                topPctile,
+                topDefOverride,
+                topSosAdjustment,
                 commonMaxBetweenMainAndExtra,
                 commonNumTicksToUse,
-                `Compare vs [${quickSwitchBase}]`,
-                "cell-extra-"
-              )
-            : null}
+                topTitle,
+                topCellPrefix,
+              )}
+              {showBottom
+                ? renderBarChartRow(
+                    extraData,
+                    extraTopLevelPlayTypeStylesPctile,
+                    extraDefOverride,
+                    extraSosAdjustment ?? 1.0,
+                    commonMaxBetweenMainAndExtra,
+                    commonNumTicksToUse,
+                    `Compare vs [${quickSwitchBase}]`,
+                    "cell-extra-",
+                  )
+                : null}
+            </>
+          )}
           {debugView ? (
             <Row>
               <Col xs={10}>
@@ -935,6 +1049,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     csvData,
     adjustForSos,
     possFreqType,
+    cardView,
     resolvedTheme,
   ]);
 };

@@ -1,15 +1,17 @@
 ---
-description: Run prettier on edited files in src/
+description: Run prettier on every file you changed, once done
 globs: src/**/*
-alwaysApply: false
+alwaysApply: true
 ---
 
-# Run Prettier After Edits
+# Run Prettier When Done
 
-After making changes to any file in `src/`, run prettier to format the file:
+Always run Prettier on **every file you have changed** before finishing your response:
 
 ```bash
 npx prettier --write <path-to-file>
 ```
 
-Run this command for each file you edit, but do not run it on files you haven't modified.
+- Run this once per modified file (in `src/` or anywhere in the repo you edited).
+- Do not run it on files you did not modify.
+- Do this at the end of your work, after all edits are complete.

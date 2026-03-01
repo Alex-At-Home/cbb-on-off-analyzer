@@ -80,7 +80,7 @@ export class PlayTypeDiagUtils {
   };
   static buildInfoRow = (
     statSet: SourceAssistInfo,
-    maybeScoring?: IndivStatSet
+    maybeScoring?: IndivStatSet,
   ) => {
     const enrichedMaybeScoring = _.thru(maybeScoring, (__) => {
       if (maybeScoring) {
@@ -112,7 +112,7 @@ export class PlayTypeDiagUtils {
             : PlayTypeDiagUtils.enrichExtraInfo(valObj as Statistic);
         } else return valObj;
       }),
-      enrichedMaybeScoring
+      enrichedMaybeScoring,
     );
   };
 
@@ -122,7 +122,7 @@ export class PlayTypeDiagUtils {
     hasPlayers: boolean,
     teamTotals: boolean,
     playTypeMode: "scoring" | "usage",
-    sourceOnlyMode: boolean = false
+    sourceOnlyMode: boolean = false,
   ) => {
     const maybeScoring = playTypeMode == "scoring" ? "scoring" : "total";
     const rowMeans = hasPlayers
@@ -139,7 +139,7 @@ export class PlayTypeDiagUtils {
         "",
         CommonTableDefs.singleLineRowSpanCalculator,
         "",
-        GenericTableOps.htmlFormatter
+        GenericTableOps.htmlFormatter,
       ),
       ..._.fromPairs(
         targetSource
@@ -163,7 +163,7 @@ export class PlayTypeDiagUtils {
                           targetNotSource ? " AST%" : ""
                         } `,
                         descriptionAst,
-                        CbbColors.varPicker(CbbColors.p_ast_breakdown)
+                        CbbColors.varPicker(CbbColors.p_ast_breakdown),
                       ),
                     ],
                   ]
@@ -176,7 +176,7 @@ export class PlayTypeDiagUtils {
                                 `eFG`,
                                 descriptionEfg,
                                 CbbColors.applyThemedBackground,
-                                GenericTableOps.percentOrHtmlFormatter
+                                GenericTableOps.percentOrHtmlFormatter,
                               ),
                             ],
                             [
@@ -184,7 +184,7 @@ export class PlayTypeDiagUtils {
                               GenericTableOps.addColSeparator(0.125),
                             ],
                           ]
-                        : []
+                        : [],
                     )
                     .concat(
                       targetNotSource || !sourceOnlyMode
@@ -196,14 +196,14 @@ export class PlayTypeDiagUtils {
                                 `PPP`,
                                 descriptionPpp,
                                 CbbColors.applyThemedBackground,
-                                GenericTableOps.percentOrHtmlFormatter
+                                GenericTableOps.percentOrHtmlFormatter,
                               ),
                             ],
                             [
                               `sep${loc}ppp${key}`,
                               GenericTableOps.addColSeparator(0.125),
                             ],
-                          ]
+                          ],
                     );
                 })
                 .concat(
@@ -215,11 +215,11 @@ export class PlayTypeDiagUtils {
                           GenericTableOps.addPctCol(
                             `SF`,
                             `% of ${denomMeans} ending in a trip to the FT line`,
-                            CbbColors.varPicker(CbbColors.p_ast_breakdown)
+                            CbbColors.varPicker(CbbColors.p_ast_breakdown),
                           ),
                         ],
                         [`sep${loc}ast`, GenericTableOps.addColSeparator(0.25)],
-                      ]
+                      ],
                 )
                 .concat(
                   targetNotSource || !sourceOnlyMode
@@ -231,14 +231,14 @@ export class PlayTypeDiagUtils {
                             `PPP`,
                             descriptionPpp,
                             CbbColors.applyThemedBackground,
-                            GenericTableOps.percentOrHtmlFormatter
+                            GenericTableOps.percentOrHtmlFormatter,
                           ),
                         ],
                         [
                           `sep${loc}ppp_sf`,
                           GenericTableOps.addColSeparator(0.125),
                         ],
-                      ]
+                      ],
                 )
                 .concat([
                   [
@@ -246,7 +246,7 @@ export class PlayTypeDiagUtils {
                     GenericTableOps.addPctCol(
                       `AST`,
                       `% of ${denomMeans} ending with an assist FOR the specified row (${rowMeans})`,
-                      CbbColors.varPicker(CbbColors.p_ast_breakdown)
+                      CbbColors.varPicker(CbbColors.p_ast_breakdown),
                     ),
                   ],
                 ])
@@ -258,14 +258,14 @@ export class PlayTypeDiagUtils {
                           GenericTableOps.addPctCol(
                             `TO%`,
                             `% of possessions from this position group ending in a TO`,
-                            CbbColors.varPicker(CbbColors.p_ast_breakdown)
+                            CbbColors.varPicker(CbbColors.p_ast_breakdown),
                           ),
                         ],
                       ]
-                    : []
-                )
+                    : [],
+                ),
             );
-          })
+          }),
       ),
     };
   };
@@ -291,7 +291,7 @@ export class PlayTypeDiagUtils {
       jsonMode?: boolean;
     },
     configStr?: string,
-    updateConfig?: (configStr: string) => void
+    updateConfig?: (configStr: string) => void,
   ) => {
     const rosterInfo = teamStats.global.roster || {};
 
@@ -299,7 +299,7 @@ export class PlayTypeDiagUtils {
     const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
       players.global,
       rosterInfo,
-      true //(injects positional info into the player stats, needed for play style analysis below)
+      true, //(injects positional info into the player stats, needed for play style analysis below)
     );
 
     const options = singleGameMode
@@ -362,7 +362,7 @@ export class PlayTypeDiagUtils {
     grades: DivisionStatsCache,
     singleGameMode: boolean,
     defensiveOverride?: TopLevelPlayAnalysis,
-    rosterStatsByCodeOverride?: RosterStatsByCode
+    rosterStatsByCodeOverride?: RosterStatsByCode,
   ): Record<string, string | number>[] => {
     const globalRosterStatsByCode = _.thru(
       rosterStatsByCodeOverride,
@@ -376,10 +376,10 @@ export class PlayTypeDiagUtils {
           return RosterTableUtils.buildRosterTableByCode(
             players.global,
             rosterInfo,
-            true //(injects positional info into the player stats, needed for play style analysis below)
+            true, //(injects positional info into the player stats, needed for play style analysis below)
           );
         }
-      }
+      },
     );
 
     const playersIn = players.baseline;
@@ -406,7 +406,7 @@ export class PlayTypeDiagUtils {
       PlayTypeUtils.buildTopLevelPlayStyles(
         playersIn,
         globalRosterStatsByCode,
-        teamStatsIn
+        teamStatsIn,
       );
 
     const { tierToUse } = GradeTableUtils.buildTeamTierInfo("rank:Combo", {
@@ -422,7 +422,7 @@ export class PlayTypeDiagUtils {
           topLevelPlayTypeStyles,
           tierToUse,
           undefined, //(SoS calc separately below)
-          true
+          true,
         )
       : undefined;
 
@@ -431,7 +431,7 @@ export class PlayTypeDiagUtils {
           topLevelPlayTypeStyles,
           tierToUse,
           sosAdjustment,
-          true
+          true,
         )
       : undefined;
 
@@ -472,7 +472,7 @@ export class PlayTypeDiagUtils {
             adj_efficiency_percentile: Math.min(
               100,
               (adjTopLevelPlayTypeStylesPctile?.[playType as TopLevelPlayType]
-                ?.pts?.value || 0) * 100.0
+                ?.pts?.value || 0) * 100.0,
             ),
             opponent_def_adj: (oppoDefAdj || 0.0) * 0.01, //(all eff are per play)
             total_plays: playCountToUse || 100,
@@ -532,11 +532,11 @@ export class PlayTypeDiagUtils {
   static buildAdjustedVsRawControls = (
     sos: number,
     adjusted: boolean,
-    callback: (useAdjusted: boolean) => void
+    callback: (useAdjusted: boolean) => void,
   ) => {
     const maybeBold = (
       bold: boolean,
-      r: React.ReactElement
+      r: React.ReactElement,
     ): React.ReactElement => {
       if (bold) return <b>{r}</b>;
       else return r;
@@ -553,7 +553,7 @@ export class PlayTypeDiagUtils {
             }}
           >
             Raw
-          </a>
+          </a>,
         )}{" "}
         /{" "}
         {maybeBold(
@@ -575,7 +575,7 @@ export class PlayTypeDiagUtils {
             >
               Adj
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
         )}
       </span>
     );
@@ -584,11 +584,11 @@ export class PlayTypeDiagUtils {
   /** Allows to switch bewteen raw, player/100 and team/100 (for individual charts) */
   static buildIndivFreqType = (
     curr: "P%le" | "T%le" | "P%" | "T%",
-    callback: (possType: "P%le" | "T%le" | "P%" | "T%") => void
+    callback: (possType: "P%le" | "T%le" | "P%" | "T%") => void,
   ) => {
     const maybeBold = (
       bold: boolean,
-      r: React.ReactElement
+      r: React.ReactElement,
     ): React.ReactElement => {
       if (bold) return <b>{r}</b>;
       else return r;
@@ -621,7 +621,7 @@ export class PlayTypeDiagUtils {
             >
               P%le
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
         )}{" "}
         /{" "}
         {maybeBold(
@@ -651,7 +651,7 @@ export class PlayTypeDiagUtils {
             >
               T%le
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
         )}{" "}
         /{" "}
         {maybeBold(
@@ -679,7 +679,7 @@ export class PlayTypeDiagUtils {
             >
               P%
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
         )}{" "}
         /{" "}
         {maybeBold(
@@ -707,7 +707,50 @@ export class PlayTypeDiagUtils {
             >
               T%
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
+        )}
+      </span>
+    );
+  };
+
+  /** "As Card" / "As Chart" toggle for IndivPlayTypeDiagRadar (cardView = show table) */
+  static buildViewModeToggle = (
+    cardView: boolean,
+    callback: (cardView: boolean) => void,
+  ) => {
+    const maybeBold = (
+      bold: boolean,
+      r: React.ReactElement,
+    ): React.ReactElement => {
+      if (bold) return <b>{r}</b>;
+      else return r;
+    };
+    return (
+      <span>
+        {maybeBold(
+          cardView,
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              callback(true);
+            }}
+          >
+            Card
+          </a>,
+        )}
+        {" / "}
+        {maybeBold(
+          !cardView,
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              callback(false);
+            }}
+          >
+            Chart
+          </a>,
         )}
       </span>
     );
@@ -716,11 +759,11 @@ export class PlayTypeDiagUtils {
   /** Allows to switch between percentile and raw % (for team charts) */
   static buildTeamFreqType = (
     curr: "P%le" | "P%",
-    callback: (possType: "P%le" | "P%") => void
+    callback: (possType: "P%le" | "P%") => void,
   ) => {
     const maybeBold = (
       bold: boolean,
-      r: React.ReactElement
+      r: React.ReactElement,
     ): React.ReactElement => {
       if (bold) return <b>{r}</b>;
       else return r;
@@ -752,7 +795,7 @@ export class PlayTypeDiagUtils {
             >
               P%le
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
         )}{" "}
         /{" "}
         {maybeBold(
@@ -778,7 +821,7 @@ export class PlayTypeDiagUtils {
             >
               P%
             </a>
-          </OverlayTrigger>
+          </OverlayTrigger>,
         )}
       </span>
     );
@@ -802,7 +845,7 @@ export class PlayTypeDiagUtils {
 
   /** Convert from the menu string into game info - TODO dedup with MatchupFilter */
   static buildGameInfo = (
-    menuItemStr: string
+    menuItemStr: string,
   ):
     | { teamB: string; dateStr: string; scoreTeamA: number; scoreTeamB: number }
     | undefined => {
@@ -828,7 +871,7 @@ export class PlayTypeDiagUtils {
     labelName: string,
     gameId: string,
     data: object[],
-    onClick: () => void
+    onClick: () => void,
   ) => {
     const filename =
       gameId.replace("@", "at").replaceAll(/[^a-zA-Z0-9]/g, "_") + ".csv";

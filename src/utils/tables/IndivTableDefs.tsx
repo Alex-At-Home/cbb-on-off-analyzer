@@ -128,6 +128,41 @@ export class IndivTableDefs {
     ),
   };
 
+  /** Play type card table (IndivPlayTypeDiagRadar Card View): Pts, PPP, Freq, Pts ƒ */
+  static readonly playTypeCardTable = {
+    title: GenericTableOps.addTitle(
+      "",
+      "Play type",
+      GenericTableOps.defaultRowSpanCalculator,
+      "",
+      GenericTableOps.htmlFormatter,
+    ),
+    pts: GenericTableOps.addDataCol(
+      "Pts",
+      "Points per 100 possessions (PPP × Freq × 100)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    pts_pct: GenericTableOps.addDataCol(
+      <span>Pts%</span>,
+      "Percent of points from this play type",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    ppp: GenericTableOps.addDataCol(
+      "PPP",
+      "Points per play (raw or adj depending on Raw/Adj toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    freq: GenericTableOps.addDataCol(
+      "Freq%",
+      "Frequency (% of possessions; player or team depending on P% / T% toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+  };
+
   /** Sort options for impact breakdown table (data columns only, asc/desc each) */
   static readonly impactDecompSortOptions = ((): {
     label: string;
