@@ -19,7 +19,7 @@ import { CompressedHexZone } from "../../utils/StatModels";
 import HexMap from "../shared/HexMap";
 import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 import ToggleButtonGroup from "../shared/ToggleButtonGroup";
-import { UserChartOpts } from "./ShotChartDiagView";
+import { UserChartOpts, ShotChartViewMode } from "./ShotChartDiagView";
 import { useTheme } from "next-themes";
 
 ///////////////////// UI element + control
@@ -39,14 +39,20 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
   onChangeChartOpts,
   chartOpts,
 }) => {
-  const [useEfg, setUseEfg] = useState<boolean>(
-    chartOpts?.useEfg ?? false
+  const [viewMode, setViewMode] = useState<ShotChartViewMode>(
+    chartOpts?.viewMode ?? "zones",
+  );
+  const [useEfg, setUseEfg] = useState<boolean>(chartOpts?.useEfg ?? false);
+  const [showFreqAsNumber, setShowFreqAsNumber] = useState<boolean>(
+    chartOpts?.showFreqAsNumber ?? false,
   );
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (chartOpts) {
+      setViewMode(chartOpts?.viewMode ?? "zones");
       setUseEfg(chartOpts?.useEfg ?? false);
+      setShowFreqAsNumber(chartOpts?.showFreqAsNumber ?? false);
     }
   }, [chartOpts]);
   const diffDataSet =
@@ -56,6 +62,10 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
     gender == "Men" ? ShotChartZones_Men_2024 : ShotChartZones_Women_2024;
 
   const offZones = ShotChartUtils.decompressHexZones(off);
+  const offRegionData =
+    viewMode === "regions"
+      ? ShotChartUtils.zonesToRegions(offZones, d1Zones)
+      : null;
 
   return (
     <Container>
@@ -79,6 +89,27 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                   height={HEX_HEIGHT}
                   buildZones={true}
                   useEfg={useEfg}
+                  regionZones={
+                    viewMode === "regions"
+                      ? offRegionData?.regionZones
+                      : undefined
+                  }
+                  d1RegionZones={
+                    viewMode === "regions"
+                      ? offRegionData?.d1RegionZones
+                      : undefined
+                  }
+                  zoneToRegion={
+                    viewMode === "regions"
+                      ? offRegionData?.zoneToRegion
+                      : undefined
+                  }
+                  firstZoneIndexPerRegion={
+                    viewMode === "regions"
+                      ? offRegionData?.firstZoneIndexPerRegion
+                      : undefined
+                  }
+                  showFreqAsNumber={showFreqAsNumber}
                 />
                 {onChangeChartOpts ? (
                   <div
@@ -88,7 +119,10 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                       left: "50%",
                       transform: "translateX(-50%)",
                       zIndex: 1000,
-                      backgroundColor: resolvedTheme === "dark" ? "rgba(39, 43, 48, 0.25)" : "rgba(255, 255, 255, 0.25)",
+                      backgroundColor:
+                        resolvedTheme === "dark"
+                          ? "rgba(39, 43, 48, 0.25)"
+                          : "rgba(255, 255, 255, 0.25)",
                       borderRadius: "4px",
                       padding: "4px",
                       boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
@@ -97,26 +131,109 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                     <ToggleButtonGroup
                       items={[
                         {
-                          label: "FG%",
-                          tooltip: "Show regular field goal percentage",
-                          toggled: !useEfg,
-                          onClick: () => {
-                            onChangeChartOpts?.({
-                              useEfg: false,
-                            });
-                            setUseEfg(false);
-                          },
+                          items: [
+                            {
+                              label: "Regions",
+                              tooltip: "Regions: Show large court regions",
+                              toggled: viewMode === "regions",
+                              onClick: () => {
+                                onChangeChartOpts?.({
+                                  viewMode: "regions",
+                                  useEfg: useEfg,
+                                  showFreqAsNumber: showFreqAsNumber,
+                                });
+                                setViewMode("regions");
+                              },
+                            },
+                            {
+                              label: "Zones",
+                              tooltip: "Zones: Show court zones",
+                              toggled: viewMode === "zones",
+                              onClick: () => {
+                                onChangeChartOpts?.({
+                                  viewMode: "zones",
+                                  useEfg: useEfg,
+                                  showFreqAsNumber: showFreqAsNumber,
+                                });
+                                setViewMode("zones");
+                              },
+                            },
+                          ],
                         },
                         {
-                          label: "eFG%",
-                          tooltip: "Show effective field goal percentage (3-pointers weighted 1.5x)",
-                          toggled: useEfg,
-                          onClick: () => {
-                            onChangeChartOpts?.({
-                              useEfg: true,
-                            });
-                            setUseEfg(true);
-                          },
+                          label: " | ",
+                          isLabelOnly: true,
+                          toggled: false,
+                          onClick: () => null,
+                        },
+                        {
+                          items: [
+                            {
+                              label: "FG%",
+                              tooltip: "Show regular field goal percentage",
+                              toggled: !useEfg,
+                              onClick: () => {
+                                onChangeChartOpts?.({
+                                  viewMode: viewMode,
+                                  useEfg: false,
+                                  showFreqAsNumber: showFreqAsNumber,
+                                });
+                                setUseEfg(false);
+                              },
+                            },
+                            {
+                              label: "eFG%",
+                              tooltip:
+                                "Show effective field goal percentage (3-pointers weighted 1.5x)",
+                              toggled: useEfg,
+                              onClick: () => {
+                                onChangeChartOpts?.({
+                                  viewMode: viewMode,
+                                  useEfg: true,
+                                  showFreqAsNumber: showFreqAsNumber,
+                                });
+                                setUseEfg(true);
+                              },
+                            },
+                          ],
+                        },
+                        {
+                          label: " | ",
+                          isLabelOnly: true,
+                          toggled: false,
+                          onClick: () => null,
+                        },
+                        {
+                          items: [
+                            {
+                              label: "FG",
+                              tooltip:
+                                "FG: Background = frequency, circle = efficiency, number = FG%/eFG%",
+                              toggled: !showFreqAsNumber,
+                              onClick: () => {
+                                onChangeChartOpts?.({
+                                  viewMode: viewMode,
+                                  useEfg: useEfg,
+                                  showFreqAsNumber: false,
+                                });
+                                setShowFreqAsNumber(false);
+                              },
+                            },
+                            {
+                              label: "Freq",
+                              tooltip:
+                                "Freq: Background = efficiency, circle = frequency, number = frequency %",
+                              toggled: showFreqAsNumber,
+                              onClick: () => {
+                                onChangeChartOpts?.({
+                                  viewMode: viewMode,
+                                  useEfg: useEfg,
+                                  showFreqAsNumber: true,
+                                });
+                                setShowFreqAsNumber(true);
+                              },
+                            },
+                          ],
                         },
                       ]}
                     />
@@ -130,10 +247,23 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
       <Row>
         <Col xs={12} className="small text-center pt-1">
           <p>
-            Each circle shows the {useEfg ? "eFG%" : "FG%"} {useEfg ? "(FG% where 3pt shots count more)" : ""},
-            colored by their efficiency relative to D1 average in that zone.
-            The color of the zone is the shot frequency relative to D1
-            average.
+            {showFreqAsNumber ? (
+              <>
+                Background color is efficiency relative to D1 average in that{" "}
+                {viewMode === "regions" ? "region" : "zone"}. The circle color
+                is shot frequency relative to D1. The number in the circle is
+                frequency %.
+              </>
+            ) : (
+              <>
+                Each circle shows the {useEfg ? "eFG%" : "FG%"}
+                {useEfg ? " (FG% where 3pt shots count more)" : ""}, colored by
+                their efficiency relative to D1 average in that{" "}
+                {viewMode === "regions" ? "region" : "zone"}. The color of the{" "}
+                {viewMode === "regions" ? "region" : "zone"} is the shot
+                frequency relative to the D1 average.
+              </>
+            )}
           </p>
         </Col>
       </Row>

@@ -10,17 +10,17 @@ export class ShotChartUtils {
   /** Creates a smaller JSON object to show player stats in the leaderboard */
   static compressHexZones = (
     zones: HexZone[],
-    rawStats?: ShotStats
+    rawStats?: ShotStats,
   ): CompressedHexZone => {
     const totalFreq = _.head(zones)?.total_freq || 0;
     const nonZeroBuckets = (rawStats?.shot_chart?.buckets || []).filter(
-      (b) => (b.doc_count || 0) > 0
+      (b) => (b.doc_count || 0) > 0,
     );
     return {
       total_freq: totalFreq,
       info: _.map(
         zones.filter((z) => z.frequency > 0),
-        (zone, index) => [index, zone.frequency, zone.intensity]
+        (zone, index) => [index, zone.frequency, zone.intensity],
       ),
       data: rawStats
         ? {
@@ -100,7 +100,7 @@ export class ShotChartUtils {
       string,
       { avg_freq: number; avg_ppp: number; loc: number[] }
     >,
-    splitStats?: ShotStats
+    splitStats?: ShotStats,
   ): { data: HexData[]; zones: HexZone[]; splitZones?: HexZone[] } => {
     const total_freq = stats?.doc_count || 1;
 
@@ -200,14 +200,14 @@ export class ShotChartUtils {
       string,
       { avg_freq: number; avg_ppp: number; loc: number[] }
     >,
-    logInfo?: string
+    logInfo?: string,
   ) => {
     const mutableZones = ShotChartUtils.buildStartingZones();
     _.forEach(diffSet, (diff, hexKey) => {
       const zone = ShotChartUtils.findHexZone(
         diff.loc[0]!,
         diff.loc[1]!,
-        mutableZones
+        mutableZones,
       );
       if (zone) {
         zone.frequency += diff.avg_freq;
@@ -225,11 +225,96 @@ export class ShotChartUtils {
         `export const ShotChartZones_${logInfo}_2024 = ${JSON.stringify(
           mutableZones,
           null,
-          3
-        )}`
+          3,
+        )}`,
       );
 
     return mutableZones;
+  };
+
+  /** Zone index -> region index (0=at rim, 1=close/key, 2=corner 3, 3=above-break 3, 4=mid-range) */
+  static readonly ZONE_TO_REGION = [0, 1, 1, 2, 3, 3, 3, 2, 4, 4, 4];
+
+  /**
+   * Zone indices that show a circle in regions mode.
+   * 0 = at rim; 2 = key (circle at midpoint of zones 1&2, drawn by zone 2);
+   * 3, 7 = corner 3s (both show); 5 = above-break 3 middle; 9 = mid-range middle.
+   */
+  static readonly ZONE_INDICES_THAT_SHOW_CIRCLE = [0, 2, 3, 7, 5, 9];
+
+  /** Number of regions (for aggregation). */
+  static readonly NUM_REGIONS = 5;
+
+  /**
+   * Aggregates 11 zones into 5 regions. Player zones use frequency=count, intensity=total pts;
+   * D1 zones use frequency=fraction (0-1), intensity=PPP. Returns region stats and mapping.
+   */
+  static zonesToRegions = (
+    zones: HexZone[],
+    d1Zones?: HexZone[],
+  ): {
+    regionZones: HexZone[];
+    d1RegionZones?: HexZone[];
+    zoneToRegion: number[];
+    firstZoneIndexPerRegion: number[];
+  } => {
+    const zoneToRegion = ShotChartUtils.ZONE_TO_REGION;
+    const firstZoneIndexPerRegion =
+      ShotChartUtils.ZONE_INDICES_THAT_SHOW_CIRCLE;
+    const numRegions = ShotChartUtils.NUM_REGIONS;
+
+    const aggregatePlayerRegion = (regionIndex: number): HexZone => {
+      const indices = _.filter(
+        _.range(zones.length),
+        (i) => zoneToRegion[i] === regionIndex,
+      );
+      const regionZoneList = _.map(indices, (i) => zones[i]!);
+      const totalFreq = _.head(regionZoneList)?.total_freq;
+      return {
+        minDist: 0,
+        maxDist: 0,
+        minAngle: 0,
+        maxAngle: 0,
+        angleOffset: 0,
+        frequency: _.sumBy(regionZoneList, "frequency"),
+        intensity: _.sumBy(regionZoneList, "intensity"),
+        total_freq: totalFreq,
+      };
+    };
+
+    const regionZones = _.map(_.range(numRegions), aggregatePlayerRegion);
+
+    let d1RegionZones: HexZone[] | undefined;
+    if (d1Zones && d1Zones.length >= zones.length) {
+      d1RegionZones = _.map(_.range(numRegions), (regionIndex) => {
+        const indices = _.filter(
+          _.range(d1Zones!.length),
+          (i) => zoneToRegion[i] === regionIndex,
+        );
+        const regionZoneList = _.map(indices, (i) => d1Zones![i]!);
+        const sumFreq = _.sumBy(regionZoneList, "frequency");
+        const weightedIntensity = _.sumBy(
+          regionZoneList,
+          (z) => z.frequency * z.intensity,
+        );
+        return {
+          minDist: 0,
+          maxDist: 0,
+          minAngle: 0,
+          maxAngle: 0,
+          angleOffset: 0,
+          frequency: sumFreq,
+          intensity: sumFreq > 0 ? weightedIntensity / sumFreq : 0,
+        };
+      });
+    }
+
+    return {
+      regionZones,
+      d1RegionZones,
+      zoneToRegion,
+      firstZoneIndexPerRegion,
+    };
   };
 
   /** Useful names */

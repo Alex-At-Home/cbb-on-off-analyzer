@@ -30,10 +30,14 @@ import { useTheme } from "next-themes";
 
 ///////////////////// UI element + control
 
+export type ShotChartViewMode = "regions" | "zones" | "clusters";
+
 export type UserChartOpts = {
   buildZones?: boolean;
+  viewMode?: ShotChartViewMode;
   quickSwitch?: string;
   useEfg?: boolean;
+  showFreqAsNumber?: boolean;
 };
 
 type Props = {
@@ -74,27 +78,40 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
   >(undefined);
-  const [buildZones, setBuildZones] = useState<boolean>(
-    !chartOpts || _.isNil(chartOpts?.buildZones)
-      ? ParamDefaults.defaultShotChartShowZones
-      : chartOpts.buildZones,
-  );
+
+  const viewModeFromOpts = (): ShotChartViewMode => {
+    if (chartOpts?.viewMode) return chartOpts.viewMode;
+    if (!chartOpts || _.isNil(chartOpts?.buildZones))
+      return ParamDefaults.defaultShotChartShowZones ? "zones" : "clusters";
+    return chartOpts.buildZones ? "zones" : "clusters";
+  };
+  const [viewMode, setViewMode] =
+    useState<ShotChartViewMode>(viewModeFromOpts());
+  const buildZones = viewMode !== "clusters";
   const [useEfg, setUseEfg] = useState<boolean>(chartOpts?.useEfg ?? false);
+  const [showFreqAsNumber, setShowFreqAsNumber] = useState<boolean>(
+    chartOpts?.showFreqAsNumber ?? false,
+  );
 
   useEffect(() => {
     if (chartOpts) {
-      setBuildZones(
-        _.isNil(chartOpts?.buildZones)
+      const nextViewMode = chartOpts.viewMode
+        ? chartOpts.viewMode
+        : _.isNil(chartOpts.buildZones)
           ? ParamDefaults.defaultShotChartShowZones
-          : chartOpts.buildZones,
-      );
+            ? "zones"
+            : "clusters"
+          : chartOpts.buildZones
+            ? "zones"
+            : "clusters";
+      setViewMode(nextViewMode);
       setUseEfg(chartOpts?.useEfg ?? false);
+      setShowFreqAsNumber(chartOpts?.showFreqAsNumber ?? false);
     }
-    // Quick switch by default isn't safely dynamically changeable (lots of charts), but if it _is_:
     if (dynamicQuickSwitch) {
       setQuickSwitch(chartOpts?.quickSwitch);
     }
-  }, [chartOpts]); //(handle external changes to zone and useEfg)
+  }, [chartOpts]);
 
   const diffDataSet =
     gender == "Men" ? ShotChartAvgs_Men_2024 : ShotChartAvgs_Women_2024;
@@ -282,6 +299,23 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const leftIndex = invertLeftRight ? 1 : 0;
   const rightIndex = invertLeftRight ? 0 : 1;
 
+  const offRegionData =
+    viewMode === "regions"
+      ? ShotChartUtils.zonesToRegions(offZones, d1Zones)
+      : null;
+  const defRegionData =
+    viewMode === "regions"
+      ? ShotChartUtils.zonesToRegions(defZones, d1Zones)
+      : null;
+  const extraRowOffRegionData =
+    viewMode === "regions" && extraRowOffZones.length > 0
+      ? ShotChartUtils.zonesToRegions(extraRowOffZones, d1Zones)
+      : null;
+  const extraRowDefRegionData =
+    viewMode === "regions" && extraRowDefZones.length > 0
+      ? ShotChartUtils.zonesToRegions(extraRowDefZones, d1Zones)
+      : null;
+
   const maybeQuickSwitchBar = title ? (
     <Row className="pt-2 pb-2">
       <Col xs={12}>
@@ -302,8 +336,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             } else {
               onChangeChartOpts?.({
                 buildZones: buildZones,
+                viewMode: viewMode,
                 quickSwitch: newQuickSwitch,
                 useEfg: useEfg,
+                showFreqAsNumber: showFreqAsNumber,
               });
               setQuickSwitch(newQuickSwitch);
             }
@@ -349,6 +385,29 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   height={HEX_HEIGHT}
                   buildZones={buildZones}
                   useEfg={useEfg}
+                  regionZones={
+                    viewMode === "regions"
+                      ? (invertLeftRight ? defRegionData : offRegionData)
+                          ?.regionZones
+                      : undefined
+                  }
+                  d1RegionZones={
+                    viewMode === "regions"
+                      ? (invertLeftRight ? defRegionData : offRegionData)
+                          ?.d1RegionZones
+                      : undefined
+                  }
+                  zoneToRegion={
+                    viewMode === "regions"
+                      ? offRegionData?.zoneToRegion
+                      : undefined
+                  }
+                  firstZoneIndexPerRegion={
+                    viewMode === "regions"
+                      ? offRegionData?.firstZoneIndexPerRegion
+                      : undefined
+                  }
+                  showFreqAsNumber={showFreqAsNumber}
                 />
               </Col>
             </Row>
@@ -383,6 +442,29 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                     height={HEX_HEIGHT}
                     buildZones={buildZones}
                     useEfg={useEfg}
+                    regionZones={
+                      viewMode === "regions"
+                        ? (invertLeftRight ? offRegionData : defRegionData)
+                            ?.regionZones
+                        : undefined
+                    }
+                    d1RegionZones={
+                      viewMode === "regions"
+                        ? (invertLeftRight ? offRegionData : defRegionData)
+                            ?.d1RegionZones
+                        : undefined
+                    }
+                    zoneToRegion={
+                      viewMode === "regions"
+                        ? offRegionData?.zoneToRegion
+                        : undefined
+                    }
+                    firstZoneIndexPerRegion={
+                      viewMode === "regions"
+                        ? offRegionData?.firstZoneIndexPerRegion
+                        : undefined
+                    }
+                    showFreqAsNumber={showFreqAsNumber}
                   />
                 </Col>
               </Row>
@@ -421,6 +503,33 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                     height={HEX_HEIGHT}
                     buildZones={buildZones}
                     useEfg={useEfg}
+                    regionZones={
+                      viewMode === "regions"
+                        ? (invertLeftRight
+                            ? extraRowDefRegionData
+                            : extraRowOffRegionData
+                          )?.regionZones
+                        : undefined
+                    }
+                    d1RegionZones={
+                      viewMode === "regions"
+                        ? (invertLeftRight
+                            ? extraRowDefRegionData
+                            : extraRowOffRegionData
+                          )?.d1RegionZones
+                        : undefined
+                    }
+                    zoneToRegion={
+                      viewMode === "regions"
+                        ? extraRowOffRegionData?.zoneToRegion
+                        : undefined
+                    }
+                    firstZoneIndexPerRegion={
+                      viewMode === "regions"
+                        ? extraRowOffRegionData?.firstZoneIndexPerRegion
+                        : undefined
+                    }
+                    showFreqAsNumber={showFreqAsNumber}
                   />
                 </Col>
               </Row>
@@ -456,6 +565,33 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                       height={HEX_HEIGHT}
                       buildZones={buildZones}
                       useEfg={useEfg}
+                      regionZones={
+                        viewMode === "regions"
+                          ? (invertLeftRight
+                              ? extraRowOffRegionData
+                              : extraRowDefRegionData
+                            )?.regionZones
+                          : undefined
+                      }
+                      d1RegionZones={
+                        viewMode === "regions"
+                          ? (invertLeftRight
+                              ? extraRowOffRegionData
+                              : extraRowDefRegionData
+                            )?.d1RegionZones
+                          : undefined
+                      }
+                      zoneToRegion={
+                        viewMode === "regions"
+                          ? extraRowOffRegionData?.zoneToRegion
+                          : undefined
+                      }
+                      firstZoneIndexPerRegion={
+                        viewMode === "regions"
+                          ? extraRowOffRegionData?.firstZoneIndexPerRegion
+                          : undefined
+                      }
+                      showFreqAsNumber={showFreqAsNumber}
                     />
                   </Col>
                 </Row>
@@ -468,10 +604,23 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         <Col xs={12} className="small text-center pt-1">
           {buildZones ? (
             <p>
-              Each circle shows the {useEfg ? "eFG%" : "FG%"}{" "}
-              {useEfg ? "(FG% where 3pt shots count more)" : ""}, colored by
-              their efficiency relative to D1 average in that zone. The color of
-              the zone is the shot frequency relative to the D1 average.
+              {showFreqAsNumber ? (
+                <>
+                  Background color is efficiency relative to D1 average in that{" "}
+                  {viewMode === "regions" ? "region" : "zone"}. The circle color
+                  is shot frequency relative to D1. The number in the circle is
+                  frequency %.
+                </>
+              ) : (
+                <>
+                  Each circle shows the {useEfg ? "eFG%" : "FG%"}
+                  {useEfg ? " (FG% where 3pt shots count more)" : ""}, colored
+                  by their efficiency relative to D1 average in that{" "}
+                  {viewMode === "regions" ? "region" : "zone"}. The color of the{" "}
+                  {viewMode === "regions" ? "region" : "zone"} is the shot
+                  frequency relative to the D1 average.
+                </>
+              )}
             </p>
           ) : (
             <p>
@@ -490,31 +639,50 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                 {
                   items: [
                     {
-                      label: "Zones",
+                      label: "Regions",
                       tooltip:
-                        "Zones: Show the shots grouped into large court zones",
-                      toggled: buildZones,
+                        "Regions: Show the shots grouped into large court regions",
+                      toggled: viewMode === "regions",
                       onClick: () => {
                         onChangeChartOpts?.({
                           buildZones: true,
+                          viewMode: "regions",
                           quickSwitch: quickSwitch,
                           useEfg: useEfg,
+                          showFreqAsNumber: showFreqAsNumber,
                         });
-                        setBuildZones(true);
+                        setViewMode("regions");
+                      },
+                    },
+                    {
+                      label: "Zones",
+                      tooltip: "Zones: Show the shots grouped into court zones",
+                      toggled: viewMode === "zones",
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: true,
+                          viewMode: "zones",
+                          quickSwitch: quickSwitch,
+                          useEfg: useEfg,
+                          showFreqAsNumber: showFreqAsNumber,
+                        });
+                        setViewMode("zones");
                       },
                     },
                     {
                       label: "Clusters",
                       tooltip:
                         "Clusters: Show the shots grouped into small clusters",
-                      toggled: !buildZones,
+                      toggled: viewMode === "clusters",
                       onClick: () => {
                         onChangeChartOpts?.({
                           buildZones: false,
+                          viewMode: "clusters",
                           quickSwitch: quickSwitch,
                           useEfg: useEfg,
+                          showFreqAsNumber: showFreqAsNumber,
                         });
-                        setBuildZones(false);
+                        setViewMode("clusters");
                       },
                     },
                   ],
@@ -534,8 +702,10 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                       onClick: () => {
                         onChangeChartOpts?.({
                           buildZones: buildZones,
+                          viewMode: viewMode,
                           quickSwitch: quickSwitch,
                           useEfg: false,
+                          showFreqAsNumber: showFreqAsNumber,
                         });
                         setUseEfg(false);
                       },
@@ -548,10 +718,54 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                       onClick: () => {
                         onChangeChartOpts?.({
                           buildZones: buildZones,
+                          viewMode: viewMode,
                           quickSwitch: quickSwitch,
                           useEfg: true,
+                          showFreqAsNumber: showFreqAsNumber,
                         });
                         setUseEfg(true);
+                      },
+                    },
+                  ],
+                },
+                {
+                  label: " | ",
+                  isLabelOnly: true,
+                  toggled: false,
+                  onClick: () => null,
+                },
+                {
+                  items: [
+                    {
+                      label: "FG",
+                      tooltip:
+                        "FG: Background = frequency, circle = efficiency, number = FG%/eFG%",
+                      toggled: !showFreqAsNumber,
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: buildZones,
+                          viewMode: viewMode,
+                          quickSwitch: quickSwitch,
+                          useEfg: useEfg,
+                          showFreqAsNumber: false,
+                        });
+                        setShowFreqAsNumber(false);
+                      },
+                    },
+                    {
+                      label: "Freq",
+                      tooltip:
+                        "Freq: Background = efficiency, circle = frequency, number = frequency %",
+                      toggled: showFreqAsNumber,
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: buildZones,
+                          viewMode: viewMode,
+                          quickSwitch: quickSwitch,
+                          useEfg: useEfg,
+                          showFreqAsNumber: true,
+                        });
+                        setShowFreqAsNumber(true);
                       },
                     },
                   ],

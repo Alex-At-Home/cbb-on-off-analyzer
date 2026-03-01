@@ -1,7 +1,7 @@
 // React imports:
 import React, { useRef, useEffect } from "react";
 
-import _, { split } from "lodash";
+import _ from "lodash";
 
 // Utils
 import { CbbColors } from "../../utils/CbbColors";
@@ -13,6 +13,7 @@ import * as d3 from "d3";
 import { hexbin } from "d3-hexbin";
 import { HexZone, HexData } from "../../utils/StatModels";
 import { useTheme } from "next-themes";
+import { ShotChartUtils } from "../../utils/stats/ShotChartUtils";
 
 const MIN_Y = -5;
 const MAX_Y = 35;
@@ -35,6 +36,13 @@ interface HexMapProps {
   >;
   buildZones: boolean;
   useEfg?: boolean;
+  /** When in regions mode: aggregated region stats and mapping */
+  regionZones?: HexZone[];
+  d1RegionZones?: HexZone[];
+  zoneToRegion?: number[];
+  firstZoneIndexPerRegion?: number[];
+  /** When true (Freq mode): background = efficiency, circle = freq, number = freq%; when false (FG): current behavior */
+  showFreqAsNumber?: boolean;
 }
 const HexMap: React.FC<HexMapProps> = ({
   data,
@@ -47,6 +55,11 @@ const HexMap: React.FC<HexMapProps> = ({
   d1Zones,
   buildZones,
   useEfg = true,
+  regionZones,
+  d1RegionZones,
+  zoneToRegion,
+  firstZoneIndexPerRegion,
+  showFreqAsNumber = false,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -79,7 +92,7 @@ const HexMap: React.FC<HexMapProps> = ({
   /** Add some court lines into the SVG */
   const injectCourtLines = (
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
-    phase: number
+    phase: number,
   ) => {
     const courtXScale = d3 //(hacky - i used the wrong x when building the court lines so adjust back here)
       .scaleLinear()
@@ -107,7 +120,7 @@ const HexMap: React.FC<HexMapProps> = ({
       // Add paint:
       const rectCoords = transformCoords(
         topOfPaint,
-        middleOfCourt + halfPaintWidth
+        middleOfCourt + halfPaintWidth,
       );
       svg
         .append("rect")
@@ -132,7 +145,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("d", arcPath)
         .attr(
           "transform",
-          `translate(${courtXScale(ftArcCoords.x)}, ${yScale(ftArcCoords.y)})`
+          `translate(${courtXScale(ftArcCoords.x)}, ${yScale(ftArcCoords.y)})`,
         )
         .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
@@ -153,7 +166,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("x2", courtXScale(left3ptCoords.x))
         .attr(
           "y2",
-          yScale(left3ptCoords.y) - heightScale(straightBitOf3ptHeight)
+          yScale(left3ptCoords.y) - heightScale(straightBitOf3ptHeight),
         )
         .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
@@ -168,7 +181,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("x2", courtXScale(right3ptCoords.x))
         .attr(
           "y2",
-          yScale(right3ptCoords.y) - heightScale(straightBitOf3ptHeight)
+          yScale(right3ptCoords.y) - heightScale(straightBitOf3ptHeight),
         )
         .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
@@ -191,8 +204,8 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr(
           "transform",
           `translate(${courtXScale(threePtArcCoords.x)}, ${yScale(
-            threePtArcCoords.y
-          )})`
+            threePtArcCoords.y,
+          )})`,
         )
         .style("stroke", courtStrokeColor)
         .style("stroke-width", "1px")
@@ -216,27 +229,77 @@ const HexMap: React.FC<HexMapProps> = ({
     svg: d3.Selection<SVGSVGElement | null, unknown, null, undefined>,
     zones: HexZone[],
     d1Zones: HexZone[],
-    splitZones?: HexZone[]
+    splitZones?: HexZone[],
   ) => {
     const numZones = d1Zones.length;
+    const useRegionFill = !!(
+      regionZones &&
+      zoneToRegion &&
+      zoneToRegion.length >= numZones &&
+      d1RegionZones
+    );
+    const cbbEfficiencyScale = isDef
+      ? CbbColors.diff_def_eFgShotChart
+      : CbbColors.diff_eFgShotChart;
+
     (zones || []).forEach((__, zoneIndex) => {
       // Go backwards because that means we draw the 3P zones after the mid range ones
       // and the overlap looks right
-      const zone = zones[numZones - zoneIndex - 1]!;
-      const d1Zone = d1Zones?.[numZones - zoneIndex - 1] || zone;
-      const splitZone = splitZones
-        ? splitZones[numZones - zoneIndex - 1]
-        : undefined;
+      const zoneIdx = numZones - zoneIndex - 1;
+      const zone = zones[zoneIdx]!;
+      const d1Zone = d1Zones?.[zoneIdx] || zone;
+      const splitZone = splitZones ? splitZones[zoneIdx] : undefined;
 
       const minAngle = zone.minAngle == 0 ? -90 : zone.minAngle;
       const maxAngle = zone.maxAngle == 180 ? 270 : zone.maxAngle;
 
-      const freqDelt = splitZone
-        ? zone.frequency / (zone.total_freq || 1) -
-          splitZone.frequency / (splitZone.total_freq || 1)
-        : d1Zone
-        ? zone.frequency / (zone.total_freq || 1) - d1Zone.frequency
-        : 0;
+      let fillColor: string;
+      if (useRegionFill && regionZones && zoneToRegion && d1RegionZones) {
+        const r = zoneToRegion[zoneIdx] ?? 0;
+        const regionZone = regionZones[r];
+        const d1RegionZone = d1RegionZones[r];
+        const splitRegionZones =
+          splitZones && regionZones
+            ? ShotChartUtils.zonesToRegions(splitZones).regionZones
+            : undefined;
+        const splitRegionZone = splitRegionZones?.[r];
+
+        if (showFreqAsNumber && d1RegionZone) {
+          const ppp = regionZone.intensity / (regionZone.frequency || 1);
+          const compPpp = splitRegionZone
+            ? splitRegionZone.intensity / (splitRegionZone.frequency || 1)
+            : d1RegionZone.intensity;
+          fillColor = cbbEfficiencyScale((ppp - compPpp) * 0.5);
+        } else {
+          const freqDelt = splitRegionZone
+            ? regionZone.frequency / (regionZone.total_freq || 1) -
+              splitRegionZone.frequency / (splitRegionZone.total_freq || 1)
+            : d1RegionZone
+              ? regionZone.frequency / (regionZone.total_freq || 1) -
+                d1RegionZone.frequency
+              : 0;
+          fillColor = CbbColors.diff10_blueOrange_offDef(freqDelt);
+        }
+      } else {
+        // Zones mode: FG = bg by freq, Freq = bg by efficiency (same as regions)
+        const freqDelt = splitZone
+          ? zone.frequency / (zone.total_freq || 1) -
+            splitZone.frequency / (splitZone.total_freq || 1)
+          : d1Zone
+            ? zone.frequency / (zone.total_freq || 1) - d1Zone.frequency
+            : 0;
+        if (showFreqAsNumber && (d1Zone || splitZone)) {
+          const ppp = zone.intensity / (zone.frequency || 1);
+          const compPpp = splitZone
+            ? splitZone.intensity / (splitZone.frequency || 1)
+            : d1Zone
+              ? d1Zone.intensity
+              : ppp;
+          fillColor = cbbEfficiencyScale((ppp - compPpp) * 0.5);
+        } else {
+          fillColor = CbbColors.diff10_blueOrange_offDef(freqDelt);
+        }
+      }
 
       const innerRadius = widthScale(zone.minDist);
       const outerRadius = widthScale(Math.min(40, zone.maxDist));
@@ -255,7 +318,7 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("d", arcPath3pt_Area)
         .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
         .style("opacity", 0.25)
-        .style("fill", CbbColors.diff10_blueOrange_offDef(freqDelt));
+        .style("fill", fillColor);
 
       if (zone.maxDist > 20) {
         // Only lines
@@ -319,88 +382,159 @@ const HexMap: React.FC<HexMapProps> = ({
     zones: HexZone[],
     d1Zones: HexZone[],
     tooltip: d3.Selection<HTMLDivElement, unknown, HTMLElement, any>,
-    splitZones?: HexZone[]
+    splitZones?: HexZone[],
   ) => {
     const cbbColorScale = isDef
       ? CbbColors.diff_def_eFgShotChart
       : CbbColors.diff_eFgShotChart;
+    const useRegionCircles = !!(
+      regionZones &&
+      d1RegionZones &&
+      zoneToRegion &&
+      firstZoneIndexPerRegion &&
+      firstZoneIndexPerRegion.length > 0
+    );
+    const splitRegionZones =
+      splitZones && useRegionCircles
+        ? ShotChartUtils.zonesToRegions(splitZones).regionZones
+        : undefined;
 
     (zones || []).forEach((zone, zoneIndex) => {
-      const distToUse = _.isNil(zone.distCenter)
-        ? 0.5 * (zone.minDist + zone.maxDist)
-        : zone.distCenter;
+      const showCircle = useRegionCircles
+        ? _.includes(firstZoneIndexPerRegion!, zoneIndex)
+        : true;
+      if (!showCircle) return;
 
-      const angle = (zone.angleOffset * Math.PI) / 90;
+      const zoneCenter = (z: HexZone) => {
+        const d = _.isNil(z.distCenter)
+          ? 0.5 * (z.minDist + z.maxDist)
+          : z.distCenter;
+        const a = (z.angleOffset * Math.PI) / 90;
+        return {
+          cx: xScale(0) + widthScale(d * Math.sin(a)),
+          cy: yScale(0) + widthScale(d * Math.cos(a)),
+        };
+      };
 
       const d1Zone = d1Zones?.[zoneIndex];
       const splitZone = splitZones ? splitZones[zoneIndex] : undefined;
 
-      const { cx, cy } = {
-        cx: xScale(0) + widthScale(distToUse * Math.sin(angle)),
-        cy: yScale(0) + widthScale(distToUse * Math.cos(angle)),
-      };
+      const r = useRegionCircles ? (zoneToRegion?.[zoneIndex] ?? 0) : 0;
+      const regionZone = useRegionCircles ? regionZones?.[r] : undefined;
+      const d1RegionZone = useRegionCircles ? d1RegionZones?.[r] : undefined;
+      const splitRegionZone = splitRegionZones?.[r];
 
-      const ppp = zone.intensity / (zone.frequency || 1);
-      const compPpp = splitZone
-        ? splitZone.intensity / (splitZone.frequency || 1)
-        : d1Zone
-        ? d1Zone.intensity
-        : ppp;
+      const zoneForStats = regionZone ?? zone;
+      const d1ForStats = d1RegionZone ?? d1Zone;
+      const splitForStats = splitRegionZone ?? splitZone;
+
+      // In regions mode, key circle (zone 2) is placed in the key (8 ft, straight up) so it stays in the key region and does not overlap at-rim
+      const keyCircleDist = 7.5;
+      const keyCircleAngle = (90 * Math.PI) / 90;
+      const { cx, cy } =
+        useRegionCircles && zoneIndex === 2
+          ? {
+              cx:
+                xScale(0) +
+                widthScale(keyCircleDist * Math.sin(keyCircleAngle)),
+              cy:
+                yScale(0) +
+                widthScale(keyCircleDist * Math.cos(keyCircleAngle)),
+            }
+          : zoneCenter(zone);
+
+      const ppp = zoneForStats.intensity / (zoneForStats.frequency || 1);
+      const compPpp = splitForStats
+        ? splitForStats.intensity / (splitForStats.frequency || 1)
+        : d1ForStats
+          ? d1ForStats.intensity
+          : ppp;
 
       // Always calculate eFG for colors (to keep colors consistent)
       const efgPct = ppp * 50;
       const compEfgPct = compPpp * 50;
 
-      // Calculate FG% based on zone distance
+      // Calculate FG% based on zone distance (use zone geometry for 2pt vs 3pt)
       const isThreePointZone = zone.minDist >= 21;
       const pointValue = isThreePointZone ? 3 : 2;
       const fgPct = Math.min(100, (ppp / pointValue) * 100);
       const compFgPct = Math.min(100, (compPpp / pointValue) * 100);
 
-      // Create display text based on useEfg setting
+      // Create display text based on useEfg / showFreqAsNumber
       const displayPct = useEfg ? efgPct : fgPct;
       const compDisplayPct = useEfg ? compEfgPct : compFgPct;
 
-      const maybeSplitText = splitZone
-        ? `${displayPct > compDisplayPct ? "+" : ""}${(displayPct - compDisplayPct).toFixed(0)}%`
+      const freqPct =
+        100 * (zoneForStats.frequency / (zoneForStats.total_freq || 1));
+
+      const maybeSplitText = splitForStats
+        ? showFreqAsNumber
+          ? `${(freqPct - 100 * (splitForStats.frequency / (splitForStats.total_freq || 1))).toFixed(0)}%`
+          : `${displayPct > compDisplayPct ? "+" : ""}${(displayPct - compDisplayPct).toFixed(0)}%`
         : undefined;
 
-      const toolTipTextBuilder = (zoneToUse: HexZone) => {
-        const shotsPercentage = (100 * (zoneToUse.frequency / (zoneToUse.total_freq || 1))).toFixed(1);
+      const displayText = showFreqAsNumber
+        ? (maybeSplitText ?? `${freqPct.toFixed(0)}%`)
+        : (maybeSplitText ?? `${displayPct.toFixed(0)}%`);
+
+      const freqDeltForCircle = splitForStats
+        ? zoneForStats.frequency / (zoneForStats.total_freq || 1) -
+          splitForStats.frequency / (splitForStats.total_freq || 1)
+        : d1ForStats
+          ? zoneForStats.frequency / (zoneForStats.total_freq || 1) -
+            d1ForStats.frequency
+          : 0;
+      const circleFill =
+        showFreqAsNumber && (d1ForStats || splitForStats)
+          ? CbbColors.diff10_blueOrange_offDef(freqDeltForCircle)
+          : (d1ForStats || splitForStats) &&
+              zoneForStats.frequency > 0 &&
+              (!splitForStats || splitForStats.frequency > 0)
+            ? cbbColorScale((ppp - compPpp) * 0.5)
+            : "none";
+
+      const toolTipTextBuilder = (zoneToUse: HexZone, isRegion: boolean) => {
+        const shotsPercentage = (
+          100 *
+          (zoneToUse.frequency / (zoneToUse.total_freq || 1))
+        ).toFixed(1);
         const pointsPerShot = zoneToUse.intensity / (zoneToUse.frequency || 1);
-        
+        const efgPctStr = (50 * pointsPerShot).toFixed(1);
+        const fgPctStr = Math.min(
+          100,
+          (pointsPerShot / pointValue) * 100,
+        ).toFixed(1);
+        if (showFreqAsNumber) {
+          const primary = useEfg
+            ? `eFG=[${efgPctStr}]% (FG=[${fgPctStr}]%)`
+            : `FG=[${fgPctStr}]% (eFG=[${efgPctStr}]%)`;
+          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, ${primary}`;
+        }
         if (useEfg) {
-          const efgPercentage = (50 * pointsPerShot).toFixed(1);
-          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, eFG=[${efgPercentage}]%`;
+          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, eFG=[${efgPctStr}]%`;
         } else {
-          // Calculate FG% based on zone distance
-          const isThreePointZone = zone.minDist >= 21;
-          const pointValue = isThreePointZone ? 3 : 2;
-          const fgPercentage = Math.min(100, (pointsPerShot / pointValue) * 100).toFixed(1);
-          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, FG=[${fgPercentage}]%`;
+          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, FG=[${fgPctStr}]%`;
         }
       };
       const tooltipHandler = () => {
-        const zoneTooltip = toolTipTextBuilder(zone);
-        const splitZoneTooltip = splitZone
-          ? `SPLITS: ${toolTipTextBuilder(splitZone)}`
+        const zoneTooltip = toolTipTextBuilder(zoneForStats, !!regionZone);
+        const splitZoneTooltip = splitForStats
+          ? `SPLITS: ${toolTipTextBuilder(splitForStats, !!splitRegionZone)}`
           : undefined;
 
-        const d1Tooltip = d1Zone
-          ? `D1 averages: [${(d1Zone.frequency * 100).toFixed(
-              1
-            )}]% of shots, ` + 
-            (useEfg 
-              ? `eFG=[${(d1Zone.intensity * 50).toFixed(1)}]%`
-              : `FG=[${Math.min(100, (d1Zone.intensity / pointValue) * 100).toFixed(1)}]%`)
+        const d1Tooltip = d1ForStats
+          ? `D1 averages: [${(d1ForStats.frequency * 100).toFixed(1)}]% of shots, ` +
+            (useEfg
+              ? `eFG=[${(d1ForStats.intensity * 50).toFixed(1)}]%`
+              : `FG=[${Math.min(100, (d1ForStats.intensity / pointValue) * 100).toFixed(1)}]%`)
           : "(D1 averages no available)";
 
         tooltip
           .style("opacity", 1)
           .html(
-            `<span>${zoneTooltip}<br/>${
-              splitZoneTooltip ? `<br/>${splitZoneTooltip}<br/>` : ""
-            }<br/>${d1Tooltip}</span>`
+            `<span>${zoneTooltip}${
+              splitZoneTooltip ? `<br/>${splitZoneTooltip}` : ""
+            }<br/><br/>${d1Tooltip}</span>`,
           );
       };
 
@@ -411,16 +545,9 @@ const HexMap: React.FC<HexMapProps> = ({
         .attr("r", 20)
         .style("stroke", "black")
         .style("stroke-width", "1px")
-        .style(
-          "fill",
-          (d1Zone || splitZone) &&
-            zone.frequency > 0 &&
-            (!splitZone || splitZone.frequency > 0)
-            ? cbbColorScale((ppp - compPpp) * 0.5)
-            : "none"
-        )
+        .style("fill", circleFill)
         .style("opacity", phase == 0 ? 0.8 : 0.5)
-        .on("mouseover", (event, d) => {
+        .on("mouseover", () => {
           tooltipHandler();
         })
         .on("mousemove", (event) => {
@@ -429,7 +556,7 @@ const HexMap: React.FC<HexMapProps> = ({
             .style("top", `${event.pageY - 20}px`);
         })
         .on("mouseout", () => {
-          tooltip.style("opacity", 0); // Hide tooltip on mouseout
+          tooltip.style("opacity", 0);
         });
 
       svg
@@ -441,11 +568,12 @@ const HexMap: React.FC<HexMapProps> = ({
         .style("font-size", "12px")
         .style("fill", "black")
         .text(
-          zone.frequency > 0 && (!splitZone || splitZone.frequency > 0)
-            ? maybeSplitText || `${displayPct.toFixed(0)}%`
-            : "-"
+          zoneForStats.frequency > 0 &&
+            (!splitForStats || splitForStats.frequency > 0)
+            ? displayText
+            : "-",
         )
-        .on("mouseover", (event, d) => {
+        .on("mouseover", () => {
           tooltipHandler();
         })
         .on("mousemove", (event) => {
@@ -454,7 +582,7 @@ const HexMap: React.FC<HexMapProps> = ({
             .style("top", `${event.pageY - 20}px`);
         })
         .on("mouseout", () => {
-          tooltip.style("opacity", 0); // Hide tooltip on mouseout
+          tooltip.style("opacity", 0);
         });
     });
   };
@@ -488,8 +616,8 @@ const HexMap: React.FC<HexMapProps> = ({
         ? CbbColors.diff_def_eFgShotChart
         : CbbColors.diff_eFgShotChart
       : isDef
-      ? CbbColors.def_eFgShotChart
-      : CbbColors.off_eFgShotChart;
+        ? CbbColors.def_eFgShotChart
+        : CbbColors.off_eFgShotChart;
 
     // Set up the hexbin generator
     const hexbinGenerator = hexbin<number[]>()
@@ -569,7 +697,7 @@ const HexMap: React.FC<HexMapProps> = ({
           const d1Avg = diffDataSet?.[hexData.key];
           const d1AvgStr = d1Avg
             ? `D1 averages: [${(100 * d1Avg.avg_freq).toFixed(
-                1
+                1,
               )}]% of shots, eFG=[${(50 * d1Avg.avg_ppp).toFixed(1)}]%`
             : "(D1 averages not available)";
           tooltip
@@ -613,7 +741,20 @@ const HexMap: React.FC<HexMapProps> = ({
     return () => {
       tooltip.remove(); // Clean up tooltip on unmount
     };
-  }, [data, resolvedTheme]);
+  }, [
+    data,
+    resolvedTheme,
+    zones,
+    splitZones,
+    d1Zones,
+    buildZones,
+    regionZones,
+    d1RegionZones,
+    zoneToRegion,
+    firstZoneIndexPerRegion,
+    showFreqAsNumber,
+    useEfg,
+  ]);
 
   return <svg ref={svgRef} width={width} height={height}></svg>;
 };
