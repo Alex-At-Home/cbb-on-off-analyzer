@@ -69,7 +69,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
 }) => {
   const { resolvedTheme } = useTheme();
   const [quickSwitch, setQuickSwitch] = useState<string | undefined>(
-    chartOpts?.quickSwitch
+    chartOpts?.quickSwitch,
   );
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
     NodeJS.Timer | undefined
@@ -77,7 +77,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   const [buildZones, setBuildZones] = useState<boolean>(
     !chartOpts || _.isNil(chartOpts?.buildZones)
       ? ParamDefaults.defaultShotChartShowZones
-      : chartOpts.buildZones
+      : chartOpts.buildZones,
   );
   const [useEfg, setUseEfg] = useState<boolean>(chartOpts?.useEfg ?? false);
 
@@ -86,7 +86,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       setBuildZones(
         _.isNil(chartOpts?.buildZones)
           ? ParamDefaults.defaultShotChartShowZones
-          : chartOpts.buildZones
+          : chartOpts.buildZones,
       );
       setUseEfg(chartOpts?.useEfg ?? false);
     }
@@ -129,7 +129,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
       const selOffDefOverrides = (quickSwitch
         ? _.find(
             quickSwitchOptions || [],
-            (opt) => opt.title == quickSwitchBase
+            (opt) => opt.title == quickSwitchBase,
           )?.offDefOverrides
         : offDefOverrides) ||
         offDefOverrides || [false, true];
@@ -138,7 +138,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
         (quickSwitch
           ? _.find(
               quickSwitchOptions || [],
-              (opt) => opt.title == quickSwitchBase
+              (opt) => opt.title == quickSwitchBase,
             )?.labelOverrides
           : labelOverrides) ||
         labelOverrides ||
@@ -150,7 +150,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.off
             : off) || off,
         extraRowOff: def,
@@ -158,7 +158,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.def
             : def) || def,
         selLabelOverrides: [
@@ -187,7 +187,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.off
             : off) || off,
 
@@ -205,19 +205,19 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.off
             : off) || off,
         extraRowDef:
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.def
             : def) || def,
         selOffDefOverrides: offDefOverrides,
         selLabelOverrides: (labelOverrides || ["Offense:", "Defense:"]).map(
-          (l) => `(Delta: [${quickSwitchBase}]) ${l}`
+          (l) => `(Delta: [${quickSwitchBase}]) ${l}`,
         ),
       };
     } else {
@@ -226,28 +226,28 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.off
             : off) || off,
         selectedDef:
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.def
             : def) || def,
         selOffDefOverrides:
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.offDefOverrides
             : offDefOverrides) || offDefOverrides,
         selLabelOverrides:
           (quickSwitch
             ? _.find(
                 quickSwitchOptions || [],
-                (opt) => opt.title == quickSwitchBase
+                (opt) => opt.title == quickSwitchBase,
               )?.labelOverrides
             : labelOverrides) || labelOverrides,
       };
@@ -261,7 +261,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   } = ShotChartUtils.shotStatsToHexData(
     selectedOff,
     diffDataSet,
-    quickSwitchExtra == "diff" ? extraRowOff : undefined
+    quickSwitchExtra == "diff" ? extraRowOff : undefined,
   );
   const {
     data: defData,
@@ -270,7 +270,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
   } = ShotChartUtils.shotStatsToHexData(
     selectedDef,
     diffDataSet,
-    quickSwitchExtra == "diff" ? extraRowDef : undefined
+    quickSwitchExtra == "diff" ? extraRowDef : undefined,
   );
   const { data: extraRowOffData, zones: extraRowOffZones } = extraRowOff
     ? ShotChartUtils.shotStatsToHexData(extraRowOff, diffDataSet)
@@ -295,7 +295,7 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             newQuickSwitch: string | undefined,
             newTitle: string | undefined,
             source: QuickSwitchSource,
-            fromTimer: boolean
+            fromTimer: boolean,
           ) => {
             if (fromTimer) {
               setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
@@ -488,30 +488,36 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
             <ToggleButtonGroup
               items={[
                 {
-                  label: "Zones",
-                  tooltip: "Show the shots grouped into large court zones",
-                  toggled: buildZones,
-                  onClick: () => {
-                    onChangeChartOpts?.({
-                      buildZones: !buildZones,
-                      quickSwitch: quickSwitch,
-                      useEfg: useEfg,
-                    });
-                    setBuildZones(!buildZones);
-                  },
-                },
-                {
-                  label: "Clusters",
-                  tooltip: "Show the shots grouped into small clusters",
-                  toggled: !buildZones,
-                  onClick: () => {
-                    onChangeChartOpts?.({
-                      buildZones: !buildZones,
-                      quickSwitch: quickSwitch,
-                      useEfg: useEfg,
-                    });
-                    setBuildZones(!buildZones);
-                  },
+                  items: [
+                    {
+                      label: "Zones",
+                      tooltip:
+                        "Zones: Show the shots grouped into large court zones",
+                      toggled: buildZones,
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: true,
+                          quickSwitch: quickSwitch,
+                          useEfg: useEfg,
+                        });
+                        setBuildZones(true);
+                      },
+                    },
+                    {
+                      label: "Clusters",
+                      tooltip:
+                        "Clusters: Show the shots grouped into small clusters",
+                      toggled: !buildZones,
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: false,
+                          quickSwitch: quickSwitch,
+                          useEfg: useEfg,
+                        });
+                        setBuildZones(false);
+                      },
+                    },
+                  ],
                 },
                 {
                   label: " | ",
@@ -520,31 +526,35 @@ const ShotChartDiagView: React.FunctionComponent<Props> = ({
                   onClick: () => null,
                 },
                 {
-                  label: "FG%",
-                  tooltip: "Show regular field goal percentage",
-                  toggled: !useEfg,
-                  onClick: () => {
-                    onChangeChartOpts?.({
-                      buildZones: buildZones,
-                      quickSwitch: quickSwitch,
-                      useEfg: false,
-                    });
-                    setUseEfg(false);
-                  },
-                },
-                {
-                  label: "eFG%",
-                  tooltip:
-                    "Show effective field goal percentage (3-pointers weighted 1.5x)",
-                  toggled: useEfg,
-                  onClick: () => {
-                    onChangeChartOpts?.({
-                      buildZones: buildZones,
-                      quickSwitch: quickSwitch,
-                      useEfg: true,
-                    });
-                    setUseEfg(true);
-                  },
+                  items: [
+                    {
+                      label: "FG%",
+                      tooltip: "FG%: Show regular field goal percentage",
+                      toggled: !useEfg,
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: buildZones,
+                          quickSwitch: quickSwitch,
+                          useEfg: false,
+                        });
+                        setUseEfg(false);
+                      },
+                    },
+                    {
+                      label: "eFG%",
+                      tooltip:
+                        "eFG%: Show effective field goal percentage (3-pointers weighted 1.5x)",
+                      toggled: useEfg,
+                      onClick: () => {
+                        onChangeChartOpts?.({
+                          buildZones: buildZones,
+                          quickSwitch: quickSwitch,
+                          useEfg: true,
+                        });
+                        setUseEfg(true);
+                      },
+                    },
+                  ],
                 },
               ]}
             />
