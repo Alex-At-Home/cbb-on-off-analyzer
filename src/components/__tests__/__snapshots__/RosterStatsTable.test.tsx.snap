@@ -32280,7 +32280,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -1.8106201070214667,
+                        "old_value": 98.45944864880143,
                         "override": "Luck adjusted",
                         "value": 99.32197121009814,
                       }
@@ -32526,7 +32526,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -0.6014838949513774,
+                        "old_value": 103.59093925056924,
                         "override": "Luck adjusted",
                         "value": 102.30640547210334,
                       }
@@ -32772,7 +32772,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -1.6230609318106304,
+                        "old_value": 99.2719681851988,
                         "override": "Luck adjusted",
                         "value": 99.80688094278405,
                       }
@@ -33018,7 +33018,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -3.0223487596100256,
+                        "old_value": 91.67669712723058,
                         "override": "Luck adjusted",
                         "value": 94.26606622521524,
                       }
@@ -33264,7 +33264,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -2.8963479181387926,
+                        "old_value": 92.18242868741675,
                         "override": "Luck adjusted",
                         "value": 93.84564828748519,
                       }
@@ -33510,7 +33510,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": 5.878053951393475,
+                        "old_value": 131.27567083056888,
                         "override": "Luck adjusted",
                         "value": 111.07476807956373,
                       }
@@ -33769,7 +33769,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.6230609318106304,
+                                "old_value": 99.2719681851988,
                                 "override": "Luck adjusted",
                                 "value": 99.80688094278405,
                               }
@@ -34022,7 +34022,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.6230609318106304,
+                                "old_value": 99.2719681851988,
                                 "override": "Luck adjusted",
                                 "value": 99.80688094278405,
                               }
@@ -34277,7 +34277,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -0.6014838949513774,
+                                "old_value": 103.59093925056924,
                                 "override": "Luck adjusted",
                                 "value": 102.30640547210334,
                               }
@@ -34530,7 +34530,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -0.6014838949513774,
+                                "old_value": 103.59093925056924,
                                 "override": "Luck adjusted",
                                 "value": 102.30640547210334,
                               }
@@ -34785,7 +34785,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.8106201070214667,
+                                "old_value": 98.45944864880143,
                                 "override": "Luck adjusted",
                                 "value": 99.32197121009814,
                               }
@@ -35038,7 +35038,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.8106201070214667,
+                                "old_value": 98.45944864880143,
                                 "override": "Luck adjusted",
                                 "value": 99.32197121009814,
                               }
@@ -35293,7 +35293,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": 5.878053951393475,
+                                "old_value": 131.27567083056888,
                                 "override": "Luck adjusted",
                                 "value": 111.07476807956373,
                               }
@@ -35546,7 +35546,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": 5.878053951393475,
+                                "old_value": 131.27567083056888,
                                 "override": "Luck adjusted",
                                 "value": 111.07476807956373,
                               }
@@ -35801,7 +35801,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -2.8963479181387926,
+                                "old_value": 92.18242868741675,
                                 "override": "Luck adjusted",
                                 "value": 93.84564828748519,
                               }
@@ -36054,7 +36054,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -2.8963479181387926,
+                                "old_value": 92.18242868741675,
                                 "override": "Luck adjusted",
                                 "value": 93.84564828748519,
                               }
@@ -36309,7 +36309,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -3.0223487596100256,
+                                "old_value": 91.67669712723058,
                                 "override": "Luck adjusted",
                                 "value": 94.26606622521524,
                               }
@@ -36562,7 +36562,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                 }
 
                 def_rtg: Object {
-                                "old_value": -3.0223487596100256,
+                                "old_value": 91.67669712723058,
                                 "override": "Luck adjusted",
                                 "value": 94.26606622521524,
                               }
@@ -36850,7 +36850,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -1.6230609318106304,
+                        "old_value": 99.2719681851988,
                         "override": "Luck adjusted",
                         "value": 99.80688094278405,
                       }
@@ -37096,7 +37096,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
             }
 
             def_rtg: Object {
-                        "old_value": -2.8963479181387926,
+                        "old_value": 92.18242868741675,
                         "override": "Luck adjusted",
                         "value": 93.84564828748519,
                       }
@@ -38021,7 +38021,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
 
                   def_rtg: Object {
-                                    "old_value": -1.8106201070214667,
+                                    "old_value": 98.45944864880143,
                                     "override": "Luck adjusted",
                                     "value": 99.32197121009814,
                                   }
@@ -38296,7 +38296,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
                       def_rtg: Object {
-                                            "old_value": -1.8106201070214667,
+                                            "old_value": 98.45944864880143,
                                             "override": "Luck adjusted",
                                             "value": 99.32197121009814,
                                           }
@@ -38594,7 +38594,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
 
                   def_rtg: Object {
-                                    "old_value": -0.6014838949513774,
+                                    "old_value": 103.59093925056924,
                                     "override": "Luck adjusted",
                                     "value": 102.30640547210334,
                                   }
@@ -38869,7 +38869,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
                       def_rtg: Object {
-                                            "old_value": -0.6014838949513774,
+                                            "old_value": 103.59093925056924,
                                             "override": "Luck adjusted",
                                             "value": 102.30640547210334,
                                           }
@@ -39171,7 +39171,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
 
                   def_rtg: Object {
-                                    "old_value": -3.0223487596100256,
+                                    "old_value": 91.67669712723058,
                                     "override": "Luck adjusted",
                                     "value": 94.26606622521524,
                                   }
@@ -39446,7 +39446,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
                       def_rtg: Object {
-                                            "old_value": -3.0223487596100256,
+                                            "old_value": 91.67669712723058,
                                             "override": "Luck adjusted",
                                             "value": 94.26606622521524,
                                           }
@@ -39748,7 +39748,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   }
 
                   def_rtg: Object {
-                                    "old_value": 5.878053951393475,
+                                    "old_value": 131.27567083056888,
                                     "override": "Luck adjusted",
                                     "value": 111.07476807956373,
                                   }
@@ -40023,7 +40023,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       }
 
                       def_rtg: Object {
-                                            "old_value": 5.878053951393475,
+                                            "old_value": 131.27567083056888,
                                             "override": "Luck adjusted",
                                             "value": 111.07476807956373,
                                           }
@@ -40572,7 +40572,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -1.8106201070214667,
+                        "old_value": 98.45944864880143,
                         "override": "Luck adjusted",
                         "value": 99.41342344072078,
                       }
@@ -40826,7 +40826,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -0.6014838949513774,
+                        "old_value": 103.59093925056924,
                         "override": "Luck adjusted",
                         "value": 101.49268293893864,
                       }
@@ -41080,7 +41080,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -1.6230609318106304,
+                        "old_value": 99.2719681851988,
                         "override": "Luck adjusted",
                         "value": 99.80688094278405,
                       }
@@ -41334,7 +41334,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -3.0223487596100256,
+                        "old_value": 91.67669712723058,
                         "override": "Luck adjusted",
                         "value": 94.52252757797264,
                       }
@@ -41588,7 +41588,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -2.8963479181387926,
+                        "old_value": 92.18242868741675,
                         "override": "Luck adjusted",
                         "value": 93.84564828748519,
                       }
@@ -41854,7 +41854,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": 5.878053951393475,
+                        "old_value": 131.27567083056888,
                         "override": "Luck adjusted",
                         "value": 111.07476807956373,
                       }
@@ -42142,7 +42142,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.6230609318106304,
+                                "old_value": 99.2719681851988,
                                 "override": "Luck adjusted",
                                 "value": 99.80688094278405,
                               }
@@ -42403,7 +42403,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.6230609318106304,
+                                "old_value": 99.2719681851988,
                                 "override": "Luck adjusted",
                                 "value": 99.80688094278405,
                               }
@@ -42666,7 +42666,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -0.6014838949513774,
+                                "old_value": 103.59093925056924,
                                 "override": "Luck adjusted",
                                 "value": 101.49268293893864,
                               }
@@ -42927,7 +42927,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -0.6014838949513774,
+                                "old_value": 103.59093925056924,
                                 "override": "Luck adjusted",
                                 "value": 101.49268293893864,
                               }
@@ -43190,7 +43190,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.8106201070214667,
+                                "old_value": 98.45944864880143,
                                 "override": "Luck adjusted",
                                 "value": 99.41342344072078,
                               }
@@ -43451,7 +43451,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -1.8106201070214667,
+                                "old_value": 98.45944864880143,
                                 "override": "Luck adjusted",
                                 "value": 99.41342344072078,
                               }
@@ -43714,7 +43714,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": 5.878053951393475,
+                                "old_value": 131.27567083056888,
                                 "override": "Luck adjusted",
                                 "value": 111.07476807956373,
                               }
@@ -43969,7 +43969,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": 5.878053951393475,
+                                "old_value": 131.27567083056888,
                                 "override": "Luck adjusted",
                                 "value": 111.07476807956373,
                               }
@@ -44226,7 +44226,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -2.8963479181387926,
+                                "old_value": 92.18242868741675,
                                 "override": "Luck adjusted",
                                 "value": 93.84564828748519,
                               }
@@ -44499,7 +44499,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -2.8963479181387926,
+                                "old_value": 92.18242868741675,
                                 "override": "Luck adjusted",
                                 "value": 93.84564828748519,
                               }
@@ -44774,7 +44774,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -3.0223487596100256,
+                                "old_value": 91.67669712723058,
                                 "override": "Luck adjusted",
                                 "value": 94.52252757797264,
                               }
@@ -45035,7 +45035,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                 }
 
                 def_rtg: Object {
-                                "old_value": -3.0223487596100256,
+                                "old_value": 91.67669712723058,
                                 "override": "Luck adjusted",
                                 "value": 94.52252757797264,
                               }
@@ -45331,7 +45331,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -1.6230609318106304,
+                        "old_value": 99.2719681851988,
                         "override": "Luck adjusted",
                         "value": 99.80688094278405,
                       }
@@ -45585,7 +45585,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
             }
 
             def_rtg: Object {
-                        "old_value": -2.8963479181387926,
+                        "old_value": 92.18242868741675,
                         "override": "Luck adjusted",
                         "value": 93.84564828748519,
                       }
@@ -46538,7 +46538,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
 
                   def_rtg: Object {
-                                    "old_value": -1.8106201070214667,
+                                    "old_value": 98.45944864880143,
                                     "override": "Luck adjusted",
                                     "value": 99.41342344072078,
                                   }
@@ -46821,7 +46821,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": -1.8106201070214667,
+                                            "old_value": 98.45944864880143,
                                             "override": "Luck adjusted",
                                             "value": 99.41342344072078,
                                           }
@@ -47136,7 +47136,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": -1.8106201070214667,
+                                            "old_value": 98.45944864880143,
                                             "override": "Luck adjusted",
                                             "value": 99.41342344072078,
                                           }
@@ -47944,7 +47944,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
 
                   def_rtg: Object {
-                                    "old_value": -0.6014838949513774,
+                                    "old_value": 103.59093925056924,
                                     "override": "Luck adjusted",
                                     "value": 101.49268293893864,
                                   }
@@ -48227,7 +48227,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": -0.6014838949513774,
+                                            "old_value": 103.59093925056924,
                                             "override": "Luck adjusted",
                                             "value": 101.49268293893864,
                                           }
@@ -48542,7 +48542,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": -0.6014838949513774,
+                                            "old_value": 103.59093925056924,
                                             "override": "Luck adjusted",
                                             "value": 101.49268293893864,
                                           }
@@ -49354,7 +49354,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
 
                   def_rtg: Object {
-                                    "old_value": -3.0223487596100256,
+                                    "old_value": 91.67669712723058,
                                     "override": "Luck adjusted",
                                     "value": 94.52252757797264,
                                   }
@@ -49637,7 +49637,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": -3.0223487596100256,
+                                            "old_value": 91.67669712723058,
                                             "override": "Luck adjusted",
                                             "value": 94.52252757797264,
                                           }
@@ -49952,7 +49952,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": -3.0223487596100256,
+                                            "old_value": 91.67669712723058,
                                             "override": "Luck adjusted",
                                             "value": 94.52252757797264,
                                           }
@@ -50764,7 +50764,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   }
 
                   def_rtg: Object {
-                                    "old_value": 5.878053951393475,
+                                    "old_value": 131.27567083056888,
                                     "override": "Luck adjusted",
                                     "value": 111.07476807956373,
                                   }
@@ -51041,7 +51041,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": 5.878053951393475,
+                                            "old_value": 131.27567083056888,
                                             "override": "Luck adjusted",
                                             "value": 111.07476807956373,
                                           }
@@ -51350,7 +51350,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       }
 
                       def_rtg: Object {
-                                            "old_value": 5.878053951393475,
+                                            "old_value": 131.27567083056888,
                                             "override": "Luck adjusted",
                                             "value": 111.07476807956373,
                                           }

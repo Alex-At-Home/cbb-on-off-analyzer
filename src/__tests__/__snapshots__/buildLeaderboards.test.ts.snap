@@ -30,7 +30,7 @@ Array [
         "value": 0.096,
       },
       "def_rtg": Object {
-        "old_value": -1.658768272310465,
+        "old_value": 99.2719681851988,
         "override": "Luck adjusted",
         "value": 99.80688094278405,
       },
@@ -350,7 +350,7 @@ Array [
         "value": 0.1380952380952381,
       },
       "def_rtg": Object {
-        "old_value": -2.960067572337846,
+        "old_value": 92.18242868741675,
         "override": "Luck adjusted",
         "value": 93.84564828748519,
       },
@@ -685,7 +685,7 @@ Array [
         "value": 0.096,
       },
       "def_rtg": Object {
-        "old_value": -1.658768272310465,
+        "old_value": 99.2719681851988,
         "override": "Luck adjusted",
         "value": 99.80688094278405,
       },
