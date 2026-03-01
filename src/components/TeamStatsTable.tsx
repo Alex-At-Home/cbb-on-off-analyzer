@@ -124,57 +124,57 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const [adjustForLuck, setAdjustForLuck] = useState(
     _.isNil(gameFilterParams.onOffLuck)
       ? ParamDefaults.defaultOnOffLuckAdjust
-      : gameFilterParams.onOffLuck
+      : gameFilterParams.onOffLuck,
   );
   const [showLuckAdjDiags, setShowLuckAdjDiags] = useState(
     _.isNil(gameFilterParams.showOnOffLuckDiags)
       ? ParamDefaults.defaultOnOffLuckDiagMode
-      : gameFilterParams.showOnOffLuckDiags
+      : gameFilterParams.showOnOffLuckDiags,
   );
   const [luckConfig, setLuckConfig] = useState(
     _.isNil(gameFilterParams.luck)
       ? ParamDefaults.defaultLuckConfig
-      : gameFilterParams.luck
+      : gameFilterParams.luck,
   );
 
   const [showRoster, setShowRoster] = useState(
     _.isNil(gameFilterParams.showRoster)
       ? ParamDefaults.defaultTeamShowRoster
-      : gameFilterParams.showRoster
+      : gameFilterParams.showRoster,
   );
 
   const [showGameInfo, setShowGameInfo] = useState(
     _.isNil(gameFilterParams.showGameInfo)
       ? ParamDefaults.defaultTeamShowGameInfo
-      : gameFilterParams.showGameInfo
+      : gameFilterParams.showGameInfo,
   );
 
   const [showDiffs, setShowDiffs] = useState(
-    _.isNil(gameFilterParams.teamDiffs) ? false : gameFilterParams.teamDiffs
+    _.isNil(gameFilterParams.teamDiffs) ? false : gameFilterParams.teamDiffs,
   );
 
   // Diff mode state:
   const [diffsHideDatasets, setDiffsHideDatasets] = useState(
-    gameFilterParams.diffsHideDatasets || ""
+    gameFilterParams.diffsHideDatasets || "",
   );
   const [diffsCompare, setDiffsCompare] = useState(
-    gameFilterParams.diffsCompare || ""
+    gameFilterParams.diffsCompare || "",
   );
   const [diffLock, setDiffLock] = useState(
-    _.isNil(gameFilterParams.diffLock) ? false : gameFilterParams.diffLock
+    _.isNil(gameFilterParams.diffLock) ? false : gameFilterParams.diffLock,
   );
 
   const [showExtraInfo, setShowExtraInfo] = useState(
     _.isNil(gameFilterParams.showExtraInfo)
       ? false
-      : gameFilterParams.showExtraInfo
+      : gameFilterParams.showExtraInfo,
   );
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(gameFilterParams.showGrades)
       ? ParamDefaults.defaultEnabledGrade
-      : gameFilterParams.showGrades
+      : gameFilterParams.showGrades,
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);
@@ -185,20 +185,20 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const [showShotCharts, setShowShotCharts] = useState<boolean>(
     _.isNil(gameFilterParams.teamShotCharts)
       ? false
-      : gameFilterParams.teamShotCharts
+      : gameFilterParams.teamShotCharts,
   );
 
   /** (placeholder for positional info)*/
   const [showPlayTypes, setShowPlayTypes] = useState(
     _.isNil(gameFilterParams.showTeamPlayTypes)
       ? ParamDefaults.defaultTeamShowPlayTypes
-      : gameFilterParams.showTeamPlayTypes
+      : gameFilterParams.showTeamPlayTypes,
   );
 
   const [playTypeConfigStr, setPlayTypeConfigStr] = useState<string>(
     _.isNil(gameFilterParams.teamPlayTypeConfig)
       ? ParamDefaults.defaultTeamPlayTypeConfig
-      : gameFilterParams.teamPlayTypeConfig
+      : gameFilterParams.teamPlayTypeConfig,
   );
 
   const [playStyleConfig, setPlayStyleConfig] = useState<string>(() => {
@@ -223,8 +223,16 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       ? undefined
       : {
           buildZones: gameFilterParams.teamShotChartsShowZones,
+          viewMode:
+            (gameFilterParams.teamShotChartsViewMode as
+              | "regions"
+              | "zones"
+              | "clusters"
+              | undefined) ?? "zones",
           useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
-        }
+          showFreqAsNumber:
+            gameFilterParams.teamShotChartsShowFreqAsNumber ?? false,
+        },
   );
 
   /** Whether we are showing the luck config modal */
@@ -238,16 +246,16 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(gameFilterParams.stickyQuickToggle)
       ? true
-      : gameFilterParams.stickyQuickToggle
+      : gameFilterParams.stickyQuickToggle,
   );
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    gameFilterParams.teamTablePreset
+    gameFilterParams.teamTablePreset,
   );
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
-    gameFilterParams.teamTableConfigExtraCols || []
+    gameFilterParams.teamTableConfigExtraCols || [],
   );
   /** Disabled table columns */
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
@@ -259,17 +267,17 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     setAdjustForLuck(
       _.isNil(gameFilterParams.onOffLuck)
         ? ParamDefaults.defaultOnOffLuckAdjust
-        : gameFilterParams.onOffLuck
+        : gameFilterParams.onOffLuck,
     );
     setLuckConfig(
       _.isNil(gameFilterParams.luck)
         ? ParamDefaults.defaultLuckConfig
-        : gameFilterParams.luck
+        : gameFilterParams.luck,
     );
     setStickyQuickToggle(
       _.isNil(gameFilterParams.stickyQuickToggle)
         ? true
-        : gameFilterParams.stickyQuickToggle
+        : gameFilterParams.stickyQuickToggle,
     );
   }, [gameFilterParams]);
 
@@ -277,7 +285,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   //TODO: have stats logic separate from grade cache?
 
   const [divisionStatsCache, setDivisionStatsCache] = useState(
-    {} as DivisionStatsCache
+    {} as DivisionStatsCache,
   );
 
   // Events that trigger building or rebuilding the division stats cache
@@ -291,7 +299,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
         GradeTableUtils.populateTeamDivisionStatsCache(
           gameFilterParams,
-          setDivisionStatsCache
+          setDivisionStatsCache,
         );
       }
     }
@@ -336,7 +344,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     if (showingDefStyle && opponentTeams.length > 0) {
       // Only fetch if we don't have all the teams we need
       const missingTeams = opponentTeams.filter(
-        (team) => !allPlayerStatsCache.cache[team]
+        (team) => !allPlayerStatsCache.cache[team],
       );
       if (missingTeams.length > 0) {
         // Create a set of opponent teams for efficient lookup
@@ -348,17 +356,17 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
           currentYear,
           "All",
           [],
-          []
+          [],
         );
         fetchPlayers.then((players) => {
           // Filter players to only those on opponent teams, then group
           const filteredPlayers = _.flatMap(
             players,
-            (pp) => (pp.players || []) as Array<IndivStatSet>
+            (pp) => (pp.players || []) as Array<IndivStatSet>,
           ).filter(
             (p) =>
               opponentTeamsSet.has(p.team || "") &&
-              !allPlayerStatsCache.cache[p.team || ""]
+              !allPlayerStatsCache.cache[p.team || ""],
           );
           const filteredCache = _.groupBy(filteredPlayers, (p) => p.team);
           setAllPlayerStatsCache((curr) => {
@@ -366,8 +374,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               `(Defensive style info [${curr.cacheYear}][${
                 curr.cacheGender
               }]: Added [${_.keys(filteredCache)}] to [${_.keys(
-                curr.cache
-              )}], opponents=[${opponentTeams}])`
+                curr.cache,
+              )}], opponents=[${opponentTeams}])`,
             );
             _.forEach(curr.cache, (val, key) => (filteredCache[key] = val));
             return {
@@ -415,6 +423,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
       teamShotCharts: showShotCharts,
       teamShotChartsShowZones: shotChartConfig?.buildZones,
       teamShotChartsUseEfg: shotChartConfig?.useEfg,
+      teamShotChartsViewMode: shotChartConfig?.viewMode,
+      teamShotChartsShowFreqAsNumber: shotChartConfig?.showFreqAsNumber,
       stickyQuickToggle,
       teamPlayTypeConfig: playTypeConfigStr,
       teamPlayStyleConfig: playStyleConfig,
@@ -459,8 +469,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const selectedDatasetKeys: string[] = isMultiMode
     ? diffsHideDatasets.slice("multi:".length).split(",").filter(Boolean)
     : diffsHideDatasets
-    ? [diffsHideDatasets]
-    : [];
+      ? [diffsHideDatasets]
+      : [];
   // For backwards compatibility, use first key as "the" selected key for single mode
   const selectedDatasetKey = selectedDatasetKeys[0] || "";
 
@@ -468,13 +478,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   const maybePresetPhrase = _.zip(
     gameFilterParams.splitPhrases || [],
     FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
-      []
+      [],
   ).map((options) => options?.[0] || options?.[1]);
 
   const maybeFilterPhrase =
     gameFilterParams.basePhrase ||
     FilterPresetUtils.getPresetFilterPhrase(
-      gameFilterParams.presetMode || "??"
+      gameFilterParams.presetMode || "??",
     );
 
   // Available datasets with their short names (base goes at the end)
@@ -568,13 +578,13 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
     },
 
     luckConfig,
-    divisionStatsCache
+    divisionStatsCache,
   );
 
   const buildRows = (
     stats: TeamStatsBreakdown | undefined,
     naviationRef: React.RefObject<HTMLTableRowElement>,
-    withSeparator: boolean
+    withSeparator: boolean,
   ) => {
     if (stats) {
       stats.teamStatsRows[0].navigationRef = naviationRef;
@@ -635,7 +645,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         : defaultDatasetOrder;
 
     const visibleDatasets = datasetOrder.filter((key) =>
-      shouldShowDataset(key)
+      shouldShowDataset(key),
     );
 
     return _.flatten([
@@ -708,7 +718,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                   ? selectedDatasetKeys.filter((k) => k !== dataset.key)
                   : [...selectedDatasetKeys, dataset.key];
                 setDiffsHideDatasets(
-                  newKeys.length > 0 ? `multi:${newKeys.join(",")}` : ""
+                  newKeys.length > 0 ? `multi:${newKeys.join(",")}` : "",
                 );
               } else {
                 // Single mode: clicking already-selected clears selection (show all)
@@ -747,7 +757,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               setDiffsHideDatasets(
                 selectedDatasetKey
                   ? `multi:${selectedDatasetKey}`
-                  : `multi:${availableDatasets[0]?.key || ""}`
+                  : `multi:${availableDatasets[0]?.key || ""}`,
               );
             }
           },
@@ -773,18 +783,18 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         quickSwitch: string | undefined,
         newTitle: string | undefined,
         source: QuickSwitchSource,
-        fromTimer: boolean
+        fromTimer: boolean,
       ) => {
         if (quickSwitch) {
           // Parse the title and mode from quickSwitch (format: "shortName:|:mode")
           const [title, mode] = quickSwitch.split(quickSwitchDelim);
           // Find the option by title (shortName) to get the sourceKey
           const matchingOpt = comparisonDatasetOptions.find(
-            (opt) => opt.title === title
+            (opt) => opt.title === title,
           );
           if (matchingOpt?.sourceKey) {
             setDiffsCompare(
-              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`
+              `${matchingOpt.sourceKey}${quickSwitchDelim}${mode || "extra"}`,
             );
           }
         } else {
@@ -801,8 +811,8 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               setPlayTypeConfigStr(
                 teamRadarConfigToStr(
                   { ...config, quickSwitch: undefined },
-                  false
-                )
+                  false,
+                ),
               );
             }
           }
@@ -843,12 +853,12 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
-          }
+          },
         );
       } else {
         return undefined;
       }
-    }
+    },
   );
 
   const quickToggleBar = (
@@ -953,7 +963,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
               } else {
                 const supportCheck =
                   TeamStatsTableUtils.isDefensiveStyleSupported(
-                    gameFilterParams
+                    gameFilterParams,
                   );
                 if (!supportCheck.supported) {
                   setShowDefensiveUnsupportedModal(true);
@@ -1010,7 +1020,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                   onClick: () => setShowShotCharts(!showShotCharts),
                 },
               ]
-            : []
+            : [],
         )}
     />
   );
@@ -1195,7 +1205,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
                   ? {
                       hybridMode:
                         GradeTableUtils.showingHybridOrStandaloneGrades(
-                          showGrades
+                          showGrades,
                         ),
                       exactRanks: true,
                       colorChooser: CbbColors.integratedColorsDefault,

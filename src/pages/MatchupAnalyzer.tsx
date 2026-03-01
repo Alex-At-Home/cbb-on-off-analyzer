@@ -213,6 +213,19 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
   const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
     startingMatchupFilterParams.shotChartsUseEfg ?? false,
   );
+  const [shotChartsViewMode, setShotChartsViewMode] = useState<
+    "regions" | "zones" | "clusters"
+  >(
+    (startingMatchupFilterParams.shotChartsViewMode as
+      | "regions"
+      | "zones"
+      | "clusters"
+      | undefined) ?? ParamDefaults.defaultShotChartViewMode,
+  );
+  const [shotChartsShowFreqAsNumber, setShotChartsShowFreqAsNumber] = useState(
+    startingMatchupFilterParams.shotChartsShowFreqAsNumber ??
+      ParamDefaults.defaultShotChartsShowFreqAsNumber,
+  );
 
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
     startingMatchupFilterParams.playStyleConfigStr ||
@@ -265,6 +278,14 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
         !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],
+        rawParams.shotChartsViewMode == ParamDefaults.defaultShotChartViewMode
+          ? ["shotChartsViewMode"]
+          : [],
+        (rawParams.shotChartsShowFreqAsNumber ??
+          ParamDefaults.defaultShotChartsShowFreqAsNumber) ==
+        ParamDefaults.defaultShotChartsShowFreqAsNumber
+          ? ["shotChartsShowFreqAsNumber"]
+          : [],
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["playStyleConfigStr"]
           : [],
@@ -356,9 +377,17 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
       ...matchupFilterParamsRef.current,
       shotChartsShowZones: shotChartsShowZones,
       shotChartsUseEfg: shotChartsUseEfg,
+      shotChartsViewMode: shotChartsViewMode,
+      shotChartsShowFreqAsNumber: shotChartsShowFreqAsNumber,
       playStyleConfigStr: playStyleConfigStr,
     });
-  }, [shotChartsShowZones, shotChartsUseEfg, playStyleConfigStr]);
+  }, [
+    shotChartsShowZones,
+    shotChartsUseEfg,
+    shotChartsViewMode,
+    shotChartsShowFreqAsNumber,
+    playStyleConfigStr,
+  ]);
 
   // View
 
@@ -637,11 +666,21 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
                   ]}
                   chartOpts={{
                     buildZones: shotChartsShowZones,
+                    viewMode: shotChartsViewMode,
                     useEfg: shotChartsUseEfg,
+                    showFreqAsNumber: shotChartsShowFreqAsNumber,
                   }}
                   onChangeChartOpts={(newOpts) => {
-                    setShotChartsShowZones(newOpts.buildZones || false);
+                    setShotChartsShowZones(newOpts.buildZones ?? true);
+                    setShotChartsViewMode(
+                      newOpts.viewMode ??
+                        ParamDefaults.defaultShotChartViewMode,
+                    );
                     setShotChartsUseEfg(newOpts.useEfg ?? false);
+                    setShotChartsShowFreqAsNumber(
+                      newOpts.showFreqAsNumber ??
+                        ParamDefaults.defaultShotChartsShowFreqAsNumber,
+                    );
                   }}
                   labelOverrides={[
                     `${matchupFilterParams.team} Shots:`,
@@ -667,7 +706,13 @@ const MatchupAnalyzerPage: NextPage<{}> = () => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, shotChartsShowZones, shotChartsUseEfg]);
+  }, [
+    dataEvent,
+    shotChartsShowZones,
+    shotChartsViewMode,
+    shotChartsUseEfg,
+    shotChartsShowFreqAsNumber,
+  ]);
 
   /** In JSON mode display the view until the request is submitted and data has returned */
   const jsonModeAndAllDataLoaded =

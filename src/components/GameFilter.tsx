@@ -91,7 +91,7 @@ type Props = {
     rosterStats: RosterStatsModel,
     shotStats: ShotStatsModel,
     lineupStats: LineupStatsModel[],
-    playerShotStats: PlayerShotStatsModel
+    playerShotStats: PlayerShotStatsModel,
   ) => void;
   startingState: GameFilterParams;
   onChangeState: (newParams: GameFilterParams) => void;
@@ -145,6 +145,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     showGrades: startShowGrades,
     showExtraInfo: startShowExtraInfo,
     teamShotCharts: startTeamShotCharts,
+    teamShotChartsViewMode: startTeamShotChartsViewMode,
+    teamShotChartsShowFreqAsNumber: startTeamShotChartsShowFreqAsNumber,
     //(common visualization fields across all tables)
     //(manual overrides)
     manual: startManual,
@@ -172,6 +174,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
     showPlayerPlayTypesPlayType: startShowPlayerPlayTypesPlayType,
     showInfoSubHeader: startShowInfoSubHeader,
     playerShotCharts: startPlayerShotCharts,
+    playerShotChartsViewMode: startPlayerShotChartsViewMode,
+    playerShotChartsShowFreqAsNumber: startPlayerShotChartsShowFreqAsNumber,
     // Table configuration:
     teamTablePreset: startTeamTablePreset,
     teamTableConfigExtraCols: startTeamTableConfigExtraCols,
@@ -214,6 +218,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
       showGrades: startShowGrades,
       showExtraInfo: startShowExtraInfo,
       teamShotCharts: startTeamShotCharts,
+      teamShotChartsViewMode: startTeamShotChartsViewMode,
+      teamShotChartsShowFreqAsNumber: startTeamShotChartsShowFreqAsNumber,
       // Common luck stats across all tables:
       //(manual overrides)
       manual: startManual,
@@ -240,6 +246,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
       showPlayerPlayTypesPlayType: startShowPlayerPlayTypesPlayType,
       showInfoSubHeader: startShowInfoSubHeader,
       playerShotCharts: startPlayerShotCharts,
+      playerShotChartsViewMode: startPlayerShotChartsViewMode,
+      playerShotChartsShowFreqAsNumber: startPlayerShotChartsShowFreqAsNumber,
       // Table configuration:
       teamTablePreset: startTeamTablePreset,
       teamTableConfigExtraCols: startTeamTableConfigExtraCols,
@@ -253,13 +261,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
-    startingCommonFilterParams as CommonFilterParams
+    startingCommonFilterParams as CommonFilterParams,
   );
 
   /** All the game-specific viz options, ie not query/filter */
-  const [newParamsOnSubmit, setNewParamsOnSubmit] = useState<GameFilterParams>(
-    rebuildFullState()
-  );
+  const [newParamsOnSubmit, setNewParamsOnSubmit] =
+    useState<GameFilterParams>(rebuildFullState());
 
   /** Ugly pattern that is part of support for force reloading */
   const [internalForceReload1Up, setInternalForceReload1Up] =
@@ -302,16 +309,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
           _.isNil(startOnQueryFilters)
             ? ParamDefaults.defaultQueryFilters
             : startOnQueryFilters,
-          startingState.year || ParamDefaults.defaultYear
-        )
+          startingState.year || ParamDefaults.defaultYear,
+        ),
       );
       setOffQueryFilters(
         QueryUtils.parseFilter(
           _.isNil(startOffQueryFilters)
             ? ParamDefaults.defaultQueryFilters
             : startOffQueryFilters,
-          startingState.year || ParamDefaults.defaultYear
-        )
+          startingState.year || ParamDefaults.defaultYear,
+        ),
       );
       //(leave toggleAutoOffQuery since it seems harmless, and weird stuff happened when I tried to set it
       // which I don't have time to investigate):
@@ -326,9 +333,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
               _.isNil(q.queryFilters)
                 ? ParamDefaults.defaultQueryFilters
                 : q.queryFilters,
-              startingState.year || ParamDefaults.defaultYear
-            )
-          )
+              startingState.year || ParamDefaults.defaultYear,
+            ),
+          ),
         );
       }
     }
@@ -339,23 +346,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [onQuery, setOnQuery] = useState(startOnQuery || "");
   const [offQuery, setOffQuery] = useState(startOffQuery || "");
   const [otherQueries, setOtherQueries] = useState<(string | undefined)[]>(
-    (startOtherQueries || []).map((q) => q.query)
+    (startOtherQueries || []).map((q) => q.query),
   );
   const [onQueryFilters, setOnQueryFilters] = useState(
     QueryUtils.parseFilter(
       _.isNil(startOnQueryFilters)
         ? ParamDefaults.defaultQueryFilters
         : startOnQueryFilters,
-      startingState.year || ParamDefaults.defaultYear
-    )
+      startingState.year || ParamDefaults.defaultYear,
+    ),
   );
   const [offQueryFilters, setOffQueryFilters] = useState(
     QueryUtils.parseFilter(
       _.isNil(startOffQueryFilters)
         ? ParamDefaults.defaultQueryFilters
         : startOffQueryFilters,
-      startingState.year || ParamDefaults.defaultYear
-    )
+      startingState.year || ParamDefaults.defaultYear,
+    ),
   );
   const [otherQueryFilters, setOtherQueryFilters] = useState<
     (CommonFilterType[] | undefined)[]
@@ -365,16 +372,16 @@ const GameFilter: React.FunctionComponent<Props> = ({
         _.isNil(q.queryFilters)
           ? ParamDefaults.defaultQueryFilters
           : q.queryFilters,
-        startingState.year || ParamDefaults.defaultYear
-      )
-    )
+        startingState.year || ParamDefaults.defaultYear,
+      ),
+    ),
   );
   const [autoOffQuery, toggleAutoOffQuery] = useState(
     otherQueries.length == 0
       ? _.isNil(startAutoOffQuery)
         ? ParamDefaults.defaultAutoOffQuery
         : startAutoOffQuery
-      : false
+      : false,
   );
   const removeOtherQuery = () => {
     const clearingOtherQueries = otherQueries.length == 1;
@@ -438,7 +445,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       offQueryFilters: CommonFilterType[];
       otherQueries: (string | undefined)[];
       otherQueryFilters: (CommonFilterType[] | undefined)[];
-    }
+    },
   ): [string | undefined, string | undefined] => {
     // Switching back to simple mode
     // Let's figure out if we can re-use existing modes/splits
@@ -456,7 +463,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         // TODO: add this in one place, used in both GamesFlter and LineupFilter (same for modal?)
         QueryUtils.parseFilter(
           commonParamsIn.queryFilters || "",
-          commonParamsIn.year || ParamDefaults.defaultYear
+          commonParamsIn.year || ParamDefaults.defaultYear,
         ),
         (currBaseFilter) => {
           const games =
@@ -472,7 +479,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           } else {
             return undefined;
           }
-        }
+        },
       );
     const autoOffQueryIn = _.isNil(queryParamsIn.autoOffQuery)
       ? true
@@ -483,19 +490,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
       // some minor complications with auto-off
       offQuery:
         _.isEmpty(queryParamsIn.offQuery) &&
-          autoOffQuery &&
-          !_.isEmpty(queryParamsIn.onQuery)
+        autoOffQuery &&
+        !_.isEmpty(queryParamsIn.onQuery)
           ? `NOT ${queryParamsIn.onQuery}`
           : queryParamsIn.offQuery || "",
       onQueryFilters: QueryUtils.buildFilterStr(
-        queryParamsIn.onQueryFilters || ""
+        queryParamsIn.onQueryFilters || "",
       ),
       offQueryFilters: QueryUtils.buildFilterStr(
-        queryParamsIn.offQueryFilters || ""
+        queryParamsIn.offQueryFilters || "",
       ),
       otherQueries: _.zip(
         queryParamsIn.otherQueries,
-        queryParamsIn.otherQueryFilters
+        queryParamsIn.otherQueryFilters,
       ).map(([oq, oqf]) => {
         const qComp = oq ? { query: oq } : {};
         const qfComp =
@@ -516,9 +523,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
           offQuery: `NOT ${onQuery}`,
         })
           ? `${FilterPresetUtils.gameFilterOnOffPrefix}${onQuery.replaceAll(
-            '"',
-            ""
-          )}`
+              '"',
+              "",
+            )}`
           : undefined;
       } else {
         const maybePresetSplit = _.findKey(
@@ -534,7 +541,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
             // console.log(`B ${JSON.stringify(toTest)}`, toTest);
 
             return _.isEqual(testSplit, toTest);
-          }
+          },
         );
         if (maybePresetSplit) {
           return maybePresetSplit;
@@ -576,27 +583,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const [advancedView, setAdvancedView] = useState(
     _.isNil(startingState.advancedMode)
       ? _.thru(startingState, (state) => {
-        if (!_.isEmpty(state.presetMode)) return false;
-        if (!_.isEmpty(state.presetSplit)) return false;
+          if (!_.isEmpty(state.presetMode)) return false;
+          if (!_.isEmpty(state.presetSplit)) return false;
 
-        // Advanced mode unspecified but matbe we can infer it?
-        const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
-        if (maybeMode && maybeSplit) return false;
+          // Advanced mode unspecified but matbe we can infer it?
+          const [maybeMode, maybeSplit] = checkForImplicitPresetsOnStartup();
+          if (maybeMode && maybeSplit) return false;
 
-        if (!_.isEmpty(state.onQuery)) return true;
-        if (!_.isEmpty(state.onQueryFilters)) return true;
-        if (!_.isEmpty(state.offQuery)) return true;
-        if (!_.isEmpty(state.offQueryFilters)) return true;
-        if (!_.isEmpty(state.baseQuery)) return true;
-        if (!_.isEmpty(state.queryFilters)) return true;
-        if (!_.isEmpty(state.otherQueries)) return true;
-        if (state.minRank && state.minRank != ParamDefaults.defaultMinRank)
-          return true;
-        if (state.maxRank && state.maxRank != ParamDefaults.defaultMaxRank)
-          return true;
-        return false;
-      })
-      : startingState.advancedMode
+          if (!_.isEmpty(state.onQuery)) return true;
+          if (!_.isEmpty(state.onQueryFilters)) return true;
+          if (!_.isEmpty(state.offQuery)) return true;
+          if (!_.isEmpty(state.offQueryFilters)) return true;
+          if (!_.isEmpty(state.baseQuery)) return true;
+          if (!_.isEmpty(state.queryFilters)) return true;
+          if (!_.isEmpty(state.otherQueries)) return true;
+          if (state.minRank && state.minRank != ParamDefaults.defaultMinRank)
+            return true;
+          if (state.maxRank && state.maxRank != ParamDefaults.defaultMaxRank)
+            return true;
+          return false;
+        })
+      : startingState.advancedMode,
   );
 
   /** The preset query to use */
@@ -614,7 +621,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           return startingState.presetMode || ParamDefaults.defaultPresetMode;
         }
       }
-    })
+    }),
   );
 
   /** The preset query to use */
@@ -632,7 +639,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
           return startingState.presetSplit || ParamDefaults.defaultPresetSplit;
         }
       }
-    })
+    }),
   );
 
   // Utils
@@ -645,20 +652,20 @@ const GameFilter: React.FunctionComponent<Props> = ({
   /** Handy builder for dynamic query filters */
   const buildFilterMaybeForQuery = (
     queries: CommonFilterType[],
-    forQuery: Boolean
+    forQuery: Boolean,
   ) => {
     return forQuery
       ? QueryUtils.buildFilterStrForQuery(
-        queries,
-        gameSelectionRef.current?.games || []
-      )
+          queries,
+          gameSelectionRef.current?.games || [],
+        )
       : QueryUtils.buildFilterStr(queries);
   };
 
   /** Builds lineup queries for on/off queries */
   function buildLineupQueriesFromOnOffQueries(
     forQuery: Boolean,
-    primaryRequest?: GameFilterParams
+    primaryRequest?: GameFilterParams,
   ): {
     on?: CommonFilterParams;
     off?: CommonFilterParams;
@@ -667,12 +674,12 @@ const GameFilter: React.FunctionComponent<Props> = ({
     //TODO: should tidy this up so can just make get lineups back from on/off query
     //      but for now we'll just hack a workaround
     const [baseQuery, maybeAdvBaseQuery] = QueryUtils.extractAdvancedQuery(
-      commonParams.baseQuery || ""
+      commonParams.baseQuery || "",
     );
 
     const getLineupQuery = (
       onOrOffQuery: string,
-      ignoreBase: boolean = false
+      ignoreBase: boolean = false,
     ) => {
       const [onOrOff, maybeAdvOnOrOff] =
         QueryUtils.extractAdvancedQuery(onOrOffQuery);
@@ -681,23 +688,23 @@ const GameFilter: React.FunctionComponent<Props> = ({
       return RequestUtils.replaceRosterShortcut(
         baseToUse != "" ? `(${onOffToUse}) AND (${baseToUse})` : onOffToUse,
         rosterRef.current || [],
-        forQuery
+        forQuery,
       );
     };
 
     const onQueryToUse = primaryRequest ? primaryRequest.onQuery : onQuery;
     const onQueryFiltersToUse = primaryRequest
       ? QueryUtils.parseFilter(
-        primaryRequest.onQueryFilters || ParamDefaults.defaultQueryFilters,
-        commonParams.year || ParamDefaults.defaultYear
-      )
+          primaryRequest.onQueryFilters || ParamDefaults.defaultQueryFilters,
+          commonParams.year || ParamDefaults.defaultYear,
+        )
       : onQueryFilters;
     const offQueryToUse = primaryRequest ? primaryRequest.offQuery : offQuery;
     const offQueryFiltersToUse = primaryRequest
       ? QueryUtils.parseFilter(
-        primaryRequest.offQueryFilters || ParamDefaults.defaultQueryFilters,
-        commonParams.year || ParamDefaults.defaultYear
-      )
+          primaryRequest.offQueryFilters || ParamDefaults.defaultQueryFilters,
+          commonParams.year || ParamDefaults.defaultYear,
+        )
       : offQueryFilters;
     const autoOffQueryToUse =
       primaryRequest && !_.isNil(primaryRequest.autoOffQuery)
@@ -708,28 +715,28 @@ const GameFilter: React.FunctionComponent<Props> = ({
       : otherQueries;
     const otherQueryFiltersToUse = primaryRequest
       ? (primaryRequest.otherQueries || []).map((oq) =>
-        QueryUtils.parseFilter(
-          oq.queryFilters || ParamDefaults.defaultQueryFilters,
-          commonParams.year || ParamDefaults.defaultYear
+          QueryUtils.parseFilter(
+            oq.queryFilters || ParamDefaults.defaultQueryFilters,
+            commonParams.year || ParamDefaults.defaultYear,
+          ),
         )
-      )
       : otherQueryFilters;
 
     return {
       on: QueryUtils.nonEmptyQuery(onQueryToUse, onQueryFiltersToUse)
         ? {
-          baseQuery: getLineupQuery(onQueryToUse || "*"),
-          queryFilters: buildFilterMaybeForQuery(
-            onQueryFiltersToUse.concat(
-              QueryUtils.parseFilter(
-                commonParams.queryFilters ||
-                ParamDefaults.defaultQueryFilters,
-                commonParams.year || ParamDefaults.defaultYear
-              )
+            baseQuery: getLineupQuery(onQueryToUse || "*"),
+            queryFilters: buildFilterMaybeForQuery(
+              onQueryFiltersToUse.concat(
+                QueryUtils.parseFilter(
+                  commonParams.queryFilters ||
+                    ParamDefaults.defaultQueryFilters,
+                  commonParams.year || ParamDefaults.defaultYear,
+                ),
+              ),
+              forQuery,
             ),
-            forQuery
-          ),
-        }
+          }
         : undefined,
 
       off: _.thru(
@@ -737,7 +744,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         (autoOff) => {
           const nonEmptyOff = QueryUtils.nonEmptyQuery(
             offQueryToUse,
-            offQueryFiltersToUse
+            offQueryFiltersToUse,
           );
 
           if (!autoOff && nonEmptyOff) {
@@ -747,11 +754,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 offQueryFiltersToUse.concat(
                   QueryUtils.parseFilter(
                     commonParams.queryFilters ||
-                    ParamDefaults.defaultQueryFilters,
-                    commonParams.year || ParamDefaults.defaultYear
-                  )
+                      ParamDefaults.defaultQueryFilters,
+                    commonParams.year || ParamDefaults.defaultYear,
+                  ),
                 ),
-                forQuery
+                forQuery,
               ),
             };
           } else if (autoOff) {
@@ -761,36 +768,36 @@ const GameFilter: React.FunctionComponent<Props> = ({
               invertBase: getLineupQuery(onQueryToUse || "*", true),
               invertBaseQueryFilters: buildFilterMaybeForQuery(
                 onQueryFilters,
-                forQuery
+                forQuery,
               ),
               //(ie will be * once inverted, ie ignore this clause if missing)
             };
           } else {
             return undefined;
           }
-        }
+        },
       ),
 
       others: _.isEmpty(otherQueriesToUse)
         ? undefined
         : _.zip(otherQueriesToUse, otherQueryFiltersToUse).map(
-          ([otherQuery, otherQueryFilter], index) =>
-            QueryUtils.nonEmptyQuery(otherQuery, otherQueryFilter || [])
-              ? {
-                baseQuery: getLineupQuery(otherQuery || "*"),
-                queryFilters: buildFilterMaybeForQuery(
-                  (otherQueryFilter || []).concat(
-                    QueryUtils.parseFilter(
-                      commonParams.queryFilters ||
-                      ParamDefaults.defaultQueryFilters,
-                      commonParams.year || ParamDefaults.defaultYear
-                    )
-                  ),
-                  forQuery
-                ),
-              }
-              : undefined
-        ),
+            ([otherQuery, otherQueryFilter], index) =>
+              QueryUtils.nonEmptyQuery(otherQuery, otherQueryFilter || [])
+                ? {
+                    baseQuery: getLineupQuery(otherQuery || "*"),
+                    queryFilters: buildFilterMaybeForQuery(
+                      (otherQueryFilter || []).concat(
+                        QueryUtils.parseFilter(
+                          commonParams.queryFilters ||
+                            ParamDefaults.defaultQueryFilters,
+                          commonParams.year || ParamDefaults.defaultYear,
+                        ),
+                      ),
+                      forQuery,
+                    ),
+                  }
+                : undefined,
+          ),
     };
   }
 
@@ -804,26 +811,26 @@ const GameFilter: React.FunctionComponent<Props> = ({
    */
   function buildParamsFromState(
     includeFilterParams: Boolean,
-    forQuery?: Boolean
+    forQuery?: Boolean,
   ): [GameFilterParams, FilterRequestInfo[]] {
     // Only include these if they aren't defaults:
     const onQueryFiltersObj = !_.isEmpty(onQueryFilters)
       ? {
-        onQueryFilters: buildFilterMaybeForQuery(
-          onQueryFilters,
-          forQuery || false
-        ),
-      }
+          onQueryFilters: buildFilterMaybeForQuery(
+            onQueryFilters,
+            forQuery || false,
+          ),
+        }
       : {};
     const offQueryFiltersObj =
       autoOffQuery || _.isEmpty(offQueryFilters)
         ? {}
         : {
-          offQueryFilters: buildFilterMaybeForQuery(
-            offQueryFilters,
-            forQuery || false
-          ),
-        };
+            offQueryFilters: buildFilterMaybeForQuery(
+              offQueryFilters,
+              forQuery || false,
+            ),
+          };
 
     // It's painful but re-calc the result of the preset to make sure we are using the right params
     const [maybeNewParams, maybeNewCommonParams] = advancedView
@@ -836,114 +843,114 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
     const primaryOnOffRequest = advancedView
       ? {
-        baseQuery: RequestUtils.replaceRosterShortcut(
-          commonParams.baseQuery,
-          rosterRef.current || [],
-          forQuery || false
-        ),
-        autoOffQuery: autoOffQuery,
-        onQuery: RequestUtils.replaceRosterShortcut(
-          onQuery,
-          rosterRef.current || [],
-          forQuery || false
-        ),
-        ...onQueryFiltersObj,
-        offQuery: RequestUtils.replaceRosterShortcut(
-          offQuery,
-          rosterRef.current || [],
-          forQuery || false
-        ),
-        ...offQueryFiltersObj, //(not possible to specify if auto-off)
-        otherQueries: _.thru(
-          _.zip(otherQueries, otherQueryFilters).map((qZipQ) => ({
-            query: RequestUtils.replaceRosterShortcut(
-              qZipQ[0],
-              rosterRef.current || [],
-              forQuery || false
-            ),
-            queryFilters: buildFilterMaybeForQuery(
-              qZipQ[1] || [],
-              forQuery || false
-            ),
-          })),
-          (
-            maybeOtherQueries //(if it's empty remove it)
-          ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries)
-        ),
-      }
-      : {
-        baseQuery: RequestUtils.replaceRosterShortcut(
-          (maybeNewCommonParams || commonParams).baseQuery,
-          rosterRef.current || [],
-          forQuery || false
-        ),
-        autoOffQuery: (maybeNewParams || newParamsOnSubmit).autoOffQuery,
-        onQuery: RequestUtils.replaceRosterShortcut(
-          (maybeNewParams || newParamsOnSubmit).onQuery,
-          rosterRef.current || [],
-          forQuery || false
-        ),
-        offQuery: RequestUtils.replaceRosterShortcut(
-          (maybeNewParams || newParamsOnSubmit).offQuery,
-          rosterRef.current || [],
-          forQuery || false
-        ),
-        onQueryFilters: buildFilterMaybeForQuery(
-          QueryUtils.parseFilter(
-            (maybeNewParams || newParamsOnSubmit).onQueryFilters ||
-            ParamDefaults.defaultQueryFilters,
-            commonParams.year || ParamDefaults.defaultYear
-          ) || [],
-          forQuery || false
-        ),
-        offQueryFilters: buildFilterMaybeForQuery(
-          QueryUtils.parseFilter(
-            (maybeNewParams || newParamsOnSubmit).offQueryFilters ||
-            ParamDefaults.defaultQueryFilters,
-            commonParams.year || ParamDefaults.defaultYear
-          ) || [],
-          forQuery || false
-        ),
-        otherQueries: _.thru(
-          ((maybeNewParams || newParamsOnSubmit)?.otherQueries || []).map(
-            (oq) => {
-              return {
-                query: RequestUtils.replaceRosterShortcut(
-                  oq.query,
-                  rosterRef.current || [],
-                  forQuery || false
-                ),
-                queryFilters: buildFilterMaybeForQuery(
-                  QueryUtils.parseFilter(
-                    oq.queryFilters || ParamDefaults.defaultQueryFilters,
-                    commonParams.year || ParamDefaults.defaultYear
-                  ) || [],
-                  forQuery || false
-                ),
-              };
-            }
+          baseQuery: RequestUtils.replaceRosterShortcut(
+            commonParams.baseQuery,
+            rosterRef.current || [],
+            forQuery || false,
           ),
-          (
-            maybeOtherQueries //(if it's empty remove it)
-          ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries)
-        ),
-      };
+          autoOffQuery: autoOffQuery,
+          onQuery: RequestUtils.replaceRosterShortcut(
+            onQuery,
+            rosterRef.current || [],
+            forQuery || false,
+          ),
+          ...onQueryFiltersObj,
+          offQuery: RequestUtils.replaceRosterShortcut(
+            offQuery,
+            rosterRef.current || [],
+            forQuery || false,
+          ),
+          ...offQueryFiltersObj, //(not possible to specify if auto-off)
+          otherQueries: _.thru(
+            _.zip(otherQueries, otherQueryFilters).map((qZipQ) => ({
+              query: RequestUtils.replaceRosterShortcut(
+                qZipQ[0],
+                rosterRef.current || [],
+                forQuery || false,
+              ),
+              queryFilters: buildFilterMaybeForQuery(
+                qZipQ[1] || [],
+                forQuery || false,
+              ),
+            })),
+            (
+              maybeOtherQueries, //(if it's empty remove it)
+            ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries),
+          ),
+        }
+      : {
+          baseQuery: RequestUtils.replaceRosterShortcut(
+            (maybeNewCommonParams || commonParams).baseQuery,
+            rosterRef.current || [],
+            forQuery || false,
+          ),
+          autoOffQuery: (maybeNewParams || newParamsOnSubmit).autoOffQuery,
+          onQuery: RequestUtils.replaceRosterShortcut(
+            (maybeNewParams || newParamsOnSubmit).onQuery,
+            rosterRef.current || [],
+            forQuery || false,
+          ),
+          offQuery: RequestUtils.replaceRosterShortcut(
+            (maybeNewParams || newParamsOnSubmit).offQuery,
+            rosterRef.current || [],
+            forQuery || false,
+          ),
+          onQueryFilters: buildFilterMaybeForQuery(
+            QueryUtils.parseFilter(
+              (maybeNewParams || newParamsOnSubmit).onQueryFilters ||
+                ParamDefaults.defaultQueryFilters,
+              commonParams.year || ParamDefaults.defaultYear,
+            ) || [],
+            forQuery || false,
+          ),
+          offQueryFilters: buildFilterMaybeForQuery(
+            QueryUtils.parseFilter(
+              (maybeNewParams || newParamsOnSubmit).offQueryFilters ||
+                ParamDefaults.defaultQueryFilters,
+              commonParams.year || ParamDefaults.defaultYear,
+            ) || [],
+            forQuery || false,
+          ),
+          otherQueries: _.thru(
+            ((maybeNewParams || newParamsOnSubmit)?.otherQueries || []).map(
+              (oq) => {
+                return {
+                  query: RequestUtils.replaceRosterShortcut(
+                    oq.query,
+                    rosterRef.current || [],
+                    forQuery || false,
+                  ),
+                  queryFilters: buildFilterMaybeForQuery(
+                    QueryUtils.parseFilter(
+                      oq.queryFilters || ParamDefaults.defaultQueryFilters,
+                      commonParams.year || ParamDefaults.defaultYear,
+                    ) || [],
+                    forQuery || false,
+                  ),
+                };
+              },
+            ),
+            (
+              maybeOtherQueries, //(if it's empty remove it)
+            ) => (_.isEmpty(maybeOtherQueries) ? undefined : maybeOtherQueries),
+          ),
+        };
 
     const primaryRequest: GameFilterParams = includeFilterParams
       ? _.assign(buildParamsFromState(false, forQuery)[0], {
-        ...rebuildFullState(),
-        ...(advancedView ? {} : maybeNewParams || newParamsOnSubmit), //(in preset mode use the presets)
-        // UI
-        advancedMode: advancedView,
-        presetMode: presetMode,
-        presetSplit: presetSplit,
-      })
+          ...rebuildFullState(),
+          ...(advancedView ? {} : maybeNewParams || newParamsOnSubmit), //(in preset mode use the presets)
+          // UI
+          advancedMode: advancedView,
+          presetMode: presetMode,
+          presetSplit: presetSplit,
+        })
       : {
-        ...(advancedView
-          ? commonParams
-          : maybeNewCommonParams || commonParams), //TODO: need to build games dynamically
-        ...primaryOnOffRequest,
-      };
+          ...(advancedView
+            ? commonParams
+            : maybeNewCommonParams || commonParams), //TODO: need to build games dynamically
+          ...primaryOnOffRequest,
+        };
 
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
@@ -976,64 +983,64 @@ const GameFilter: React.FunctionComponent<Props> = ({
     //      but for now we'll just hack a workaround
     const lineupRequests: (LineupFilterParams | undefined)[] = alsoPullLineups
       ? _.thru(alsoPullLineups, (__) => {
-        const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries(
-          forQuery || false,
-          primaryRequest
-        );
-        return (
-          [
-            QueryUtils.cleanseQuery({
-              ...commonParams,
-              baseQuery: RequestUtils.replaceRosterShortcut(
-                commonParams.baseQuery,
-                rosterRef.current || [],
-                forQuery || false
-              ),
-            }),
-          ] as (LineupFilterParams | undefined)[]
-        )
-          .concat(
-            _.isEmpty(lineupQueriesAndFilters.on)
-              ? [undefined]
-              : [
-                QueryUtils.cleanseQuery({
-                  ...commonParams,
-                  ...lineupQueriesAndFilters.on,
-                }),
-              ]
+          const lineupQueriesAndFilters = buildLineupQueriesFromOnOffQueries(
+            forQuery || false,
+            primaryRequest,
+          );
+          return (
+            [
+              QueryUtils.cleanseQuery({
+                ...commonParams,
+                baseQuery: RequestUtils.replaceRosterShortcut(
+                  commonParams.baseQuery,
+                  rosterRef.current || [],
+                  forQuery || false,
+                ),
+              }),
+            ] as (LineupFilterParams | undefined)[]
           )
-          .concat(
-            _.isEmpty(lineupQueriesAndFilters.off)
-              ? [undefined]
-              : [
-                QueryUtils.cleanseQuery({
-                  ...commonParams,
-                  ...lineupQueriesAndFilters.off,
-                }),
-              ]
-          )
-          .map((l) => {
-            return l
-              ? {
-                ...l,
-                showGameInfo: visualSettingsToUse.showGameInfo,
-              }
-              : undefined;
-          })
-          .concat(
-            (lineupQueriesAndFilters.others || []).map((l) => {
+            .concat(
+              _.isEmpty(lineupQueriesAndFilters.on)
+                ? [undefined]
+                : [
+                    QueryUtils.cleanseQuery({
+                      ...commonParams,
+                      ...lineupQueriesAndFilters.on,
+                    }),
+                  ],
+            )
+            .concat(
+              _.isEmpty(lineupQueriesAndFilters.off)
+                ? [undefined]
+                : [
+                    QueryUtils.cleanseQuery({
+                      ...commonParams,
+                      ...lineupQueriesAndFilters.off,
+                    }),
+                  ],
+            )
+            .map((l) => {
               return l
                 ? {
-                  ...QueryUtils.cleanseQuery({
-                    ...commonParams,
                     ...l,
-                  }),
-                  showGameInfo: visualSettingsToUse.showGameInfo,
-                }
+                    showGameInfo: visualSettingsToUse.showGameInfo,
+                  }
                 : undefined;
             })
-          );
-      })
+            .concat(
+              (lineupQueriesAndFilters.others || []).map((l) => {
+                return l
+                  ? {
+                      ...QueryUtils.cleanseQuery({
+                        ...commonParams,
+                        ...l,
+                      }),
+                      showGameInfo: visualSettingsToUse.showGameInfo,
+                    }
+                  : undefined;
+              }),
+            );
+        })
       : [];
 
     const makeGlobalRequest = !_.isEqual(entireSeasonRequest, primaryRequest);
@@ -1062,61 +1069,61 @@ const GameFilter: React.FunctionComponent<Props> = ({
         .concat(
           visualSettingsToUse.teamShotCharts
             ? [
-              {
-                tag: "shots",
-                context: ParamPrefixes.shots as ParamPrefixesType,
-                paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
-              },
-            ]
-            : []
+                {
+                  tag: "shots",
+                  context: ParamPrefixes.shots as ParamPrefixesType,
+                  paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
+                },
+              ]
+            : [],
         )
         .concat(
           visualSettingsToUse.playerShotCharts
             ? [
-              {
-                tag: "playerShots",
-                context: ParamPrefixes.playerShots as ParamPrefixesType,
-                paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
-              },
-            ]
-            : []
+                {
+                  tag: "playerShots",
+                  context: ParamPrefixes.playerShots as ParamPrefixesType,
+                  paramsObj: primaryRequest, //(makes exactly the on/off request we make for the teams stats)
+                },
+              ]
+            : [],
         )
         .concat(
           makeGlobalRequest
             ? [
-              {
-                //(don't make a spurious call)
-                tag: "globalPlayers",
-                context: ParamPrefixes.player as ParamPrefixesType,
-                paramsObj: entireSeasonRequest,
-                includeRoster: true,
-              },
-            ]
-            : []
+                {
+                  //(don't make a spurious call)
+                  tag: "globalPlayers",
+                  context: ParamPrefixes.player as ParamPrefixesType,
+                  paramsObj: entireSeasonRequest,
+                  includeRoster: true,
+                },
+              ]
+            : [],
         )
         .concat(
           lineupRequests.flatMap((req, reqIndex) => {
             return req //(the index ensures we now about jumps in other queries)
               ? [
-                {
-                  tag: `lineups${reqIndex}`,
-                  context: ParamPrefixes.lineup as ParamPrefixesType,
-                  paramsObj: req,
-                },
-              ]
+                  {
+                    tag: `lineups${reqIndex}`,
+                    context: ParamPrefixes.lineup as ParamPrefixesType,
+                    paramsObj: req,
+                  },
+                ]
               : [];
-          })
+          }),
         )
         .concat(
           alsoPullDefensiveStats
             ? [
-              {
-                tag: "defensiveStats",
-                context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
-                paramsObj: primaryRequest,
-              },
-            ]
-            : []
+                {
+                  tag: "defensiveStats",
+                  context: ParamPrefixes.defensiveInfo as ParamPrefixesType,
+                  paramsObj: primaryRequest,
+                },
+              ]
+            : [],
         ),
     ];
   }
@@ -1164,11 +1171,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
       const lineupJson = jsonResps?.[lineupKey]?.responses?.[0];
       return lineupJson
         ? {
-          lineups: lineupJson?.aggregations?.lineups?.buckets,
-          error_code: wasError
-            ? lineupJson?.status || jsonStatuses?.[lineupKey] || "Unknown"
-            : undefined,
-        }
+            lineups: lineupJson?.aggregations?.lineups?.buckets,
+            error_code: wasError
+              ? lineupJson?.status || jsonStatuses?.[lineupKey] || "Unknown"
+              : undefined,
+          }
         : StatModels.emptyLineup();
     }) as LineupStatsModel[];
 
@@ -1189,7 +1196,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       if (!defensiveStatsResponses) return undefined;
       const parsed = PlayTypeUtils.parseTeamDefenseResponse(
         defensiveStatsResponses,
-        bucket
+        bucket,
       );
       if (_.isEmpty(parsed)) return undefined;
       return parsed;
@@ -1198,7 +1205,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     // Helper to inject def_stats into team stats
     const injectDefStats = (
       teamStats: any,
-      defStats: ReturnType<typeof parseDefStats>
+      defStats: ReturnType<typeof parseDefStats>,
     ) => {
       if (defStats && teamStats) {
         teamStats.def_stats = defStats;
@@ -1210,22 +1217,22 @@ const GameFilter: React.FunctionComponent<Props> = ({
       {
         on: injectDefStats(
           teamJson?.aggregations?.tri_filter?.buckets?.on ||
-          StatModels.emptyTeam(),
-          parseDefStats("on")
+            StatModels.emptyTeam(),
+          parseDefStats("on"),
         ),
         off: injectDefStats(
           teamJson?.aggregations?.tri_filter?.buckets?.off ||
-          StatModels.emptyTeam(),
-          parseDefStats("off")
+            StatModels.emptyTeam(),
+          parseDefStats("off"),
         ),
         other: _.take(otherTeamStats, numOthers).map((s, i) =>
-          injectDefStats(s, parseDefStats(`other_${i}`))
+          injectDefStats(s, parseDefStats(`other_${i}`)),
         ),
         onOffMode: autoOffQuery,
         baseline: injectDefStats(
           teamJson?.aggregations?.tri_filter?.buckets?.baseline ||
-          StatModels.emptyTeam(),
-          parseDefStats("baseline")
+            StatModels.emptyTeam(),
+          parseDefStats("baseline"),
         ),
         global: globalTeam,
         error_code: wasError
@@ -1266,10 +1273,10 @@ const GameFilter: React.FunctionComponent<Props> = ({
             ?.player?.buckets || [],
         error_code: wasError
           ? rosterStatsJson?.status ||
-          jsonStatuses?.[2] ||
-          globalRosterStatsJson?.status ||
-          jsonStatuses?.[3] ||
-          "Unknown"
+            jsonStatuses?.[2] ||
+            globalRosterStatsJson?.status ||
+            jsonStatuses?.[3] ||
+            "Unknown"
           : undefined,
       },
       {
@@ -1306,24 +1313,24 @@ const GameFilter: React.FunctionComponent<Props> = ({
       {
         on: playerShotChartBuilder(
           playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.on?.player
-            ?.buckets || []
+            ?.buckets || [],
         ),
         off: playerShotChartBuilder(
           playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.off
-            ?.player?.buckets || []
+            ?.player?.buckets || [],
         ),
         baseline: playerShotChartBuilder(
           playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.baseline
-            ?.player?.buckets || []
+            ?.player?.buckets || [],
         ),
         other: _.range(0, numOthers).map((i) => {
           return playerShotChartBuilder(
             playerShotChartStatsJson.aggregations?.tri_filter?.buckets?.[
               `other_${i}`
-            ]?.player?.buckets || []
+            ]?.player?.buckets || [],
           );
         }),
-      }
+      },
     );
   }
 
@@ -1363,7 +1370,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   const buildLineups = (
     params: GameFilterParams,
-    overrides: CommonFilterParams
+    overrides: CommonFilterParams,
   ) => {
     return {
       gender: params.gender,
@@ -1390,7 +1397,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     {
       label: "Basic Views",
       options: _.keys(FilterPresetUtils.commonFilterPresets).map(
-        stringToOption
+        stringToOption,
       ),
     },
   ];
@@ -1412,8 +1419,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
         label: "On/Off Splits",
         options: (rosterRef.current || []).map((n) =>
           stringToOption(
-            `${FilterPresetUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`
-          )
+            `${FilterPresetUtils.gameFilterOnOffPrefix}${n.replaceAll('"', "")}`,
+          ),
         ),
       },
     ]);
@@ -1422,20 +1429,20 @@ const GameFilter: React.FunctionComponent<Props> = ({
   const applyPresetConfig = (
     newPresetMode: string,
     newPresetSplit: string,
-    applyEffects: boolean
+    applyEffects: boolean,
   ): [GameFilterParams | undefined, CommonFilterParams | undefined] => {
     const newCommonFilter = {
       ...commonParams,
       ...FilterPresetUtils.basePresetQuery,
       ...(FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ||
         (newPresetMode.startsWith(
-          FilterPresetUtils.commonFilterSelectedGamesPrefix
+          FilterPresetUtils.commonFilterSelectedGamesPrefix,
         )
           ? {
-            queryFilters: newPresetMode.substring(
-              FilterPresetUtils.commonFilterSelectedGamesPrefix.length
-            ),
-          }
+              queryFilters: newPresetMode.substring(
+                FilterPresetUtils.commonFilterSelectedGamesPrefix.length,
+              ),
+            }
           : {})),
     };
 
@@ -1455,27 +1462,27 @@ const GameFilter: React.FunctionComponent<Props> = ({
             ...newParamsOnSubmit,
             ...FilterPresetUtils.basePresetOnOffQuery,
             onQuery: `"${newPresetSplit.substring(
-              FilterPresetUtils.gameFilterOnOffPrefix.length
+              FilterPresetUtils.gameFilterOnOffPrefix.length,
             )}"`,
             offQuery: `NOT "${newPresetSplit.substring(
-              FilterPresetUtils.gameFilterOnOffPrefix.length
+              FilterPresetUtils.gameFilterOnOffPrefix.length,
             )}"`,
           };
         } else if (
           newPresetSplit.startsWith(
-            FilterPresetUtils.commonFilterSelectedGamesPrefix
+            FilterPresetUtils.commonFilterSelectedGamesPrefix,
           )
         ) {
           return {
             ...newParamsOnSubmit,
             ...FilterPresetUtils.basePresetOnOffQuery,
             onQueryFilters: newPresetSplit.substring(
-              FilterPresetUtils.commonFilterSelectedGamesPrefix.length
+              FilterPresetUtils.commonFilterSelectedGamesPrefix.length,
             ),
             //(offQueryFilters gets set by default unless autoOffQuery===false)
           };
         }
-      }
+      },
     );
 
     //DEBUG
@@ -1489,7 +1496,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
         setPresetSplit(newPresetSplit);
         if (newParams) {
           toggleAutoOffQuery(
-            _.isNil(newParams.autoOffQuery) ? true : newParams.autoOffQuery
+            _.isNil(newParams.autoOffQuery) ? true : newParams.autoOffQuery,
           );
           if (!_.isNil(newParams.onQuery)) {
             setOnQuery(newParams.onQuery);
@@ -1499,8 +1506,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
               _.isNil(newParams.onQueryFilters)
                 ? ParamDefaults.defaultQueryFilters
                 : newParams.onQueryFilters,
-              startingState.year || ParamDefaults.defaultYear
-            )
+              startingState.year || ParamDefaults.defaultYear,
+            ),
           );
           if (!_.isNil(newParams.offQuery)) {
             setOffQuery(newParams.offQuery);
@@ -1510,8 +1517,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
               _.isNil(newParams.offQueryFilters)
                 ? ParamDefaults.defaultQueryFilters
                 : newParams.offQueryFilters,
-              startingState.year || ParamDefaults.defaultYear
-            )
+              startingState.year || ParamDefaults.defaultYear,
+            ),
           );
           setOtherQueries((newParams.otherQueries || []).map((oq) => oq.query));
           setOtherQueryFilters(
@@ -1520,9 +1527,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 _.isNil(oq.queryFilters)
                   ? ParamDefaults.defaultQueryFilters
                   : oq.queryFilters,
-                startingState.year || ParamDefaults.defaultYear
+                startingState.year || ParamDefaults.defaultYear,
               );
-            })
+            }),
           );
         }
       }
@@ -1577,7 +1584,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
     const [gameParamsToUse, commonParamsToUse] = applyPresetConfig(
       currAdvancedMode ? newPresetMode : currPresetMode,
       currAdvancedMode ? newPresetSplit : currPresetSplit,
-      false
+      false,
     );
 
     if (onSwitchToAdvancedMode) {
@@ -1601,7 +1608,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       const [maybeNewParams] = applyPresetConfig(
         presetMode,
         presetSplit,
-        false
+        false,
       );
       const hasOnA =
         !_.isEmpty(maybeNewParams?.onQuery) ||
@@ -1675,9 +1682,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
   const disableViewDetails =
     presetMode ==
-    (startingState.presetMode || ParamDefaults.defaultPresetMode) &&
+      (startingState.presetMode || ParamDefaults.defaultPresetMode) &&
     presetSplit ==
-    (startingState.presetSplit || ParamDefaults.defaultPresetSplit);
+      (startingState.presetSplit || ParamDefaults.defaultPresetSplit);
 
   return (
     <CommonFilter //(generic type inferred)
@@ -1693,8 +1700,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
         const maybePresetPhrase = _.zip(
           (params as GameFilterParams).splitPhrases || [],
           FilterPresetUtils.getPresetPhrase(
-            (params as GameFilterParams).presetSplit || "??"
-          ) || []
+            (params as GameFilterParams).presetSplit || "??",
+          ) || [],
         ).map((options) => options?.[0] || options?.[1]);
 
         const maybeFilterPhrase =
@@ -1720,7 +1727,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                 baseQuery: params.baseQuery,
                 queryFilters: params.queryFilters,
               }),
-              {}
+              {},
             )}
           >
             {maybeFilterPhrase ? `Base (${maybeFilterPhrase})` : "Base"}
@@ -1729,52 +1736,52 @@ const GameFilter: React.FunctionComponent<Props> = ({
           .concat(
             lineupOnOffQueries.on
               ? [
-                <a
-                  target="_blank"
-                  href={UrlRouting.getLineupUrl(
-                    buildLineups(params, lineupOnOffQueries.on),
-                    {}
-                  )}
-                >
-                  '{maybePresetPhrase?.[0] || "A"}'
-                </a>,
-              ]
-              : []
+                  <a
+                    target="_blank"
+                    href={UrlRouting.getLineupUrl(
+                      buildLineups(params, lineupOnOffQueries.on),
+                      {},
+                    )}
+                  >
+                    '{maybePresetPhrase?.[0] || "A"}'
+                  </a>,
+                ]
+              : [],
           )
           .concat(
             lineupOnOffQueries.off
               ? [
-                <a
-                  target="_blank"
-                  href={UrlRouting.getLineupUrl(
-                    buildLineups(params, lineupOnOffQueries.off),
-                    {}
-                  )}
-                >
-                  '{maybePresetPhrase?.[1] || "B"}'
-                </a>,
-              ]
-              : []
+                  <a
+                    target="_blank"
+                    href={UrlRouting.getLineupUrl(
+                      buildLineups(params, lineupOnOffQueries.off),
+                      {},
+                    )}
+                  >
+                    '{maybePresetPhrase?.[1] || "B"}'
+                  </a>,
+                ]
+              : [],
           )
           .concat(
             _.flatMap(lineupOnOffQueries.others || [], (l, idx) => {
               return l
                 ? [
-                  <a
-                    target="_blank"
-                    href={UrlRouting.getLineupUrl(
-                      buildLineups(params, l),
-                      {}
-                    )}
-                  >
-                    '
-                    {maybePresetPhrase?.[2 + idx] ||
-                      String.fromCharCode(67 + idx)}
-                    '
-                  </a>,
-                ]
+                    <a
+                      target="_blank"
+                      href={UrlRouting.getLineupUrl(
+                        buildLineups(params, l),
+                        {},
+                      )}
+                    >
+                      '
+                      {maybePresetPhrase?.[2 + idx] ||
+                        String.fromCharCode(67 + idx)}
+                      '
+                    </a>,
+                  ]
                 : [];
-            })
+            }),
           );
       }}
       forceReload1Up={internalForceReload1Up}
@@ -1793,34 +1800,34 @@ const GameFilter: React.FunctionComponent<Props> = ({
             (gameSelectionRef.current.filter.team !=
               newGameSelection.filter.team ||
               gameSelectionRef.current.filter.year !=
-              newGameSelection.filter.year ||
+                newGameSelection.filter.year ||
               gameSelectionRef.current.filter.gender !=
-              newGameSelection.filter.gender))
+                newGameSelection.filter.gender))
         ) {
           setOnQueryFilters(
-            QueryUtils.setCustomGameSelection(onQueryFilters, undefined)
+            QueryUtils.setCustomGameSelection(onQueryFilters, undefined),
           );
           setOffQueryFilters(
-            QueryUtils.setCustomGameSelection(offQueryFilters, undefined)
+            QueryUtils.setCustomGameSelection(offQueryFilters, undefined),
           );
           setOtherQueryFilters((curr) => {
             const newOtherQueryFilters = [...curr];
             curr.forEach(
               (q, queryIndex) =>
-              (newOtherQueryFilters[queryIndex] =
-                QueryUtils.setCustomGameSelection(q || [], undefined))
+                (newOtherQueryFilters[queryIndex] =
+                  QueryUtils.setCustomGameSelection(q || [], undefined)),
             );
             return newOtherQueryFilters;
           });
           if (
             presetMode.startsWith(
-              FilterPresetUtils.commonFilterSelectedGamesPrefix
+              FilterPresetUtils.commonFilterSelectedGamesPrefix,
             )
           ) {
             applyPresetConfig(
               ParamDefaults.defaultPresetMode,
               presetSplit,
-              true
+              true,
             );
           }
         }
@@ -1849,7 +1856,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               }
               onSave={(filter: CommonFilterCustomDate | undefined) =>
                 setOnQueryFilters(
-                  QueryUtils.setCustomDate(onQueryFilters, filter)
+                  QueryUtils.setCustomDate(onQueryFilters, filter),
                 )
               }
               onHide={() => setOnShowDateRangeModal(false)}
@@ -1862,7 +1869,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               }
               onSave={(filter: CommonFilterCustomDate | undefined) =>
                 setOffQueryFilters(
-                  QueryUtils.setCustomDate(offQueryFilters, filter)
+                  QueryUtils.setCustomDate(offQueryFilters, filter),
                 )
               }
               onHide={() => setOffShowDateRangeModal(false)}
@@ -1874,21 +1881,21 @@ const GameFilter: React.FunctionComponent<Props> = ({
               selectedGames={QueryUtils.buildGameSelectionModel(
                 QueryUtils.parseFilter(
                   commonParams.queryFilters || "",
-                  startingState.year || ParamDefaults.defaultYear
-                )
+                  startingState.year || ParamDefaults.defaultYear,
+                ),
               )}
               show={showPresetModeSelectorModal}
               onClose={() => setPresetModeSelectorModal(false)}
               onSubmit={(selectedGame) => {
                 const queryFilterStr = QueryUtils.buildFilterStrForQuery(
                   [QueryUtils.buildGameSelectionFilter(selectedGame)],
-                  []
+                  [],
                 );
                 applyPresetConfig(
                   FilterPresetUtils.commonFilterSelectedGamesPrefix +
-                  queryFilterStr,
+                    queryFilterStr,
                   presetSplit,
-                  true
+                  true,
                 );
                 setPresetModeSelectorModal(false);
               }}
@@ -1902,13 +1909,13 @@ const GameFilter: React.FunctionComponent<Props> = ({
               onSubmit={(selectedGame) => {
                 const queryFilterStr = QueryUtils.buildFilterStrForQuery(
                   [QueryUtils.buildGameSelectionFilter(selectedGame)],
-                  []
+                  [],
                 );
                 applyPresetConfig(
                   presetMode,
                   FilterPresetUtils.commonFilterSelectedGamesPrefix +
-                  queryFilterStr,
-                  true
+                    queryFilterStr,
+                  true,
                 );
                 setPresetSplitSelectorModal(false);
               }}
@@ -1927,8 +1934,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     onQueryFilters,
                     (gameSelectionRef.current?.games || []).length > 0
                       ? QueryUtils.buildGameSelectionFilter(selectedGame)
-                      : undefined
-                  )
+                      : undefined,
+                  ),
                 );
                 setOnShowGameSelectorModal(false);
               }}
@@ -1939,7 +1946,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               }
               games={gameSelectionRef.current?.games || []}
               selectedGames={QueryUtils.buildGameSelectionModel(
-                offQueryFilters
+                offQueryFilters,
               )}
               show={showOffGameSelectorModal}
               onClose={() => setOffShowGameSelectorModal(false)}
@@ -1949,8 +1956,8 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     offQueryFilters,
                     (gameSelectionRef.current?.games || []).length > 0
                       ? QueryUtils.buildGameSelectionFilter(selectedGame)
-                      : undefined
-                  )
+                      : undefined,
+                  ),
                 );
                 setOffShowGameSelectorModal(false);
               }}
@@ -1959,7 +1966,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
               <DateRangeModal
                 show={showOtherDateRangeModals[extraQueryIndex]}
                 queryType={`'${String.fromCharCode(
-                  67 + extraQueryIndex
+                  67 + extraQueryIndex,
                 )}' Query`}
                 onSave={(filter: CommonFilterCustomDate | undefined) => {
                   setOtherQueryFilters((curr) => {
@@ -1967,7 +1974,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     newOtherDateRangeModals[extraQueryIndex] =
                       QueryUtils.setCustomDate(
                         newOtherDateRangeModals[extraQueryIndex] || [],
-                        filter
+                        filter,
                       );
                     return newOtherDateRangeModals;
                   });
@@ -1985,11 +1992,11 @@ const GameFilter: React.FunctionComponent<Props> = ({
             {_.range(0, otherQueries.length).map((extraQueryIndex) => (
               <GameSelectorModal
                 queryType={`'${String.fromCharCode(
-                  67 + extraQueryIndex
+                  67 + extraQueryIndex,
                 )}' Query`}
                 games={gameSelectionRef.current?.games || []}
                 selectedGames={QueryUtils.buildGameSelectionModel(
-                  otherQueryFilters[extraQueryIndex] || []
+                  otherQueryFilters[extraQueryIndex] || [],
                 )}
                 show={showOtherGameSelectorModals[extraQueryIndex]}
                 onClose={() =>
@@ -2007,7 +2014,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                         newOtherQueryFilters[extraQueryIndex] || [],
                         (gameSelectionRef.current?.games || []).length > 0
                           ? QueryUtils.buildGameSelectionFilter(selectedGame)
-                          : undefined
+                          : undefined,
                       );
                     return newOtherQueryFilters;
                   });
@@ -2033,14 +2040,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     value={
                       presetMode
                         ? presetMode.startsWith(
-                          FilterPresetUtils.commonFilterSelectedGamesPrefix
-                        )
+                            FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                          )
                           ? {
-                            label: `${FilterPresetUtils.commonFilterSelectedGamesPrefix
+                              label: `${
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix
                               } [${presetMode.split("|").length}]`,
-                            value:
-                              FilterPresetUtils.commonFilterSelectedGamesPrefix,
-                          }
+                              value:
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                            }
                           : { label: presetMode, value: presetMode }
                         : undefined
                     }
@@ -2073,14 +2081,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     value={
                       presetSplit
                         ? presetSplit.startsWith(
-                          FilterPresetUtils.commonFilterSelectedGamesPrefix
-                        )
+                            FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                          )
                           ? {
-                            label: `${FilterPresetUtils.commonFilterSelectedGamesPrefix
+                              label: `${
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix
                               } [${presetSplit.split("|").length}]`,
-                            value:
-                              FilterPresetUtils.commonFilterSelectedGamesPrefix,
-                          }
+                              value:
+                                FilterPresetUtils.commonFilterSelectedGamesPrefix,
+                            }
                           : { label: presetSplit, value: presetSplit }
                         : undefined
                     }
@@ -2149,7 +2158,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Show Team View"
                       truthVal={true}
                       disabled={true}
-                      onSelect={() => { }}
+                      onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Shot Charts"
@@ -2219,7 +2228,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Show Player View"
                       truthVal={true}
                       disabled={true}
-                      onSelect={() => { }}
+                      onSelect={() => {}}
                     />
                     <GenericTogglingMenuItem
                       text="Information Sub-Header"
@@ -2265,7 +2274,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                       text="Show Lineup Comp View"
                       truthVal={true}
                       disabled={true}
-                      onSelect={() => { }}
+                      onSelect={() => {}}
                     />
                     <Dropdown.Divider />
                     <GenericTogglingMenuItem
@@ -2373,7 +2382,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                             {QueryDisplayUtils.showQueryFilter(
                               p,
                               commonParams.gender || "",
-                              commonParams.year || ""
+                              commonParams.year || "",
                             )}
                             &nbsp;
                           </span>
@@ -2464,7 +2473,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                 {QueryDisplayUtils.showQueryFilter(
                                   p,
                                   commonParams.gender || "",
-                                  commonParams.year || ""
+                                  commonParams.year || "",
                                 )}
                                 &nbsp;
                               </span>
@@ -2489,7 +2498,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                   p,
                                   commonParams.gender || "",
                                   commonParams.year || "",
-                                  true
+                                  true,
                                 )}
                                 &nbsp;
                               </span>
@@ -2602,17 +2611,19 @@ const GameFilter: React.FunctionComponent<Props> = ({
                                   <span key={`conf${i}`}>
                                     {i > 0 ? null : (
                                       <span>
-                                        <Badge variant="primary">AND</Badge>{" "}
+                                        <Badge variant="primary">
+                                          AND
+                                        </Badge>{" "}
                                       </span>
                                     )}
                                     {QueryDisplayUtils.showQueryFilter(
                                       p,
                                       commonParams.gender || "",
-                                      commonParams.year || ""
+                                      commonParams.year || "",
                                     )}
                                     &nbsp;
                                   </span>
-                                )
+                                ),
                               )}
                             </Row>
                           ) : null}
@@ -2649,7 +2660,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
                     </Col>
                   ) : undefined}
                 </Form.Group>
-              )
+              ),
             )}
           </div>
         )}

@@ -69,7 +69,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const teamAnalysisRefA = useRef<HTMLTableRowElement>(null);
   const teamAnalysisRefB = useRef<HTMLTableRowElement>(null);
   const teamAnalysisOtherRefs = _.range(20).map(() =>
-    useRef<HTMLTableRowElement>(null)
+    useRef<HTMLTableRowElement>(null),
   );
   const teamAnalysisRefBase = useRef<HTMLTableRowElement>(null);
   const teamAnalysisRefDiffs = useRef<HTMLTableRowElement>(null);
@@ -85,10 +85,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     const shortRowPhrases = _.zip(
       gameFilterParams.splitPhrases || [],
       FilterPresetUtils.getPresetPhrase(gameFilterParams.presetSplit || "??") ||
-      []
+        [],
     ).map((options) => options?.[0] || options?.[1]);
     const filterPhrase = FilterPresetUtils.getPresetFilterPhrase(
-      gameFilterParams.presetMode || "??"
+      gameFilterParams.presetMode || "??",
     );
     const onOffMode = params.autoOffQuery && !_.isEmpty(params.otherQueries);
     const onKey = shortRowPhrases?.[0] || (onOffMode ? "On" : "A");
@@ -208,7 +208,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     rosterStats: RosterStatsModel,
     shotStats: ShotStatsModel,
     lineupStats: LineupStatsModel[],
-    playerShotStats: PlayerShotStatsModel
+    playerShotStats: PlayerShotStatsModel,
   ) => {
     setDataEvent({
       teamStats,
@@ -243,7 +243,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   }
 
   const [gameFilterParams, setGameFilterParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as GameFilterParams
+    UrlRouting.removedSavedKeys(allParams) as GameFilterParams,
   );
   const gameFilterParamsRef = useRef<GameFilterParams>();
   gameFilterParamsRef.current = gameFilterParams;
@@ -254,29 +254,29 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
   const [shouldForceReload, setShouldForceReload] = useState(0 as number);
   const [shouldReinitFilter, setShouldReinitFilter] = useState(0 as number);
   const [shouldReloadTableParams, setShouldReloadTableParams] = useState(
-    0 as number
+    0 as number,
   );
 
   const onGameFilterParamsChangeFromTeamStatsTable = (
-    rawParams: GameFilterParams
+    rawParams: GameFilterParams,
   ) => {
     onGameFilterParamsChange(rawParams, "TeamStatsTable");
   };
 
   const onGameFilterParamsChangeFromRosterStatsTable = (
-    rawParams: GameFilterParams
+    rawParams: GameFilterParams,
   ) => {
     onGameFilterParamsChange(rawParams, "RosterStatsTable");
   };
 
   const onGameFilterParamsChange = (
     rawParams: GameFilterParams,
-    source?: "RosterStatsTable" | "TeamStatsTable"
+    source?: "RosterStatsTable" | "TeamStatsTable",
   ) => {
     /** We're going to want to remove the manual options if the year changes */
     const yearTeamGenderChange = (
       rawParams: GameFilterParams,
-      currParams: GameFilterParams
+      currParams: GameFilterParams,
     ) => {
       return (
         rawParams.year != currParams.year ||
@@ -301,17 +301,17 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["luck"]
           : [],
         !rawParams.presetMode ||
-          rawParams.presetMode == ParamDefaults.defaultPresetMode
+        rawParams.presetMode == ParamDefaults.defaultPresetMode
           ? ["presetMode"]
           : [],
         !rawParams.presetSplit ||
-          rawParams.presetSplit == ParamDefaults.defaultPresetSplit
+        rawParams.presetSplit == ParamDefaults.defaultPresetSplit
           ? ["presetSplit"]
           : [],
         !rawParams.advancedMode ? ["advancedMode"] : [],
         !rawParams.onOffLuck ? ["onOffLuck"] : [],
         rawParams.showPlayerOnOffLuckDiags ==
-          ParamDefaults.defaultOnOffLuckDiagMode
+        ParamDefaults.defaultOnOffLuckDiagMode
           ? ["showPlayerOnOffLuckDiags"]
           : [],
         rawParams.showOnOffLuckDiags == ParamDefaults.defaultOnOffLuckDiagMode
@@ -331,7 +331,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["teamPlayTypeConfig"]
           : [],
         rawParams.teamPlayStyleConfig ==
-          ParamDefaults.defaultTeamPlayStyleConfig
+        ParamDefaults.defaultTeamPlayStyleConfig
           ? ["teamPlayStyleConfig"]
           : [],
         rawParams.showExtraInfo == false ? ["showExtraInfo"] : [],
@@ -343,16 +343,34 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           : [],
         !rawParams.teamShotCharts ? ["teamShotCharts"] : [],
         rawParams.teamShotChartsShowZones ==
-          ParamDefaults.defaultShotChartShowZones
+        ParamDefaults.defaultShotChartShowZones
           ? ["teamShotChartsShowZones"]
           : [],
         !rawParams.teamShotChartsUseEfg ? ["teamShotChartsUseEfg"] : [],
+        rawParams.teamShotChartsViewMode ==
+        ParamDefaults.defaultShotChartViewMode
+          ? ["teamShotChartsViewMode"]
+          : [],
+        (rawParams.teamShotChartsShowFreqAsNumber ??
+          ParamDefaults.defaultShotChartsShowFreqAsNumber) ==
+        ParamDefaults.defaultShotChartsShowFreqAsNumber
+          ? ["teamShotChartsShowFreqAsNumber"]
+          : [],
         !rawParams.playerShotCharts ? ["playerShotCharts"] : [],
         rawParams.playerShotChartsShowZones ==
-          ParamDefaults.defaultShotChartShowZones
+        ParamDefaults.defaultShotChartShowZones
           ? ["playerShotChartsShowZones"]
           : [],
         !rawParams.playerShotChartsUseEfg ? ["playerShotChartsUseEfg"] : [],
+        rawParams.playerShotChartsViewMode ==
+        ParamDefaults.defaultShotChartViewMode
+          ? ["playerShotChartsViewMode"]
+          : [],
+        (rawParams.playerShotChartsShowFreqAsNumber ??
+          ParamDefaults.defaultShotChartsShowFreqAsNumber) ==
+        ParamDefaults.defaultShotChartsShowFreqAsNumber
+          ? ["playerShotChartsShowFreqAsNumber"]
+          : [],
         rawParams.showGrades == ParamDefaults.defaultEnabledGrade
           ? ["showGrades"]
           : [],
@@ -382,14 +400,14 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["showPosDiag"]
           : [],
         rawParams.showPlayerPlayTypes ==
-          ParamDefaults.defaultPlayerShowPlayTypes
+        ParamDefaults.defaultPlayerShowPlayTypes
           ? ["showPlayerPlayTypes"]
           : [],
-        rawParams.showPlayerPlayTypesAdjPpp ?? true
+        (rawParams.showPlayerPlayTypesAdjPpp ?? true)
           ? ["showPlayerPlayTypesAdjPpp"]
           : [],
         rawParams.showPlayerPlayTypesPlayType ==
-          ParamDefaults.defaultPlayerShowPlayTypesPlayType
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
           ? ["showPlayerPlayTypesPlayType"]
           : [],
         rawParams.showPlayerManual == false ? ["showPlayerManual"] : [],
@@ -401,24 +419,32 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
           ? ["rapmPriorMode"]
           : [],
         rawParams.rapmRegressMode ==
-          ParamDefaults.defaultTeamReportRapmRegressMode
+        ParamDefaults.defaultTeamReportRapmRegressMode
           ? ["rapmRegressMode"]
           : [],
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         // Table configuration (team):
         !rawParams.teamTablePreset ? ["teamTablePreset"] : [],
-        _.isEmpty(rawParams.teamTableConfigExtraCols) ? ["teamTableConfigExtraCols"] : [],
-        _.isNil(rawParams.teamTableConfigDisabledCols) ? ["teamTableConfigDisabledCols"] : [],
+        _.isEmpty(rawParams.teamTableConfigExtraCols)
+          ? ["teamTableConfigExtraCols"]
+          : [],
+        _.isNil(rawParams.teamTableConfigDisabledCols)
+          ? ["teamTableConfigDisabledCols"]
+          : [],
         // Table configuration (player):
         !rawParams.playerTablePreset ? ["playerTablePreset"] : [],
-        _.isEmpty(rawParams.playerTableConfigExtraCols) ? ["playerTableConfigExtraCols"] : [],
-        _.isNil(rawParams.playerTableConfigDisabledCols) ? ["playerTableConfigDisabledCols"] : [],
+        _.isEmpty(rawParams.playerTableConfigExtraCols)
+          ? ["playerTableConfigExtraCols"]
+          : [],
+        _.isNil(rawParams.playerTableConfigDisabledCols)
+          ? ["playerTableConfigDisabledCols"]
+          : [],
         // Row display
         !rawParams.basePhrase ? ["basePhrase"] : [],
         !rawParams.baseText ? ["baseText"] : [],
         !rawParams.splitPhrases ? ["splitPhrases"] : [],
         !rawParams.splitText ? ["splitText"] : [],
-      ])
+      ]),
     );
 
     // Because of the clunky way params are handled in the filters / tables, need some complex logic
@@ -435,6 +461,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       //(not teamShotCharts, updates the query)
       "teamShotChartsShowZones",
       "teamShotChartsUseEfg",
+      "teamShotChartsViewMode",
+      "teamShotChartsShowFreqAsNumber",
       "showOnOffLuckDiags",
       // Table configuration (team):
       "teamTablePreset",
@@ -444,11 +472,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       params.diffLock
         ? []
         : [
-          //(if diffLock is enabled then these need to trigger a change)
-          "teamDiffs",
-          "diffsHideDatasets",
-          "diffsCompare",
-        ]
+            //(if diffLock is enabled then these need to trigger a change)
+            "teamDiffs",
+            "diffsHideDatasets",
+            "diffsCompare",
+          ],
     );
     const urlUpdateOnlyFieldsFromPlayerStats = [
       // Player info:
@@ -473,6 +501,8 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       "rapmRegressMode",
       "playerShotChartsShowZones",
       "playerShotChartsUseEfg",
+      "playerShotChartsViewMode",
+      "playerShotChartsShowFreqAsNumber",
       // Table configuration (player):
       "playerTablePreset",
       "playerTableConfigExtraCols",
@@ -481,11 +511,11 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       params.diffLock
         ? []
         : [
-          //(if diffLock is enabled then these need to trigger a change)
-          "playerDiffs",
-          "playerDiffsHideDatasets",
-          "playerDiffsCompare",
-        ]
+            //(if diffLock is enabled then these need to trigger a change)
+            "playerDiffs",
+            "playerDiffsHideDatasets",
+            "playerDiffsCompare",
+          ],
     );
     //(all other luck params are shared)
 
@@ -535,23 +565,25 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       _.keys(removeFieldsToIgnore(params)).forEach((p) => {
         const isEqual = _.isEqual(
           { [p]: (params as any)[p] },
-          { [p]: (gameFilterParamsRef.current as any)[p] }
+          { [p]: (gameFilterParamsRef.current as any)[p] },
         );
         if (!isEqual)
           console.log(
-            `params: ${p}: [${isEqual}] [${(params as any)[p]}] [${(gameFilterParamsRef.current as any)[p]
-            }]`
+            `params: ${p}: [${isEqual}] [${(params as any)[p]}] [${
+              (gameFilterParamsRef.current as any)[p]
+            }]`,
           );
       });
       _.keys(removeFieldsToIgnore(gameFilterParamsRef.current)).forEach((p) => {
         const isEqual = _.isEqual(
           { [p]: (params as any)[p] },
-          { [p]: (gameFilterParamsRef.current as any)[p] }
+          { [p]: (gameFilterParamsRef.current as any)[p] },
         );
         if (!isEqual)
           console.log(
-            `gameFilterParamsRef: ${p}: [${isEqual}] [${(params as any)[p]}] [${(gameFilterParamsRef.current as any)[p]
-            }]`
+            `gameFilterParamsRef: ${p}: [${isEqual}] [${(params as any)[p]}] [${
+              (gameFilterParamsRef.current as any)[p]
+            }]`,
           );
       });
     }
@@ -603,7 +635,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
     } else if (
       !_.isEqual(
         checkUrlUpdateFields(params),
-        checkUrlUpdateFields(gameFilterParamsRef.current)
+        checkUrlUpdateFields(gameFilterParamsRef.current),
       )
     ) {
       // In this case all I want to do is update the URL to save the params

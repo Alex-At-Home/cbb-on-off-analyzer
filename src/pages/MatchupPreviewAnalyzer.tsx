@@ -236,6 +236,19 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
   const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
     startingMatchupFilterParams.shotChartsUseEfg ?? false,
   );
+  const [shotChartsViewMode, setShotChartsViewMode] = useState<
+    "regions" | "zones" | "clusters"
+  >(
+    (startingMatchupFilterParams.shotChartsViewMode as
+      | "regions"
+      | "zones"
+      | "clusters"
+      | undefined) ?? ParamDefaults.defaultShotChartViewMode,
+  );
+  const [shotChartsShowFreqAsNumber, setShotChartsShowFreqAsNumber] = useState(
+    startingMatchupFilterParams.shotChartsShowFreqAsNumber ??
+      ParamDefaults.defaultShotChartsShowFreqAsNumber,
+  );
 
   const [playStyleConfigStr, setPlayStyleConfigStr] = useState<string>(
     startingMatchupFilterParams.playStyleConfigStr ||
@@ -277,6 +290,14 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
         !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],
+        rawParams.shotChartsViewMode == ParamDefaults.defaultShotChartViewMode
+          ? ["shotChartsViewMode"]
+          : [],
+        (rawParams.shotChartsShowFreqAsNumber ??
+          ParamDefaults.defaultShotChartsShowFreqAsNumber) ==
+        ParamDefaults.defaultShotChartsShowFreqAsNumber
+          ? ["shotChartsShowFreqAsNumber"]
+          : [],
         rawParams.playStyleConfigStr == ParamDefaults.defaultTeamPlayTypeConfig
           ? ["playStyleConfigStr"]
           : [],
@@ -381,12 +402,16 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
       breakdownConfig: breakdownView,
       shotChartsShowZones: shotChartsShowZones,
       shotChartsUseEfg: shotChartsUseEfg,
+      shotChartsViewMode: shotChartsViewMode,
+      shotChartsShowFreqAsNumber: shotChartsShowFreqAsNumber,
       playStyleConfigStr: playStyleConfigStr,
     });
   }, [
     breakdownView,
     shotChartsShowZones,
     shotChartsUseEfg,
+    shotChartsViewMode,
+    shotChartsShowFreqAsNumber,
     playStyleConfigStr,
   ]);
 
@@ -856,11 +881,21 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
                   quickSwitchOptions={[]}
                   chartOpts={{
                     buildZones: shotChartsShowZones,
+                    viewMode: shotChartsViewMode,
                     useEfg: shotChartsUseEfg,
+                    showFreqAsNumber: shotChartsShowFreqAsNumber,
                   }}
                   onChangeChartOpts={(newOpts) => {
-                    setShotChartsShowZones(newOpts.buildZones || false);
+                    setShotChartsShowZones(newOpts.buildZones ?? true);
+                    setShotChartsViewMode(
+                      newOpts.viewMode ??
+                        ParamDefaults.defaultShotChartViewMode,
+                    );
                     setShotChartsUseEfg(newOpts.useEfg ?? false);
+                    setShotChartsShowFreqAsNumber(
+                      newOpts.showFreqAsNumber ??
+                        ParamDefaults.defaultShotChartsShowFreqAsNumber,
+                    );
                   }}
                   labelOverrides={[
                     breakdownViewArr?.[0] == "off"
@@ -898,7 +933,9 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
                     quickSwitchOptions={[]}
                     chartOpts={{
                       buildZones: shotChartsShowZones,
+                      viewMode: shotChartsViewMode,
                       useEfg: shotChartsUseEfg,
+                      showFreqAsNumber: shotChartsShowFreqAsNumber,
                     }}
                     onChangeChartOpts={undefined}
                     labelOverrides={[
@@ -934,7 +971,14 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
         )}
       </GenericCollapsibleCard>
     );
-  }, [dataEvent, breakdownView, shotChartsShowZones, shotChartsUseEfg]);
+  }, [
+    dataEvent,
+    breakdownView,
+    shotChartsShowZones,
+    shotChartsViewMode,
+    shotChartsUseEfg,
+    shotChartsShowFreqAsNumber,
+  ]);
 
   const timelineChart = React.useMemo(() => {
     return (

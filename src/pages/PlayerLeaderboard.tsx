@@ -100,7 +100,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
   /** TODO experimentation, actually cue off showExpanded */
   const isWideScreen = FeatureFlags.isActiveWindow(
-    FeatureFlags.expandedPlayerLeaderboard
+    FeatureFlags.expandedPlayerLeaderboard,
   );
   const [gaInited, setGaInited] = useState(false);
   const [dataEvent, setDataEvent] = useState(dataEventInit);
@@ -122,13 +122,13 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   }
 
   const [playerLeaderboardParams, setPlayerLeaderboardParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams
+    UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams,
   );
   const playerLeaderboardParamsRef = useRef<PlayerLeaderboardParams>();
   playerLeaderboardParamsRef.current = playerLeaderboardParams;
 
   const onPlayerLeaderboardParamsChange = (
-    rawParams: PlayerLeaderboardParams
+    rawParams: PlayerLeaderboardParams,
   ) => {
     const params = _.omit(
       rawParams,
@@ -158,12 +158,20 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
         !rawParams.shotCharts ? ["shotCharts"] : [],
         !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],
+        rawParams.shotChartsViewMode == ParamDefaults.defaultShotChartViewMode
+          ? ["shotChartsViewMode"]
+          : [],
+        (rawParams.shotChartsShowFreqAsNumber ??
+          ParamDefaults.defaultShotChartsShowFreqAsNumber) ==
+        ParamDefaults.defaultShotChartsShowFreqAsNumber
+          ? ["shotChartsShowFreqAsNumber"]
+          : [],
         !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
-        rawParams.showPlayerPlayTypesAdjPpp ?? true
+        (rawParams.showPlayerPlayTypesAdjPpp ?? true)
           ? ["showPlayerPlayTypesAdjPpp"]
           : [],
         rawParams.showPlayerPlayTypesPlayType ==
-          ParamDefaults.defaultPlayerShowPlayTypesPlayType
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
           ? ["showPlayerPlayTypesPlayType"]
           : [],
 
@@ -172,8 +180,12 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
         // Table configuration:
         !rawParams.tablePreset ? ["tablePreset"] : [],
-        _.isEmpty(rawParams.tableConfigExtraCols) ? ["tableConfigExtraCols"] : [],
-        _.isNil(rawParams.tableConfigDisabledCols) ? ["tableConfigDisabledCols"] : [],
+        _.isEmpty(rawParams.tableConfigExtraCols)
+          ? ["tableConfigExtraCols"]
+          : [],
+        _.isNil(rawParams.tableConfigDisabledCols)
+          ? ["tableConfigDisabledCols"]
+          : [],
 
         rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos
           ? ["minPoss"]
@@ -182,17 +194,17 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           ? ["maxTableSize"]
           : [],
         rawParams.sortBy ==
-          ParamDefaults.defaultPlayerLboardSortBy(
-            _.isNil(rawParams.useRapm)
-              ? ParamDefaults.defaultPlayerLboardUseRapm
-              : rawParams.useRapm,
-            _.isNil(rawParams.factorMins)
-              ? ParamDefaults.defaultPlayerLboardFactorMins
-              : rawParams.factorMins
-          )
+        ParamDefaults.defaultPlayerLboardSortBy(
+          _.isNil(rawParams.useRapm)
+            ? ParamDefaults.defaultPlayerLboardUseRapm
+            : rawParams.useRapm,
+          _.isNil(rawParams.factorMins)
+            ? ParamDefaults.defaultPlayerLboardFactorMins
+            : rawParams.factorMins,
+        )
           ? ["sortBy"]
           : [],
-      ])
+      ]),
     );
     if (!_.isEqual(params, playerLeaderboardParamsRef.current)) {
       //(to avoid recursion)
@@ -250,8 +262,8 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       const transferYearStr =
         transferYearStrSplit[0] == "true"
           ? (
-            DateUtils.getOffseasonOfYear(DateUtils.offseasonYear) || ""
-          ).substring(0, 4) //(default, means most recent year)
+              DateUtils.getOffseasonOfYear(DateUtils.offseasonYear) || ""
+            ).substring(0, 4) //(default, means most recent year)
           : transferYearStrSplit[0] || nextYear.substring(0, 4); //(else whatever is specified)
 
       const transferYearIn =
@@ -265,16 +277,16 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         fullYear,
         tier,
         transferYearIn,
-        []
+        [],
       );
       const teamStatsPromise = needsTeamStats
         ? LeaderboardUtils.getMultiYearTeamDetails(
-          "all", //(too restrictive to force team queries to be the same as player filter)
-          gender,
-          fullYear,
-          tier,
-          []
-        )
+            "all", //(too restrictive to force team queries to be the same as player filter)
+            gender,
+            fullYear,
+            tier,
+            [],
+          )
         : Promise.resolve([]);
 
       Promise.all([fetchAll, teamStatsPromise]).then((fetchResults) => {
@@ -288,27 +300,27 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
                 (d.players || []).map((p: any) => {
                   p.tier = d.tier;
                   return p;
-                }) || []
+                }) || [],
             )
             .flatten()
             .value(),
           teams: needsTeamStats
             ? _.chain(teamStats)
-              .flatMap((d) => d.teams || [])
-              .flatten()
-              .map((t) => {
-                // Some processing that is needed in TeamStatsExplorerTable.phase1Processing
-                // (see there for details)
-                // TODO: should add this logic to a TableUtils
-                LuckUtils.injectLuck(t, undefined, undefined);
-                t.off_raw_net = {
-                  value:
-                    (t.off_ppp?.value || 100) - (t.def_ppp?.value || 100),
-                };
-                return [`${t.team_name}_${t.year}`, t];
-              })
-              .fromPairs()
-              .value()
+                .flatMap((d) => d.teams || [])
+                .flatten()
+                .map((t) => {
+                  // Some processing that is needed in TeamStatsExplorerTable.phase1Processing
+                  // (see there for details)
+                  // TODO: should add this logic to a TableUtils
+                  LuckUtils.injectLuck(t, undefined, undefined);
+                  t.off_raw_net = {
+                    value:
+                      (t.off_ppp?.value || 100) - (t.def_ppp?.value || 100),
+                  };
+                  return [`${t.team_name}_${t.year}`, t];
+                })
+                .fromPairs()
+                .value()
             : undefined,
           confs: _.chain(jsons)
             .map((d) => d.confs || [])
@@ -341,16 +353,16 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           dataSubEventKey,
           gender,
           fullYear,
-          tier
+          tier,
         );
         const teamStatsPromise = needsTeamStats
           ? LeaderboardUtils.getMultiYearTeamDetails(
-            "all", //(too restrictive to force team queries to be the same as player filter)
-            gender,
-            fullYear,
-            tier,
-            [] //TODO: support "All"
-          )
+              "all", //(too restrictive to force team queries to be the same as player filter)
+              gender,
+              fullYear,
+              tier,
+              [], //TODO: support "All"
+            )
           : Promise.resolve([]);
 
         Promise.all([playerLboardPromise, teamStatsPromise]).then(
@@ -370,7 +382,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
               [dataSubEventKey]: playerJson,
             });
             setDataSubEvent(playerJson);
-          }
+          },
         );
       } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
         setDataSubEvent(dataEvent[dataSubEventKey]);
@@ -391,8 +403,9 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     );
   }, [dataSubEvent]);
 
-  const thumbnailUrl = `${server != "localhost" ? `https://${server}` : "http://localhost:3000"
-    }/thumbnails/player_leaderboard_thumbnail.png`;
+  const thumbnailUrl = `${
+    server != "localhost" ? `https://${server}` : "http://localhost:3000"
+  }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className={isWideScreen ? "wide_screen" : "medium_screen"}>
       <SiteModeDropdown />

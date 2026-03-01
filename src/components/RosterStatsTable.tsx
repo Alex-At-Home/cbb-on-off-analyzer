@@ -227,7 +227,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       ? undefined
       : {
           buildZones: gameFilterParams.playerShotChartsShowZones,
+          viewMode:
+            (gameFilterParams.playerShotChartsViewMode as
+              | "regions"
+              | "zones"
+              | "clusters"
+              | undefined) ?? "zones",
           useEfg: gameFilterParams.playerShotChartsUseEfg ?? false,
+          showFreqAsNumber:
+            gameFilterParams.playerShotChartsShowFreqAsNumber ?? false,
         },
   );
 
@@ -499,6 +507,8 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       playerShotCharts: showShotCharts,
       playerShotChartsShowZones: shotChartConfig?.buildZones,
       playerShotChartsUseEfg: shotChartConfig?.useEfg,
+      playerShotChartsViewMode: shotChartConfig?.viewMode,
+      playerShotChartsShowFreqAsNumber: shotChartConfig?.showFreqAsNumber,
       rapmPriorMode: rapmPriorMode.toString(),
       rapmRegressMode: rapmRegressMode.toString(),
       factorMins: factorMins,

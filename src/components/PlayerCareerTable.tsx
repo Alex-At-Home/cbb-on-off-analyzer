@@ -390,8 +390,16 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     UserChartOpts | undefined
   >({
     buildZones: playerCareerParams.playerShotChartsShowZones,
+    viewMode:
+      (playerCareerParams.playerShotChartsViewMode as
+        | "regions"
+        | "zones"
+        | "clusters"
+        | undefined) ?? "zones",
     quickSwitch: playerCareerParams.playerShotChartQuickSwitch,
     useEfg: playerCareerParams.playerShotChartsUseEfg ?? false,
+    showFreqAsNumber:
+      playerCareerParams.playerShotChartsShowFreqAsNumber ?? false,
   });
 
   /** Splits out offensive and defensive metrics into separate rows */
@@ -553,6 +561,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       playerShotCharts: showShotCharts,
       playerShotChartsShowZones: shotChartConfig?.buildZones,
       playerShotChartsUseEfg: shotChartConfig?.useEfg,
+      playerShotChartsViewMode: shotChartConfig?.viewMode,
+      playerShotChartsShowFreqAsNumber: shotChartConfig?.showFreqAsNumber,
       playerShotChartQuickSwitch: shotChartConfig?.quickSwitch,
       factorMins,
       possAsPct,

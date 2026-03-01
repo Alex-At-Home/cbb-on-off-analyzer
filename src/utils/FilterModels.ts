@@ -137,6 +137,8 @@ export type MatchupFilterParams = {
   breakdownConfig?: string; //(currently: [off|def];[off|def])
   shotChartsShowZones?: boolean;
   shotChartsUseEfg?: boolean;
+  shotChartsViewMode?: "regions" | "zones" | "clusters";
+  shotChartsShowFreqAsNumber?: boolean;
   customDisplayMode?: string; //(write only: CSV list: can be teamStats|playTypes)
   playStyleConfigStr?: string; //(chart configuration string)
   /** Impact breakdown table: include SoS adjustment in calcs (adjBreakdownForSoS) */
@@ -229,9 +231,13 @@ export type GameFilterParams = {
   teamShotCharts?: boolean;
   teamShotChartsShowZones?: boolean;
   teamShotChartsUseEfg?: boolean;
+  teamShotChartsViewMode?: "regions" | "zones" | "clusters";
+  teamShotChartsShowFreqAsNumber?: boolean;
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
   playerShotChartsUseEfg?: boolean;
+  playerShotChartsViewMode?: "regions" | "zones" | "clusters";
+  playerShotChartsShowFreqAsNumber?: boolean;
   // Table configuration:
   teamTablePreset?: string;
   teamTableConfigExtraCols?: string[];
@@ -488,6 +494,8 @@ export type PlayerCareerParams = {
   playerShotCharts?: boolean;
   playerShotChartsShowZones?: boolean;
   playerShotChartsUseEfg?: boolean;
+  playerShotChartsViewMode?: "regions" | "zones" | "clusters";
+  playerShotChartsShowFreqAsNumber?: boolean;
   playerShotChartQuickSwitch?: string;
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
@@ -551,6 +559,8 @@ export type PlayerLeaderboardParams = {
   // Shot charts:
   shotCharts?: boolean;
   shotChartsUseEfg?: boolean;
+  shotChartsViewMode?: "regions" | "zones" | "clusters";
+  shotChartsShowFreqAsNumber?: boolean;
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
   showPlayerPlayTypesPlayType?: string;
@@ -699,6 +709,8 @@ export class ParamDefaults {
   static readonly defaultPlayerPosDiagMode = false;
   static readonly defaultPlayerCalcRapm = false;
   static readonly defaultShotChartShowZones = true;
+  static readonly defaultShotChartViewMode = "zones";
+  static readonly defaultShotChartsShowFreqAsNumber = false;
   // Lineup
   static readonly defaultPresetGroup = "Lineups";
   static readonly defaultLineupShowTotal = false;

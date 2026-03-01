@@ -138,7 +138,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
         off: ShotStats;
         def: ShotStats;
       };
-    }
+    },
   ) => {
     setDataEvent({
       teamStatsA,
@@ -181,17 +181,17 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
   }
 
   const startingMatchupFilterParams = UrlRouting.removedSavedKeys(
-    allParams
+    allParams,
   ) as MatchupFilterParams; //(only used to init a couple of useStates)
   const [matchupFilterParams, setMatchupFilterParams] = useState(
-    startingMatchupFilterParams
+    startingMatchupFilterParams,
   );
   const matchupFilterParamsRef = useRef<MatchupFilterParams>();
   matchupFilterParamsRef.current = matchupFilterParams;
 
   // Display restriction mode:
   const restrictiveMode = !_.isNil(
-    startingMatchupFilterParams.customDisplayMode
+    startingMatchupFilterParams.customDisplayMode,
   );
 
   const showShotCharts =
@@ -201,7 +201,23 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
   const [shotChartsShowZones, setShotChartsShowZones] = useState(
     _.isNil(startingMatchupFilterParams.shotChartsShowZones)
       ? ParamDefaults.defaultShotChartShowZones
-      : startingMatchupFilterParams.shotChartsShowZones
+      : startingMatchupFilterParams.shotChartsShowZones,
+  );
+  const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
+    startingMatchupFilterParams.shotChartsUseEfg ?? false,
+  );
+  const [shotChartsViewMode, setShotChartsViewMode] = useState<
+    "regions" | "zones" | "clusters"
+  >(
+    (startingMatchupFilterParams.shotChartsViewMode as
+      | "regions"
+      | "zones"
+      | "clusters"
+      | undefined) ?? ParamDefaults.defaultShotChartViewMode,
+  );
+  const [shotChartsShowFreqAsNumber, setShotChartsShowFreqAsNumber] = useState(
+    startingMatchupFilterParams.shotChartsShowFreqAsNumber ??
+      ParamDefaults.defaultShotChartsShowFreqAsNumber,
   );
 
   function getRootUrl(params: MatchupFilterParams) {
@@ -246,7 +262,16 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
           ? ["iconType"]
           : [],
         rawParams.shotChartsShowZones ? ["shotChartsShowZones"] : [],
-      ])
+        !rawParams.shotChartsUseEfg ? ["shotChartsUseEfg"] : [],
+        rawParams.shotChartsViewMode == ParamDefaults.defaultShotChartViewMode
+          ? ["shotChartsViewMode"]
+          : [],
+        (rawParams.shotChartsShowFreqAsNumber ??
+          ParamDefaults.defaultShotChartsShowFreqAsNumber) ==
+        ParamDefaults.defaultShotChartsShowFreqAsNumber
+          ? ["shotChartsShowFreqAsNumber"]
+          : [],
+      ]),
     );
     if (!_.isEqual(params, matchupFilterParamsRef.current)) {
       //(to avoid recursion)
@@ -266,7 +291,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
   // Load team grades, needed for play recap view
 
   const [divisionStatsCache, setDivisionStatsCache] = useState(
-    {} as DivisionStatsCache
+    {} as DivisionStatsCache,
   );
 
   // Events that trigger building or rebuilding the division stats cache
@@ -279,7 +304,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
       if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
       GradeTableUtils.populateTeamDivisionStatsCache(
         matchupFilterParams,
-        setDivisionStatsCache
+        setDivisionStatsCache,
       );
     }
   }, [matchupFilterParams]);
@@ -289,8 +314,16 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
     onMatchupFilterParamsChange({
       ...matchupFilterParamsRef.current,
       shotChartsShowZones: shotChartsShowZones,
+      shotChartsUseEfg: shotChartsUseEfg,
+      shotChartsViewMode: shotChartsViewMode,
+      shotChartsShowFreqAsNumber: shotChartsShowFreqAsNumber,
     });
-  }, [shotChartsShowZones]);
+  }, [
+    shotChartsShowZones,
+    shotChartsUseEfg,
+    shotChartsViewMode,
+    shotChartsShowFreqAsNumber,
+  ]);
 
   // View
 
@@ -414,7 +447,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                           csvData,
                           () => {
                             const oppoAndDate = buildOppoFilter(
-                              matchupFilterParams.oppoTeam || ""
+                              matchupFilterParams.oppoTeam || "",
                             );
                             const dataTeamA: object[] =
                               PlayTypeDiagUtils.buildTeamStyleBreakdownData(
@@ -425,7 +458,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                                 dataEvent.teamStatsA,
                                 avgEfficiency,
                                 divisionStatsCache,
-                                true
+                                true,
                               );
                             const dataTeamB: object[] =
                               PlayTypeDiagUtils.buildTeamStyleBreakdownData(
@@ -436,10 +469,10 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                                 dataEvent.teamStatsB,
                                 avgEfficiency,
                                 divisionStatsCache,
-                                true
+                                true,
                               );
                             setCsvData(dataTeamA.concat(dataTeamB));
-                          }
+                          },
                         )}{" "}
                       </div>
                     </Col>
@@ -465,7 +498,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                           true,
                           undefined,
                           undefined,
-                          undefined
+                          undefined,
                         )
                       )}
                     </Col>
@@ -490,7 +523,7 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                           true,
                           undefined,
                           undefined,
-                          undefined
+                          undefined,
                         )
                       )}
                     </Col>
@@ -553,16 +586,30 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
                             `Opponents' offense:`,
                             `${
                               buildOppoFilter(
-                                matchupFilterParams.oppoTeam || ""
+                                matchupFilterParams.oppoTeam || "",
                               )?.team
                             } offense:`,
                           ],
                           gender: matchupFilterParams.gender as "Men" | "Women",
                         },
                       ]}
-                      chartOpts={{ buildZones: shotChartsShowZones }}
+                      chartOpts={{
+                        buildZones: shotChartsShowZones,
+                        viewMode: shotChartsViewMode,
+                        useEfg: shotChartsUseEfg,
+                        showFreqAsNumber: shotChartsShowFreqAsNumber,
+                      }}
                       onChangeChartOpts={(newOpts) => {
-                        setShotChartsShowZones(newOpts.buildZones || false);
+                        setShotChartsShowZones(newOpts.buildZones ?? true);
+                        setShotChartsViewMode(
+                          newOpts.viewMode ??
+                            ParamDefaults.defaultShotChartViewMode,
+                        );
+                        setShotChartsUseEfg(newOpts.useEfg ?? false);
+                        setShotChartsShowFreqAsNumber(
+                          newOpts.showFreqAsNumber ??
+                            ParamDefaults.defaultShotChartsShowFreqAsNumber,
+                        );
                       }}
                       labelOverrides={[
                         `${matchupFilterParams.team} Shots:`,
@@ -589,7 +636,13 @@ const CustomMatchupAnalyzerPage: NextPage<{}> = () => {
             )}
           </GenericCollapsibleCard>
         );
-      }, [dataEvent, shotChartsShowZones]);
+      }, [
+        dataEvent,
+        shotChartsShowZones,
+        shotChartsViewMode,
+        shotChartsUseEfg,
+        shotChartsShowFreqAsNumber,
+      ]);
 
   // These tables are _only_ shown in restrictive mode if specified
 

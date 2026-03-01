@@ -130,7 +130,7 @@ const sortOptions: Array<any> = _.flatten(
         keycol[1].colName &&
         keycol[1].colName != "" &&
         (!_.isString(keycol[1].colName) ||
-          !_.startsWith(keycol[1].colName, "__"))
+          !_.startsWith(keycol[1].colName, "__")),
     )
     .map((keycol) => {
       return [
@@ -203,7 +203,7 @@ const sortOptions: Array<any> = _.flatten(
             ]
           : [];
       });
-    })
+    }),
 );
 const sortOptionsByValue = _.fromPairs(
   sortOptions
@@ -211,7 +211,7 @@ const sortOptionsByValue = _.fromPairs(
     .concat([
       [yearOpt.value, yearOpt],
       [unsortedOpt.value, unsortedOpt],
-    ])
+    ]),
 );
 
 // Info required for the positional filter
@@ -316,14 +316,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     DateUtils.cleanYear(
       startingState.year,
       DateUtils.mostRecentYearWithLboardData,
-      [DateUtils.AllYears, DateUtils.MultiYearPrefix, DateUtils.ExtraYears]
-    )
+      [DateUtils.AllYears, DateUtils.MultiYearPrefix, DateUtils.ExtraYears],
+    ),
   );
   const year = startingState.year || DateUtils.mostRecentYearWithLboardData;
   //(changing year changes data which triggers a reload of this page, so startingState is always right ...
   // whereas conversely if year is changed programmatically from outside the page, yearUnreliable won't change)
   const [genderUnreliable, setGender] = useState(
-    startingState.gender || ParamDefaults.defaultGender
+    startingState.gender || ParamDefaults.defaultGender,
   );
   const gender = startingState.gender || ParamDefaults.defaultGender;
   //(see year/yearUnreliable, this is the same thing)
@@ -336,7 +336,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       startingState.year?.startsWith(DateUtils.MultiYearPrefix);
 
   const [tier, setTier] = useState(
-    startingState.tier || ParamDefaults.defaultTier
+    startingState.tier || ParamDefaults.defaultTier,
   );
 
   // Misc display
@@ -345,27 +345,27 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Whether to show sub-header with extra info */
   const [showInfoSubHeader, setShowInfoSubHeader] = useState(
-    startingState.showInfoSubHeader || false
+    startingState.showInfoSubHeader || false,
   );
 
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
-    true as boolean
+    true as boolean,
   ); //(always defaults to on)
 
   /** Whether to make the quick toggle bar stick (default: on) */
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(startingState.stickyQuickToggle)
       ? true
-      : startingState.stickyQuickToggle
+      : startingState.stickyQuickToggle,
   );
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    startingState.tablePreset
+    startingState.tablePreset,
   );
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
-    startingState.tableConfigExtraCols || []
+    startingState.tableConfigExtraCols || [],
   );
   /** Disabled table columns */
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
@@ -373,8 +373,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   >(startingState.tableConfigDisabledCols);
   const anyTableOverride = Boolean(
     tablePreset ||
-      !_.isEmpty(tableConfigExtraCols) ||
-      !_.isEmpty(tableConfigDisabledCols)
+    !_.isEmpty(tableConfigExtraCols) ||
+    !_.isEmpty(tableConfigDisabledCols),
   );
   useEffect(() => {
     //(because of the memo, need to explicitly disable it .. since don't want every
@@ -388,19 +388,19 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [factorMins, setFactorMins] = useState(
     _.isNil(startingState.factorMins)
       ? ParamDefaults.defaultPlayerLboardFactorMins
-      : startingState.factorMins
+      : startingState.factorMins,
   );
   const [useRapm, setUseRapm] = useState(
     _.isNil(startingState.useRapm)
       ? ParamDefaults.defaultPlayerLboardUseRapm
-      : startingState.useRapm
+      : startingState.useRapm,
   );
 
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(startingState.showGrades)
       ? ParamDefaults.defaultEnabledGrade
-      : startingState.showGrades
+      : startingState.showGrades,
   );
   const [hideGlobalGradeSettings, setHideGlobalGradeSettings] =
     useState<boolean>(true);
@@ -409,24 +409,33 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Show simplified player shot chart */
   const [showPlayerShots, setShowPlayerShots] = useState(
-    _.isNil(startingState.shotCharts) ? false : startingState.shotCharts
+    _.isNil(startingState.shotCharts) ? false : startingState.shotCharts,
   );
   const [shotChartsUseEfg, setShotChartsUseEfg] = useState(
-    startingState.shotChartsUseEfg ?? false
+    startingState.shotChartsUseEfg ?? false,
+  );
+  const [shotChartsViewMode, setShotChartsViewMode] = useState<
+    "regions" | "zones"
+  >(
+    (startingState.shotChartsViewMode as "regions" | "zones" | undefined) ??
+      "zones",
+  );
+  const [shotChartsShowFreqAsNumber, setShotChartsShowFreqAsNumber] = useState(
+    startingState.shotChartsShowFreqAsNumber ?? false,
   );
 
   /** Show simplified player play style breakdown */
   const [showPlayerPlayTypes, setShowPlayerPlayTypes] = useState(
     _.isNil(startingState.showPlayerPlayTypes)
       ? false
-      : startingState.showPlayerPlayTypes
+      : startingState.showPlayerPlayTypes,
   );
   const [showPlayerPlayTypesAdjPpp, setShowPlayerPlayTypesAdjPpp] =
     useState<boolean>(startingState.showPlayerPlayTypesAdjPpp ?? true);
   const [showPlayerPlayTypesPlayType, setShowPlayerPlayTypesPlayType] =
     useState<string | undefined>(
       startingState.showPlayerPlayTypesPlayType ??
-        ParamDefaults.defaultPlayerShowPlayTypesPlayType
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType,
     );
 
   /** Set this to be true on expensive operations */
@@ -444,7 +453,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [maxTableSize, setMaxTableSize] = useState(startingMaxTableSize);
   const [sortBy, setSortBy] = useState(
     startingState.sortBy ||
-      ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins)
+      ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins),
   );
   const [sortMenuState, setSortMenuState] = useState<
     TableSortPopupMenuState | undefined
@@ -462,20 +471,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [filterStr, setFilterStr] = useState(
     PlayerLeaderboardTracking[startingState.filter || ""] ||
       startingState.filter ||
-      ParamDefaults.defaultPlayerLboardFilter
+      ParamDefaults.defaultPlayerLboardFilter,
   );
   const [numFilteredStr, setNumFilteredStr] = useState("" as string);
 
   const [advancedFilterStr, setAdvancedFilterStr] = useState(
-    startingState.advancedFilter || ""
+    startingState.advancedFilter || "",
   );
   const isCustomRanking = advancedFilterStr?.includes("SORT_BY");
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [advancedFilterError, setAdvancedFilterError] = useState(
-    undefined as string | undefined
+    undefined as string | undefined,
   );
   const [exampleForFilterStr, setExampleForFilterStr] = useState(
-    undefined as undefined | IndivStatSet
+    undefined as undefined | IndivStatSet,
   );
 
   const [isT100, setIsT100] = useState(startingState.t100 || false);
@@ -486,7 +495,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [expandedView, setExpandedView] = useState(
     _.isNil(startingState.showExpanded)
       ? ParamDefaults.defaultPlayerShowExpanded
-      : startingState.showExpanded
+      : startingState.showExpanded,
   );
 
   /** This is a WIP experiment for a nicer single row view
@@ -526,7 +535,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [possAsPct, setPossAsPct] = useState(
     _.isNil(startingState.possAsPct)
       ? ParamDefaults.defaultPlayerLboardPossAsPct
-      : startingState.possAsPct
+      : startingState.possAsPct,
   );
 
   /** When switching between rating and prod, also switch common sort bys over */
@@ -597,8 +606,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             startingState.year == DateUtils.AllYears ||
               startingState.year?.startsWith(DateUtils.MultiYearPrefix)
               ? [yearOpt]
-              : []
-          )
+              : [],
+          ),
       ),
     },
     {
@@ -694,6 +703,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       stickyQuickToggle,
       shotCharts: showPlayerShots,
       shotChartsUseEfg: shotChartsUseEfg,
+      shotChartsViewMode: shotChartsViewMode,
+      shotChartsShowFreqAsNumber: shotChartsShowFreqAsNumber,
       showPlayerPlayTypes,
       showPlayerPlayTypesAdjPpp,
       showPlayerPlayTypesPlayType,
@@ -726,6 +737,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     stickyQuickToggle,
     showPlayerShots,
     shotChartsUseEfg,
+    shotChartsViewMode,
+    shotChartsShowFreqAsNumber,
     showPlayerPlayTypes,
     showPlayerPlayTypesAdjPpp,
     showPlayerPlayTypesPlayType,
@@ -751,7 +764,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Store this so that we can grab the extra grades when enabled */
   const [includePrevYear, setIncludePrevYear] = useState<boolean>(
-    startingState.includePrevYear || false
+    startingState.includePrevYear || false,
   );
 
   /** (Update includePrevYear which can trigger fetching another year of grades) */
@@ -781,7 +794,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           } else {
             return [year];
           }
-        }
+        },
       );
       yearsToCheck.forEach((yearToCheck) => {
         const currCacheForThisYear = divisionStatsCache[yearToCheck] || {};
@@ -813,7 +826,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 [yearToCheck]: newCache,
               }));
               setDivisionStatsRefresh((curr) => curr + 1);
-            }
+            },
           );
         }
         if (_.isEmpty(currTeamCacheForThisYear) || yearOrGenderChanged) {
@@ -835,7 +848,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   [yearToCheck]: newCache,
                 }));
                 setDivisionStatsRefresh((curr) => curr + 1);
-              }
+              },
             );
           }
         }
@@ -864,7 +877,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   setDivisionStatsRefresh((curr) => curr + 1);
                 },
                 undefined,
-                maybePosGroup
+                maybePosGroup,
               );
             }
           }
@@ -885,7 +898,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     .map((fragment) => _.trim(fragment))
     .filter((fragment) => (fragment ? true : false));
   const filterFragmentsPve = filterFragments.filter(
-    (fragment) => fragment[0] != "-"
+    (fragment) => fragment[0] != "-",
   );
   const filterFragmentsNve = filterFragments
     .filter((fragment) => fragment[0] == "-")
@@ -909,7 +922,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     };
     return (
       `${player.key || ""}:${usefulFormatBuilder(
-        `${player.code || ""}+${firstName}`
+        `${player.code || ""}+${firstName}`,
       )} ${usefulFormatBuilder(player.code || "")}` +
       (player.roster?.ncaa_id
         ? ` ${player.code || ""}_${player.roster?.ncaa_id || ""}`
@@ -920,7 +933,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   /** Builds a list of JSON objects with basic filtering, subsequent phases render */
   const phase1Processing = (
     dataEventPlayers: any[],
-    applyMiscFilters: boolean = true
+    applyMiscFilters: boolean = true,
   ): { playersPhase1: any[]; isFiltered: boolean | undefined } => {
     const specialCases = {
       P6: Power6Conferences,
@@ -931,8 +944,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? new Set(
           _.flatMap(
             (confs || "").split(","),
-            (c) => specialCases[c] || [NicknameToConference[c] || c]
-          )
+            (c) => specialCases[c] || [NicknameToConference[c] || c],
+          ),
         )
       : undefined;
 
@@ -940,8 +953,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       ? new Set(
           _.flatMap(
             (posClasses || "").split(","),
-            (c) => PositionUtils.expandedPosClasses[c] || [c]
-          )
+            (c) => PositionUtils.expandedPosClasses[c] || [c],
+          ),
         )
       : undefined;
 
@@ -971,7 +984,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         sortBy ==
           ParamDefaults.defaultPlayerLboardSortBy(
             ParamDefaults.defaultPlayerLboardUseRapm,
-            ParamDefaults.defaultPlayerLboardFactorMins
+            ParamDefaults.defaultPlayerLboardFactorMins,
           )) ||
       sortBy == unsortedOpt.value ||
       sortBy == "unsorted"; //(unsorted=legacy string, might have made its way into the URL)
@@ -989,7 +1002,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
               const maybeTxfer = _.find(
                 dataEvent?.transfers?.[player.code] || [],
-                (comp) => comp.f == player.team
+                (comp) => comp.f == player.team,
               );
               if (maybeTxfer?.f) player.transfer_src = maybeTxfer?.f;
               if (maybeTxfer?.t) player.transfer_dest = maybeTxfer?.t;
@@ -1004,7 +1017,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   player,
                   player.transfer_dest,
                   player.year,
-                  avgEfficiency
+                  avgEfficiency,
                 );
                 player.off_adj_rapm_pred = prediction.off_adj_rapm;
                 player.def_adj_rapm_pred = prediction.def_adj_rapm;
@@ -1036,14 +1049,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 (filterFragmentsPve.length == 0 ||
                   (_.find(
                     filterFragmentsPve,
-                    (fragment) => strToTest.indexOf(fragment) >= 0
+                    (fragment) => strToTest.indexOf(fragment) >= 0,
                   )
                     ? true
                     : false)) &&
                 (filterFragmentsNve.length == 0 ||
                   (_.find(
                     filterFragmentsNve,
-                    (fragment) => strToTest.indexOf(fragment) >= 0
+                    (fragment) => strToTest.indexOf(fragment) >= 0,
                   )
                     ? false
                     : true));
@@ -1062,7 +1075,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     LineupTableUtils.sorter(sortBy),
                     (p) => p.baseline?.off_team_poss?.value || 0,
                     (p) => p.key,
-                  ]
+                  ],
             )
             .value();
 
@@ -1080,7 +1093,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const buildExportStr = (filtered: boolean): string => {
     const { playersPhase1, isFiltered } = phase1Processing(
       dataEvent?.players || [],
-      filtered
+      filtered,
     );
 
     const [players, tmpAvancedFilterError] =
@@ -1093,15 +1106,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 divisionStatsCache, //TODO does this want to be the pos cache at some point?
                 year,
                 gender,
-                showGrades
+                showGrades,
               ),
             (year: string) =>
               GradeTableUtils.pickDivisonStats(
                 teamDivisionStatsCache,
                 year,
                 gender,
-                showGrades
-              )
+                showGrades,
+              ),
           )
         : [playersPhase1, undefined];
 
@@ -1115,18 +1128,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               divisionStatsCache,
               year,
               gender,
-              showGrades
+              showGrades,
             )
         : undefined,
       (
-        year: string //(we only use this to inject team stats explicitly mentioned so ignore whether grades are enabled)
+        year: string, //(we only use this to inject team stats explicitly mentioned so ignore whether grades are enabled)
       ) =>
         GradeTableUtils.pickDivisonStats(
           teamDivisionStatsCache,
           year,
           gender,
-          showGrades
-        )
+          showGrades,
+        ),
     );
 
     return [header].concat(dataRows).join("\n");
@@ -1141,7 +1154,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
     const { playersPhase1, isFiltered } = phase1Processing(
       dataEvent?.players || [],
-      true
+      true,
     );
 
     const [players, tmpAvancedFilterError] =
@@ -1154,15 +1167,15 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 divisionStatsCache, //TODO does this want to be the pos cache at some point?
                 year,
                 gender,
-                showGrades
+                showGrades,
               ),
             (year: string) =>
               GradeTableUtils.pickDivisonStats(
                 teamDivisionStatsCache,
                 year,
                 gender,
-                showGrades
-              )
+                showGrades,
+              ),
           )
         : [playersPhase1, undefined];
 
@@ -1180,12 +1193,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           sortBy != "desc:off_adj_rapm" &&
           sortBy != "asc:def_adj_rapm"
       : factorMins
-      ? sortBy != "desc:diff_adj_prod" &&
-        sortBy != "desc:off_adj_prod" &&
-        sortBy != "asc:def_adj_prod"
-      : sortBy != "desc:diff_adj_rtg" &&
-        sortBy != "desc:off_adj_rtg" &&
-        sortBy != "asc:def_adj_rtg";
+        ? sortBy != "desc:diff_adj_prod" &&
+          sortBy != "desc:off_adj_prod" &&
+          sortBy != "asc:def_adj_prod"
+        : sortBy != "desc:diff_adj_rtg" &&
+          sortBy != "desc:off_adj_rtg" &&
+          sortBy != "asc:def_adj_rtg";
 
     /** Either the sort is not one of the 3 pre-calced, or there is a filter */
     const isGeneralSortOrFilter =
@@ -1205,7 +1218,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     const builderPlayerLine = (
       player: any,
       playerIndex: number,
-      nextYearState: "y1ofN" | "y1of1" | "y2of2"
+      nextYearState: "y1ofN" | "y1of1" | "y2of2",
     ) => {
       if (playerIndex == 0) setExampleForFilterStr(player);
       const firstRowForPlayer = nextYearState != "y2of2";
@@ -1252,7 +1265,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               mediumTier: divisionStatsCacheByYear.Medium,
               lowTier: divisionStatsCacheByYear.Low,
             },
-            positionalStatsCache[player.year || year] || {}
+            positionalStatsCache[player.year || year] || {},
           );
 
         const predictedGrades = tierToUse
@@ -1260,14 +1273,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               tierToUse,
               player,
               _.keys(GradeUtils.playerFields),
-              gradeFormat == "rank"
+              gradeFormat == "rank",
             )
           : {};
 
         GradeTableUtils.injectPlayerSampleSizeDisclaimers(
           //(adds "extraInfo" to predicted grades)
           player,
-          predictedGrades
+          predictedGrades,
         );
         player.grades = predictedGrades;
       }
@@ -1303,7 +1316,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             player.posClass,
             "season",
             true,
-            posBreakdown
+            posBreakdown,
           )}
         >
           <small>
@@ -1350,8 +1363,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             ? "rapm_prod"
             : "rapm"
           : factorMins
-          ? "prod"
-          : "rtg";
+            ? "prod"
+            : "rtg";
 
         return (
           <OverlayTrigger placement="auto" overlay={rankingsTooltip}>
@@ -1539,13 +1552,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           : (player.off_adj_rapm?.value || 0) -
             (player.def_adj_rapm?.value || 0)
         : factorMins
-        ? (player.off_adj_prod?.value || 0) - (player.def_adj_prod?.value || 0)
-        : (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
+          ? (player.off_adj_prod?.value || 0) -
+            (player.def_adj_prod?.value || 0)
+          : (player.off_adj_rtg?.value || 0) - (player.def_adj_rtg?.value || 0);
       const adjMarginShadow = CommonTableDefs.getTextShadow(
         { value: adjMargin },
         CbbColors.diff10_p100_redGreen[0],
         "20px",
-        4
+        4,
       );
       const shortPlayerMeta = (
         <span>
@@ -1558,7 +1572,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 player.posClass || "??",
                 "season",
                 true,
-                posBreakdown
+                posBreakdown,
               )}
             >
               <small>{player.posClass || "??"}</small>
@@ -1578,12 +1592,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               (player?.grades as Record<string, Statistic>)?.[netRapmField],
               GradeTableUtils.getGradeType(showGrades),
               true,
-              true
+              true,
             );
           } else {
             return undefined;
           }
-        }
+        },
       );
 
       const adjMarginStr = teamEditorMode ? (
@@ -1657,7 +1671,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 { value: netPred },
                 CbbColors.diff10_p100_redGreen[0],
                 "15px",
-                6
+                6,
               )}
             >
               {netPred.toFixed(1)}
@@ -1669,7 +1683,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 { value: offPred },
                 CbbColors.diff10_p100_redGreen[0],
                 "15px",
-                6
+                6,
               )}
             >
               {offPred.toFixed(1)}
@@ -1681,7 +1695,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 { value: defPred },
                 CbbColors.diff10_p100_redGreen[1],
                 "15px",
-                6
+                6,
               )}
             >
               {defPred.toFixed(1)}
@@ -1693,7 +1707,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 { value: offRtgPred },
                 CbbColors.pp100[0],
                 "15px",
-                6
+                6,
               )}
             >
               {offRtgPred.toFixed(1)}
@@ -1705,7 +1719,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 { value: offUsagePred * 0.01 },
                 CbbColors.usg[0],
                 "15px",
-                6
+                6,
               )}
             >
               {offUsagePred.toFixed(1)}
@@ -1734,7 +1748,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       mediumTier: divisionStatsCacheByYear.Medium,
                       lowTier: divisionStatsCacheByYear.Low,
                     },
-                    positionalStatsCache[player.year || year] || {}
+                    positionalStatsCache[player.year || year] || {},
                   );
 
                 const predictedGrades = tierToUse
@@ -1742,7 +1756,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       tierToUse,
                       statsToGrade,
                       _.keys(statsToGrade),
-                      gradeFormat == "rank"
+                      gradeFormat == "rank",
                     )
                   : {};
 
@@ -1752,7 +1766,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_adj_rapm_margin,
                       gradeFormat,
-                      CbbColors.off_pctile_qual
+                      CbbColors.off_pctile_qual,
                     )}
                     )
                   </small>
@@ -1764,7 +1778,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_adj_rapm,
                       gradeFormat,
-                      CbbColors.off_pctile_qual
+                      CbbColors.off_pctile_qual,
                     )}
                     )
                   </small>
@@ -1776,7 +1790,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.def_adj_rapm,
                       gradeFormat,
-                      CbbColors.off_pctile_qual
+                      CbbColors.off_pctile_qual,
                     )}
                     )
                   </small>
@@ -1788,7 +1802,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_rtg,
                       gradeFormat,
-                      CbbColors.off_pctile_qual
+                      CbbColors.off_pctile_qual,
                     )}
                     )
                   </small>
@@ -1800,7 +1814,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_usage,
                       gradeFormat,
-                      CbbColors.all_pctile_freq
+                      CbbColors.all_pctile_freq,
                     )}
                     )
                   </small>
@@ -1895,7 +1909,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         player,
         true,
         true,
-        teamSeasonLookup
+        teamSeasonLookup,
       );
 
       const showGradesFactor = _.thru(
@@ -1906,7 +1920,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           } else {
             return showStandaloneGrades ? 2 : 5;
           }
-        }
+        },
       );
       const shouldInjectSubheader =
         playerIndex > 0 &&
@@ -1933,7 +1947,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               ? [
                   GenericTableOps.buildHeaderRepeatRow(
                     CommonTableDefs.repeatingOnOffIndivHeaderFields,
-                    "small"
+                    "small",
                   ),
                   GenericTableOps.buildRowSeparator("1px"),
                 ]
@@ -1946,7 +1960,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     defPrefixFn,
                     defCellMetaFn,
                     undefined,
-                    rosterInfoSpanCalculator
+                    rosterInfoSpanCalculator,
                   ),
                 ]
               : [],
@@ -1961,7 +1975,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   setConfig: (newConfig: string) => {
                     friendlyChange(
                       () => setShowGrades(newConfig),
-                      newConfig != showGrades
+                      newConfig != showGrades,
                     );
                   },
                   playerStats: {
@@ -1986,24 +2000,41 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     <ShotZoneChartDiagView
                       gender={gender as "Men" | "Women"}
                       off={player.shotInfo}
-                      chartOpts={{ useEfg: shotChartsUseEfg }}
+                      chartOpts={{
+                        useEfg: shotChartsUseEfg,
+                        viewMode: shotChartsViewMode,
+                        showFreqAsNumber: shotChartsShowFreqAsNumber,
+                      }}
                       onChangeChartOpts={(newOpts) => {
                         const numPlayersDisplayed = Math.min(
                           players.length,
-                          parseInt(maxTableSize)
+                          parseInt(maxTableSize),
                         );
-                        const changeTo = newOpts.useEfg ?? false;
+                        const updateState = () => {
+                          setShotChartsUseEfg(newOpts.useEfg ?? false);
+                          setShotChartsViewMode(
+                            (newOpts.viewMode as "regions" | "zones") ??
+                              "zones",
+                          );
+                          setShotChartsShowFreqAsNumber(
+                            newOpts.showFreqAsNumber ?? false,
+                          );
+                        };
                         if (numPlayersDisplayed > 10) {
                           friendlyChange(
-                            () => setShotChartsUseEfg(changeTo),
-                            changeTo != shotChartsUseEfg
+                            updateState,
+                            (newOpts.useEfg ?? false) !== shotChartsUseEfg ||
+                              (newOpts.viewMode ?? "zones") !==
+                                shotChartsViewMode ||
+                              (newOpts.showFreqAsNumber ?? false) !==
+                                shotChartsShowFreqAsNumber,
                           );
                         } else {
-                          setShotChartsUseEfg(changeTo);
+                          updateState();
                         }
                       }}
                     />,
-                    "small"
+                    "small",
                   ),
                 ]
               : [],
@@ -2027,13 +2058,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       onChangeChartOpts={(opts: PlayerStyleOpts) => {
                         const numPlayersDisplayed = Math.min(
                           players.length,
-                          parseInt(maxTableSize)
+                          parseInt(maxTableSize),
                         );
                         if (numPlayersDisplayed > 10) {
                           friendlyChange(() => {
                             setShowPlayerPlayTypesPlayType(opts.playType);
                             setShowPlayerPlayTypesAdjPpp(
-                              !(opts.rawPpp ?? false)
+                              !(opts.rawPpp ?? false),
                             );
                           }, true);
                         } else {
@@ -2063,7 +2094,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                                 showTeamPlayTypes: true,
                                 teamPlayTypeConfig: `||${player.code}||all||multi||`,
                               },
-                              {}
+                              {},
                             )}
                           >
                             Team View<sup>*</sup>
@@ -2071,7 +2102,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                         </OverlayTrigger>
                       }
                     />,
-                    "small"
+                    "small",
                   ),
                 ]
               : [],
@@ -2084,9 +2115,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         return builderPlayerLine(player, playerIndex, nextYearState).concat(
           startingState.includePrevYear && player.prevYear
             ? builderPlayerLine(player.prevYear, playerIndex, "y2of2")
-            : []
+            : [],
         );
-      }
+      },
     );
 
     setNumFilteredStr(
@@ -2097,8 +2128,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               : numFiltered - playerDuplicates
           }`
         : !_.isEmpty(transferInfoSplit[0]) && tier != "All"
-        ? `, ${numFiltered} in tier`
-        : ""
+          ? `, ${numFiltered} in tier`
+          : "",
     );
 
     /** The sub-header builder - Can show some handy context in between the header and data rows: */
@@ -2107,7 +2138,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         ? RosterTableUtils.buildInformationalSubheader(
             true,
             expandedView,
-            resolvedTheme == "dark"
+            resolvedTheme == "dark",
           )
         : [];
 
@@ -2139,7 +2170,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                             ? field.substring(rawFieldIndex + 1)
                             : field;
                         return rawField == headerKey;
-                      }
+                      },
                     );
 
                   if (matchingOptions.length > 1) {
@@ -2179,7 +2210,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   expandedView,
                   possAsPct,
                   factorMins,
-                  true
+                  true,
                 )
               : CommonTableDefs.singleRowPlayerLeaderboardOnOffStyle(
                   factorMins,
@@ -2187,7 +2218,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   gender,
                   year,
                   isT100,
-                  isConfOnly
+                  isConfOnly,
                 )
           }
           tableData={maybeSubheaderRow.concat(tableData)}
@@ -2229,11 +2260,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       const teamMeta = AvailableTeams.getTeam(
                         player.team || "???",
                         player.year || ParamDefaults.defaultLeaderboardYear,
-                        gender
+                        gender,
                       );
                       const isHigh = teamMeta?.category == "high";
                       const isEffHigh = effectivelyHighMajor.has(
-                        player.team || "???"
+                        player.team || "???",
                       );
                       const isLow =
                         teamMeta?.category == "low" ||
@@ -2257,7 +2288,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               }}
               onBoundsChange={(
                 boundsChecker: (lat: number, lon: number) => boolean,
-                info: { lat: number; lon: number; zoom: number }
+                info: { lat: number; lon: number; zoom: number },
               ) => {
                 if (
                   !geoBoundsChecker ||
@@ -2361,12 +2392,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
-          }
+          },
         );
       } else {
         return { controlRow: undefined };
       }
-    }
+    },
   );
 
   /** Copy to clipboard button */
@@ -2436,8 +2467,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       {exampleForFilterStr
         ? buildFilterStringTest(exampleForFilterStr)
         : dataEvent?.players?.[0]
-        ? buildFilterStringTest(dataEvent?.players[0])
-        : "Honor, Nick Sr_NiHonor+Nick:Clemson_2021/22 Sr_NiHonor:Clemson_2021/22"}
+          ? buildFilterStringTest(dataEvent?.players[0])
+          : "Honor, Nick Sr_NiHonor+Nick:Clemson_2021/22 Sr_NiHonor:Clemson_2021/22"}
       <br />
       <br />
       (Note text match is case-insensitive if the filter string is all lower
@@ -2464,7 +2495,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const buildFilterPresetMenuItem = (
     name: string,
     advancedFilter: string,
-    posFilter: string
+    posFilter: string,
   ) => {
     return (
       <GenericTogglingMenuItem
@@ -2473,10 +2504,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           advancedFilter == advancedFilterStr && posClasses == posFilter
         }
         onSelect={() => {
-          friendlyChange(() => {
-            setAdvancedFilterStr(advancedFilter);
-            setPosClasses(posFilter);
-          }, advancedFilter != advancedFilterStr || posClasses != posFilter);
+          friendlyChange(
+            () => {
+              setAdvancedFilterStr(advancedFilter);
+              setPosClasses(posFilter);
+            },
+            advancedFilter != advancedFilterStr || posClasses != posFilter,
+          );
         }}
       />
     );
@@ -2492,8 +2526,8 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           .split(",")
           .map((posClass: string) =>
             stringToOption(
-              PositionUtils.nicknameToPosClass[posClass] || posClass
-            )
+              PositionUtils.nicknameToPosClass[posClass] || posClass,
+            ),
           );
   }
 
@@ -2521,7 +2555,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -2545,7 +2579,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 2000 }) }}
                 value={stringToOption(genderUnreliable)}
                 options={["Men", "Women"].map((gender) =>
-                  stringToOption(gender)
+                  stringToOption(gender),
                 )}
                 isSearchable={false}
                 onChange={(option: any) => {
@@ -2553,7 +2587,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     const newGender = (option as any).value;
                     friendlyChange(
                       () => setGender(newGender),
-                      newGender != gender
+                      newGender != gender,
                     );
                   }
                 }}
@@ -2597,10 +2631,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 onChangeConf={(confStr) => {
                   if (confStr.indexOf("Tier") >= 0) {
                     const newTier = confStr.split(" ")[0];
-                    friendlyChange(() => {
-                      setTier(newTier);
-                      setConfs("");
-                    }, confs != "" || tier != newTier);
+                    friendlyChange(
+                      () => {
+                        setTier(newTier);
+                        setConfs("");
+                      },
+                      confs != "" || tier != newTier,
+                    );
                   } else {
                     friendlyChange(() => setConfs(confStr), confs != confStr);
                   }
@@ -2650,7 +2687,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   const newStr = PlayerLeaderboardTracking[t] || t;
                   friendlyChange(
                     () => setFilterStr(newStr),
-                    newStr != filterStr
+                    newStr != filterStr,
                   );
                 }}
                 timeout={500}
@@ -2666,12 +2703,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               components={{ MultiValueContainer: PositionValueContainer }}
               value={getCurrentPositionsOrPlaceholder()}
               options={(PositionUtils.positionClasses || []).map((r) =>
-                stringToOption(r)
+                stringToOption(r),
               )}
               onChange={(optionsIn: any) => {
                 const options = optionsIn as Array<any>;
                 const selection = (options || []).map(
-                  (option) => (option as any)?.value || ""
+                  (option) => (option as any)?.value || "",
                 );
                 const posClassStr = selection
                   .filter((t: string) => t != "")
@@ -2679,7 +2716,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   .join(",");
                 friendlyChange(
                   () => setPosClasses(posClassStr),
-                  posClasses != posClassStr
+                  posClasses != posClassStr,
                 );
               }}
             />
@@ -2722,7 +2759,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     const newSortBy = (option as any)?.value;
                     friendlyChange(
                       () => setSortBy(newSortBy),
-                      sortBy != newSortBy
+                      sortBy != newSortBy,
                     );
                   }
                 }}
@@ -2767,14 +2804,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   text={<i>Clear filter</i>}
                   truthVal={false}
                   onSelect={() => {
-                    friendlyChange(() => {
-                      setAdvancedFilterStr("");
-                      setPosClasses("");
-                    }, posClasses != "" || advancedFilterStr != "");
+                    friendlyChange(
+                      () => {
+                        setAdvancedFilterStr("");
+                        setPosClasses("");
+                      },
+                      posClasses != "" || advancedFilterStr != "",
+                    );
                   }}
                 />
                 {advancedFilterPresets.map((preset) =>
-                  buildFilterPresetMenuItem(...preset)
+                  buildFilterPresetMenuItem(...preset),
                 )}
               </Dropdown.Menu>
             </Dropdown>
@@ -2816,7 +2856,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     onClick: () =>
                       friendlyChange(
                         () => setExpandedView(!expandedView),
-                        true
+                        true,
                       ),
                   },
                   {
@@ -2872,7 +2912,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                             onClick: () => {},
                             isLabelOnly: true,
                           },
-                        ]
+                        ],
                   )
                   .concat([
                     {
@@ -2913,11 +2953,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                             onClick: () =>
                               friendlyChange(
                                 () => setShowPlayerShots(!showPlayerShots),
-                                true
+                                true,
                               ),
                           },
                         ]
-                      : []
+                      : [],
                   )
                   .concat(
                     !dataEvent.syntheticData
@@ -2932,11 +2972,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                               friendlyChange(
                                 () =>
                                   setShowPlayerPlayTypes(!showPlayerPlayTypes),
-                                true
+                                true,
                               ),
                           },
                         ]
-                      : []
+                      : [],
                   )
                   .concat([
                     {
@@ -2967,7 +3007,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       //   onClick: () => {}
                       // }
                     ]
-                  : []
+                  : [],
               )}
             />
           </Col>
@@ -3112,7 +3152,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 onSelect={() =>
                   friendlyChange(
                     () => setShowRepeatingHeader(!showRepeatingHeader),
-                    true
+                    true,
                   )
                 }
               />
