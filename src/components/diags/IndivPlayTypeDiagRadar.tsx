@@ -58,6 +58,7 @@ import QuickSwitchBar, {
 } from "../shared/QuickSwitchBar";
 import { useTheme } from "next-themes";
 import { ParamDefaults } from "../../utils/FilterModels";
+import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 
 export type PlayerStyleOpts = {
   rawPpp?: boolean;
@@ -861,7 +862,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                   ...CommonTableDefs.getTextShadow(
                     { value: row.pts * 0.01 },
                     resolvedTheme == "dark"
-                      ? CbbColors.percentile_greenBlackRed
+                      ? CbbColors.percentile_redBlackGreen
                       : CbbColors.off_pctile_qual,
                   ),
                 }}
@@ -938,9 +939,22 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         />
       ) : undefined;
 
+    const updateFreqType = (newPossFreqType: "P%le" | "T%le" | "P%" | "T%") => {
+      setPossFreqType(newPossFreqType);
+      onChangeChartOpts?.({
+        rawPpp: !adjustForSos,
+        playType: newPossFreqType,
+        quickSwitch,
+      });
+    };
+
     return (
       <span>
-        {!quickSwitchAtBottom ? maybeQuickSwitchBar : undefined}
+        {!quickSwitchAtBottom ? (
+          <div className="mb-2">{maybeQuickSwitchBar}</div>
+        ) : (
+          <div className="mb-1" />
+        )}
         <Container>
           <Row className="text-center">
             <Col xs={6} lg={2}>
@@ -948,34 +962,162 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {/* TODO: duplicate CSV feature from PlayTypeDiagUtils.buildCsvDownload / PlayTypeDiagUtils.buildTeamStyleBreakdownData */}
             </Col>
             <Col xs={6} lg={7}>
-              {PlayTypeDiagUtils.buildAdjustedVsRawControls(
-                mainSosAdjustment,
-                adjustForSos,
-                (useAdjusted) => {
-                  setAdjustForSos(useAdjusted);
-                  onChangeChartOpts?.({
-                    rawPpp: !useAdjusted,
-                    playType: possFreqType,
-                    quickSwitch,
-                  });
-                },
-              )}
-              {" | "}
-              {PlayTypeDiagUtils.buildIndivFreqType(
-                possFreqType,
-                (newPossFreqType) => {
-                  setPossFreqType(newPossFreqType);
-                  onChangeChartOpts?.({
-                    rawPpp: !adjustForSos,
-                    playType: newPossFreqType,
-                    quickSwitch,
-                  });
-                },
-              )}
-              {" | "}
-              {PlayTypeDiagUtils.buildViewModeToggle(cardView, setCardView)}
-              {navigationLinkOverride ? " | " : null}
-              {navigationLinkOverride}
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "nowrap",
+                  alignItems: "center",
+                  gap: "0.25em",
+                }}
+              >
+                <ToggleButtonGroup
+                  items={[
+                    {
+                      items: [
+                        {
+                          label: "Adj",
+                          tooltip: `Adj: Adjusted Pts/Play (SoS: x[${mainSosAdjustment.toFixed(2)}])`,
+                          toggled: adjustForSos,
+                          onClick: () => {
+                            setAdjustForSos(true);
+                            onChangeChartOpts?.({
+                              rawPpp: false,
+                              playType: possFreqType,
+                              quickSwitch,
+                            });
+                          },
+                        },
+                        {
+                          label: "Raw",
+                          tooltip: "Raw: Show PPP with no SoS adjustments",
+                          toggled: !adjustForSos,
+                          onClick: () => {
+                            setAdjustForSos(false);
+                            onChangeChartOpts?.({
+                              rawPpp: true,
+                              playType: possFreqType,
+                              quickSwitch,
+                            });
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      label: " | ",
+                      isLabelOnly: true,
+                      toggled: false,
+                      onClick: () => null,
+                    },
+                    {
+                      items: [
+                        {
+                          label: "P%le",
+                          tooltip: (
+                            <div>
+                              <b>P%le:</b> Shows play frequency (per /100{" "}
+                              <i>players</i> possessions, ie ignoring their
+                              usage), as a percentile of the selected sample
+                              (typically across all D1)
+                            </div>
+                          ),
+                          toggled: possFreqType === "P%le",
+                          onClick: () => updateFreqType("P%le"),
+                        },
+                        {
+                          label: "T%le",
+                          tooltip: (
+                            <div>
+                              <b>T%le:</b> Shows play frequency (per /100{" "}
+                              <i>team</i> possessions when <b>player</b> is on
+                              the floor, ie taking their usage into account), as
+                              a percentile of the selected sample (typically
+                              across all D1).
+                              <br />
+                              <br />
+                              <i>
+                                (Using %iles means similar looking bar charts
+                                can result in very different frequencies across
+                                different play types - the bar width gives and
+                                indication of this)
+                              </i>
+                            </div>
+                          ),
+                          toggled: possFreqType === "T%le",
+                          onClick: () => updateFreqType("T%le"),
+                        },
+                        {
+                          label: "P%",
+                          tooltip: (
+                            <div>
+                              <b>P%:</b> Shows play frequency per /100{" "}
+                              <i>team</i> possessions.
+                            </div>
+                          ),
+                          toggled: possFreqType === "P%",
+                          onClick: () => updateFreqType("P%"),
+                        },
+                        {
+                          label: "T%",
+                          tooltip: (
+                            <div>
+                              <b>T%:</b> Shows play frequency (per /100{" "}
+                              <i>team</i> possessions.
+                              <br />
+                              <br />
+                              <i>
+                                (Using raw % means lower frequency play types
+                                can be swamped by the higher frequency ones)
+                              </i>
+                            </div>
+                          ),
+                          toggled: possFreqType === "T%",
+                          onClick: () => updateFreqType("T%"),
+                        },
+                      ],
+                    },
+                    {
+                      label: " | ",
+                      isLabelOnly: true,
+                      toggled: false,
+                      onClick: () => null,
+                    },
+                    {
+                      items: [
+                        {
+                          label: "Card",
+                          tooltip:
+                            "Card: Show play type information as a 'card'",
+                          toggled: cardView,
+                          onClick: () => {
+                            setCardView(true);
+                            onChangeChartOpts?.({
+                              rawPpp: !adjustForSos,
+                              playType: possFreqType,
+                              quickSwitch,
+                            });
+                          },
+                        },
+                        {
+                          label: "Chart",
+                          tooltip:
+                            "Chart: Show play type information as a chart",
+                          toggled: !cardView,
+                          onClick: () => {
+                            setCardView(false);
+                            onChangeChartOpts?.({
+                              rawPpp: !adjustForSos,
+                              playType: possFreqType,
+                              quickSwitch,
+                            });
+                          },
+                        },
+                      ],
+                    },
+                  ]}
+                />
+                {navigationLinkOverride ? " | " : null}
+                {navigationLinkOverride}
+              </div>
             </Col>
           </Row>
           {cardView ? (
