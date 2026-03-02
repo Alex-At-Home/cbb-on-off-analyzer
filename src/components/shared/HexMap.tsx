@@ -242,6 +242,96 @@ const HexMap: React.FC<HexMapProps> = ({
       ? CbbColors.diff_def_eFgShotChart
       : CbbColors.diff_eFgShotChart;
 
+    // Clip band x from corner-3 zones so mid-range (8, 10) doesn't cover the straight lines
+    // for the shorter corner 3 distance
+    const corner3R = 3;
+    const corner3L = 7;
+    const rightMidRange = 8;
+    const leftMidRange = 10;
+    const clipCorner3AngleToUse = Math.min(
+      zones[corner3L]!.maxAngle,
+      zones[corner3R]!.maxAngle,
+    );
+    const clipRadiusToUse = zones[corner3L]!.minDist;
+    const clipBandX = Math.abs(
+      clipRadiusToUse * Math.cos((clipCorner3AngleToUse * Math.PI) / 180),
+    );
+    svg
+      .append("defs")
+      .append("clipPath")
+      .attr("id", "midRangeBandClip")
+      .append("rect")
+      .attr("x", -widthScale(clipBandX))
+      .attr("y", -widthScale(40))
+      .attr("width", 2 * widthScale(clipBandX))
+      .attr("height", 2 * widthScale(40));
+    svg
+      .append("defs")
+      .append("clipPath")
+      .attr("id", "outer1_idRangeBandClip")
+      .append("rect")
+      .attr("x", widthScale(clipBandX))
+      .attr("y", -widthScale(40))
+      .attr("width", widthScale(clipBandX))
+      .attr("height", 2 * widthScale(40));
+    svg
+      .append("defs")
+      .append("clipPath")
+      .attr("id", "outer2_idRangeBandClip")
+      .append("rect")
+      .attr("x", -2 * widthScale(clipBandX))
+      .attr("y", -widthScale(40))
+      .attr("width", widthScale(clipBandX))
+      .attr("height", 2 * widthScale(40));
+
+    const getFillColorForZone = (idx: number): string => {
+      const z = zones?.[idx];
+      if (!z) return CbbColors.diff10_blueOrange_offDef(0);
+      const d1Z = d1Zones?.[idx] || z;
+      const splitZ = splitZones?.[idx];
+      if (useRegionFill && regionZones && zoneToRegion && d1RegionZones) {
+        const r = zoneToRegion[idx] ?? 0;
+        const regionZone = regionZones[r];
+        const d1RegionZone = d1RegionZones[r];
+        const splitRegionZones =
+          splitZones && regionZones
+            ? ShotChartUtils.zonesToRegions(splitZones).regionZones
+            : undefined;
+        const splitRegionZone = splitRegionZones?.[r];
+        if (showFreqAsNumber && d1RegionZone) {
+          const ppp = regionZone.intensity / (regionZone.frequency || 1);
+          const compPpp = splitRegionZone
+            ? splitRegionZone.intensity / (splitRegionZone.frequency || 1)
+            : d1RegionZone.intensity;
+          return cbbEfficiencyScale((ppp - compPpp) * 0.5);
+        }
+        const freqDelt = splitRegionZone
+          ? regionZone.frequency / (regionZone.total_freq || 1) -
+            splitRegionZone.frequency / (splitRegionZone.total_freq || 1)
+          : d1RegionZone
+            ? regionZone.frequency / (regionZone.total_freq || 1) -
+              d1RegionZone.frequency
+            : 0;
+        return CbbColors.diff10_blueOrange_offDef(freqDelt);
+      }
+      const freqDelt = splitZ
+        ? z.frequency / (z.total_freq || 1) -
+          splitZ.frequency / (splitZ.total_freq || 1)
+        : d1Z
+          ? z.frequency / (z.total_freq || 1) - d1Z.frequency
+          : 0;
+      if (showFreqAsNumber && (d1Z || splitZ)) {
+        const ppp = z.intensity / (z.frequency || 1);
+        const compPpp = splitZ
+          ? splitZ.intensity / (splitZ.frequency || 1)
+          : d1Z
+            ? d1Z.intensity
+            : ppp;
+        return cbbEfficiencyScale((ppp - compPpp) * 0.5);
+      }
+      return CbbColors.diff10_blueOrange_offDef(freqDelt);
+    };
+
     (zones || []).forEach((__, zoneIndex) => {
       // Go backwards because that means we draw the 3P zones after the mid range ones
       // and the overlap looks right
@@ -253,53 +343,7 @@ const HexMap: React.FC<HexMapProps> = ({
       const minAngle = zone.minAngle == 0 ? -90 : zone.minAngle;
       const maxAngle = zone.maxAngle == 180 ? 270 : zone.maxAngle;
 
-      let fillColor: string;
-      if (useRegionFill && regionZones && zoneToRegion && d1RegionZones) {
-        const r = zoneToRegion[zoneIdx] ?? 0;
-        const regionZone = regionZones[r];
-        const d1RegionZone = d1RegionZones[r];
-        const splitRegionZones =
-          splitZones && regionZones
-            ? ShotChartUtils.zonesToRegions(splitZones).regionZones
-            : undefined;
-        const splitRegionZone = splitRegionZones?.[r];
-
-        if (showFreqAsNumber && d1RegionZone) {
-          const ppp = regionZone.intensity / (regionZone.frequency || 1);
-          const compPpp = splitRegionZone
-            ? splitRegionZone.intensity / (splitRegionZone.frequency || 1)
-            : d1RegionZone.intensity;
-          fillColor = cbbEfficiencyScale((ppp - compPpp) * 0.5);
-        } else {
-          const freqDelt = splitRegionZone
-            ? regionZone.frequency / (regionZone.total_freq || 1) -
-              splitRegionZone.frequency / (splitRegionZone.total_freq || 1)
-            : d1RegionZone
-              ? regionZone.frequency / (regionZone.total_freq || 1) -
-                d1RegionZone.frequency
-              : 0;
-          fillColor = CbbColors.diff10_blueOrange_offDef(freqDelt);
-        }
-      } else {
-        // Zones mode: FG = bg by freq, Freq = bg by efficiency (same as regions)
-        const freqDelt = splitZone
-          ? zone.frequency / (zone.total_freq || 1) -
-            splitZone.frequency / (splitZone.total_freq || 1)
-          : d1Zone
-            ? zone.frequency / (zone.total_freq || 1) - d1Zone.frequency
-            : 0;
-        if (showFreqAsNumber && (d1Zone || splitZone)) {
-          const ppp = zone.intensity / (zone.frequency || 1);
-          const compPpp = splitZone
-            ? splitZone.intensity / (splitZone.frequency || 1)
-            : d1Zone
-              ? d1Zone.intensity
-              : ppp;
-          fillColor = cbbEfficiencyScale((ppp - compPpp) * 0.5);
-        } else {
-          fillColor = CbbColors.diff10_blueOrange_offDef(freqDelt);
-        }
-      }
+      const fillColor = getFillColorForZone(zoneIdx);
 
       const innerRadius = widthScale(zone.minDist);
       const outerRadius = widthScale(Math.min(40, zone.maxDist));
@@ -313,12 +357,34 @@ const HexMap: React.FC<HexMapProps> = ({
         endAngle,
       });
 
-      svg
+      const pathSel = svg
         .append("path")
         .attr("d", arcPath3pt_Area)
         .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
         .style("opacity", 0.25)
         .style("fill", fillColor);
+      if (zoneIdx === leftMidRange || zoneIdx === rightMidRange) {
+        pathSel.attr("clip-path", "url(#midRangeBandClip)");
+        // Fill the outer band (where mid-range is clipped) with the adjacent corner-3 zone color
+        if (zoneIdx === rightMidRange) {
+          svg
+            .append("path")
+            .attr("d", arcPath3pt_Area)
+            .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
+            .style("opacity", 0.25)
+            .style("fill", getFillColorForZone(corner3R))
+            .attr("clip-path", "url(#outer1_idRangeBandClip)");
+        }
+        if (zoneIdx === leftMidRange) {
+          svg
+            .append("path")
+            .attr("d", arcPath3pt_Area)
+            .attr("transform", `translate(${xScale(0)}, ${yScale(0)})`)
+            .style("opacity", 0.25)
+            .style("fill", getFillColorForZone(corner3L))
+            .attr("clip-path", "url(#outer2_idRangeBandClip)");
+        }
+      }
 
       if (zone.maxDist > 20) {
         // Only lines
@@ -339,23 +405,25 @@ const HexMap: React.FC<HexMapProps> = ({
           zone.maxDist * Math.sin((maxAngle * Math.PI) / 180),
         ];
 
-        svg
-          .append("line")
-          .attr("x1", xScale(startInner[0]))
-          .attr("y1", yScale(startInner[1]))
-          .attr("x2", xScale(startOuter[0]))
-          .attr("y2", yScale(startOuter[1]))
-          .style("stroke", "grey")
-          .style("stroke-width", "0.5px");
+        if (!useRegionFill || zoneIdx === corner3L || zoneIdx === corner3R) {
+          svg
+            .append("line")
+            .attr("x1", xScale(startInner[0]))
+            .attr("y1", yScale(startInner[1]))
+            .attr("x2", xScale(startOuter[0]))
+            .attr("y2", yScale(startOuter[1]))
+            .style("stroke", "grey")
+            .style("stroke-width", "0.5px");
 
-        svg
-          .append("line")
-          .attr("x1", xScale(endInner[0]))
-          .attr("y1", yScale(endInner[1]))
-          .attr("x2", xScale(endOuter[0]))
-          .attr("y2", yScale(endOuter[1]))
-          .style("stroke", "grey")
-          .style("stroke-width", "0.5px");
+          svg
+            .append("line")
+            .attr("x1", xScale(endInner[0]))
+            .attr("y1", yScale(endInner[1]))
+            .attr("x2", xScale(endOuter[0]))
+            .attr("y2", yScale(endOuter[1]))
+            .style("stroke", "grey")
+            .style("stroke-width", "0.5px");
+        }
       }
       if (zone.minDist < 20) {
         const arcPath3pt_Lines = d3.arc()({
