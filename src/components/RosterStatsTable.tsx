@@ -222,22 +222,21 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
     UserChartOpts | undefined
-  >(
-    _.isNil(gameFilterParams.playerShotChartsShowZones)
-      ? undefined
-      : {
-          buildZones: gameFilterParams.playerShotChartsShowZones,
-          viewMode:
-            (gameFilterParams.playerShotChartsViewMode as
-              | "regions"
-              | "zones"
-              | "clusters"
-              | undefined) ?? "zones",
-          useEfg: gameFilterParams.playerShotChartsUseEfg ?? false,
-          showFreqAsNumber:
-            gameFilterParams.playerShotChartsShowFreqAsNumber ?? false,
-        },
-  );
+  >({
+    buildZones: gameFilterParams.playerShotChartsShowZones,
+    viewMode:
+      (gameFilterParams.playerShotChartsViewMode as
+        | "regions"
+        | "zones"
+        | "clusters"
+        | undefined) ??
+      ((gameFilterParams.playerShotChartsShowZones ?? true)
+        ? "zones"
+        : "clusters"), //(<-bwc)
+    useEfg: gameFilterParams.playerShotChartsUseEfg ?? false,
+    showFreqAsNumber:
+      gameFilterParams.playerShotChartsShowFreqAsNumber ?? false,
+  });
 
   /** Splits out offensive and defensive metrics into separate rows */
   const [expandedView, setExpandedView] = useState(

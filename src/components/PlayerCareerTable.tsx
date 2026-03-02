@@ -400,7 +400,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         | "regions"
         | "zones"
         | "clusters"
-        | undefined) ?? "zones",
+        | undefined) ??
+      ((playerCareerParams.playerShotChartsShowZones ?? true)
+        ? "zones"
+        : "clusters"), //(<-bwc)
+
     quickSwitch: playerCareerParams.playerShotChartQuickSwitch,
     useEfg: playerCareerParams.playerShotChartsUseEfg ?? false,
     showFreqAsNumber:

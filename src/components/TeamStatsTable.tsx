@@ -225,7 +225,10 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
         | "regions"
         | "zones"
         | "clusters"
-        | undefined) ?? "zones",
+        | undefined) ??
+      ((gameFilterParams.teamShotChartsShowZones ?? true)
+        ? "zones"
+        : "clusters"), //(<-bwc)
     useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
     showFreqAsNumber: gameFilterParams.teamShotChartsShowFreqAsNumber ?? false,
   });

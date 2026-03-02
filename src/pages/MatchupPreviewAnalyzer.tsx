@@ -243,7 +243,11 @@ const MatchupPreviewAnalyzerPage: NextPage<Props> = ({ testMode }) => {
       | "regions"
       | "zones"
       | "clusters"
-      | undefined) ?? ParamDefaults.defaultShotChartViewMode,
+      | undefined) ??
+      ((startingMatchupFilterParams.shotChartsShowZones ??
+      ParamDefaults.defaultShotChartShowZones)
+        ? "zones"
+        : "clusters"), //(bwc)
   );
   const [shotChartsShowFreqAsNumber, setShotChartsShowFreqAsNumber] = useState(
     startingMatchupFilterParams.shotChartsShowFreqAsNumber ??
