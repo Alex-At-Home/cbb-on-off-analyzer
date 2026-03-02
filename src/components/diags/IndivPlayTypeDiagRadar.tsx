@@ -1135,7 +1135,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           </Row>
           {cardView ? (
             <Row>
-              <Col xs={{ span: 7, offset: 2 }} className="pt-1">
+              <Col xs={{ span: 7, offset: 2 }} className="pt-2">
                 <GenericTable
                   growsToFit={false}
                   tableCopyId="indivPlayTypeCard"
