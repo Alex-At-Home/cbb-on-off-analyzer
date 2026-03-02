@@ -218,22 +218,17 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   // Shot charts:
   const [shotChartConfig, setShotChartConfig] = useState<
     UserChartOpts | undefined
-  >(
-    _.isNil(gameFilterParams.teamShotChartsShowZones)
-      ? undefined
-      : {
-          buildZones: gameFilterParams.teamShotChartsShowZones,
-          viewMode:
-            (gameFilterParams.teamShotChartsViewMode as
-              | "regions"
-              | "zones"
-              | "clusters"
-              | undefined) ?? "zones",
-          useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
-          showFreqAsNumber:
-            gameFilterParams.teamShotChartsShowFreqAsNumber ?? false,
-        },
-  );
+  >({
+    buildZones: gameFilterParams.teamShotChartsShowZones,
+    viewMode:
+      (gameFilterParams.teamShotChartsViewMode as
+        | "regions"
+        | "zones"
+        | "clusters"
+        | undefined) ?? "zones",
+    useEfg: gameFilterParams.teamShotChartsUseEfg ?? false,
+    showFreqAsNumber: gameFilterParams.teamShotChartsShowFreqAsNumber ?? false,
+  });
 
   /** Whether we are showing the luck config modal */
   const [showLuckConfig, setShowLuckConfig] = useState(false);
