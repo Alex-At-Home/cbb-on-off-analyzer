@@ -62,10 +62,12 @@ import AsyncFormControl from "../shared/AsyncFormControl";
 import { UrlRouting } from "../../utils/UrlRouting";
 import { useTheme } from "next-themes";
 import { ParamDefaults } from "../../utils/FilterModels";
+import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
+import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 
 const indivPlayTypeBreakdownFields = (
   adjustForSos: boolean,
-  titleFilter: React.ReactNode
+  titleFilter: React.ReactNode,
 ) => ({
   title: GenericTableOps.addTitle(
     titleFilter,
@@ -73,25 +75,25 @@ const indivPlayTypeBreakdownFields = (
     GenericTableOps.defaultRowSpanCalculator,
     "",
     GenericTableOps.htmlFormatter,
-    4
+    4,
   ),
   pos: GenericTableOps.addDataCol(
     "Pos",
     "The positional role of the player",
     CbbColors.applyThemedBackground,
-    GenericTableOps.htmlFormatter
+    GenericTableOps.htmlFormatter,
   ),
   playType: GenericTableOps.addDataCol(
     "Sub-Type",
     "The sub-type of the selected play type(s)",
     CbbColors.applyThemedBackground,
-    GenericTableOps.htmlFormatter
+    GenericTableOps.htmlFormatter,
   ),
   sep2: GenericTableOps.addColSeparator(),
   possPct: GenericTableOps.addPctCol(
     "Play%",
     "The % of team plays to which this player/play type corresponds",
-    CbbColors.varPicker(CbbColors.p_ast_breakdown)
+    CbbColors.varPicker(CbbColors.p_ast_breakdown),
   ),
   ppp: GenericTableOps.addDataCol(
     adjustForSos ? "AdjPPP" : "PPP",
@@ -99,13 +101,13 @@ const indivPlayTypeBreakdownFields = (
       ? "Adjusted points per play for this player/play type"
       : "Points per play for this player/play type",
     CbbColors.applyThemedBackground,
-    GenericTableOps.pointsFormatter2dp
+    GenericTableOps.pointsFormatter2dp,
   ),
   pts: GenericTableOps.addDataCol(
     "Pts",
     "The number of points per 100 team plays for this player/play type",
     CbbColors.applyThemedBackground,
-    GenericTableOps.pointsFormatter2dp
+    GenericTableOps.pointsFormatter2dp,
   ),
 });
 
@@ -121,12 +123,13 @@ type TeamPlayTypeDiagRadarConfig = {
   multiMode: boolean;
   quickSwitch?: string;
   possFreqType: "P%le" | "P%";
+  cardView?: boolean;
   //(can add extra params but never change the above)
 };
 export const quickSwitchTitleDelim = ":_:";
 export const teamRadarConfigToStr = (
   config: TeamPlayTypeDiagRadarConfig,
-  startWithRaw: boolean
+  startWithRaw: boolean,
 ): string => {
   const configStr = [
     startWithRaw //(default depends on this param)
@@ -134,18 +137,18 @@ export const teamRadarConfigToStr = (
         ? "sos"
         : ""
       : config.adjustForSos
-      ? ""
-      : "!sos",
+        ? ""
+        : "!sos",
     config.filterStr || "",
     config.selectedPlayTypes == "all"
       ? "all"
       : config.selectedPlayTypes
-      ? _.thru(Array.from(config.selectedPlayTypes as Set<string>), (arr) =>
-          arr.length == PlayTypeUtils.topLevelPlayTypes.length
-            ? "all"
-            : arr.join(",")
-        )
-      : "",
+        ? _.thru(Array.from(config.selectedPlayTypes as Set<string>), (arr) =>
+            arr.length == PlayTypeUtils.topLevelPlayTypes.length
+              ? "all"
+              : arr.join(","),
+          )
+        : "",
     config.multiMode ? "multi" : "",
     _.thru(config.quickSwitch, (newQuickSwitch) => {
       if (newQuickSwitch && newQuickSwitch.includes(quickSwitchDelim)) {
@@ -155,6 +158,7 @@ export const teamRadarConfigToStr = (
     config.possFreqType == ParamDefaults.defaultTeamShowPlayTypesPlayType
       ? ""
       : config.possFreqType || "",
+    config.cardView ? "card" : "",
     //(can add extra params but never change the above)
   ].join("||"); //TODO maybe remove trailing "||"?
 
@@ -162,7 +166,7 @@ export const teamRadarConfigToStr = (
 };
 export const configStrToTeamRadarConfig = (
   configStr: string | undefined,
-  startWithRaw: boolean
+  startWithRaw: boolean,
 ): TeamPlayTypeDiagRadarConfig => {
   if (configStr) {
     const arr = configStr.split("||");
@@ -175,13 +179,14 @@ export const configStrToTeamRadarConfig = (
           : new Set(
               (arr[2] || "")
                 .split(",")
-                .filter((pt) => pt != "") as TopLevelPlayType[]
+                .filter((pt) => pt != "") as TopLevelPlayType[],
             ),
       multiMode: arr[3] == "multi",
       quickSwitch: arr[4],
       possFreqType:
         (arr[5] as "P%le" | "P%") ||
         ParamDefaults.defaultTeamShowPlayTypesPlayType,
+      cardView: arr[6] === "card",
     };
   } else {
     return {
@@ -190,6 +195,7 @@ export const configStrToTeamRadarConfig = (
       selectedPlayTypes: new Set(),
       multiMode: false,
       possFreqType: ParamDefaults.defaultTeamShowPlayTypesPlayType,
+      cardView: false,
     };
   }
 };
@@ -263,7 +269,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   /** Translate from hacky string */
   const [incomingConfig, setIncomingConfig] =
     useState<TeamPlayTypeDiagRadarConfig>(
-      configStrToTeamRadarConfig(configStr, startWithRaw || false)
+      configStrToTeamRadarConfig(configStr, startWithRaw || false),
     );
   const updateConfig = (newConfig: TeamPlayTypeDiagRadarConfig) => {
     setIncomingConfig(newConfig);
@@ -272,11 +278,15 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   };
 
   const [adjustForSos, setAdjustForSos] = useState<boolean>(
-    incomingConfig.adjustForSos
+    incomingConfig.adjustForSos,
   );
 
   const [possFreqType, setPossFreqType] = useState<"P%le" | "P%">(
-    incomingConfig.possFreqType
+    incomingConfig.possFreqType,
+  );
+
+  const [cardView, setCardView] = useState<boolean>(
+    incomingConfig.cardView ?? false,
   );
 
   /** Which players to filter */
@@ -287,7 +297,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   >(
     incomingConfig.selectedPlayTypes == "all"
       ? new Set(PlayTypeUtils.topLevelPlayTypes)
-      : incomingConfig.selectedPlayTypes
+      : incomingConfig.selectedPlayTypes,
   );
   const [multiMode, setMultiMode] = useState<boolean>(incomingConfig.multiMode);
   const [csvData, setCsvData] = useState<object[]>([]);
@@ -300,20 +310,21 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       } else {
         return undefined; //(ignore quick switch for the wrong one)
       }
-    })
+    }),
   );
   /** Support configStr getting changed externally */
   useEffect(() => {
     const newConfig = configStrToTeamRadarConfig(
       configStr,
-      startWithRaw || false
+      startWithRaw || false,
     );
     setIncomingConfig(newConfig);
     setAdjustForSos(newConfig.adjustForSos);
     setPossFreqType(
       (newConfig?.possFreqType ??
-        ParamDefaults.defaultTeamShowPlayTypesPlayType) as "P%le" | "P%"
+        ParamDefaults.defaultTeamShowPlayTypesPlayType) as "P%le" | "P%",
     );
+    setCardView(newConfig.cardView ?? false);
   }, [configStr]);
 
   const [quickSwitchTimer, setQuickSwitchTimer] = useState<
@@ -326,7 +337,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     if (dynamicQuickSwitch && configStr) {
       const newConfig = configStrToTeamRadarConfig(
         configStr,
-        startWithRaw || false
+        startWithRaw || false,
       );
       const quickSwitchFromConfig = _.thru(
         newConfig.quickSwitch,
@@ -337,7 +348,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           } else {
             return undefined; //(ignore quick switch for the wrong title)
           }
-        }
+        },
       );
       setQuickSwitch(quickSwitchFromConfig);
     }
@@ -369,7 +380,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     PlayTypeUtils.buildTopLevelPlayStyles(
       mainPlayers,
       rosterStatsByCode,
-      mainTeamStats
+      mainTeamStats,
     );
 
   const { tierToUse: mainTierToUse } = GradeTableUtils.buildTeamTierInfo(
@@ -379,7 +390,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
       highTier: grades?.High,
       mediumTier: grades?.Medium,
       lowTier: grades?.Low,
-    }
+    },
   );
 
   const supportPlayerBreakdown =
@@ -397,7 +408,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 p,
                 rosterStatsByCode,
                 mainTeamStats,
-                true
+                true,
               ),
             ];
           })
@@ -425,7 +436,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         tableData={PlayTypeUtils.fetchTopIndivPlayTypes(
           selectedPlayTypes,
           rosterStatsByCode,
-          playerTopLevelPlayTypeStyles
+          playerTopLevelPlayTypeStyles,
         )
           .filter((pt) => {
             if (!_.isEmpty(filterStr)) {
@@ -434,7 +445,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 : filterStr.split(",");
               return _.find(
                 frags,
-                (f) => pt.player.key.includes(f) || pt.code.includes(f)
+                (f) => pt.player.key.includes(f) || pt.code.includes(f),
               );
             } else return true;
           })
@@ -469,16 +480,16 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       mainTierToUse,
                       `${pt.teamPlayType}|${adjustForSos ? "Adj" : ""}Ppp`,
                       (pt.playStats.pts?.value || 0) * pppAdj,
-                      false
+                      false,
                     );
                     return (
                       CbbColors.off_pctile_qual(maybePppPctile?.value || 0) +
                       "88" //(50% opacity)
                     );
                   },
-                  GenericTableOps.pointsFormatter2dp
+                  GenericTableOps.pointsFormatter2dp,
                 ),
-              }
+              },
             );
           })}
       />
@@ -489,7 +500,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         mainTopLevelPlayTypeStyles,
         mainTierToUse,
         mainSosAdjustment,
-        true
+        true,
       )
     : undefined;
 
@@ -527,8 +538,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             rawPct == 0
               ? 0
               : possFreqType == "P%"
-              ? (stat.possPct?.value || 0) * 100
-              : pctle,
+                ? (stat.possPct?.value || 0) * 100
+                : pctle,
           pctile:
             //(always the %ile)
             possFreqType == "P%"
@@ -552,7 +563,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
   if (quickSwitchBase && quickSwitchOptions) {
     const extraOpt = _.find(
       quickSwitchOptions,
-      (opt) => opt.title == quickSwitchBase
+      (opt) => opt.title == quickSwitchBase,
     );
     if (extraOpt) {
       const extraTeamStats = extraOpt.teamStats || StatModels.emptyTeam();
@@ -569,7 +580,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         PlayTypeUtils.buildTopLevelPlayStyles(
           extraPlayers,
           rosterStatsByCode,
-          extraTeamStats
+          extraTeamStats,
         );
 
       extraTopLevelPlayTypeStylesPctile = mainTierToUse
@@ -577,7 +588,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             extraTopLevelPlayTypeStyles!,
             mainTierToUse,
             extraSosAdjustment,
-            true
+            true,
           )
         : undefined;
 
@@ -608,7 +619,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             return {
               name: PlayTypeDiagUtils.getPlayTypeName(playType).replace(
                 "-",
-                " - "
+                " - ",
               ),
               playType: playType,
               pct:
@@ -616,8 +627,8 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 rawPct == 0
                   ? 0
                   : possFreqType == "P%"
-                  ? (stat.possPct?.value || 0) * 100
-                  : pctle,
+                    ? (stat.possPct?.value || 0) * 100
+                    : pctle,
               pctile:
                 //(always the %ile)
                 possFreqType == "P%"
@@ -651,7 +662,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
 
     commonNumTicksToUse =
       _.minBy([10, 9, 8], (ticks) =>
-        Math.abs(tmpMax - ticks * Math.ceil(tmpMax / ticks))
+        Math.abs(tmpMax - ticks * Math.ceil(tmpMax / ticks)),
       ) || 10;
 
     commonMaxBetweenMainAndExtra =
@@ -721,7 +732,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         ? CbbColors.off_diff10_p100_redGreen_darkMode
         : CbbColors.off_diff10_p100_redBlackGreen;
     const rawColor = themedRawColorBuilder(
-      (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment
+      (mainDefensiveOverride ? -1 : 1) * (rawPts - 0.89) * 100 * adjustment,
     );
     const contrastingColor = pts <= 25 || pts >= 75 ? "white" : "black";
     const selectedBarColor = resolvedTheme == "dark" ? "#666666" : "#aaaaaa";
@@ -975,7 +986,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     defOverride: any,
     sosAdj: number,
     rowTitle?: string,
-    cellKeyPrefix: string = "cell-"
+    cellKeyPrefix: string = "cell-",
   ) => {
     return pctile ? (
       <Row className="recharts-container">
@@ -1019,7 +1030,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       ? _.range(
                           0,
                           commonMaxBetweenMainAndExtra + 1,
-                          commonMaxBetweenMainAndExtra / commonNumTicksToUse
+                          commonMaxBetweenMainAndExtra / commonNumTicksToUse,
                         )
                       : undefined
                     : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
@@ -1093,7 +1104,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                       fill={(defOverride
                         ? CbbColors.def_pctile_qual
                         : CbbColors.off_pctile_qual)(
-                        p.pts * 0.01 * (adjustForSos ? sosAdj : 1.0)
+                        p.pts * 0.01 * (adjustForSos ? sosAdj : 1.0),
                       )}
                     />
                   );
@@ -1118,13 +1129,86 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     : extraDefOverride;
   const topSosAdjustment = showMainOnTop
     ? mainSosAdjustment
-    : extraSosAdjustment ?? 1.0;
+    : (extraSosAdjustment ?? 1.0);
   const topTitle = undefined; // never show a title for the top chart
   const topCellPrefix = showMainOnTop ? "cell-" : "cell-extra-";
 
   // Bottom chart: only if quickSwitchExtra === 'extra', always show extraData
   const showBottom =
     quickSwitchExtra === "extra" && quickSwitchBase && quickSwitchOptions;
+
+  // Card view: Pts = (PPP × Freq) × 100 (points per 100 poss); match IndivPlayTypeDiagRadar formatting
+  const sumPlayTypePoints = _.sumBy(topData, (row) => {
+    const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
+    return ppp * row.rawPct * 100;
+  });
+  const sumPlayTypeUsage = _.sumBy(topData, (row) => row.rawPct * 100);
+  const identityPrefix = (k: string) => k;
+  const noCellMeta = () => "";
+  const cardTableRows = _.chain(topData)
+    .map((row) => {
+      const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
+      const pts = ppp * row.rawPct * 100;
+      return GenericTableOps.buildDataRow(
+        {
+          title: row.name,
+          pts: { value: pts },
+          pts_pct: (
+            <div>
+              {sumPlayTypePoints > 0
+                ? ((100 * pts) / sumPlayTypePoints).toFixed(1)
+                : 0}
+              %
+            </div>
+          ),
+          ppp: (
+            <div
+              style={{
+                ...CommonTableDefs.getTextShadow(
+                  { value: row.pts * 0.01 },
+                  resolvedTheme === "dark"
+                    ? CbbColors.percentile_redBlackGreen
+                    : CbbColors.off_pctile_qual,
+                ),
+              }}
+            >
+              {ppp.toFixed(2)} <sup>{row.pts.toFixed(0)}%</sup>
+            </div>
+          ),
+          freq: (
+            <div
+              style={{
+                ...CommonTableDefs.getTextShadow(
+                  { value: row.pctile * 0.01 },
+                  resolvedTheme === "dark"
+                    ? CbbColors.percentile_blueBlackOrange
+                    : CbbColors.all_pctile_freq,
+                ),
+              }}
+            >
+              {(row.rawPct * 100).toFixed(1)}%{" "}
+              <sup>{row.pctile.toFixed(0)}%</sup>
+            </div>
+          ),
+        },
+        identityPrefix,
+        noCellMeta,
+      );
+    })
+    .concat([
+      GenericTableOps.buildDataRow(
+        {
+          title: "Total",
+          pts: { value: sumPlayTypePoints },
+          pts_pct: { value: null },
+          ppp: { value: null },
+          freq: { value: null },
+        },
+        identityPrefix,
+        noCellMeta,
+      ),
+    ])
+    .value();
 
   /** Shows the JSON at the bottom if enabled */
   const debugView = false;
@@ -1154,7 +1238,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             grades,
             exportOptions?.singleGameMode ?? false,
             undefined,
-            rosterStatsByCode
+            rosterStatsByCode,
           )
         : [];
     };
@@ -1173,7 +1257,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               newQuickSwitch: string | undefined,
               newTitle: string | undefined,
               source: QuickSwitchSource,
-              fromTimer: boolean
+              fromTimer: boolean,
             ) => {
               if (fromTimer) {
                 setQuickSwitch((curr) => (curr ? undefined : newQuickSwitch));
@@ -1209,111 +1293,229 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                     () => {
                       const playStyleData: object[] = buildExportData();
                       setCsvData(playStyleData);
-                    }
+                    },
                   )}
                 </>
               ) : undefined}
             </Col>
             <Col xs={6} lg={7}>
-              {PlayTypeDiagUtils.buildAdjustedVsRawControls(
-                mainSosAdjustment,
-                adjustForSos,
-                (useAdjustedSos: boolean) => {
-                  setAdjustForSos(useAdjustedSos);
-                  updateConfig({
-                    ...incomingConfig,
-                    adjustForSos: useAdjustedSos,
-                  });
-                }
-              )}
-              {" | "}
-              {PlayTypeDiagUtils.buildTeamFreqType(
-                possFreqType,
-                (newPossFreqType) => {
-                  updateConfig({
-                    ...incomingConfig,
-                    possFreqType: newPossFreqType,
-                  });
-                  setPossFreqType(newPossFreqType);
-                }
-              )}
-              {supportPlayerBreakdown ? (
-                <>
-                  &nbsp;|&nbsp;
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={(props: any) => (
-                      <Tooltip id="showHidePlayerDetails" {...props}>
-                        Shows / hides the individual play-type breakdown for all
-                        team plays.
-                        <br />
-                        <br />
-                        Click on individual bars to select / deselect specific
-                        team play types.
-                      </Tooltip>
-                    )}
-                  >
-                    <a
-                      href=""
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (selectedPlayTypes.size > 0) {
-                          setSelectedPlayTypes(new Set());
-                          setMultiMode(false);
-                          updateConfig({
-                            ...incomingConfig,
-                            selectedPlayTypes: new Set(),
-                            multiMode: false,
-                          });
-                        } else {
-                          setMultiMode(true);
-                          setSelectedPlayTypes(
-                            new Set(PlayTypeUtils.topLevelPlayTypes)
-                          );
-                          updateConfig({
-                            ...incomingConfig,
-                            selectedPlayTypes: "all",
-                            multiMode: true,
-                          });
-                        }
-                      }}
-                    >
-                      {selectedPlayTypes.size > 0 ? (
-                        "Hide Player Details"
-                      ) : (
-                        <b>Show Player Details</b>
-                      )}
-                      <sup>*</sup>
-                    </a>
-                  </OverlayTrigger>
-                </>
-              ) : null}
-              {!supportPlayerBreakdown && navigationLinkOverride ? (
-                <>
-                  &nbsp;|&nbsp;
-                  {navigationLinkOverride}
-                </>
-              ) : null}
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "nowrap",
+                  alignItems: "center",
+                  gap: "0.25em",
+                }}
+              >
+                <ToggleButtonGroup
+                  items={[
+                    {
+                      items: [
+                        {
+                          label: "Adj",
+                          tooltip: (
+                            <div>
+                              <b>Adj:</b> Adjusted Pts/Play (SoS: x[
+                              {mainSosAdjustment.toFixed(2)}])
+                            </div>
+                          ),
+                          toggled: adjustForSos,
+                          onClick: () => {
+                            setAdjustForSos(true);
+                            updateConfig({
+                              ...incomingConfig,
+                              adjustForSos: true,
+                            });
+                          },
+                        },
+                        {
+                          label: "Raw",
+                          tooltip: (
+                            <div>
+                              <b>Raw:</b> Show PPP with no SoS adjustments
+                            </div>
+                          ),
+                          toggled: !adjustForSos,
+                          onClick: () => {
+                            setAdjustForSos(false);
+                            updateConfig({
+                              ...incomingConfig,
+                              adjustForSos: false,
+                            });
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      label: " | ",
+                      isLabelOnly: true,
+                      toggled: false,
+                      onClick: () => null,
+                    },
+                    {
+                      items: [
+                        {
+                          label: "P%le",
+                          tooltip: (
+                            <div>
+                              <b>P%le:</b> Shows play frequency (per /100{" "}
+                              <i>team</i> possessions) as a percentile of the
+                              selected sample (typically across all D1).
+                            </div>
+                          ),
+                          toggled: possFreqType === "P%le",
+                          onClick: () => {
+                            setPossFreqType("P%le");
+                            updateConfig({
+                              ...incomingConfig,
+                              possFreqType: "P%le",
+                            });
+                          },
+                        },
+                        {
+                          label: "P%",
+                          tooltip: (
+                            <div>
+                              <b>P%:</b> Shows play frequency per /100{" "}
+                              <i>team</i> possessions.
+                            </div>
+                          ),
+                          toggled: possFreqType === "P%",
+                          onClick: () => {
+                            setPossFreqType("P%");
+                            updateConfig({
+                              ...incomingConfig,
+                              possFreqType: "P%",
+                            });
+                          },
+                        },
+                      ],
+                    },
+                    ...(supportPlayerBreakdown
+                      ? [
+                          {
+                            label: " | ",
+                            isLabelOnly: true,
+                            toggled: false,
+                            onClick: () => null,
+                          },
+                          {
+                            label: "Player Details",
+                            tooltip: (
+                              <div>
+                                Shows / hides the individual play-type breakdown
+                                for all team plays. Click on individual bars to
+                                select / deselect specific team play types.
+                              </div>
+                            ),
+                            toggled: selectedPlayTypes.size > 0,
+                            onClick: () => {
+                              if (selectedPlayTypes.size > 0) {
+                                setSelectedPlayTypes(new Set());
+                                setMultiMode(false);
+                                updateConfig({
+                                  ...incomingConfig,
+                                  selectedPlayTypes: new Set(),
+                                  multiMode: false,
+                                });
+                              } else {
+                                setMultiMode(true);
+                                setSelectedPlayTypes(
+                                  new Set(PlayTypeUtils.topLevelPlayTypes),
+                                );
+                                updateConfig({
+                                  ...incomingConfig,
+                                  selectedPlayTypes: "all",
+                                  multiMode: true,
+                                });
+                              }
+                            },
+                          },
+                        ]
+                      : []),
+                    {
+                      label: " | ",
+                      isLabelOnly: true,
+                      toggled: false,
+                      onClick: () => null,
+                    },
+                    {
+                      items: [
+                        {
+                          label: "Card",
+                          tooltip: (
+                            <div>
+                              <b>Card:</b> Show play type information as a table
+                            </div>
+                          ),
+                          toggled: cardView,
+                          onClick: () => {
+                            setCardView(true);
+                            updateConfig({
+                              ...incomingConfig,
+                              cardView: true,
+                            });
+                          },
+                        },
+                        {
+                          label: "Chart",
+                          tooltip: (
+                            <div>
+                              <b>Chart:</b> Show play type information as a bar
+                              chart
+                            </div>
+                          ),
+                          toggled: !cardView,
+                          onClick: () => {
+                            setCardView(false);
+                            updateConfig({
+                              ...incomingConfig,
+                              cardView: false,
+                            });
+                          },
+                        },
+                      ],
+                    },
+                  ]}
+                />
+                {navigationLinkOverride ? " | " : null}
+                {navigationLinkOverride}
+              </div>
             </Col>
           </Row>
-          {renderBarChartRow(
-            topData,
-            topPctile,
-            topDefOverride,
-            topSosAdjustment,
-            topTitle,
-            topCellPrefix
+          {cardView ? (
+            <Row>
+              <Col xs={{ span: 7, offset: 2 }} className="pt-2">
+                <GenericTable
+                  growsToFit={false}
+                  tableCopyId="teamPlayTypeCard"
+                  tableFields={IndivTableDefs.playTypeCardTable}
+                  tableData={cardTableRows}
+                />
+              </Col>
+            </Row>
+          ) : (
+            <>
+              {renderBarChartRow(
+                topData,
+                topPctile,
+                topDefOverride,
+                topSosAdjustment,
+                topTitle,
+                topCellPrefix,
+              )}
+              {showBottom
+                ? renderBarChartRow(
+                    extraData,
+                    extraTopLevelPlayTypeStylesPctile,
+                    extraDefOverride,
+                    extraSosAdjustment ?? 1.0,
+                    `Compare vs [${quickSwitchBase}]`,
+                    "cell-extra-",
+                  )
+                : null}
+            </>
           )}
-          {showBottom
-            ? renderBarChartRow(
-                extraData,
-                extraTopLevelPlayTypeStylesPctile,
-                extraDefOverride,
-                extraSosAdjustment ?? 1.0,
-                `Compare vs [${quickSwitchBase}]`,
-                "cell-extra-"
-              )
-            : null}
           {playerTopLevelPlayTypeStyles && selectedPlayTypes.size > 0 && (
             <>
               <Row className="mt-1">
@@ -1399,6 +1601,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     multiMode,
     filterStr,
     possFreqType,
+    cardView,
     resolvedTheme,
   ]);
 };

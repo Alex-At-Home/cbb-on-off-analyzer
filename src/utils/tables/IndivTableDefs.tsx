@@ -139,7 +139,7 @@ export class IndivTableDefs {
     ),
     pts: GenericTableOps.addDataCol(
       "Pts",
-      "Points per 100 possessions (PPP × Freq × 100)",
+      "Points per 100 plays (a possession can be multiple plays separated by off. rebounds)",
       GenericTableOps.defaultColorPicker,
       GenericTableOps.pointsOrHtmlFormatter,
     ),
