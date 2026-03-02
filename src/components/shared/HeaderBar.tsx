@@ -585,6 +585,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           </Dropdown.Item>
           <Dropdown.Item>
             {buildNavItem(
+              "Per Game Breakdown",
+              seasonReportTooltip,
+              UrlRouting.getSeasonMatchupUrl(
+                getBaseFilterParams(common) as SeasonMatchupFilterParams,
+              ),
+              `${ParamPrefixes.gameInfo}_seasonReview`,
+            )}
+          </Dropdown.Item>
+          <Dropdown.Item>
+            {buildNavItem(
               "Team Style Analysis",
               baseGameTooltip,
               getBaseGameUrl({
