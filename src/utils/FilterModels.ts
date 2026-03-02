@@ -209,6 +209,7 @@ export type GameFilterParams = {
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
   showPlayerPlayTypesPlayType?: string;
+  showPlayerPlayTypesCardView?: boolean;
   // Misc display:
   showInfoSubHeader?: boolean;
   // Filtering of individual view:
@@ -500,6 +501,7 @@ export type PlayerCareerParams = {
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
   showPlayerPlayTypesPlayType?: string;
+  showPlayerPlayTypesCardView?: boolean;
   // Equivalent for similarity table
   similarityParams?: PlayerCareerParams;
   similarityConfig?: SimilarityConfig;
@@ -564,6 +566,7 @@ export type PlayerLeaderboardParams = {
   showPlayerPlayTypes?: boolean;
   showPlayerPlayTypesAdjPpp?: boolean;
   showPlayerPlayTypesPlayType?: string;
+  showPlayerPlayTypesCardView?: boolean;
   // Table configuration:
   tablePreset?: string;
   tableConfigExtraCols?: string[];
@@ -701,6 +704,7 @@ export class ParamDefaults {
   static readonly defaultPlayerShowPlayTypes = false;
   static readonly defaultPlayerShowPlayTypesPlayType = "P%le";
   static readonly defaultPlayerShowPlayTypesAdjPpp = true;
+  static readonly defaultPlayerShowPlayTypesCardView = false;
   static readonly defaultPlayerDiagMode = false;
   static readonly defaultPlayerShowBase = false;
   static readonly defaultPlayerShowExpanded = false;

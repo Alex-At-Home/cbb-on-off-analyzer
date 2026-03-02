@@ -437,6 +437,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       startingState.showPlayerPlayTypesPlayType ??
         ParamDefaults.defaultPlayerShowPlayTypesPlayType,
     );
+  const [showPlayerPlayTypesCardView, setShowPlayerPlayTypesCardView] =
+    useState<boolean>(
+      startingState.showPlayerPlayTypesCardView ??
+        ParamDefaults.defaultPlayerShowPlayTypesCardView,
+    );
 
   /** Set this to be true on expensive operations */
   const [loadingOverride, setLoadingOverride] = useState(false);
@@ -708,6 +713,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       showPlayerPlayTypes,
       showPlayerPlayTypesAdjPpp,
       showPlayerPlayTypesPlayType,
+      showPlayerPlayTypesCardView,
       tablePreset,
       tableConfigExtraCols,
       tableConfigDisabledCols,
@@ -2066,15 +2072,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                             setShowPlayerPlayTypesAdjPpp(
                               !(opts.rawPpp ?? false),
                             );
+                            setShowPlayerPlayTypesCardView(
+                              opts.cardView ??
+                                ParamDefaults.defaultPlayerShowPlayTypesCardView,
+                            );
                           }, true);
                         } else {
                           setShowPlayerPlayTypesPlayType(opts.playType);
                           setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                          setShowPlayerPlayTypesCardView(
+                            opts.cardView ??
+                              ParamDefaults.defaultPlayerShowPlayTypesCardView,
+                          );
                         }
                       }}
                       userOpts={{
                         playType: showPlayerPlayTypesPlayType,
                         rawPpp: !showPlayerPlayTypesAdjPpp,
+                        cardView: showPlayerPlayTypesCardView,
                       }}
                       navigationLinkOverride={
                         <OverlayTrigger

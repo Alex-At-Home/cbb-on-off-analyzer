@@ -174,6 +174,10 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         ParamDefaults.defaultPlayerShowPlayTypesPlayType
           ? ["showPlayerPlayTypesPlayType"]
           : [],
+        rawParams.showPlayerPlayTypesCardView ==
+        ParamDefaults.defaultPlayerShowPlayTypesCardView
+          ? ["showPlayerPlayTypesCardView"]
+          : [],
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],

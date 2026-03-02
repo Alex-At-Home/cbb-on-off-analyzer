@@ -94,13 +94,13 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
   }
 
   const [playerCareerParams, setPlayerCareerParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as PlayerCareerParams
+    UrlRouting.removedSavedKeys(allParams) as PlayerCareerParams,
   );
   const playerCareerParamsRef = useRef<PlayerCareerParams>();
   playerCareerParamsRef.current = playerCareerParams;
 
   const removeSimilarityDefaultsFromConfig = (
-    config: PlayerCareerParams["similarityConfig"]
+    config: PlayerCareerParams["similarityConfig"],
   ) => {
     if (!config) return undefined;
 
@@ -108,7 +108,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
       config,
       (value, key) =>
         value !==
-        DefaultSimilarityConfig[key as keyof typeof DefaultSimilarityConfig]
+        DefaultSimilarityConfig[key as keyof typeof DefaultSimilarityConfig],
     );
 
     return _.isEmpty(cleanedConfig)
@@ -144,16 +144,20 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           : [],
 
         !rawParams.showPlayerPlayTypes ? ["showPlayerPlayTypes"] : [],
-        rawParams.showPlayerPlayTypesAdjPpp ?? true
+        (rawParams.showPlayerPlayTypesAdjPpp ?? true)
           ? ["showPlayerPlayTypesAdjPpp"]
           : [],
         rawParams.showPlayerPlayTypesPlayType ==
-          ParamDefaults.defaultPlayerShowPlayTypesPlayType
+        ParamDefaults.defaultPlayerShowPlayTypesPlayType
           ? ["showPlayerPlayTypesPlayType"]
+          : [],
+        rawParams.showPlayerPlayTypesCardView ==
+        ParamDefaults.defaultPlayerShowPlayTypesCardView
+          ? ["showPlayerPlayTypesCardView"]
           : [],
         !rawParams.playerShotCharts ? ["playerShotCharts"] : [],
         rawParams.playerShotChartsShowZones ==
-          ParamDefaults.defaultShotChartShowZones
+        ParamDefaults.defaultShotChartShowZones
           ? ["playerShotChartsShowZones"]
           : [],
         !rawParams.playerShotChartsUseEfg ? ["playerShotChartsUseEfg"] : [],
@@ -175,11 +179,11 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           ? ["showPinnedOnly"]
           : [],
         rawParams.showSimilaritySliders ==
-          ParamDefaults.defaultShowSimilaritySliders
+        ParamDefaults.defaultShowSimilaritySliders
           ? ["showSimilaritySliders"]
           : [],
         rawParams.separatePlayerSeasons ==
-          ParamDefaults.defaultSeparatePlayerSeasons
+        ParamDefaults.defaultSeparatePlayerSeasons
           ? ["separatePlayerSeasons"]
           : [],
 
@@ -197,23 +201,23 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         //not used but maybe later:
         !rawParams.filter ? ["filter"] : [],
         rawParams.sortBy ==
-          ParamDefaults.defaultPlayerLboardSortBy(
-            _.isNil(rawParams.useRapm)
-              ? ParamDefaults.defaultPlayerLboardUseRapm
-              : rawParams.useRapm,
-            _.isNil(rawParams.factorMins)
-              ? ParamDefaults.defaultPlayerLboardFactorMins
-              : rawParams.factorMins
-          )
+        ParamDefaults.defaultPlayerLboardSortBy(
+          _.isNil(rawParams.useRapm)
+            ? ParamDefaults.defaultPlayerLboardUseRapm
+            : rawParams.useRapm,
+          _.isNil(rawParams.factorMins)
+            ? ParamDefaults.defaultPlayerLboardFactorMins
+            : rawParams.factorMins,
+        )
           ? ["sortBy"]
           : [],
-      ])
+      ]),
     );
 
     // Clean similarityConfig by removing default values
     const cleanedParams = { ...cleanedRawParams };
     cleanedParams.similarityConfig = removeSimilarityDefaultsFromConfig(
-      rawParams.similarityConfig
+      rawParams.similarityConfig,
     );
 
     return cleanedParams;
@@ -221,19 +225,19 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
 
   const onPlayerCareerParamsChange = (
     rawParams: PlayerCareerParams,
-    similarityMode: boolean = false
+    similarityMode: boolean = false,
   ) => {
     const newParams = removeDefaultsFromParams(rawParams);
     const params = similarityMode
       ? removeDefaultsFromParams({
-        ...(playerCareerParamsRef.current || {}),
-        similarityParams: _.omit(newParams, [
-          "similarityParams",
-          "similarityConfig",
-          "gender",
-        ]),
-        similarityConfig: newParams.similarityConfig,
-      })
+          ...(playerCareerParamsRef.current || {}),
+          similarityParams: _.omit(newParams, [
+            "similarityParams",
+            "similarityConfig",
+            "gender",
+          ]),
+          similarityConfig: newParams.similarityConfig,
+        })
       : newParams;
 
     if (!_.isEqual(params, playerCareerParamsRef.current)) {
@@ -272,12 +276,12 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
                   return response
                     .json()
                     .then((json: any) => [json, response.ok, response]);
-                }
+                },
               );
             },
             currentJsonEpoch,
-            isDebug
-          )
+            isDebug,
+          ),
         );
         allPromises.then((jsons) => {
           const playerJsons = (jsons?.[0]?.responses?.[0]?.hits?.hits || [])
@@ -357,8 +361,9 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
     />
   );
 
-  const thumbnailUrl = `${server != "localhost" ? `https://${server}` : "http://localhost:3000"
-    }/thumbnails/player_leaderboard_thumbnail.png`;
+  const thumbnailUrl = `${
+    server != "localhost" ? `https://${server}` : "http://localhost:3000"
+  }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
     <Container className="medium_screen">
       <SiteModeDropdown />

@@ -64,6 +64,7 @@ export type PlayerStyleOpts = {
   rawPpp?: boolean;
   playType?: string;
   quickSwitch?: string;
+  cardView?: boolean;
 };
 
 export type Props = {
@@ -141,7 +142,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     userOpts?.quickSwitch,
   );
 
-  const [cardView, setCardView] = useState<boolean>(false);
+  const [cardView, setCardView] = useState<boolean>(
+    userOpts?.cardView ?? ParamDefaults.defaultPlayerShowPlayTypesCardView,
+  );
 
   useEffect(() => {
     setAdjustForSos(!(userOpts?.rawPpp ?? false));
@@ -157,6 +160,9 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     if (dynamicQuickSwitch) {
       setQuickSwitch(userOpts?.quickSwitch);
     }
+    setCardView(
+      userOpts?.cardView ?? ParamDefaults.defaultPlayerShowPlayTypesCardView,
+    );
   }, [userOpts]);
 
   // Internal user config state
@@ -945,6 +951,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         rawPpp: !adjustForSos,
         playType: newPossFreqType,
         quickSwitch,
+        cardView,
       });
     };
 
@@ -984,6 +991,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                               rawPpp: false,
                               playType: possFreqType,
                               quickSwitch,
+                              cardView,
                             });
                           },
                         },
@@ -997,6 +1005,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                               rawPpp: true,
                               playType: possFreqType,
                               quickSwitch,
+                              cardView,
                             });
                           },
                         },
@@ -1091,9 +1100,11 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                           onClick: () => {
                             setCardView(true);
                             onChangeChartOpts?.({
+                              ...userOpts,
                               rawPpp: !adjustForSos,
                               playType: possFreqType,
                               quickSwitch,
+                              cardView: true,
                             });
                           },
                         },
@@ -1105,9 +1116,11 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                           onClick: () => {
                             setCardView(false);
                             onChangeChartOpts?.({
+                              ...userOpts,
                               rawPpp: !adjustForSos,
                               playType: possFreqType,
                               quickSwitch,
+                              cardView: false,
                             });
                           },
                         },

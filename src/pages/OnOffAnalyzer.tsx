@@ -410,6 +410,10 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         ParamDefaults.defaultPlayerShowPlayTypesPlayType
           ? ["showPlayerPlayTypesPlayType"]
           : [],
+        rawParams.showPlayerPlayTypesCardView ==
+        ParamDefaults.defaultPlayerShowPlayTypesCardView
+          ? ["showPlayerPlayTypesCardView"]
+          : [],
         rawParams.showPlayerManual == false ? ["showPlayerManual"] : [],
         rawParams.showOnBallConfig == false ? ["showOnBallConfig"] : [],
         rawParams.calcRapm == ParamDefaults.defaultPlayerCalcRapm
@@ -488,6 +492,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
       //(not showPlayerPlayTypes, because it needs to trigger an update to the GameFilter dropdown)
       "showPlayerPlayTypesPlayType",
       "showPlayerPlayTypesAdjPpp",
+      "showPlayerPlayTypesCardView",
       "showInfoSubHeader",
       "filter",
       "sortBy",

@@ -451,6 +451,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     gameFilterParams.showPlayerPlayTypesPlayType ??
       ParamDefaults.defaultPlayerShowPlayTypesPlayType,
   );
+  const [showPlayTypesCardView, setShowPlayTypesCardView] = useState<boolean>(
+    gameFilterParams.showPlayerPlayTypesCardView ??
+      ParamDefaults.defaultPlayerShowPlayTypesCardView,
+  );
   //TODO CSV of yearly quickSwitch options
 
   /** (placeholder for positional info)*/
@@ -499,6 +503,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       showPlayerPlayTypes: showPlayTypes,
       showPlayerPlayTypesAdjPpp: showPlayTypesAdjPpp,
       showPlayerPlayTypesPlayType: showPlayTypesPlayType,
+      showPlayerPlayTypesCardView: showPlayTypesCardView,
       // Overrides:
       manual: manualOverrides,
       // Luck:
@@ -549,6 +554,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     showPlayTypes,
     showPlayTypesAdjPpp,
     showPlayTypesPlayType,
+    showPlayTypesCardView,
     luckConfig,
     adjustForLuck,
     showLuckAdjDiags,
@@ -1984,6 +1990,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                             onChangeChartOpts={(opts: PlayerStyleOpts) => {
                               setShowPlayTypesPlayType(opts.playType);
                               setShowPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                              setShowPlayTypesCardView(
+                                opts.cardView ??
+                                  ParamDefaults.defaultPlayerShowPlayTypesCardView,
+                              );
                               // Sync quickSwitch with diffsCompare
                               if (isFirstEnabled) {
                                 if (
@@ -2013,6 +2023,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                               playType: showPlayTypesPlayType,
                               rawPpp: !showPlayTypesAdjPpp,
                               quickSwitch: quickSwitchFromDiffs,
+                              cardView: showPlayTypesCardView,
                             }}
                             dynamicQuickSwitch={isFirstEnabled}
                             quickSwitchModesOverride={

@@ -377,6 +377,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       playerCareerParams.showPlayerPlayTypesPlayType ??
         ParamDefaults.defaultPlayerShowPlayTypesPlayType,
     );
+  const [showPlayerPlayTypesCardView, setShowPlayerPlayTypesCardView] =
+    useState<boolean>(
+      playerCareerParams.showPlayerPlayTypesCardView ??
+        ParamDefaults.defaultPlayerShowPlayTypesCardView,
+    );
   //TODO CSV of yearly quickSwitch options
 
   /** Shot chart config */
@@ -558,6 +563,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       showPlayerPlayTypes,
       showPlayerPlayTypesAdjPpp,
       showPlayerPlayTypesPlayType,
+      showPlayerPlayTypesCardView,
       playerShotCharts: showShotCharts,
       playerShotChartsShowZones: shotChartConfig?.buildZones,
       playerShotChartsUseEfg: shotChartConfig?.useEfg,
@@ -597,6 +603,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showPlayerPlayTypes,
     showPlayerPlayTypesAdjPpp,
     showPlayerPlayTypesPlayType,
+    showPlayerPlayTypesCardView,
     showShotCharts,
     shotChartConfig,
     expandedView,
@@ -1672,6 +1679,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                     onChangeChartOpts={(opts: PlayerStyleOpts) => {
                       setShowPlayerPlayTypesPlayType(opts.playType);
                       setShowPlayerPlayTypesAdjPpp(!(opts.rawPpp ?? false));
+                      setShowPlayerPlayTypesCardView(
+                        opts.cardView ??
+                          ParamDefaults.defaultPlayerShowPlayTypesCardView,
+                      );
 
                       //TODO quick switch is more complex
                       // but in similarity mode, we'll treat the currently selected player as a special case
@@ -1695,6 +1706,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                             comparisonPlayer,
                           )}${quickSwitchDelim}extra`
                         : undefined,
+                      cardView: showPlayerPlayTypesCardView,
                     }}
                     quickSwitchOptions={playStyleQuickSwitchOptions}
                     showGrades={showGrades}
