@@ -1149,6 +1149,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     .map((row) => {
       const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
       const pts = ppp * row.rawPct * 100;
+      const pppPctileToUse = defensiveOverrideIn ? 100 - row.pts : row.pts;
       return GenericTableOps.buildDataRow(
         {
           title: row.name,
@@ -1165,14 +1166,14 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
             <div
               style={{
                 ...CommonTableDefs.getTextShadow(
-                  { value: row.pts * 0.01 },
+                  { value: pppPctileToUse * 0.01 },
                   resolvedTheme === "dark"
                     ? CbbColors.percentile_redBlackGreen
                     : CbbColors.off_pctile_qual,
                 ),
               }}
             >
-              {ppp.toFixed(2)} <sup>{row.pts.toFixed(0)}%</sup>
+              {ppp.toFixed(2)} <sup>{pppPctileToUse.toFixed(0)}%</sup>
             </div>
           ),
           freq: (
