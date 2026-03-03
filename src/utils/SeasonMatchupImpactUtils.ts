@@ -787,6 +787,57 @@ function weightedAvg(
   return wSum !== 0 ? sum / wSum : 0;
 }
 
+/** Total across games: sum each numeric column. For team totals only, off/def_gravity_bonus are averaged. */
+function buildTotalImpactRow(
+  impacts: GameImpactRow[],
+  averageGdeltaKeys: boolean,
+): GameImpactRow {
+  const n = impacts.length;
+  const noPossCell: Statistic = { value: undefined };
+  if (n === 0) {
+    return {
+      gameLabel: "",
+      gameInfo: {},
+      title: "Total (0 games)",
+      team_poss_pct: noPossCell,
+    };
+  }
+  const cv = (v: number) => ({ value: v, colorOverride: v / (n || 1) });
+  const cvGdelt = (v: number) => ({ value: v });
+  const getVal = (r: GameImpactRow, key: keyof GameImpactRow) =>
+    (r[key] && typeof r[key] === "object" && "value" in (r[key] as object)
+      ? (r[key] as Statistic).value
+      : 0) ?? 0;
+  const gdeltaKeys: (keyof GameImpactRow)[] = [
+    "off_gravity_bonus",
+    "def_gravity_bonus",
+  ];
+  const sumKeys = NUMERIC_KEYS.filter(
+    (k) => k !== "team_poss_pct" && !gdeltaKeys.includes(k),
+  );
+  const cells: Partial<GameImpactRow> = {};
+  for (const key of sumKeys) {
+    let sum = 0;
+    for (let i = 0; i < n; i++) sum += getVal(impacts[i], key);
+    (cells as any)[key] = cv(sum);
+  }
+  for (const key of gdeltaKeys) {
+    let sum = 0;
+    for (let i = 0; i < n; i++) sum += getVal(impacts[i], key);
+    (cells as any)[key] = cvGdelt(averageGdeltaKeys && n > 0 ? sum / n : sum);
+  }
+  const title = `Total (${n} game${n !== 1 ? "s" : ""})`;
+  return {
+    gameLabel: title,
+    gameInfo: {},
+    title,
+    team_poss_pct: noPossCell,
+    off_team_poss_pct: noPossCell,
+    def_team_poss_pct: noPossCell,
+    ...cells,
+  } as GameImpactRow;
+}
+
 /** Pure per-game average of team total rows (sum of each column / n). No poss% (same as team rows). */
 function buildTeamAverageImpactRow(impacts: GameImpactRow[]): GameImpactRow {
   const n = impacts.length;
@@ -837,6 +888,7 @@ export function buildGameImpactTableRows(
     playerCode: string;
     perGameCaches?: GameStatsCache[];
     seasonCache?: GameStatsCache | null;
+    showTotalRow?: boolean;
   },
 ): Record<string, Statistic | string | undefined>[] {
   const toTableRecord = (row: GameImpactRow) => ({
@@ -857,15 +909,30 @@ export function buildGameImpactTableRows(
     def_sos_bonus: row.def_sos_bonus,
     def_gravity_bonus: row.def_gravity_bonus,
   });
+  const prependTotal = (
+    rows: Record<string, Statistic | string | undefined>[],
+  ) =>
+    options!.showTotalRow && perGameImpacts.length > 0
+      ? [
+          toTableRecord(
+            buildTotalImpactRow(
+              perGameImpacts,
+              options!.playerCode === SEASON_MATCHUP_TEAM_KEY,
+            ),
+          ),
+          ...rows,
+        ]
+      : rows;
+
   if (!options) {
     return perGameImpacts.map(toTableRecord);
   }
   if (options.playerCode === SEASON_MATCHUP_TEAM_KEY) {
     const teamAverageRow = buildTeamAverageImpactRow(perGameImpacts);
-    return [
+    return prependTotal([
       toTableRecord(teamAverageRow),
       ...perGameImpacts.map(toTableRecord),
-    ];
+    ]);
   }
   if (options.perGameCaches) {
     const averageRow = buildAverageImpactRow(
@@ -876,7 +943,10 @@ export function buildGameImpactTableRows(
       options.scaleType,
       options.seasonCache,
     );
-    return [toTableRecord(averageRow), ...perGameImpacts.map(toTableRecord)];
+    return prependTotal([
+      toTableRecord(averageRow),
+      ...perGameImpacts.map(toTableRecord),
+    ]);
   }
-  return perGameImpacts.map(toTableRecord);
+  return prependTotal(perGameImpacts.map(toTableRecord));
 }

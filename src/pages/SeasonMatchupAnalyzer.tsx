@@ -32,7 +32,10 @@ import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard"
 import QuickSwitchBar, {
   QuickSwitchSource,
 } from "../components/shared/QuickSwitchBar";
-import GenericTable, { GenericTableOps } from "../components/GenericTable";
+import GenericTable, {
+  GenericTableOps,
+  GenericTableRow,
+} from "../components/GenericTable";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import {
@@ -120,6 +123,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [adjBreakdownForSoS, setAdjBreakdownForSoS] = useState(
     params.adjustForOpponentStrength ?? false,
   );
+  const [showTotalRow, setShowTotalRow] = useState(
+    params.showTotalRow ?? ParamDefaults.defaultShowTotalRow,
+  );
   const [showChart, setShowChart] = useState(params.showChart ?? true);
   const [chartLarge, setChartLarge] = useState(
     params.chartLarge ?? ParamDefaults.defaultChartLarge,
@@ -136,6 +142,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
 
   const paramsRef = React.useRef<SeasonMatchupFilterParams>(params);
   paramsRef.current = params;
+  const lastUrlParamsRef = React.useRef<SeasonMatchupFilterParams>(params);
   const [lastSubmittedCommon, setLastSubmittedCommon] = useState<{
     team: string | undefined;
     year: string | undefined;
@@ -198,6 +205,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     if (params.adjustForOpponentStrength !== undefined) {
       setAdjBreakdownForSoS(params.adjustForOpponentStrength);
     }
+    if (params.showTotalRow !== undefined) {
+      setShowTotalRow(params.showTotalRow);
+    }
     if (params.showChart !== undefined) {
       setShowChart(params.showChart);
     }
@@ -213,6 +223,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     if (params.chartBackground !== undefined) {
       setChartBackground(params.chartBackground as ChartBackgroundType);
     }
+    if (params.showTotalRow !== undefined) {
+      setShowTotalRow(params.showTotalRow);
+    }
   }, [
     primaryFilterPending,
     params.presetGroup,
@@ -222,6 +235,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     params.scaleType,
     params.chartFieldKey,
     params.chartBackground,
+    params.showTotalRow,
     playerOptions,
   ]);
 
@@ -267,6 +281,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     const options = {
       games: dataEvent.games,
       scaleType,
+      showTotalRow,
       ...(selectedPlayer !== SEASON_MATCHUP_TEAM_KEY
         ? {
             perGameCaches: perGameRapmCaches,
@@ -289,11 +304,34 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       gameIndex: number,
     ) => {
       if (gameIndex < 0) {
+        const data =
+          selectedPlayer === SEASON_MATCHUP_TEAM_KEY
+            ? { ...rowData, team_poss_pct: { value: null } }
+            : rowData;
         return GenericTableOps.buildDataRow(
-          rowData,
+          data,
           identityPrefix,
           noCellMeta,
-          undefined,
+          selectedPlayer === SEASON_MATCHUP_TEAM_KEY
+            ? {
+                off_gravity_bonus: GenericTableOps.addDataCol(
+                  "",
+                  "",
+                  CbbColors.varPicker((val: number) =>
+                    CbbColors.p_ast_breakdown(val * 0.1),
+                  ),
+                  GenericTableOps.pointsOrHtmlFormatter,
+                ),
+                def_gravity_bonus: GenericTableOps.addDataCol(
+                  "",
+                  "",
+                  CbbColors.varPicker((val: number) =>
+                    CbbColors.p_ast_breakdown(val * 0.1),
+                  ),
+                  GenericTableOps.pointsOrHtmlFormatter,
+                ),
+              }
+            : undefined,
         );
       }
       const game = dataEvent.games[gameIndex];
@@ -401,15 +439,21 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       );
     };
 
-    if (options) {
-      const averageRow = buildOneDataRow(rows[0], -1);
-      const separator = GenericTableOps.buildRowSeparator("1px");
-      const gameRows = rows
-        .slice(1)
-        .map((rowData, i) => buildOneDataRow(rowData, i));
-      return [averageRow, separator, ...gameRows];
+    const separator = GenericTableOps.buildRowSeparator("1px");
+    let idx = 0;
+    const result: GenericTableRow[] = [];
+    if (showTotalRow && rows.length > 0) {
+      result.push(buildOneDataRow(rows[0], -1), separator);
+      idx = 1;
     }
-    return rows.map((rowData, i) => buildOneDataRow(rowData, i));
+    if (options && rows.length > idx) {
+      result.push(buildOneDataRow(rows[idx], -1), separator);
+      idx++;
+    }
+    result.push(
+      ...rows.slice(idx).map((rowData, i) => buildOneDataRow(rowData, i)),
+    );
+    return result;
   }, [
     selectedPlayer,
     dataEvent.games,
@@ -418,6 +462,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     avgEfficiency,
     scaleType,
     adjBreakdownForSoS,
+    showTotalRow,
     resolvedTheme,
     params,
   ]);
@@ -564,10 +609,12 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       raw.chartBackground === ParamDefaults.defaultChartBackground
     )
       keysToOmit.push("chartBackground");
+    if (raw.showTotalRow === false) keysToOmit.push("showTotalRow");
     const next = keysToOmit.length > 0 ? _.omit(raw, keysToOmit) : raw;
-    if (!_.isEqual(next, paramsRef.current)) {
+    setParams(raw);
+    if (!_.isEqual(next, lastUrlParamsRef.current)) {
+      lastUrlParamsRef.current = next;
       Router.replace(getRootUrl(next), undefined, { shallow: true });
-      setParams(next);
     }
   };
 
@@ -720,6 +767,19 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                               ...params,
                               adjustForOpponentStrength: next,
                             });
+                          }
+                        },
+                      },
+                      {
+                        label: "\u03A3",
+                        tooltip:
+                          "Show/hide the total net points over all games in each category",
+                        toggled: showTotalRow,
+                        onClick: () => {
+                          const next = !showTotalRow;
+                          setShowTotalRow(next);
+                          if (!submitIsPending) {
+                            onChangeState({ ...params, showTotalRow: next });
                           }
                         },
                       },

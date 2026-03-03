@@ -324,6 +324,8 @@ export type SeasonMatchupFilterParams = {
   chartFieldKey?: string;
   /** Background gradient in Game Impact chart: Score Diff | SoS | SoS Offense | SoS Defense. */
   chartBackground?: "Score Diff" | "SoS" | "SoS Offense" | "SoS Defense";
+  /** Show total row (sum per game in each category; G delta averaged) at top of impact table. */
+  showTotalRow?: boolean;
 };
 
 export type TeamEditorParams = {
@@ -688,6 +690,7 @@ export class ParamDefaults {
   static readonly defaultScaleType = "/G";
   static readonly defaultChartFieldKey = "diff_adj_rapm";
   static readonly defaultChartBackground = "Score Diff";
+  static readonly defaultShowTotalRow = false;
   // Game
   static readonly defaultPresetSplit = "No Splits";
   static readonly defaultAutoOffQuery = true;
