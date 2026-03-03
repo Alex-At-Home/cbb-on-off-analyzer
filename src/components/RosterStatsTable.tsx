@@ -105,6 +105,7 @@ import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import TableSortPopupMenu, {
   TableSortPopupMenuState,
 } from "./shared/TableSortPopupMenu";
+import PlayerOptionFilterControl from "./shared/PlayerOptionFilterControl";
 
 export type RosterStatsModel = {
   on: Array<IndivStatSet>;
@@ -2893,15 +2894,23 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         />
         <Form.Row>
           <Form.Group as={Col} sm="6">
-            <InputGroup>
+            <InputGroup className="flex-nowrap">
               <InputGroup.Prepend>
                 <InputGroup.Text id="filter">Filter</InputGroup.Text>
               </InputGroup.Prepend>
-              <AsyncFormControl
-                startingVal={filterStr}
-                onChange={(t: string) => setFilterStr(t)}
-                timeout={500}
-                placeholder="eg Player1Surname,Player2FirstName,-Player3Name"
+              <PlayerOptionFilterControl
+                className="w-100"
+                value={filterStr}
+                onChange={(t) => setFilterStr(t)}
+                emptyLabel="Start typing player names..."
+                placeholder="e.g. Player1Surname,Player2FirstName,-Player3Name"
+                items={rosterStats.baseline.map((p) => {
+                  return {
+                    name: p.key,
+                    code: p.code || p.key,
+                    allowedOptions: [],
+                  };
+                })}
               />
             </InputGroup>
           </Form.Group>
