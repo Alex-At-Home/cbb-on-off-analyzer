@@ -1158,6 +1158,105 @@ export class CommonTableDefs {
     ) as Record<string, GenericTableColProps>;
   };
 
+  // PLAY TYPE
+
+  /** Play type card table */
+  static readonly playTypeCardTable = {
+    title: GenericTableOps.addTitle(
+      "",
+      "Play type",
+      GenericTableOps.defaultRowSpanCalculator,
+      "",
+      GenericTableOps.htmlFormatter,
+    ),
+    pts: GenericTableOps.addDataCol(
+      "Pts",
+      "Points per 100 plays (a possession can be multiple plays separated by off. rebounds)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    pts_pct: GenericTableOps.addDataCol(
+      <span>Pts%</span>,
+      "Percent of points from this play type",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    ppp: GenericTableOps.addDataCol(
+      "PPP",
+      "Points per play (raw or adj depending on Raw/Adj toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    freq: GenericTableOps.addDataCol(
+      "Freq%",
+      "Frequency (% of possessions; player or team depending on P% / T% toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+  };
+
+  /** Play type card table - comparison between two samples */
+  static readonly compPlayTypeCardTable = {
+    title: GenericTableOps.addTitle(
+      "",
+      "Play type",
+      GenericTableOps.defaultRowSpanCalculator,
+      "",
+      GenericTableOps.htmlFormatter,
+    ),
+    pts: GenericTableOps.addDataCol(
+      "Pts",
+      "Points per 100 plays (a possession can be multiple plays separated by off. rebounds)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    vs_pts: GenericTableOps.addDataCol(
+      "vs",
+      "Comparison dataset - Points per 100 plays (a possession can be multiple plays separated by off. rebounds)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    sep1: GenericTableOps.addColSeparator(),
+    pts_pct: GenericTableOps.addDataCol(
+      <span>Pts%</span>,
+      "Percent of points from this play type",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    vs_pts_pct: GenericTableOps.addDataCol(
+      "vs",
+      "Comparison dataset - Percent of points from this play type",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    sep2: GenericTableOps.addColSeparator(),
+    ppp: GenericTableOps.addDataCol(
+      "PPP",
+      "Points per play (raw or adj depending on Raw/Adj toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    vs_ppp: GenericTableOps.addDataCol(
+      "vs",
+      "Comparison dataset - Points per play (raw or adj depending on Raw/Adj toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    sep3: GenericTableOps.addColSeparator(),
+    freq: GenericTableOps.addDataCol(
+      "Freq%",
+      "Frequency (% of possessions; player or team depending on P% / T% toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    vs_freq: GenericTableOps.addDataCol(
+      "vs",
+      "Comparison dataset - Frequency (% of possessions; player or team depending on P% / T% toggle)",
+      GenericTableOps.defaultColorPicker,
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+  };
+
   //////////////////////////
 
   // Generic Sort Utils

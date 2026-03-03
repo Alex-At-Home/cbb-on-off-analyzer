@@ -56,13 +56,9 @@ import QuickSwitchBar, {
   QuickSwitchMode,
   QuickSwitchSource,
 } from "../shared/QuickSwitchBar";
-import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { faAdjust } from "@fortawesome/free-solid-svg-icons";
 import AsyncFormControl from "../shared/AsyncFormControl";
-import { UrlRouting } from "../../utils/UrlRouting";
 import { useTheme } from "next-themes";
 import { ParamDefaults } from "../../utils/FilterModels";
-import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
 import ToggleButtonGroup from "../shared/ToggleButtonGroup";
 
 const indivPlayTypeBreakdownFields = (
@@ -1142,18 +1138,36 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
     return ppp * row.rawPct * 100;
   });
-  const sumPlayTypeUsage = _.sumBy(topData, (row) => row.rawPct * 100);
+  const extraSumPlayTypePoints = _.sumBy(extraData || [], (row) => {
+    const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
+    return ppp * row.rawPct * 100;
+  });
+
   const identityPrefix = (k: string) => k;
   const noCellMeta = () => "";
   const cardTableRows = _.chain(topData)
-    .map((row) => {
+    .map((row, idx) => {
+      const extraRow = extraData?.[idx];
       const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
       const pts = ppp * row.rawPct * 100;
+      const extraPpp = extraRow
+        ? adjustForSos
+          ? extraRow.rawPts * topSosAdjustment
+          : extraRow.rawPts
+        : 0;
+      const extraPts = extraRow ? extraPpp * extraRow.rawPct * 100 : 0;
+
       const pppPctileToUse = defensiveOverrideIn ? 100 - row.pts : row.pts;
+      const extraPppPctileToUse = extraRow
+        ? defensiveOverrideIn
+          ? 100 - extraRow.pts
+          : extraRow.pts
+        : 0;
       return GenericTableOps.buildDataRow(
         {
           title: row.name,
           pts: { value: pts },
+          vs_pts: { value: extraPts },
           pts_pct: (
             <div>
               {sumPlayTypePoints > 0
@@ -1162,9 +1176,18 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               %
             </div>
           ),
+          vs_pts_pct: (
+            <div>
+              {extraSumPlayTypePoints > 0
+                ? ((100 * extraPts) / extraSumPlayTypePoints).toFixed(1)
+                : 0}
+              %
+            </div>
+          ),
           ppp: (
             <div
               style={{
+                whiteSpace: "nowrap",
                 ...CommonTableDefs.getTextShadow(
                   { value: pppPctileToUse * 0.01 },
                   resolvedTheme === "dark"
@@ -1176,9 +1199,25 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               {ppp.toFixed(2)} <sup>{pppPctileToUse.toFixed(0)}%</sup>
             </div>
           ),
+          vs_ppp: extraRow ? (
+            <div
+              style={{
+                whiteSpace: "nowrap",
+                ...CommonTableDefs.getTextShadow(
+                  { value: extraPppPctileToUse * 0.01 },
+                  resolvedTheme == "dark"
+                    ? CbbColors.percentile_redBlackGreen
+                    : CbbColors.off_pctile_qual,
+                ),
+              }}
+            >
+              {extraPpp.toFixed(2)} <sup>{extraPppPctileToUse.toFixed(0)}%</sup>
+            </div>
+          ) : undefined,
           freq: (
             <div
               style={{
+                whiteSpace: "nowrap",
                 ...CommonTableDefs.getTextShadow(
                   { value: row.pctile * 0.01 },
                   resolvedTheme === "dark"
@@ -1191,6 +1230,23 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               <sup>{row.pctile.toFixed(0)}%</sup>
             </div>
           ),
+
+          vs_freq: extraRow ? (
+            <span
+              style={{
+                whiteSpace: "nowrap",
+                ...CommonTableDefs.getTextShadow(
+                  { value: extraRow.pctile * 0.01 },
+                  resolvedTheme == "dark"
+                    ? CbbColors.percentile_blueBlackOrange
+                    : CbbColors.all_pctile_freq,
+                ),
+              }}
+            >
+              {(extraRow.rawPct * 100).toFixed(1)}%{" "}
+              <sup>{extraRow.pctile.toFixed(0)}%</sup>
+            </span>
+          ) : undefined,
         },
         identityPrefix,
         noCellMeta,
@@ -1201,6 +1257,7 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
         {
           title: "Total",
           pts: { value: sumPlayTypePoints },
+          vs_pts: { value: extraSumPlayTypePoints },
           pts_pct: { value: null },
           ppp: { value: null },
           freq: { value: null },
@@ -1486,11 +1543,20 @@ const TeamPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           </Row>
           {cardView ? (
             <Row>
-              <Col xs={{ span: 7, offset: 2 }} className="pt-2">
+              <Col
+                xs={
+                  showBottom ? { span: 8, offset: 2 } : { span: 7, offset: 2 }
+                }
+                className="pt-2"
+              >
                 <GenericTable
                   growsToFit={false}
                   tableCopyId="teamPlayTypeCard"
-                  tableFields={IndivTableDefs.playTypeCardTable}
+                  tableFields={
+                    showBottom
+                      ? CommonTableDefs.compPlayTypeCardTable
+                      : CommonTableDefs.playTypeCardTable
+                  }
                   tableData={cardTableRows}
                 />
               </Col>

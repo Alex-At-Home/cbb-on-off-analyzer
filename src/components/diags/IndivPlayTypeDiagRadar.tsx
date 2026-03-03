@@ -17,7 +17,6 @@ import {
   TopLevelPlayType,
 } from "../../utils/stats/PlayTypeUtils";
 import { CommonTableDefs } from "../../utils/tables/CommonTableDefs";
-import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
 import { CbbColors } from "../../utils/CbbColors";
 
 // Component imports
@@ -841,16 +840,32 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
     const sumPlayTypeUsage = _.sumBy(topData, (row) => {
       return row.rawPct * 100;
     });
+    const extraSumPlayTypePoints = _.sumBy(extraData || [], (row) => {
+      const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
+      return ppp * row.rawPct * 100;
+    });
+    const extraSumPlayTypeUsage = _.sumBy(extraData || [], (row) => {
+      return row.rawPct * 100;
+    });
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
     const cardTableRows = _.chain(topData)
-      .map((row) => {
+      .map((row, idx) => {
+        const extraRow = extraData?.[idx];
+
         const ppp = adjustForSos ? row.rawPts * topSosAdjustment : row.rawPts;
         const pts = ppp * row.rawPct * 100;
+        const extraPpp = extraRow
+          ? adjustForSos
+            ? extraRow.rawPts * topSosAdjustment
+            : extraRow.rawPts
+          : 0;
+        const extraPts = extraRow ? extraPpp * extraRow.rawPct * 100 : 0;
         return GenericTableOps.buildDataRow(
           {
             title: row.name,
             pts: { value: pts },
+            vs_pts: { value: extraPts },
             pts_pct: (
               <div>
                 {sumPlayTypePoints > 0
@@ -859,12 +874,18 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 %
               </div>
             ),
-            // {
-            //   value: sumPlayTypePoints > 0 ? pts / sumPlayTypePoints : 0,
-            // },
+            vs_pts_pct: (
+              <div>
+                {extraSumPlayTypePoints > 0
+                  ? ((100 * extraPts) / extraSumPlayTypePoints).toFixed(1)
+                  : 0}
+                %
+              </div>
+            ),
             ppp: (
               <div
                 style={{
+                  whiteSpace: "nowrap",
                   ...CommonTableDefs.getTextShadow(
                     { value: row.pts * 0.01 },
                     resolvedTheme == "dark"
@@ -876,9 +897,25 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 {ppp.toFixed(2)} <sup>{row.pts.toFixed(0)}%</sup>
               </div>
             ),
-            freq: (
+            vs_ppp: extraRow ? (
               <div
                 style={{
+                  whiteSpace: "nowrap",
+                  ...CommonTableDefs.getTextShadow(
+                    { value: extraRow.pts * 0.01 },
+                    resolvedTheme == "dark"
+                      ? CbbColors.percentile_redBlackGreen
+                      : CbbColors.off_pctile_qual,
+                  ),
+                }}
+              >
+                {extraPpp.toFixed(2)} <sup>{extraRow.pts.toFixed(0)}%</sup>
+              </div>
+            ) : undefined,
+            freq: (
+              <span
+                style={{
+                  whiteSpace: "nowrap",
                   ...CommonTableDefs.getTextShadow(
                     { value: row.pctile * 0.01 },
                     resolvedTheme == "dark"
@@ -889,8 +926,24 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
               >
                 {(row.rawPct * 100).toFixed(1)}%{" "}
                 <sup>{row.pctile.toFixed(0)}%</sup>
-              </div>
+              </span>
             ),
+            vs_freq: extraRow ? (
+              <span
+                style={{
+                  whiteSpace: "nowrap",
+                  ...CommonTableDefs.getTextShadow(
+                    { value: extraRow.pctile * 0.01 },
+                    resolvedTheme == "dark"
+                      ? CbbColors.percentile_blueBlackOrange
+                      : CbbColors.all_pctile_freq,
+                  ),
+                }}
+              >
+                {(extraRow.rawPct * 100).toFixed(1)}%{" "}
+                <sup>{extraRow.pctile.toFixed(0)}%</sup>
+              </span>
+            ) : undefined,
           },
           identityPrefix,
           noCellMeta,
@@ -901,10 +954,15 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           {
             title: "Total",
             pts: { value: sumPlayTypePoints },
+            vs_pts: { value: extraSumPlayTypePoints },
             ppp: { value: null },
             freq:
               possFreqType == "T%" || possFreqType == "T%le" ? (
                 <div>{sumPlayTypeUsage.toFixed(1)}%</div>
+              ) : undefined,
+            vs_freq:
+              possFreqType == "T%" || possFreqType == "T%le" ? (
+                <div>{extraSumPlayTypeUsage.toFixed(1)}%</div>
               ) : undefined,
             pts_pct: { value: null },
           },
@@ -934,6 +992,7 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
                 rawPpp: !adjustForSos,
                 playType: possFreqType,
                 quickSwitch: newQuickSwitch,
+                cardView,
               });
               setQuickSwitch(newQuickSwitch);
             }
@@ -1135,11 +1194,20 @@ const IndivPlayTypeDiagRadar: React.FunctionComponent<Props> = ({
           </Row>
           {cardView ? (
             <Row>
-              <Col xs={{ span: 7, offset: 2 }} className="pt-2">
+              <Col
+                xs={
+                  showBottom ? { span: 8, offset: 2 } : { span: 7, offset: 2 }
+                }
+                className="pt-2"
+              >
                 <GenericTable
                   growsToFit={false}
                   tableCopyId="indivPlayTypeCard"
-                  tableFields={IndivTableDefs.playTypeCardTable}
+                  tableFields={
+                    showBottom
+                      ? CommonTableDefs.compPlayTypeCardTable
+                      : CommonTableDefs.playTypeCardTable
+                  }
                   tableData={cardTableRows}
                 />
               </Col>
