@@ -278,11 +278,11 @@ export class GameAnalysisUtils {
         </span>
         <br />
         <span>
-          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>] BLKs=[<b>{blks}</b>]
+          A:TO=[<b>{assists}</b>]:[<b>{tos}</b>] FLs=[<b>{fouls}</b>]
         </span>
         <br />
         <span>
-          STLs=[<b>{stls}</b>] FLs=[<b>{fouls}</b>]
+          STLs=[<b>{stls}</b>] BLKs=[<b>{blks}</b>]
         </span>
         <br />
         <span>
@@ -340,6 +340,9 @@ export class GameAnalysisUtils {
     const tos = stats.total_off_to?.value || 0;
     const orbs = stats.total_off_orb?.value || 0;
     const drbs = stats.total_off_drb?.value || 0;
+    const stls = stats.total_off_stl?.value || 0;
+    const blks = stats.total_off_blk?.value || 0;
+    const fouls = stats.total_off_fouls?.value || 0;
     const pts = 3 * _3pm + 2 * (_2pmidm + _2primm) + ftm;
     const trbs = orbs + drbs;
 
@@ -456,7 +459,12 @@ export class GameAnalysisUtils {
           </span>
           <br />
           <span>
-            A:TO=[<b>{perG(assists)}</b>]:[<b>{perG(tos)}</b>]
+            A:TO=[<b>{perG(assists)}</b>]:[<b>{perG(tos)}</b>] FLs=[
+            <b>{perG(fouls)}</b>]
+          </span>
+          <br />
+          <span>
+            STLs=[<b>{perG(stls)}</b>] BLKs=[<b>{perG(blks)}</b>]
           </span>
           <br />
           <span>

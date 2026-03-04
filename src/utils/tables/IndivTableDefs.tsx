@@ -114,6 +114,25 @@ export class IndivTableDefs {
       GenericTableOps.pointsOrHtmlFormatter,
     ),
     sep5: GenericTableOps.addSpecialColSeparator("__def__"),
+    def_net_team: GenericTableOps.addDataCol(
+      "Team",
+      "Defensive net points from team defense (residual)",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    def_net_stks: GenericTableOps.addDataCol(
+      "Stks",
+      "Defensive net points from steals + blocks",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    def_net_drb: GenericTableOps.addDataCol(
+      "DRB",
+      "Defensive net points from defensive rebounds",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    sep6: GenericTableOps.addColSeparator(),
     def_sos_bonus: GenericTableOps.addDataCol(
       <span>Def. SoS&Delta;</span>,
       "Defensive Strength-Of-Schedule Bonus",
@@ -134,7 +153,7 @@ export class IndivTableDefs {
     value: string;
   }[] => {
     const table = IndivTableDefs.impactDecompTable;
-    const skipKeys = ["title", "sep1", "sep2", "sep3", "sep4", "sep5"];
+    const skipKeys = ["title", "sep1", "sep2", "sep3", "sep4", "sep5", "sep6"];
     return _.flatMap(
       _.entries(table).filter(
         ([k, col]) =>

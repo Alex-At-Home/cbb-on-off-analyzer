@@ -39,6 +39,9 @@ export type GameImpactRow = {
   off_net_ast?: Statistic;
   off_net_to?: Statistic;
   off_net_orb?: Statistic;
+  def_net_team?: Statistic;
+  def_net_stks?: Statistic;
+  def_net_drb?: Statistic;
   def_sos_bonus?: Statistic;
   def_gravity_bonus?: Statistic;
 };
@@ -116,6 +119,9 @@ const NUMERIC_KEYS: (keyof GameImpactRow)[] = [
   "off_net_ast",
   "off_net_to",
   "off_net_orb",
+  "def_net_team",
+  "def_net_stks",
+  "def_net_drb",
   "def_sos_bonus",
   "def_gravity_bonus",
 ];
@@ -245,6 +251,12 @@ function buildOnePlayerGameRow(
       },
       off_net_to: { value: netPoints.offNetPtsTo },
       off_net_orb: { value: netPoints.offNetPtsOrb },
+      def_net_team: { value: netPoints.defNetPtsTeam },
+      def_net_stks: {
+        value: netPoints.defNetPtsStl + netPoints.defNetPtsBlk,
+        extraInfo: `Stl: [${netPoints.defNetPtsStl.toFixed(2)}]pts, Blk: [${netPoints.defNetPtsBlk.toFixed(2)}]pts`,
+      },
+      def_net_drb: { value: netPoints.defNetPtsReb },
       def_sos_bonus: { value: netPoints.defNetPtsSos },
       def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
     };
@@ -328,6 +340,9 @@ function totalRowToGameImpactRow(
     off_net_ast: cv("off_net_ast"),
     off_net_to: cv("off_net_to"),
     off_net_orb: cv("off_net_orb"),
+    def_net_team: cv("def_net_team"),
+    def_net_stks: cv("def_net_stks"),
+    def_net_drb: cv("def_net_drb"),
     def_sos_bonus: cv("def_sos_bonus"),
     def_gravity_bonus: cv("def_gravity_bonus"),
   };
@@ -906,6 +921,9 @@ export function buildGameImpactTableRows(
     off_net_ast: row.off_net_ast,
     off_net_to: row.off_net_to,
     off_net_orb: row.off_net_orb,
+    def_net_team: row.def_net_team,
+    def_net_stks: row.def_net_stks,
+    def_net_drb: row.def_net_drb,
     def_sos_bonus: row.def_sos_bonus,
     def_gravity_bonus: row.def_gravity_bonus,
   });

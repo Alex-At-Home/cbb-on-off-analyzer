@@ -149,6 +149,10 @@ export type NetPoints = {
   defNetPts: number;
   defNetPtsSos: number;
   defNetPtsWowy: number;
+  defNetPtsStl: number;
+  defNetPtsBlk: number;
+  defNetPtsReb: number;
+  defNetPtsTeam: number;
 };
 
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
@@ -1132,6 +1136,28 @@ export class RatingUtils {
     const unadjDefNet =
       (drtg.dRtg - avgEff) * 0.2 * drtg.oppoPoss * 0.01 * defScale;
 
+    // See:
+    // Thinking about how to convert this to Net points in RatingUtils code
+
+    const defNetPtsStl =
+      drtg.stl * 0.01 * avgEff * drtg.adjPossFactor * defScale;
+    const defNetPtsBlk =
+      drtg.blk *
+      drtg.teamMissWeight *
+      0.01 *
+      avgEff *
+      drtg.adjPossFactor *
+      defScale;
+    const defNetPtsReb =
+      drtg.drb *
+      (1 - drtg.teamDvsRebCredit) *
+      0.01 *
+      avgEff *
+      drtg.adjPossFactor *
+      defScale;
+    const defNetPtsTeam =
+      -unadjDefNet - defNetPtsReb - defNetPtsBlk - defNetPtsStl;
+
     // These results are across the full sample (eg 70ish possessions for a game, 1000 possessions
     // for a season)
     // To convert to "P%", *100, divide by player poss (offPoss?)
@@ -1156,6 +1182,10 @@ export class RatingUtils {
       defNetPts: defNetPtsBeforeRapm + defNetPtsWowy,
       defNetPtsWowy,
       defNetPtsSos: unadjDefNet - defNetPtsBeforeRapm,
+      defNetPtsStl,
+      defNetPtsBlk,
+      defNetPtsReb,
+      defNetPtsTeam,
     };
   };
 
@@ -1285,6 +1315,12 @@ export class RatingUtils {
     const ScPoss = Opponent_FGM + Opponent_HitFTs * Opponent_FTposs;
     const D_Pts_Per_ScPoss = ScPoss > 0 ? Opponent_PTS / ScPoss : 0;
 
+    // Thinking about how to convert this to Net points
+    // (what does that mean - well an average defender gives up avgEff points every 100 poss ...
+    //  so if I give up 0pts on N possessions, I am +avgEff better
+    // so I think for Reb, Steals, and Blks I can just multiply stops by avgEff
+    // and then for Team Def I just subtract Rtg+?
+    // (STL, BLK, DRB, TeamMissWeight already added, as is FMwt(teamDvsRebCredit))
     const Player_DRtg = 100 * D_Pts_Per_ScPoss * (1 - StopPct);
     const Player_Delta = 0.2 * (Player_DRtg - Team_DRtg_Box);
 

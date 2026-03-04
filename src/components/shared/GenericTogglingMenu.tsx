@@ -37,7 +37,7 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
 }) => {
   // Some extra logic for the config dropdown:
   const [configDropdownOpen, setConfigDropdownOpen] = useState(
-    alwaysOpen || false
+    alwaysOpen || false,
   );
 
   // Search functionality:
@@ -47,7 +47,7 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   const allowlistSet = useMemo(
     () =>
       allowlist ? new Set(allowlist.map((p) => p.toLowerCase())) : new Set(),
-    [allowlist]
+    [allowlist],
   );
 
   // Helper function to extract text content from React elements
@@ -114,7 +114,7 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   return (
     <Dropdown
       alignRight
-      drop={drop || "up"}
+      drop={drop || "down"}
       onToggle={handleToggle}
       show={configDropdownOpen}
       {...props}

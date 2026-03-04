@@ -304,6 +304,18 @@ function buildPlayerRow(
       off_net_orb: {
         value: offDebugMode ? ortgDiag.ppOrb : netPoints.offNetPtsOrb,
       },
+      def_net_team: { value: netPoints.defNetPtsTeam },
+      def_net_stks: {
+        value: netPoints.defNetPtsStl + netPoints.defNetPtsBlk,
+        extraInfo: (
+          <span>
+            Stl: {netPoints.defNetPtsStl.toFixed(2)}
+            <br />
+            Blk: {netPoints.defNetPtsBlk.toFixed(2)}
+          </span>
+        ),
+      },
+      def_net_drb: { value: netPoints.defNetPtsReb },
       def_sos_bonus: { value: netPoints.defNetPtsSos },
       def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
       ...(offDebugMode
@@ -373,6 +385,9 @@ const RINGABLE_KEYS = [
   "off_net_ast",
   "off_net_to",
   "off_net_orb",
+  "def_net_team",
+  "def_net_stks",
+  "def_net_drb",
   "def_gravity_bonus",
 ] as const;
 const NO_MAX_KEYS = new Set<string>(["off_net_to"]);

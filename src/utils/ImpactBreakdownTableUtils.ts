@@ -17,6 +17,9 @@ export const IMPACT_DECOMP_DATA_COL_KEYS: string[] = [
   "off_net_ast",
   "off_net_to",
   "off_net_orb",
+  "def_net_team",
+  "def_net_stks",
+  "def_net_drb",
   "def_sos_bonus",
   "def_gravity_bonus",
 ];
