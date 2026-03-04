@@ -7531,7 +7531,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           class="mb-0 form-group col-sm-1"
         >
           <div
-            class="dropup"
+            class="dropdown"
           >
             <div>
               <button
@@ -7705,7 +7705,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
           class="mb-0 form-group col-sm-1"
         >
           <div
-            class="dropup"
+            class="dropdown"
           >
             <div>
               <button

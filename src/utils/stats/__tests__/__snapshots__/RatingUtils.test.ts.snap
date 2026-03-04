@@ -78,7 +78,11 @@ exports[`RatingUtils RatingUtils - buildNetPoints uses adjPtsFactor and adjPossF
    "offNetPtsSos": 0.2779601252131088,
    "defNetPts": -0.40576523295265754,
    "defNetPtsWowy": 0,
-   "defNetPtsSos": 0.3693636422125976
+   "defNetPtsSos": 0.3693636422125976,
+   "defNetPtsStl": 0.4189944134078212,
+   "defNetPtsBlk": 0.03157053513040497,
+   "defNetPtsReb": 0.48320271866664277,
+   "defNetPtsTeam": -0.897366076464809
 }
 `;
 
