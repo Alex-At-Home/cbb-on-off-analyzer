@@ -114,26 +114,25 @@ export class IndivTableDefs {
       GenericTableOps.pointsOrHtmlFormatter,
     ),
     sep5: GenericTableOps.addSpecialColSeparator("__def__"),
-    //TODO add this back
-    // def_net_team: GenericTableOps.addDataCol(
-    //   "Team",
-    //   "Defensive net points from team defense (residual)",
-    //   CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-    //   GenericTableOps.pointsOrHtmlFormatter,
-    // ),
-    // def_net_stks: GenericTableOps.addDataCol(
-    //   "Stks",
-    //   "Defensive net points from steals + blocks",
-    //   CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-    //   GenericTableOps.pointsOrHtmlFormatter,
-    // ),
-    // def_net_drb: GenericTableOps.addDataCol(
-    //   "DRB",
-    //   "Defensive net points from defensive rebounds",
-    //   CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
-    //   GenericTableOps.pointsOrHtmlFormatter,
-    // ),
-    // sep6: GenericTableOps.addColSeparator(),
+    def_net_team: GenericTableOps.addDataCol(
+      "Team",
+      "Defensive net points from team defense: shared contribution via stops and non-stl turnovers",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    def_net_stks: GenericTableOps.addDataCol(
+      "Stks",
+      "Defensive net points from steals + blocks (mouseover to see steal/block breakdown)",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    def_net_drb: GenericTableOps.addDataCol(
+      "DRB",
+      "Defensive net points from defensive rebounds",
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
+      GenericTableOps.pointsOrHtmlFormatter,
+    ),
+    sep6: GenericTableOps.addColSeparator(),
     def_sos_bonus: GenericTableOps.addDataCol(
       <span>Def. SoS&Delta;</span>,
       "Defensive Strength-Of-Schedule Bonus",

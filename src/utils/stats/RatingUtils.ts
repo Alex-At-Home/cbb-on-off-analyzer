@@ -208,6 +208,10 @@ export type DRtgDiagnostics = {
   onBallDef?: OnBallDefenseModel;
   onBallDiags?: OnBallDefenseDiags;
 
+  // Net points:
+  BlkBonus: number;
+  StlBonus: number;
+  DrbBonus: number;
   // Correction factor:
   adjPtsFactor: number;
   adjPossFactor: number;
@@ -1139,22 +1143,16 @@ export class RatingUtils {
     // See:
     // Thinking about how to convert this to Net points in RatingUtils code
 
+    // The net points bonus are Player DRtg format
+    // Actual DRtg is 0.8*Team + 0.2*Player (so 80% is entirely shared)
+    // (and then *0.2 for team->player)
     const defNetPtsStl =
-      drtg.stl * 0.01 * avgEff * drtg.adjPossFactor * defScale;
+      -0.2 * 0.2 * drtg.StlBonus * drtg.oppoPoss * 0.01 * defScale;
     const defNetPtsBlk =
-      drtg.blk *
-      drtg.teamMissWeight *
-      0.01 *
-      avgEff *
-      drtg.adjPossFactor *
-      defScale;
+      -0.2 * 0.2 * drtg.BlkBonus * drtg.oppoPoss * 0.01 * defScale;
     const defNetPtsReb =
-      drtg.drb *
-      (1 - drtg.teamDvsRebCredit) *
-      0.01 *
-      avgEff *
-      drtg.adjPossFactor *
-      defScale;
+      -0.2 * 0.2 * drtg.DrbBonus * drtg.oppoPoss * 0.01 * defScale;
+
     const defNetPtsTeam =
       -unadjDefNet - defNetPtsReb - defNetPtsBlk - defNetPtsStl;
 
@@ -1290,11 +1288,37 @@ export class RatingUtils {
     // This isn't working _that_ well ... the issues seem to be:
     // 1] (Box-)Derived Poss vs PbP Score Poss
     // For now I use the PbP poss for team poss but then for the delta used the Box
-    // 2] Team DRB vs Sum(Player DRB) .. I think this is what the 0.7 is intended to represent
+    // 2] Team DRB vs Sum(Player DRB)
 
     const StopPct =
       Opponent_Possessions_Box > 0
         ? Stops / (0.2 * Opponent_Possessions_Box)
+        : 0;
+
+    // Do some decomposition for Net Points
+    // The approach we take here is - what if the team defense remained the same BUT someone else had the
+    // Steal. What would your (player) DRtg be in that case
+    // In practice someone with lots of blocks and steals might have -10 vs Team DRtg (after the first 0.2* which is done in
+    // buildNetPoints) and if they had 0 might have +10. So "standing around doing nothing" on a good defensive team
+    // will make your Team NetPoints worse that your AdjRtg net points (but not by _that_ much, ie +2 after the
+    // second 0.2*)
+    // Fwiw I checked on 24/25 Maryland and removing all their steals (turning them into "average defensive possessions")
+    // turned them into an average defense from a good one which was approx the NetPoints breakdown,
+    // so although it seems a bit counter-intuitive it checks out .. reasons why aggressive defense is good numer 45623
+
+    const StopPct_NoBlks =
+      Opponent_Possessions_Box > 0
+        ? (Stops - BLK * TeamMissWeight) / (0.2 * Opponent_Possessions_Box)
+        : 0;
+
+    const StopPct_NoStls =
+      Opponent_Possessions_Box > 0
+        ? (Stops - STL) / (0.2 * Opponent_Possessions_Box)
+        : 0;
+
+    const StopPct_NoRebs =
+      Opponent_Possessions_Box > 0
+        ? (Stops - DRB * (1 - FMwt)) / (0.2 * Opponent_Possessions_Box)
         : 0;
 
     const Opponent_HitFTs = 1 - Opponent_MissAllFTs;
@@ -1315,13 +1339,13 @@ export class RatingUtils {
     const ScPoss = Opponent_FGM + Opponent_HitFTs * Opponent_FTposs;
     const D_Pts_Per_ScPoss = ScPoss > 0 ? Opponent_PTS / ScPoss : 0;
 
-    // Thinking about how to convert this to Net points
-    // (what does that mean - well an average defender gives up avgEff points every 100 poss ...
-    //  so if I give up 0pts on N possessions, I am +avgEff better
-    // so I think for Reb, Steals, and Blks I can just multiply stops by avgEff
-    // and then for Team Def I just subtract Rtg+?
-    // (STL, BLK, DRB, TeamMissWeight already added, as is FMwt(teamDvsRebCredit))
     const Player_DRtg = 100 * D_Pts_Per_ScPoss * (1 - StopPct);
+    const BlkBonus =
+      Player_DRtg - 100 * D_Pts_Per_ScPoss * (1 - StopPct_NoBlks);
+    const StlBonus =
+      Player_DRtg - 100 * D_Pts_Per_ScPoss * (1 - StopPct_NoStls);
+    const DrbBonus =
+      Player_DRtg - 100 * D_Pts_Per_ScPoss * (1 - StopPct_NoRebs);
     const Player_Delta = 0.2 * (Player_DRtg - Team_DRtg_Box);
 
     const DRtg = Team_DRtg_PbP + Player_Delta;
@@ -1402,6 +1426,11 @@ export class RatingUtils {
             avgEff: avgEfficiency,
             adjDRtg: Adj_DRtg,
             adjDRtgPlus: Adj_DRtgPlus,
+            // Net Points help:
+            StlBonus,
+            BlkBonus,
+            DrbBonus,
+            // Correction factor filled in later
             adjPossFactor: 1,
             adjPtsFactor: 1,
           }

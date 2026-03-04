@@ -41,6 +41,8 @@ export type GameImpactRow = {
   off_net_orb?: Statistic;
   def_net_team?: Statistic;
   def_net_stks?: Statistic;
+  def_net_stl?: Statistic;
+  def_net_blk?: Statistic;
   def_net_drb?: Statistic;
   def_sos_bonus?: Statistic;
   def_gravity_bonus?: Statistic;
@@ -69,6 +71,11 @@ export const CHART_FIELD_OPTIONS: {
   { key: "off_net_orb", label: "ORB" },
   { key: "off_sos_bonus", label: "Off. SoSΔ" },
   { key: "off_gravity_bonus", label: "Off. GΔ" },
+  { key: "def_net_team", label: "Def. Team" },
+  { key: "def_net_stks", label: "Def. Stks" },
+  { key: "def_net_drb", label: "Def. DRB" },
+  { key: "def_net_stl", label: "Def. Stl" },
+  { key: "def_net_blk", label: "Def. Blk" },
   { key: "def_sos_bonus", label: "Def. SoSΔ" },
   { key: "def_gravity_bonus", label: "Def. GΔ" },
 ];
@@ -121,6 +128,8 @@ const NUMERIC_KEYS: (keyof GameImpactRow)[] = [
   "off_net_orb",
   "def_net_team",
   "def_net_stks",
+  "def_net_stl",
+  "def_net_blk",
   "def_net_drb",
   "def_sos_bonus",
   "def_gravity_bonus",
@@ -252,6 +261,8 @@ function buildOnePlayerGameRow(
       off_net_to: { value: netPoints.offNetPtsTo },
       off_net_orb: { value: netPoints.offNetPtsOrb },
       def_net_team: { value: netPoints.defNetPtsTeam },
+      def_net_stl: { value: netPoints.defNetPtsStl },
+      def_net_blk: { value: netPoints.defNetPtsBlk },
       def_net_stks: {
         value: netPoints.defNetPtsStl + netPoints.defNetPtsBlk,
         extraInfo: `Stl: [${netPoints.defNetPtsStl.toFixed(2)}]pts, Blk: [${netPoints.defNetPtsBlk.toFixed(2)}]pts`,
@@ -341,7 +352,13 @@ function totalRowToGameImpactRow(
     off_net_to: cv("off_net_to"),
     off_net_orb: cv("off_net_orb"),
     def_net_team: cv("def_net_team"),
-    def_net_stks: cv("def_net_stks"),
+    def_net_stl: cv("def_net_stl"),
+    def_net_blk: cv("def_net_blk"),
+    def_net_stks: {
+      value:
+        (total["def_net_stl"]?.value ?? 0) + (total["def_net_blk"]?.value ?? 0),
+      extraInfo: `Stl: [${(total["def_net_stl"]?.value ?? 0).toFixed(2)}]pts, Blk: [${(total["def_net_blk"]?.value ?? 0).toFixed(2)}]pts`,
+    },
     def_net_drb: cv("def_net_drb"),
     def_sos_bonus: cv("def_sos_bonus"),
     def_gravity_bonus: cv("def_gravity_bonus"),
@@ -714,6 +731,12 @@ export function buildAverageImpactRow(
     const sum = _.sumBy(impactsPlayed, getVal);
     avgCells[key] = cv(rs(sum, gamesPlayedByPlayer || 1));
   }
+  const avgStl = avgCells["def_net_stl"]?.value ?? 0;
+  const avgBlk = avgCells["def_net_blk"]?.value ?? 0;
+  avgCells["def_net_stks"] = {
+    value: avgStl + avgBlk,
+    extraInfo: `Stl: [${avgStl.toFixed(2)}]pts, Blk: [${avgBlk.toFixed(2)}]pts`,
+  };
   avgCells["diff_adj_rapm"] = cv(
     (avgCells["off_adj_rapm"]?.value ?? 0) +
       (avgCells["def_adj_rapm"]?.value ?? 0),
@@ -841,6 +864,12 @@ function buildTotalImpactRow(
     for (let i = 0; i < n; i++) sum += getVal(impacts[i], key);
     (cells as any)[key] = cvGdelt(averageGdeltaKeys && n > 0 ? sum / n : sum);
   }
+  const stlVal = (cells.def_net_stl as Statistic)?.value ?? 0;
+  const blkVal = (cells.def_net_blk as Statistic)?.value ?? 0;
+  (cells as any).def_net_stks = {
+    value: stlVal + blkVal,
+    extraInfo: `Stl: [${stlVal.toFixed(2)}]pts, Blk: [${blkVal.toFixed(2)}]pts`,
+  };
   const title = `Total (${n} game${n !== 1 ? "s" : ""})`;
   return {
     gameLabel: title,
@@ -879,6 +908,10 @@ function buildTeamAverageImpactRow(impacts: GameImpactRow[]): GameImpactRow {
     }
     (avgCells as any)[key] = cv(sum / n);
   }
+  const teamStl = (avgCells.def_net_stl as Statistic)?.value ?? 0;
+  const teamBlk = (avgCells.def_net_blk as Statistic)?.value ?? 0;
+  (avgCells as any).def_net_stks.extraInfo =
+    `Stl: [${teamStl.toFixed(2)}]pts, Blk: [${teamBlk.toFixed(2)}]pts`;
   const title = `Average (${n} game${n !== 1 ? "s" : ""})`;
   return {
     gameLabel: title,
@@ -923,6 +956,8 @@ export function buildGameImpactTableRows(
     off_net_orb: row.off_net_orb,
     def_net_team: row.def_net_team,
     def_net_stks: row.def_net_stks,
+    def_net_stl: row.def_net_stl,
+    def_net_blk: row.def_net_blk,
     def_net_drb: row.def_net_drb,
     def_sos_bonus: row.def_sos_bonus,
     def_gravity_bonus: row.def_gravity_bonus,

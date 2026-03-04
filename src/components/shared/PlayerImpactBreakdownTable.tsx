@@ -305,6 +305,8 @@ function buildPlayerRow(
         value: offDebugMode ? ortgDiag.ppOrb : netPoints.offNetPtsOrb,
       },
       def_net_team: { value: netPoints.defNetPtsTeam },
+      def_net_stl: { value: netPoints.defNetPtsStl },
+      def_net_blk: { value: netPoints.defNetPtsBlk },
       def_net_stks: {
         value: netPoints.defNetPtsStl + netPoints.defNetPtsBlk,
         extraInfo: (
@@ -387,6 +389,8 @@ const RINGABLE_KEYS = [
   "off_net_orb",
   "def_net_team",
   "def_net_stks",
+  "def_net_stl",
+  "def_net_blk",
   "def_net_drb",
   "def_gravity_bonus",
 ] as const;
@@ -462,6 +466,12 @@ function buildTotalRow(
   );
   const total: Record<string, { value: number } | React.ReactNode> = {
     ...totalFromUtil,
+  };
+  const stlVal = (totalFromUtil.def_net_stl as { value?: number })?.value ?? 0;
+  const blkVal = (totalFromUtil.def_net_blk as { value?: number })?.value ?? 0;
+  total.def_net_stks = {
+    value: stlVal + blkVal,
+    extraInfo: `Stl: [${stlVal.toFixed(2)}]pts, Blk: [${blkVal.toFixed(2)}]pts`,
   };
   if (offDebugMode) {
     const totalOffTeamPossPct = weightByPoss
