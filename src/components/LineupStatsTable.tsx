@@ -130,7 +130,7 @@ function getQuads(ids: Array<string>): Array<string> {
 
 /** Builds all combos of from the set of ids being on and off (down to 2) */
 function getStarterOnOff(
-  ids: Array<string>
+  ids: Array<string>,
 ): Array<[Set<string>, Set<string>]> {
   const quads = getQuads(ids);
   const triples = getTriples(ids);
@@ -151,7 +151,7 @@ function getStarterOnOff(
           new Set(missing),
         ];
         return retVal;
-      })
+      }),
     )
     .concat([[startingPair[1], startingPair[0]]]); //(all off!)
 }
@@ -159,13 +159,13 @@ function getStarterOnOff(
 /** For a given lineup, figures out which starter-on-off combos it matches */
 function getStarterOnOffDiff(
   ids: Array<string>,
-  starterOnOff: Array<[Set<string>, Set<string>]>
+  starterOnOff: Array<[Set<string>, Set<string>]>,
 ): Array<string> {
   return starterOnOff
     .filter(([onSet, offSet]) => {
       const onCount = _.sumBy(
         ids,
-        (id) => (onSet.has(id) ? 1 : offSet.has(id) ? 100 : 0) //(any off count his is a disqualifier)
+        (id) => (onSet.has(id) ? 1 : offSet.has(id) ? 100 : 0), //(any off count his is a disqualifier)
       );
       return onCount == onSet.size;
     })
@@ -206,14 +206,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const [showTotals, setShowTotals] = useState(
     _.isNil(startingState.showTotal)
       ? ParamDefaults.defaultLineupShowTotal
-      : startingState.showTotal
+      : startingState.showTotal,
   );
 
   /** Whether to show the weighted combo of all visible lineups */
   const [showDropped, setShowDropped] = useState(
     _.isNil(startingState.showOff)
       ? ParamDefaults.defaultLineupShowDropped
-      : startingState.showOff
+      : startingState.showOff,
   );
 
   const teamSeasonLookup = `${startingState.gender}_${startingState.team}_${startingState.year}`;
@@ -225,7 +225,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     startingState.maxTableSize || ParamDefaults.defaultLineupMaxTableSize;
   const [maxTableSize, setMaxTableSize] = useState(startingMaxTableSize);
   const [sortBy, setSortBy] = useState(
-    startingState.sortBy || ParamDefaults.defaultLineupSortBy
+    startingState.sortBy || ParamDefaults.defaultLineupSortBy,
   );
   const [sortMenuState, setSortMenuState] = useState<
     TableSortPopupMenuState | undefined
@@ -239,7 +239,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   };
 
   const [filterStr, setFilterStr] = useState(
-    startingState.filter || ParamDefaults.defaultLineupFilter
+    startingState.filter || ParamDefaults.defaultLineupFilter,
   );
 
   // Luck:
@@ -248,24 +248,24 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const [adjustForLuck, setAdjustForLuck] = useState(
     _.isNil(startingState.lineupLuck)
       ? ParamDefaults.defaultLineupLuckAdjust
-      : startingState.lineupLuck
+      : startingState.lineupLuck,
   );
   /** Whether to show the luck diagnostics */
   const [showLuckAdjDiags, setShowLuckAdjDiags] = useState(
     _.isNil(startingState.showLineupLuckDiags)
       ? ParamDefaults.defaultLineupLuckDiagMode
-      : startingState.showLineupLuckDiags
+      : startingState.showLineupLuckDiags,
   );
   /** The settings to use for luck adjustment */
   const [luckConfig, setLuckConfig] = useState(
     _.isNil(startingState.luck)
       ? ParamDefaults.defaultLuckConfig
-      : startingState.luck
+      : startingState.luck,
   );
 
   /** For smaller possession counts make sense to show pts rather than pts/100 */
   const [showRawPts, setShowRawPts] = useState(
-    startingState.showRawPts || false
+    startingState.showRawPts || false,
   );
 
   /** Whether we are showing the luck config modal */
@@ -275,24 +275,24 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const [decorateLineups, setDecorateLineups] = useState(
     _.isNil(startingState.decorate)
       ? ParamDefaults.defaultLineupDecorate
-      : startingState.decorate
+      : startingState.decorate,
   );
   /** font size for decorated lineups */
   const [lineupFontSize, setLineupFontSize] = useState(
     _.isNil(startingState.lineupFontSize)
       ? ParamDefaults.defaultLineupFontSize
-      : startingState.lineupFontSize
+      : startingState.lineupFontSize,
   );
 
   const [aggregateByPos, setAggregateByPos] = useState(
     _.isNil(startingState.aggByPos)
       ? ParamDefaults.defaultLineupAggByPos
-      : startingState.aggByPos
+      : startingState.aggByPos,
   );
   const [transAggregateByPos, setTransAggregateByPos] = useState(
     _.isNil(startingState.aggByPos)
       ? ParamDefaults.defaultLineupAggByPos
-      : startingState.aggByPos
+      : startingState.aggByPos,
   );
   useEffect(() => {
     friendlyChange(() => {
@@ -306,7 +306,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   .map((p) => p.code)
                   .join(";")
               : "";
-          })
+          }),
         );
       }
       //(otherwise leave player selection so can toggle easily)
@@ -314,10 +314,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   }, [transAggregateByPos]);
 
   const [onOffPlayerSel, setOnOffPlayerSel] = useState(
-    startingState.onOffPlayerSel || ""
+    startingState.onOffPlayerSel || "",
   );
   const [wowyPlayerSel, setWowyPlayerSel] = useState(
-    startingState.wowyPlayerSel || ""
+    startingState.wowyPlayerSel || "",
   );
 
   const [wowyOnPlayerSel, setWowyOnPlayerSel] = useState("");
@@ -326,23 +326,23 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const [showGameInfo, setShowGameInfo] = useState(
     _.isNil(startingState.showGameInfo)
       ? ParamDefaults.defaultLineupShowGameInfo
-      : startingState.showGameInfo
+      : startingState.showGameInfo,
   );
 
   const [showRepeatingHeader, setShowRepeatingHeader] = useState(
-    true as boolean
+    true as boolean,
   ); //(always start as true)
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    startingState.tablePreset
+    startingState.tablePreset,
   );
   const rowMode: OffDefDualMixed =
     LineupTableDefs.lineupsExtraColSet(showRawPts)[tablePreset || ""]
       ?.rowMode || "Dual";
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
-    startingState.tableConfigExtraCols || []
+    startingState.tableConfigExtraCols || [],
   );
   /** Disabled table columns */
   const [tableConfigDisabledCols, setTableConfigDisabledCols] = useState<
@@ -410,7 +410,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   /** Largest sample of player stats, by player key - use for ORtg calcs */
   const globalRosterStatsByCode = RosterTableUtils.buildRosterTableByCode(
     rosterStats.global || [],
-    teamStats.global?.roster
+    teamStats.global?.roster,
   );
 
   /** Need baseline player info for tooltip view/lineup decoration */
@@ -420,7 +420,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     teamStats.baseline,
     avgEfficiency,
     adjustForLuck,
-    luckConfig.base
+    luckConfig.base,
   );
 
   // 3.1] Sorting utils
@@ -433,17 +433,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           CommonTableDefs.extraColSetPicker(
             LineupTableDefs.lineupsExtraColSet(showRawPts),
             rowMode,
-            true
-          )
+            true,
+          ),
         )
           .values()
           .flatMap((v) => _.toPairs(v.colSet))
-          .uniqBy((kv) => kv[0])
+          .uniqBy((kv) => kv[0]),
       );
     }, [showRawPts, rowMode]);
 
   const sortOptionsByValue = _.fromPairs(
-    sortOptions.map((opt) => [opt.value, opt])
+    sortOptions.map((opt) => [opt.value, opt]),
   );
   /** Put these options at the front */
   const mostUsefulSubset = [
@@ -493,7 +493,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
     const positionFromPlayerKey = LineupTableUtils.buildPositionPlayerMap(
       rosterStats.global,
-      teamSeasonLookup
+      teamSeasonLookup,
     );
 
     // 3.3] Table building
@@ -501,7 +501,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
     // Build a list of all the opponents:
     const orderedMutableOppoList = LineupUtils.buildOpponentList(
       lineups,
-      showGameInfo
+      showGameInfo,
     );
 
     if (aggregateByPos == "") {
@@ -514,7 +514,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           maxTableSize,
           teamSeasonLookup,
           positionFromPlayerKey,
-          showDropped
+          showDropped,
         );
       const globalMaxPoss = _.chain(filteredLineups)
         .flatMap((l) => LineupUtils.getGameInfo(l.game_info || {}))
@@ -534,13 +534,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         teamSeasonLookup,
         positionFromPlayerKey,
         baselinePlayerInfo,
-        droppedLineups
+        droppedLineups,
       ).flatMap((lineup, lineupIndex) => {
         TableDisplayUtils.injectPlayTypeInfo(
           lineup,
           false,
           false,
-          teamSeasonLookup
+          teamSeasonLookup,
         ); //(inject assist numbers)
 
         DerivedStatsUtils.injectExtraDefensiveStats(lineup, lineup);
@@ -555,7 +555,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             : PositionUtils.orderLineup(
                 codesAndIds,
                 positionFromPlayerKey,
-                teamSeasonLookup
+                teamSeasonLookup,
               );
 
         const perLineupBaselinePlayerMap: Record<PlayerId, IndivStatSet> =
@@ -565,7 +565,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 cid.id,
                 baselinePlayerInfo[cid.id] || StatModels.emptyIndiv(),
               ];
-            })
+            }),
           );
 
         const lineupTitleKey = "" + lineupIndex;
@@ -583,7 +583,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               "off_adj_rtg",
               decorateLineups,
               lineupFontSize,
-              getCommonFilterParams(startingState)
+              getCommonFilterParams(startingState),
             );
           }
         });
@@ -609,7 +609,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
                   LineupTableDefs.repeatingLineupHeaderFields,
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -617,7 +617,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
                   LineupTableDefs.repeatingLineupHeaderFields,
-                  "small"
+                  "small",
                 ),
                 GenericTableOps.buildRowSeparator("1px"),
               ]
@@ -627,7 +627,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   stats,
                   LineupTableDefs.offPrefixFn,
-                  CommonTableDefs.offCellMetaFn
+                  CommonTableDefs.offCellMetaFn,
                 ),
               ]
             : [],
@@ -636,7 +636,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   stats,
                   LineupTableDefs.defPrefixFn,
-                  CommonTableDefs.defCellMetaFn
+                  CommonTableDefs.defCellMetaFn,
                 ),
               ]
             : [],
@@ -645,7 +645,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   stats,
                   CommonTableDefs.mixedPrefixFn,
-                  CommonTableDefs.mixedCellMetaFn
+                  CommonTableDefs.mixedCellMetaFn,
                 ),
               ]
             : [],
@@ -666,7 +666,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                         : globalMaxPoss
                     }
                   />,
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -680,7 +680,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                     baseline={luckConfig.base}
                     showHelp={showHelp}
                   />,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -692,13 +692,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         <GenericTable
           sortField={LineupTableDefs.sortField(
             sortBy,
-            ParamDefaults.defaultLineupSortBy
+            ParamDefaults.defaultLineupSortBy,
           )}
           onHeaderClick={LineupTableDefs.buildSortCallback(
             rowMode,
             sortBy,
             sortOptions,
-            setSortMenuState
+            setSortMenuState,
           )}
           showConfigureColumns={true}
           initialColumnConfig={{
@@ -734,7 +734,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           "0",
           "1000",
           teamSeasonLookup,
-          positionFromPlayerKey
+          positionFromPlayerKey,
         );
 
       var varStarterOnOffInfo: Array<[Set<string>, Set<string>]> = [];
@@ -747,14 +747,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           "0",
           "1",
           teamSeasonLookup,
-          positionFromPlayerKey
+          positionFromPlayerKey,
         );
         if (topLineup.length > 0) {
           const codesAndIds = LineupTableUtils.buildCodesAndIds(topLineup[0]!);
           const sortedCodesAndIds = PositionUtils.orderLineup(
             codesAndIds,
             positionFromPlayerKey,
-            teamSeasonLookup
+            teamSeasonLookup,
           );
 
           varStartingLineup = sortedCodesAndIds; //TODO: also reduce to just the selected players
@@ -774,7 +774,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             .value();
         }
         varStarterOnOffInfo = getStarterOnOff(
-          varStartingLineup.map((p) => p.id)
+          varStartingLineup.map((p) => p.id),
         );
       } else if (aggregateByPos == "WOWY") {
         varStarterOnOffInfo = _.map(
@@ -782,20 +782,20 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           (maybeOnOffSelStr) => {
             const onOffFrags = maybeOnOffSelStr.split("^");
             const onSelSet = new Set(
-              onOffFrags[0].split(";").filter((str) => str != "")
+              onOffFrags[0].split(";").filter((str) => str != ""),
             );
             const offSelSet = new Set(
-              (onOffFrags[1] || "").split(";").filter((str) => str != "")
+              (onOffFrags[1] || "").split(";").filter((str) => str != ""),
             );
             return [onSelSet, offSelSet];
-          }
+          },
         );
         const filteredCodes = (rosterStats.global || []).flatMap((p) => {
           const codeId = p.player_array?.hits?.hits?.[0]?._source?.player;
           return codeId &&
             _.find(
               varStarterOnOffInfo,
-              ([on, off]) => on.has(codeId.code) || off.has(codeId.code)
+              ([on, off]) => on.has(codeId.code) || off.has(codeId.code),
             )
             ? [codeId as PlayerCodeId]
             : [];
@@ -804,7 +804,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         varStartingLineup = PositionUtils.orderLineup(
           filteredCodes,
           positionFromPlayerKey,
-          teamSeasonLookup
+          teamSeasonLookup,
         );
       }
 
@@ -823,14 +823,14 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           showTotals,
           teamSeasonLookup,
           positionFromPlayerKey,
-          baselinePlayerInfo
-        )
+          baselinePlayerInfo,
+        ),
       ).flatMap((lineup, lineupIndex) => {
         TableDisplayUtils.injectPlayTypeInfo(
           lineup,
           false,
           false,
-          teamSeasonLookup
+          teamSeasonLookup,
         ); //(inject assist numbers)
 
         DerivedStatsUtils.injectExtraDefensiveStats(lineup, lineup);
@@ -842,7 +842,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             : PositionUtils.orderLineup(
                 codesAndIds,
                 positionFromPlayerKey,
-                teamSeasonLookup
+                teamSeasonLookup,
               );
 
         const getBackcourtCombos = () => {
@@ -850,7 +850,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           const pf = top4?.[3] || "";
           const is4Guard = _.endsWith(
             positionFromPlayerKey[pf]?.posClass || "",
-            "G"
+            "G",
           ); //(not "G?" since we don't really know if that's a guard/forward yet)
           return is4Guard ? top4.join(" / ") : _.take(top4, 3).join(" / ");
         };
@@ -886,13 +886,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               case "WOWY":
                 const wowy = getStarterOnOffDiff(
                   (sortedCodesAndIds || []).map((p) => p.code), //(works with codes instead of ids!)
-                  varStarterOnOffInfo
+                  varStarterOnOffInfo,
                 );
                 return wowy;
               case "On-Off":
                 return getStarterOnOffDiff(
                   (sortedCodesAndIds || []).map((p) => p.id),
-                  varStarterOnOffInfo
+                  varStarterOnOffInfo,
                 );
               default:
                 return [];
@@ -935,8 +935,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             } else {
               return keys.flatMap((keyPos) =>
                 (sortedCodesAndIds || []).filter(
-                  (codeId) => codeId.id == keyPos
-                )
+                  (codeId) => codeId.id == keyPos,
+                ),
               );
             }
           });
@@ -964,7 +964,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   cid.id,
                   baselinePlayerInfo[cid.id] || StatModels.emptyIndiv(),
                 ];
-              })
+              }),
             );
 
           const linkParams = getCommonFilterParams(startingState);
@@ -1006,7 +1006,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   return TableDisplayUtils.buildGameUrl(
                     linkParams,
                     codes,
-                    excludeList
+                    excludeList,
                   );
                 };
               default:
@@ -1025,7 +1025,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             lineupFontSize,
             linkParams,
             false,
-            maybeOnClickOverride
+            maybeOnClickOverride,
           );
 
           const maybeLineBreak = aggregateByPos.length > 2 ? <br /> : null;
@@ -1057,7 +1057,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                               const strs = (posKey || "").split(" / ");
                               const [onStr, offStr] = _.partition(
                                 strs,
-                                (str) => !_.startsWith(str, "-")
+                                (str) => !_.startsWith(str, "-"),
                               );
                               const onEntry = onStr.join(";");
                               const offEntry = offStr
@@ -1087,7 +1087,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                               const strs = (posKey || "").split(" / ");
                               const [onStr, offStr] = _.partition(
                                 strs,
-                                (str) => !_.startsWith(str, "-")
+                                (str) => !_.startsWith(str, "-"),
                               );
                               const entry =
                                 onStr.join(";") +
@@ -1097,13 +1097,13 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                                   .join(";");
                               const wowyEntries = wowyPlayerSel.split("|");
                               const newWowyEntries = wowyEntries.filter(
-                                (e) => e != entry
+                                (e) => e != entry,
                               );
                               if (wowyEntries.length != newWowyEntries.length) {
                                 friendlyChange(
                                   () =>
                                     setWowyPlayerSel(newWowyEntries.join("|")),
-                                  true
+                                  true,
                                 );
                               }
                             }}
@@ -1143,17 +1143,17 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           lineupToEnrich,
           false,
           false,
-          teamSeasonLookup
+          teamSeasonLookup,
         ); //(inject assist numbers)
 
         DerivedStatsUtils.injectExtraDefensiveStats(
           lineupToEnrich,
-          lineupToEnrich
+          lineupToEnrich,
         );
         TableDisplayUtils.turnPppIntoRawPts(
           lineupToEnrich,
           showRawPts,
-          adjustForLuck
+          adjustForLuck,
         );
       });
       const [refilteredLineupsNotTotal, ignoreTheseLineups] =
@@ -1164,10 +1164,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           minPoss,
           maxTableSize,
           teamSeasonLookup,
-          positionFromPlayerKey
+          positionFromPlayerKey,
         );
       const refilteredLineups = (maybeTotal ? [maybeTotal as any] : []).concat(
-        refilteredLineupsNotTotal
+        refilteredLineupsNotTotal,
       );
       const comboGlobalMaxPoss = _.chain(refilteredLineupsNotTotal)
         .flatMap((l) => l.game_info || {})
@@ -1181,7 +1181,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             TableDisplayUtils.turnPppIntoRawPts(
               stats,
               showRawPts,
-              adjustForLuck
+              adjustForLuck,
             );
           }
 
@@ -1193,7 +1193,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               ? [
                   GenericTableOps.buildHeaderRepeatRow(
                     LineupTableDefs.repeatingLineupHeaderFields,
-                    "small"
+                    "small",
                   ),
                 ]
               : [],
@@ -1201,7 +1201,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               ? [
                   GenericTableOps.buildHeaderRepeatRow(
                     LineupTableDefs.repeatingLineupHeaderFields,
-                    "small"
+                    "small",
                   ),
                   GenericTableOps.buildRowSeparator("1px"),
                 ]
@@ -1211,7 +1211,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   GenericTableOps.buildDataRow(
                     stats,
                     LineupTableDefs.offPrefixFn,
-                    CommonTableDefs.offCellMetaFn
+                    CommonTableDefs.offCellMetaFn,
                   ),
                 ]
               : [],
@@ -1220,7 +1220,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   GenericTableOps.buildDataRow(
                     stats,
                     LineupTableDefs.defPrefixFn,
-                    CommonTableDefs.defCellMetaFn
+                    CommonTableDefs.defCellMetaFn,
                   ),
                 ]
               : [],
@@ -1229,7 +1229,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                   GenericTableOps.buildDataRow(
                     stats,
                     CommonTableDefs.mixedPrefixFn,
-                    CommonTableDefs.mixedCellMetaFn
+                    CommonTableDefs.mixedCellMetaFn,
                   ),
                 ]
               : [],
@@ -1242,7 +1242,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       params={startingState}
                       maxOffPoss={comboGlobalMaxPoss}
                     />,
-                    "small"
+                    "small",
                   ),
                 ]
               : [],
@@ -1268,10 +1268,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       </a>
                     )}
                   </span>,
-                  "small text-center"
+                  "small text-center",
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           aggregateByPos == "On-Off"
@@ -1285,7 +1285,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                         onClick={(e) => {
                           e.preventDefault();
                           const buildStr = getStarterOnOff(
-                            varStartingLineup.map((p) => p.code)
+                            varStartingLineup.map((p) => p.code),
                           )
                             .map(([on, off]) => {
                               const fragOn = Array.from(on).join(";");
@@ -1302,10 +1302,10 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       </a>
                     )}
                   </span>,
-                  "small text-center"
+                  "small text-center",
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           adjustForLuck
@@ -1321,23 +1321,23 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       for more details)
                     </i>
                   </span>,
-                  "small text-center"
+                  "small text-center",
                 ),
               ]
-            : []
+            : [],
         );
       const colSet = LineupTableDefs.lineupsExtraColSet(showRawPts);
       return (
         <GenericTable
           sortField={LineupTableDefs.sortField(
             sortBy,
-            ParamDefaults.defaultLineupSortBy
+            ParamDefaults.defaultLineupSortBy,
           )}
           onHeaderClick={LineupTableDefs.buildSortCallback(
             rowMode,
             sortBy,
             sortOptions,
-            setSortMenuState
+            setSortMenuState,
           )}
           showConfigureColumns={true}
           initialColumnConfig={{
@@ -1463,7 +1463,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           onClick: () =>
             friendlyChange(
               () => setAggregateByPos(aggregateByPos == "PG" ? "" : "PG"),
-              true
+              true,
             ),
         },
         {
@@ -1477,9 +1477,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             friendlyChange(
               () =>
                 setAggregateByPos(
-                  aggregateByPos == "Backcourt" ? "" : "Backcourt"
+                  aggregateByPos == "Backcourt" ? "" : "Backcourt",
                 ),
-              true
+              true,
             ),
         },
         {
@@ -1492,7 +1492,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           onClick: () =>
             friendlyChange(
               () => setAggregateByPos(aggregateByPos == "PG+C" ? "" : "PG+C"),
-              true
+              true,
             ),
         },
         {
@@ -1506,9 +1506,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             friendlyChange(
               () =>
                 setAggregateByPos(
-                  aggregateByPos == "Frontcourt" ? "" : "Frontcourt"
+                  aggregateByPos == "Frontcourt" ? "" : "Frontcourt",
                 ),
-              true
+              true,
             ),
         },
         {
@@ -1521,7 +1521,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           onClick: () =>
             friendlyChange(
               () => setAggregateByPos(aggregateByPos == "C" ? "" : "C"),
-              true
+              true,
             ),
         },
         {
@@ -1541,7 +1541,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           onClick: () =>
             friendlyChange(
               () => setAggregateByPos(aggregateByPos == "Pairs" ? "" : "Pairs"),
-              true
+              true,
             ),
         },
         {
@@ -1555,7 +1555,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
             friendlyChange(
               () =>
                 setAggregateByPos(aggregateByPos == "Triples" ? "" : "Triples"),
-              true
+              true,
             ),
         },
         {
@@ -1568,7 +1568,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           onClick: () =>
             friendlyChange(
               () => setAggregateByPos(aggregateByPos == "Quads" ? "" : "Quads"),
-              true
+              true,
             ),
         },
         {
@@ -1590,7 +1590,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               setAggregateByPos(
                 aggregateByPos == "On-Off" || aggregateByPos == "WOWY"
                   ? ""
-                  : "WOWY"
+                  : "WOWY",
               );
             }, true),
         },
@@ -1602,7 +1602,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const [stickyQuickToggle, setStickyQuickToggle] = useState(
     _.isNil(startingState.stickyQuickToggle)
       ? true
-      : startingState.stickyQuickToggle
+      : startingState.stickyQuickToggle,
   );
 
   const optionsDropdown = (
@@ -1625,9 +1625,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
               setLineupFontSize(
                 lineupFontSize == ParamDefaults.defaultLineupFontSize
                   ? "medium"
-                  : ParamDefaults.defaultLineupFontSize
+                  : ParamDefaults.defaultLineupFontSize,
               ),
-            true
+            true,
           )
         }
       />
@@ -1661,7 +1661,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
         onSelect={() =>
           friendlyChange(
             () => setShowRepeatingHeader(!showRepeatingHeader),
-            true
+            true,
           )
         }
       />
@@ -1696,7 +1696,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -1714,8 +1714,8 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
           lineupStats.error_code
             ? `Query Error: ${lineupStats.error_code}`
             : loadingOverride
-            ? "Recalculating table"
-            : "Press 'Submit' to view results"
+              ? "Recalculating table"
+              : "Press 'Submit' to view results"
         }
       >
         <LuckConfigModal
@@ -1822,7 +1822,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                     const newSortBy = (option as any)?.value;
                     friendlyChange(
                       () => setSortBy(newSortBy),
-                      sortBy != newSortBy
+                      sortBy != newSortBy,
                     );
                   }
                 }}
@@ -1859,7 +1859,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       return codeId ? [codeId as PlayerCodeId] : [];
                     })}
                     onChangePlayerSelection={(
-                      newPlayerSelectionStr: string
+                      newPlayerSelectionStr: string,
                     ) => {
                       setWowyOnPlayerSel(newPlayerSelectionStr);
                     }}
@@ -1880,7 +1880,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                       return codeId ? [codeId as PlayerCodeId] : [];
                     })}
                     onChangePlayerSelection={(
-                      newPlayerSelectionStr: string
+                      newPlayerSelectionStr: string,
                     ) => {
                       setWowyOffPlayerSel(newPlayerSelectionStr);
                     }}

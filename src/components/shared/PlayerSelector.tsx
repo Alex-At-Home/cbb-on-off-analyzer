@@ -80,7 +80,7 @@ const PlayerSelector: React.FunctionComponent<Props> = ({
       onChange={(optionsIn: any) => {
         const options = optionsIn as Array<any>;
         const selection = (options || []).map(
-          (option) => (option as any)?.value || ""
+          (option) => (option as any)?.value || "",
         );
         if (selection.length <= 5) {
           const finalSelection = selection

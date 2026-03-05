@@ -305,7 +305,9 @@ const getOnBallDefenseFilename = (team: string, teamYear: string) => {
 };
 
 /** On ball defense - Only had this data between 2020 and 2023 */
-const onBallDefenseEnabled = inYear > "2019" && inYear < "2026";
+const onBallDefenseEnabled =
+  (inGender == "Men" && inYear > "2019" && inYear < "2026") ||
+  (inGender == "Women" && inYear > "2024" && inYear < "2026");
 
 /** Request data from ES, duplicate table processing over each team to build leaderboard (export for testing only) */
 export async function main() {
@@ -1032,7 +1034,7 @@ export async function main() {
 
             // Read in on-ball defense if it exists
             var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
-            if ("all" == label && inGender == "Men" && onBallDefenseEnabled) {
+            if ("all" == label && onBallDefenseEnabled) {
               const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);
               const onBallDefenseText = await fs
                 .readFile(onBallDefenseLoc)

@@ -70,8 +70,11 @@
   background-color: #a3a3a3; /* bg-neutral-400 */
 }
 
+[data-theme='dark'] .hoop-explorer-select-container .hoop-explorer-select__placeholder {
+  color: #868e96;
+}
+
 [data-theme='dark'] .hoop-explorer-select-container .hoop-explorer-select__input-container,
-[data-theme='dark'] .hoop-explorer-select-container .hoop-explorer-select__placeholder,
 [data-theme='dark'] .hoop-explorer-select-container .hoop-explorer-select__single-value {
   color: #525252; /* text-neutral-600 */
 }
