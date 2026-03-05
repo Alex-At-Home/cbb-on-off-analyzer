@@ -106,17 +106,17 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   const hasCustomFilter =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
   const [queryFilters, setQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const [tmpQueryFilters, setTmpQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
 
   const [year, setYear] = useState(
-    startingState.year || ParamDefaults.defaultYear
+    startingState.year || ParamDefaults.defaultYear,
   );
   const [gender, setGender] = useState(
-    startingState.gender || ParamDefaults.defaultGender
+    startingState.gender || ParamDefaults.defaultGender,
   );
   const isMultiYr = year == "Extra" || year == "All";
 
@@ -129,57 +129,57 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   const [wabWeight, setWabWeight] = useState(
     !_.isNil(startingState.wabWeight)
       ? parseFloat(startingState.wabWeight)
-      : parseFloat(ParamDefaults.defaultTeamLboardWabWeight)
+      : parseFloat(ParamDefaults.defaultTeamLboardWabWeight),
   );
   const [waeWeight, setWaeWeight] = useState(
     !_.isNil(startingState.waeWeight)
       ? parseFloat(startingState.waeWeight)
-      : parseFloat(ParamDefaults.defaultTeamLboardWaeWeight)
+      : parseFloat(ParamDefaults.defaultTeamLboardWaeWeight),
   );
   const [qualityWeight, setQualityWeight] = useState(
     !_.isNil(startingState.qualityWeight)
       ? parseFloat(startingState.qualityWeight)
-      : parseFloat(ParamDefaults.defaultTeamLboardQualityWeight)
+      : parseFloat(ParamDefaults.defaultTeamLboardQualityWeight),
   );
   const [dominanceWeight, setDominanceWeight] = useState(
     !_.isNil(startingState.domWeight)
       ? parseFloat(startingState.domWeight)
-      : parseFloat(ParamDefaults.defaultTeamLboardDomWeight)
+      : parseFloat(ParamDefaults.defaultTeamLboardDomWeight),
   );
   const [timeWeight, setTimeWeight] = useState(
     !_.isNil(startingState.timeWeight)
       ? parseFloat(startingState.timeWeight)
-      : parseFloat(ParamDefaults.defaultTeamLboardTimeWeight)
+      : parseFloat(ParamDefaults.defaultTeamLboardTimeWeight),
   );
 
   const [pinnedWabWeight, setPinnedWabWeight] = useState(
     !_.isNil(startingState.pinWabWeight)
       ? parseFloat(startingState.pinWabWeight)
-      : wabWeight
+      : wabWeight,
   );
   const [pinnedWaeWeight, setPinnedWaeWeight] = useState(
     !_.isNil(startingState.pinWaeWeight)
       ? parseFloat(startingState.pinWaeWeight)
-      : waeWeight
+      : waeWeight,
   );
   const [pinnedQualityWeight, setPinnedQualityWeight] = useState(
     !_.isNil(startingState.pinQualityWeight)
       ? parseFloat(startingState.pinQualityWeight)
-      : qualityWeight
+      : qualityWeight,
   );
   const [pinnedDomWeight, setPinnedDomWeight] = useState(
     !_.isNil(startingState.pinDomWeight)
       ? parseFloat(startingState.pinDomWeight)
-      : dominanceWeight
+      : dominanceWeight,
   );
   const [pinnedTimeWeight, setPinnedTimeWeight] = useState(
     !_.isNil(startingState.pinTimeWeight)
       ? parseFloat(startingState.pinTimeWeight)
-      : timeWeight
+      : timeWeight,
   );
 
   const [pinnedRankings, setPinnedRankings] = useState(
-    {} as Record<string, number>
+    {} as Record<string, number>,
   );
   const [currentTable, setCurrentTable] = useState([] as Array<any>);
 
@@ -317,7 +317,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
           const scoreStr = `${winOrLoss} ${ptsScored}-${ptsAgainst}`;
           const gameStr = `${locationStr}${g.oppo_name} (${g.date_str.substring(
             0,
-            10
+            10,
           )}): ${scoreStr}`;
 
           const endLead = ptsScored - ptsAgainst;
@@ -351,7 +351,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               } else {
                 return ["", 400];
               }
-            }
+            },
           );
 
           const unexpectedResultStr = endLead * avgLead <= 0 ? " (!) " : "";
@@ -408,7 +408,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
       waeWeightIn: number,
       domWeightIn: number,
       timeWeightIn: number,
-      pinnedRankingsIn: Record<string, number>
+      pinnedRankingsIn: Record<string, number>,
     ) => {
       const mutableDedupSet = new Set() as Set<string>;
       const tableDataTmp = _.chain(dataEvent.teams || [])
@@ -475,28 +475,28 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                     <div>
                       {o.oppo_name}
                       <sup>{o.location_type.substring(0, 1)}</sup>
-                    </div>
+                    </div>,
                   );
                 else if (wab > 0.5)
                   mutableGoodGames.push(
                     <div>
                       {o.oppo_name}
                       <sup>{o.location_type.substring(0, 1)}</sup>
-                    </div>
+                    </div>,
                   );
                 else if (wab <= -0.7)
                   mutableTerribleGames.push(
                     <div>
                       {o.oppo_name}
                       <sup>{o.location_type.substring(0, 1)}</sup>
-                    </div>
+                    </div>,
                   );
                 else if (wab <= -0.6)
                   mutableBadGames.push(
                     <div>
                       {o.oppo_name}
                       <sup>{o.location_type.substring(0, 1)}</sup>
-                    </div>
+                    </div>,
                   );
 
                 // Find cupcakes that we can use to reduce games played to gameBasis
@@ -530,7 +530,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 cupcakeWabGames: 0,
                 cupcakeWae: 0,
                 cupcakeWaeGames: 0,
-              } as CalcState
+              } as CalcState,
             );
 
             const avDominance = sumDom / (totalPoss || 1);
@@ -539,7 +539,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               team.adj_def,
               dataEvent.bubbleOffense || [],
               dataEvent.bubbleDefense || [],
-              0.0
+              0.0,
             );
             const effectOfDom = 1.5 * 0.1 * avDominance; //3pts per 10pts avg lead is the NBA stat
             const expWinPctVsBubbleIncDom = TeamEvalUtils.calcWinsAbove(
@@ -547,7 +547,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               team.adj_def - effectOfDom,
               dataEvent.bubbleOffense || [],
               dataEvent.bubbleDefense || [],
-              0.0
+              0.0,
             );
 
             const expWinPctVsBubbleRecentIncDom = TeamEvalUtils.calcWinsAbove(
@@ -555,7 +555,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               team.adj_def_calc_30d,
               dataEvent.bubbleOffense || [],
               dataEvent.bubbleDefense || [],
-              0.0
+              0.0,
             );
 
             // Build cell entries
@@ -668,7 +668,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                         {
                           buildLastGamesElement(
                             team,
-                            5
+                            5,
                           ) /*TODO: this should depend on mobile vs desktop*/
                         }
                       </sup>
@@ -678,7 +678,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                         {
                           buildLastGamesElement(
                             team,
-                            2
+                            2,
                           ) /*TODO: this should depend on mobile vs desktop*/
                         }
                       </sup>
@@ -705,7 +705,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                             showRoster: true,
                             showTeamPlayTypes: true,
                           },
-                          {}
+                          {},
                         )}
                       >
                         <b>{team.team_name}</b>
@@ -801,7 +801,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
         .sortBy((t) =>
           t.games.value > 0.5 * gameBasis
             ? -(t.rating?.value || 0)
-            : 100 - (t.rating?.value || 0)
+            : 100 - (t.rating?.value || 0),
         )
         .map((t, i) => {
           t.rank = (
@@ -853,7 +853,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 <small
                   style={CommonTableDefs.getTextShadow(
                     { value: varDelta * 0.1 },
-                    rankingDeltaColorScale
+                    rankingDeltaColorScale,
                   )}
                 >
                   {apPos || "NR"}
@@ -877,7 +877,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 <small
                   style={CommonTableDefs.getTextShadow(
                     { value: varDelta * 0.1 },
-                    rankingDeltaColorScale
+                    rankingDeltaColorScale,
                   )}
                 >
                   {sCurvePos || "-"}
@@ -901,7 +901,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 <small
                   style={CommonTableDefs.getTextShadow(
                     { value: varDelta * 0.1 },
-                    rankingDeltaColorScale
+                    rankingDeltaColorScale,
                   )}
                 >
                   {netPos || "NR"}
@@ -934,8 +934,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
             pinnedWaeWeight,
             pinnedDomWeight,
             pinnedTimeWeight,
-            {}
-          )
+            {},
+          ),
         )
           .map((t) => [t.titleStr, t.rankNum])
           .fromPairs()
@@ -949,7 +949,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
       waeWeight,
       dominanceWeight,
       timeWeight,
-      maybePrebuiltPinnedRankings
+      maybePrebuiltPinnedRankings,
     );
 
     if (!needToPrebuildPinnedRankings && _.isEmpty(pinnedRankings)) {
@@ -957,7 +957,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
         _.chain(tableDataTmp)
           .map((t) => [t.titleStr, t.rankNum])
           .fromPairs()
-          .value()
+          .value(),
       );
     } else if (needToPrebuildPinnedRankings) {
       setPinnedRankings(maybePrebuiltPinnedRankings);
@@ -1039,7 +1039,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 1,
               ],
             ]
-          : []
+          : [],
       )
       .concat(
         !_.isEmpty(netRankings)
@@ -1051,7 +1051,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 1,
               ],
             ]
-          : []
+          : [],
       )
       .concat(
         sCurve
@@ -1063,7 +1063,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 1,
               ],
             ]
-          : []
+          : [],
       ) as Array<[React.ReactNode, number]>;
 
     const tableData = (
@@ -1074,54 +1074,57 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   t,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
-                )
-              )
+                  GenericTableOps.defaultCellMeta,
+                ),
+              ),
             )
             .concat([
               GenericTableOps.buildTextRow(
                 <i>Solid NCAAT teams</i>,
-                "small text-center"
+                "small text-center",
               ),
+              GenericTableOps.buildHeaderRepeatRow({}),
             ])
             .concat(
               _.take(_.drop(mainTable, 26), 9).map((t) =>
                 GenericTableOps.buildDataRow(
                   t,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
-                )
-              )
+                  GenericTableOps.defaultCellMeta,
+                ),
+              ),
             )
             .concat([
               GenericTableOps.buildTextRow(
                 <i>The Bubble</i>,
-                "small text-center"
+                "small text-center",
               ),
+              GenericTableOps.buildHeaderRepeatRow({}),
             ])
             .concat(
               _.take(_.drop(mainTable, 35), 20).map((t) =>
                 GenericTableOps.buildDataRow(
                   t,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
-                )
-              )
+                  GenericTableOps.defaultCellMeta,
+                ),
+              ),
             )
             .concat([
               GenericTableOps.buildTextRow(
                 <i>Autobids / AD on Selection Committee / Maybe Next Year</i>,
-                "small text-center"
+                "small text-center",
               ),
+              GenericTableOps.buildHeaderRepeatRow({}),
             ])
             .concat(
               _.drop(mainTable, 55).map((t) =>
                 GenericTableOps.buildDataRow(
                   t,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
-                )
-              )
+                  GenericTableOps.defaultCellMeta,
+                ),
+              ),
             )
         : mainTable.map(
             // (if filtering by conf just show them all)
@@ -1129,8 +1132,8 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
               GenericTableOps.buildDataRow(
                 t,
                 GenericTableOps.defaultFormatter,
-                GenericTableOps.defaultCellMeta
-              )
+                GenericTableOps.defaultCellMeta,
+              ),
           )
     )
       .concat(
@@ -1138,52 +1141,62 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
           ? [
               GenericTableOps.buildTextRow(
                 <i>Teams with too few games</i>,
-                "small text-center"
+                "small text-center",
               ),
             ]
-          : []
+          : [],
       )
       .concat(
         tooFewGames.map((t) =>
           GenericTableOps.buildDataRow(
             t,
             GenericTableOps.defaultFormatter,
-            GenericTableOps.defaultCellMeta
-          )
-        )
+            GenericTableOps.defaultCellMeta,
+          ),
+        ),
       );
 
     //console.log(JSON.stringify(_.take(tableDataTmp, 5), null, 3));
 
     const wabPicker = (val: { value: number }, valMeta: string) =>
       CbbColors.getRedToGreen()
-        .domain([mutableLimitState.minWab, 0, mutableLimitState.maxWab])(
-          val.value
-        )
+        .domain([
+          mutableLimitState.minWab,
+          0,
+          mutableLimitState.maxWab,
+        ])(val.value)
         .toString();
     const waePicker = (val: { value: number }, valMeta: string) =>
       CbbColors.getRedToGreen()
-        .domain([mutableLimitState.minWae, 0, mutableLimitState.maxWae])(
-          val.value
-        )
+        .domain([
+          mutableLimitState.minWae,
+          0,
+          mutableLimitState.maxWae,
+        ])(val.value)
         .toString();
     const qualPicker = (val: { value: number }, valMeta: string) =>
       CbbColors.getRedToGreen()
-        .domain([mutableLimitState.minQual, 0, mutableLimitState.maxQual])(
-          val.value
-        )
+        .domain([
+          mutableLimitState.minQual,
+          0,
+          mutableLimitState.maxQual,
+        ])(val.value)
         .toString();
     const totalPicker = (val: { value: number }, valMeta: string) =>
       CbbColors.getRedToGreen()
-        .domain([mutableLimitState.minTotal, 0, mutableLimitState.maxTotal])(
-          val.value
-        )
+        .domain([
+          mutableLimitState.minTotal,
+          0,
+          mutableLimitState.maxTotal,
+        ])(val.value)
         .toString();
     const domPicker = (val: { value: number }, valMeta: string) =>
       CbbColors.getBlueToOrange()
-        .domain([mutableLimitState.minDom, 0, mutableLimitState.maxDom])(
-          val.value
-        )
+        .domain([
+          mutableLimitState.minDom,
+          0,
+          mutableLimitState.maxDom,
+        ])(val.value)
         .toString();
     const timePicker =
       mutableLimitState.maxTime == 0
@@ -1205,83 +1218,83 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
           CommonTableDefs.rowSpanCalculator,
           "small",
           GenericTableOps.htmlFormatter,
-          6
+          6,
         ),
         conf: GenericTableOps.addDataCol(
           "Conf",
           "The team's conference",
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         rankDiff: GenericTableOps.addDataCol(
           <b>&Delta;</b>,
           "The difference vs pinned rank",
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         sep0: GenericTableOps.addColSeparator(),
         rank: GenericTableOps.addDataCol(
           "Rank",
           "The overall team ranking",
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         rating: GenericTableOps.addPtsCol(
           "Rating",
           `The weighted sum of the bonus-adjusted 'resume' plus 'quality' metrics. The rating is on the same scale as WAB.`,
-          totalPicker
+          totalPicker,
         ),
         sep1: GenericTableOps.addColSeparator(),
         wab: GenericTableOps.addPtsCol(
           "WAB",
           "Wins Above Bubble (the number of wins more than an average bubble team is expected against this schedule)",
-          wabPicker
+          wabPicker,
         ),
         wae: GenericTableOps.addPtsCol(
           "+WAE",
           "Wins Above Elite (the number of wins more than an average elite team is expected against this schedule), used as a bonus for WAB",
-          waePicker
+          waePicker,
         ),
         sep2: GenericTableOps.addColSeparator(),
         quality: GenericTableOps.addPtsCol(
           "Quality",
           "The efficiency ('eye test') of a team, measured as expected W-L difference against a schedule of bubble teams, includes weighted dominance",
-          qualPicker
+          qualPicker,
         ),
         dominance: GenericTableOps.addPtsCol(
           "Dom.",
           "Dominance delta (at 100% weight) - Bonus to efficiency due to building and maintaining leads, values shown are for 100% weight",
-          domPicker
+          domPicker,
         ),
         sep3: GenericTableOps.addColSeparator(),
         recency: GenericTableOps.addPtsCol(
           "Rec.",
           "Recency Bias delta (at 100% weight) - mouse over to see breakdown vs resume/quality",
-          timePicker
+          timePicker,
         ),
         sep4: GenericTableOps.addColSeparator(),
         games: GenericTableOps.addIntCol(
           "Games",
           `Number of games played (D1-D1 only; all metrics adjusted to [${gameBasis}] games by ignoring the weakest opponents and/or pro-rating)`,
-          GenericTableOps.defaultColorPicker
+          GenericTableOps.defaultColorPicker,
         ),
         ap: GenericTableOps.addDataCol(
           `AP${apPoll?.__week__}`,
           `The team's AP ranking in week [${apPoll?.__week__}]`,
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         NET: GenericTableOps.addDataCol(
           `NET`,
           `The team's NET ranking`,
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         S: GenericTableOps.addDataCol(
           `S`,
           `The S-Curve for the top seeds, at-larges, and first 4 out`,
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         lastGames: GenericTableOps.addDataCol(
           <span>
@@ -1290,13 +1303,13 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
           </span>,
           `Most recent games (including game report links), right = most recent`,
           GenericTableOps.defaultColorPicker,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
       },
       (anyPinDeltas ? [] : ["rankDiff"])
         .concat(apPoll ? [] : ["ap"])
         .concat(sCurve ? [] : ["S"])
-        .concat(_.isEmpty(netRankings) ? ["NET"] : [])
+        .concat(_.isEmpty(netRankings) ? ["NET"] : []),
     ) as Record<string, GenericTableColProps>;
 
     return (
@@ -1419,12 +1432,12 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
           _.chain(currentTable)
             .map((t) => [t.titleStr as string, t.rankNum as number])
             .fromPairs()
-            .value()
+            .value(),
         );
         setLoadingOverride(false);
       },
       true,
-      50
+      50,
     );
   };
 
@@ -1460,34 +1473,34 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
       () => {
         setWabWeight(parseFloat(ParamDefaults.defaultTeamLboardWabWeight));
         setPinnedWabWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardWabWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardWabWeight),
         );
         setWaeWeight(parseFloat(ParamDefaults.defaultTeamLboardWaeWeight));
         setPinnedWaeWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardWaeWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardWaeWeight),
         );
         setQualityWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardQualityWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardQualityWeight),
         );
         setPinnedQualityWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardQualityWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardQualityWeight),
         );
         setDominanceWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardDomWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardDomWeight),
         );
         setPinnedDomWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardDomWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardDomWeight),
         );
         setTimeWeight(parseFloat(ParamDefaults.defaultTeamLboardTimeWeight));
         setPinnedTimeWeight(
-          parseFloat(ParamDefaults.defaultTeamLboardTimeWeight)
+          parseFloat(ParamDefaults.defaultTeamLboardTimeWeight),
         );
 
         setPinnedRankings({});
         setLoadingOverride(false);
       },
       true,
-      50
+      50,
     );
   };
 
@@ -1550,7 +1563,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -1563,19 +1576,19 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
   // Handle slicker slider dragging
 
   const [tmpWabWeight, setTmpWabWeight] = useState(
-    undefined as number | undefined
+    undefined as number | undefined,
   );
   const [tmpWaeWeight, setTmpWaeWeight] = useState(
-    undefined as number | undefined
+    undefined as number | undefined,
   );
   const [tmpQualityWeight, setTmpQualityWeight] = useState(
-    undefined as number | undefined
+    undefined as number | undefined,
   );
   const [tmpDomWeight, setTmpDomWeight] = useState(
-    undefined as number | undefined
+    undefined as number | undefined,
   );
   const [tmpTimeWeight, setTmpTimeWeight] = useState(
-    undefined as number | undefined
+    undefined as number | undefined,
   );
 
   const onMouseDown = () => {
@@ -1682,7 +1695,7 @@ const TeamLeaderboardTable: React.FunctionComponent<Props> = ({
                   readOnly={false}
                   placeholder={`;-separated list of teams`}
                   autocomplete={(dataEvent?.teams || []).map(
-                    (s) => s.team_name + ";"
+                    (s) => s.team_name + ";",
                   )}
                   value={tmpQueryFilters}
                   onChange={(ev: any) => setTmpQueryFilters(ev.target.value)}
