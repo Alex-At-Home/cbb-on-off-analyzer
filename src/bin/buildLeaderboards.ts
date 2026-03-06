@@ -298,8 +298,13 @@ const getLogoFilename = (team: string, theme: "dark" | "normal") => {
   return `./public/logos/${theme}/${team}.png`;
 };
 /** TODO: move to BatchOnBallDefenseUtils */
-const getOnBallDefenseFilename = (team: string, teamYear: string) => {
-  return `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(
+const getOnBallDefenseFilename = (
+  team: string,
+  gender: string,
+
+  teamYear: string,
+) => {
+  return `${process.env.PBP_OUT_DIR}/${gender == "Women" ? gender : ""}OnBallDefense/out/${(
     teamYear || ""
   ).substring(0, 4)}/${BatchMiscUtils.getTeamFilename(team)}.txt`;
 };
@@ -1035,7 +1040,11 @@ export async function main() {
             // Read in on-ball defense if it exists
             var onBallDefenseByCode = {} as Record<string, OnBallDefenseModel>;
             if ("all" == label && onBallDefenseEnabled) {
-              const onBallDefenseLoc = getOnBallDefenseFilename(team, teamYear);
+              const onBallDefenseLoc = getOnBallDefenseFilename(
+                team,
+                inGender,
+                teamYear,
+              );
               const onBallDefenseText = await fs
                 .readFile(onBallDefenseLoc)
                 .then((s: any) => s.toString())
@@ -2039,6 +2048,7 @@ if (!testMode) {
           if (onBallDefenseEnabled) {
             const onBallDefenseFile = getOnBallDefenseFilename(
               team.team,
+              team.gender,
               team.year,
             );
             await fs.readFile(onBallDefenseFile).catch((err: any) => {
@@ -2236,16 +2246,24 @@ if (!testMode) {
             confs: _.keys(mutableConferenceMap),
             players: players,
           };
-          const playersExtraStr = injectExtraDataForNbaFolks
+          const playersAllDataStr = injectExtraDataForNbaFolks
             ? JSON.stringify(basePlayersObj, BatchMiscUtils.reduceNumberSize)
             : "";
-          const basePlayers = injectExtraDataForNbaFolks
-            ? players.map(BatchMiscUtils.stripExtraPlayerInfo)
-            : players;
+          const [basePlayers, extraPlayers] = (
+            injectExtraDataForNbaFolks
+              ? _.unzip(players.map(BatchMiscUtils.stripExtraPlayerInfo))
+              : [players, []]
+          ) as [IndivStatSet[], IndivStatSet[]];
           const playersStr = JSON.stringify(
             {
               ...basePlayersObj,
               players: basePlayers,
+            },
+            BatchMiscUtils.reduceNumberSize,
+          );
+          const extraPlayersStr = JSON.stringify(
+            {
+              players: extraPlayers,
             },
             BatchMiscUtils.reduceNumberSize,
           );
@@ -2274,12 +2292,23 @@ if (!testMode) {
             `${playersFilename}`,
             playersStr,
           );
-          const playersExtraFilename = `${extraDataFilePath}/players_${label}_${inGender}_${inYear.substring(
+          console.log(
+            `${label} player extra info length: [${extraPlayersStr.length}]`,
+          );
+          const playerExtraDataFilename = `${rootFilePath}/players_extra_${label}_${inGender}_${inYear.substring(
             0,
             4,
           )}_${inTier}.json`;
           const playersExtraWritePromise = injectExtraDataForNbaFolks
-            ? fs.writeFile(`${playersExtraFilename}`, playersExtraStr)
+            ? fs.writeFile(`${playerExtraDataFilename}`, extraPlayersStr)
+            : Promise.resolve();
+
+          const playersAllDataFilename = `${extraDataFilePath}/players_${label}_${inGender}_${inYear.substring(
+            0,
+            4,
+          )}_${inTier}.json`;
+          const playersAllDataWritePromise = injectExtraDataForNbaFolks
+            ? fs.writeFile(`${playersAllDataFilename}`, playersAllDataStr)
             : Promise.resolve();
 
           const teamFilename = `${rootFilePath}/teams_${label}_${inGender}_${inYear.substring(
@@ -2421,6 +2450,7 @@ if (!testMode) {
             lineupsWritePromise,
             playersWritePromise,
             playersExtraWritePromise,
+            playersAllDataWritePromise,
             teamWritePromise,
             detailedTeamWritePromise,
             detailedTeamExtraWritePromise,

@@ -232,13 +232,18 @@ export class BatchMiscUtils {
     return t;
   };
 
-  /** After writing the full player object, we want to build the cut-down version that we load in bulk */
-  static readonly stripExtraPlayerInfo = (p: IndivStatSet): IndivStatSet => {
+  /** After writing the full player object, we want to build the cut-down version that we load in bulk
+   * and also keep the extra which we'll put in an extra file
+   */
+  static readonly stripExtraPlayerInfo = (
+    p: IndivStatSet,
+  ): [IndivStatSet, IndivStatSet] => {
     // 1] Remove Hex Data, leaving only zone information
     const shotInfo = p.shotInfo as CompressedHexZone | undefined;
     if (shotInfo && shotInfo.data) {
       delete shotInfo.data;
     }
+    const mutableExtra = {} as IndivStatSet;
     // 2] Remove extra fields to keep
     BatchMiscUtils.extraTotalFields.forEach((f) => {
       if (p[f]) delete p[f];
@@ -248,6 +253,9 @@ export class BatchMiscUtils {
       (p as any).style = PlayTypeUtils.compressIndivPlayType(p.style as any);
     }
     // 4] Remove .rapm, .on, and .off
+    mutableExtra._id = p._id;
+    mutableExtra.on = p.on;
+    mutableExtra.off = p.off;
     if (p.rapm) delete p.rapm;
     if (p.on) delete p.on;
     if (p.off) delete p.off;
@@ -267,7 +275,7 @@ export class BatchMiscUtils {
         (pos) => expandedPosConfs[pos.substring(4)] || 0,
       );
     }
-    return p;
+    return [p, mutableExtra];
   };
 
   /** Validates team vs opponent game matrix symmetry across tiers with location tracking */

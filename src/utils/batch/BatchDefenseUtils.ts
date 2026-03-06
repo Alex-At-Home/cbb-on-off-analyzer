@@ -9,9 +9,10 @@ export class BatchDefenseUtils {
   /** Handy util to fetch on ball defense from where it's kept */
   static readonly getOnBallDefenseFilename = (
     team: string,
-    teamYear: string
+    gender: string,
+    teamYear: string,
   ) => {
-    return `${process.env.PBP_OUT_DIR}/OnBallDefense/out/${(
+    return `${process.env.PBP_OUT_DIR}/${gender == "Women" ? gender : ""}OnBallDefense/out/${(
       teamYear || ""
     ).substring(0, 4)}/${BatchMiscUtils.getTeamFilename(team)}.txt`;
   };
