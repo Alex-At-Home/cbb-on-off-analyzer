@@ -5,6 +5,7 @@ import { DateUtils } from "../DateUtils";
 import {
   CompressedHexZone,
   IndivStatSet,
+  PureStatSet,
   TeamInfo as StatsTeamInfo,
   TeamStatSet,
 } from "../StatModels";
@@ -256,6 +257,19 @@ export class BatchMiscUtils {
     mutableExtra._id = p._id;
     mutableExtra.on = p.on;
     mutableExtra.off = p.off;
+    /** We'll calculate grades on the fly like we do everywhere else */
+    const stripGrades = (p: PureStatSet) => {
+      _.forEach(p, (stat: any, key) => {
+        if (stat.hasOwnProperty("pctile")) {
+          delete stat.pctile;
+        }
+        if (stat.hasOwnProperty("diff_pctile")) {
+          delete stat.diff_pctile;
+        }
+      });
+    };
+    stripGrades(mutableExtra.on as PureStatSet);
+    stripGrades(mutableExtra.off as PureStatSet);
     if (p.rapm) delete p.rapm;
     if (p.on) delete p.on;
     if (p.off) delete p.off;
