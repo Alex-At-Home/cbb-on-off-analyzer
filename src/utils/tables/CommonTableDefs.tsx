@@ -17,7 +17,7 @@ import { TableDisplayUtils } from "./TableDisplayUtils"; // Import needed for to
 import _ from "lodash";
 import { TableSortPopupMenuState } from "../../components/shared/TableSortPopupMenu";
 
-const lineSep = (
+export const lineSep = (
   <hr
     style={{
       border: "none",
@@ -228,34 +228,6 @@ export class CommonTableDefs {
     def_orb: ["DR%", "Defensive rebounding % in selected lineups"],
   } as Record<string, any>;
 
-  /** For any HTML titles */
-  static indivColNameOverrides = {
-    off_usage: (o: string) => `Usage (${o} / Offensive)`,
-    def_usage: (o: string) => undefined,
-    diff_usage: (o: string) => undefined,
-    off_to: (o: string) => `TO% (${o} / Offensive)`,
-    def_to: (o: string) => `Stl% (${o} / Defensive)`,
-    diff_to: (o: string) => undefined,
-    off_ftr: (o: string) => `FTR (${o} / Offensive)`,
-    def_ftr: (o: string) => `FC/50 (${o} / Defensive)`,
-    diff_ftr: (o: string) => undefined,
-    off_3p: (o: string) => `3P% (${o} / Offensive)`,
-    def_3p: (o: string) => `FT% (${o} / Offensive)`,
-    off_2prim: (o: string) => `2P% rim (${o} / Offensive)`,
-    def_2prim: (o: string) => `Blk% (${o} / Defensive)`,
-    diff_2prim: (o: string) => undefined,
-    //Assisted%
-    def_3pr: (o: string) => `3P Assisted% (${o} / Offensive)`,
-    def_2pmidr: (o: string) => `2P Mid Assisted% (${o} / Offensive)`,
-    def_2primr: (o: string) => `2P Mid Assisted% (${o} / Offensive)`,
-    //(Margins:)
-    off_adj_rapm_margin: (o: string) => `RAPM (${o} / Net)`,
-    off_adj_rapm_prod_margin: (o: string) => `RAPM Prod (${o} / Net)`,
-    //(also nothing to be done about def OR% because it's both RB and OR)
-    off_drb: (o: string) => `DR% (${o} / Defensive)`,
-    def_drb: (o: string) => undefined,
-  } as Record<string, (o: string) => string | undefined>;
-
   /** Handles switching between single row fields and dual row fields
    * (has to be done whenever switching, super hacky, need to come up with an alternative at some point)
    */
@@ -292,26 +264,6 @@ export class CommonTableDefs {
       }
     }
     return comps.join(":");
-  };
-
-  /** To build a less wordy set of header text for the repeating headers (roster view) */
-  static repeatingOnOffIndivHeaderFields: Record<string, string> = {
-    "Box Rtg": "Box",
-    "Adj+ Rtg": "Adj+",
-    "Adj+ Prod": "Adj+",
-    "RAPM net": "RAPM",
-    "RAPM Prod": "RAPM",
-
-    "Usg Pos": "Usg",
-    "TO% Stl%": "TO%",
-    "FTR F/50": "FTR",
-    "Rim% Blk%": "Rim%",
-
-    "2PR mid": "MidR",
-    "2PR rim": "RimR",
-    "3P% FT%": "3P%",
-    "2P% mid": "Mid%",
-    "2P% rim": "Rim%",
   };
 
   /** All stats that could possibly be used in the roster stats table */

@@ -44,6 +44,7 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 // Util imports
 import { UrlRouting } from "../utils/UrlRouting";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { PlayerLeaderboardParams, ParamDefaults } from "../utils/FilterModels";
 import {
@@ -186,7 +187,7 @@ const sortOptions: Array<any> = _.flatten(
           }
         };
         const labelOverride =
-          CommonTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
+          IndivTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
         const ascOrDecLabel = ascOrDesc(combo[0]) || "";
         const offOrDefLabel = offOrDef(combo[1]) || "";
         const label = labelOverride
@@ -1952,7 +1953,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             shouldInjectSubheader && showRepeatingHeader && firstRowForPlayer
               ? [
                   GenericTableOps.buildHeaderRepeatRow(
-                    CommonTableDefs.repeatingOnOffIndivHeaderFields,
+                    IndivTableDefs.repeatingIndivHeaderFields,
                     "small",
                   ),
                   GenericTableOps.buildRowSeparator("1px"),

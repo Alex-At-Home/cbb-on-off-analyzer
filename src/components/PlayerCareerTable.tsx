@@ -30,6 +30,7 @@ import ShotChartDiagView, { UserChartOpts } from "./diags/ShotChartDiagView";
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps, GenericTableRow } from "./GenericTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import {
   Button,
@@ -1509,7 +1510,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           !topYear && showEveryYear
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
-                  CommonTableDefs.repeatingOnOffIndivHeaderFields,
+                  IndivTableDefs.repeatingIndivHeaderFields,
                   "small",
                 ),
               ]

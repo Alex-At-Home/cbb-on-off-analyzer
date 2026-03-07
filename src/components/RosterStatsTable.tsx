@@ -67,6 +67,7 @@ import {
 } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import {
   getCommonFilterParams,
   ParamDefaults,
@@ -1795,7 +1796,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               !firstRowIsThisSet && showEveryLine
                 ? [
                     GenericTableOps.buildHeaderRepeatRow(
-                      CommonTableDefs.repeatingOnOffIndivHeaderFields,
+                      IndivTableDefs.repeatingIndivHeaderFields,
                       "small",
                     ),
                   ]
@@ -1803,7 +1804,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               tenthRowIsThisSet
                 ? [
                     GenericTableOps.buildHeaderRepeatRow(
-                      CommonTableDefs.repeatingOnOffIndivHeaderFields,
+                      IndivTableDefs.repeatingIndivHeaderFields,
                       "small",
                     ),
                     GenericTableOps.buildRowSeparator("1px"),
@@ -2345,7 +2346,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             }
           };
           const labelOverride =
-            CommonTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
+            IndivTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
           const ascOrDecLabel = ascOrDesc(combo[0]) || "";
           const offOrDefLabel = offOrDef(combo[1]) || "";
           const label = labelOverride
