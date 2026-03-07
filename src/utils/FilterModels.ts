@@ -326,6 +326,10 @@ export type SeasonMatchupFilterParams = {
   chartBackground?: "Score Diff" | "SoS" | "SoS Offense" | "SoS Defense";
   /** Show total row (sum per game in each category; G delta averaged) at top of impact table. */
   showTotalRow?: boolean;
+  /** Show repeating column header every 10 rows in impact table. */
+  showRepeatingHeader?: boolean;
+  /** When true, quick-select bar is sticky. */
+  stickyQuickToggle?: boolean;
 };
 
 export type TeamEditorParams = {
