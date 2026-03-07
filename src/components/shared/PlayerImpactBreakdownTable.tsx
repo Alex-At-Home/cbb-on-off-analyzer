@@ -8,7 +8,7 @@ import GenericTable, {
   GenericTableOps,
   GenericTableRow,
 } from "../GenericTable";
-import { IndivTableDefs } from "../../utils/tables/IndivTableDefs";
+import { ImpactTableDefs } from "../../utils/tables/ImpactTableDefs";
 import TableSortPopupMenu, {
   TableSortPopupMenuState,
 } from "../shared/TableSortPopupMenu";
@@ -50,7 +50,7 @@ type Props = {
   showMinMaxRings?: boolean;
 };
 
-const tableDefsBase = IndivTableDefs.impactDecompTable;
+const tableDefsBase = ImpactTableDefs.impactDecompTable;
 
 /** Enable to add a load of items to the table to help debug offensive adjustment credit */
 const offDebugMode = false;
@@ -539,16 +539,16 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
   teamDisplay,
 }) => {
   const [sortBy, setSortBy] = React.useState(
-    IndivTableDefs.defaultImpactDecompSortBy,
+    ImpactTableDefs.defaultImpactDecompSortBy,
   );
   const [sortMenuState, setSortMenuState] = React.useState<
     TableSortPopupMenuState | undefined
   >(undefined);
 
-  const sortOptions = IndivTableDefs.impactDecompSortOptions;
+  const sortOptions = ImpactTableDefs.impactDecompSortOptions;
   const handleSortMenuClick = (value: string) => {
     setSortMenuState(undefined);
-    setSortBy(value || IndivTableDefs.defaultImpactDecompSortBy);
+    setSortBy(value || ImpactTableDefs.defaultImpactDecompSortBy);
   };
 
   const tableDefs =
@@ -668,11 +668,11 @@ const PlayerImpactBreakdownTable: React.FunctionComponent<Props> = ({
         tableFields={tableDefs}
         tableData={tableRows}
         cellTooltipMode="missing"
-        sortField={IndivTableDefs.impactDecompSortField(
+        sortField={ImpactTableDefs.impactDecompSortField(
           sortBy,
-          IndivTableDefs.defaultImpactDecompSortBy,
+          ImpactTableDefs.defaultImpactDecompSortBy,
         )}
-        onHeaderClick={IndivTableDefs.buildImpactDecompSortCallback(
+        onHeaderClick={ImpactTableDefs.buildImpactDecompSortCallback(
           sortBy,
           sortOptions,
           setSortMenuState,

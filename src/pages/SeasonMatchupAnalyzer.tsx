@@ -37,7 +37,7 @@ import GenericTable, {
   GenericTableRow,
 } from "../components/GenericTable";
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
-import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
+import { ImpactTableDefs } from "../utils/tables/ImpactTableDefs";
 import {
   buildPerGameRapmCaches,
   buildSeasonRapmCache,
@@ -293,7 +293,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     const rows = buildGameImpactTableRows(impacts, options);
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
-    const tableDefs = IndivTableDefs.impactDecompTable;
+    const tableDefs = ImpactTableDefs.impactDecompTable;
     const themedColorBuilder =
       resolvedTheme === "dark"
         ? CbbColors.off_diff10_p100_redGreen_darkMode
@@ -450,9 +450,21 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       result.push(buildOneDataRow(rows[idx], -1), separator);
       idx++;
     }
-    result.push(
-      ...rows.slice(idx).map((rowData, i) => buildOneDataRow(rowData, i)),
+    const dataRows = rows
+      .slice(idx)
+      .map((rowData, i) => buildOneDataRow(rowData, i));
+    const repeatHeader = GenericTableOps.buildHeaderRepeatRow(
+      ImpactTableDefs.repeatingLineupHeaderFields,
+      "small",
     );
+    let dataRowCount = 0;
+    for (const row of dataRows) {
+      result.push(row);
+      dataRowCount++;
+      if (dataRowCount % 10 === 0 && dataRowCount < dataRows.length) {
+        result.push(repeatHeader);
+      }
+    }
     return result;
   }, [
     selectedPlayer,
@@ -933,7 +945,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                 {selectedPlayer && tableRows.length > 0 ? (
                   <GenericTable
                     tableCopyId="seasonMatchup_impact"
-                    tableFields={IndivTableDefs.impactDecompTable}
+                    tableFields={ImpactTableDefs.impactDecompTable}
                     tableData={tableRows}
                     cellTooltipMode="missing"
                   />
