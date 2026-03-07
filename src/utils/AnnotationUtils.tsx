@@ -56,9 +56,21 @@ export class AnnotationUtils {
     }
   };
 
+  /** Used by html2canvas ignoreElements so radio dots don't appear in exports. */
+  static shouldIgnoreElement = (element: Element): boolean => {
+    if (element.id === "annotation-spinner-overlay") return true;
+    if (
+      element.tagName === "INPUT" &&
+      (element as HTMLInputElement).type === "radio"
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   // Show save/copy dialog
   static showSaveDialog = (
-    dataUrl: string
+    dataUrl: string,
   ): Promise<"save" | "copy" | "cancel"> => {
     return new Promise((resolve) => {
       // Create modal backdrop
@@ -190,7 +202,7 @@ export class AnnotationUtils {
     try {
       // Dynamic import to avoid SSR issues
       const html2pdf = await import("html2pdf.js").then(
-        (mod) => mod.default || mod
+        (mod) => mod.default || mod,
       );
 
       // Create a temporary image element to get dimensions
@@ -301,7 +313,7 @@ export class AnnotationUtils {
   // Generate PDF from entire page HTML
   static generatePageToPdf = async (
     portrait: boolean,
-    setIsCapturing?: (capturing: boolean) => void
+    setIsCapturing?: (capturing: boolean) => void,
   ): Promise<void> => {
     try {
       // Show spinner
@@ -309,7 +321,7 @@ export class AnnotationUtils {
 
       // Dynamic import to avoid SSR issues
       const html2pdf = await import("html2pdf.js").then(
-        (mod) => mod.default || mod
+        (mod) => mod.default || mod,
       );
 
       // Configure PDF options with default settings for HTML page
@@ -325,10 +337,8 @@ export class AnnotationUtils {
           scale: 1.0,
           useCORS: true,
           allowTaint: true,
-          ignoreElements: (element: Element) => {
-            // Ignore spinner and other overlays
-            return element.id === "annotation-spinner-overlay";
-          },
+          ignoreElements: (element: Element) =>
+            AnnotationUtils.shouldIgnoreElement(element),
         },
         jsPDF: portrait
           ? {
@@ -427,7 +437,7 @@ export class AnnotationUtils {
                 textContent: (btn as HTMLElement).textContent?.trim(),
                 className: (btn as HTMLElement).className,
                 tagName: (btn as HTMLElement).tagName,
-              }))
+              })),
             );
           }
         }
@@ -448,9 +458,7 @@ export class AnnotationUtils {
       y: window.scrollY,
       width: window.innerWidth,
       height: window.innerHeight,
-      ignoreElements: (element) => {
-        return element.id === "annotation-spinner-overlay";
-      },
+      ignoreElements: (element) => AnnotationUtils.shouldIgnoreElement(element),
     });
 
     console.log(
@@ -463,7 +471,7 @@ export class AnnotationUtils {
       "- size:",
       canvas.width,
       "x",
-      canvas.height
+      canvas.height,
     );
     return canvas.toDataURL("image/png");
   };
@@ -492,13 +500,12 @@ export class AnnotationUtils {
           document.body.offsetHeight,
           document.documentElement.clientHeight,
           document.documentElement.scrollHeight,
-          document.documentElement.offsetHeight
+          document.documentElement.offsetHeight,
         ),
         logging: false,
         // Don't constrain width/height - let html2canvas capture full document
-        ignoreElements: (element) => {
-          return element.id === "annotation-spinner-overlay";
-        },
+        ignoreElements: (element) =>
+          AnnotationUtils.shouldIgnoreElement(element),
       });
 
       console.log("Full page captured:", canvas.width, "x", canvas.height);
@@ -512,7 +519,7 @@ export class AnnotationUtils {
   // Main annotation handler with spinner
   static handleAnnotation = async (
     captureType: "visible" | "fullpage",
-    setIsCapturing?: (capturing: boolean) => void
+    setIsCapturing?: (capturing: boolean) => void,
   ): Promise<void> => {
     const overlay = AnnotationUtils.showSpinner();
 
@@ -626,7 +633,7 @@ export class AnnotationUtils {
                   } catch (error) {
                     console.error("Failed to copy to clipboard:", error);
                     alert(
-                      "Failed to copy to clipboard. The image has been downloaded instead."
+                      "Failed to copy to clipboard. The image has been downloaded instead.",
                     );
 
                     // Fallback to download
@@ -655,7 +662,7 @@ export class AnnotationUtils {
           } catch (markerError) {
             console.error(
               "AnnotationEditor initialization failed:",
-              markerError
+              markerError,
             );
             AnnotationUtils.hideSpinner();
             alert("Failed to load annotation editor. Please try again.");
