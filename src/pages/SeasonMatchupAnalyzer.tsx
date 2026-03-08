@@ -40,6 +40,8 @@ import GenericTable, {
 import ToggleButtonGroup from "../components/shared/ToggleButtonGroup";
 import GenericTogglingMenu from "../components/shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "../components/shared/GenericTogglingMenuItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboard, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { AnnotationMenuItems } from "../components/shared/AnnotationMenuItems";
 import StickyRow from "../components/shared/StickyRow";
 import { ImpactTableDefs } from "../utils/tables/ImpactTableDefs";
@@ -48,6 +50,9 @@ import {
   buildSeasonRapmCache,
   buildGameImpactRowsFromCaches,
   buildGameImpactTableRows,
+  buildTotalImpactRow,
+  buildAverageImpactRow,
+  buildTeamAverageImpactRow,
   SEASON_MATCHUP_TEAM_KEY,
   CHART_FIELD_OPTIONS,
   getScoreDiffForGame,
@@ -668,9 +673,265 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     }
   };
 
+  const DISPLAYED_FIELDS: (keyof GameImpactRow)[] = [
+    "team_poss_pct",
+    "diff_adj_rapm",
+    "off_adj_rapm",
+    "def_adj_rapm",
+    "off_net_3p",
+    "off_net_mid",
+    "off_net_rim",
+    "off_net_ft",
+    "off_net_ast",
+    "off_net_to",
+    "off_net_orb",
+    "off_sos_bonus",
+    "off_gravity_bonus",
+    "def_net_team",
+    "def_net_stks",
+    "def_net_drb",
+    "def_sos_bonus",
+    "def_gravity_bonus",
+  ];
+  const BREAKDOWN_FIELDS: (keyof GameImpactRow)[] = [
+    "off_net_ast_2p",
+    "off_net_ast_3p",
+    "off_net_pts_wowy",
+    "off_net_pts_volume",
+    "def_net_pts_wowy",
+    "def_net_stl",
+    "def_net_blk",
+  ];
+
+  const buildExportStr = (): string => {
+    if (
+      !dataEvent.games.length ||
+      perGameRapmCaches.length !== dataEvent.games.length
+    ) {
+      return "";
+    }
+    const escapeCsv = (v: string | number): string => {
+      const s = String(v ?? "");
+      if (/[,"\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+      return s;
+    };
+    const getVal = (row: GameImpactRow, key: keyof GameImpactRow): number => {
+      const c = row[key];
+      if (c && typeof c === "object" && "value" in c)
+        return (c as Statistic).value ?? 0;
+      return 0;
+    };
+    const getValOrBlank = (
+      row: GameImpactRow,
+      key: keyof GameImpactRow,
+      blankIfNull: boolean,
+    ): string => {
+      if (key === "team_poss_pct" && blankIfNull) return "";
+      const c = row[key];
+      if (c && typeof c === "object" && "value" in c) {
+        const v = (c as Statistic).value;
+        if (v == null) return "";
+        return String(v);
+      }
+      return "";
+    };
+    const rowToCells = (
+      id: string,
+      name: string,
+      code: string,
+      opponent: string,
+      row: GameImpactRow,
+      blankTeamPossPct: boolean,
+    ): string[] => [
+      escapeCsv(id),
+      escapeCsv(name),
+      escapeCsv(code),
+      escapeCsv(opponent),
+      ...DISPLAYED_FIELDS.map((k) => getValOrBlank(row, k, blankTeamPossPct)),
+      ...BREAKDOWN_FIELDS.map((k) => String(getVal(row, k))),
+    ];
+    const rosterInfo = dataEvent.games[0]?.rosterInfo as
+      | Record<
+          string,
+          { player_code_id?: { id?: string; ncaa_id?: string }; name?: string }
+        >
+      | undefined;
+    const teamName = params.team ?? "";
+    const header = [
+      "id",
+      "name",
+      "code",
+      "opponent",
+      ...DISPLAYED_FIELDS,
+      ...BREAKDOWN_FIELDS,
+    ].join(",");
+    const rows: string[] = [];
+    const games = dataEvent.games;
+    const sortedGameIndices = _.orderBy(
+      games.map((_, i) => i),
+      [(i) => (games[i].gameInfo as { date?: string })?.date ?? ""],
+      ["desc"],
+    );
+
+    // 1. Team season breakdown (Totals then Average)
+    const teamImpacts = buildGameImpactRowsFromCaches(
+      perGameRapmCaches,
+      games,
+      SEASON_MATCHUP_TEAM_KEY,
+      avgEfficiency,
+      scaleType,
+      adjBreakdownForSoS,
+    );
+    const teamTotalRow = buildTotalImpactRow(teamImpacts, true);
+    const teamAvgRow = buildTeamAverageImpactRow(teamImpacts);
+    rows.push(
+      rowToCells(
+        teamName,
+        teamName,
+        SEASON_MATCHUP_TEAM_KEY,
+        "Season Totals",
+        teamTotalRow,
+        true,
+      ).join(","),
+    );
+    rows.push(
+      rowToCells(
+        teamName,
+        teamName,
+        SEASON_MATCHUP_TEAM_KEY,
+        "Season Average",
+        teamAvgRow,
+        true,
+      ).join(","),
+    );
+
+    // 2. Each player's season breakdown (Totals then Average)
+    const players = playerOptions.filter(
+      (o) => o.title !== SEASON_MATCHUP_TEAM_KEY,
+    );
+    const playerImpactsByCode: Record<string, GameImpactRow[]> = {};
+    for (const opt of players) {
+      const code = opt.title;
+      const impacts = buildGameImpactRowsFromCaches(
+        perGameRapmCaches,
+        games,
+        code,
+        avgEfficiency,
+        scaleType,
+        adjBreakdownForSoS,
+      );
+      playerImpactsByCode[code] = impacts;
+      const entry =
+        rosterInfo?.[code] ||
+        Object.values(rosterInfo || {}).find(
+          (v) => v?.player_code_id?.id === code,
+        );
+      const id = entry?.player_code_id?.ncaa_id ?? "";
+      const name = (entry as { name?: string })?.name ?? code;
+      const totalRow = buildTotalImpactRow(impacts, false);
+      const avgRow = buildAverageImpactRow(
+        perGameRapmCaches,
+        games,
+        impacts,
+        code,
+        scaleType,
+        seasonRapmCache,
+      );
+      rows.push(
+        rowToCells(id, name, code, "Season Totals", totalRow, true).join(","),
+      );
+      rows.push(
+        rowToCells(id, name, code, "Season Average", avgRow, false).join(","),
+      );
+    }
+
+    // 3. Per-game rows (newest first): team then each player for that game
+    for (const gameIdx of sortedGameIndices) {
+      const g = games[gameIdx];
+      const opponentLabel =
+        (g as SeasonMatchupPerGame & { gameLabel?: string }).gameLabel ??
+        buildGameLabel(g.gameInfo as any);
+      const teamGameRow = teamImpacts[gameIdx];
+      rows.push(
+        rowToCells(
+          teamName,
+          teamName,
+          SEASON_MATCHUP_TEAM_KEY,
+          opponentLabel,
+          teamGameRow,
+          true,
+        ).join(","),
+      );
+      for (const opt of players) {
+        const code = opt.title;
+        const entry =
+          rosterInfo?.[code] ||
+          Object.values(rosterInfo || {}).find(
+            (v) => v?.player_code_id?.id === code,
+          );
+        const id = entry?.player_code_id?.ncaa_id ?? "";
+        const name = (entry as { name?: string })?.name ?? code;
+        const playerGameRow = playerImpactsByCode[code]?.[gameIdx];
+        if (playerGameRow) {
+          rows.push(
+            rowToCells(
+              id,
+              name,
+              code,
+              opponentLabel,
+              playerGameRow,
+              false,
+            ).join(","),
+          );
+        }
+      }
+    }
+
+    return [header].concat(rows).join("\n");
+  };
+
   const optionsDropdown = (
     <GenericTogglingMenu>
       <AnnotationMenuItems friendlyChange={friendlyChange} />
+      <Dropdown.Divider />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            <FontAwesomeIcon icon={faClipboard} />
+            {"  "}Export all players to CSV
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => {
+          friendlyChange(() => {
+            navigator.clipboard.writeText(buildExportStr());
+          }, true);
+        }}
+      />
+      <GenericTogglingMenuItem
+        text={
+          <span>
+            <FontAwesomeIcon icon={faDownload} />
+            {"  "}Export all players to CSV
+          </span>
+        }
+        truthVal={false}
+        onSelect={() => {
+          friendlyChange(() => {
+            const blob = new Blob([buildExportStr()], {
+              type: "text/plain",
+            });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "season_matchup_impact.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }, true);
+        }}
+      />
       <Dropdown.Divider />
       <GenericTogglingMenuItem
         text={"Show repeating header every 10 rows"}

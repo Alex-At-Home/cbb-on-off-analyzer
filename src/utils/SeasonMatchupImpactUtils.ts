@@ -46,6 +46,12 @@ export type GameImpactRow = {
   def_net_drb?: Statistic;
   def_sos_bonus?: Statistic;
   def_gravity_bonus?: Statistic;
+  /** Breakdown fields for CSV export (not table columns). */
+  off_net_ast_2p?: Statistic;
+  off_net_ast_3p?: Statistic;
+  off_net_pts_wowy?: Statistic;
+  off_net_pts_volume?: Statistic;
+  def_net_pts_wowy?: Statistic;
 };
 
 const ZERO_CELL = { value: 0 };
@@ -124,6 +130,11 @@ const NUMERIC_KEYS: (keyof GameImpactRow)[] = [
   "off_net_rim",
   "off_net_ft",
   "off_net_ast",
+  "off_net_ast_2p",
+  "off_net_ast_3p",
+  "off_net_pts_wowy",
+  "off_net_pts_volume",
+  "def_net_pts_wowy",
   "off_net_to",
   "off_net_orb",
   "def_net_team",
@@ -258,6 +269,11 @@ function buildOnePlayerGameRow(
         value: offNetAst,
         extraInfo: `2P Assists: [${netPoints.offNetPtsAst2.toFixed(2)}]pts, 3P Assists: [${netPoints.offNetPtsAst3.toFixed(2)}]pts`,
       },
+      off_net_ast_2p: { value: netPoints.offNetPtsAst2 },
+      off_net_ast_3p: { value: netPoints.offNetPtsAst3 },
+      off_net_pts_wowy: { value: netPoints.offNetPtsWowy },
+      off_net_pts_volume: { value: netPoints.offNetPtsVolume },
+      def_net_pts_wowy: { value: netPoints.defNetPtsWowy },
       off_net_to: { value: netPoints.offNetPtsTo },
       off_net_orb: { value: netPoints.offNetPtsOrb },
       def_net_team: { value: netPoints.defNetPtsTeam },
@@ -349,6 +365,11 @@ function totalRowToGameImpactRow(
     off_net_rim: cv("off_net_rim"),
     off_net_ft: cv("off_net_ft"),
     off_net_ast: cv("off_net_ast"),
+    off_net_ast_2p: cv("off_net_ast_2p"),
+    off_net_ast_3p: cv("off_net_ast_3p"),
+    off_net_pts_wowy: cv("off_net_pts_wowy"),
+    off_net_pts_volume: cv("off_net_pts_volume"),
+    def_net_pts_wowy: cv("def_net_pts_wowy"),
     off_net_to: cv("off_net_to"),
     off_net_orb: cv("off_net_orb"),
     def_net_team: cv("def_net_team"),
@@ -826,7 +847,7 @@ function weightedAvg(
 }
 
 /** Total across games: sum each numeric column. For team totals only, off/def_gravity_bonus are averaged. */
-function buildTotalImpactRow(
+export function buildTotalImpactRow(
   impacts: GameImpactRow[],
   averageGdeltaKeys: boolean,
 ): GameImpactRow {
@@ -883,7 +904,9 @@ function buildTotalImpactRow(
 }
 
 /** Pure per-game average of team total rows (sum of each column / n). No poss% (same as team rows). */
-function buildTeamAverageImpactRow(impacts: GameImpactRow[]): GameImpactRow {
+export function buildTeamAverageImpactRow(
+  impacts: GameImpactRow[],
+): GameImpactRow {
   const n = impacts.length;
   const noPossCell: Statistic = { value: undefined };
   if (n === 0) {
