@@ -42,6 +42,9 @@ export const sampleDrtgDiagnostics = {
   avgEff: 100,
   adjDRtg: 91.88469534094685,
   adjDRtgPlus: -1.6230609318106304,
+  StlBonus: -17.945504514469192,
+  BlkBonus: -1.352164044620423,
+  DrbBonus: -20.695542211909995,
   adjPossFactor: 1,
   adjPtsFactor: 1,
 };

@@ -56,6 +56,9 @@ exports[`RatingUtils RatingUtils - buildDRtg 1`] = `
    "avgEff": 100,
    "adjDRtg": 91.88469534094685,
    "adjDRtgPlus": -1.6230609318106304,
+   "StlBonus": -17.945504514469192,
+   "BlkBonus": -1.352164044620423,
+   "DrbBonus": -20.695542211909995,
    "adjPossFactor": 1,
    "adjPtsFactor": 1
 }
@@ -79,10 +82,10 @@ exports[`RatingUtils RatingUtils - buildNetPoints uses adjPtsFactor and adjPossF
    "defNetPts": -0.40576523295265754,
    "defNetPtsWowy": 0,
    "defNetPtsSos": 0.3693636422125976,
-   "defNetPtsStl": 0.4189944134078212,
-   "defNetPtsBlk": 0.03157053513040497,
-   "defNetPtsReb": 0.48320271866664277,
-   "defNetPtsTeam": -0.897366076464809
+   "defNetPtsStl": 0.17945504514469196,
+   "defNetPtsBlk": 0.013521640446204233,
+   "defNetPtsReb": 0.20695542211909998,
+   "defNetPtsTeam": -0.3635305169699362
 }
 `;
 
