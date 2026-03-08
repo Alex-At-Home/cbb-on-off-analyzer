@@ -940,6 +940,8 @@ export class CommonTableDefs {
     ),
   };
 
+  // OFF SEASON LEADERBOARD TABLE
+
   /** Builds the table definition for the off-season leaderboard */
   static readonly offseasonLeaderboardTable = (
     evalMode: boolean,
