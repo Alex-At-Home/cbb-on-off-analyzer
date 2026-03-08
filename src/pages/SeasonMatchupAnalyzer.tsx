@@ -72,6 +72,7 @@ import GameImpactDiagView, {
   estimateXAxisLabelHeight,
 } from "../components/diags/GameImpactDiagView";
 import type { GameStatsCache } from "../utils/tables/GameAnalysisUtils";
+import type { IndivStatSet } from "../utils/StatModels";
 import { Statistic } from "../utils/StatModels";
 
 export type ChartBackgroundType =
@@ -703,6 +704,57 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     "def_net_blk",
   ];
 
+  /** Tooltip/box-score columns for player/game rows only (match GameAnalysisUtils.buildPlayerTooltipContents). */
+  const PLAYER_GAME_TOOLTIP_COLUMNS = [
+    "off_rtg",
+    "usage_pct",
+    "mpg",
+    "3pm",
+    "3pa",
+    "2pmid_m",
+    "2pmid_a",
+    "2prim_m",
+    "2prim_a",
+    "ftm",
+    "fta",
+    "assists",
+    "tos",
+    "fouls",
+    "stls",
+    "blks",
+    "orbs",
+    "drbs",
+  ];
+
+  const getPlayerGameTooltipCells = (stats: IndivStatSet | null): string[] => {
+    if (!stats) return PLAYER_GAME_TOOLTIP_COLUMNS.map(() => "");
+    const v = (k: string) =>
+      (stats as Record<string, { value?: number }>)[k]?.value ?? 0;
+    const offRtg = v("off_rtg");
+    const usagePct = (v("off_usage") * 100).toFixed(1);
+    const mpg = ((v("off_team_poss_pct") || 0) * 40).toFixed(1);
+    return [
+      String(offRtg.toFixed(1)),
+      usagePct,
+      mpg,
+      String(Math.round(v("total_off_3p_made"))),
+      String(Math.round(v("total_off_3p_attempts"))),
+      String(Math.round(v("total_off_2pmid_made"))),
+      String(Math.round(v("total_off_2pmid_attempts"))),
+      String(Math.round(v("total_off_2prim_made"))),
+      String(Math.round(v("total_off_2prim_attempts"))),
+      String(Math.round(v("total_off_ftm"))),
+      String(Math.round(v("total_off_fta"))),
+      String(Math.round(v("total_off_assist"))),
+      String(Math.round(v("total_off_to"))),
+      String(Math.round(v("total_off_fouls"))),
+      String(Math.round(v("total_off_stl"))),
+      String(Math.round(v("total_off_blk"))),
+      String(Math.round(v("total_off_orb"))),
+      String(Math.round(v("total_off_drb"))),
+    ];
+  };
+
   const buildExportStr = (): string => {
     if (
       !dataEvent.games.length ||
@@ -764,6 +816,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       "opponent",
       ...DISPLAYED_FIELDS,
       ...BREAKDOWN_FIELDS,
+      ...PLAYER_GAME_TOOLTIP_COLUMNS,
     ].join(",");
     const rows: string[] = [];
     const games = dataEvent.games;
@@ -792,7 +845,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         "Season Totals",
         teamTotalRow,
         true,
-      ).join(","),
+      )
+        .concat(getPlayerGameTooltipCells(null))
+        .join(","),
     );
     rows.push(
       rowToCells(
@@ -802,7 +857,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         "Season Average",
         teamAvgRow,
         true,
-      ).join(","),
+      )
+        .concat(getPlayerGameTooltipCells(null))
+        .join(","),
     );
 
     // 2. Each player's season breakdown (Totals then Average)
@@ -838,10 +895,14 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         seasonRapmCache,
       );
       rows.push(
-        rowToCells(id, name, code, "Season Totals", totalRow, true).join(","),
+        rowToCells(id, name, code, "Season Totals", totalRow, true)
+          .concat(getPlayerGameTooltipCells(null))
+          .join(","),
       );
       rows.push(
-        rowToCells(id, name, code, "Season Average", avgRow, false).join(","),
+        rowToCells(id, name, code, "Season Average", avgRow, false)
+          .concat(getPlayerGameTooltipCells(null))
+          .join(","),
       );
     }
 
@@ -860,7 +921,9 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
           opponentLabel,
           teamGameRow,
           true,
-        ).join(","),
+        )
+          .concat(getPlayerGameTooltipCells(null))
+          .join(","),
       );
       for (const opt of players) {
         const code = opt.title;
@@ -873,15 +936,14 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
         const name = (entry as { name?: string })?.name ?? code;
         const playerGameRow = playerImpactsByCode[code]?.[gameIdx];
         if (playerGameRow) {
+          const tooltipData = getPlayerTooltipDataForGame(
+            perGameRapmCaches[gameIdx],
+            code,
+          );
           rows.push(
-            rowToCells(
-              id,
-              name,
-              code,
-              opponentLabel,
-              playerGameRow,
-              false,
-            ).join(","),
+            rowToCells(id, name, code, opponentLabel, playerGameRow, false)
+              .concat(getPlayerGameTooltipCells(tooltipData?.stats ?? null))
+              .join(","),
           );
         }
       }
