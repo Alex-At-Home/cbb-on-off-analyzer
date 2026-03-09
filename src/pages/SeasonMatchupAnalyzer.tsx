@@ -59,8 +59,8 @@ import {
   getScoreStrForGame,
   getPlayerTooltipDataForGame,
   getPossPerGame,
-} from "../utils/SeasonMatchupImpactUtils";
-import type { GameImpactRow } from "../utils/SeasonMatchupImpactUtils";
+  GameImpactRow,
+} from "../utils/stats/ImpactBreakdownUtils";
 import { GameAnalysisUtils } from "../utils/tables/GameAnalysisUtils";
 import {
   buildGameQueryString,
@@ -318,7 +318,6 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     const rows = buildGameImpactTableRows(impacts, options);
     const identityPrefix = (k: string) => k;
     const noCellMeta = () => "";
-    const tableDefs = ImpactTableDefs.impactDecompTable;
     const themedColorBuilder =
       resolvedTheme === "dark"
         ? CbbColors.off_diff10_p100_redGreen_darkMode

@@ -30,4 +30,7 @@ export class FeatureFlags {
 
   /** WIP for moving from text based player filters to dropdowns */
   static readonly betterPlayerFilters = true;
+
+  /** Extra processing for net points */
+  static readonly netPointsOngoingWork = true;
 }

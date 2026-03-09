@@ -34,7 +34,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import ThemedSelect from "./shared/ThemedSelect";
 import GenericTogglingMenu from "./shared/GenericTogglingMenu";
 import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
-import { SEASON_MATCHUP_TEAM_KEY } from "../utils/SeasonMatchupImpactUtils";
+import { SEASON_MATCHUP_TEAM_KEY } from "../utils/stats/ImpactBreakdownUtils";
 
 export type SeasonMatchupPerGame = {
   gameLabel: string;

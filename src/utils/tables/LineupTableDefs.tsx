@@ -12,6 +12,7 @@ import { CbbColors } from "../CbbColors";
 import _ from "lodash";
 import { CommonTableDefs, OffDefDualMixed } from "./CommonTableDefs";
 import { TableSortPopupMenuState } from "../../components/shared/TableSortPopupMenu";
+import { ImpactTableDefs } from "./ImpactTableDefs";
 
 /** Holds all the different column definitions for the similar tables used for Lineup tables */
 export class LineupTableDefs {
@@ -414,6 +415,7 @@ export class LineupTableDefs {
   static readonly lineupsExtraColSet = _.memoize(
     (
       rawPts: boolean,
+      devMode: boolean = false,
     ): Record<string, ExtraColSet & { rowMode: OffDefDualMixed }> => {
       const allDualLineupFields = LineupTableDefs.mainLineupTableFields(
         rawPts,
@@ -606,6 +608,18 @@ export class LineupTableDefs {
           description: "A collection of defensive stats",
           colSet: allMixedDefLineupFields,
         },
+        ...(devMode
+          ? {
+              netPoints: {
+                isPreset: true,
+                isLibrary: false, //TODO: make it a library as well at some point
+                rowMode: "Mixed",
+                name: "Net Points",
+                description: "Net Points for lineups",
+                colSet: ImpactTableDefs.impactDecompTable,
+              },
+            }
+          : {}),
       };
     },
   );

@@ -18,9 +18,9 @@ import { IndivStatSet, IndivPosInfo } from "../../utils/StatModels";
 import { LineupUtils, PlayerOnOffStats } from "../../utils/stats/LineupUtils";
 import { CbbColors } from "../../utils/CbbColors";
 import {
-  buildTotalRow as buildTotalRowUtil,
+  ImpactBreakdownTableUtils,
   IMPACT_DECOMP_DATA_COL_KEYS,
-} from "../../utils/ImpactBreakdownTableUtils";
+} from "../../utils/tables/ImpactBreakdownTableUtils";
 
 /** One player point from PlayerImpactChart's buildStats (scatter point) */
 export type PlayerImpactPoint = {
@@ -255,73 +255,33 @@ function buildPlayerRow(
       def_team_poss_pct: {
         value: defPossPct,
       },
-      diff_adj_rapm: {
-        value:
-          netPoints.offNetPts - netPoints.defNetPts - offSosAdj - defSosAdj,
-      },
-      off_adj_rapm: { value: netPoints.offNetPts - offSosAdj },
-      def_adj_rapm: { value: -netPoints.defNetPts - defSosAdj },
-      off_sos_bonus: { value: netPoints.offNetPtsSos },
-      off_gravity_bonus: {
-        value: netPoints.offNetPtsWowy + netPoints.offNetPtsVolume,
-        extraInfo: (
-          <span>
-            RAPM/WOWY bonus: {netPoints.offNetPtsWowy.toFixed(2)}
-            <br />
-            Shot volume bonus: {netPoints.offNetPtsVolume.toFixed(2)}
-          </span>
-        ),
-      },
-      off_net_3p: {
-        value: offDebugMode ? ortgDiag.threePtsProd : netPoints.offNetPts3P,
-      },
-      off_net_mid: {
-        value: offDebugMode ? ortgDiag.midPtsProd : netPoints.offNetPtsMid,
-      },
-      off_net_rim: {
-        value: offDebugMode ? ortgDiag.rimPtsProd : netPoints.offNetPtsRim,
-      },
-      off_net_ft: {
-        value: offDebugMode
-          ? ortgDiag.ftPart * (1 - ortgDiag.teamOrbContribPct)
-          : netPoints.offNetPtsFt,
-      },
-      off_net_ast: {
-        value: offDebugMode
-          ? ortgDiag.astThreePProd + ortgDiag.astTwoPProd
-          : offNetAst,
-        extraInfo: (
-          <span>
-            2P Assists: {netPoints.offNetPtsAst2.toFixed(2)}
-            <br />
-            3P Assists: {netPoints.offNetPtsAst3.toFixed(2)}
-          </span>
-        ),
-      },
-      off_net_to: {
-        value: offDebugMode ? ortgDiag.rawTo : netPoints.offNetPtsTo,
-      },
-      off_net_orb: {
-        value: offDebugMode ? ortgDiag.ppOrb : netPoints.offNetPtsOrb,
-      },
-      def_net_team: { value: netPoints.defNetPtsTeam },
-      def_net_stl: { value: netPoints.defNetPtsStl },
-      def_net_blk: { value: netPoints.defNetPtsBlk },
-      def_net_stks: {
-        value: netPoints.defNetPtsStl + netPoints.defNetPtsBlk,
-        extraInfo: (
-          <span>
-            Stl: {netPoints.defNetPtsStl.toFixed(2)}
-            <br />
-            Blk: {netPoints.defNetPtsBlk.toFixed(2)}
-          </span>
-        ),
-      },
-      def_net_drb: { value: netPoints.defNetPtsReb },
-      def_sos_bonus: { value: netPoints.defNetPtsSos },
-      def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
+      ...ImpactBreakdownTableUtils.buildNetPointsRow(
+        netPoints,
+        adjBreakdownForSoS,
+      ),
       ...(offDebugMode
         ? {
+            off_net_3p: {
+              value: ortgDiag.threePtsProd,
+            },
+            off_net_mid: {
+              value: ortgDiag.midPtsProd,
+            },
+            off_net_rim: {
+              value: ortgDiag.rimPtsProd,
+            },
+            off_net_ft: {
+              value: ortgDiag.ftPart * (1 - ortgDiag.teamOrbContribPct),
+            },
+            off_net_ast: {
+              value: ortgDiag.astThreePProd + ortgDiag.astTwoPProd,
+            },
+            off_net_to: {
+              value: ortgDiag.rawTo,
+            },
+            off_net_orb: {
+              value: ortgDiag.ppOrb,
+            },
             totPoss: {
               //(for testing the derived sum is right)
               //value: netPoints.offNetPts - netPoints.offNetPtsDerived,
@@ -458,7 +418,7 @@ function buildTotalRow(
   seasonStats: boolean,
 ): Record<string, { value: number } | React.ReactNode> {
   const weightByPoss = scaleType === "P%";
-  const totalFromUtil = buildTotalRowUtil(
+  const totalFromUtil = ImpactBreakdownTableUtils.buildTotalRow(
     rows as Record<string, { value: number } | unknown>[],
     possPerGame,
     avgEff,

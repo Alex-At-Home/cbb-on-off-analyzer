@@ -3,20 +3,20 @@
  * New file — no changes to existing utils.
  */
 import _ from "lodash";
-import { CommonFilterParams, LuckParams, ParamDefaults } from "./FilterModels";
-import { SeasonMatchupPerGame } from "../components/SeasonMatchupFilter";
-import { LineupStatsModel } from "../components/LineupStatsTable";
-import { RosterStatsModel } from "../components/RosterStatsTable";
-import { TeamStatsModel } from "../components/TeamStatsTable";
-import { GameAnalysisUtils, GameStatsCache } from "./tables/GameAnalysisUtils";
-import { StatModels } from "./StatModels";
-import type { IndivStatSet, IndivPosInfo, Statistic } from "./StatModels";
-import { LineupUtils, PlayerOnOffStats } from "./stats/LineupUtils";
-import { RatingUtils } from "./stats/RatingUtils";
+import { CommonFilterParams, LuckParams, ParamDefaults } from "../FilterModels";
+import { SeasonMatchupPerGame } from "../../components/SeasonMatchupFilter";
+import { LineupStatsModel } from "../../components/LineupStatsTable";
+import { RosterStatsModel } from "../../components/RosterStatsTable";
+import { TeamStatsModel } from "../../components/TeamStatsTable";
+import { GameAnalysisUtils, GameStatsCache } from "../tables/GameAnalysisUtils";
+import { StatModels } from "../StatModels";
+import type { IndivStatSet, IndivPosInfo, Statistic } from "../StatModels";
+import { LineupUtils, PlayerOnOffStats } from "./LineupUtils";
+import { RatingUtils } from "./RatingUtils";
 import {
-  buildTotalRow,
+  ImpactBreakdownTableUtils,
   IMPACT_DECOMP_DATA_COL_KEYS,
-} from "./ImpactBreakdownTableUtils";
+} from "../tables/ImpactBreakdownTableUtils";
 
 const debugMode = false;
 
@@ -559,7 +559,7 @@ export function buildGameImpactRowsFromCaches(
       } else {
         const asRecords = playerRows.map(gameImpactRowToTotalRowInput);
         const possPerGame = getPossPerGame(g);
-        const totalFromUtil = buildTotalRow(
+        const totalFromUtil = ImpactBreakdownTableUtils.buildTotalRow(
           asRecords,
           possPerGame,
           avgEfficiency,
