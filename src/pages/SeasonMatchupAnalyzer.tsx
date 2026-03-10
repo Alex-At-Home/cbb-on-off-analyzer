@@ -115,6 +115,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const [dataEvent, setDataEvent] = useState<{
     games: SeasonMatchupPerGame[];
   }>({ games: [] });
+  /** selectedPlayer holds player_id (ES aggregation key) or SEASON_MATCHUP_TEAM_KEY. */
   const [selectedPlayer, setSelectedPlayer] = useState<string>(
     SEASON_MATCHUP_TEAM_KEY,
   );
@@ -181,7 +182,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
   const avgEfficiency =
     efficiencyAverages[genderYear] || efficiencyAverages.fallback;
 
-  /** Player dropdown: Team first, then players in rosterStatsBaseline order (already sorted by poss). .key is id. */
+  /** Player dropdown: Team first, then players in rosterStatsBaseline order (already sorted by poss). playerOptions[].title is player_id (ES aggregation key). */
   const playerOptions = useMemo(() => {
     const teamOption = { title: SEASON_MATCHUP_TEAM_KEY };
     const ids = new Set<string>();
@@ -786,21 +787,23 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
       }
       return "";
     };
+    /** CSV columns: id = ncaa_id, name = player_id (long form), code = player_code (short form, roster index). */
     const rowToCells = (
-      id: string,
-      name: string,
-      code: string,
+      ncaaId: string,
+      playerId: string,
+      playerCode: string,
       opponent: string,
       row: GameImpactRow,
       blankTeamPossPct: boolean,
     ): string[] => [
-      escapeCsv(id),
-      escapeCsv(name),
-      escapeCsv(code),
+      escapeCsv(ncaaId),
+      escapeCsv(playerId),
+      escapeCsv(playerCode),
       escapeCsv(opponent),
       ...DISPLAYED_FIELDS.map((k) => getValOrBlank(row, k, blankTeamPossPct)),
       ...BREAKDOWN_FIELDS.map((k) => String(getVal(row, k))),
     ];
+    /** rosterInfo is keyed by player_code (short form, e.g. "AnMills"). Each entry has player_code_id.id (player_id, long form) and player_code_id.ncaa_id. */
     const rosterInfo = dataEvent.games[0]?.rosterInfo as
       | Record<
           string,
@@ -862,44 +865,60 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
     );
 
     // 2. Each player's season breakdown (Totals then Average)
+    /** playerOptions[].title is player_id (ES aggregation key, long form e.g. "Mills, Andre"). */
     const players = playerOptions.filter(
       (o) => o.title !== SEASON_MATCHUP_TEAM_KEY,
     );
-    const playerImpactsByCode: Record<string, GameImpactRow[]> = {};
+    const playerImpactsByPlayerId: Record<string, GameImpactRow[]> = {};
     for (const opt of players) {
-      const code = opt.title;
+      const player_id = opt.title;
       const impacts = buildGameImpactRowsFromCaches(
         perGameRapmCaches,
         games,
-        code,
+        player_id,
         avgEfficiency,
         scaleType,
         adjBreakdownForSoS,
       );
-      playerImpactsByCode[code] = impacts;
-      const entry =
-        rosterInfo?.[code] ||
-        Object.values(rosterInfo || {}).find(
-          (v) => v?.player_code_id?.id === code,
-        );
-      const id = entry?.player_code_id?.ncaa_id ?? "";
-      const name = (entry as { name?: string })?.name ?? code;
+      playerImpactsByPlayerId[player_id] = impacts;
+      const found = rosterInfo
+        ? Object.entries(rosterInfo).find(
+            ([, v]) => v?.player_code_id?.id === player_id,
+          )
+        : null;
+      const player_code = found?.[0] ?? "";
+      const entry = found?.[1];
+      const ncaaId = entry?.player_code_id?.ncaa_id ?? "";
       const totalRow = buildTotalImpactRow(impacts, false);
       const avgRow = buildAverageImpactRow(
         perGameRapmCaches,
         games,
         impacts,
-        code,
+        player_id,
         scaleType,
         seasonRapmCache,
       );
       rows.push(
-        rowToCells(id, name, code, "Season Totals", totalRow, true)
+        rowToCells(
+          ncaaId,
+          player_id,
+          player_code,
+          "Season Totals",
+          totalRow,
+          true,
+        )
           .concat(getPlayerGameTooltipCells(null))
           .join(","),
       );
       rows.push(
-        rowToCells(id, name, code, "Season Average", avgRow, false)
+        rowToCells(
+          ncaaId,
+          player_id,
+          player_code,
+          "Season Average",
+          avgRow,
+          false,
+        )
           .concat(getPlayerGameTooltipCells(null))
           .join(","),
       );
@@ -925,22 +944,30 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
           .join(","),
       );
       for (const opt of players) {
-        const code = opt.title;
-        const entry =
-          rosterInfo?.[code] ||
-          Object.values(rosterInfo || {}).find(
-            (v) => v?.player_code_id?.id === code,
-          );
-        const id = entry?.player_code_id?.ncaa_id ?? "";
-        const name = (entry as { name?: string })?.name ?? code;
-        const playerGameRow = playerImpactsByCode[code]?.[gameIdx];
+        const player_id = opt.title;
+        const found = rosterInfo
+          ? Object.entries(rosterInfo).find(
+              ([, v]) => v?.player_code_id?.id === player_id,
+            )
+          : null;
+        const player_code = found?.[0] ?? "";
+        const entry = found?.[1];
+        const ncaaId = entry?.player_code_id?.ncaa_id ?? "";
+        const playerGameRow = playerImpactsByPlayerId[player_id]?.[gameIdx];
         if (playerGameRow) {
           const tooltipData = getPlayerTooltipDataForGame(
             perGameRapmCaches[gameIdx],
-            code,
+            player_id,
           );
           rows.push(
-            rowToCells(id, name, code, opponentLabel, playerGameRow, false)
+            rowToCells(
+              ncaaId,
+              player_id,
+              player_code,
+              opponentLabel,
+              playerGameRow,
+              false,
+            )
               .concat(getPlayerGameTooltipCells(tooltipData?.stats ?? null))
               .join(","),
           );
@@ -1065,6 +1092,7 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
               selectedPlayer !== SEASON_MATCHUP_TEAM_KEY &&
               dataEvent.games[0]?.rosterInfo
                 ? (() => {
+                    // selectedPlayer is player_id; find roster entry by player_code_id.id === selectedPlayer
                     const roster = dataEvent.games[0].rosterInfo as Record<
                       string,
                       { player_code_id?: { id?: string; ncaa_id?: string } }

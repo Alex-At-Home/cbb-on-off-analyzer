@@ -312,10 +312,12 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
       const lineupBucketsList = lineupBucket.lineups?.buckets || [];
       const rosterStats = playerBuckets[tk]?.player?.buckets || [];
       if (rosterInfo && Array.isArray(rosterStats)) {
+        /** rosterByCode is keyed by player_code (roster index, short form). */
         const rosterByCode = rosterInfo as Record<
           string,
           { player_code_id?: { id: string }; number?: string; height?: string }
         >;
+        /** rosterById is keyed by player_code_id.id (player_id). */
         const rosterById = _.isEmpty(rosterByCode)
           ? {}
           : _.keyBy(
@@ -327,6 +329,7 @@ export const SeasonMatchupFilter: React.FunctionComponent<Props> = ({
               ([, v]) => v.player_code_id!.id,
             );
         for (const p of rosterStats) {
+          /** code is player_code when from _source.player?.code, else player_id (p.key). */
           const code =
             p.player_array?.hits?.hits?.[0]?._source?.player?.code || p.key;
           const entry = rosterByCode[code] || (p.key && rosterById[p.key]?.[1]);

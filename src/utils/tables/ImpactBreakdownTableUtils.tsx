@@ -1,7 +1,3 @@
-/**
- * Shared logic for impact breakdown total row: P% weighting and /G possession
- * differential. Used by PlayerImpactBreakdownTable and SeasonMatchupImpactUtils.
- */
 import _ from "lodash";
 import { NetPoints } from "../stats/RatingUtils";
 import { Statistic } from "../StatModels";
@@ -35,6 +31,9 @@ export const IMPACT_DECOMP_DATA_COL_KEYS: string[] = [
 
 export type ImpactTotalRowCell = { value: number; extraInfo?: string };
 
+/**
+ * Shared logic for impact breakdown row building
+ */
 export class ImpactBreakdownTableUtils {
   static readonly buildNetPointsRow = (
     netPoints: NetPoints,
