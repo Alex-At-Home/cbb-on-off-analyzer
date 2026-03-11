@@ -854,7 +854,13 @@ const GenericTable: React.FunctionComponent<Props> = ({
             >
               <FontAwesomeIcon icon={faCog} />
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu
+              style={{ zIndex: 2000, position: "fixed" }}
+              popperConfig={{
+                strategy: "fixed",
+                modifiers: [{ name: "offset", options: { offset: [0, 8] } }],
+              }}
+            >
               {showConfigureColumns ? (
                 <Dropdown.Item id={buttonId} className="d-lg-none">
                   Copy Table Contents

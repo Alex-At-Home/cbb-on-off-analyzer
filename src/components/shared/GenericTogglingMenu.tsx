@@ -141,7 +141,13 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
           </Dropdown.Toggle>
         </OverlayTrigger>
       )}
-      <Dropdown.Menu>
+      <Dropdown.Menu
+        style={{ zIndex: 2000, position: "fixed" }}
+        popperConfig={{
+          strategy: "fixed",
+          modifiers: [{ name: "offset", options: { offset: [0, 8] } }],
+        }}
+      >
         {searchBar && (
           <div className="px-3 py-2">
             <Form.Control
