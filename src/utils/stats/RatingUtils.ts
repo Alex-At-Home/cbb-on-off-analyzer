@@ -1125,22 +1125,30 @@ export class RatingUtils {
           : (100 * missingGameAdjument * defPossPct) /
             (defPosWhileOnFloor || 1);
 
+    const adjDRtgToUse = drtg.onBallDiags
+      ? drtg.onBallDiags.adjDRtgPlus
+      : drtg.adjDRtgPlus;
+    const onBallDRtgDelta = drtg.onBallDiags
+      ? drtg.adjDRtgPlus - drtg.onBallDiags.adjDRtgPlus
+      : 0;
+
     const defNetPtsWowy = _.thru(
       playerRapmAndPossPct.def_adj_rapm as Statistic,
       (rapm) => {
         if (rapm) {
-          const delta = (rapm.value || 0) - drtg.adjDRtgPlus; //pts/P100 SoS-adj
+          const delta = (rapm.value || 0) - adjDRtgToUse; //pts/P100 SoS-adj
           return -delta * drtg.oppoPoss * 0.01 * defScale;
         } else {
           return 0.0;
         }
       },
     );
-    const defNetPtsBeforeRapm =
-      -drtg.adjDRtgPlus * drtg.oppoPoss * 0.01 * defScale;
+    const defNetPtsBeforeRapm = -adjDRtgToUse * drtg.oppoPoss * 0.01 * defScale;
+
+    const dRtgToUse = drtg.onBallDiags ? drtg.onBallDiags.dRtg : drtg.dRtg;
 
     const unadjDefNet =
-      (avgEff - drtg.dRtg) * 0.2 * drtg.oppoPoss * 0.01 * defScale;
+      (avgEff - dRtgToUse) * 0.2 * drtg.oppoPoss * 0.01 * defScale;
 
     // See:
     // Thinking about how to convert this to Net points in RatingUtils code
@@ -1155,8 +1163,17 @@ export class RatingUtils {
     const defNetPtsReb =
       -0.2 * 0.2 * drtg.DrbBonus * drtg.oppoPoss * 0.01 * defScale;
 
+    const defNetPtsSos = drtg.onBallDiags
+      ? (drtg.onBallDiags.dRtg - drtg.onBallDiags.adjDRtg) * 0.2
+      : defNetPtsBeforeRapm - unadjDefNet;
+
     const defNetPtsTeam =
-      unadjDefNet - defNetPtsReb - defNetPtsBlk - defNetPtsStl;
+      defNetPtsBeforeRapm -
+      defNetPtsSos -
+      defNetPtsReb -
+      defNetPtsBlk -
+      defNetPtsStl -
+      onBallDRtgDelta;
 
     // These results are across the full sample (eg 70ish possessions for a game, 1000 possessions
     // for a season)
@@ -1181,11 +1198,12 @@ export class RatingUtils {
       // Def:
       defNetPts: defNetPtsBeforeRapm + defNetPtsWowy,
       defNetPtsWowy,
-      defNetPtsSos: defNetPtsBeforeRapm - unadjDefNet,
+      defNetPtsSos,
       defNetPtsStl,
       defNetPtsBlk,
       defNetPtsReb,
       defNetPtsTeam,
+      defNetPtsIndiv: drtg.onBallDiags ? onBallDRtgDelta : undefined,
     };
   };
 
