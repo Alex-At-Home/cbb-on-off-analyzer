@@ -18,10 +18,11 @@ type Props = {
   currGender?: string;
   playerCurrSelected: boolean;
   placeholderText?: string;
+  disabled?: boolean; // when true, input is not focusable/selectable (e.g. no player selected yet)
   onSelectPlayer: (
     ncaaId: string,
     gender: string,
-    singleSeasonId?: string
+    singleSeasonId?: string,
   ) => void;
   separatePlayerSeasons?: boolean; //(otherwise combines a player's team/seasons)
 };
@@ -30,6 +31,7 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
   currGender,
   playerCurrSelected,
   placeholderText,
+  disabled,
   onSelectPlayer,
   separatePlayerSeasons,
 }) => {
@@ -81,6 +83,7 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                 (playerCurrSelected
                   ? "Find another player..."
                   : "Search for players..."),
+              disabled,
             }}
             autocompleteMinimumCharacters={3}
             autocompleteView={({ autocompletedResults, getItemProps }) => {
@@ -114,7 +117,7 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                       const maxVal =
                         _.maxBy(
                           gs,
-                          (g: any) => (g._meta?.rawHit?._score || 1) as number
+                          (g: any) => (g._meta?.rawHit?._score || 1) as number,
                         )?._meta?.rawHit?._score || 1;
                       return -(
                         maxVal *
@@ -124,7 +127,7 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                     .map((group, i) => {
                       const result = group[0]; // pick first as representative
                       const teams = Array.from(
-                        new Set(group.map((r) => r.team?.raw))
+                        new Set(group.map((r) => r.team?.raw)),
                       );
                       const years = group
                         .map((r) => r.year?.raw)
@@ -154,14 +157,16 @@ const PlayerFinderTextBox: React.FunctionComponent<Props> = ({
                             const esIndex = result._meta?.rawHit?._index;
                             const gender = _.startsWith(
                               esIndex,
-                              "hoopexp_women_"
+                              "hoopexp_women_",
                             )
                               ? "Women"
                               : "Men";
                             onSelectPlayer(
                               result.roster?.raw?.ncaa_id || "",
                               gender,
-                              separatePlayerSeasons ? result.id?.raw : undefined
+                              separatePlayerSeasons
+                                ? result.id?.raw
+                                : undefined,
                             );
                           }}
                         >

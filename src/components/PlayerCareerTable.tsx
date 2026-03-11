@@ -2289,10 +2289,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         </Button>
       </OverlayTrigger>
       <PlayerFinderTextBox
-        placeholderText="Manually add comp..."
+        placeholderText={
+          currPlayerSelected
+            ? "Manually add comp..."
+            : "First select player/season"
+        }
         onSelectPlayer={addPinnedPlayer}
         currGender={playerCareerParams.gender || ParamDefaults.defaultGender}
-        playerCurrSelected={false}
+        playerCurrSelected={!!currPlayerSelected}
+        disabled={!currPlayerSelected}
         separatePlayerSeasons={separatePlayerSeasons}
       />
     </div>
