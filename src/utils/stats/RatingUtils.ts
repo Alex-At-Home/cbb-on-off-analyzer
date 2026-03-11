@@ -153,6 +153,7 @@ export type NetPoints = {
   defNetPtsBlk: number;
   defNetPtsReb: number;
   defNetPtsTeam: number;
+  defNetPtsIndiv?: number;
 };
 
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
@@ -1111,6 +1112,7 @@ export class RatingUtils {
       offNetPtsSos;
 
     // Defense:
+    // (Note def net points are +ve == good)
 
     const defPossPct = playerRapmAndPossPct.def_team_poss_pct?.value ?? 0; //(% of time player is on floor)
     const defPosWhileOnFloor = drtg.oppoPoss;
@@ -1128,17 +1130,17 @@ export class RatingUtils {
       (rapm) => {
         if (rapm) {
           const delta = (rapm.value || 0) - drtg.adjDRtgPlus; //pts/P100 SoS-adj
-          return delta * drtg.oppoPoss * 0.01 * defScale;
+          return -delta * drtg.oppoPoss * 0.01 * defScale;
         } else {
           return 0.0;
         }
       },
     );
     const defNetPtsBeforeRapm =
-      drtg.adjDRtgPlus * drtg.oppoPoss * 0.01 * defScale;
+      -drtg.adjDRtgPlus * drtg.oppoPoss * 0.01 * defScale;
 
     const unadjDefNet =
-      (drtg.dRtg - avgEff) * 0.2 * drtg.oppoPoss * 0.01 * defScale;
+      (avgEff - drtg.dRtg) * 0.2 * drtg.oppoPoss * 0.01 * defScale;
 
     // See:
     // Thinking about how to convert this to Net points in RatingUtils code
@@ -1154,7 +1156,7 @@ export class RatingUtils {
       -0.2 * 0.2 * drtg.DrbBonus * drtg.oppoPoss * 0.01 * defScale;
 
     const defNetPtsTeam =
-      -unadjDefNet - defNetPtsReb - defNetPtsBlk - defNetPtsStl;
+      unadjDefNet - defNetPtsReb - defNetPtsBlk - defNetPtsStl;
 
     // These results are across the full sample (eg 70ish possessions for a game, 1000 possessions
     // for a season)
@@ -1179,7 +1181,7 @@ export class RatingUtils {
       // Def:
       defNetPts: defNetPtsBeforeRapm + defNetPtsWowy,
       defNetPtsWowy,
-      defNetPtsSos: unadjDefNet - defNetPtsBeforeRapm,
+      defNetPtsSos: defNetPtsBeforeRapm - unadjDefNet,
       defNetPtsStl,
       defNetPtsBlk,
       defNetPtsReb,

@@ -69,7 +69,7 @@ import { TeamEvalUtils } from "../utils/stats/TeamEvalUtils";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { DerivedStatsUtils } from "../utils/stats/DerivedStatsUtils";
 import { OnBallDefenseUtils } from "../utils/stats/OnBallDefenseUtils";
-import { OnBallDefenseModel } from "../utils/stats/RatingUtils";
+import { OnBallDefenseModel, RatingUtils } from "../utils/stats/RatingUtils";
 import { DateUtils } from "../utils/DateUtils";
 import { LuckUtils } from "../utils/stats/LuckUtils";
 import { PositionUtils } from "../utils/stats/PositionUtils";
@@ -247,7 +247,7 @@ if (!testMode)
 //   "Coppin St.",
 // ]);
 //(used this to build sample:)
-//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
@@ -1373,7 +1373,7 @@ export async function main() {
                     team: team,
                     year: teamYear,
                     shotInfo: shotChartMap[kv[0]],
-                    style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this
+                    style: isDebugMode ? playerPlayStyleBreakdowns : undefined, //TODO: figure out what to do with this - it always gets overwritten above)
                     posFreqs: maybeConvertPosInfo(posFreqs),
                     ...(_.chain(player) //(for lowvol players (cutdownLowVolume) we used to just call lowVolumeStripPlayerInfo instead, but trying with all info)
                       .toPairs()
@@ -1385,9 +1385,9 @@ export async function main() {
                           t2[0] == "off_team_poss_pct" ||
                           t2[0] == "def_team_poss" ||
                           t2[0] == "def_team_poss_pct" ||
-                          (t2[0] != "diag_off_rtg" &&
-                            t2[0] != "diag_def_rtg" &&
-                            t2[0] != "off_luck" &&
+                          // We actually diag_off_rtg/diag_def_rtg these for some RAPM calcs later
+                          (_.startsWith(t2[0], "diag_") && !ignoreRapm) ||
+                          (t2[0] != "off_luck" &&
                             t2[0] != "def_luck" &&
                             !_.startsWith(t2[0], "off_team_") &&
                             !_.startsWith(t2[0], "def_team_") &&
@@ -1457,11 +1457,11 @@ export async function main() {
                 cutdownEnrichedPlayers.map((p) => [p.key, p]),
               );
               (rapmInfo?.enrichedPlayers || []).forEach((rapmP, index) => {
-                const player = (enrichedAndFilteredPlayersMap[rapmP.playerId] ||
-                  cutdownEnrichedPlayersMap[rapmP.playerId]) as Record<
-                  string,
-                  any
-                >;
+                const playerStat =
+                  enrichedAndFilteredPlayersMap[rapmP.playerId] ||
+                  cutdownEnrichedPlayersMap[rapmP.playerId];
+
+                const player = playerStat as Record<string, any>;
 
                 // RAPM (rating + productions)
                 if (player && rapmP.rapm) {
@@ -1513,6 +1513,34 @@ export async function main() {
                       )
                       .fromPairs()
                       .value();
+
+                    // Calculate net points:
+                    if (player.diag_off_rtg && player.diag_def_rtg) {
+                      player.net_pts = _.mapKeys(
+                        RatingUtils.buildNetPoints(
+                          playerStat,
+                          player.diag_off_rtg,
+                          player.diag_def_rtg,
+                          avgEfficiency,
+                          "P%",
+                        ),
+                        (
+                          val,
+                          key, //(compression)
+                        ) =>
+                          key
+                            .replace("offNetPts", "o")
+                            .replace("defNetPts", "d"),
+                      );
+                      if (player.net_pts?.oDerived) {
+                        //(compression)
+                        delete player.net_pts?.oDerived;
+                      }
+                      if (player.net_pts?.dDerived) {
+                        //(compression)
+                        delete player.net_pts?.dDerived;
+                      }
+                    }
                   }
 
                   if (cutdownMode) {
@@ -1785,6 +1813,12 @@ export async function main() {
                       }
                     });
                   }
+                }
+                //(since !ignoreRapm, need to remove diag_off_rtg and diag_def_rtg)
+                // (which prevoiusly we did with all the other stats, but needed to hang onto because of RAPM)
+                if (player && player.diag_off_rtg && player.diag_def_rtg) {
+                  delete player.diag_off_rtg;
+                  delete player.diag_def_rtg;
                 }
               });
             } //(end RAPM)

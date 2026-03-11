@@ -45,10 +45,10 @@ export class ImpactBreakdownTableUtils {
     return {
       diff_adj_rapm: {
         value:
-          netPoints.offNetPts - netPoints.defNetPts - offSosAdj - defSosAdj,
+          netPoints.offNetPts + netPoints.defNetPts - offSosAdj - defSosAdj,
       },
       off_adj_rapm: { value: netPoints.offNetPts - offSosAdj },
-      def_adj_rapm: { value: -netPoints.defNetPts - defSosAdj },
+      def_adj_rapm: { value: netPoints.defNetPts - defSosAdj },
       off_sos_bonus: { value: netPoints.offNetPtsSos },
       off_gravity_bonus: {
         value: netPoints.offNetPtsWowy + netPoints.offNetPtsVolume,
@@ -103,7 +103,7 @@ export class ImpactBreakdownTableUtils {
       },
       def_net_drb: { value: netPoints.defNetPtsReb },
       def_sos_bonus: { value: netPoints.defNetPtsSos },
-      def_gravity_bonus: { value: -netPoints.defNetPtsWowy },
+      def_gravity_bonus: { value: netPoints.defNetPtsWowy },
     };
   };
 

@@ -52,7 +52,7 @@ export class ImpactTableDefs {
     ),
     def_adj_rapm: GenericTableOps.addDataCol(
       "Def. Net",
-      "Defensive Impact (dRAPM, pts above average)",
+      "Defensive Impact (-dRAPM, pts above average)",
       CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
       GenericTableOps.pointsOrHtmlFormatter,
     ),

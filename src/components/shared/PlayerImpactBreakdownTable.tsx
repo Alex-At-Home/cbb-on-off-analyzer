@@ -234,11 +234,6 @@ function buildPlayerRow(
       }
     }
 
-    const offNetAst = netPoints.offNetPtsAst2 + netPoints.offNetPtsAst3;
-
-    const offSosAdj = adjBreakdownForSoS ? 0 : netPoints.offNetPtsSos;
-    const defSosAdj = adjBreakdownForSoS ? 0 : netPoints.defNetPtsSos;
-
     return {
       title,
       ...(teamDisplay ? { team: teamDisplay(point.seriesId) } : {}),

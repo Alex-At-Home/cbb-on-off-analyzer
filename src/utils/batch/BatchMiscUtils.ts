@@ -257,6 +257,7 @@ export class BatchMiscUtils {
     mutableExtra._id = p._id;
     mutableExtra.on = p.on;
     mutableExtra.off = p.off;
+    mutableExtra.net_pts = p.net_pts;
     /** We'll calculate grades on the fly like we do everywhere else */
     const stripGrades = (p: PureStatSet) => {
       _.forEach(p, (stat: any, key) => {
@@ -273,6 +274,7 @@ export class BatchMiscUtils {
     if (p.rapm) delete p.rapm;
     if (p.on) delete p.on;
     if (p.off) delete p.off;
+    if (p.net_pts) delete p.net_pts;
     // 5] Reprocess positional info (see maybeConvertPosInfo in buildLeaderboards): posFreqs and posConfidences
     if (p.posFreqs) {
       const expandedPosFreqs = p.posFreqs as any as Record<string, number>;
