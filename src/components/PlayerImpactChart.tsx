@@ -935,9 +935,29 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
   ) : (
     <Container className="recharts-container">
       <Row className="text-left">
-        <Col xs={12} md={12} lg={6} className="mb-1">
+        <Col xs={12} md={12} lg={7} className="mb-1">
           <ToggleButtonGroup
             items={[
+              {
+                label: "Chart",
+                tooltip: "Show or hide the impact chart",
+                toggled: showTeam || showOppo,
+                onClick: () => {
+                  const show = !(showTeam || showOppo);
+                  setShowTeam(show);
+                  setShowOppo(show);
+                  if (!show && !showImpactBreakdown) {
+                    setShowImpactBreakdown(true);
+                  }
+                },
+              },
+              {
+                label: ": ",
+                tooltip: "",
+                toggled: true,
+                onClick: () => {},
+                isLabelOnly: true,
+              },
               {
                 label: <span>&#9650;</span>,
                 tooltip: `Show/fade players from ${startingState.team || "??"}`,
@@ -1089,20 +1109,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
           />
         </Col>
       </Row>
-      <Row>
-        {showTeam || showOppo ? (
-          <Col>{chart}</Col>
-        ) : (
-          <>
-            <i>
-              (Show Team (&#9650;) or Opponent (&#9679;) from Quick Select
-              toolbar to display chart)
-            </i>
-            <br />
-            <br />
-          </>
-        )}
-      </Row>
+      <Row>{showTeam || showOppo ? <Col>{chart}</Col> : null}</Row>
       {!_.isEmpty(cachedStats.ab) ? (
         <>
           <Row className="mb-2">
@@ -1205,9 +1212,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                                 setAdjBreakdownForSoS(!adjBreakdownForSoS),
                             },
                             {
-                              label: (
-                                <FontAwesomeIcon icon={faArrowsAltV} />
-                              ),
+                              label: <FontAwesomeIcon icon={faArrowsAltV} />,
                               tooltip:
                                 "Highlight min / max values for each stat (if they are >0.7 from average)",
                               toggled: showBreakdownMinMaxRings,
@@ -1301,9 +1306,7 @@ const PlayerImpactChart: React.FunctionComponent<Props> = ({
                               isLabelOnly: true,
                             },
                             {
-                              label: (
-                                <FontAwesomeIcon icon={faArrowsAltV} />
-                              ),
+                              label: <FontAwesomeIcon icon={faArrowsAltV} />,
                               tooltip:
                                 "Show min / max values for each stat (if they are >0.7 from average)",
                               toggled: showBreakdownMinMaxRings,
