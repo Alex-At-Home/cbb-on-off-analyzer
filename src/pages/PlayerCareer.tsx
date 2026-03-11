@@ -404,6 +404,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
               hidePlayerOverview: !nowShown,
             });
           }}
+          cardStyle={{ position: "relative", zIndex: 101 }}
         >
           {table}
         </GenericCollapsibleCard>
@@ -414,6 +415,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           minimizeMargin={false}
           title={`Similar Players${currPlayer ? ` to: [${currPlayer}]` : ""}`}
           helpLink={maybeShowPlayerDocs()}
+          cardStyle={{ position: "relative", zIndex: 100 }}
         >
           {similarityTable}
         </GenericCollapsibleCard>

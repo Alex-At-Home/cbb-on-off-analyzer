@@ -19,6 +19,8 @@ type Props = {
   readonly startClosed?: boolean;
   readonly onShowHide?: (nowShown: boolean) => void;
   readonly extraElement?: React.ReactNode;
+  /** Optional style for the Card (e.g. position + zIndex so dropdowns inside escape the Footer) */
+  readonly cardStyle?: React.CSSProperties;
 };
 
 const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
@@ -31,9 +33,10 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
   startClosed,
   onShowHide,
   extraElement,
+  cardStyle,
 }) => {
   const [showTable, toggleShowTable] = useState(
-    undefined == startClosed || !startClosed
+    undefined == startClosed || !startClosed,
   );
 
   const showSummaryIfHidden = () => {
@@ -69,7 +72,7 @@ const GenericCollapsibleCard: React.FunctionComponent<Props> = ({
     : {};
 
   return (
-    <Card className="w-100">
+    <Card className="w-100" style={cardStyle}>
       <Card.Body style={cardBodyStyle}>
         <Card.Title
           style={titleStyle}
