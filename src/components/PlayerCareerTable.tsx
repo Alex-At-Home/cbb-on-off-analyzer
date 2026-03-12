@@ -2649,6 +2649,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     possAsPct,
     true, //(useRapm)
   );
+  /** TODO: note this gets hammered by calls on load, should probably memoize? */
   const table = (
     <GenericTable
       showConfigureColumns={true}

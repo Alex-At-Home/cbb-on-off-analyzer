@@ -141,7 +141,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.advancedFilter ? ["advancedFilter"] : [],
         !rawParams.conf ? ["conf"] : [],
         !rawParams.posClasses ? ["posClasses"] : [],
-        !rawParams.showExpanded ? ["showExpanded"] : [],
+        ["showExpanded"], // (show expanded has been replaced by tablePreset, we keep it for bwc)
 
         rawParams.useRapm == ParamDefaults.defaultPlayerLboardUseRapm
           ? ["useRapm"]

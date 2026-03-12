@@ -43,7 +43,10 @@ import { LineupTableUtils } from "../utils/tables/LineupTableUtils";
 
 // Util imports
 import { UrlRouting } from "../utils/UrlRouting";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import {
+  CommonTableDefs,
+  OffDefDualMixed,
+} from "../utils/tables/CommonTableDefs";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import { PositionUtils } from "../utils/stats/PositionUtils";
 import { PlayerLeaderboardParams, ParamDefaults } from "../utils/FilterModels";
@@ -362,8 +365,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    startingState.tablePreset,
+    //(bwc)
+    _.isNil(startingState.showExpanded)
+      ? startingState.tablePreset
+      : "Detailed",
   );
+  const rowMode: OffDefDualMixed =
+    IndivTableDefs.indivExtraColSet("T%", false, false)[
+      tablePreset || ParamDefaults.defaultTablePreset
+    ]?.rowMode || "Off";
+  /** Splits out offensive and defensive metrics into separate rows */
+  const expandedView = rowMode === "Dual";
+
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
     startingState.tableConfigExtraCols || [],
@@ -496,22 +509,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [isT100, setIsT100] = useState(startingState.t100 || false);
   const [isConfOnly, setIsConfOnly] = useState(startingState.confOnly || false);
   const [incLowVol, setIncLowVol] = useState(startingState.incLowVol || false);
-
-  /** Splits out offensive and defensive metrics into separate rows */
-  const [expandedView, setExpandedView] = useState(
-    _.isNil(startingState.showExpanded)
-      ? ParamDefaults.defaultPlayerShowExpanded
-      : startingState.showExpanded,
-  );
-
-  /** This is a WIP experiment for a nicer single row view
-   * TODO: unify with expandedView
-   */
-  const [showExpanded, setShowExpanded] = useState(true);
-  //   _.isNil(startingState.showExpanded)
-  //     ? !FeatureFlags.isActiveWindow(FeatureFlags.expandedPlayerLeaderboard)
-  //     : startingState.showExpanded
-  // );
 
   // Geo filtering
   const [geoBoundsChecker, setGeoBoundsChecker] = useState<
@@ -687,7 +684,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       t100: isT100,
       incLowVol,
       confOnly: isConfOnly,
-      showExpanded: expandedView,
       // Player filters/settings:
       posClasses: posClasses,
       possAsPct: possAsPct,
@@ -728,7 +724,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     advancedFilterStr,
     isT100,
     isConfOnly,
-    expandedView,
     incLowVol,
     possAsPct,
     factorMins,
@@ -2158,6 +2153,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           )
         : [];
 
+    const colSets = IndivTableDefs.indivExtraColSet(
+      factorMins ? "T%" : "P%",
+      possAsPct,
+      true, // useRapm
+    );
+
     return {
       table: (
         <GenericTable
@@ -2220,23 +2221,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           }}
           presetOverride={tablePreset}
           tableCopyId="playerLeaderboardTable"
-          tableFields={
-            showExpanded
-              ? CommonTableDefs.onOffIndividualTable(
-                  expandedView,
-                  possAsPct,
-                  factorMins,
-                  true,
-                )
-              : CommonTableDefs.singleRowPlayerLeaderboardOnOffStyle(
-                  factorMins,
-                  startingState.useRapm === false ? false : true,
-                  gender,
-                  year,
-                  isT100,
-                  isConfOnly,
-                )
-          }
+          tableFields={colSets.Default.colSet}
           tableData={maybeSubheaderRow.concat(tableData)}
           cellTooltipMode="none"
           extraInfoLookups={{
@@ -2258,6 +2243,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 }
               : undefined
           }
+          extraColSets={CommonTableDefs.extraColSetPicker(
+            colSets,
+            expandedView ? "Dual" : "Mixed",
+          )}
         />
       ),
       maybeMap: geoMode ? (
@@ -2346,6 +2335,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     shotChartsUseEfg,
     resolvedTheme,
     tablePreset,
+    factorMins,
+    possAsPct,
+    useRapm,
+    expandedView,
   ]);
 
   // 3.2] Sorting utils
@@ -2871,7 +2864,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     toggled: expandedView,
                     onClick: () =>
                       friendlyChange(
-                        () => setExpandedView(!expandedView),
+                        () =>
+                          setTablePreset((curr) =>
+                            curr === "Detailed" ? undefined : "Detailed",
+                          ),
                         true,
                       ),
                   },
