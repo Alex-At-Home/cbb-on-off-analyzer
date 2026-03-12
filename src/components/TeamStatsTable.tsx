@@ -1024,7 +1024,7 @@ const TeamStatsTable: React.FunctionComponent<Props> = ({
   );
 
   const fullHelpDropdown = (
-    <GenericTogglingMenu>
+    <GenericTogglingMenu legacyMode={false}>
       <GenericTogglingMenuItem
         text="Show grade controls"
         truthVal={!hideGlobalGradeSettings}

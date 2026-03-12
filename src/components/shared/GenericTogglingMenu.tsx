@@ -11,6 +11,11 @@ import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Form from "react-bootstrap/Form";
 
+import { DropdownMenuPortal } from "./DropdownMenuPortal";
+
+/** When true, use legacy Dropdown.Menu (no portal). When false, use DropdownMenuPortal for global z-index. */
+const LEGACY_DROPDOWN_MENU = true;
+
 type Props = {
   size?: "sm" | "lg";
   label?: React.ReactElement;
@@ -21,6 +26,10 @@ type Props = {
   searchBar?: boolean;
   allowlist?: string[];
   closeOnSelect?: boolean;
+  /** If true, use legacy in-tree menu; if false, use portaled menu (global z-index). Default: LEGACY_DROPDOWN_MENU.
+   * TODO: This didn't work well in all cases, don't have time to investigate, so for now just enabled where needed
+   */
+  legacyMode?: boolean;
 };
 
 const GenericTogglingMenu: React.FunctionComponent<Props> = ({
@@ -33,6 +42,7 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
   tooltip,
   searchBar,
   allowlist,
+  legacyMode = LEGACY_DROPDOWN_MENU,
   ...props
 }) => {
   // Some extra logic for the config dropdown:
@@ -141,27 +151,38 @@ const GenericTogglingMenu: React.FunctionComponent<Props> = ({
           </Dropdown.Toggle>
         </OverlayTrigger>
       )}
-      <Dropdown.Menu
-        style={{ zIndex: 2000, position: "fixed" }}
-        popperConfig={{
-          strategy: "fixed",
-          modifiers: [{ name: "offset", options: { offset: [0, 8] } }],
-        }}
-      >
-        {searchBar && (
-          <div className="px-3 py-2">
-            <Form.Control
-              type="text"
-              placeholder="Search..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              size="sm"
-            />
-          </div>
-        )}
-        {searchBar && <Dropdown.Divider />}
-        {searchBar ? filteredChildren : children}
-      </Dropdown.Menu>
+      {legacyMode ? (
+        <Dropdown.Menu
+          style={{ zIndex: 2000, position: "fixed" }}
+          popperConfig={{
+            strategy: "fixed",
+            modifiers: [{ name: "offset", options: { offset: [0, 8] } }],
+          }}
+        >
+          {searchBar && (
+            <div className="px-3 py-2">
+              <Form.Control
+                type="text"
+                placeholder="Search..."
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                size="sm"
+              />
+            </div>
+          )}
+          {searchBar && <Dropdown.Divider />}
+          {searchBar ? filteredChildren : children}
+        </Dropdown.Menu>
+      ) : (
+        <DropdownMenuPortal
+          searchBar={searchBar}
+          searchText={searchText}
+          onSearchChange={setSearchText}
+          filteredChildren={filteredChildren}
+        >
+          {searchBar ? filteredChildren : children}
+        </DropdownMenuPortal>
+      )}
     </Dropdown>
   );
 };

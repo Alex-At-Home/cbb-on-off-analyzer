@@ -2946,7 +2946,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   );
 
   const optionsDropdown = (
-    <GenericTogglingMenu size="sm">
+    <GenericTogglingMenu size="sm" legacyMode={false}>
       {playerSimilarityMode ? (
         <GenericTogglingMenuItem
           text="Show Similarity Config..."

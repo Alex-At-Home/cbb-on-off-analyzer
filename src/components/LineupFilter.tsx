@@ -48,7 +48,7 @@ type Props = {
   onStats: (
     lineupStats: LineupStatsModel,
     teamStats: TeamStatsModel,
-    rosterStats: RosterStatsModel
+    rosterStats: RosterStatsModel,
   ) => void;
   startingState: LineupFilterParams;
   onChangeState: (newParams: LineupFilterParams) => void;
@@ -138,7 +138,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
 
   /** The state managed by the CommonFilter element */
   const [commonParams, setCommonParams] = useState(
-    startingCommonFilterParams as CommonFilterParams
+    startingCommonFilterParams as CommonFilterParams,
   );
 
   // Support for game selection:
@@ -177,7 +177,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     });
     const [__, newPresetGroup] = checkForImplicitPresets(
       commonParams,
-      startingState
+      startingState,
     );
     if ((newPresetGroup || ParamDefaults.defaultPresetGroup) != presetGroup) {
       //(also update the URL params for presetGroup, which otherwise takes prio over aggByPos)
@@ -200,7 +200,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     queryParamsIn: {
       //(lots of other things+)
       aggByPos?: string;
-    }
+    },
   ): [string | undefined, string | undefined] => {
     // Switching back to simple mode
     // Let's figure out if we can re-use existing modes/groups
@@ -216,7 +216,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             ...commonParamsIn,
             ...FilterPresetUtils.basePresetQuery,
             ...(preset.commonParams || {}),
-          }
+          },
         );
       }) ||
       _.thru(
@@ -224,7 +224,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
         // TODO: add this in one place, used in both GamesFlter and LineupFilter (same for modal?)
         QueryUtils.parseFilter(
           commonParamsIn.queryFilters || "",
-          commonParamsIn.year || ParamDefaults.defaultYear
+          commonParamsIn.year || ParamDefaults.defaultYear,
         ),
         (currBaseFilter) => {
           const games =
@@ -239,7 +239,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           } else {
             return undefined;
           }
-        }
+        },
       );
     //(for simplicity we make this code very specific to the one aggByPos case)
     return [
@@ -248,7 +248,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
         FilterPresetUtils.lineupGroupPresets,
         (preset) =>
           preset.lineupParams?.aggByPos == queryParamsIn.aggByPos ||
-          (preset.lineupParams?.aggByPos == "" && !queryParamsIn.aggByPos)
+          (preset.lineupParams?.aggByPos == "" && !queryParamsIn.aggByPos),
       ),
     ];
   };
@@ -263,7 +263,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           // Advanced mode unspecified but matbe we can infer it?
           const [maybeMode, maybeGroup] = checkForImplicitPresets(
             commonParams,
-            state
+            state,
           );
 
           if (maybeMode && maybeGroup) return false;
@@ -276,7 +276,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             return true;
           return false;
         })
-      : startingState.advancedMode
+      : startingState.advancedMode,
   );
 
   /** The preset query to use */
@@ -289,7 +289,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       } else {
         const [maybeMode, maybeGroup] = checkForImplicitPresets(
           commonParams,
-          startingState
+          startingState,
         );
         if (maybeMode && maybeGroup) {
           return maybeMode;
@@ -297,7 +297,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           return startingState.presetMode || ParamDefaults.defaultPresetMode;
         }
       }
-    })
+    }),
   );
 
   /** The preset query to use */
@@ -310,7 +310,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       } else {
         const [maybeMode, maybeGroup] = checkForImplicitPresets(
           commonParams,
-          startingState
+          startingState,
         );
         if (maybeMode && maybeGroup) {
           // Ugliness ... if aggByPos is set but presetGroup isn't, we need to add the inferred presetGroup
@@ -330,7 +330,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           return startingState.presetGroup || ParamDefaults.defaultPresetGroup;
         }
       }
-    })
+    }),
   );
 
   // Lineup Filter - custom queries and filters:
@@ -351,7 +351,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
    */
   function buildParamsFromState(
     includeFilterParams: Boolean,
-    forQuery?: Boolean
+    forQuery?: Boolean,
   ): [LineupFilterParams, FilterRequestInfo[]] {
     // It's painful but re-calc the result of the preset to make sure we are using the right params
     const [maybeNewParams, maybeNewCommonParams] = advancedView
@@ -378,7 +378,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             baseQuery: RequestUtils.replaceRosterShortcut(
               commonRequestToUse.baseQuery,
               rosterRef.current || [],
-              forQuery || false
+              forQuery || false,
             ),
             aggByPos: currAggByPos,
           },
@@ -386,7 +386,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             advancedView ||
             currAggByPos == (startingState.aggByPos || "")
             ? ["aggByPos"]
-            : []
+            : [],
         ); //(in basic view, enable submit button whenever aggByPos changes)
     //(another ugly hack to be fixed - remove default optional fields)
     QueryUtils.cleanseQuery(primaryRequest);
@@ -439,7 +439,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
                 includeRoster: true,
               },
             ]
-          : []
+          : [],
       ),
     ];
   }
@@ -499,7 +499,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             jsonStatuses?.[3] ||
             "Unknown"
           : undefined,
-      }
+      },
     );
   }
 
@@ -510,14 +510,14 @@ const LineupFilter: React.FunctionComponent<Props> = ({
     {
       label: "Basic Views",
       options: _.keys(FilterPresetUtils.commonFilterPresets).map(
-        stringToOption
+        stringToOption,
       ),
     },
   ];
 
   /** The two sub-headers for the dropdown */
   const groupedPresetSplitOptions = _.chain(
-    FilterPresetUtils.lineupGroupPresets
+    FilterPresetUtils.lineupGroupPresets,
   )
     .toPairs()
     .groupBy((kv) => kv[1].label)
@@ -543,18 +543,18 @@ const LineupFilter: React.FunctionComponent<Props> = ({
   const applyPresetConfig = (
     newPresetMode: string,
     newPresetGroup: string,
-    applyEffects: boolean
+    applyEffects: boolean,
   ): [LineupFilterParams | undefined, CommonFilterParams | undefined] => {
     const newCommonFilter = {
       ...commonParams,
       ...FilterPresetUtils.basePresetQuery,
       ...(FilterPresetUtils.commonFilterPresets[newPresetMode]?.commonParams ||
         (newPresetMode.startsWith(
-          FilterPresetUtils.commonFilterSelectedGamesPrefix
+          FilterPresetUtils.commonFilterSelectedGamesPrefix,
         )
           ? {
               queryFilters: newPresetMode.substring(
-                FilterPresetUtils.commonFilterSelectedGamesPrefix.length
+                FilterPresetUtils.commonFilterSelectedGamesPrefix.length,
               ),
             }
           : {})),
@@ -569,7 +569,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
             ...(maybeSplitConfig?.lineupParams || {}),
           };
         }
-      }
+      },
     );
 
     //DEBUG
@@ -608,7 +608,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
       if (currAdvancedMode) {
         const [tmpMode, tmpGroup] = checkForImplicitPresets(
           commonParams,
-          newParamsOnSubmit
+          newParamsOnSubmit,
         );
         return [
           tmpMode || ParamDefaults.defaultPresetMode,
@@ -684,13 +684,13 @@ const LineupFilter: React.FunctionComponent<Props> = ({
           // Reset any game-based filters:
           if (
             presetMode.startsWith(
-              FilterPresetUtils.commonFilterSelectedGamesPrefix
+              FilterPresetUtils.commonFilterSelectedGamesPrefix,
             )
           ) {
             applyPresetConfig(
               ParamDefaults.defaultPresetMode,
               presetGroup,
-              true
+              true,
             );
           }
         }
@@ -713,20 +713,20 @@ const LineupFilter: React.FunctionComponent<Props> = ({
         selectedGames={QueryUtils.buildGameSelectionModel(
           QueryUtils.parseFilter(
             commonParams.queryFilters || "",
-            startingState.year || ParamDefaults.defaultYear
-          )
+            startingState.year || ParamDefaults.defaultYear,
+          ),
         )}
         show={showPresetSelectorModal}
         onClose={() => setPresetGameSelectorModal(false)}
         onSubmit={(selectedGame) => {
           const queryFilterStr = QueryUtils.buildFilterStrForQuery(
             [QueryUtils.buildGameSelectionFilter(selectedGame)],
-            []
+            [],
           );
           applyPresetConfig(
             FilterPresetUtils.commonFilterSelectedGamesPrefix + queryFilterStr,
             presetGroup,
-            true
+            true,
           );
           setPresetGameSelectorModal(false);
         }}
@@ -745,7 +745,7 @@ const LineupFilter: React.FunctionComponent<Props> = ({
               value={
                 presetMode
                   ? presetMode.startsWith(
-                      FilterPresetUtils.commonFilterSelectedGamesPrefix
+                      FilterPresetUtils.commonFilterSelectedGamesPrefix,
                     )
                     ? {
                         label: `${

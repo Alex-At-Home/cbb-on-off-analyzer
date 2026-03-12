@@ -5671,7 +5671,9 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -10729,7 +10731,9 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -16320,7 +16324,9 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -23843,7 +23849,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -30068,7 +30076,9 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -37963,7 +37973,9 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -46497,7 +46509,9 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"
@@ -58029,7 +58043,9 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
         className="mb-0"
         sm="1"
       >
-        <GenericTogglingMenu>
+        <GenericTogglingMenu
+          legacyMode={false}
+        >
           <GenericTogglingMenuItem
             onSelect={[Function]}
             text="Show grade controls"

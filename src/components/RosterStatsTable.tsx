@@ -2684,7 +2684,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   ) : null;
 
   const optionsDropdown = (
-    <GenericTogglingMenu>
+    <GenericTogglingMenu legacyMode={false}>
       <GenericTogglingMenuItem
         text="Show grade controls"
         truthVal={!hideGlobalGradeSettings}
