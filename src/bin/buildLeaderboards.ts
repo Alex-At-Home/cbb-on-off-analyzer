@@ -1389,6 +1389,8 @@ export async function main() {
                           (_.startsWith(t2[0], "diag_") && !ignoreRapm) ||
                           (t2[0] != "off_luck" &&
                             t2[0] != "def_luck" &&
+                            !_.startsWith(t2[0], "diag_off_rtg") && //(if ignoreRapm then don't include these)
+                            !_.startsWith(t2[0], "diag_def_rtg") &&
                             !_.startsWith(t2[0], "off_team_") &&
                             !_.startsWith(t2[0], "def_team_") &&
                             !_.startsWith(t2[0], "off_oppo_") &&
