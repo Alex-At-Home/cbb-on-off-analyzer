@@ -152,7 +152,8 @@ export class LineupTableDefs {
   static readonly mainLineupTableFields = (
     rawPts: boolean,
     rowMode: OffDefDualMixed,
-    mixedMode?: "Off" | "Def", //(bug if this is undefined when rowMode == "Mixed")
+    /** (it's a caller bug if a call has this undefined when rowMode == "Mixed") */
+    mixedMode?: "Off" | "Def",
   ): Record<string, GenericTableColProps> => {
     const cols = {
       //accessors vs column metadata

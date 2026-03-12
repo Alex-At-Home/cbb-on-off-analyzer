@@ -677,6 +677,7 @@ export type RequiredTeamReportFilterParams = {
 
 export class ParamDefaults {
   // Common
+  static readonly defaultTablePreset = "Default";
   static readonly defaultTeam = "";
   static readonly defaultYear = DateUtils.mostRecentYearWithData;
   static readonly defaultLeaderboardYear =

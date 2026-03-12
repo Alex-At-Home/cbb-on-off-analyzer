@@ -29,7 +29,10 @@ import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import ShotChartDiagView, { UserChartOpts } from "./diags/ShotChartDiagView";
 import { TableDisplayUtils } from "../utils/tables/TableDisplayUtils";
 import GenericTable, { GenericTableOps, GenericTableRow } from "./GenericTable";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import {
+  CommonTableDefs,
+  OffDefDualMixed,
+} from "../utils/tables/CommonTableDefs";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import {
@@ -412,13 +415,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       playerCareerParams.playerShotChartsShowFreqAsNumber ?? false,
   });
 
-  /** Splits out offensive and defensive metrics into separate rows */
-  const [expandedView, setExpandedView] = useState(
-    _.isNil(playerCareerParams.showExpanded)
-      ? ParamDefaults.defaultPlayerShowExpanded
-      : playerCareerParams.showExpanded,
-  );
-
   /** Show the number of possessions as a % of total team count */
   const [possAsPct, setPossAsPct] = useState(
     _.isNil(playerCareerParams.possAsPct)
@@ -481,8 +477,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    playerCareerParams.tablePreset,
+    //(bwc)
+    _.isNil(playerCareerParams.showExpanded)
+      ? playerCareerParams.tablePreset
+      : "Detailed",
   );
+  const rowMode: OffDefDualMixed =
+    IndivTableDefs.indivExtraColSet("T%", false, false)[
+      tablePreset || ParamDefaults.defaultTablePreset
+    ]?.rowMode || "Off";
+  /** Splits out offensive and defensive metrics into separate rows */
+  const expandedView = rowMode == "Dual";
+
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
     playerCareerParams.tableConfigExtraCols || [],
@@ -563,7 +569,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     onPlayerCareerParamsChange({
       ...playerCareerParams,
-      showExpanded: expandedView,
       showGrades,
       showPlayerPlayTypes,
       showPlayerPlayTypesAdjPpp,
@@ -2639,6 +2644,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
         )
       : [];
 
+  const colSets = IndivTableDefs.indivExtraColSet(
+    factorMins ? "T%" : "P%",
+    possAsPct,
+    true, //(useRapm)
+  );
   const table = (
     <GenericTable
       showConfigureColumns={true}
@@ -2658,12 +2668,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       }}
       presetOverride={tablePreset}
       tableCopyId="playerLeaderboardTable"
-      tableFields={CommonTableDefs.onOffIndividualTable(
-        expandedView,
-        possAsPct,
-        factorMins,
-        true,
-      )}
+      tableFields={colSets.Default.colSet}
       tableData={maybeSubheaderRow.concat(tableData)}
       cellTooltipMode="none"
       extraInfoLookups={{
@@ -2685,6 +2690,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             }
           : undefined
       }
+      extraColSets={CommonTableDefs.extraColSetPicker(
+        colSets,
+        expandedView ? "Dual" : "Mixed",
+      )}
     />
   );
   // 4] Views
@@ -2853,7 +2862,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ? "Show single row of player stats"
                 : "Show expanded player stats",
               toggled: expandedView,
-              onClick: () => setExpandedView(!expandedView),
+              onClick: () =>
+                setTablePreset((curr) =>
+                  curr === "Detailed" ? undefined : "Detailed",
+                ),
             },
             {
               label: "Shots",

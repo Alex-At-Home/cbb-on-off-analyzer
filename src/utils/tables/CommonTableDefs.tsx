@@ -183,10 +183,13 @@ export class CommonTableDefs {
           return colKey.startsWith("off_") || colKey.startsWith("def_")
             ? colKey
             : `def_${colKey}`;
-        } else {
+        } else if (mixedMode == "Off") {
           return colKey.startsWith("off_") || colKey.startsWith("def_")
             ? colKey
             : `off_${colKey}`;
+        } else {
+          //In this case assume the fields are already prefixed
+          return colKey;
         }
       }) as Record<string, GenericTableColProps>;
     }
