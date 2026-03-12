@@ -247,7 +247,7 @@ if (!testMode)
 //   "Coppin St.",
 // ]);
 //(used this to build sample:)
-testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
+//testTeamFilter = new Set(["Maryland"]); //, "Dayton", "Fordham", "Kansas St." ]);
 if (!isDebugMode && testTeamFilter) {
   console.log(
     `************************************ ` +
