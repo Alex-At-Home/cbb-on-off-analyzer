@@ -480,7 +480,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     //(bwc)
     _.isNil(playerCareerParams.showExpanded)
       ? playerCareerParams.tablePreset
-      : "Detailed",
+      : IndivTableDefs.detailedViewName,
   );
   const rowMode: OffDefDualMixed =
     IndivTableDefs.indivExtraColSet("T%", false, false)[
@@ -753,11 +753,6 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   ]);
 
   // Table building:
-
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
 
   /** Compresses number/height/year into 1 double-width column */
   const rosterInfoSpanCalculator = (key: string) =>
@@ -1479,13 +1474,23 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
     return playerDiffMode
       ? _.flatten([
-          [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
+          [
+            GenericTableOps.buildDataRow(
+              player,
+              expandedView
+                ? CommonTableDefs.offPrefixFn
+                : CommonTableDefs.mixedPrefixFn,
+              expandedView
+                ? CommonTableDefs.offCellMetaFn
+                : CommonTableDefs.mixedCellMetaFn,
+            ),
+          ],
           expandedView
             ? [
                 GenericTableOps.buildDataRow(
                   player,
-                  defPrefixFn,
-                  defCellMetaFn,
+                  CommonTableDefs.defPrefixFn,
+                  CommonTableDefs.defCellMetaFn,
                   undefined,
                   rosterInfoSpanCalculator,
                 ),
@@ -1520,13 +1525,23 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : [],
-          [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
+          [
+            GenericTableOps.buildDataRow(
+              player,
+              expandedView
+                ? CommonTableDefs.offPrefixFn
+                : CommonTableDefs.mixedPrefixFn,
+              expandedView
+                ? CommonTableDefs.offCellMetaFn
+                : CommonTableDefs.mixedCellMetaFn,
+            ),
+          ],
           expandedView
             ? [
                 GenericTableOps.buildDataRow(
                   player,
-                  defPrefixFn,
-                  defCellMetaFn,
+                  CommonTableDefs.defPrefixFn,
+                  CommonTableDefs.defCellMetaFn,
                   undefined,
                   rosterInfoSpanCalculator,
                 ),
@@ -2863,10 +2878,15 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ? "Show single row of player stats"
                 : "Show expanded player stats",
               toggled: expandedView,
-              onClick: () =>
+              onClick: () => {
+                setTableConfigExtraCols([]);
+                setTableConfigDisabledCols(undefined);
                 setTablePreset((curr) =>
-                  curr === "Detailed" ? undefined : "Detailed",
-                ),
+                  curr === IndivTableDefs.detailedViewName
+                    ? undefined
+                    : IndivTableDefs.detailedViewName,
+                );
+              },
             },
             {
               label: "Shots",

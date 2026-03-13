@@ -66,7 +66,10 @@ import {
   ShotStats,
 } from "../utils/StatModels";
 import { CbbColors } from "../utils/CbbColors";
-import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import {
+  CommonTableDefs,
+  OffDefDualMixed,
+} from "../utils/tables/CommonTableDefs";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 import {
   getCommonFilterParams,
@@ -240,13 +243,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       gameFilterParams.playerShotChartsShowFreqAsNumber ?? false,
   });
 
-  /** Splits out offensive and defensive metrics into separate rows */
-  const [expandedView, setExpandedView] = useState(
-    _.isNil(gameFilterParams.showExpanded)
-      ? ParamDefaults.defaultPlayerShowExpanded
-      : gameFilterParams.showExpanded,
-  );
-
   /** Show baseline even if on/off are present */
   const [alwaysShowBaseline, setAlwaysShowBaseline] = useState(
     _.isNil(gameFilterParams.showBase)
@@ -309,8 +305,18 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   /** Currently selected table preset */
   const [tablePreset, setTablePreset] = useState<string | undefined>(
-    gameFilterParams.playerTablePreset,
+    //(bwc)
+    _.isNil(gameFilterParams.showExpanded)
+      ? gameFilterParams.playerTablePreset
+      : "Detailed",
   );
+  const rowMode: OffDefDualMixed =
+    IndivTableDefs.indivExtraColSet("T%", false, false)[
+      tablePreset || ParamDefaults.defaultTablePreset
+    ]?.rowMode || "Off";
+  /** Splits out offensive and defensive metrics into separate rows */
+  const expandedView = rowMode === "Dual";
+
   /** Extra columns added to table */
   const [tableConfigExtraCols, setTableConfigExtraCols] = useState<string[]>(
     gameFilterParams.playerTableConfigExtraCols || [],
@@ -497,7 +503,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       sortBy: sortBy,
       filter: filterStr,
       showBase: alwaysShowBaseline,
-      showExpanded: expandedView,
       showDiag: showDiagMode,
       possAsPct: possAsPct,
       showPosDiag: showPositionDiags,
@@ -549,7 +554,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     filterStr,
     showDiagMode,
     alwaysShowBaseline,
-    expandedView,
     possAsPct,
     showPositionDiags,
     showPlayTypes,
@@ -630,12 +634,12 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   // 2] Data Model
 
-  const tableFields = CommonTableDefs.onOffIndividualTable(
-    expandedView,
+  const colSets = IndivTableDefs.indivExtraColSet(
+    factorMins ? "T%" : "P%",
     possAsPct,
-    factorMins,
     calcRapm,
   );
+  const tableFields = colSets.Default.colSet;
 
   // 3] Utils
 
@@ -842,11 +846,6 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
       )[0];
     };
   };
-
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
 
   const onOffBasePicker = (
     str: "On" | "Off" | "Baseline" | "Global",
@@ -1451,8 +1450,16 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         mutableTableDisplayForOverrides[
           OverrideUtils.getPlayerRowId(stat.key, stat.onOffKey!)
         ] = [
-          GenericTableOps.buildDataRow(stat, offPrefixFn, offCellMetaFn),
-          GenericTableOps.buildDataRow(stat, defPrefixFn, defCellMetaFn),
+          GenericTableOps.buildDataRow(
+            stat,
+            CommonTableDefs.offPrefixFn,
+            CommonTableDefs.offCellMetaFn,
+          ),
+          GenericTableOps.buildDataRow(
+            stat,
+            CommonTableDefs.defPrefixFn,
+            CommonTableDefs.defCellMetaFn,
+          ),
         ];
       }
     });
@@ -1813,16 +1820,20 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
               [
                 GenericTableOps.buildDataRow(
                   player,
-                  offPrefixFn,
-                  offCellMetaFn,
+                  expandedView
+                    ? CommonTableDefs.offPrefixFn
+                    : CommonTableDefs.mixedPrefixFn,
+                  expandedView
+                    ? CommonTableDefs.offCellMetaFn
+                    : CommonTableDefs.mixedCellMetaFn,
                 ),
               ],
               expandedView
                 ? [
                     GenericTableOps.buildDataRow(
                       player,
-                      defPrefixFn,
-                      defCellMetaFn,
+                      CommonTableDefs.defPrefixFn,
+                      CommonTableDefs.defCellMetaFn,
                       undefined,
                       rosterInfoSpanCalculator,
                     ),
@@ -1859,15 +1870,19 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                 return [
                   GenericTableOps.buildDataRow(
                     compPlayer,
-                    offPrefixFn,
-                    offCellMetaFn,
+                    expandedView
+                      ? CommonTableDefs.offPrefixFn
+                      : CommonTableDefs.mixedPrefixFn,
+                    expandedView
+                      ? CommonTableDefs.offCellMetaFn
+                      : CommonTableDefs.mixedCellMetaFn,
                   ),
                   ...(expandedView
                     ? [
                         GenericTableOps.buildDataRow(
                           compPlayer,
-                          defPrefixFn,
-                          defCellMetaFn,
+                          CommonTableDefs.defPrefixFn,
+                          CommonTableDefs.defCellMetaFn,
                           undefined,
                           rosterInfoSpanCalculator,
                         ),
@@ -2269,6 +2284,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
 
   const allTableFields =
     CommonTableDefs.onOffIndividualTableAllFields(expandedView);
+  /** TODO: memoize this? That's what I did for PlayerLeaderboardTable and LineupStatsTable */
   const sortOptions: Array<any> = _.flatten(
     _.toPairs(allTableFields)
       .filter(
@@ -2374,7 +2390,7 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
   const sortOptionsByValue = _.fromPairs(
     sortOptions.map((opt) => [opt.value, opt]),
   );
-  /** Put these options at the front */
+  /** Put these options at the front - TODO: include RAPM if enabled */
   const mostUsefulSubset = _.flatMap([
     [
       "desc:off_team_poss_pct:baseline",
@@ -2483,11 +2499,15 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
             : "Show expanded player stats",
           toggled: expandedView,
           onClick: () => {
-            const newExpandedView = !expandedView;
-            setExpandedView(newExpandedView);
-            setSortBy(
-              CommonTableDefs.sortByTransforms(sortBy, newExpandedView),
-            );
+            //(Clear custom config)
+            setTableConfigExtraCols([]);
+            setTableConfigDisabledCols(undefined);
+            setSortBy(CommonTableDefs.sortByTransforms(sortBy, !expandedView));
+            setTablePreset((curr) => {
+              return curr === IndivTableDefs.detailedViewName
+                ? undefined
+                : IndivTableDefs.detailedViewName;
+            });
           },
         },
         {
@@ -2980,42 +3000,14 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
         <Row className="mt-2">
           <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
             <GenericTable
-              sortField={_.thru(sortBy, (sortField) => {
-                if (_.startsWith(sortField, "desc:off_team_poss")) {
-                  return undefined;
-                } else {
-                  const sortFieldDecomp = sortField.split(":");
-                  return sortFieldDecomp[1];
-                }
-              })}
-              onHeaderClick={(headerKey, ev) => {
-                const matchingOptions: {
-                  value: string;
-                  label: string;
-                }[] = sortOptions.filter(
-                  (opt: { value: string; label: string }) => {
-                    const field = opt.value.split(":")[1];
-                    const rawFieldIndex = field.indexOf("_");
-                    const rawField =
-                      rawFieldIndex > 0
-                        ? field.substring(rawFieldIndex + 1)
-                        : field;
-                    return rawField == headerKey;
-                  },
-                );
-
-                if (matchingOptions.length > 1) {
-                  // Multiple options - show popup
-                  setSortMenuState({
-                    columnKey: headerKey,
-                    options: matchingOptions.concat([
-                      { label: "Clear", value: "" },
-                    ]),
-                    anchorEl: ev.currentTarget as HTMLElement,
-                    currentSortValue: sortBy,
-                  });
-                }
-              }}
+              sortField={IndivTableDefs.rosterStatsSortField(sortBy)}
+              onHeaderClick={IndivTableDefs.buildSortCallback(
+                rowMode,
+                sortBy,
+                sortOptions,
+                setSortMenuState,
+                false,
+              )}
               showConfigureColumns={true}
               initialColumnConfig={{
                 newCol: tableConfigExtraCols,
@@ -3052,6 +3044,10 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
                     }
                   : undefined
               }
+              extraColSets={CommonTableDefs.extraColSetPicker(
+                colSets,
+                expandedView ? "Dual" : "Mixed",
+              )}
             />
           </Col>
         </Row>

@@ -679,6 +679,9 @@ const GenericTable: React.FunctionComponent<Props> = ({
   const [columnConfig, setColumnConfig] = useState<
     TableColumnConfig | undefined
   >(initialColumnConfig);
+  useEffect(() => {
+    setColumnConfig(initialColumnConfig);
+  }, [initialColumnConfig]);
 
   // Determine base columns (preset or default tableFields)
   const baseTableFields = React.useMemo(() => {

@@ -383,9 +383,7 @@ const OnOffAnalyzerPage: NextPage<{}> = () => {
         rawParams.showBase == ParamDefaults.defaultPlayerShowBase
           ? ["showBase"]
           : [],
-        rawParams.showExpanded == ParamDefaults.defaultPlayerShowExpanded
-          ? ["showExpanded"]
-          : [],
+        ["showExpanded"], // (show expanded has been replaced by tablePreset, we keep it for bwc)
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
         rawParams.showDiag == ParamDefaults.defaultPlayerDiagMode
           ? ["showDiag"]

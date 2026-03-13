@@ -50,6 +50,52 @@ export class IndivTableDefs {
     def_drb: (o: string) => undefined,
   } as Record<string, (o: string) => string | undefined>;
 
+  /** Roster-stats-table specific translation from the sort field to the table display */
+  static readonly rosterStatsSortField = (sortField: string) => {
+    if (_.startsWith(sortField, "desc:off_team_poss")) {
+      return undefined;
+    } else {
+      const sortFieldDecomp = sortField.split(":");
+      return sortFieldDecomp[1];
+    }
+  };
+
+  /** Player-leaderboard-table specific translation from the sort field to the table display */
+  static readonly leaderboardStatsSortField = (sortFieldDecompStr: string) => {
+    const sortFieldDecomp = sortFieldDecompStr.split(":");
+    const sortField = sortFieldDecomp[1];
+    if (sortField == "diff_adj_rapm") {
+      return "off_adj_rapm_margin";
+    } else if (sortField == "diff_adj_rapm_prod") {
+      return "off_adj_rapm_prod_margin";
+    } else {
+      return sortField;
+    }
+  };
+
+  /** Indiv-table specific handling of clicking on a column header to manage sorting */
+  static readonly buildSortCallback = (
+    rowMode: OffDefDualMixed,
+    sortBy: string,
+    sortOptions: { label: string; value: string }[],
+    setSortMenuState: (newState: TableSortPopupMenuState) => void,
+    leaderboardMode: boolean,
+  ) => {
+    return CommonTableDefs.buildSortCallback(
+      leaderboardMode ? "Dual" : rowMode, //(in leaderboard mode we always use the full "dual" set)
+      (headerKeyIn: string) => {
+        return leaderboardMode
+          ? headerKeyIn
+              .replace("_margin", "")
+              .substring(rowMode == "Mixed" ? 4 : 0) //(remove the off_/def_)
+          : headerKeyIn;
+      },
+      sortBy,
+      sortOptions,
+      setSortMenuState,
+    );
+  };
+
   //////////////////////////////////////////////////////
 
   // Table Defs: Individual Table
@@ -80,7 +126,7 @@ export class IndivTableDefs {
     /** Def really only useful as a library of the tiny subset of purely defensive fields)
      * (it's a caller bug if a call has this undefined when rowMode == "Mixed")
      */
-    mixedMode?: "Off" | "Def", //
+    mixedMode?: "Off" | "Def",
   ): Record<string, GenericTableColProps> => {
     const expandedView = rowMode == "Dual";
     const cols = {
@@ -119,36 +165,48 @@ export class IndivTableDefs {
         "Box Rtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " rating in selected lineups (box-score derived)",
-        CbbColors.picker(...CbbColors.pp100),
+        CommonTableDefs.picker(...CbbColors.pp100, rowMode, mixedMode),
       ),
       usage: GenericTableOps.addDataCol(
         expandedView ? <div>Usg{lineSep} Pos</div> : "Usg",
         expandedView
           ? "% of team possessions used in selected lineups, plus the position category for this player"
           : "% of team possessions used in selected lineups",
-        CbbColors.offOnlyPicker(...CbbColors.usg),
+        CommonTableDefs.offOnlyPicker(...CbbColors.usg, rowMode, mixedMode),
         GenericTableOps.percentOrHtmlFormatter,
       ), //TODO needs to be steeper
       adj_rtg: GenericTableOps.addPtsCol(
         "Adj+ Rtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
-        CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+        CommonTableDefs.picker(
+          ...CbbColors.diff10_p100_redGreen,
+          rowMode,
+          mixedMode,
+        ),
       ),
       adj_prod: GenericTableOps.addPtsCol(
         "Adj+ Prod",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
-        CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+        CommonTableDefs.picker(
+          ...CbbColors.diff10_p100_redGreen,
+          rowMode,
+          mixedMode,
+        ),
       ),
 
-      // 2 of these 4 are always omitted by onOffIndividualTable, the other 2 we just make empty-ish so that auto-gen of table sort works
+      // 2 of these 4 are always omitted by individualTableBuilder, the other 2 we just make empty-ish so that auto-gen of table sort works
       adj_rapm_margin: expandedView
         ? { colName: undefined }
         : GenericTableOps.addDataCol(
             "RAPM net",
             "Adjusted Plus-Minus vs D1 average (Off-Def margin)",
-            CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+            CommonTableDefs.picker(
+              ...CbbColors.diff10_p100_redGreen,
+              rowMode,
+              mixedMode,
+            ),
             GenericTableOps.pointsOrHtmlFormatter,
           ),
       adj_rapm_prod_margin: expandedView
@@ -156,14 +214,22 @@ export class IndivTableDefs {
         : GenericTableOps.addDataCol(
             "RAPM Prod",
             "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average (Off-Def margin)",
-            CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+            CommonTableDefs.picker(
+              ...CbbColors.diff10_p100_redGreen,
+              rowMode,
+              mixedMode,
+            ),
             GenericTableOps.pointsOrHtmlFormatter,
           ),
       adj_rapm: expandedView
         ? GenericTableOps.addDataCol(
             "RAPM",
             "Adjusted Plus-Minus vs D1 average",
-            CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+            CommonTableDefs.picker(
+              ...CbbColors.diff10_p100_redGreen,
+              rowMode,
+              mixedMode,
+            ),
             GenericTableOps.pointsOrHtmlFormatter,
           )
         : { colName: undefined },
@@ -171,7 +237,11 @@ export class IndivTableDefs {
         ? GenericTableOps.addDataCol(
             "RAPM Prod",
             "Adjusted Plus-Minus production (pts/100 * mins%) vs D1 average",
-            CbbColors.picker(...CbbColors.diff10_p100_redGreen),
+            CommonTableDefs.picker(
+              ...CbbColors.diff10_p100_redGreen,
+              rowMode,
+              mixedMode,
+            ),
             GenericTableOps.pointsOrHtmlFormatter,
           )
         : { colName: undefined },
@@ -180,13 +250,13 @@ export class IndivTableDefs {
       efg: GenericTableOps.addDataCol(
         "eFG%",
         "Effective field goal% (3 pointers count 1.5x as much) in selected lineups",
-        CbbColors.offOnlyPicker(...CbbColors.eFG),
+        CommonTableDefs.offOnlyPicker(...CbbColors.eFG, rowMode, mixedMode),
         GenericTableOps.percentOrHtmlFormatter,
       ),
       assist: GenericTableOps.addDataCol(
         "A%",
         "Assist % for player in selected lineups",
-        CbbColors.offOnlyPicker(...CbbColors.p_ast),
+        CommonTableDefs.offOnlyPicker(...CbbColors.p_ast, rowMode, mixedMode),
         GenericTableOps.percentOrHtmlFormatter,
       ),
       to: GenericTableOps.addPctCol(
@@ -194,30 +264,30 @@ export class IndivTableDefs {
         expandedView
           ? "Turnover % / Steal % in selected lineups"
           : "Turnover % in selected lineups",
-        CbbColors.picker(...CbbColors.p_tOver),
+        CommonTableDefs.picker(...CbbColors.p_tOver, rowMode, mixedMode),
       ),
       orb: expandedView
         ? GenericTableOps.addPctCol(
             "RB%",
             "Offensive/Defensive rebounding % in selected lineups",
-            CbbColors.picker(...CbbColors.p_oReb),
+            CommonTableDefs.picker(...CbbColors.p_oReb, rowMode, mixedMode),
           )
         : GenericTableOps.addPctCol(
             "OR%",
             "Offensive rebounding % in selected lineups",
-            CbbColors.picker(...CbbColors.p_oReb),
+            CommonTableDefs.picker(...CbbColors.p_oReb, rowMode, mixedMode),
           ),
       drb: GenericTableOps.addPctCol(
         "DR%",
         "Defensive rebounding % in selected lineups",
-        CbbColors.picker(...CbbColors.p_dReb),
+        CommonTableDefs.picker(...CbbColors.p_dReb, rowMode, mixedMode),
       ),
       ftr: GenericTableOps.addPctCol(
         expandedView ? <div>FTR{lineSep} F/50</div> : "FTR",
         expandedView
           ? "Free throw rate (off) and Fouls called/50 possessions (def) in selected lineups"
           : "Free throw rate in selected lineups",
-        CbbColors.picker(...CbbColors.p_ftr),
+        CommonTableDefs.picker(...CbbColors.p_ftr, rowMode, mixedMode),
       ),
       sep_off_ast: expandedView
         ? GenericTableOps.addSpecialColSeparator("__off_ast__")
@@ -227,7 +297,7 @@ export class IndivTableDefs {
         `Percentage of 3 pointers taken against all field goals${
           expandedView ? " (assisted% below)" : ""
         }`,
-        CbbColors.offOnlyPicker(...CbbColors.fgr),
+        CommonTableDefs.offOnlyPicker(...CbbColors.fgr, rowMode, mixedMode),
         GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef),
       ),
       "2pmidr": GenericTableOps.addDataCol(
@@ -235,7 +305,7 @@ export class IndivTableDefs {
         `Percentage of mid range 2 pointers taken against all field goals${
           expandedView ? " (assisted% below)" : ""
         }`,
-        CbbColors.offOnlyPicker(...CbbColors.fgr),
+        CommonTableDefs.offOnlyPicker(...CbbColors.fgr, rowMode, mixedMode),
         GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef),
       ),
       "2primr": GenericTableOps.addDataCol(
@@ -243,7 +313,7 @@ export class IndivTableDefs {
         `Percentage of layup/dunk/etc 2 pointers taken against all field goals${
           expandedView ? " (assisted% below)" : ""
         }`,
-        CbbColors.offOnlyPicker(...CbbColors.fgr),
+        CommonTableDefs.offOnlyPicker(...CbbColors.fgr, rowMode, mixedMode),
         GenericTableOps.dualRowPercentFormatter(CbbColors.fgr_offDef),
       ),
       sep3: GenericTableOps.addSpecialColSeparator("__ft__"),
@@ -252,25 +322,25 @@ export class IndivTableDefs {
         expandedView
           ? "3 point field goal percentage / FT% in lower row"
           : "3 point field goal percentage",
-        CbbColors.offOnlyPicker(...CbbColors.fg3P),
+        CommonTableDefs.offOnlyPicker(...CbbColors.fg3P, rowMode, mixedMode),
         GenericTableOps.dualRowPercentFormatter(CbbColors.off_FT),
       ),
       "2p": GenericTableOps.addPctCol(
         "2P%",
         "2 point field goal percentage",
-        CbbColors.picker(...CbbColors.fg2P),
+        CommonTableDefs.picker(...CbbColors.fg2P, rowMode, mixedMode),
       ),
       "2pmid": GenericTableOps.addPctCol(
         "2P% mid",
         "2 point field goal percentage (mid range)",
-        CbbColors.picker(...CbbColors.fg2P_mid),
+        CommonTableDefs.picker(...CbbColors.fg2P_mid, rowMode, mixedMode),
       ),
       "2prim": GenericTableOps.addPctCol(
         expandedView ? <div>Rim%{lineSep} Blk%</div> : "2P% rim",
         expandedView
           ? "2 point field goal percentage (off) and Block% (def)"
           : "2 point field goal percentage (layup/dunk/etc)",
-        CbbColors.picker(...CbbColors.p_fg2P_rim),
+        CommonTableDefs.picker(...CbbColors.p_fg2P_rim, rowMode, mixedMode),
       ),
       sep4: GenericTableOps.addColSeparator(),
       adj_opp: GenericTableOps.addPtsCol(
@@ -294,7 +364,7 @@ export class IndivTableDefs {
     return _.omit(
       IndivTableDefs.mainIndivTableFields(
         rowMode,
-        rowMode === "Mixed" ? "Off" : undefined,
+        rowMode == "Mixed" ? "Off" : undefined,
       ),
       _.flatten([
         expandedView ? ["drb"] : ["adj_opp", "sep4"],
@@ -314,7 +384,7 @@ export class IndivTableDefs {
               "adj_rapm_margin",
               "adj_rapm_prod_margin",
             ], //(all RAPM)
-      ]),
+      ]).map((k) => (rowMode == "Mixed" ? `off_${k}` : k)),
     ) as Record<string, GenericTableColProps>;
   };
 
@@ -659,6 +729,9 @@ export class IndivTableDefs {
 
   // PRESETS
 
+  /** The classic "dual-row" view */
+  static readonly detailedViewName = "Detailed";
+
   static readonly indivExtraColSet = _.memoize(
     (
       scaleType: "P%" | "T%",
@@ -668,18 +741,72 @@ export class IndivTableDefs {
     ): Record<string, ExtraColSet & { rowMode: OffDefDualMixed }> => {
       return {
         Default: {
-          isPreset: false,
-          rowMode: "Off", //(We treat both off/def fields as off for legaacy reasons)
+          isPreset: false, //(because it's default)
+          rowMode: "Mixed", //(We treat both off/def fields as off for legacy reasons)
           name: "Default",
           description: "Single-row view of key offensive and defensive stats",
           colSet: IndivTableDefs.individualTableBuilder(
             scaleType,
             possAsPct,
             includeRapm,
-            "Off",
+            "Mixed", //(we force it to be Mixed/Off)
           ),
         },
-        Detailed: {
+        /** Contains the def_xxx fields used in dual row for extra (mostly offensive) fields */
+        Extra: {
+          isPreset: false,
+          isLibrary: true,
+          rowMode: "Mixed",
+          name: "Extra",
+          description: "Additional stats for the single-row player table",
+          colSet: {
+            def_to: GenericTableOps.addPctCol(
+              "Stl%",
+              "Steal%",
+              CommonTableDefs.picker(
+                CbbColors.applyThemedBackground,
+                CbbColors.p_tOver[1],
+                "Mixed",
+                "Def",
+              ),
+            ),
+            def_2prim: GenericTableOps.addPctCol(
+              "Blk%",
+              "Block%",
+              CommonTableDefs.picker(
+                CbbColors.applyThemedBackground,
+                CbbColors.p_fg2P_rim[1],
+                "Mixed",
+                "Def",
+              ),
+            ),
+            off_ft: GenericTableOps.addDataCol(
+              "FT%",
+              "Free Throw%",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.shadowPercentFormatter(CbbColors.off_FT),
+            ),
+            off_3p_ast: GenericTableOps.addDataCol(
+              "3PA%",
+              "The % of 3P makes that were assisted",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.shadowPercentFormatter(CbbColors.fgr_offDef),
+            ),
+            off_2pmid_ast: GenericTableOps.addDataCol(
+              "MidA%",
+              "The % of mid-range 2P makes that were assisted",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.shadowPercentFormatter(CbbColors.fgr_offDef),
+            ),
+            off_2prim_ast: GenericTableOps.addDataCol(
+              "RimA%",
+              "The % of 2P at the rim makes that were assisted",
+              CbbColors.applyThemedBackground,
+              GenericTableOps.shadowPercentFormatter(CbbColors.fgr_offDef),
+            ),
+          },
+        },
+        [IndivTableDefs.detailedViewName]: {
           isPreset: true,
           rowMode: "Dual",
           name: "Detailed",

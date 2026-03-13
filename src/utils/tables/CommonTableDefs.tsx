@@ -77,7 +77,21 @@ export class CommonTableDefs {
       }
     };
   }
-
+  static offOnlyPicker(
+    offScale: (val: number) => string | undefined,
+    defScale: (val: number) => string | undefined,
+    rowMode: OffDefDualMixed,
+    mixedMode?: "Off" | "Def",
+  ) {
+    if (rowMode == "Dual") {
+      return CbbColors.offOnlyPicker(offScale, defScale);
+    } else if (rowMode == "Off" || mixedMode == "Off") {
+      return CommonTableDefs.picker(offScale, offScale);
+    } else {
+      return (val: number) => undefined;
+    }
+  }
+  /** TODO: not compatible with row modes */
   static singleLinePicker(offScale: (val: number) => string) {
     return (val: any, valMeta: string) => {
       if ("off" == valMeta) {
@@ -1089,7 +1103,13 @@ export class CommonTableDefs {
     );
   };
 
-  /** Lineup-table specific handling of clicking on a column header to manage sorting */
+  /** Lineup-table specific handling of clicking on a column header to manage sorting
+   * Works on the assumption that in mixed mode, you get the rows with off_ / def_ included
+   * and therefore the sortOptions likewise
+   * in other modes both sortOptions and headerKey are "raw"
+   * If you deviate from this (see PlayerLeaderboardTable), you have to hand adjust both fields, otherwise
+   * you run into trouble with "diff_"
+   */
   static readonly buildSortCallback = (
     rowMode: OffDefDualMixed,
     tableFieldTransformer: (headerKey: string) => string,
@@ -1109,6 +1129,7 @@ export class CommonTableDefs {
           rawFieldIndex > 0 && rowMode != "Mixed"
             ? field.substring(rawFieldIndex + 1)
             : field;
+
         return rawField == headerKey;
       });
 

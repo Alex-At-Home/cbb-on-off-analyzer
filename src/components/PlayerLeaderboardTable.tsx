@@ -127,96 +127,6 @@ const unsortedOpt = {
   label: "(Sorted Above)",
   value: ParamDefaults.playerLboardSyntheticSorted,
 };
-const sortOptions: Array<any> = _.flatten(
-  _.toPairs(CommonTableDefs.onOffIndividualTableAllFields(true))
-    .filter(
-      (keycol) =>
-        keycol[1].colName &&
-        keycol[1].colName != "" &&
-        (!_.isString(keycol[1].colName) ||
-          !_.startsWith(keycol[1].colName, "__")),
-    )
-    .map((keycol) => {
-      return [
-        ["desc", "diff"],
-        ["desc", "off"],
-        ["asc", "def"],
-        ["asc", "diff"],
-        ["asc", "off"],
-        ["desc", "def"],
-      ].flatMap((combo) => {
-        if (
-          combo[1] == "diff" &&
-          keycol[0] != "rtg" &&
-          keycol[0] != "adj_rtg" &&
-          keycol[0] != "adj_prod" &&
-          keycol[0] != "adj_rapm" &&
-          keycol[0] != "adj_rapm_prod" &&
-          keycol[0] != "adj_opp"
-        ) {
-          // only do diff for a few:
-          return [];
-        }
-        if (
-          combo[1] == "def" &&
-          (keycol[0] == "usage" ||
-            keycol[0].endsWith("_margin") ||
-            keycol[0] == "efg" ||
-            keycol[0] == "assist" ||
-            keycol[0] == "2p" ||
-            keycol[0] == "2pmid")
-        ) {
-          // a few defensive stats don't make sense
-          //TODO: fix the stats like def_3pr==off_assist_3p
-          //(others, like def_ftr==FC/50 are handled below)
-          return [];
-        }
-        const ascOrDesc = (s: string) => {
-          switch (s) {
-            case "asc":
-              return "Asc.";
-            case "desc":
-              return "Desc.";
-          }
-        };
-        const offOrDef = (s: string) => {
-          switch (s) {
-            case "off":
-              return "Offensive";
-            case "def":
-              return "Defensive";
-            case "diff":
-              return "Net";
-          }
-        };
-        const labelOverride =
-          IndivTableDefs.indivColNameOverrides[`${combo[1]}_${keycol[0]}`];
-        const ascOrDecLabel = ascOrDesc(combo[0]) || "";
-        const offOrDefLabel = offOrDef(combo[1]) || "";
-        const label = labelOverride
-          ? labelOverride(ascOrDecLabel)
-          : "see_below";
-        return label
-          ? [
-              {
-                label: !_.isNil(labelOverride)
-                  ? label
-                  : `${keycol[1].colName} (${ascOrDecLabel} / ${offOrDefLabel})`,
-                value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
-              },
-            ]
-          : [];
-      });
-    }),
-);
-const sortOptionsByValue = _.fromPairs(
-  sortOptions
-    .map((opt) => [opt.value, opt])
-    .concat([
-      [yearOpt.value, yearOpt],
-      [unsortedOpt.value, unsortedOpt],
-    ]),
-);
 
 // Info required for the positional filter
 
@@ -368,7 +278,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     //(bwc)
     _.isNil(startingState.showExpanded)
       ? startingState.tablePreset
-      : "Detailed",
+      : IndivTableDefs.detailedViewName,
   );
   const rowMode: OffDefDualMixed =
     IndivTableDefs.indivExtraColSet("T%", false, false)[
@@ -561,6 +471,112 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     }
     setUseRapm(!useRapm);
   };
+
+  ///////////////////////////
+
+  // Some sort logic:
+
+  /** The reason this is memoized in other places is because it depends on inputs (eg preset)
+   *  either move to doing that (I think LineupStatsTables takes _all_ fields that match the current rowMode)
+   */
+  const sortOptions: Array<{ label: string; value: string }> =
+    React.useMemo(() => {
+      const allTableFields =
+        CommonTableDefs.onOffIndividualTableAllFields(true);
+      return _.flatten(
+        _.toPairs(allTableFields)
+          .filter(
+            (keycol) =>
+              keycol[1].colName &&
+              keycol[1].colName != "" &&
+              (!_.isString(keycol[1].colName) ||
+                !_.startsWith(keycol[1].colName, "__")),
+          )
+          .map((keycol) => {
+            return [
+              ["desc", "diff"],
+              ["desc", "off"],
+              ["asc", "def"],
+              ["asc", "diff"],
+              ["asc", "off"],
+              ["desc", "def"],
+            ].flatMap((combo) => {
+              if (
+                combo[1] == "diff" &&
+                keycol[0] != "rtg" &&
+                keycol[0] != "adj_rtg" &&
+                keycol[0] != "adj_prod" &&
+                keycol[0] != "adj_rapm" &&
+                keycol[0] != "adj_rapm_prod" &&
+                keycol[0] != "adj_opp"
+              ) {
+                // only do diff for a few:
+                return [];
+              }
+              if (
+                combo[1] == "def" &&
+                (keycol[0] == "usage" ||
+                  keycol[0].endsWith("_margin") ||
+                  keycol[0] == "efg" ||
+                  keycol[0] == "assist" ||
+                  keycol[0] == "2p" ||
+                  keycol[0] == "2pmid")
+              ) {
+                // a few defensive stats don't make sense
+                //TODO: fix the stats like def_3pr==off_assist_3p
+                //(others, like def_ftr==FC/50 are handled below)
+                return [];
+              }
+              const ascOrDesc = (s: string) => {
+                switch (s) {
+                  case "asc":
+                    return "Asc.";
+                  case "desc":
+                    return "Desc.";
+                }
+              };
+              const offOrDef = (s: string) => {
+                switch (s) {
+                  case "off":
+                    return "Offensive";
+                  case "def":
+                    return "Defensive";
+                  case "diff":
+                    return "Net";
+                }
+              };
+              const labelOverride =
+                IndivTableDefs.indivColNameOverrides[
+                  `${combo[1]}_${keycol[0]}`
+                ];
+              const ascOrDecLabel = ascOrDesc(combo[0]) || "";
+              const offOrDefLabel = offOrDef(combo[1]) || "";
+              const label = labelOverride
+                ? labelOverride(ascOrDecLabel)
+                : "see_below";
+              return label
+                ? [
+                    {
+                      label: !_.isNil(labelOverride)
+                        ? label
+                        : `${keycol[1].colName} (${ascOrDecLabel} / ${offOrDefLabel})`,
+                      value: `${combo[0]}:${combo[1]}_${keycol[0]}`,
+                    },
+                  ]
+                : [];
+            });
+          }),
+      );
+    }, []);
+  const sortOptionsByValue = _.fromPairs(
+    sortOptions
+      .map((opt) => [opt.value, opt])
+      .concat([
+        [yearOpt.value, yearOpt],
+        [unsortedOpt.value, unsortedOpt],
+      ]),
+  );
+
   /** Put these options at the front */
   const mostUsefulSubset = factorMins
     ? [
@@ -907,11 +923,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     .map((fragment) => fragment.substring(1));
 
   // 3.2] Table building
-
-  const offPrefixFn = (key: string) => "off_" + key;
-  const offCellMetaFn = (key: string, val: any) => "off";
-  const defPrefixFn = (key: string) => "def_" + key;
-  const defCellMetaFn = (key: string, val: any) => "def";
 
   /** Used in table building below but also to display example in tooltip */
   const buildFilterStringTest = (player: IndivStatSet) => {
@@ -1954,13 +1965,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   GenericTableOps.buildRowSeparator("1px"),
                 ]
               : [],
-            [GenericTableOps.buildDataRow(player, offPrefixFn, offCellMetaFn)],
+            [
+              GenericTableOps.buildDataRow(
+                player,
+                expandedView
+                  ? CommonTableDefs.offPrefixFn
+                  : CommonTableDefs.mixedPrefixFn,
+                expandedView
+                  ? CommonTableDefs.offCellMetaFn
+                  : CommonTableDefs.mixedCellMetaFn,
+              ),
+            ],
             expandedView
               ? [
                   GenericTableOps.buildDataRow(
                     player,
-                    defPrefixFn,
-                    defCellMetaFn,
+                    CommonTableDefs.defPrefixFn,
+                    CommonTableDefs.defCellMetaFn,
                     undefined,
                     rosterInfoSpanCalculator,
                   ),
@@ -2158,50 +2179,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       possAsPct,
       true, // useRapm
     );
-
+    /**/
+    console.log(`rende1r`);
+    //TODO: OK what's happening here is that in mixed mode, the table returns "off_adj_rapm"
+    // and the sort options are off_/diff_
     return {
       table: (
         <GenericTable
-          sortField={_.thru(sortBy, (sortFieldDecompStr) => {
-            const sortFieldDecomp = sortFieldDecompStr.split(":");
-            const sortField = sortFieldDecomp[1];
-            if (sortField == "diff_adj_rapm") {
-              return "off_adj_rapm_margin";
-            } else if (sortField == "diff_adj_rapm_prod") {
-              return "off_adj_rapm_prod_margin";
-            } else {
-              return sortField;
-            }
-          })}
+          sortField={IndivTableDefs.leaderboardStatsSortField(sortBy)}
           onHeaderClick={
             !isCustomRanking
-              ? (headerKeyIn, ev) => {
-                  const headerKey = headerKeyIn.replace("_margin", "");
-                  const matchingOptions: { value: string; label: string }[] =
-                    sortOptions.filter(
-                      (opt: { value: string; label: string }) => {
-                        const field = opt.value.split(":")[1];
-                        const rawFieldIndex = field.indexOf("_");
-                        const rawField =
-                          rawFieldIndex > 0
-                            ? field.substring(rawFieldIndex + 1)
-                            : field;
-                        return rawField == headerKey;
-                      },
-                    );
-
-                  if (matchingOptions.length > 1) {
-                    // Multiple options - show popup
-                    setSortMenuState({
-                      columnKey: headerKey,
-                      options: matchingOptions.concat([
-                        { label: "Clear", value: "" },
-                      ]),
-                      anchorEl: ev.currentTarget as HTMLElement,
-                      currentSortValue: sortBy,
-                    });
-                  }
-                }
+              ? IndivTableDefs.buildSortCallback(
+                  rowMode,
+                  sortBy,
+                  sortOptions,
+                  setSortMenuState,
+                  true,
+                )
               : undefined
           }
           showConfigureColumns={true}
@@ -2210,14 +2204,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             disabledCols: tableConfigDisabledCols,
           }}
           onColumnConfigChange={(config) => {
+            // TODO: wrap this in a friendlyChange, the problem is that I don't know if these have changed
+            // or not
             setTableConfigExtraCols(config.newCol);
             setTableConfigDisabledCols(config.disabledCols);
           }}
           onPresetChange={(preset) => {
-            setTablePreset(preset);
-            // Reset overrides:
-            setTableConfigExtraCols([]);
-            setTableConfigDisabledCols(undefined);
+            friendlyChange(() => {
+              setTablePreset(preset);
+              // Reset overrides:
+              setTableConfigExtraCols([]);
+              setTableConfigDisabledCols(undefined);
+            }, tablePreset != preset);
           }}
           presetOverride={tablePreset}
           tableCopyId="playerLeaderboardTable"
@@ -2863,13 +2861,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     disabled: false,
                     toggled: expandedView,
                     onClick: () =>
-                      friendlyChange(
-                        () =>
-                          setTablePreset((curr) =>
-                            curr === "Detailed" ? undefined : "Detailed",
-                          ),
-                        true,
-                      ),
+                      friendlyChange(() => {
+                        setTableConfigExtraCols([]);
+                        setTableConfigDisabledCols(undefined);
+                        //TODO: RosterStatsTable has a call to
+                        // setSortBy(CommonTableDefs.sortByTransforms(sortBy, !expandedView));
+                        // which is missing here. One rainy day, investigate why?
+                        setTablePreset((curr) =>
+                          curr === IndivTableDefs.detailedViewName
+                            ? undefined
+                            : IndivTableDefs.detailedViewName,
+                        );
+                      }, true),
                   },
                   {
                     label: "Luck",
