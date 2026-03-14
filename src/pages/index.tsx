@@ -1733,24 +1733,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
 
       // Update cache entries
       if (typeof window !== "undefined") {
-        ClientRequestCache.cacheResponse(
-          "landing_show_year",
-          "",
-          { value: newYear },
-          undefined,
-        );
-        ClientRequestCache.cacheResponse(
-          "landing_show_gender",
-          "",
-          { value: newGender },
-          undefined,
-        );
-        ClientRequestCache.cacheResponse(
-          "landing_show_team",
-          "",
-          { value: newTeam },
-          undefined,
-        );
+        ClientRequestCache.setSavedYear(newYear);
+        ClientRequestCache.setSavedGender(newGender);
+        ClientRequestCache.setSavedTeam(newTeam);
       }
     } else if (newGender) {
       setGender(newGender);
@@ -1758,12 +1743,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
       setShowTeamModal(false);
 
       // Special mode just save Gender
-      ClientRequestCache.cacheResponse(
-        "landing_show_gender",
-        "",
-        { value: newGender },
-        undefined,
-      );
+      ClientRequestCache.setSavedGender(newGender);
     }
   };
 
@@ -1777,15 +1757,9 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
 
     // Clear cache entries
     if (typeof window !== "undefined") {
-      // For consistency with showIntro behavior, we'll set empty objects to effectively clear the entries
-      ClientRequestCache.cacheResponse("landing_show_year", "", {}, undefined);
-      ClientRequestCache.cacheResponse(
-        "landing_show_gender",
-        "",
-        {},
-        undefined,
-      );
-      ClientRequestCache.cacheResponse("landing_show_team", "", {}, undefined);
+      ClientRequestCache.setSavedYear(undefined);
+      ClientRequestCache.setSavedGender(undefined);
+      ClientRequestCache.setSavedTeam(undefined);
     }
   };
 

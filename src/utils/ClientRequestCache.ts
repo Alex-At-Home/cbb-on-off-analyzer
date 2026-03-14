@@ -24,6 +24,16 @@ export class ClientRequestCache {
   /** Strings prefixed with this are treated as B64 encoded LZUTF compressed JSON */
   static readonly base64Prefix = "B64_";
 
+  /** Prefix for user preference keys; these and landing_show_* are never removed by removeLru */
+  static readonly userPrefPrefix = "userPref-";
+
+  /** Landing page param keys that must never be removed by removeLru */
+  private static readonly landingKeysProtected = [
+    "landing_show_team",
+    "landing_show_gender",
+    "landing_show_year",
+  ];
+
   static safeLocalStorage =
     typeof window == `undefined`
       ? {
@@ -45,7 +55,7 @@ export class ClientRequestCache {
     return ClientRequestCache.decacheResponse(
       "landing_show_team",
       "",
-      undefined
+      undefined,
     )?.value;
   }
 
@@ -54,7 +64,7 @@ export class ClientRequestCache {
     return ClientRequestCache.decacheResponse(
       "landing_show_gender",
       "",
-      undefined
+      undefined,
     )?.value;
   }
 
@@ -63,8 +73,69 @@ export class ClientRequestCache {
     return ClientRequestCache.decacheResponse(
       "landing_show_year",
       "",
-      undefined
+      undefined,
     )?.value;
+  }
+
+  /** Saves year from landing page; value undefined clears. */
+  static setSavedYear(value: string | undefined): void {
+    ClientRequestCache.cacheResponse(
+      "landing_show_year",
+      "",
+      value !== undefined ? { value } : {},
+      undefined,
+    );
+  }
+
+  /** Saves gender from landing page; value undefined clears. */
+  static setSavedGender(value: string | undefined): void {
+    ClientRequestCache.cacheResponse(
+      "landing_show_gender",
+      "",
+      value !== undefined ? { value } : {},
+      undefined,
+    );
+  }
+
+  /** Saves team from landing page; value undefined clears. */
+  static setSavedTeam(value: string | undefined): void {
+    ClientRequestCache.cacheResponse(
+      "landing_show_team",
+      "",
+      value !== undefined ? { value } : {},
+      undefined,
+    );
+  }
+
+  /** Returns a saved user preference, or undefined if not set. */
+  static getSavedPreference(
+    tableName: string,
+    param: string,
+  ): string | undefined {
+    const key = `${ClientRequestCache.userPrefPrefix}${tableName}-${param}`;
+    const raw = (ls as any).get(key);
+    return raw != null ? String(raw) : undefined;
+  }
+
+  /** Saves a user preference; value undefined removes the entry. Clears LRU space if needed. */
+  static setSavedPreference(
+    tableName: string,
+    param: string,
+    value: string | undefined,
+  ): void {
+    const key = `${ClientRequestCache.userPrefPrefix}${tableName}-${param}`;
+    if (value === undefined) {
+      (ls as any).remove(key);
+      return;
+    }
+    for (let i = 0; i < 15; i++) {
+      const success = (ls as any).set(key, value);
+      if (success) {
+        break;
+      } else {
+        ClientRequestCache.removeLru(false);
+      }
+    }
   }
 
   // Generic public methods
@@ -93,14 +164,14 @@ export class ClientRequestCache {
     gender: string,
     year: string,
     currentEpoch: number,
-    isDebug: boolean
+    isDebug: boolean,
   ): boolean {
     const cachedEpochKey = `data-epoch-${gender}-${year}`;
     const cachedEpoch = (ls as any).get(cachedEpochKey) || 0;
     if (cachedEpoch != currentEpoch) {
       if (isDebug) {
         console.log(
-          `Force reloading preloads because [${cachedEpoch}] != curr [${currentEpoch}]`
+          `Force reloading preloads because [${cachedEpoch}] != curr [${currentEpoch}]`,
         );
       }
       for (let i = 0; i < 15; i++) {
@@ -135,7 +206,7 @@ export class ClientRequestCache {
     key: string,
     prefix: string,
     epochKey: number | undefined,
-    isDebug: boolean = false
+    isDebug: boolean = false,
   ): Record<string, any> | null {
     // Always cache miss if in debug AND disable client cache requested
     if (isDebug && ClientRequestCache.debugDisableClientCache) {
@@ -160,7 +231,7 @@ export class ClientRequestCache {
           //(rewrite it back in compressed format)
           if (isDebug) {
             console.log(
-              `Found legacy cache for [${prefix}][${key}] epochs: [${cacheJsonTmp.cacheEpoch}, ${epochKey}]`
+              `Found legacy cache for [${prefix}][${key}] epochs: [${cacheJsonTmp.cacheEpoch}, ${epochKey}]`,
             );
           }
           ClientRequestCache.cacheResponse(key, prefix, cacheJsonTmp, epochKey);
@@ -177,7 +248,7 @@ export class ClientRequestCache {
         if (!epochKey || !cacheEpoch || cacheEpoch == epochKey) {
           if (isDebug) {
             console.log(
-              `Found cache for [${prefix}][${key}] epochs: [${cacheEpoch}, ${epochKey}]`
+              `Found cache for [${prefix}][${key}] epochs: [${cacheEpoch}, ${epochKey}]`,
             );
             if (ClientRequestCache.debugShowB64Encoded) {
               console.log(`Compressed: [${Base64.encode(compCacheJsonTmp)}]`);
@@ -185,7 +256,9 @@ export class ClientRequestCache {
           }
           if (_.startsWith(compCacheJsonTmp, ClientRequestCache.base64Prefix)) {
             compCacheJsonTmp = Base64.decode(
-              compCacheJsonTmp.substring(ClientRequestCache.base64Prefix.length)
+              compCacheJsonTmp.substring(
+                ClientRequestCache.base64Prefix.length,
+              ),
             );
           }
           const decompStr = LZUTF8.decompress(compCacheJsonTmp, {
@@ -205,7 +278,7 @@ export class ClientRequestCache {
     prefix: string,
     value: Record<string, any>,
     epochKey: number | undefined,
-    isDebug: boolean = false
+    isDebug: boolean = false,
   ) {
     const valueStr = JSON.stringify(value);
     const startTimeMs = new Date().getTime();
@@ -221,7 +294,7 @@ export class ClientRequestCache {
           }
           if (isDebug || totalTimeMs > 1000) {
             console.log(
-              `Took [${totalTimeMs}]ms to compress [${prefix}][${key}]: [${compressedVal.length}] bytes`
+              `Took [${totalTimeMs}]ms to compress [${prefix}][${key}]: [${compressedVal.length}] bytes`,
             );
           }
           ClientRequestCache.directInsertCache(
@@ -229,14 +302,14 @@ export class ClientRequestCache {
             prefix,
             compressedVal,
             epochKey,
-            isDebug
+            isDebug,
           );
         } else {
           console.log(
-            `Error compressing [${prefix}][${key}]: [${error.message}]`
+            `Error compressing [${prefix}][${key}]: [${error.message}]`,
           );
         }
-      }
+      },
     );
   }
 
@@ -246,7 +319,7 @@ export class ClientRequestCache {
     prefix: string,
     compressed: string,
     epochKey: number | undefined,
-    isDebug: boolean = false
+    isDebug: boolean = false,
   ) {
     const prefixKey = ClientRequestCache.cacheKey(key, prefix);
     for (let i = 0; i < 15; i++) {
@@ -256,7 +329,7 @@ export class ClientRequestCache {
       } else {
         const success = (ls as any).set(
           prefixKey,
-          (epochKey || "0") + ":" + compressed
+          (epochKey || "0") + ":" + compressed,
         );
         if (success) {
           return true;
@@ -269,6 +342,14 @@ export class ClientRequestCache {
     return false;
   }
 
+  /** Returns true if this key must never be removed by removeLru (landing params and userPref-). */
+  static isProtectedKey(key: string): boolean {
+    return (
+      _.includes(ClientRequestCache.landingKeysProtected, key) ||
+      _.startsWith(key, ClientRequestCache.userPrefPrefix)
+    );
+  }
+
   private static removeLru(isDebug: boolean) {
     const limit = ClientRequestCache.safeLocalStorage.length;
     const toRemove = _.transform(
@@ -276,6 +357,7 @@ export class ClientRequestCache {
       (acc, v) => {
         if (v < limit) {
           const key = ClientRequestCache.safeLocalStorage.key(v) || "";
+          if (ClientRequestCache.isProtectedKey(key)) return;
           const val = ClientRequestCache.safeLocalStorage.getItem(key) || "";
           const isPreloaded = (key: string) => {
             return _.chain(preloadedData)
@@ -290,7 +372,7 @@ export class ClientRequestCache {
           if (acc.length >= 5) return false; // already have what we need
         } else return false; //(nothing to do)
       },
-      [] as Array<string>
+      [] as Array<string>,
     );
     console.log(`To remove: ${toRemove}`);
 
@@ -301,7 +383,7 @@ export class ClientRequestCache {
     if (isDebug) {
       console.log(`Removing following keys: [${toRemove}]`);
       console.log(
-        `From [${limit}] to [${ClientRequestCache.safeLocalStorage.length}] keys in local storage`
+        `From [${limit}] to [${ClientRequestCache.safeLocalStorage.length}] keys in local storage`,
       );
     }
   }
