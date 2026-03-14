@@ -252,6 +252,28 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
     onChange(tokensToValue(tokens));
   };
 
+  const NEGATED_MULTI_VALUE_CLASS =
+    "hoop-explorer-select__multi-value--negated";
+
+  const MultiValueContainerWithNegatedClass = (props: any) => {
+    const { data, innerProps, selectProps } = props;
+    const optionItems = selectProps?.items ?? [];
+    const t = optionValueToToken(data?.value, optionItems);
+    const isNegated = t?.negated ?? false;
+    const className = [
+      innerProps?.className,
+      isNegated ? NEGATED_MULTI_VALUE_CLASS : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+    return (
+      <components.MultiValueContainer
+        {...props}
+        innerProps={{ ...innerProps, className }}
+      />
+    );
+  };
+
   const MultiValueLabelNugget = (props: any) => {
     const { data, selectProps, innerProps } = props;
     const optionItems = selectProps.items ?? [];
@@ -275,28 +297,6 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
     );
   };
 
-  const getMultiValueStyles = (base: any, props: any) => {
-    const optionItems = props.selectProps?.items ?? [];
-    const t = optionValueToToken(props.data?.value, optionItems);
-    const isNegated = t?.negated ?? false;
-    return {
-      ...base,
-      backgroundColor: isNegated ? "#1a015aff" : "grey",
-    };
-  };
-
-  const getMultiValueLabelStyles = (base: any, props: any) => {
-    const optionItems = props.selectProps?.items ?? [];
-    const t = optionValueToToken(props.data?.value, optionItems);
-    const isNegated = t?.negated ?? false;
-    return {
-      ...base,
-      fontSize: "85%",
-      color: isNegated ? "lightgrey" : base.color,
-      fontWeight: isNegated ? 100 : base.fontWeight,
-    };
-  };
-
   if (showSelector) {
     return (
       <ThemedSelect
@@ -308,11 +308,12 @@ const PlayerOptionFilterControl: React.FunctionComponent<Props> = ({
         items={items}
         styles={{
           menu: (base: any) => ({ ...base, zIndex: 1000 }),
-          multiValue: getMultiValueStyles,
-          multiValueLabel: getMultiValueLabelStyles,
           option: (base: any) => ({ ...base, textAlign: "left" }),
         }}
-        components={{ MultiValueLabel: MultiValueLabelNugget }}
+        components={{
+          MultiValueContainer: MultiValueContainerWithNegatedClass,
+          MultiValueLabel: MultiValueLabelNugget,
+        }}
         value={selectValue}
         placeholder={emptyLabel}
         options={selectOptions}

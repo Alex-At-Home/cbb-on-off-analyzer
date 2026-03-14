@@ -165,6 +165,38 @@
   color: #f5f5f5; /* dark:text-neutral-100 */
 }
 
+/* Negated (NOT) filter nuggets: purple in both themes; global so they override dark gray (no .dark required) */
+.hoop-explorer-select-container
+  .hoop-explorer-select__multi-value.hoop-explorer-select__multi-value--negated {
+  background-color: #1a015aff !important;
+}
+
+.hoop-explorer-select-container
+  .hoop-explorer-select__multi-value.hoop-explorer-select__multi-value--negated
+  .hoop-explorer-select__multi-value__label {
+  color: #f5f5f5 !important;
+}
+
+.hoop-explorer-select-container
+  .hoop-explorer-select__multi-value.hoop-explorer-select__multi-value--negated
+  .hoop-explorer-select__multi-value__remove {
+  background-color: #3d157a !important; /* slightly lighter than nugget #1a015aff */
+}
+
+.hoop-explorer-select-container
+  .hoop-explorer-select__multi-value.hoop-explorer-select__multi-value--negated
+  .hoop-explorer-select__multi-value__remove:hover {
+  background-color: #1a015aff !important;
+}
+
+.hoop-explorer-select-container
+  .hoop-explorer-select__multi-value.hoop-explorer-select__multi-value--negated
+  .hoop-explorer-select__multi-value__remove
+  svg {
+  color: #f5f5f5 !important;
+  fill: #f5f5f5 !important;
+}
+
 /* Multi-value remove button and SVG */
 [data-theme="dark"]
   .hoop-explorer-select-container
