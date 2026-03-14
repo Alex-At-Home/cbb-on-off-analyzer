@@ -37,6 +37,7 @@ import { DateUtils } from "../utils/DateUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import OffseasonPredictionWarning from "../components/shared/OffseasonPredictionWarning";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -77,10 +78,10 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
   const [currYear, setCurrYear] = useState("");
   const [currGender, setCurrGender] = useState("");
   const [currEvalMode, setCurrEvalMode] = useState(
-    undefined as undefined | boolean
+    undefined as undefined | boolean,
   );
   const [currOffSeasonMode, setCurrOffSeasonMode] = useState(
-    undefined as undefined | boolean
+    undefined as undefined | boolean,
   );
 
   // Game filter
@@ -90,7 +91,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
   }
 
   const [teamEditorParams, setTeamEditorParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as TeamEditorParams
+    UrlRouting.removedSavedKeys(allParams) as TeamEditorParams,
   );
   const teamEditorParamsRef = useRef<TeamEditorParams>();
   teamEditorParamsRef.current = teamEditorParams;
@@ -170,11 +171,11 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
             : rawParams.useRapm,
           _.isNil(rawParams.factorMins)
             ? ParamDefaults.defaultPlayerLboardFactorMins
-            : rawParams.factorMins
+            : rawParams.factorMins,
         )
           ? ["sortBy"]
           : [],
-      ])
+      ]),
     );
     if (!_.isEqual(params, teamEditorParamsRef.current)) {
       //(to avoid recursion)
@@ -231,13 +232,13 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         yearWithStats,
         "All",
         transferYears,
-        paramObj.evalMode ? [fullYear, prevYearWithStats] : [prevYearWithStats]
+        paramObj.evalMode ? [fullYear, prevYearWithStats] : [prevYearWithStats],
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
         gender,
         yearWithStats,
         "All",
-        paramObj.evalMode ? [fullYear] : []
+        paramObj.evalMode ? [fullYear] : [],
       );
       const fetchAll = Promise.all([fetchPlayers, fetchTeamStats]);
 
@@ -253,7 +254,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
                 (d.players || []).map((p: any) => {
                   p.tier = d.tier;
                   return p;
-                }) || []
+                }) || [],
             )
             .flatten()
             .value(),
@@ -316,6 +317,11 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
           }}
           thisPage={`${ParamPrefixes.team}_editor`}
         />
+      </Row>
+      <Row className="mt-2">
+        <Col xs={12} className="text-center">
+          <OffseasonPredictionWarning year={currYear} gender={currGender} />
+        </Col>
       </Row>
       <Row className="mt-3">{table}</Row>
       <Footer

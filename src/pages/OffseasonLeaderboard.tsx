@@ -35,6 +35,7 @@ import OffSeasonLeaderboardTable from "../components/OffseasonLeaderboardTable";
 import { DateUtils } from "../utils/DateUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import OffseasonPredictionWarning from "../components/shared/OffseasonPredictionWarning";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -83,13 +84,13 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   }
 
   const [offseasonLeaderboardParams, setOffseasonLeaderboardParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as OffseasonLeaderboardParams
+    UrlRouting.removedSavedKeys(allParams) as OffseasonLeaderboardParams,
   );
   const offseasonLeaderboardParamsRef = useRef<OffseasonLeaderboardParams>();
   offseasonLeaderboardParamsRef.current = offseasonLeaderboardParams;
 
   const onOffseasonLeaderboardParamsChange = (
-    rawParams: OffseasonLeaderboardParams
+    rawParams: OffseasonLeaderboardParams,
   ) => {
     const params = _.omit(
       rawParams,
@@ -104,7 +105,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.confs ? ["confs"] : [],
         !rawParams.queryFilters ? ["queryFilters"] : [],
         rawParams.sortBy == "net" ? ["sortBy"] : [],
-      ])
+      ]),
     );
     if (!_.isEqual(params, offseasonLeaderboardParamsRef.current)) {
       //(to avoid recursion)
@@ -153,13 +154,13 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         yearWithStats,
         "All",
         transferYears,
-        paramObj.evalMode ? [fullYear, prevYearWithStats] : [prevYearWithStats]
+        paramObj.evalMode ? [fullYear, prevYearWithStats] : [prevYearWithStats],
       );
       const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
         gender,
         yearWithStats,
         "All",
-        paramObj.evalMode ? [fullYear] : []
+        paramObj.evalMode ? [fullYear] : [],
       );
       const fetchAll = Promise.all([fetchPlayers, fetchTeamStats]);
 
@@ -174,7 +175,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
                 (d.players || []).map((p: any) => {
                   p.tier = d.tier;
                   return p;
-                }) || []
+                }) || [],
             )
             .flatten()
             .value(),
@@ -239,6 +240,11 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           }}
           thisPage={`${ParamPrefixes.team}_leaderboard`}
         />
+      </Row>
+      <Row className="mt-2">
+        <Col xs={12} className="text-center">
+          <OffseasonPredictionWarning year={year} gender={gender} />
+        </Col>
       </Row>
       <Row className="mt-3">{table}</Row>
       <Footer year={year} gender={gender} server={server} />

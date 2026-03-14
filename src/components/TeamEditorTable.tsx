@@ -148,24 +148,24 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const [showPrevSeasons, setShowPrevSeasons] = useState(
     _.isNil(startingState.showPrevSeasons)
       ? false
-      : startingState.showPrevSeasons
+      : startingState.showPrevSeasons,
   );
   const [evalMode, setEvalMode] = useState(
-    _.isNil(startingState.evalMode) ? false : startingState.evalMode
+    _.isNil(startingState.evalMode) ? false : startingState.evalMode,
   );
   const [offSeasonMode, setOffSeasonMode] = useState(
     evalMode ||
-      (_.isNil(startingState.offSeason) ? true : startingState.offSeason)
+      (_.isNil(startingState.offSeason) ? true : startingState.offSeason),
   );
   const [alwaysShowBench, setAlwaysShowBench] = useState(
     _.isNil(startingState.alwaysShowBench)
       ? false
-      : startingState.alwaysShowBench
+      : startingState.alwaysShowBench,
   );
   const [superSeniorsBack, setSuperSeniorsBack] = useState(
     _.isNil(startingState.superSeniorsBack)
       ? false
-      : startingState.superSeniorsBack
+      : startingState.superSeniorsBack,
   );
 
   type DiffBasisObj = {
@@ -176,34 +176,34 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const [diffBasis, setDiffBasis] = useState(
     (_.isNil(startingState.diffBasis)
       ? undefined
-      : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj
+      : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj,
   );
   const [enableNil, setEnableNil] = useState(
     _.isNil(startingState.enableNil)
       ? FeatureFlags.isActiveWindow(FeatureFlags.estimateNilValue)
-      : startingState.enableNil
+      : startingState.enableNil,
   );
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(startingState.showGrades) ? "" : startingState.showGrades
+    _.isNil(startingState.showGrades) ? "" : startingState.showGrades,
   );
   const [caliberMode, setCaliberMode] = useState<boolean>(
-    FeatureFlags.isActiveWindow(FeatureFlags.playerCaliberMode)
+    FeatureFlags.isActiveWindow(FeatureFlags.playerCaliberMode),
   ); //TODO: wire up
 
   // Data source
   const [year, setYear] = useState(
-    startingState.year || DateUtils.offseasonPredictionYear
+    startingState.year || DateUtils.offseasonPredictionYear,
   );
   /** The first year containing stats used for projection (note in eval mode we also use the current year's stats) */
   const yearWithStats = offSeasonMode ? DateUtils.getPrevYear(year) : year;
 
   const [gender, setGender] = useState(
-    startingState.gender || ParamDefaults.defaultGender
+    startingState.gender || ParamDefaults.defaultGender,
   );
   // Data source
   const [team, setTeam] = useState(
-    startingState.team || ParamDefaults.defaultTeam
+    startingState.team || ParamDefaults.defaultTeam,
   );
 
   const usePreseasonRanksOnly =
@@ -220,7 +220,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const teamList = AvailableTeams.getTeams(
     null,
     year == "All" ? ParamDefaults.defaultLeaderboardYear : yearWithStats,
-    gender
+    gender,
   );
 
   const activeTransferSeason =
@@ -231,7 +231,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const [onlyTransfers, setOnlyTransfers] = useState(
     _.isNil(startingState.showOnlyTransfers)
       ? activeTransferSeason //(if not specified then "show only transfers" only if in off-season mode)
-      : startingState.showOnlyTransfers
+      : startingState.showOnlyTransfers,
   );
   /** (don't show "transfers-only" if this is the case - portalpalooza has not started yet) */
   const nextYearBeforePortalIsActive =
@@ -240,7 +240,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const [onlyThisYear, setOnlyThisYear] = useState(
     _.isNil(startingState.showOnlyCurrentYear)
       ? true
-      : startingState.showOnlyCurrentYear
+      : startingState.showOnlyCurrentYear,
   );
   const [reloadData, setReloadData] = useState(false);
   const hasTransfers = gender == "Men" && yearWithStats >= "2019";
@@ -249,55 +249,55 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
   //(the values passed in by URL pre-transform)
   const [otherPlayerCacheIn, setOtherPlayerCacheIn] = useState(
-    (startingState.addedPlayers || "") as string | undefined
+    (startingState.addedPlayers || "") as string | undefined,
   );
   const [disabledPlayersIn, setDisabledPlayersIn] = useState(
-    (startingState.disabledPlayers || "") as string | undefined
+    (startingState.disabledPlayers || "") as string | undefined,
   );
   const [uiDeletedPlayersIn, setUiDeletedPlayersIn] = useState(
-    (startingState.deletedPlayers || "") as string | undefined
+    (startingState.deletedPlayers || "") as string | undefined,
   );
   const [editOpenIn, setEditOpenIn] = useState(
-    (startingState.editOpen || "") as string | undefined
+    (startingState.editOpen || "") as string | undefined,
   );
   const [uiOverridesIn, setUiOverridesIn] = useState(
-    (startingState.overrides || "") as string | undefined
+    (startingState.overrides || "") as string | undefined,
   );
 
   const [otherPlayerCache, setOtherPlayerCache] = useState(
-    {} as Record<string, GoodBadOkTriple>
+    {} as Record<string, GoodBadOkTriple>,
   );
   const [disabledPlayers, setDisabledPlayers] = useState(
-    {} as Record<string, boolean>
+    {} as Record<string, boolean>,
   );
   const [deletedPlayers, setDeletedPlayers] = useState(
-    {} as Record<string, string>
+    {} as Record<string, string>,
   ); //(value is key, for display)
   const [uiOverrides, setUiOverrides] = useState(
-    {} as Record<string, PlayerEditModel>
+    {} as Record<string, PlayerEditModel>,
   );
 
   // Indiv editor
   const [allEditOpen, setAllEditOpen] = useState(
-    startingState.allEditOpen as string | undefined
+    startingState.allEditOpen as string | undefined,
   );
   const [editOpen, setEditOpen] = useState({} as Record<string, string>);
   const [factorMins, setFactorMins] = useState(
-    startingState.factorMins || false
+    startingState.factorMins || false,
   );
 
   // Controlling the player leaderboard table
   const [lboardAltDataSource, setLboardAltDataSource] = useState(
-    undefined as PlayerLeaderboardStatsModel | undefined
+    undefined as PlayerLeaderboardStatsModel | undefined,
   );
   const [lboardParams, setLboardParams] = useState(
-    startingState as PlayerLeaderboardParams
+    startingState as PlayerLeaderboardParams,
   );
 
   // (Grade builder)
   // Team: complicated because sometimes we need to show two sets of grades
   const [divisionStatsCache, setDivisionStatsCache] = useState(
-    {} as DivisionStatsCache
+    {} as DivisionStatsCache,
   );
   const [preSeasonDivisionStats, setPreSeasonDivisionStats] = useState<
     DivisionStatistics | undefined
@@ -314,7 +314,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const [loadingOverride, setLoadingOverride] = useState(false);
 
   const [addNewPlayerMode, setAddNewPlayerMode] = useState(
-    overrideGrades != undefined
+    overrideGrades != undefined,
   ); //(can't override this from URL)
 
   useEffect(() => {
@@ -358,7 +358,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           : disabledPlayersIn,
         overrides: _.isNil(uiOverridesIn)
           ? _.map(uiOverrides, (value, key) =>
-              TeamEditorUtils.playerEditModelToUrlParams(key, value)
+              TeamEditorUtils.playerEditModelToUrlParams(key, value),
             ).join(";")
           : uiOverridesIn,
         editOpen: _.isNil(editOpenIn)
@@ -413,7 +413,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         disabledPlayers: _.keys(disabledPlayers).join(";"),
         overrides: _.isNil(uiOverridesIn)
           ? _.map(uiOverrides, (value, key) =>
-              TeamEditorUtils.playerEditModelToUrlParams(key, value)
+              TeamEditorUtils.playerEditModelToUrlParams(key, value),
             ).join(";")
           : uiOverridesIn,
         superSeniorsBack: superSeniorsBack,
@@ -426,7 +426,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         .concat(factorMins ? [] : ["factorMins"])
         .concat(superSeniorsBack ? [] : ["superSeniorsBack"])
         .concat(showPrevSeasons ? [] : ["showPrevSeasons"])
-        .concat(alwaysShowBench ? [] : ["alwaysShowBench"])
+        .concat(alwaysShowBench ? [] : ["alwaysShowBench"]),
     ) as Record<string, string>;
   };
 
@@ -469,8 +469,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       year: usePreseasonRanksOnly
         ? year
         : evalMode
-        ? year
-        : gradeYear(year, offSeasonMode),
+          ? year
+          : gradeYear(year, offSeasonMode),
     };
 
     if (!_.isEmpty(divisionStatsCache)) setDivisionStatsCache({}); //unset if set
@@ -482,7 +482,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       (statsCache) => {
         setDivisionStatsCache(statsCache);
       },
-      usePreseasonRanksOnly ? "Preseason" : undefined
+      usePreseasonRanksOnly ? "Preseason" : undefined,
     );
 
     if (useLastSeasonAndPreseasonRanks && !usePreseasonRanksOnly) {
@@ -498,7 +498,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         (statsCache) => {
           setPreSeasonDivisionStats(statsCache.Combo);
         },
-        "Preseason"
+        "Preseason",
       );
     }
   }, [year, gender, evalMode, offSeasonMode]);
@@ -526,7 +526,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             year: yearToUse,
             gender,
           },
-          setPlayerDivisionStatsCache
+          setPlayerDivisionStatsCache,
         );
       }
       const maybePosGroup = showGrades.split(":")[2]; //(rank[:tier[:pos]])
@@ -551,7 +551,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               }));
             },
             undefined,
-            maybePosGroup
+            maybePosGroup,
           );
         }
       }
@@ -596,12 +596,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       if (startingState.deletedPlayers && _.isEmpty(deletedPlayers)) {
         const deletedPlayersSet = startingState.deletedPlayers.split(";");
         setDeletedPlayers(
-          _.fromPairs(deletedPlayersSet.map((p) => [p, `code:${p}`]))
+          _.fromPairs(deletedPlayersSet.map((p) => [p, `code:${p}`])),
         ); //(gets filled in later)
       }
       if (startingState.disabledPlayers && _.isEmpty(disabledPlayers)) {
         const firstDisabledPlayers = _.chain(
-          startingState.disabledPlayers.split(";")
+          startingState.disabledPlayers.split(";"),
         )
           .map((key) => {
             return [key, true];
@@ -612,7 +612,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       }
       if (startingState.overrides && _.isEmpty(uiOverrides)) {
         const firstOverrides = TeamEditorUtils.urlParamstoPlayerEditModels(
-          startingState.overrides
+          startingState.overrides,
         );
         setUiOverrides(firstOverrides);
       }
@@ -635,7 +635,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           dataEvent.players || [],
           dataEvent.transfers?.[1] || {},
           offSeasonMode,
-          superSeniorsBack
+          superSeniorsBack,
         );
         setOtherPlayerCache(firstAddedPlayers);
       }
@@ -659,7 +659,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
     const genderYearLookupForAvgEff = `${gender}_${gradeYear(
       year,
-      offSeasonMode
+      offSeasonMode,
     )}`;
     //(the year for which we are getting the grades)
     const avgEff =
@@ -671,7 +671,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
     const teamLastSeason = _.find(
       dataEvent.teamStats,
-      (t) => t.team_name == team && t.year == yearWithStats
+      (t) => t.team_name == team && t.year == yearWithStats,
     );
 
     const prevYearFreshmen =
@@ -693,7 +693,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       superSeniorsBack,
       alwaysShowBench || evalMode,
       avgEff,
-      prevYearFreshmen
+      prevYearFreshmen,
     );
     const avgPts100 = (100 * pxResults.teamSosDef) / (pxResults.avgEff || 1);
 
@@ -705,7 +705,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     const togglePlayerDisabled = (
       triple: GoodBadOkTriple,
       currDisabled: Record<string, boolean>,
-      onlyDisable: boolean
+      onlyDisable: boolean,
     ) => {
       const newDisabledPlayers = _.clone(currDisabled);
       if (currDisabled[triple.key]) {
@@ -723,7 +723,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     const togglePlayerEdited = (
       triple: GoodBadOkTriple,
       currEdited: Record<string, string>,
-      onlyDisable: boolean
+      onlyDisable: boolean,
     ) => {
       const newEditedPlayers = _.clone(currEdited);
       if (currEdited[triple.key]) {
@@ -739,7 +739,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     };
     const editPlayerOverrides = (
       triple: GoodBadOkTriple,
-      newOverride: PlayerEditModel | undefined
+      newOverride: PlayerEditModel | undefined,
     ) => {
       const newOverrides = _.clone(uiOverrides);
       if (!newOverride) {
@@ -771,8 +771,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               : triple.orig.roster?.year_class
           }`
         : maybeOverride?.height
-        ? `${maybeOverride.height}`
-        : undefined;
+          ? `${maybeOverride.height}`
+          : undefined;
 
       const playerLeaderboardParams = {
         tier: "All",
@@ -995,7 +995,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       (DerivedStatsUtils.injectPaceStats(
                         triple.prevYear,
                         {},
-                        true
+                        true,
                       )["tempo"]?.value || 0) *
                       0.01,
                   }
@@ -1006,19 +1006,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               ok_net: {
                 value: TeamEditorUtils.getNet(
                   triple.prevYear,
-                  origPrevProdFactor
+                  origPrevProdFactor,
                 ),
               },
               ok_off: {
                 value: TeamEditorUtils.getOff(
                   triple.prevYear,
-                  origPrevProdFactor
+                  origPrevProdFactor,
                 ),
               },
               ok_def: {
                 value: TeamEditorUtils.getDef(
                   triple.prevYear,
-                  origPrevProdFactor
+                  origPrevProdFactor,
                 ),
               },
             }
@@ -1078,8 +1078,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   (triple.actualResults.off_team_poss_pct?.value || 0) * 40,
               }
             : offSeasonMode
-            ? undefined
-            : { value: (triple.orig.off_team_poss_pct?.value || 0) * 40 },
+              ? undefined
+              : { value: (triple.orig.off_team_poss_pct?.value || 0) * 40 },
         mpg: isFiltered
           ? undefined
           : {
@@ -1122,7 +1122,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             ? {
                 value: TeamEditorUtils.getNet(
                   triple.actualResults,
-                  actualProdFactor
+                  actualProdFactor,
                 ),
               }
             : undefined,
@@ -1131,7 +1131,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             ? {
                 value: TeamEditorUtils.getOff(
                   triple.actualResults,
-                  actualProdFactor
+                  actualProdFactor,
                 ),
               }
             : undefined,
@@ -1140,7 +1140,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             ? {
                 value: TeamEditorUtils.getDef(
                   triple.actualResults,
-                  actualProdFactor
+                  actualProdFactor,
                 ),
               }
             : undefined,
@@ -1149,53 +1149,53 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         good_net: isFiltered
           ? undefined
           : offSeasonMode
-          ? {
-              value: TeamEditorUtils.getNet(triple.good, goodProdFactor),
-              ...extraInfoNetObj,
-            }
-          : origNotEqualOk || isAddedPlayer
-          ? { value: okNet }
-          : undefined,
+            ? {
+                value: TeamEditorUtils.getNet(triple.good, goodProdFactor),
+                ...extraInfoNetObj,
+              }
+            : origNotEqualOk || isAddedPlayer
+              ? { value: okNet }
+              : undefined,
         good_off: isFiltered
           ? undefined
           : offSeasonMode
-          ? {
-              value: TeamEditorUtils.getOff(triple.good, goodProdFactor),
-              ...extraInfoOffObj,
-            }
-          : origNotEqualOk || isAddedPlayer
-          ? { value: okOff }
-          : undefined,
+            ? {
+                value: TeamEditorUtils.getOff(triple.good, goodProdFactor),
+                ...extraInfoOffObj,
+              }
+            : origNotEqualOk || isAddedPlayer
+              ? { value: okOff }
+              : undefined,
         good_def: isFiltered
           ? undefined
           : offSeasonMode
-          ? {
-              value: TeamEditorUtils.getDef(triple.good, goodProdFactor),
-              ...extraInfoDefObj,
-            }
-          : origNotEqualOk || isAddedPlayer
-          ? { value: okDef }
-          : undefined,
+            ? {
+                value: TeamEditorUtils.getDef(triple.good, goodProdFactor),
+                ...extraInfoDefObj,
+              }
+            : origNotEqualOk || isAddedPlayer
+              ? { value: okDef }
+              : undefined,
 
         // In in-season mode, it's the original if different
         ok_net:
           (isFiltered && offSeasonMode) || isAddedPlayer
             ? undefined
             : offSeasonMode
-            ? { value: okNet, ...extraInfoNetObj }
-            : { value: origNet },
+              ? { value: okNet, ...extraInfoNetObj }
+              : { value: origNet },
         ok_off:
           (isFiltered && offSeasonMode) || isAddedPlayer
             ? undefined
             : offSeasonMode
-            ? { value: okOff, ...extraInfoOffObj }
-            : { value: origOff },
+              ? { value: okOff, ...extraInfoOffObj }
+              : { value: origOff },
         ok_def:
           (isFiltered && offSeasonMode) || isAddedPlayer
             ? undefined
             : offSeasonMode
-            ? { value: okDef, ...extraInfoDefObj }
-            : { value: origDef },
+              ? { value: okDef, ...extraInfoDefObj }
+              : { value: origDef },
 
         bad_net:
           isFiltered || !offSeasonMode
@@ -1247,7 +1247,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 const newDisabledPlayers = togglePlayerDisabled(
                   triple,
                   disabledPlayers,
-                  false
+                  false,
                 );
                 if (newDisabledPlayers) {
                   setDisabledPlayers(newDisabledPlayers);
@@ -1284,7 +1284,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               caliberMode,
               enableNil,
             }),
-            1
+            1,
           ) //(skip the control row)
         : undefined;
 
@@ -1295,7 +1295,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           GenericTableOps.buildDataRow(
             tableEl,
             GenericTableOps.defaultFormatter,
-            GenericTableOps.defaultCellMeta
+            GenericTableOps.defaultCellMeta,
           ),
         ])
         .concat(playerGradesEl || [])
@@ -1305,10 +1305,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   prevSeasonEl,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
+                  GenericTableOps.defaultCellMeta,
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           showPrevSeasons && prevPrevSeasonEl
@@ -1316,10 +1316,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   prevPrevSeasonEl,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
+                  GenericTableOps.defaultCellMeta,
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           hasEditPage
@@ -1339,13 +1339,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       const tidyUp = (
                         currDisabledPlayers: Record<string, boolean>,
                         currEditedPlayers: Record<string, string>,
-                        currOverrides: Record<string, PlayerEditModel>
+                        currOverrides: Record<string, PlayerEditModel>,
                       ) => {
                         // Tidy up activity: remove from disabled/edited players set
                         const newDisabledPlayers = togglePlayerDisabled(
                           triple,
                           currDisabledPlayers,
-                          true
+                          true,
                         );
                         if (newDisabledPlayers) {
                           setDisabledPlayers(newDisabledPlayers);
@@ -1353,7 +1353,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                         const newEditOpen = togglePlayerEdited(
                           triple,
                           currEditedPlayers,
-                          false
+                          false,
                         );
                         if (newEditOpen) {
                           setEditOpen(newEditOpen);
@@ -1381,11 +1381,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       }
                     }}
                   />,
-                  "small"
+                  "small",
                 ),
                 GenericTableOps.buildRowSeparator(),
               ]
-            : []
+            : [],
         )
         .concat(
           debugMode
@@ -1393,17 +1393,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildTextRow(
                   JSON.stringify(
                     _.omit(triple.diag, ["off_usage"]),
-                    reduceNumberSize
+                    reduceNumberSize,
                   ),
-                  "small"
+                  "small",
                 ),
               ]
-            : []
+            : [],
         );
     };
     const buildBenchDataRowFromTriple = (
       benchName: string,
-      tripleIn: GoodBadOkTriple | undefined
+      tripleIn: GoodBadOkTriple | undefined,
     ) => {
       const benchOverrides = tripleIn
         ? pxResults.allOverrides[tripleIn.key]
@@ -1480,39 +1480,54 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               isFiltered || !showCol
                 ? undefined
                 : offSeasonMode
-                ? { value: TeamEditorUtils.getNet(triple.good, goodProdFactor) }
-                : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) },
+                  ? {
+                      value: TeamEditorUtils.getNet(
+                        triple.good,
+                        goodProdFactor,
+                      ),
+                    }
+                  : { value: TeamEditorUtils.getNet(triple.ok, okProdFactor) },
             good_off:
               isFiltered || !showCol
                 ? undefined
                 : offSeasonMode
-                ? { value: TeamEditorUtils.getOff(triple.good, goodProdFactor) }
-                : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) },
+                  ? {
+                      value: TeamEditorUtils.getOff(
+                        triple.good,
+                        goodProdFactor,
+                      ),
+                    }
+                  : { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) },
             good_def:
               isFiltered || !showCol
                 ? undefined
                 : offSeasonMode
-                ? { value: TeamEditorUtils.getDef(triple.good, goodProdFactor) }
-                : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) },
+                  ? {
+                      value: TeamEditorUtils.getDef(
+                        triple.good,
+                        goodProdFactor,
+                      ),
+                    }
+                  : { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) },
             ok_net: isFiltered ? undefined : { value: okNet },
             ok_off: isFiltered
               ? undefined
               : offSeasonMode
-              ? { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) }
-              : {
-                  value:
-                    TeamEditorUtils.getOff(triple.ok, okProdFactor) -
-                    benchOffOver,
-                },
+                ? { value: TeamEditorUtils.getOff(triple.ok, okProdFactor) }
+                : {
+                    value:
+                      TeamEditorUtils.getOff(triple.ok, okProdFactor) -
+                      benchOffOver,
+                  },
             ok_def: isFiltered
               ? undefined
               : offSeasonMode
-              ? { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) }
-              : {
-                  value:
-                    TeamEditorUtils.getDef(triple.ok, okProdFactor) +
-                    benchDefOver,
-                },
+                ? { value: TeamEditorUtils.getDef(triple.ok, okProdFactor) }
+                : {
+                    value:
+                      TeamEditorUtils.getDef(triple.ok, okProdFactor) +
+                      benchDefOver,
+                  },
             bad_net:
               isFiltered || !offSeasonMode
                 ? undefined
@@ -1534,7 +1549,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                     const newEditOpen = togglePlayerEdited(
                       triple,
                       editOpen,
-                      false
+                      false,
                     );
                     if (newEditOpen) {
                       setEditOpen(newEditOpen);
@@ -1576,7 +1591,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               caliberMode,
               enableNil,
             }),
-            1
+            1,
           ) //(skip bench grades, the aren't super useful because low minutes and lots of garbage minutes etc)
         : undefined;
 
@@ -1587,10 +1602,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildDataRow(
                   tableEl,
                   GenericTableOps.defaultFormatter,
-                  GenericTableOps.defaultCellMeta
+                  GenericTableOps.defaultCellMeta,
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           hasEditPage && tripleIn
@@ -1608,11 +1623,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                     }}
                     onDelete={() => null}
                   />,
-                  "small"
+                  "small",
                 ),
                 GenericTableOps.buildRowSeparator(),
               ]
-            : []
+            : [],
         )
         .concat(
           debugMode && tripleIn
@@ -1620,12 +1635,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 GenericTableOps.buildTextRow(
                   JSON.stringify(
                     _.omit(tripleIn.diag, ["off_rtg", "off_usage"]),
-                    reduceNumberSize
+                    reduceNumberSize,
                   ),
-                  "small"
+                  "small",
                 ),
               ]
-            : []
+            : [],
         );
     };
     const buildPosHeaderRow = (posName: string, pct: number) =>
@@ -1655,7 +1670,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               [<div />, 1],
               [<div />, 12],
             ],
-        "small text-center"
+        "small text-center",
       );
 
     /** actualResultsForReview / inSeasonPlayerResultsList are basically the same thing, except the former comes in
@@ -1667,11 +1682,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       actualResultsForReview: GoodBadOkTriple[],
       inSeasonPlayerResultsList: GoodBadOkTriple[] | undefined,
       mutableBench: GoodBadOkTriple[],
-      avgEff: number
+      avgEff: number,
     ) => {
       const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(
         pxResults,
-        disabledPlayers
+        disabledPlayers,
       );
 
       //(Diagnostic - will display if it's <0)
@@ -1690,7 +1705,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const totalActualMins = evalMode
         ? _.sumBy(
             actualResultsForReview,
-            (p) => p.orig.off_team_poss_pct.value!
+            (p) => p.orig.off_team_poss_pct.value!,
           ) * 0.2
         : undefined;
       const finalActualEffAdj = totalActualMins
@@ -1701,7 +1716,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
       const depthBonus = TeamEditorUtils.calcDepthBonus(
         filteredPlayerSet,
-        team
+        team,
       );
 
       //Depth diag:
@@ -1710,7 +1725,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const okTotals = TeamEditorUtils.buildTotals(
         filteredPlayerSet,
         "ok",
-        depthBonus
+        depthBonus,
       );
 
       // Off-season and eval mode only: good and bad vs neutral ... In-season: ok vs orig
@@ -1740,7 +1755,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const rawTotalMins = inSeasonPlayerResultsList
         ? _.sumBy(
             inSeasonPlayerResultsList,
-            (p) => p.orig?.off_team_poss_pct.value || 0
+            (p) => p.orig?.off_team_poss_pct.value || 0,
           )
         : 5.0;
       const getRawBenchLevel =
@@ -1751,7 +1766,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             inSeasonPlayerResultsList,
             (p) =>
               (p.orig?.off_team_poss_pct.value || 0) *
-              TeamEditorUtils.getNet(p.orig)
+              TeamEditorUtils.getNet(p.orig),
           ) +
           2 * getRawBenchLevel
         : undefined;
@@ -1760,7 +1775,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             inSeasonPlayerResultsList,
             (p) =>
               (p.orig?.off_team_poss_pct.value || 0) *
-              TeamEditorUtils.getOff(p.orig)
+              TeamEditorUtils.getOff(p.orig),
           ) + getRawBenchLevel
         : undefined;
       const rawDefSum = inSeasonPlayerResultsList
@@ -1768,7 +1783,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             inSeasonPlayerResultsList,
             (p) =>
               (p.orig?.off_team_poss_pct.value || 0) *
-              TeamEditorUtils.getDef(p.orig)
+              TeamEditorUtils.getDef(p.orig),
           ) - getRawBenchLevel
         : undefined;
       // Avoid bench adjustment weirdness until user does something
@@ -1819,7 +1834,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             currOrPrevSeasonGrades,
             dummyTeamOk,
             ["net", "adj_ppp"],
-            true
+            true,
           )
         : {};
       const teamGradesGood = currOrPrevSeasonGrades
@@ -1827,7 +1842,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             currOrPrevSeasonGrades,
             dummyTeamGood,
             ["net", "adj_ppp"],
-            true
+            true,
           )
         : {};
       const teamGradesBad = currOrPrevSeasonGrades
@@ -1835,7 +1850,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             currOrPrevSeasonGrades,
             dummyTeamBad,
             ["net", "adj_ppp"],
-            true
+            true,
           )
         : {};
 
@@ -1844,7 +1859,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             preSeasonDivisionStats,
             dummyTeamOk,
             ["net", "adj_ppp"],
-            true
+            true,
           )
         : {};
       const teamGradesGoodNextYear = preSeasonDivisionStats
@@ -1852,7 +1867,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             preSeasonDivisionStats,
             dummyTeamGood,
             ["net", "adj_ppp"],
-            true
+            true,
           )
         : {};
       const teamGradesBadNextYear = preSeasonDivisionStats
@@ -1860,7 +1875,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             preSeasonDivisionStats,
             dummyTeamBad,
             ["net", "adj_ppp"],
-            true
+            true,
           )
         : {};
 
@@ -1873,7 +1888,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             dataEvent.teamStats,
             (t) =>
               t.team_name == team &&
-              t.year == DateUtils.getNextYear(yearWithStats)
+              t.year == DateUtils.getNextYear(yearWithStats),
           )
         : undefined;
 
@@ -1887,7 +1902,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 getLuckAdjOrRaw(actualTotalsFromTeam.stats.off_adj_ppp) -
                 getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp),
               extraInfo: !_.isNil(
-                actualTotalsFromTeam.stats.def_adj_ppp.old_value
+                actualTotalsFromTeam.stats.def_adj_ppp.old_value,
               ) ? (
                 <i>
                   Luck adjusted (used in projections): [
@@ -1905,7 +1920,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             def_adj_ppp: {
               value: getLuckAdjOrRaw(actualTotalsFromTeam.stats.def_adj_ppp),
               extraInfo: !_.isNil(
-                actualTotalsFromTeam.stats.def_adj_ppp.old_value
+                actualTotalsFromTeam.stats.def_adj_ppp.old_value,
               ) ? (
                 <i>
                   Luck adjusted (used in projections): [
@@ -1922,7 +1937,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               pxResults.actualResultsForReview,
               "orig",
               depthBonus,
-              finalActualEffAdj
+              finalActualEffAdj,
             )
           : undefined;
       const dummyTeamActualFromPlayers = actualTotalsFromPlayers
@@ -1941,7 +1956,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               currOrPrevSeasonGrades,
               dummyTeamActual,
               ["net", "adj_ppp"],
-              true
+              true,
             )
           : {};
 
@@ -1953,7 +1968,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               preSeasonDivisionStats,
               dummyTeamActual,
               ["net", "adj_ppp"],
-              true
+              true,
             )
           : {};
 
@@ -1961,7 +1976,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ? TeamEditorUtils.calcActualBenchProduction(
             actualTotalsFromTeam.stats,
             pxResults.actualResultsForReview,
-            avgEff
+            avgEff,
           )
         : undefined;
 
@@ -2157,20 +2172,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               "actual_net",
               "actual_off",
               "actual_def",
-            ].concat(offSeasonMode ? [] : ["ok_net", "ok_off", "ok_def"])
+            ].concat(offSeasonMode ? [] : ["ok_net", "ok_off", "ok_def"]),
           ) as PureStatSet,
           grades: _.omit(
             teamGradesRowData,
             ["title", "actual_net", "actual_off", "actual_def"].concat(
-              offSeasonMode ? [] : ["ok_net", "ok_off", "ok_def"]
-            )
+              offSeasonMode ? [] : ["ok_net", "ok_off", "ok_def"],
+            ),
           ) as PureStatSet,
           projectedGrades: teamProjectedGradesRowData
             ? (_.omit(
                 teamProjectedGradesRowData,
                 ["title"].concat(
-                  offSeasonMode ? [] : ["ok_net", "ok_off", "ok_def"] //(don't think this is actually needed)
-                )
+                  offSeasonMode ? [] : ["ok_net", "ok_off", "ok_def"], //(don't think this is actually needed)
+                ),
               ) as PureStatSet)
             : undefined,
         });
@@ -2339,7 +2354,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                     </Col>
                   </Row>
                 </Container>,
-                "small"
+                "small",
               ),
             ]
           : []
@@ -2371,37 +2386,37 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   [<div />, 2],
                 ]
               : !offSeasonMode
-              ? [
-                  [<div className="text-right">{confEl}</div>, 1],
-                  [<div />, subHeaderOffset(9)],
-                  [
-                    <i>
-                      <b>{actualResultsYear} results</b>
-                    </i>,
-                    4,
+                ? [
+                    [<div className="text-right">{confEl}</div>, 1],
+                    [<div />, subHeaderOffset(9)],
+                    [
+                      <i>
+                        <b>{actualResultsYear} results</b>
+                      </i>,
+                      4,
+                    ],
+                    [<div />, 1],
+                    [<i>Adjusted results</i>, 4],
+                    [<div />, 1],
+                    [<div />, 2],
+                  ]
+                : [
+                    [<div className="text-right">{confEl}</div>, 1],
+                    [<div />, subHeaderOffset(8)],
+                    [
+                      <i>
+                        <b>Balanced</b>
+                      </i>,
+                      4,
+                    ],
+                    [<div />, 1],
+                    [<i>Optimistic</i>, 4],
+                    [<div />, 1],
+                    [<i>Pessimistic</i>, 4],
+                    [<div />, 1],
+                    [<div />, 2],
                   ],
-                  [<div />, 1],
-                  [<i>Adjusted results</i>, 4],
-                  [<div />, 1],
-                  [<div />, 2],
-                ]
-              : [
-                  [<div className="text-right">{confEl}</div>, 1],
-                  [<div />, subHeaderOffset(8)],
-                  [
-                    <i>
-                      <b>Balanced</b>
-                    </i>,
-                    4,
-                  ],
-                  [<div />, 1],
-                  [<i>Optimistic</i>, 4],
-                  [<div />, 1],
-                  [<i>Pessimistic</i>, 4],
-                  [<div />, 1],
-                  [<div />, 2],
-                ],
-            "small text-center"
+            "small text-center",
           ),
         ])
         .concat(
@@ -2412,15 +2427,15 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   teamStatsRowData,
                   GenericTableOps.defaultFormatter,
                   GenericTableOps.defaultCellMeta,
-                  TeamEditorTableUtils.teamTableDef
+                  TeamEditorTableUtils.teamTableDef,
                 ),
                 GenericTableOps.buildDataRow(
                   teamGradesRowData,
                   GenericTableOps.defaultFormatter,
                   GenericTableOps.defaultCellMeta,
-                  TeamEditorTableUtils.gradeTableDef
+                  TeamEditorTableUtils.gradeTableDef,
                 ),
-              ]
+              ],
         )
         .concat(
           showSeparateProjectedGrades
@@ -2429,10 +2444,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   teamProjectedGradesRowData,
                   GenericTableOps.defaultFormatter,
                   GenericTableOps.defaultCellMeta,
-                  TeamEditorTableUtils.gradeTableDef
+                  TeamEditorTableUtils.gradeTableDef,
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           diffBasis?.data
@@ -2445,10 +2460,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   },
                   GenericTableOps.defaultFormatter,
                   GenericTableOps.defaultCellMeta,
-                  TeamEditorTableUtils.teamTableDef
+                  TeamEditorTableUtils.teamTableDef,
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           diffBasis?.grades
@@ -2460,10 +2475,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   },
                   GenericTableOps.defaultFormatter,
                   GenericTableOps.defaultCellMeta,
-                  TeamEditorTableUtils.gradeTableDef
+                  TeamEditorTableUtils.gradeTableDef,
                 ),
               ]
-            : []
+            : [],
         )
         .concat(
           diffBasis?.projectedGrades && showSeparateProjectedGrades
@@ -2475,10 +2490,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   },
                   GenericTableOps.defaultFormatter,
                   GenericTableOps.defaultCellMeta,
-                  TeamEditorTableUtils.gradeTableDef
+                  TeamEditorTableUtils.gradeTableDef,
                 ),
               ]
-            : []
+            : [],
         );
       return subHeaders;
     };
@@ -2506,9 +2521,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       pxResults.actualResultsForReview,
       pxResults.inSeasonPlayerResultsList,
       [maybeBenchGuard, maybeBenchWing, maybeBenchBig].filter(
-        (p) => !_.isNil(p)
+        (p) => !_.isNil(p),
       ) as GoodBadOkTriple[],
-      pxResults.avgEff
+      pxResults.avgEff,
     );
 
     const maybeSorted = (triples: GoodBadOkTriple[]) =>
@@ -2520,34 +2535,34 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       .concat(
         _.flatMap(maybeSorted(rosterGuards), (triple) => {
           return buildDataRowFromTriple(triple);
-        })
+        }),
       )
       .concat(
         maybeBenchGuard || showGrades
           ? buildBenchDataRowFromTriple("Guards", maybeBenchGuard)
-          : []
+          : [],
       );
     const rosterTableDataWings = [buildPosHeaderRow("Wings", rosterWingMins)]
       .concat(
         _.flatMap(maybeSorted(rosterWings), (triple) => {
           return buildDataRowFromTriple(triple);
-        })
+        }),
       )
       .concat(
         maybeBenchWing || showGrades
           ? buildBenchDataRowFromTriple("Wings", maybeBenchWing)
-          : []
+          : [],
       );
     const rosterTableDataBigs = [buildPosHeaderRow("Bigs", rosterBigMins)]
       .concat(
         _.flatMap(maybeSorted(rosterBigs), (triple) => {
           return buildDataRowFromTriple(triple);
-        })
+        }),
       )
       .concat(
         maybeBenchBig || showGrades
           ? buildBenchDataRowFromTriple("Bigs", maybeBenchBig)
-          : []
+          : [],
       );
 
     const addedTxfersStr = _.values(otherPlayerCache)
@@ -2599,7 +2614,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             Hypotheticals: <b>added</b> [{addedTxfersStr}], <b>removed</b> [
             {removedPlayerStr}]
           </i>,
-          "small"
+          "small",
         ),
       ],
     ]);
@@ -2612,7 +2627,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           offSeasonMode,
           factorMins,
           caliberMode,
-          enableNil
+          enableNil,
         )}
         tableData={teamRows.concat(rosterTableData)}
         cellTooltipMode={undefined}
@@ -2669,32 +2684,32 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           reloadData
             ? {}
             : lboardAltDataSource
-            ? lboardAltDataSource
-            : {
-                ...dataEvent,
-                syntheticData: true,
-                players:
-                  onlyThisYear && year != "All"
-                    ? (dataEvent.players || []).filter(
-                        (p) => p.year == yearWithStats
-                      )
-                    : evalMode
-                    ? (dataEvent.players || []).filter(
-                        (p) => (p.year || "") <= yearWithStats
-                      )
-                    : dataEvent.players,
-                transfers:
-                  hasTransfers && year != "All"
-                    ? dataEvent.transfers?.[0]
-                    : undefined,
-              }
+              ? lboardAltDataSource
+              : {
+                  ...dataEvent,
+                  syntheticData: true,
+                  players:
+                    onlyThisYear && year != "All"
+                      ? (dataEvent.players || []).filter(
+                          (p) => p.year == yearWithStats,
+                        )
+                      : evalMode
+                        ? (dataEvent.players || []).filter(
+                            (p) => (p.year || "") <= yearWithStats,
+                          )
+                        : dataEvent.players,
+                  transfers:
+                    hasTransfers && year != "All"
+                      ? dataEvent.transfers?.[0]
+                      : undefined,
+                }
         }
         onChangeState={(newParams: PlayerLeaderboardParams) => {
           const dataSubEventKey = newParams.t100
             ? "t100"
             : newParams.confOnly
-            ? "conf"
-            : "all";
+              ? "conf"
+              : "all";
 
           if (dataSubEventKey != "all") {
             const prevYearWithStats = DateUtils.getPrevYear(yearWithStats);
@@ -2707,7 +2722,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               yearWithStats,
               "All",
               [DateUtils.getOffseasonOfYear(yearWithStats) || ""],
-              [prevYearWithStats]
+              [prevYearWithStats],
             );
 
             fetchAll.then((jsonsIn: any[]) => {
@@ -2719,7 +2734,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       (d.players || []).map((p: any) => {
                         p.tier = d.tier;
                         return p;
-                      }) || []
+                      }) || [],
                   )
                   .flatten()
                   .value(),
@@ -2747,7 +2762,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             year,
             (dataEvent.players || []).filter(
               (maybeP) =>
-                maybeP.code == p.code && (maybeP.year || "") <= yearWithStats
+                maybeP.code == p.code && (maybeP.year || "") <= yearWithStats,
             ),
             offSeasonMode,
             true,
@@ -2758,7 +2773,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               { [p.code || ""]: [{ f: p.team || "", t: team }] },
               dataEvent.transfers?.[1] || {},
             ],
-            p.year || yearWithStats
+            p.year || yearWithStats,
           ).list.forEach((triple) => {
             newOtherPlayerCache[triple.key] = triple;
           });
@@ -2825,7 +2840,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -2867,7 +2882,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       gender,
       (aliasUpdate) => {
         setTeam(aliasUpdate);
-      }
+      },
     ) || {
       value: undefined,
       label: "Choose Team...",
@@ -2977,7 +2992,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       setShowPrevSeasons(false);
                     }
                     setShowGrades(
-                      showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                      showGrades ? "" : ParamDefaults.defaultEnabledGrade,
                     );
                   }, true)
                 }
@@ -3008,7 +3023,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 onSelect={() =>
                   friendlyChange(
                     () => setAlwaysShowBench(!alwaysShowBench),
-                    true
+                    true,
                   )
                 }
               />
@@ -3019,7 +3034,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 onSelect={() =>
                   friendlyChange(
                     () => setSuperSeniorsBack(!superSeniorsBack),
-                    true
+                    true,
                   )
                 }
               />
@@ -3098,7 +3113,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       setShowPrevSeasons(false);
                     }
                     setShowGrades(
-                      showGrades ? "" : ParamDefaults.defaultEnabledGrade
+                      showGrades ? "" : ParamDefaults.defaultEnabledGrade,
                     );
                   }, true),
               },
@@ -3132,7 +3147,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 onClick: () =>
                   friendlyChange(
                     () => setAlwaysShowBench(!alwaysShowBench),
-                    true
+                    true,
                   ),
               },
               {
@@ -3173,7 +3188,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                           setEvalMode(!evalMode);
                         }, true),
                     },
-                  ]
+                  ],
             )}
           />
         </Col>

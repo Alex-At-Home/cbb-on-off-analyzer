@@ -33,6 +33,7 @@ export class ClientRequestCache {
     "landing_show_gender",
     "landing_show_year",
     "landing_show_intro",
+    "offseason_show_warning",
   ];
 
   static safeLocalStorage =
@@ -124,6 +125,26 @@ export class ClientRequestCache {
       "landing_show_intro",
       "",
       value ? {} : { value: false },
+      undefined,
+    );
+  }
+
+  /** Whether the user has expanded the offseason warning details (default true = expanded, show full warning). */
+  static getSavedOffseasonWarning(): boolean {
+    const cached = ClientRequestCache.decacheResponse(
+      "offseason_show_warning",
+      "",
+      undefined,
+    );
+    return cached === null || cached.value !== false;
+  }
+
+  /** Saves offseason warning details preference; true = expanded (show details), false = collapsed. */
+  static setSavedOffseasonWarning(value: boolean): void {
+    ClientRequestCache.cacheResponse(
+      "offseason_show_warning",
+      "",
+      value ? { value: true } : { value: false },
       undefined,
     );
   }

@@ -264,3 +264,39 @@
   border: none;
   box-shadow: none;
 }
+
+/* Offseason prediction warning banner – compact, same dark red look in both themes */
+.card.landing-page.offseason-warning-banner {
+  background-color: #8b3a35;
+  border: 1px solid #a04540;
+  height: auto;
+}
+
+.card.landing-page.offseason-warning-banner .card-body {
+  padding: 0.35rem 1rem;
+  color: #e8e0de;
+}
+
+.card.landing-page.offseason-warning-banner .card-text {
+  margin-bottom: 0;
+  color: #e8e0de;
+  font-size: 0.95rem;
+}
+
+.card.landing-page.offseason-warning-banner .card-text p {
+  margin-bottom: 0.35em;
+}
+
+.card.landing-page.offseason-warning-banner .card-text p:last-child {
+  margin-bottom: 0;
+}
+
+.card.landing-page.offseason-warning-banner .card-text a {
+  color: #f4ad7e;
+  text-decoration: none;
+}
+
+.card.landing-page.offseason-warning-banner .card-text a:hover {
+  color: #df691a;
+  text-decoration: underline;
+}

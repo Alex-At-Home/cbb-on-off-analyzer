@@ -62,7 +62,7 @@ export class DateUtils {
   /** Up this once the portal gets active, even if it's before the season ends
    * (can just leave it as the prev year until the portal opens the following year)
    */
-  static readonly yearWithActiveTransferPortal: string = "2025/26";
+  static readonly yearWithActiveTransferPortal: string = "2026/27";
 
   /** Use pre-season rankings instead of *ALSO* previous season's rankings - do once the pre-season ranks settle down (1st June?)
    * Actually for 23 offseason I'm going to experiment with using both the whole offseason, since it's interesting to
@@ -133,7 +133,7 @@ export class DateUtils {
   static readonly cleanYear = (
     year: string | undefined | null,
     fallback: string,
-    allowed: ("All" | "Multi:" | "Extra" | "2021+")[] = []
+    allowed: ("All" | "Multi:" | "Extra" | "2021+")[] = [],
   ) => {
     if (!year) return fallback; //(short circuit)
     const specialCases = _.find(allowed, (check) => {
@@ -167,7 +167,7 @@ export class DateUtils {
   private static readonly lboardYearListOptions = (
     withNextYear: boolean,
     withAll: boolean,
-    withExtra: boolean
+    withExtra: boolean,
   ) =>
     (withNextYear &&
     DateUtils.offseasonPredictionYear > DateUtils.mostRecentYearWithLboardData
@@ -176,8 +176,8 @@ export class DateUtils {
     )
       .concat(
         DateUtils.coreYears.filter(
-          (y) => y <= DateUtils.mostRecentYearWithLboardData
-        )
+          (y) => y <= DateUtils.mostRecentYearWithLboardData,
+        ),
       )
       .concat(withAll ? ["All"] : [])
       .concat(withExtra ? ["Extra"] : []);
@@ -202,7 +202,7 @@ export class DateUtils {
         (y) =>
           tierIsHighOrAll ||
           y == "All" ||
-          y >= DateUtils.yearFromWhichAllMenD1Imported
+          y >= DateUtils.yearFromWhichAllMenD1Imported,
       );
   };
 
@@ -210,7 +210,7 @@ export class DateUtils {
   static readonly lboardYearListWithExtra = DateUtils.lboardYearListOptions(
     false,
     false,
-    true
+    true,
   );
 
   /** Is the season ongoing */

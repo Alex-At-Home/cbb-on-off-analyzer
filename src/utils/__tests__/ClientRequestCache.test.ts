@@ -308,6 +308,9 @@ describe("ClientRequestCache", () => {
 
     expect(ClientRequestCache.isProtectedKey("lineup-abc")).toBe(false);
     expect(ClientRequestCache.isProtectedKey("landing_show_intro")).toBe(true);
+    expect(ClientRequestCache.isProtectedKey("offseason_show_warning")).toBe(
+      true,
+    );
     expect(ClientRequestCache.isProtectedKey("data-epoch-Men-2024")).toBe(
       false,
     );

@@ -108,10 +108,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const hasCustomFilter =
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
   const [queryFilters, setQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const [tmpQueryFilters, setTmpQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const separatorKeyword = "BREAK";
   const { queryFiltersAsMap, queryFilterRowBreaks } = _.transform(
@@ -125,14 +125,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         teams.forEach(
           (team) =>
             (acc.queryFiltersAsMap[team] =
-              1 + ii - acc.queryFilterRowBreaks.size)
+              1 + ii - acc.queryFilterRowBreaks.size),
         );
       }
     },
     {
       queryFiltersAsMap: {} as Record<string, number>,
       queryFilterRowBreaks: new Set<number>(),
-    }
+    },
   );
 
   const maybeFilterPromptTooltip = (
@@ -148,7 +148,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     ) : null;
 
   const [year, setYear] = useState(
-    startingState.year || DateUtils.offseasonPredictionYear
+    startingState.year || DateUtils.offseasonPredictionYear,
   );
   const yearWithStats = DateUtils.getPrevYear(year);
 
@@ -159,10 +159,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [teamView, setTeamView] = useState(startingState.teamView || "");
 
   const [showAllTeams, setShowAllTeams] = useState(
-    startingState.showAllTeams || false
+    startingState.showAllTeams || false,
   );
   const [transferInOutMode, setTransferInOutMode] = useState(
-    startingState.transferInOutMode || false
+    startingState.transferInOutMode || false,
   );
   const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
   const [showExtraStatsInEvalMode, setShowExtraStatsInEvalMode] =
@@ -171,20 +171,20 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
 
   const [rostersPerTeam, setRostersPerTeam] = useState(
-    {} as Record<string, Record<string, RosterEntry>>
+    {} as Record<string, Record<string, RosterEntry>>,
   );
 
   const teamList = _.flatMap(
     _.flatMap(AvailableTeams.byName, (teams, __) => {
       const maybeTeam = teams.find(
-        (t) => t.year == yearWithStats && t.gender == gender
+        (t) => t.year == yearWithStats && t.gender == gender,
       );
       return maybeTeam ? [maybeTeam.team] : [];
     }),
     (team) => {
       // Add aliases in:
       return [team].concat(AvailableTeams.teamAliases[team] || []);
-    }
+    },
   );
 
   if (diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam)) {
@@ -201,7 +201,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         .then((resp: any) => resp.json())
         .then(
           (json: any) =>
-            [teamName, json] as [string, Record<string, RosterEntry>]
+            [teamName, json] as [string, Record<string, RosterEntry>],
         );
     };
     const rosterPromises: Promise<[string, Record<string, RosterEntry>]>[] =
@@ -210,8 +210,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           //(carry on error, eg if the file doesn't exist)
           (err: any) => {
             return [team, {}];
-          }
-        )
+          },
+        ),
       );
 
     if (_.isEmpty(rosterPromises)) {
@@ -220,7 +220,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       Promise.all(rosterPromises).then(
         (rosterInfo: [string, Record<string, RosterEntry>][]) => {
           setRostersPerTeam(_.fromPairs(rosterInfo));
-        }
+        },
       );
     }
   }
@@ -260,11 +260,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           }
         }
       },
-      {} as Record<string, TeamEditorParams>
+      {} as Record<string, TeamEditorParams>,
     );
   };
   const [teamOverrides, setTeamOverrides] = useState(
-    buildOverrides(startingState) as Record<string, TeamEditorParams>
+    buildOverrides(startingState) as Record<string, TeamEditorParams>,
   );
 
   /** When the params change */
@@ -286,12 +286,12 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             return _.map(teamEdit, (teamEditVal, paramKey) =>
               teamEditVal
                 ? [`${teamToOver}__${paramKey}`, teamEditVal.toString()]
-                : []
+                : [],
             );
           })
           .fromPairs()
-          .value()
-      )
+          .value(),
+      ),
     );
   }, [
     teamView,
@@ -346,7 +346,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -367,7 +367,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const table = React.useMemo(() => {
     const tableDefs = CommonTableDefs.offseasonLeaderboardTable(
       evalMode,
-      transferInOutMode
+      transferInOutMode,
     );
 
     const waitForRosterDiagMode =
@@ -380,7 +380,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             tableCopyId="teamTable"
             tableFields={tableDefs}
             tableData={_.range(0, 5).map((__) =>
-              GenericTableOps.buildRowSeparator()
+              GenericTableOps.buildRowSeparator(),
             )}
             cellTooltipMode={undefined}
           />
@@ -421,7 +421,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       rostersPerTeam,
       avgEff,
       actualResultsAvgEff,
-      logDivisionStatsToFile && typeof window === `undefined` //(in preseason-building mode, include teams)
+      logDivisionStatsToFile && typeof window === `undefined`, //(in preseason-building mode, include teams)
     );
 
     //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json)
@@ -433,13 +433,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       //(since require('fs) needs to appear only in server side code)
       if (logDivisionStatsToFile) {
         console.log(
-          `(BUILDING [./stats_all_Men_${year.substring(0, 4)}_Preseason.json] )`
+          `(BUILDING [./stats_all_Men_${year.substring(0, 4)}_Preseason.json] )`,
         );
 
         const fs = require("fs");
         fs.writeFileSync(
           `./stats_all_Men_${year.substring(0, 4)}_Preseason.json`,
-          JSON.stringify(derivedDivisionStats)
+          JSON.stringify(derivedDivisionStats),
         );
         //(DEBUG)
         //console.log(JSON.stringify(derivedDivisionStats));
@@ -454,13 +454,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               year || ""
             ).substring(0, 4)}/${RequestUtils.fixLocalhostRosterUrl(
               teamInfo.team,
-              false
+              false,
             )}.json`;
 
             var varUpdatedOffseasonRoles = false;
             try {
               const currRosterJson = JSON.parse(
-                fs.readFileSync(filename)
+                fs.readFileSync(filename),
               ) as Record<PlayerCode, RosterEntry>;
 
               _.forEach(teamInfo.players || [], (playerInfo) => {
@@ -483,7 +483,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               if (varUpdatedOffseasonRoles) {
                 fs.writeFileSync(
                   filename,
-                  JSON.stringify(currRosterJson, null, 3)
+                  JSON.stringify(currRosterJson, null, 3),
                 );
               }
             } catch (err: unknown) {
@@ -579,7 +579,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       const buildAndDisplayRankCorrelation = (
         rule: EvalRule,
         l: PredictedVsActualRankings[],
-        ruleOnly: Boolean
+        ruleOnly: Boolean,
       ) => {
         if (!_.isEmpty(l)) {
           const stats = new Statistics(l, {
@@ -659,13 +659,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               {buildAndDisplayRankCorrelation(
                 res.rule,
                 res.predVsActual,
-                false
+                false,
               )}
               {_.isEmpty(res.predVsActualRuleOnly) ? null : <br />}
               {buildAndDisplayRankCorrelation(
                 res.rule,
                 res.predVsActualRuleOnly,
-                true
+                true,
               )}
               <br />
               (If the predictions were random you'd expect 50%)
@@ -704,10 +704,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           tableRowsPreMaybeManualSort,
           (t: OffseasonTeamInfo) =>
             _.thru(getActualNetRankObj(t), (rankObj) =>
-              rankObj ? toIntRank(rankObj?.off_net) : 0
+              rankObj ? toIntRank(rankObj?.off_net) : 0,
             ),
           actualNumRows,
-          confs != ""
+          confs != "",
         )
       : undefined;
 
@@ -725,13 +725,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           derivedDivisionStats,
           { off_net: { value: t.goodNet } },
           ["net"],
-          true
+          true,
         );
         const badNet = GradeUtils.buildTeamPercentiles(
           derivedDivisionStats,
           { off_net: { value: t.badNet } },
           ["net"],
-          true
+          true,
         );
 
         const teamParams = {
@@ -881,7 +881,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             [<i>Net Yr-on-Yr</i>, 4],
             [<i>Yr-on-Yr gain/loss details</i>, 6],
           ],
-          "small text-center"
+          "small text-center",
         );
 
         const subHeaderMessage = pickSubHeaderMessage(netRank);
@@ -899,7 +899,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                       transferInOutMode ? 15 : evalMode ? 12 : 9, //(15 arbitrarily chosen to look nice!)
                     ],
                   ],
-                  "small text-center"
+                  "small text-center",
                 ),
               ].concat(
                 netRank == 0
@@ -907,8 +907,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                     ? [yearOnYearDetails]
                     : []
                   : [GenericTableOps.buildHeaderRepeatRow({}, "small")].concat(
-                      transferInOutMode ? [yearOnYearDetails] : []
-                    )
+                      transferInOutMode ? [yearOnYearDetails] : [],
+                    ),
               );
 
         const totalInOutMargin =
@@ -997,7 +997,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 ),
               },
               GenericTableOps.defaultFormatter,
-              GenericTableOps.defaultCellMeta
+              GenericTableOps.defaultCellMeta,
             ),
           ])
           .concat(
@@ -1025,15 +1025,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                         }, true);
                       }}
                       overrideGrades={derivedDivisionStats}
-                    />
+                    />,
                   ),
                 ]
-              : []
+              : [],
           )
           .concat(
             queryFilterRowBreaks.has(finalTeamOrder)
               ? [GenericTableOps.buildRowSeparator()]
-              : []
+              : [],
           )
           .concat(isFinalRow ? _.take(subHeaderRows, 1) : []);
       })
@@ -1152,7 +1152,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             options={DateUtils.lboardYearListWithNextYear(tier == "High")
               .filter((y) => y >= DateUtils.firstYearWithDecentRosterData)
               .filter((y) =>
-                evalMode ? y <= DateUtils.mostRecentYearWithLboardData : true
+                evalMode ? y <= DateUtils.mostRecentYearWithLboardData : true,
               ) //(can't eval year that hasn't happened yet)
               .map((r) => stringToOption(r))}
             isSearchable={false}
@@ -1197,7 +1197,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               onSelect={() =>
                 friendlyChange(
                   () => setTransferInOutMode(!transferInOutMode),
-                  !evalMode
+                  !evalMode,
                 )
               }
             />
@@ -1285,7 +1285,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                     const newSortBy = (option as any)?.value || "net";
                     friendlyChange(
                       () => setSortBy(newSortBy),
-                      sortBy != newSortBy
+                      sortBy != newSortBy,
                     );
                   }
                 }}
