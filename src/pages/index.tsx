@@ -1438,15 +1438,8 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
 
   // Initialize showIntro state from cache (default to true if not in cache)
   const [showIntro, setShowIntro] = useState<boolean>(() => {
-    // Only run on client side
     if (typeof window !== "undefined") {
-      const cachedValue = ClientRequestCache.decacheResponse(
-        "landing_show_intro",
-        "",
-        undefined,
-      );
-      // If we have a cached value of false, use it; otherwise default to true
-      return cachedValue === null || cachedValue.value !== false;
+      return ClientRequestCache.getSavedIntro();
     }
     return true; // Default for server-side rendering
   });
@@ -1454,25 +1447,7 @@ const LandingPage: NextPage<Props> = ({ testMode }) => {
   // Update cache when showIntro changes
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (showIntro) {
-        // For the default state (showIntro = true), we want to remove the entry
-        // Since we can't directly remove it with ClientRequestCache (cacheKey is private),
-        // we'll set an empty object to effectively clear it
-        ClientRequestCache.cacheResponse(
-          "landing_show_intro",
-          "",
-          {},
-          undefined,
-        );
-      } else {
-        // Update cache when set to false
-        ClientRequestCache.cacheResponse(
-          "landing_show_intro",
-          "",
-          { value: false },
-          undefined,
-        );
-      }
+      ClientRequestCache.setSavedIntro(showIntro);
     }
   }, [showIntro]);
 

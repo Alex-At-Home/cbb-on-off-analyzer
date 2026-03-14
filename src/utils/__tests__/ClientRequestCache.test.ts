@@ -281,6 +281,21 @@ describe("ClientRequestCache", () => {
     expect(ClientRequestCache.getSavedTeam()).toBeUndefined();
   });
 
+  test("ClientRequestCache - getSavedIntro / setSavedIntro", async () => {
+    // Default / true = show intro
+    ClientRequestCache.setSavedIntro(true);
+    await waitForCondition(() => ClientRequestCache.getSavedIntro() === true);
+    expect(ClientRequestCache.getSavedIntro()).toBe(true);
+
+    ClientRequestCache.setSavedIntro(false);
+    await waitForCondition(() => ClientRequestCache.getSavedIntro() === false);
+    expect(ClientRequestCache.getSavedIntro()).toBe(false);
+
+    ClientRequestCache.setSavedIntro(true);
+    await waitForCondition(() => ClientRequestCache.getSavedIntro() === true);
+    expect(ClientRequestCache.getSavedIntro()).toBe(true);
+  });
+
   test("ClientRequestCache - isProtectedKey", () => {
     expect(ClientRequestCache.isProtectedKey("landing_show_team")).toBe(true);
     expect(ClientRequestCache.isProtectedKey("landing_show_gender")).toBe(true);
@@ -292,7 +307,7 @@ describe("ClientRequestCache", () => {
     expect(ClientRequestCache.isProtectedKey("userPref-x")).toBe(true);
 
     expect(ClientRequestCache.isProtectedKey("lineup-abc")).toBe(false);
-    expect(ClientRequestCache.isProtectedKey("landing_show_intro")).toBe(false);
+    expect(ClientRequestCache.isProtectedKey("landing_show_intro")).toBe(true);
     expect(ClientRequestCache.isProtectedKey("data-epoch-Men-2024")).toBe(
       false,
     );

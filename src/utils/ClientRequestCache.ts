@@ -32,6 +32,7 @@ export class ClientRequestCache {
     "landing_show_team",
     "landing_show_gender",
     "landing_show_year",
+    "landing_show_intro",
   ];
 
   static safeLocalStorage =
@@ -103,6 +104,26 @@ export class ClientRequestCache {
       "landing_show_team",
       "",
       value !== undefined ? { value } : {},
+      undefined,
+    );
+  }
+
+  /** Whether the user has dismissed the landing intro (default true = show intro). */
+  static getSavedIntro(): boolean {
+    const cached = ClientRequestCache.decacheResponse(
+      "landing_show_intro",
+      "",
+      undefined,
+    );
+    return cached === null || cached.value !== false;
+  }
+
+  /** Saves landing intro preference; true = show intro (clears entry), false = dismissed. */
+  static setSavedIntro(value: boolean): void {
+    ClientRequestCache.cacheResponse(
+      "landing_show_intro",
+      "",
+      value ? {} : { value: false },
       undefined,
     );
   }
