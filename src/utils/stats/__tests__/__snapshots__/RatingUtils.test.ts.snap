@@ -216,7 +216,7 @@ exports[`RatingUtils RatingUtils - buildOnBallDefenseAdjustmentsPhase1 1`] = `
 exports[`RatingUtils RatingUtils - injectOnBallDefenseAdjustmentsPhase2 1`] = `
 {
    "targetedPct": 0.3967065868263473,
-   "estimatedDefUsage": 0.9670590636908001,
+   "estimatedDefUsage": 0.48443113772455093,
    "effectivePpp": 0.9420547533250715,
    "onBallDRtg": 93.07773999119766,
    "offBallDRtg": 95.7408145280459,
@@ -228,7 +228,7 @@ exports[`RatingUtils RatingUtils - injectOnBallDefenseAdjustmentsPhase2 1`] = `
    "adjustedPossPct": 0.08000000000000002,
    "dRtg": 98.05886079468681,
    "adjDRtg": 90.76186071773178,
-   "adjDRtgPlus": -15.070298834081909
+   "adjDRtgPlus": -6.750691424763469
 }
 `;
 

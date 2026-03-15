@@ -2124,8 +2124,8 @@ export class RatingUtils {
 
         // Estimate total usage based on accounted-for possessions
         const approxUsage =
-          0.3 * (onBallDiags.targetedPct / (accountedForPoss || 1)) +
-          0.7 * (onBallDiags.targetedPct + 0.2 * (1 - accountedForPoss));
+          0.2 * 0.2 + //(we regress somewhat toward 20%)
+          0.8 * (onBallDiags.targetedPct + 0.2 * (1 - accountedForPoss)); //(divvies up unaccounted equally)
         onBallDiags.estimatedDefUsage = approxUsage;
 
         const Adj_DRtg =
