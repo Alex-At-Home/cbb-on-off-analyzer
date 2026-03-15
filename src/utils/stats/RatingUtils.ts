@@ -2179,6 +2179,30 @@ export class RatingUtils {
         }
       }
     });
+
+    if (showConsoleDiag) {
+      const accountedForPossPosAdj = Math.min(
+        1,
+        Math.max(
+          0,
+          _.sumBy(players, (stat) => {
+            const diag = stat.diag_def_rtg;
+            const onBallDiags = diag?.onBallDiags;
+            if (diag && onBallDiags) {
+              return (
+                onBallDiags.estimatedDefUsage *
+                (stat.def_team_poss_pct.value ?? 0)
+              );
+            } else {
+              return 0;
+            }
+          }),
+        ),
+      );
+      console.log(
+        `Usage sum post adjustment: [${accountedForPossPosAdj.toFixed(3)}] should be [1.000]`,
+      );
+    }
   }
 
   /** Calculates the approx new ORtg due to an increase/decreate in usage */
