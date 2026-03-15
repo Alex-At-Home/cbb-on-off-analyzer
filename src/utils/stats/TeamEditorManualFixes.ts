@@ -1730,6 +1730,7 @@ export class TeamEditorManualFixes {
             })[""],
           },
           Maryland: {
+            leftTeam: ["TaGapare::"], //(didn't appear in transfer list)
             ...TeamEditorManualFixes.buildOverrides({
               "": {
                 // Adjustments:
@@ -1879,11 +1880,11 @@ export class TeamEditorManualFixes {
               "": {
                 // Adjustments:
                 "AnMills::": {
-                  o: 1,
+                  o: 0.75,
                 },
                 "PhPayne::": {
-                  o: 1,
-                  d: 1,
+                  o: 0.75,
+                  d: 0.75,
                 },
                 BaOladotun: {
                   d: -1,
