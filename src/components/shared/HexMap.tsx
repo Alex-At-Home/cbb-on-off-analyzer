@@ -713,6 +713,7 @@ const HexMap: React.FC<HexMapProps> = ({
       .select("body")
       .append("div")
       .style("position", "absolute")
+      .style("z-index", "1100")
       .style("padding", "5px")
       .style("background", "#333")
       .style("color", "#fff")
