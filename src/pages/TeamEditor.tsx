@@ -38,6 +38,7 @@ import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
 import OffseasonPredictionWarning from "../components/shared/OffseasonPredictionWarning";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -69,6 +70,10 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
 
   // Team Stats interface
 
+  /** TODO experimentation, actually cue off showExpanded */
+  const isWideScreen = FeatureFlags.isActiveWindow(
+    FeatureFlags.expandedPlayerLeaderboard,
+  );
   const [gaInited, setGaInited] = useState(false);
   const [dataSubEvent, setDataSubEvent] = useState({
     players: [],
@@ -297,7 +302,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
     server != "localhost" ? `https://${server}` : "http://localhost:3000"
   }/thumbnails/player_leaderboard_thumbnail.png`;
   return (
-    <Container>
+    <Container className={isWideScreen ? "wide_screen" : "medium_screen"}>
       <SiteModeDropdown />
       <Head>
         <meta property="og:image" content={thumbnailUrl} />
