@@ -306,6 +306,8 @@ export interface HexZone {
   intensity: number;
   total_freq?: number;
   shots?: any[]; //(for debugging)
+  /** Weighted average shot distance (ft) when built from buckets with distance */
+  weighted_avg_dist_ft?: number;
 }
 
 export interface CompressedHexData {

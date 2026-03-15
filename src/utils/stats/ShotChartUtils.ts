@@ -105,6 +105,8 @@ export class ShotChartUtils {
     const total_freq = stats?.doc_count || 1;
 
     const mutableZones = ShotChartUtils.buildStartingZones();
+    const zoneDistAccum: { sumDistWeight: number; sumWeight: number }[] =
+      mutableZones.map(() => ({ sumDistWeight: 0, sumWeight: 0 }));
 
     const data = (stats?.shot_chart?.buckets || [])
       .map((shotInfo) => {
@@ -114,11 +116,21 @@ export class ShotChartUtils {
         const frequency = shotInfo.doc_count;
         const intensity = shotInfo.total_pts.value / shotInfo.doc_count;
 
+        // Distance in feet: from ES avg_dist or centroid fallback (e.g. decompressed career data)
+        const avgDistFt =
+          shotInfo.avg_dist?.value != null
+            ? shotInfo.avg_dist.value
+            : Math.sqrt(x * x + y * y);
+
         const mutableZone = ShotChartUtils.findHexZone(x, y, mutableZones);
         if (mutableZone) {
+          const zoneIndex = mutableZones.indexOf(mutableZone);
           mutableZone.frequency += shotInfo.doc_count;
           mutableZone.intensity += shotInfo.total_pts.value;
           mutableZone.total_freq = total_freq;
+          zoneDistAccum[zoneIndex].sumDistWeight +=
+            avgDistFt * shotInfo.doc_count;
+          zoneDistAccum[zoneIndex].sumWeight += shotInfo.doc_count;
 
           // DEBUG
           //  if (mutableZone.shots) {
@@ -152,10 +164,17 @@ export class ShotChartUtils {
             (frequency / total_freq)
           ).toFixed(1)}]% of total, [${shotInfo.total_pts.value}]pts, eFG=[${(
             50 * intensity
-          ).toFixed(1)}]%`,
+          ).toFixed(1)}]%, Avg Distance = ${avgDistFt.toFixed(1)}ft`,
         };
       })
       .filter((h) => h.x <= 35);
+
+    zoneDistAccum.forEach((acc, i) => {
+      if (acc.sumWeight > 0) {
+        mutableZones[i].weighted_avg_dist_ft =
+          acc.sumDistWeight / acc.sumWeight;
+      }
+    });
 
     return {
       zones: mutableZones,
@@ -270,6 +289,17 @@ export class ShotChartUtils {
       );
       const regionZoneList = _.map(indices, (i) => zones[i]!);
       const totalFreq = _.head(regionZoneList)?.total_freq;
+      const zonesWithDist = regionZoneList.filter(
+        (z) => z.weighted_avg_dist_ft != null && z.frequency > 0,
+      );
+      const weightSum = _.sumBy(zonesWithDist, "frequency");
+      const weighted_avg_dist_ft =
+        weightSum > 0
+          ? _.sumBy(
+              zonesWithDist,
+              (z) => (z.weighted_avg_dist_ft ?? 0) * z.frequency,
+            ) / weightSum
+          : undefined;
       return {
         minDist: 0,
         maxDist: 0,
@@ -279,6 +309,7 @@ export class ShotChartUtils {
         frequency: _.sumBy(regionZoneList, "frequency"),
         intensity: _.sumBy(regionZoneList, "intensity"),
         total_freq: totalFreq,
+        weighted_avg_dist_ft,
       };
     };
 

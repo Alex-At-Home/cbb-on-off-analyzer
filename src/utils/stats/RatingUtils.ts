@@ -156,6 +156,32 @@ export type NetPoints = {
   defNetPtsIndiv?: number;
 };
 
+export type CompressedNetPoints = {
+  // Off:
+  o: number;
+  oDerived: number; //(for diag purpose - should be very close to identical to o)
+  oAst2: number;
+  oAst3: number;
+  oOrb: number;
+  oRim: number;
+  o3P: number;
+  oMid: number;
+  oFt: number;
+  oTo: number;
+  oSos: number;
+  oVolume: number;
+  oWowy: number;
+  // Def:
+  d: number;
+  dSos: number;
+  dWowy: number;
+  dStl: number;
+  dBlk: number;
+  dReb: number;
+  dTeam: number;
+  dIndiv?: number;
+};
+
 /** All the info needed to explain the DRtg calculation, see "buildDRtgDiag" */
 export type DRtgDiagnostics = {
   // Basic player numbers

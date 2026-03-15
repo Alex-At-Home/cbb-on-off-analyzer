@@ -572,17 +572,22 @@ const HexMap: React.FC<HexMapProps> = ({
           100,
           (pointsPerShot / pointValue) * 100,
         ).toFixed(1);
+        let base: string;
         if (showFreqAsNumber) {
           const primary = useEfg
             ? `eFG=[${efgPctStr}]% (FG=[${fgPctStr}]%)`
             : `FG=[${fgPctStr}]% (eFG=[${efgPctStr}]%)`;
-          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, ${primary}`;
-        }
-        if (useEfg) {
-          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, eFG=[${efgPctStr}]%`;
+          base = `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, ${primary}`;
+        } else if (useEfg) {
+          base = `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, eFG=[${efgPctStr}]%`;
         } else {
-          return `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, FG=[${fgPctStr}]%`;
+          base = `[${zoneToUse.frequency}] shots, [${shotsPercentage}]% of total, [${zoneToUse.intensity}]pts, FG=[${fgPctStr}]%`;
         }
+        const distSuffix =
+          zoneToUse.weighted_avg_dist_ft != null
+            ? `, Avg Distance = ${zoneToUse.weighted_avg_dist_ft.toFixed(1)}ft`
+            : "";
+        return base + distSuffix;
       };
       const tooltipHandler = () => {
         const zoneTooltip = toolTipTextBuilder(zoneForStats, !!regionZone);
