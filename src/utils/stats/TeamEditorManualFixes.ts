@@ -7,6 +7,7 @@ import { freshmenMen2022_23 } from "../public-data/freshmenMen2022_23";
 import { freshmenMen2023_24 } from "../public-data/freshmenMen2023_24";
 import { freshmenMen2024_25 } from "../public-data/freshmenMen2024_25";
 import { freshmenMen2025_26 } from "../public-data/freshmenMen2025_26";
+import { freshmenMen2026_27 } from "../public-data/freshmenMen2026_27";
 import { superSeniors2021_22 } from "../public-data/superSeniors2021_22";
 import { leftTeam2021_22 } from "../public-data/leftTeam2021_22";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
@@ -31,32 +32,37 @@ export class TeamEditorManualFixes {
       //(Fr for the following year given date)
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2020_21,
-        "Men_2020/21"
+        "Men_2020/21",
       );
     } else if (genderYear == "Men_2020/21") {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2021_22,
-        "Men_2021/22"
+        "Men_2021/22",
       );
     } else if (genderYear == "Men_2021/22") {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2022_23,
-        "Men_2022/23"
+        "Men_2022/23",
       );
     } else if (genderYear == "Men_2022/23") {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2023_24,
-        "Men_2023/24"
+        "Men_2023/24",
       );
     } else if (genderYear == "Men_2023/24") {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2024_25,
-        "Men_2024/25"
+        "Men_2024/25",
       );
     } else if (genderYear == "Men_2024/25") {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2025_26,
-        "Men_2025/26"
+        "Men_2025/26",
+      );
+    } else if (genderYear == "Men_2025/26") {
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenMen2026_27,
+        "Men_2026/27",
       );
     } else {
       return {};
@@ -66,7 +72,7 @@ export class TeamEditorManualFixes {
   /** Does one of two things: builds Fr profiles, or adjusts existing profiles (Fr or otherwise) */
   private static readonly buildOverrides = (
     recruits: Record<string, any>,
-    genderYear: string = "NA"
+    genderYear: string = "NA",
   ) => {
     return _.transform(
       recruits,
@@ -112,7 +118,7 @@ export class TeamEditorManualFixes {
                   if (maybeTeam > 0) {
                     const baseForThisRank =
                       TeamEditorUtils.getBenchLevelScoringByProfile(
-                        over.pr as Profiles
+                        over.pr as Profiles,
                       );
                     const initialPredRapm =
                       baseForThisRank +
@@ -126,20 +132,20 @@ export class TeamEditorManualFixes {
                       (1.0 - allAmericanBonusWeight) * initialPredRapm;
                     const adjPredRapmAdj = Math.max(
                       0,
-                      adjPredRapm - initialPredRapm
+                      adjPredRapm - initialPredRapm,
                     );
 
                     return [0.5 * adjPredRapmAdj, -0.5 * adjPredRapmAdj];
                   } else {
                     return [0, 0];
                   }
-                }
+                },
               );
               const totalRatingOff = parseFloat(
-                (factorTimeRatingOff + aaOffAdj).toFixed(2)
+                (factorTimeRatingOff + aaOffAdj).toFixed(2),
               );
               const totalRatingDef = parseFloat(
-                (factorTimeRatingDef + aaDefAdj).toFixed(2)
+                (factorTimeRatingDef + aaDefAdj).toFixed(2),
               );
 
               acc2[`${over.c}`] = {
@@ -164,20 +170,20 @@ export class TeamEditorManualFixes {
               };
             }
           },
-          {} as Record<string, PlayerEditModel>
+          {} as Record<string, PlayerEditModel>,
         );
         acc[team] = {
           overrides: playerOverrides,
         };
       },
-      {} as Record<string, TeamEditorManualFixModel>
+      {} as Record<string, TeamEditorManualFixModel>,
     );
   };
   private static combineOverrides = (
     mutableRecruits: Record<string, TeamEditorManualFixModel>,
     manual: Record<string, TeamEditorManualFixModel>,
     superSeniors: Record<string, string[]> = {},
-    leftTeam: Record<string, string[]> = {}
+    leftTeam: Record<string, string[]> = {},
   ) => {
     const phase1 = _.transform(
       manual,
@@ -187,7 +193,7 @@ export class TeamEditorManualFixes {
         }
         _.merge(acc[team], override);
       },
-      mutableRecruits
+      mutableRecruits,
     );
 
     const phase2 = _.transform(
@@ -198,13 +204,13 @@ export class TeamEditorManualFixes {
         }
         if (acc[team].superSeniorsReturning) {
           override.forEach((returningPlayer) =>
-            acc[team].superSeniorsReturning!.add(returningPlayer)
+            acc[team].superSeniorsReturning!.add(returningPlayer),
           );
         } else {
           acc[team].superSeniorsReturning = new Set(override);
         }
       },
-      phase1
+      phase1,
     );
 
     const phase3 = _.transform(
@@ -219,7 +225,7 @@ export class TeamEditorManualFixes {
           acc[team].leftTeam = override;
         }
       },
-      phase2
+      phase2,
     );
 
     return phase3;
@@ -227,11 +233,11 @@ export class TeamEditorManualFixes {
 
   /** See also getTransfers:transferFixes */
   static readonly fixes: (
-    genderYear: string
+    genderYear: string,
   ) => Record<string, TeamEditorManualFixModel> = _.memoize(
     (genderYear: string) => {
       const mutableToRet = _.cloneDeep(
-        TeamEditorManualFixes.getFreshmenForYear(genderYear)
+        TeamEditorManualFixes.getFreshmenForYear(genderYear),
       );
       //(this gets mutated but of course we don't want to mutate the source data)
 
@@ -247,7 +253,7 @@ export class TeamEditorManualFixes {
         };
         return TeamEditorManualFixes.combineOverrides(
           mutableToRet,
-          manualOverrides_Men_2019_20
+          manualOverrides_Men_2019_20,
         );
       } else if (genderYear == "Men_2019/20") {
         //(offseason of 19/20, ie team for 20/21)
@@ -278,7 +284,7 @@ export class TeamEditorManualFixes {
         };
         return TeamEditorManualFixes.combineOverrides(
           mutableToRet,
-          manualOverrides_Men_2020_21
+          manualOverrides_Men_2020_21,
         );
       } else if (genderYear == "Men_2020/21") {
         //(offseason of 20/21, ie team for 21/22)
@@ -334,7 +340,7 @@ export class TeamEditorManualFixes {
           mutableToRet,
           manualOverrides_Men_2021_22,
           superSeniors2021_22,
-          leftTeam2021_22
+          leftTeam2021_22,
         );
       } else if (genderYear == "Men_2021/22") {
         //(offseason of 21/22, ie team for 22/23)
@@ -519,7 +525,7 @@ export class TeamEditorManualFixes {
           mutableToRet,
           manualOverrides_Men_2022_23,
           superSeniors2022_23,
-          leftTeam2022_23
+          leftTeam2022_23,
         );
 
         // Duke injury:
@@ -1010,7 +1016,7 @@ export class TeamEditorManualFixes {
           mutableToRet,
           manualOverrides_Men_2023_24,
           {},
-          leftTeam2022_23 //(use prev season until have calculated this season's)
+          leftTeam2022_23, //(use prev season until have calculated this season's)
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2023/24") {
@@ -1641,7 +1647,7 @@ export class TeamEditorManualFixes {
           mutableToRet,
           manualOverrides_Men_2024_25,
           {},
-          {} //(use prev season until have calculated this season's)
+          {}, //(use prev season until have calculated this season's)
         );
         return combinedOverrides;
       } else if (genderYear == "Men_2024/25") {
@@ -1856,14 +1862,49 @@ export class TeamEditorManualFixes {
           mutableToRet,
           manualOverrides_Men_2025_26,
           {},
-          {} //(use prev season until have calculated this season's)
+          {}, //(use prev season until have calculated this season's)
+        );
+        return combinedOverrides;
+      } else if (genderYear == "Men_2025/26") {
+        // (could try https://hoopshype.com/lists/2025-nba-draft-early-entries-whos-testing-the-waters/)
+        // (and https://www.rookiescale.com/2025-early-entrant-tracker/)
+        const manualOverrides_Men_2026_27: Record<
+          string,
+          TeamEditorManualFixModel
+        > = {
+          Maryland: {
+            leftTeam: ["CoMetcalf::"],
+            superSeniorsReturning: new Set(["PhPayne::"]),
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                "AnMills::": {
+                  o: 1,
+                },
+                "PhPayne::": {
+                  o: 1,
+                  d: 1,
+                },
+                BaOladotun: {
+                  d: -1,
+                },
+              },
+            })[""],
+          },
+        };
+
+        const combinedOverrides = TeamEditorManualFixes.combineOverrides(
+          mutableToRet,
+          manualOverrides_Men_2026_27,
+          {},
+          {}, //(use prev season until have calculated this season's)
         );
         return combinedOverrides;
       } else {
         // Note when calling combineOverrides, need to use leftTeam${prevYear} to handle players who left a season ago
         return {} as Record<string, TeamEditorManualFixModel>;
       }
-    }
+    },
   );
 
   /** The top few schools always have premium benches */
