@@ -121,7 +121,7 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                       zIndex: 1000,
                       backgroundColor:
                         resolvedTheme === "dark"
-                          ? "rgba(39, 43, 48, 0.25)"
+                          ? "rgba(39, 43, 48, 0.75)" //note 0.75 for dark mode to overlay on top of force light mode shot chart
                           : "rgba(255, 255, 255, 0.25)",
                       borderRadius: "4px",
                       padding: "4px",
@@ -129,6 +129,7 @@ const ShotZoneChartDiagView: React.FunctionComponent<Props> = ({
                     }}
                   >
                     <ToggleButtonGroup
+                      labelOverride=" "
                       items={[
                         {
                           items: [

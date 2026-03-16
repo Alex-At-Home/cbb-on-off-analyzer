@@ -43,6 +43,10 @@ interface HexMapProps {
   firstZoneIndexPerRegion?: number[];
   /** When true (Freq mode): background = efficiency, circle = freq, number = freq%; when false (FG): current behavior */
   showFreqAsNumber?: boolean;
+  /** if false (default), always light mode, which seems much prettier .. true will go dark in dark mode
+   * Ideally we'd have a better dark mode but I prefer this as an interim step
+   */
+  followSystemTheme?: boolean;
 }
 const HexMap: React.FC<HexMapProps> = ({
   data,
@@ -60,10 +64,13 @@ const HexMap: React.FC<HexMapProps> = ({
   zoneToRegion,
   firstZoneIndexPerRegion,
   showFreqAsNumber = false,
+  followSystemTheme = false,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const { resolvedTheme } = useTheme();
+  const { resolvedTheme } = followSystemTheme
+    ? useTheme()
+    : { resolvedTheme: "light" };
   const backgroundColor = resolvedTheme == "dark" ? "#272b30" : "#ffffff";
   const clusterStrokeColor = resolvedTheme == "dark" ? "#444" : "#ccc";
   const courtStrokeColor = resolvedTheme == "dark" ? "#fff" : "#000";
@@ -346,7 +353,7 @@ const HexMap: React.FC<HexMapProps> = ({
       const fillColor = getFillColorForZone(zoneIdx);
 
       const innerRadius = widthScale(zone.minDist);
-      const outerRadius = widthScale(Math.min(40, zone.maxDist));
+      const outerRadius = widthScale(Math.min(50, zone.maxDist));
       const startAngle = -(minAngle * Math.PI) / 180 + Math.PI / 2;
       const endAngle = -(maxAngle * Math.PI) / 180 + Math.PI / 2;
 
@@ -707,6 +714,10 @@ const HexMap: React.FC<HexMapProps> = ({
 
     // Clear any previous hexes
     svg.selectAll("*").remove();
+
+    if (!followSystemTheme) {
+      svg.style("background-color", backgroundColor);
+    }
 
     // Create a tooltip div (invisible by default)
     const tooltip = d3
