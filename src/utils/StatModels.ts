@@ -317,7 +317,8 @@ export interface CompressedHexData {
 }
 export interface CompressedHexZone {
   total_freq: number;
-  info: [number, number, number][]; //(index, frequency, intensity)
+  /** (index, frequency, intensity) or (index, frequency, intensity, weighted_avg_dist_ft); 4th element optional for backward compat */
+  info: Array<[number, number, number] | [number, number, number, number]>;
   data?: CompressedHexData;
 }
 

@@ -20,7 +20,19 @@ export class ShotChartUtils {
       total_freq: totalFreq,
       info: _.map(
         zones.filter((z) => z.frequency > 0),
-        (zone, index) => [index, zone.frequency, zone.intensity],
+        (zone, index) =>
+          zone.weighted_avg_dist_ft != null
+            ? ([
+                index,
+                zone.frequency,
+                zone.intensity,
+                zone.weighted_avg_dist_ft,
+              ] as [number, number, number, number])
+            : ([index, zone.frequency, zone.intensity] as [
+                number,
+                number,
+                number,
+              ]),
       ),
       data: rawStats
         ? {
@@ -47,6 +59,9 @@ export class ShotChartUtils {
         mutableZones[index].frequency = frequency;
         mutableZones[index].intensity = intensity;
         mutableZones[index].total_freq = comp.total_freq;
+        if (zone.length >= 4 && typeof zone[3] === "number") {
+          mutableZones[index].weighted_avg_dist_ft = zone[3];
+        }
       }
     });
     return mutableZones;
