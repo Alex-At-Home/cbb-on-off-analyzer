@@ -7,6 +7,9 @@ import {
   CommonFilterCustomDate,
 } from "../QueryUtils";
 import { CommonFilterParams, GameFilterParams } from "../FilterModels";
+import { LineupStatSet } from "../StatModels";
+import { IndivPosInfo } from "../StatModels";
+import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
 
 describe("QueryUtils", () => {
   test("QueryUtils - parse/stringify", () => {
@@ -15,50 +18,50 @@ describe("QueryUtils", () => {
       QueryUtils.stringify({
         lineupQuery: "a",
         otherField: true,
-      } as CommonFilterParams)
+      } as CommonFilterParams),
     ).toEqual("baseQuery=a&otherField=true");
     expect(
-      QueryUtils.parse("lineupQuery=a&otherField=true&numField=1")
+      QueryUtils.parse("lineupQuery=a&otherField=true&numField=1"),
     ).toEqual({ baseQuery: "a", otherField: true, numField: "1" });
     // Check garbageFilter handling
     expect(
       QueryUtils.stringify({
         lineupQuery: "a",
         filterGarbage: true,
-      } as CommonFilterParams)
+      } as CommonFilterParams),
     ).toEqual("baseQuery=a&filterGarbage=true");
     expect(
       QueryUtils.stringify({
         lineupQuery: "a",
         filterGarbage: false,
-      } as CommonFilterParams)
+      } as CommonFilterParams),
     ).toEqual("baseQuery=a");
     // Check queryFilter handling
     expect(
       QueryUtils.stringify({
         lineupQuery: "a",
         queryFilters: "Conf,Nov-Dec",
-      } as CommonFilterParams)
+      } as CommonFilterParams),
     ).toEqual("baseQuery=a&queryFilters=Conf%2CNov-Dec");
     expect(
       QueryUtils.stringify({
         lineupQuery: "a",
         queryFilters: "",
-      } as CommonFilterParams)
+      } as CommonFilterParams),
     ).toEqual("baseQuery=a");
     // Test nested luck object handling
     expect(
       QueryUtils.stringify({
         lineupQuery: "a",
         luck: { base: "season" },
-      } as CommonFilterParams)
+      } as CommonFilterParams),
     ).toEqual("baseQuery=a&luck.base=season");
     expect(
-      QueryUtils.parse("lineupQuery=a&otherField=true&luck.base=baseline")
+      QueryUtils.parse("lineupQuery=a&otherField=true&luck.base=baseline"),
     ).toEqual({ baseQuery: "a", otherField: true, luck: { base: "baseline" } });
     // Test bwc change to onOffLuck:
     expect(
-      QueryUtils.parse("lineupQuery=a&onOffLuck=season&luck.base=baseline")
+      QueryUtils.parse("lineupQuery=a&onOffLuck=season&luck.base=baseline"),
     ).toEqual({ baseQuery: "a", onOffLuck: true, luck: { base: "season" } });
     // Test nested manual override object handling
     const testOverride1 = {
@@ -92,7 +95,7 @@ describe("QueryUtils", () => {
     const testOtherQueriesResult =
       "otherQueries.0.query=test1a&otherQueries.0.queryFilters=test1b&otherQueries.1.queryFilters=test2b&otherQueries.2.query=test3a";
     expect(QueryUtils.stringify(testOtherQueries)).toEqual(
-      testOtherQueriesResult
+      testOtherQueriesResult,
     );
     expect(QueryUtils.parse(testOtherQueriesResult)).toEqual(testOtherQueries);
   });
@@ -116,10 +119,10 @@ describe("QueryUtils", () => {
     const query3 = "test3";
     expect(QueryUtils.injectIntoQuery("1", [query1, undefined])).toBe("1");
     expect(QueryUtils.injectIntoQuery("2", [query2, undefined])).toBe(
-      "(2) AND (test2)"
+      "(2) AND (test2)",
     );
     expect(QueryUtils.injectIntoQuery("3", ["ignore3", query3])).toBe(
-      "[players.id:(3) AND (test3)]"
+      "[players.id:(3) AND (test3)]",
     );
   });
   test("QueryUtils - basicOrAdvancedQuery/extractAdvancedQuery", () => {
@@ -135,26 +138,26 @@ describe("QueryUtils", () => {
 
     expect(QueryUtils.basicOrAdvancedQuery(query1, "1")).toBe(' test "');
     expect(QueryUtils.basicOrAdvancedQuery(query2, "2")).toBe(
-      "players.id:(te'st)"
+      "players.id:(te'st)",
     );
     expect(QueryUtils.basicOrAdvancedQuery(query3, 'NOT "*"')).toBe(
-      'players.id:(NOT "*")'
+      'players.id:(NOT "*")',
     );
     expect(QueryUtils.basicOrAdvancedQuery(query4, "4")).toBe('NOT ( test ")');
     expect(QueryUtils.basicOrAdvancedQuery(query5, "fallback")).toBe(
-      `players.id:((("Cowan, Ant" AND Morsell) OR ("Cowan, Ant" AND Ayala) OR (Morsell AND Ayala)))`
+      `players.id:((("Cowan, Ant" AND Morsell) OR ("Cowan, Ant" AND Ayala) OR (Morsell AND Ayala)))`,
     );
     expect(QueryUtils.basicOrAdvancedQuery(query6, "fallback")).toBe(
-      `players.id:(("Cowan, Ant" AND Morsell) OR ("Cowan, Ant" AND Ayala) OR (Morsell AND Ayala))`
+      `players.id:(("Cowan, Ant" AND Morsell) OR ("Cowan, Ant" AND Ayala) OR (Morsell AND Ayala))`,
     );
     expect(QueryUtils.basicOrAdvancedQuery(query6b, "fallback")).toBe(
-      `players.id:((("Cowan, Ant" AND Morsell) AND NOT (Ayala)) OR (("Cowan, Ant" AND Ayala) AND NOT (Morsell)) OR ((Morsell AND Ayala) AND NOT ("Cowan, Ant")))`
+      `players.id:((("Cowan, Ant" AND Morsell) AND NOT (Ayala)) OR (("Cowan, Ant" AND Ayala) AND NOT (Morsell)) OR ((Morsell AND Ayala) AND NOT ("Cowan, Ant")))`,
     );
     expect(QueryUtils.basicOrAdvancedQuery(query7, "fallback")).toBe(
-      `players.id:((((Morsell) AND NOT (Ayala)) OR ((Ayala) AND NOT (Morsell))))`
+      `players.id:((((Morsell) AND NOT (Ayala)) OR ((Ayala) AND NOT (Morsell))))`,
     );
     expect(QueryUtils.basicOrAdvancedQuery(query8, "fallback")).toBe(
-      `players.id:(((Cowan) AND NOT (Morsell OR Ayala)) OR ((Morsell) AND NOT (Cowan OR Ayala)) OR ((Ayala) AND NOT (Cowan OR Morsell)))`
+      `players.id:(((Cowan) AND NOT (Morsell OR Ayala)) OR ((Morsell) AND NOT (Cowan OR Ayala)) OR ((Ayala) AND NOT (Cowan OR Morsell)))`,
     );
 
     // Whizzy home/away/neutral:
@@ -165,22 +168,22 @@ describe("QueryUtils", () => {
     const query9d = '[opponent.Neutral: Michigan AND "blah"]';
     const query9e = '[opponent.neutral:(Michigan AND "blah")]';
     expect(QueryUtils.basicOrAdvancedQuery(query9_, "")).toBe(
-      "opponent.team: Michigan"
+      "opponent.team: Michigan",
     );
     expect(QueryUtils.basicOrAdvancedQuery(query9a, "")).toBe(
-      "(location_type:Home AND (opponent.team:Michigan))"
+      "(location_type:Home AND (opponent.team:Michigan))",
     );
     expect(QueryUtils.basicOrAdvancedQuery(query9b, "")).toBe(
-      "((location_type:Home AND (opponent.team:Michigan)))"
+      "((location_type:Home AND (opponent.team:Michigan)))",
     );
     expect(QueryUtils.basicOrAdvancedQuery(query9c, "")).toBe(
-      '(location_type:Away AND (opponent.team:"Michigan St."))'
+      '(location_type:Away AND (opponent.team:"Michigan St."))',
     );
     expect(QueryUtils.basicOrAdvancedQuery(query9d, "")).toBe(
-      '(location_type:Neutral AND (opponent.team:Michigan)) AND "blah"'
+      '(location_type:Neutral AND (opponent.team:Michigan)) AND "blah"',
     );
     expect(QueryUtils.basicOrAdvancedQuery(query9e, "")).toBe(
-      '(location_type:Neutral AND (opponent.team:(Michigan AND "blah")))'
+      '(location_type:Neutral AND (opponent.team:(Michigan AND "blah")))',
     );
   });
   test("QueryUtils - getConference", () => {
@@ -207,15 +210,15 @@ describe("QueryUtils", () => {
       },
     };
     expect(
-      QueryUtils.getConference("A&M-Corpus Christi", efficiency, lookup)
+      QueryUtils.getConference("A&M-Corpus Christi", efficiency, lookup),
     ).toEqual("Southland Conference");
     //(no lookup needed)
     expect(
-      QueryUtils.getConference("Texas A&M Corpus Chris", efficiency, lookup)
+      QueryUtils.getConference("Texas A&M Corpus Chris", efficiency, lookup),
     ).toEqual("Southland Conference");
     //(miss)
     expect(
-      QueryUtils.getConference("Pretend Team", efficiency, lookup)
+      QueryUtils.getConference("Pretend Team", efficiency, lookup),
     ).toEqual("");
   });
   test("QueryUtils - parseFilter", () => {
@@ -235,7 +238,7 @@ describe("QueryUtils", () => {
           start: new Date("2020-11-11T05:00:00.000Z"),
           end: new Date("2021-03-15T04:00:00.000Z"),
         },
-      ]
+      ],
     );
     expect(QueryUtils.parseFilter("Date:11.11-12.01", "2020")).toEqual([
       {
@@ -260,7 +263,7 @@ describe("QueryUtils", () => {
     } as CommonFilterCustomDate;
 
     expect(QueryUtils.extractCustomDate(["Home", dateFilter])).toEqual(
-      dateFilter
+      dateFilter,
     );
     expect(QueryUtils.extractCustomDate(["Home", "Conf"])).toEqual(undefined);
   });
@@ -273,18 +276,18 @@ describe("QueryUtils", () => {
     } as CommonFilterCustomDate;
     expect(QueryUtils.setCustomDate(test1, undefined)).toEqual(test1);
     expect(
-      QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test1, toSet1))
+      QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test1, toSet1)),
     ).toEqual("Conf,Home,Date:01.09-04.30");
 
     const test2 = QueryUtils.parseFilter("Home,Conf,Date:11.11-12.01", "2020");
     expect(QueryUtils.setCustomDate(test2, undefined)).toEqual(test1);
     expect(
-      QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test2, toSet1))
+      QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test2, toSet1)),
     ).toEqual("Conf,Home,Date:01.09-04.30");
 
     const test3 = QueryUtils.parseFilter("Conf,Last-30d", "2020");
     expect(
-      QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test3, toSet1))
+      QueryUtils.buildFilterStr(QueryUtils.setCustomDate(test3, toSet1)),
     ).toEqual("Conf,Date:01.09-04.30");
   });
   test("QueryUtils - buildFilterStr", () => {
@@ -297,7 +300,7 @@ describe("QueryUtils", () => {
           start: new Date("2020-11-11T05:00:00.000Z"),
           end: new Date("2020-12-01T05:00:00.000Z"),
         },
-      ])
+      ]),
     ).toEqual("Home,Date:11.11-12.01");
   });
   test("QueryUtils - filterWith/filterWithout/filterHas/toggleFilter", () => {
@@ -314,8 +317,8 @@ describe("QueryUtils", () => {
         expect(
           QueryUtils.toggleFilter(
             _.filter(testSet, (nT) => nT != test),
-            test
-          )
+            test,
+          ),
         ).toEqual([test]);
         testSet.forEach((nonTest) => {
           if (nonTest != test) {
@@ -331,10 +334,10 @@ describe("QueryUtils", () => {
       "Nov-Dec",
     ]);
     expect(
-      QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away")
+      QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Away"),
     ).toEqual(["Away", "Conf", "Nov-Dec"]);
     expect(
-      QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home")
+      QueryUtils.toggleFilter(["Conf", "Home", "Nov-Dec"], "Home"),
     ).toEqual(["Conf", "Nov-Dec"]);
   });
   test("QueryUtils - nonEmptyQueryObj/nonEmptyQueryStr", () => {
@@ -371,25 +374,25 @@ describe("QueryUtils", () => {
       QueryUtils.autoOffAndFiltersObj({
         autoOffQuery: true,
         onQueryFilters: "",
-      })
+      }),
     ).toEqual(false);
     expect(QueryUtils.autoOffAndFiltersObj({ autoOffQuery: true })).toEqual(
-      false
+      false,
     );
     expect(
       QueryUtils.autoOffAndFiltersObj({
         autoOffQuery: false,
         onQueryFilters: "Conf",
-      })
+      }),
     ).toEqual(false);
     expect(QueryUtils.autoOffAndFiltersObj({ onQueryFilters: "Conf" })).toEqual(
-      false
+      false,
     );
     expect(
       QueryUtils.autoOffAndFiltersObj({
         autoOffQuery: true,
         onQueryFilters: "Conf",
-      })
+      }),
     ).toEqual(true);
   });
   test("invertedQueryMode", () => {
@@ -398,19 +401,224 @@ describe("QueryUtils", () => {
       QueryUtils.invertedQueryMode({
         invertBase: "",
         invertBaseQueryFilters: "",
-      })
+      }),
     ).toEqual(false);
     expect(
       QueryUtils.invertedQueryMode({
         invertBase: "test",
         invertBaseQueryFilters: "test",
-      })
+      }),
     ).toEqual(true);
     expect(QueryUtils.invertedQueryMode({ invertBase: "test" })).toEqual(true);
     expect(
-      QueryUtils.invertedQueryMode({ invertBaseQueryFilters: "test" })
+      QueryUtils.invertedQueryMode({ invertBaseQueryFilters: "test" }),
     ).toEqual(true);
   });
+
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted data)", () => {
+    const teamSeasonLookup = "";
+    const positionFromPlayerKey: Record<string, IndivPosInfo> = {
+      idA: { posClass: "s-PG", posConfidences: [60, 40, 0, 0, 0] },
+      idB: { posClass: "CG", posConfidences: [40, 60, 0, 0, 0] },
+      idC: { posClass: "WF", posConfidences: [0, 0, 50, 50, 0] },
+      idD: { posClass: "PF/C", posConfidences: [0, 0, 0, 50, 50] },
+      idX: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+    };
+    const lineup1: LineupStatSet = {
+      key: "codeA_codeB_codeC_codeD_codeX",
+      doc_count: 10,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "codeA", id: "idA" },
+                  { code: "codeB", id: "idB" },
+                  { code: "codeC", id: "idC" },
+                  { code: "codeD", id: "idD" },
+                  { code: "codeX", id: "idX" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineups: LineupStatSet[] = [lineup1];
+    const result = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      lineups,
+      "idX",
+      positionFromPlayerKey,
+      teamSeasonLookup,
+    );
+    expect(result.onQuery).toBe(`{"idX"}=1`);
+    expect(result.offQuery).toBe("");
+    expect(result.otherQueries).toEqual([]);
+    expect(result.splitPhrases).toEqual(["codeX=[5]"]);
+    expect(result.autoOffQuery).toBe(false);
+
+    const resultByCode = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      lineups,
+      "codeX",
+      positionFromPlayerKey,
+      teamSeasonLookup,
+    );
+    expect(resultByCode.onQuery).toBe(result.onQuery);
+    expect(resultByCode.splitPhrases).toEqual(["codeX=[5]"]);
+  });
+
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted two lineups)", () => {
+    const teamSeasonLookup = "";
+    const positionFromPlayerKey: Record<string, IndivPosInfo> = {
+      idA: { posClass: "s-PG", posConfidences: [80, 20, 0, 0, 0] },
+      idB: { posClass: "WG", posConfidences: [10, 80, 10, 0, 0] },
+      idC: { posClass: "WF", posConfidences: [0, 0, 80, 20, 0] },
+      idD: { posClass: "PF/C", posConfidences: [0, 0, 0, 50, 50] },
+      idE: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+      idX: { posClass: "PF/C", posConfidences: [0, 0, 0, 50, 50] },
+    };
+    const lineup1: LineupStatSet = {
+      key: "codeA_codeB_codeC_codeD_codeX",
+      doc_count: 10,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "codeA", id: "idA" },
+                  { code: "codeB", id: "idB" },
+                  { code: "codeC", id: "idC" },
+                  { code: "codeD", id: "idD" },
+                  { code: "codeX", id: "idX" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineup2: LineupStatSet = {
+      key: "codeA_codeB_codeC_codeX_codeE",
+      doc_count: 5,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "codeA", id: "idA" },
+                  { code: "codeB", id: "idB" },
+                  { code: "codeC", id: "idC" },
+                  { code: "codeX", id: "idX" },
+                  { code: "codeE", id: "idE" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineups: LineupStatSet[] = [lineup1, lineup2];
+    const result = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      lineups,
+      "idX",
+      positionFromPlayerKey,
+      teamSeasonLookup,
+    );
+    expect(result.onQuery).toContain(`"idX"`);
+    expect(result.onQuery).toContain("=1");
+    expect(result.splitPhrases!.length).toBeGreaterThanOrEqual(1);
+    expect(result.splitPhrases!.every((s) => /^codeX=\[\d\]$/.test(s))).toBe(
+      true,
+    );
+    expect(result.autoOffQuery).toBe(false);
+    if (result.splitPhrases!.length >= 2) {
+      expect(result.offQuery).toContain(`"idX"`);
+      const onExcludes = result.onQuery!.match(/AND NOT \(([^)]+)\)/);
+      const offExcludes = result.offQuery!.match(/AND NOT \(([^)]+)\)/);
+      expect(onExcludes).toBeTruthy();
+      expect(offExcludes).toBeTruthy();
+    }
+  });
+
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions (sample data)", () => {
+    const teamSeasonLookup = "Men_Maryland_2019/20";
+    const buckets = sampleLineupStatsResponse.responses[0].aggregations.lineups
+      .buckets as LineupStatSet[];
+    const positionFromPlayerKey: Record<string, IndivPosInfo> = {
+      "Wiggins, Aaron": {
+        posConfidences: [10, 20, 50, 10, 0],
+        posClass: "WG",
+      },
+      "Cowan, Anthony": {
+        posConfidences: [60, 40, 10, 0, 0],
+        posClass: "s-PG",
+      },
+      "Morsell, Darryl": {
+        posConfidences: [10, 40, 50, 30, 10],
+        posClass: "WG",
+      },
+      "Ayala, Eric": {
+        posConfidences: [40, 60, 10, 0, 0],
+        posClass: "CG",
+      },
+      "Smith, Jalen": {
+        posConfidences: [0, 0, 0, 50, 50],
+        posClass: "PF/C",
+      },
+      "Scott, Donta": {
+        posConfidences: [10, 30, 50, 30, 10],
+        posClass: "WG",
+      },
+    };
+    const result = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      buckets,
+      "ErAyala",
+      positionFromPlayerKey,
+      teamSeasonLookup,
+    );
+    expect(result.onQuery).toContain('"Ayala, Eric"');
+    expect(result.onQuery).toContain("=1");
+    expect(result.splitPhrases!.length).toBeGreaterThanOrEqual(1);
+    expect(result.splitPhrases!.every((s) => /^ErAyala=\[\d\]$/.test(s))).toBe(
+      true,
+    );
+    expect(result.autoOffQuery).toBe(false);
+
+    const resultById = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      buckets,
+      "Ayala, Eric",
+      positionFromPlayerKey,
+      teamSeasonLookup,
+    );
+    expect(resultById.onQuery).toBe(result.onQuery);
+    expect(resultById.splitPhrases).toEqual(result.splitPhrases);
+  });
+
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions (unknown player / empty)", () => {
+    const lineup: LineupStatSet = {
+      key: "a_b_c_d_x",
+      doc_count: 1,
+      players_array: {
+        hits: { hits: [{ _source: { players: [] } }] },
+      },
+    } as LineupStatSet;
+    const positionFromPlayerKey: Record<string, IndivPosInfo> = {};
+    const result = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      [lineup],
+      "nonexistent",
+      positionFromPlayerKey,
+      "",
+    );
+    expect(result.onQuery).toBe("");
+    expect(result.offQuery).toBe("");
+    expect(result.otherQueries).toEqual([]);
+    expect(result.splitPhrases).toEqual([]);
+    expect(result.autoOffQuery).toBe(false);
+  });
+
   test("QueryUtils - queryDisplayStrs", () => {
     const test1: GameFilterParams = { onQuery: `OQ1`, autoOffQuery: true };
     expect(QueryUtils.queryDisplayStrs(test1)).toEqual({

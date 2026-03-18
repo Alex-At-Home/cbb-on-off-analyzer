@@ -980,6 +980,9 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                     .filter((l) => {
                       // Go over all lineups, remove those that are part of this positional lineup key
                       //... or don't have all players (anywhere in lineup) from this position lineup key
+                      // (NOTE: Since it wasn't clear when I re-read this after a while, the Big Idea is
+                      //  you find lineups including the player/players of interest, and then exclude any players
+                      //  who take their spot ... see also buildGameFilterParamsByPlayerPositions)
 
                       return (
                         l.key != LineupTableUtils.totalLineupId &&

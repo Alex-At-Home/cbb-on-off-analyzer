@@ -11,6 +11,15 @@ import {
   DefaultSimilarityConfig,
 } from "./FilterModels";
 
+import {
+  LineupStatSet,
+  PlayerCodeId,
+  IndivPosInfo,
+  PlayerId,
+} from "./StatModels";
+import { LineupTableUtils } from "./tables/LineupTableUtils";
+import { PositionUtils } from "./stats/PositionUtils";
+
 import { format as dateFormat, parse as dateParse, addYears } from "date-fns";
 
 export type CommonFilterTypeSimple =
@@ -63,7 +72,7 @@ export type CommonFilterType =
   | CommonFilterGameSelector;
 
 export function isCommonFilterCustomDate(
-  filter: CommonFilterType
+  filter: CommonFilterType,
 ): filter is CommonFilterCustomDate {
   return (
     (filter as CommonFilterCustomDate).kind == QueryUtils.customDateAliasName
@@ -71,7 +80,7 @@ export function isCommonFilterCustomDate(
 }
 
 export function isCommonFilterGameSelector(
-  filter: CommonFilterType
+  filter: CommonFilterType,
 ): filter is CommonFilterGameSelector {
   return (
     (filter as CommonFilterGameSelector).kind == QueryUtils.customGamesAliasName
@@ -160,7 +169,10 @@ export class QueryUtils {
     }
     if (!_.isEmpty(similarityConfigTmp)) {
       // Merge with defaults to ensure all fields are present
-      parsed.similarityConfig = { ...DefaultSimilarityConfig, ...similarityConfigTmp };
+      parsed.similarityConfig = {
+        ...DefaultSimilarityConfig,
+        ...similarityConfigTmp,
+      };
     }
 
     // (Extra annoyance: handle bwc in change of onOffLuck becoming a boolean)
@@ -215,7 +227,10 @@ export class QueryUtils {
       delete objCopy.similarityConfig;
       _.forEach(similarityConfig, (value: any, key: string) => {
         // Only include in URL if value differs from default
-        if (value !== DefaultSimilarityConfig[key as keyof typeof DefaultSimilarityConfig]) {
+        if (
+          value !==
+          DefaultSimilarityConfig[key as keyof typeof DefaultSimilarityConfig]
+        ) {
           objCopy["similarityConfig." + key] = value;
         }
       });
@@ -244,7 +259,7 @@ export class QueryUtils {
 
   /** Returns the advanced query, with NOT support, or undefined if not an advanced query */
   static extractAdvancedQuery(
-    maybeAdvQuery: string
+    maybeAdvQuery: string,
   ): [string, string | undefined] {
     const advancedMatch = /^\s*\[(.*)\]\s*$/.exec(maybeAdvQuery);
     if (advancedMatch) {
@@ -252,7 +267,7 @@ export class QueryUtils {
       return [maybeAdvQuery, advancedMatch[1]];
     } else {
       const advancedMatchNot = /^\s*NOT\s*\(\s*\[(.*)\]\s*\)\s*$/.exec(
-        maybeAdvQuery
+        maybeAdvQuery,
       );
       if (advancedMatchNot) {
         // (if there's a NOT outside the query, lift it into the query)
@@ -269,7 +284,7 @@ export class QueryUtils {
    */
   static basicOrAdvancedQuery(
     query: string | undefined,
-    fallback: string
+    fallback: string,
   ): string {
     // Firstly, let's sub-in the special case of {playerX|...}~N to take N from that set
     const subMatch = /[{]([^}]*)[}]([~=])([0-9]+)/g;
@@ -298,15 +313,15 @@ export class QueryUtils {
               .join(" OR ") +
             ")"
           );
-        }
-      )
+        },
+      ),
     )
       .thru((subQuery) => {
         const locationMatch =
           /opponent[.]([Hh]ome|[Aa]way|[Nn]eutral): *([(][^)]+[)]|"[^"]+"|[^ )\]]+)/g;
         return subQuery.replace(locationMatch, function (match, p1, p2) {
           const replaceStr = `(location_type:${_.capitalize(
-            p1
+            p1,
           )} AND (opponent.team:${p2}))`;
           return replaceStr;
         });
@@ -328,7 +343,7 @@ export class QueryUtils {
   static getConference(
     team: string,
     efficiency: Record<string, any>,
-    lookup: Record<string, any>
+    lookup: Record<string, any>,
   ) {
     const efficiencyName = lookup[team]?.pbp_kp_team || team;
     return efficiency[efficiencyName]?.conf || "";
@@ -337,7 +352,7 @@ export class QueryUtils {
   /** Injects a new AND clause into the query */
   static injectIntoQuery(
     newQueryEl: string,
-    currQuery: [string, string | undefined]
+    currQuery: [string, string | undefined],
   ) {
     // Different cases
     if (currQuery[0] == "") {
@@ -356,7 +371,7 @@ export class QueryUtils {
 
   /** Allows having objects (eg custom dates) as common filters also - all (eg) custom dates have the same name */
   private static byName(
-    filter: CommonFilterType | CustomDateAlias | GameSelectorAlias
+    filter: CommonFilterType | CustomDateAlias | GameSelectorAlias,
   ): CommonFilterKeyType {
     if (typeof filter == "string") {
       return filter as CommonFilterKeyType;
@@ -375,7 +390,7 @@ export class QueryUtils {
       // we assume 02.28 actually means 02.29..
       const maybeLeapYear = (s: string) => (s == "02.28" ? "02.29" : s);
       return `${QueryUtils.customDatePrefix}${maybeLeapYear(
-        dateFormat(filter.start, QueryUtils.customDateFormat)
+        dateFormat(filter.start, QueryUtils.customDateFormat),
       )}-${maybeLeapYear(dateFormat(filter.end, QueryUtils.customDateFormat))}`;
     } else if (isCommonFilterGameSelector(filter)) {
       if (forDisplay) {
@@ -400,7 +415,7 @@ export class QueryUtils {
   /** Handles a set of new filters (which can cause existing filters to be removed) */
   private static filterWith(
     curr: CommonFilterType[],
-    toAdd: CommonFilterType[]
+    toAdd: CommonFilterType[],
   ): CommonFilterType[] {
     const typed = (s: CommonFilterKeyType) => s; //(give ts compiler a bit of help with its arrays!)
     const toRemove: CommonFilterKeyType[] = _.flatMap(toAdd, (add) => {
@@ -475,7 +490,7 @@ export class QueryUtils {
   /** Returns the composite filter without the specified filter elements */
   private static filterWithout(
     curr: CommonFilterType[],
-    toRemoveByName: CommonFilterKeyType[]
+    toRemoveByName: CommonFilterKeyType[],
   ): CommonFilterType[] {
     const toRemoveSet = _.chain(toRemoveByName)
       .map((filter) => [filter, true])
@@ -485,14 +500,14 @@ export class QueryUtils {
     return _.filter(
       curr,
       (filter) =>
-        !toRemoveSet.hasOwnProperty(QueryUtils.byName(filter) as string)
+        !toRemoveSet.hasOwnProperty(QueryUtils.byName(filter) as string),
     );
   }
 
   /** Returns a custom date filter from the string MM.dd-MM.dd (note: without "Date:" prefix) */
   static parseCustomDate(
     dateStr: string,
-    year: string
+    year: string,
   ): CommonFilterCustomDate | undefined {
     const yearStr = year.substring(0, 4);
     const dateStrs = dateStr.split("-");
@@ -500,7 +515,7 @@ export class QueryUtils {
       const contextDate = dateParse(
         `${yearStr}-12-30`,
         "yyyy-MM-dd",
-        new Date()
+        new Date(),
       ); //(mid point of the season)
       const getCorrectYear = (d: Date) => {
         return d.getMonth() < 6 ? addYears(d, 1) : d;
@@ -510,19 +525,19 @@ export class QueryUtils {
           const attempt1 = dateParse(
             d,
             QueryUtils.customDateFormat,
-            addYears(contextDate, 1)
+            addYears(contextDate, 1),
           );
 
           return isNaN(attempt1.getTime())
             ? dateParse(
                 "02.28", //(not a leap year - switch to day before)
                 QueryUtils.customDateFormat,
-                addYears(contextDate, 1)
+                addYears(contextDate, 1),
               )
             : attempt1;
         } else {
           return getCorrectYear(
-            dateParse(d, QueryUtils.customDateFormat, contextDate)
+            dateParse(d, QueryUtils.customDateFormat, contextDate),
           );
         }
       };
@@ -544,11 +559,11 @@ export class QueryUtils {
 
   /** Returns the custom date filter if it exists in the current filter set */
   static extractCustomDate(
-    queryFilters: CommonFilterType[]
+    queryFilters: CommonFilterType[],
   ): CommonFilterCustomDate | undefined {
     const maybeItem = _.find(
       queryFilters,
-      (f) => QueryUtils.byName(f) == QueryUtils.customDateAliasName
+      (f) => QueryUtils.byName(f) == QueryUtils.customDateAliasName,
     );
     return maybeItem ? (maybeItem as CommonFilterCustomDate) : undefined;
   }
@@ -569,11 +584,11 @@ export class QueryUtils {
 
   /** Returns the custom game selector if it exists in the current filter set */
   static extractGameSelector(
-    queryFilters: CommonFilterType[]
+    queryFilters: CommonFilterType[],
   ): CommonFilterGameSelector | undefined {
     const maybeItem = _.find(
       queryFilters,
-      (f) => QueryUtils.byName(f) == QueryUtils.customGamesAliasName
+      (f) => QueryUtils.byName(f) == QueryUtils.customGamesAliasName,
     );
     return maybeItem ? (maybeItem as CommonFilterGameSelector) : undefined;
   }
@@ -588,12 +603,12 @@ export class QueryUtils {
         if (trimmed.startsWith(QueryUtils.customDatePrefix)) {
           const parsedDataObj = QueryUtils.parseCustomDate(
             trimmed.substring(QueryUtils.customDatePrefix.length),
-            year
+            year,
           );
           return parsedDataObj ? [parsedDataObj] : [];
         } else if (trimmed.startsWith(QueryUtils.customGamesPrefix)) {
           const parsedDataObj = QueryUtils.parseGameSelector(
-            trimmed.substring(QueryUtils.customGamesPrefix.length)
+            trimmed.substring(QueryUtils.customGamesPrefix.length),
           );
           return parsedDataObj ? [parsedDataObj] : [];
         } else {
@@ -611,7 +626,7 @@ export class QueryUtils {
   /** Like buildFilterStr but specifically when being used to build an ES query, so expand dynamic */
   static buildFilterStrForQuery(
     curr: CommonFilterType[],
-    gameSelection: GameSelection[]
+    gameSelection: GameSelection[],
   ) {
     const currByName = curr.map((qf) => {
       if (QueryUtils.byName(qf) == QueryUtils.customGamesAliasName) {
@@ -621,8 +636,8 @@ export class QueryUtils {
             QueryUtils.buildGameSelectionFilter(
               gameSelection.filter((g) => {
                 return g.score?.[0] == "W";
-              })
-            )
+              }),
+            ),
           );
         } else {
           return QueryUtils.asString(qf);
@@ -637,10 +652,10 @@ export class QueryUtils {
   /** Checks if a filter item is enabled */
   static filterHas(
     curr: CommonFilterType[],
-    item: CommonFilterType | CustomDateAlias | GameSelectorAlias
+    item: CommonFilterType | CustomDateAlias | GameSelectorAlias,
   ) {
     return Boolean(
-      _.find(curr, (f) => QueryUtils.byName(f) == QueryUtils.byName(item))
+      _.find(curr, (f) => QueryUtils.byName(f) == QueryUtils.byName(item)),
     );
   }
 
@@ -654,17 +669,17 @@ export class QueryUtils {
   /** Adds a new custom date (overwrite the current one if it exists), or removes the custom date */
   static setCustomDate(
     curr: CommonFilterType[],
-    setOrUnset: CommonFilterCustomDate | undefined
+    setOrUnset: CommonFilterCustomDate | undefined,
   ) {
     return QueryUtils.filterWith(
       QueryUtils.filterWithout(curr, [QueryUtils.customDateAliasName]),
-      setOrUnset ? [setOrUnset] : []
+      setOrUnset ? [setOrUnset] : [],
     );
   }
 
   /** Goes from game selection to a query filter */
   static buildGameSelectionFilter(
-    games: GameSelection[]
+    games: GameSelection[],
   ): CommonFilterGameSelector {
     return {
       kind: QueryUtils.customGamesAliasName,
@@ -676,7 +691,7 @@ export class QueryUtils {
    * .. that way it's clear if you hit "save" you're going to over-write them
    */
   static buildGameSelectionModel(
-    queryFilters: CommonFilterType[]
+    queryFilters: CommonFilterType[],
   ): GameSelection[] {
     return _.thru(
       QueryUtils.extractGameSelector(queryFilters),
@@ -687,22 +702,22 @@ export class QueryUtils {
             locationTmp == "H"
               ? "Home"
               : locationTmp == "A"
-              ? "Away"
-              : "Neutral";
+                ? "Away"
+                : "Neutral";
           return { date, location, opponent, score: "" };
         });
-      }
+      },
     );
   }
 
   /** Adds a new custom date (overwrite the current one if it exists), or removes the custom date */
   static setCustomGameSelection(
     curr: CommonFilterType[],
-    setOrUnset: CommonFilterGameSelector | undefined
+    setOrUnset: CommonFilterGameSelector | undefined,
   ) {
     return QueryUtils.filterWith(
       QueryUtils.filterWithout(curr, [QueryUtils.customGamesAliasName]),
-      setOrUnset ? [setOrUnset] : []
+      setOrUnset ? [setOrUnset] : [],
     );
   }
 
@@ -716,7 +731,7 @@ export class QueryUtils {
   } {
     const queryFilterSummary = (
       query: string | undefined,
-      filters: string | undefined
+      filters: string | undefined,
     ) => {
       const queryStr = query ? `query: '${_.trim(query)}'` : ``;
       const filterStr = filters
@@ -732,7 +747,7 @@ export class QueryUtils {
       : queryFilterSummary(params.offQuery, params.offQueryFilters);
     const baselineQuery = queryFilterSummary(
       params.baseQuery,
-      params.queryFilters
+      params.queryFilters,
     );
 
     return {
@@ -740,7 +755,7 @@ export class QueryUtils {
       off: offQuery,
       baseline: baselineQuery,
       other: (params.otherQueries || []).map((oq) =>
-        queryFilterSummary(oq.query, oq.queryFilters)
+        queryFilterSummary(oq.query, oq.queryFilters),
       ),
     };
   }
@@ -755,21 +770,21 @@ export class QueryUtils {
       //off
       return QueryUtils.nonEmptyQueryStr(
         params.offQuery,
-        params.offQueryFilters
+        params.offQueryFilters,
       );
     }
   }
   /** One of some overloaded checks for whether a query type is doing anything */
   static nonEmptyQueryStr(
     queryStr: string | undefined,
-    queryFiltersStr: string | undefined
+    queryFiltersStr: string | undefined,
   ) {
     return (queryStr || "") != "" || (queryFiltersStr || "") != "";
   }
   /** One of some overloaded checks for whether a query type is doing anything */
   static nonEmptyQuery(
     queryStr: string | undefined,
-    queryFilter: CommonFilterType[]
+    queryFilter: CommonFilterType[],
   ) {
     return (queryStr || "") != "" || queryFilter.length > 0;
   }
@@ -777,7 +792,7 @@ export class QueryUtils {
   /** Auto off query with on query filters set - this is a special case because can't represent the query with a single query/filter pair */
   static autoOffAndFilters(
     autoOff: boolean,
-    onQueryFilter: CommonFilterType[]
+    onQueryFilter: CommonFilterType[],
   ) {
     return autoOff && onQueryFilter.length > 0;
   }
@@ -793,5 +808,124 @@ export class QueryUtils {
       (params.invertBase || "") != "" ||
       (params.invertBaseQueryFilters || "") != ""
     );
+  }
+
+  /**
+   * Builds partial GameFilterParams for splitting by positions a player played.
+   * Each split is "player at position N": onQuery/offQuery/otherQueries are real lineup queries
+   * (include target player, exclude players who shared the court with them when they were not at that position).
+   * splitPhrases are display-only labels: `${playerCode}=[1]` etc.
+   *
+   * See also LineupStatsTable.table (const enrichedLineups calc, leads to a call to TableDisplayUtils.buildGameUrl)
+   */
+  static buildGameFilterParamsByPlayerPositions(
+    lineups: LineupStatSet[],
+    playerIdentifier: string,
+    positionFromPlayerKey: Record<PlayerId, IndivPosInfo>,
+    teamSeasonLookup: string,
+  ): Partial<GameFilterParams> {
+    const empty: Partial<GameFilterParams> = {
+      onQuery: "",
+      offQuery: "",
+      otherQueries: [],
+      splitPhrases: [],
+      autoOffQuery: false,
+    };
+
+    const normalizedId = _.trim(playerIdentifier).toLowerCase();
+    if (!normalizedId) return empty;
+
+    let resolved: PlayerCodeId | undefined;
+    const seen = new Set<string>();
+    for (const lineup of lineups) {
+      if (
+        lineup.key === LineupTableUtils.totalLineupId ||
+        lineup.key === LineupTableUtils.droppedLineupId
+      )
+        continue;
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      for (const cid of codesAndIds) {
+        const key = `${cid.id}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        if (
+          (cid.code && cid.code.toLowerCase() === normalizedId) ||
+          (cid.id && cid.id.toLowerCase() === normalizedId)
+        ) {
+          resolved = cid;
+          break;
+        }
+      }
+      if (resolved) break;
+    }
+    if (!resolved) return empty;
+
+    const positionsPlayed = new Set<number>();
+    const excludeByPosition: Record<number, Set<PlayerId>> = {
+      1: new Set(),
+      2: new Set(),
+      3: new Set(),
+      4: new Set(),
+      5: new Set(),
+    };
+
+    for (const lineup of lineups) {
+      if (
+        lineup.key === LineupTableUtils.totalLineupId ||
+        lineup.key === LineupTableUtils.droppedLineupId
+      )
+        continue;
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      if (codesAndIds.length !== 5) continue;
+      const sorted = PositionUtils.orderLineup(
+        codesAndIds,
+        positionFromPlayerKey,
+        teamSeasonLookup,
+      );
+      const idx = sorted.findIndex((p) => p.id === resolved!.id);
+      if (idx < 0) continue;
+      const position = idx + 1;
+      positionsPlayed.add(position);
+      const otherIds = sorted
+        .filter((p) => p.id !== resolved!.id)
+        .map((p) => p.id);
+      for (let q = 1; q <= 5; q++) {
+        if (q !== position) {
+          otherIds.forEach((id) => excludeByPosition[q].add(id));
+        }
+      }
+    }
+
+    const sortedPositions = _.sortBy(Array.from(positionsPlayed));
+    if (sortedPositions.length === 0) return empty;
+
+    const buildQuery = (pos: number) => {
+      const excludes = Array.from(excludeByPosition[pos]);
+      const includePart = `{"${resolved!.id}"}=1`;
+      const notPart =
+        excludes.length > 0
+          ? ` AND NOT (${excludes.map((id) => `"${id}"`).join(" OR ")})`
+          : "";
+      return includePart + notPart;
+    };
+
+    const onQuery = buildQuery(sortedPositions[0]!);
+    const offQuery =
+      sortedPositions.length >= 2 ? buildQuery(sortedPositions[1]!) : "";
+    const otherQueries = sortedPositions
+      .slice(2)
+      .map((pos) => ({ query: buildQuery(pos) }));
+
+    const splitPhrases = sortedPositions.map(
+      (pos) => `${resolved!.code}=[${pos}]`,
+    );
+
+    return {
+      onQuery,
+      offQuery,
+      otherQueries,
+      splitPhrases,
+      autoOffQuery: false,
+    };
   }
 }
