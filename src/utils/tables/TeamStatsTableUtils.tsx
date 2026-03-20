@@ -116,7 +116,7 @@ export type TeamStatsChangeState = {
 const buildPlayStyleConfigWithQuickSwitch = (
   baseConfigStr: string | undefined,
   chartTitle: string,
-  comparisonTitle: string
+  comparisonTitle: string,
 ): string => {
   const baseConfig = configStrToTeamRadarConfig(baseConfigStr, false);
   const quickSwitchValue = `${comparisonTitle}${quickSwitchDelim}extra`;
@@ -125,7 +125,7 @@ const buildPlayStyleConfigWithQuickSwitch = (
       ...baseConfig,
       quickSwitch: chartTitle + quickSwitchTitleDelim + quickSwitchValue,
     },
-    false
+    false,
   );
 };
 
@@ -133,7 +133,7 @@ const buildPlayStyleConfigWithQuickSwitch = (
 const getRosterStats = (
   key: OnOffBaselineOtherEnum,
   rosterModel: RosterStatsModel,
-  otherIndex?: number
+  otherIndex?: number,
 ): Array<IndivStatSet> => {
   if (key == "other") {
     return rosterModel.other?.[otherIndex || 0] || [];
@@ -146,7 +146,7 @@ const getRosterStats = (
 const getTeamStats = (
   key: OnOffBaselineOtherEnum,
   teamModel: TeamStatsModel,
-  otherIndex?: number
+  otherIndex?: number,
 ): TeamStatSet => {
   if (key == "other") {
     return teamModel.other?.[otherIndex || 0] || StatModels.emptyTeam();
@@ -159,7 +159,7 @@ const getTeamStats = (
 const getShotStats = (
   key: OnOffBaselineOtherEnum,
   shotModel: ShotStatsModel,
-  otherIndex?: number
+  otherIndex?: number,
 ): {
   off: ShotStats;
   def: ShotStats;
@@ -189,7 +189,7 @@ export class TeamStatsTableUtils {
 
     // Runtime page params
     luckConfig: LuckParams,
-    divisionStatsCache: DivisionStatsCache
+    divisionStatsCache: DivisionStatsCache,
   ): TeamStatsOnOffBase {
     const {
       showPlayTypes,
@@ -233,7 +233,7 @@ export class TeamStatsTableUtils {
 
     // Helper to convert dataset key to queryKey format
     const datasetKeyToQueryKey = (
-      key: string
+      key: string,
     ):
       | { queryKey: OnOffBaselineOtherEnum; otherIndex?: number }
       | undefined => {
@@ -262,13 +262,13 @@ export class TeamStatsTableUtils {
 
     const onOffBaseToShortPhrase = (
       type: OnOffBaselineOtherEnum,
-      otherIndex?: number
+      otherIndex?: number,
     ) => {
       const maybePrefix = _.zip(
         gameFilterParams.splitPhrases || [],
         FilterPresetUtils.getPresetPhrase(
-          gameFilterParams.presetSplit || "??"
-        ) || []
+          gameFilterParams.presetSplit || "??",
+        ) || [],
       ).map((options) => options?.[0] || options?.[1]);
 
       switch (type) {
@@ -280,7 +280,7 @@ export class TeamStatsTableUtils {
           const maybeFilterPhrase =
             gameFilterParams.basePhrase ||
             FilterPresetUtils.getPresetFilterPhrase(
-              gameFilterParams.presetMode || "??"
+              gameFilterParams.presetMode || "??",
             );
           return maybeFilterPhrase ? `[${maybeFilterPhrase}]` : "Base";
         case "other":
@@ -297,33 +297,33 @@ export class TeamStatsTableUtils {
     const onOffBaseToLongerPhrase = (
       type: OnOffBaselineOtherEnum,
       includeSet: boolean = true,
-      otherIndex?: number
+      otherIndex?: number,
     ) => {
       const maybeSet = includeSet ? ` set` : "";
       const maybePrefix = _.zip(
         gameFilterParams.splitPhrases || [],
         FilterPresetUtils.getPresetPhrase(
-          gameFilterParams.presetSplit || "??"
-        ) || []
+          gameFilterParams.presetSplit || "??",
+        ) || [],
       ).map((options) => options?.[0] || options?.[1]);
       switch (type) {
         case "on":
           return maybePrefix?.[0]
             ? `'${maybePrefix[0]}'${maybeSet}`
             : teamStats.onOffMode && _.isEmpty(teamStats.other)
-            ? "On ('A')"
-            : `'A'${maybeSet}`;
+              ? "On ('A')"
+              : `'A'${maybeSet}`;
         case "off":
           return maybePrefix?.[1]
             ? `'${maybePrefix[1]}'${maybeSet}`
             : teamStats.onOffMode && _.isEmpty(teamStats.other)
-            ? "Off ('B')"
-            : `'B'${maybeSet}`;
+              ? "Off ('B')"
+              : `'B'${maybeSet}`;
         case "baseline":
           const maybeFilterPhrase =
             gameFilterParams.basePhrase ||
             FilterPresetUtils.getPresetFilterPhrase(
-              gameFilterParams.presetMode || "??"
+              gameFilterParams.presetMode || "??",
             );
           return maybeFilterPhrase
             ? `'Base'${maybeSet} (${maybeFilterPhrase})`
@@ -340,7 +340,7 @@ export class TeamStatsTableUtils {
 
     const onOffBaseToDisplayText = (
       type: OnOffBaselineOtherEnum,
-      otherIndex?: number
+      otherIndex?: number,
     ) => {
       const maybeOnOff = _.thru(
         gameFilterParams.presetSplit || "??",
@@ -351,38 +351,38 @@ export class TeamStatsTableUtils {
           ) {
             const onOrOff = _.toUpper(type);
             const onOffPlayerName = splitPreset.substring(
-              FilterPresetUtils.gameFilterOnOffPrefix.length
+              FilterPresetUtils.gameFilterOnOffPrefix.length,
             );
             const playerNameFrags = onOffPlayerName.split(", ");
             const shortPlayerName = `${(playerNameFrags?.[1] || "").substring(
               0,
-              2
+              2,
             )}${(playerNameFrags[0] || "").substring(0, 2)}`;
             return `<div><small class="d-xl-none">${shortPlayerName} ${onOrOff}</small><small class="d-none d-xl-block">${onOffPlayerName} <b>${onOrOff}</b> stats</small></div>`;
           } else {
             return undefined;
           }
-        }
+        },
       );
       const maybeDisplayText = gameFilterParams.splitText;
 
       switch (type) {
         case "on":
           return TableDisplayUtils.safelyConvertToHtml(
-            maybeDisplayText?.[0] || maybeOnOff
+            maybeDisplayText?.[0] || maybeOnOff,
           );
         case "off":
           return TableDisplayUtils.safelyConvertToHtml(
-            maybeDisplayText?.[1] || maybeOnOff
+            maybeDisplayText?.[1] || maybeOnOff,
           );
         case "baseline":
           return TableDisplayUtils.safelyConvertToHtml(
-            gameFilterParams.baseText
+            gameFilterParams.baseText,
           );
         case "other":
           const prefixIndex = 2 + (otherIndex || 0);
           return TableDisplayUtils.safelyConvertToHtml(
-            maybeDisplayText?.[prefixIndex]
+            maybeDisplayText?.[prefixIndex],
           );
         default:
           return "unknown";
@@ -395,7 +395,7 @@ export class TeamStatsTableUtils {
       rosterStats.global || [],
       globalRosterInfo,
       showPlayTypes,
-      teamSeasonLookup
+      teamSeasonLookup,
     ); //TODO: which set do I actually want to use for positional calcs here?
 
     /** List all the normal query keys */
@@ -412,7 +412,7 @@ export class TeamStatsTableUtils {
     /** Turn one of the model keys into associative index */
     const getModelKey = (
       k: OnOffBaselineOtherEnum,
-      otherQueryIndex: number
+      otherQueryIndex: number,
     ) => {
       return k == "other" ? `other_${otherQueryIndex}` : k;
     };
@@ -421,7 +421,7 @@ export class TeamStatsTableUtils {
     const positionFromPlayerIdGlobal = showRoster
       ? LineupTableUtils.buildPositionPlayerMap(
           rosterStats.global,
-          teamSeasonLookup
+          teamSeasonLookup,
         )
       : {};
 
@@ -433,7 +433,7 @@ export class TeamStatsTableUtils {
             ? LineupTableUtils.buildPositionPlayerMap(
                 getRosterStats(k, rosterStats, otherQueryIndex),
                 teamSeasonLookup,
-                globalRosterInfo
+                globalRosterInfo,
               )
             : {},
         ];
@@ -454,12 +454,12 @@ export class TeamStatsTableUtils {
             const playerStatsFor0AB = getRosterStats(
               queryKey,
               rosterStats,
-              otherQueryIndex
+              otherQueryIndex,
             );
             const teamStatsFor0AB = getTeamStats(
               queryKey,
               teamStats,
-              otherQueryIndex
+              otherQueryIndex,
             );
             if (teamStatsFor0AB.doc_count) {
               /** Need player info for tooltip view/lineup decoration */
@@ -470,7 +470,7 @@ export class TeamStatsTableUtils {
                 avgEfficiency,
                 adjustForLuck,
                 luckConfig.base,
-                manualOverridesAsMap || {}
+                manualOverridesAsMap || {},
               );
               return playerInfo;
             } else {
@@ -484,7 +484,7 @@ export class TeamStatsTableUtils {
     // The luck baseline can either be the user-selecteed baseline or the entire season
     const baseLuckBuilder: () => [
       TeamStatSet,
-      Record<PlayerId, IndivStatSet>
+      Record<PlayerId, IndivStatSet>,
     ] = () => {
       if (adjustForLuck) {
         switch (luckConfig.base) {
@@ -492,7 +492,7 @@ export class TeamStatsTableUtils {
             return [
               teamStats.baseline,
               _.fromPairs(
-                (rosterStats.baseline || []).map((p: any) => [p.key, p])
+                (rosterStats.baseline || []).map((p: any) => [p.key, p]),
               ),
             ];
           default:
@@ -500,7 +500,7 @@ export class TeamStatsTableUtils {
             return [
               teamStats.global,
               _.fromPairs(
-                (rosterStats.global || []).map((p: any) => [p.key, p])
+                (rosterStats.global || []).map((p: any) => [p.key, p]),
               ),
             ];
         }
@@ -517,7 +517,7 @@ export class TeamStatsTableUtils {
 
           // Before applying luck, reset any changes due to manual player overrides or earlier iterations of luck
           OverrideUtils.clearTeamManualOrLuckOverrides(
-            getTeamStats(k, teamStats, otherQueryIndex)
+            getTeamStats(k, teamStats, otherQueryIndex),
           );
 
           if (adjustForLuck && k != "other") {
@@ -529,7 +529,7 @@ export class TeamStatsTableUtils {
               playerStats,
               getTeamStats(k, teamStats, otherQueryIndex),
               avgEfficiency,
-              adjustForLuck
+              adjustForLuck,
             );
           }
 
@@ -547,14 +547,14 @@ export class TeamStatsTableUtils {
                     ? //(currently don't support manual overrides for "other" queries)
                       OverrideUtils.filterManualOverrides(
                         k,
-                        gameFilterParams.manual
+                        gameFilterParams.manual,
                       )
-                    : []
+                    : [],
                 ),
                 LuckUtils.calcDefTeamLuckAdj(
                   getTeamStats(k, teamStats, otherQueryIndex),
                   baseOrSeasonTeamStats,
-                  avgEfficiency
+                  avgEfficiency,
                 ),
               ] as [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags])
             : undefined;
@@ -562,7 +562,7 @@ export class TeamStatsTableUtils {
           // Extra mutable set, build net margin column:
           if (!leaderboardMode) {
             LineupUtils.buildEfficiencyMargins(
-              getTeamStats(k, teamStats, otherQueryIndex)
+              getTeamStats(k, teamStats, otherQueryIndex),
             );
           }
 
@@ -570,7 +570,7 @@ export class TeamStatsTableUtils {
           LuckUtils.injectLuck(
             getTeamStats(k, teamStats, otherQueryIndex),
             luckAdj?.[0],
-            luckAdj?.[1]
+            luckAdj?.[1],
           );
 
           if (!adjustForLuck && k != "other") {
@@ -582,7 +582,7 @@ export class TeamStatsTableUtils {
               playerStats,
               getTeamStats(k, teamStats, otherQueryIndex),
               avgEfficiency,
-              adjustForLuck
+              adjustForLuck,
             );
           }
           return [compositeKey, luckAdj];
@@ -590,7 +590,7 @@ export class TeamStatsTableUtils {
           //(no docs)
           return [compositeKey, undefined];
         }
-      })
+      }),
     ) as Record<
       string,
       [OffLuckAdjustmentDiags, DefLuckAdjustmentDiags] | undefined
@@ -607,8 +607,8 @@ export class TeamStatsTableUtils {
                   teamStats.on,
                   teamStats.off,
                   `'${onOffBaseToShortPhrase(
-                    "on"
-                  )}' - '${onOffBaseToShortPhrase("off")}' diffs`
+                    "on",
+                  )}' - '${onOffBaseToShortPhrase("off")}' diffs`,
                 )
               : undefined;
           const aMinusBase =
@@ -616,7 +616,7 @@ export class TeamStatsTableUtils {
               ? LineupUtils.getStatsDiff(
                   teamStats.on,
                   teamStats.baseline,
-                  `'${onOffBaseToShortPhrase("on")}' - 'Base' diffs`
+                  `'${onOffBaseToShortPhrase("on")}' - 'Base' diffs`,
                 )
               : undefined;
           const bMinusBase =
@@ -624,7 +624,7 @@ export class TeamStatsTableUtils {
               ? LineupUtils.getStatsDiff(
                   teamStats.off,
                   teamStats.baseline,
-                  `'${onOffBaseToShortPhrase("off")}' - 'Base' diffs`
+                  `'${onOffBaseToShortPhrase("off")}' - 'Base' diffs`,
                 )
               : undefined;
 
@@ -634,7 +634,7 @@ export class TeamStatsTableUtils {
                 statSet,
                 false,
                 false,
-                teamSeasonLookup
+                teamSeasonLookup,
               );
           });
           return [aMinusB, aMinusBase, bMinusBase];
@@ -647,7 +647,7 @@ export class TeamStatsTableUtils {
         teamStatSet,
         false,
         false,
-        teamSeasonLookup
+        teamSeasonLookup,
       );
       // Grades
       if (showGrades && !showStandaloneGrades) {
@@ -666,7 +666,7 @@ export class TeamStatsTableUtils {
             tierToUse,
             teamStatSet,
             GradeUtils.teamFieldsToRecord,
-            gradeFormat == "rank"
+            gradeFormat == "rank",
           );
         }
       }
@@ -684,14 +684,14 @@ export class TeamStatsTableUtils {
             {
               key: LineupTableUtils.totalLineupId,
               doc_count: lineups.length, //(for doc_count >0 checks, calculateAggregatedLineupStats doesn't inject)
-            }
+            },
           );
           //(for reasons I don't understand the logic is different to the LineupStatsTable ...
           // the game_info isn't sorted but "orderedMutableOppoList" shouldn't be set
           //TODO: at some point i need to refactor/doc this game info code, but for now this works
           totalLineup.game_info = _.sortBy(
             (totalLineup.game_info as Array<GameInfoStatSet>) || [],
-            (g) => g.date
+            (g) => g.date,
           );
           orderedMutableOppoList[compositeKey] = {};
           return [compositeKey, totalLineup];
@@ -719,22 +719,22 @@ export class TeamStatsTableUtils {
           maybeBasePhrase != "'Base'"
             ? maybeBasePhrase
             : gameFilterParams.baseQuery || gameFilterParams.queryFilters
-            ? "Baseline"
-            : "Season",
+              ? "Baseline"
+              : "Season",
           gameFilterParams,
-          "baseline"
+          "baseline",
         ),
         TableDisplayUtils.addQueryInfo(
           onOffBaseToLongerPhrase("on", false),
           gameFilterParams,
-          "on"
+          "on",
         ),
         TableDisplayUtils.addQueryInfo(
           onOffBaseToLongerPhrase("off", false),
           gameFilterParams,
-          "off"
+          "off",
         ),
-      ]
+      ],
     );
     const teamStatsByQuery = _.chain(teamStatsKeys)
       .map((keyDesc) => {
@@ -782,14 +782,14 @@ export class TeamStatsTableUtils {
               rawDisplayText,
               gameFilterParams,
               "other",
-              idx
+              idx,
             )
           : undefined;
         const attachedQueryInfo = TableDisplayUtils.addQueryInfo(
           onOffBaseToLongerPhrase("other", false, idx),
           gameFilterParams,
           "other",
-          idx
+          idx,
         );
         const retVal: [string, any] = [
           getModelKey("other", idx),
@@ -812,7 +812,7 @@ export class TeamStatsTableUtils {
       .value();
     const teamStatsByCombinedQuery = (
       queryKey: OnOffBaselineOtherEnum,
-      otherQueryIndex?: number
+      otherQueryIndex?: number,
     ) => {
       return queryKey == "other"
         ? teamStatsByOtherQuery[getModelKey("other", otherQueryIndex || 0)]
@@ -831,7 +831,7 @@ export class TeamStatsTableUtils {
       ) {
         statsAny.def_style = PlayTypeUtils.buildTeamDefenseBreakdown(
           statsAny.def_stats,
-          allPlayerStatsCache || {}
+          allPlayerStatsCache || {},
         );
       }
     };
@@ -879,14 +879,14 @@ export class TeamStatsTableUtils {
     // Helper to check if any preceding dataset is visible (for showExtraHeader logic)
     const hasPrecedingVisibleDataset = (
       queryKey: OnOffBaselineOtherEnum,
-      otherIndex?: number
+      otherIndex?: number,
     ): boolean => {
       const currentKey =
         queryKey === "baseline"
           ? "base"
           : queryKey === "other"
-          ? `extra${otherIndex || 0}`
-          : queryKey;
+            ? `extra${otherIndex || 0}`
+            : queryKey;
       const currentIdx = allDatasetKeysInOrder.indexOf(currentKey);
       if (currentIdx <= 0) return false; // "on" is first, no preceding datasets
       // Check if any dataset before this one is visible
@@ -920,7 +920,7 @@ export class TeamStatsTableUtils {
             def: opt.def,
             gender: gameFilterParams.gender as "Men" | "Women",
           };
-        })
+        }),
       )
       .concat({
         title: onOffBaseToLongerPhrase("baseline"),
@@ -975,7 +975,7 @@ export class TeamStatsTableUtils {
               avgEfficiency,
               showHelp,
             };
-          })
+          }),
         )
         .concat({
           title: onOffBaseToLongerPhrase("baseline"),
@@ -996,7 +996,7 @@ export class TeamStatsTableUtils {
     const buildTableEntries = (
       queryKey: OnOffBaselineOtherEnum,
       displayKey: string,
-      otherQueryIndex?: number
+      otherQueryIndex?: number,
     ): TeamStatsBreakdown | undefined => {
       const compositeQueryKey = getModelKey(queryKey, otherQueryIndex || 0);
       const queryIndex = _.thru(queryKey, (k) => {
@@ -1028,8 +1028,8 @@ export class TeamStatsTableUtils {
           queryKey === "baseline"
             ? "base"
             : queryKey === "other"
-            ? `extra${otherQueryIndex || 0}`
-            : queryKey;
+              ? `extra${otherQueryIndex || 0}`
+              : queryKey;
 
         // Check if we should show comparison rows (only for first enabled dataset)
         const showComparisonRows =
@@ -1046,13 +1046,13 @@ export class TeamStatsTableUtils {
           getTeamStats(
             compQueryInfo.queryKey,
             teamStats,
-            compQueryInfo.otherIndex
+            compQueryInfo.otherIndex,
           );
         const compDisplayKey = compQueryInfo
           ? onOffBaseToLongerPhrase(
               compQueryInfo.queryKey,
               true,
-              compQueryInfo.otherIndex
+              compQueryInfo.otherIndex,
             )
           : "";
 
@@ -1067,18 +1067,18 @@ export class TeamStatsTableUtils {
               compStats,
               `${onOffBaseToShortPhrase(
                 queryKey,
-                otherQueryIndex
+                otherQueryIndex,
               )} - ${onOffBaseToShortPhrase(
                 compQueryInfo.queryKey,
-                compQueryInfo.otherIndex
-              )} diffs`
+                compQueryInfo.otherIndex,
+              )} diffs`,
             );
             if (diffStats) {
               TableDisplayUtils.injectPlayTypeInfo(
                 diffStats,
                 false,
                 false,
-                teamSeasonLookup
+                teamSeasonLookup,
               );
             }
             return diffStats
@@ -1087,13 +1087,13 @@ export class TeamStatsTableUtils {
                     diffStats,
                     offPrefixFn,
                     offCellMetaFn,
-                    CommonTableDefs.onOffReportReplacement
+                    CommonTableDefs.onOffReportReplacement,
                   ),
                   GenericTableOps.buildDataRow(
                     diffStats,
                     defPrefixFn,
                     defCellMetaFn,
-                    CommonTableDefs.onOffReportReplacement
+                    CommonTableDefs.onOffReportReplacement,
                   ),
                 ]
               : [];
@@ -1103,18 +1103,18 @@ export class TeamStatsTableUtils {
               GenericTableOps.buildDataRow(
                 teamStatsByCombinedQuery(
                   compQueryInfo.queryKey,
-                  compQueryInfo.otherIndex
+                  compQueryInfo.otherIndex,
                 ),
                 offPrefixFn,
-                offCellMetaFn
+                offCellMetaFn,
               ),
               GenericTableOps.buildDataRow(
                 teamStatsByCombinedQuery(
                   compQueryInfo.queryKey,
-                  compQueryInfo.otherIndex
+                  compQueryInfo.otherIndex,
                 ),
                 defPrefixFn,
-                defCellMetaFn
+                defCellMetaFn,
               ),
             ];
           }
@@ -1125,7 +1125,7 @@ export class TeamStatsTableUtils {
             ? [
                 GenericTableOps.buildHeaderRepeatRow(
                   TeamTableDefs.repeatingOnOffHeaderFields,
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -1133,14 +1133,14 @@ export class TeamStatsTableUtils {
             GenericTableOps.buildDataRow(
               teamStatsByCombinedQuery(queryKey, otherQueryIndex),
               offPrefixFn,
-              offCellMetaFn
+              offCellMetaFn,
             ),
           ],
           [
             GenericTableOps.buildDataRow(
               teamStatsByCombinedQuery(queryKey, otherQueryIndex),
               defPrefixFn,
-              defCellMetaFn
+              defCellMetaFn,
             ),
           ],
           // Add comparison rows after source off/def rows
@@ -1161,7 +1161,7 @@ export class TeamStatsTableUtils {
                     lowTier: divisionStatsCache.Low,
                   },
                   team: getTeamStats(queryKey, teamStats, otherQueryIndex),
-                }
+                },
               )
             : [],
           showExtraInfo
@@ -1173,7 +1173,7 @@ export class TeamStatsTableUtils {
                       teamStatSet={getTeamStats(
                         queryKey,
                         teamStats,
-                        otherQueryIndex
+                        otherQueryIndex,
                       )}
                       showGrades={showGrades}
                       grades={
@@ -1188,7 +1188,7 @@ export class TeamStatsTableUtils {
                       }
                     />
                   </span>,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1213,7 +1213,7 @@ export class TeamStatsTableUtils {
                       }
                     />
                   </span>,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1223,7 +1223,7 @@ export class TeamStatsTableUtils {
                   _.isNil(
                     // If ".style" is present then use the pre-calcd values
                     //TODO: this is a bit of a hack, plus also needs to handle defence
-                    teamStatsByCombinedQuery(queryKey, otherQueryIndex).style //(note def_style _may_ be present)
+                    teamStatsByCombinedQuery(queryKey, otherQueryIndex).style, //(note def_style _may_ be present)
                   ) ? (
                     // Team Analysis page
                     <TeamPlayTypeTabbedView
@@ -1231,12 +1231,12 @@ export class TeamStatsTableUtils {
                       players={getRosterStats(
                         queryKey,
                         rosterStats,
-                        otherQueryIndex
+                        otherQueryIndex,
                       )}
                       rosterStatsByCode={globalRosterStatsByCode}
                       teamStats={teamStatsByCombinedQuery(
                         queryKey,
-                        otherQueryIndex
+                        otherQueryIndex,
                       )}
                       defense={
                         playTypeConfig?.def
@@ -1247,12 +1247,12 @@ export class TeamStatsTableUtils {
                       playTypeConfig={playTypeConfig}
                       avgEfficiency={avgEfficiency}
                       quickSwitchOptions={teamPlayTypeQuickSwitchOptions().filter(
-                        (opt) => opt.title != displayKey
+                        (opt) => opt.title != displayKey,
                       )}
                       defensiveQuickSwitchOptions={
                         playTypeConfig?.def
                           ? teamPlayTypeQuickSwitchOptions(true).filter(
-                              (opt) => opt.title != displayKey
+                              (opt) => opt.title != displayKey,
                             )
                           : undefined
                       }
@@ -1269,8 +1269,8 @@ export class TeamStatsTableUtils {
                               onOffBaseToLongerPhrase(
                                 compQueryInfo?.queryKey || "baseline",
                                 true,
-                                compQueryInfo?.otherIndex
-                              )
+                                compQueryInfo?.otherIndex,
+                              ),
                             )
                           : playStyleConfigStr
                       }
@@ -1283,7 +1283,7 @@ export class TeamStatsTableUtils {
                         ) {
                           const newConfig = configStrToTeamRadarConfig(
                             newConfigStr,
-                            false
+                            false,
                           );
                           if (
                             newConfig.quickSwitch &&
@@ -1292,7 +1292,7 @@ export class TeamStatsTableUtils {
                             // Parse title and quickSwitch: format is "title:_:actual_quick_switch"
                             const titleAndQuickSwitch =
                               newConfig.quickSwitch.split(
-                                quickSwitchTitleDelim
+                                quickSwitchTitleDelim,
                               );
                             const actualQuickSwitch = titleAndQuickSwitch[1];
                             if (actualQuickSwitch) {
@@ -1301,11 +1301,11 @@ export class TeamStatsTableUtils {
                                 actualQuickSwitch.split(quickSwitchDelim);
                               const matchingOpt =
                                 teamPlayTypeQuickSwitchOptions().find(
-                                  (opt) => opt.title === title
+                                  (opt) => opt.title === title,
                                 );
                               if (matchingOpt?.sourceKey) {
                                 persistNewState.setDiffsCompare(
-                                  `${matchingOpt.sourceKey}${quickSwitchDelim}extra`
+                                  `${matchingOpt.sourceKey}${quickSwitchDelim}extra`,
                                 );
                               }
                             }
@@ -1316,7 +1316,7 @@ export class TeamStatsTableUtils {
                       }}
                       // Diff mode integration (style charts always use "extra" mode)
                       dynamicQuickSwitch={isFirstEnabledDataset(
-                        currentDatasetKey
+                        currentDatasetKey,
                       )}
                       quickSwitchModesOverride={
                         isFirstEnabledDataset(currentDatasetKey) &&
@@ -1334,12 +1334,12 @@ export class TeamStatsTableUtils {
                             players={getRosterStats(
                               queryKey,
                               rosterStats,
-                              otherQueryIndex
+                              otherQueryIndex,
                             )}
                             rosterStatsByCode={globalRosterStatsByCode}
                             teamStats={teamStatsByCombinedQuery(
                               queryKey,
-                              otherQueryIndex
+                              otherQueryIndex,
                             )}
                             avgEfficiency={avgEfficiency}
                             showGrades={showGrades}
@@ -1351,7 +1351,7 @@ export class TeamStatsTableUtils {
                               playTypeConfig?.def &&
                               teamStatsByCombinedQuery(
                                 queryKey,
-                                otherQueryIndex
+                                otherQueryIndex,
                               ).def_style
                                 ? undefined //(leaderboard mode, def_style is its own graph)
                                 : [
@@ -1361,18 +1361,18 @@ export class TeamStatsTableUtils {
                                       players: getRosterStats(
                                         queryKey,
                                         rosterStats,
-                                        otherQueryIndex
+                                        otherQueryIndex,
                                       ),
                                       rosterStatsByCode:
                                         globalRosterStatsByCode,
                                       teamStats: teamStatsByCombinedQuery(
                                         queryKey,
-                                        otherQueryIndex
+                                        otherQueryIndex,
                                       ),
                                       defensiveOverride:
                                         teamStatsByCombinedQuery(
                                           queryKey,
-                                          otherQueryIndex
+                                          otherQueryIndex,
                                         ).def_style,
                                       showGrades: showGrades,
                                       avgEfficiency,
@@ -1411,7 +1411,7 @@ export class TeamStatsTableUtils {
                                       showRoster: true,
                                       teamPlayTypeConfig: "sos||||all||multi||",
                                     },
-                                    {}
+                                    {},
                                   )}
                                 >
                                   <b>View Player Details</b>
@@ -1432,17 +1432,17 @@ export class TeamStatsTableUtils {
                               players={getRosterStats(
                                 queryKey,
                                 rosterStats,
-                                otherQueryIndex
+                                otherQueryIndex,
                               )}
                               rosterStatsByCode={globalRosterStatsByCode}
                               teamStats={teamStatsByCombinedQuery(
                                 queryKey,
-                                otherQueryIndex
+                                otherQueryIndex,
                               )}
                               defensiveOverride={
                                 teamStatsByCombinedQuery(
                                   queryKey,
-                                  otherQueryIndex
+                                  otherQueryIndex,
                                 ).def_style
                               }
                               avgEfficiency={avgEfficiency}
@@ -1455,10 +1455,10 @@ export class TeamStatsTableUtils {
                               showHelp={showHelp}
                             />,
                           ]
-                        : []
+                        : [],
                     )
                   ),
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -1471,7 +1471,7 @@ export class TeamStatsTableUtils {
                     def={getShotStats(queryKey, shotStats, otherQueryIndex).def}
                     gender={gameFilterParams.gender as "Men" | "Women"}
                     quickSwitchOptions={shotChartQuickSwitchOptions.filter(
-                      (opt) => opt.title != displayKey
+                      (opt) => opt.title != displayKey,
                     )}
                     chartOpts={{
                       ...shotChartConfig,
@@ -1482,7 +1482,7 @@ export class TeamStatsTableUtils {
                           ? `${onOffBaseToLongerPhrase(
                               compQueryInfo?.queryKey || "baseline",
                               true,
-                              compQueryInfo?.otherIndex
+                              compQueryInfo?.otherIndex,
                             )}${quickSwitchDelim}${compareMode}`
                           : shotChartConfig?.quickSwitch,
                     }}
@@ -1502,13 +1502,13 @@ export class TeamStatsTableUtils {
                             newOpts.quickSwitch.split(quickSwitchDelim);
                           // Find the option by title to get the sourceKey
                           const matchingOpt = shotChartQuickSwitchOptions.find(
-                            (opt) => opt.title === title
+                            (opt) => opt.title === title,
                           );
                           if (matchingOpt?.sourceKey) {
                             persistNewState.setDiffsCompare(
                               `${matchingOpt.sourceKey}${quickSwitchDelim}${
                                 mode || "extra"
-                              }`
+                              }`,
                             );
                           }
                         } else {
@@ -1517,7 +1517,7 @@ export class TeamStatsTableUtils {
                       }
                     }}
                     dynamicQuickSwitch={isFirstEnabledDataset(
-                      currentDatasetKey
+                      currentDatasetKey,
                     )}
                     quickSwitchModesOverride={
                       isFirstEnabledDataset(currentDatasetKey) &&
@@ -1526,7 +1526,7 @@ export class TeamStatsTableUtils {
                         : undefined
                     }
                   />,
-                  "small"
+                  "small",
                 ),
               ]
             : [],
@@ -1557,10 +1557,12 @@ export class TeamStatsTableUtils {
                 GenericTableOps.buildTextRow(
                   <span>
                     <TeamRosterDiagView
+                      gameFilterParams={gameFilterParams}
+                      rawLineups={lineupStats[queryIndex]?.lineups || []}
                       positionInfoGlobal={LineupTableUtils.getPositionalInfo(
                         lineupStats[queryIndex]?.lineups || [],
                         positionFromPlayerIdGlobal,
-                        teamSeasonLookup
+                        teamSeasonLookup,
                       )}
                       positionInfoSample={
                         getTeamStats(queryKey, teamStats, otherQueryIndex)
@@ -1568,7 +1570,7 @@ export class TeamStatsTableUtils {
                           ? LineupTableUtils.getPositionalInfo(
                               lineupStats[queryIndex]?.lineups || [],
                               positionFromPlayerId[compositeQueryKey],
-                              teamSeasonLookup
+                              teamSeasonLookup,
                             )
                           : undefined
                       }
@@ -1580,7 +1582,7 @@ export class TeamStatsTableUtils {
                       showHelp={showHelp}
                     />
                   </span>,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1593,10 +1595,12 @@ export class TeamStatsTableUtils {
                 GenericTableOps.buildTextRow(
                   <span>
                     <TeamRosterDiagView
+                      gameFilterParams={gameFilterParams}
+                      rawLineups={lineupStats[queryIndex]?.lineups || []}
                       positionInfoGlobal={LineupTableUtils.getPositionalInfo(
                         lineupStats[compQueryIndex]?.lineups || [],
                         positionFromPlayerIdGlobal,
-                        teamSeasonLookup
+                        teamSeasonLookup,
                       )}
                       positionInfoSample={
                         compStats &&
@@ -1604,7 +1608,7 @@ export class TeamStatsTableUtils {
                           ? LineupTableUtils.getPositionalInfo(
                               lineupStats[compQueryIndex]?.lineups || [],
                               positionFromPlayerId[compCompositeQueryKey],
-                              teamSeasonLookup
+                              teamSeasonLookup,
                             )
                           : undefined
                       }
@@ -1616,7 +1620,7 @@ export class TeamStatsTableUtils {
                       showHelp={showHelp}
                     />
                   </span>,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1629,22 +1633,22 @@ export class TeamStatsTableUtils {
                   <GameInfoDiagView
                     oppoList={
                       LineupUtils.isGameInfoStatSet(
-                        totalLineupsByQueryKey[compositeQueryKey].game_info
+                        totalLineupsByQueryKey[compositeQueryKey].game_info,
                       )
                         ? LineupUtils.getGameInfo(
                             totalLineupsByQueryKey[compositeQueryKey]
-                              .game_info || {}
+                              .game_info || {},
                           )
                         : (totalLineupsByQueryKey[compositeQueryKey]
                             .game_info as GameInfoStatSet[])
                     }
                     orderedOppoList={_.clone(
-                      orderedMutableOppoList[compositeQueryKey]
+                      orderedMutableOppoList[compositeQueryKey],
                     )}
                     params={{}}
                     maxOffPoss={-1}
                   />,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1655,22 +1659,23 @@ export class TeamStatsTableUtils {
                   <GameInfoDiagView
                     oppoList={
                       LineupUtils.isGameInfoStatSet(
-                        totalLineupsByQueryKey[compCompositeQueryKey]?.game_info
+                        totalLineupsByQueryKey[compCompositeQueryKey]
+                          ?.game_info,
                       )
                         ? LineupUtils.getGameInfo(
                             totalLineupsByQueryKey[compCompositeQueryKey]
-                              ?.game_info || {}
+                              ?.game_info || {},
                           )
                         : (totalLineupsByQueryKey[compCompositeQueryKey]
                             ?.game_info as GameInfoStatSet[]) || []
                     }
                     orderedOppoList={_.clone(
-                      orderedMutableOppoList[compCompositeQueryKey] || {}
+                      orderedMutableOppoList[compCompositeQueryKey] || {},
                     )}
                     params={{}}
                     maxOffPoss={-1}
                   />,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1684,7 +1689,7 @@ export class TeamStatsTableUtils {
                     baseline={luckConfig.base}
                     showHelp={showHelp}
                   />,
-                  "small pt-2"
+                  "small pt-2",
                 ),
               ]
             : [],
@@ -1703,7 +1708,7 @@ export class TeamStatsTableUtils {
     return {
       baseline: buildTableEntries(
         "baseline",
-        onOffBaseToLongerPhrase("baseline")
+        onOffBaseToLongerPhrase("baseline"),
       ),
       on: buildTableEntries("on", onOffBaseToLongerPhrase("on")),
       off: buildTableEntries("off", onOffBaseToLongerPhrase("off")),
@@ -1711,7 +1716,7 @@ export class TeamStatsTableUtils {
         return buildTableEntries(
           "other",
           onOffBaseToLongerPhrase("other", false, queryIndex),
-          queryIndex
+          queryIndex,
         );
       }),
       diffs: _.flatten([
@@ -1723,7 +1728,7 @@ export class TeamStatsTableUtils {
                   aMinusB,
                   offPrefixFn,
                   offCellMetaFn,
-                  CommonTableDefs.onOffReportReplacement
+                  CommonTableDefs.onOffReportReplacement,
                 ),
               ],
               [
@@ -1731,7 +1736,7 @@ export class TeamStatsTableUtils {
                   aMinusB,
                   defPrefixFn,
                   defCellMetaFn,
-                  CommonTableDefs.onOffReportReplacement
+                  CommonTableDefs.onOffReportReplacement,
                 ),
               ],
               [GenericTableOps.buildRowSeparator()],
@@ -1744,7 +1749,7 @@ export class TeamStatsTableUtils {
                   aMinusBase,
                   offPrefixFn,
                   offCellMetaFn,
-                  CommonTableDefs.onOffReportReplacement
+                  CommonTableDefs.onOffReportReplacement,
                 ),
               ],
               [
@@ -1752,7 +1757,7 @@ export class TeamStatsTableUtils {
                   aMinusBase,
                   defPrefixFn,
                   defCellMetaFn,
-                  CommonTableDefs.onOffReportReplacement
+                  CommonTableDefs.onOffReportReplacement,
                 ),
               ],
               [GenericTableOps.buildRowSeparator()],
@@ -1765,7 +1770,7 @@ export class TeamStatsTableUtils {
                   bMinusBase,
                   offPrefixFn,
                   offCellMetaFn,
-                  CommonTableDefs.onOffReportReplacement
+                  CommonTableDefs.onOffReportReplacement,
                 ),
               ],
               [
@@ -1773,7 +1778,7 @@ export class TeamStatsTableUtils {
                   bMinusBase,
                   defPrefixFn,
                   defCellMetaFn,
-                  CommonTableDefs.onOffReportReplacement
+                  CommonTableDefs.onOffReportReplacement,
                 ),
               ],
               [GenericTableOps.buildRowSeparator()],

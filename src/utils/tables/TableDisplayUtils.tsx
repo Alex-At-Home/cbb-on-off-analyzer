@@ -70,7 +70,7 @@ export class TableDisplayUtils {
     gameFilterParams: GameFilterParams,
     type: OnOffBaselineOtherEnum,
     otherIndex?: number,
-    numPoss: number | undefined = undefined
+    numPoss: number | undefined = undefined,
   ) {
     const queryDisplayInfo = QueryUtils.queryDisplayStrs(gameFilterParams);
     const queryForType =
@@ -104,7 +104,7 @@ export class TableDisplayUtils {
     pos: string,
     typeStr: string,
     skipPosDiagInfo?: boolean,
-    posBreakdown?: React.ReactNode
+    posBreakdown?: React.ReactNode,
   ) {
     const fullPos = PositionUtils.idToPosition[pos] || "Unknown";
     return (
@@ -131,7 +131,7 @@ export class TableDisplayUtils {
   /** Builds a handy lineup text for display row names, which truncates in mobile mode */
   static splitTextBuilder(
     includeCodes: string[],
-    excludeCodes: string[]
+    excludeCodes: string[],
   ): string {
     const codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
     const codeLimiter = (s: string) => s.substring(0, 8);
@@ -158,11 +158,11 @@ export class TableDisplayUtils {
   static buildGameUrl(
     params: CommonFilterParams,
     sortedLineup: { code: string; id: string }[],
-    excludes: { code: string; id: string }[]
+    excludes: { code: string; id: string }[],
   ): string {
     const [includes, extraExcludes] = _.partition(
       sortedLineup,
-      (p) => p.id[0] != "-"
+      (p) => p.id[0] != "-",
     );
     const allExcludes = excludes
       .map((p) => p.id)
@@ -177,7 +177,7 @@ export class TableDisplayUtils {
         splitText: [
           TableDisplayUtils.splitTextBuilder(
             includes.map((p) => p.code),
-            excludes.concat(extraExcludes).map((p) => p.code)
+            excludes.concat(extraExcludes).map((p) => p.code),
           ),
           "",
         ],
@@ -202,7 +202,7 @@ export class TableDisplayUtils {
         filter: `${sortedLineup.map((p) => `${p.code}`).join(",")}`,
         showExpanded: true,
       },
-      {}
+      {},
     );
   }
 
@@ -217,7 +217,7 @@ export class TableDisplayUtils {
     lineupFontSize: string,
     params: CommonFilterParams,
     extendedTooltipView: boolean = false,
-    onClickOverride?: (sortedLineup: { code: string; id: string }[]) => string
+    onClickOverride?: (sortedLineup: { code: string; id: string }[]) => string,
   ) {
     const tooltipBuilder = (pid: number) =>
       TableDisplayUtils.buildTooltipTexts(
@@ -225,7 +225,7 @@ export class TableDisplayUtils {
         sortedLineup,
         perLineupPlayerMap,
         positionFromPlayerKey,
-        extendedTooltipView
+        extendedTooltipView,
       );
 
     if (decorateLineup) {
@@ -237,13 +237,13 @@ export class TableDisplayUtils {
             perLineupPlayerMap,
             colorField,
             lineupFontSize,
-            pid == max
+            pid == max,
           );
-        }
+        },
       );
       return (
         <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
-          {extendedTooltipView ? (
+          {extendedTooltipView && !onClickOverride ? (
             <div>{lineupElement}</div>
           ) : (
             <a
@@ -286,7 +286,7 @@ export class TableDisplayUtils {
     sortedLineup: { code: string; id: string }[],
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, { posClass: string }>,
-    extendedView: boolean = false
+    extendedView: boolean = false,
   ) {
     const tooltipTexts = _.flatMap(
       sortedLineup,
@@ -297,9 +297,9 @@ export class TableDisplayUtils {
               cid,
               perLineupPlayerMap,
               positionFromPlayerKey,
-              extendedView
+              extendedView,
             );
-      }
+      },
     );
     const tooltip = (
       <Tooltip id={`${key}_info`}>
@@ -324,7 +324,7 @@ export class TableDisplayUtils {
     cid: { code: string; id: string },
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, { posClass: string }>,
-    extendedView: boolean = false
+    extendedView: boolean = false,
   ) {
     // Some minimal info:
     const playerInfo = perLineupPlayerMap[cid.id] || {};
@@ -398,7 +398,7 @@ export class TableDisplayUtils {
     perLineupPlayerMap: Record<string, Record<string, any>>,
     colorField: string,
     lineupFontSize: string,
-    finalPlayer: boolean
+    finalPlayer: boolean,
   ) {
     const fontWeight = (playerInfo: Record<string, any>) => {
       const usage = _.max([
@@ -411,7 +411,7 @@ export class TableDisplayUtils {
           usage < 0.2 //10 == 100 weight
             ? 1 + (usage - 0.1) * 40 //20 == 500 weight
             : 5 + (usage - 0.2) * 20,
-          0
+          0,
         )
       ); //35 ~= 800 weight
     };
@@ -431,7 +431,7 @@ export class TableDisplayUtils {
 
     const singleColorField = (
       playerInfo: Record<string, any>,
-      field: string
+      field: string,
     ) => {
       const val = playerInfo[field]?.value;
       const color = colorChooser(field)(val) + "80"; //(opacity at the end)
@@ -483,8 +483,8 @@ export class TableDisplayUtils {
               backgroundColor: playerInfo
                 ? singleColorField(playerInfo, colorField)
                 : isOffPlayer
-                ? "#1a015aff"
-                : "grey",
+                  ? "#1a015aff"
+                  : "grey",
               // consider this in the future:
               //          background: `linear-gradient(to right, ${singleColorField(cid.id, colorField)}, white, ${singleColorField(cid.id, "def_adj_rtg")})`
             }}
@@ -497,8 +497,8 @@ export class TableDisplayUtils {
                 fontWeight: playerInfo
                   ? fontWeight(playerInfo)
                   : isOffPlayer
-                  ? 100
-                  : undefined,
+                    ? 100
+                    : undefined,
               }}
             >
               {isOffPlayer ? <FontAwesomeIcon icon={faBan} /> : ""}
@@ -518,7 +518,7 @@ export class TableDisplayUtils {
     statSet: TeamStatSet | IndivStatSet | LineupStatSet,
     expandedView: boolean,
     playerView: boolean,
-    teamSeasonLookup?: string
+    teamSeasonLookup?: string,
   ) {
     if (playerView) {
       // Put assist %s as the row underneath shot types:
@@ -530,7 +530,7 @@ export class TableDisplayUtils {
       const rimPct = (100 * (stat[`${offDef}_ast_rim`]?.value || 0)).toFixed(0);
       const midPct = (100 * (stat[`${offDef}_ast_mid`]?.value || 0)).toFixed(0);
       const threePct = (100 * (stat[`${offDef}_ast_3p`]?.value || 0)).toFixed(
-        0
+        0,
       );
       return (
         <span>
@@ -713,7 +713,7 @@ export class TableDisplayUtils {
           //(have raw numbers, recalculate)
           DerivedStatsUtils.injectExtraDefensiveStats(
             statSet,
-            mutableExtraStats
+            mutableExtraStats,
           );
         } else {
           mutableExtraStats.def_stl = statSet.def_stl;
@@ -779,7 +779,7 @@ export class TableDisplayUtils {
   static turnPppIntoRawPts = (
     mutableLineup: LineupStatSet,
     overwritePpp: boolean,
-    adjustForLuck: boolean
+    adjustForLuck: boolean,
   ) => {
     const rawOffPts =
       0.01 *

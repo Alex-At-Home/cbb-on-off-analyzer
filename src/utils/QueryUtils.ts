@@ -22,6 +22,41 @@ import { PositionUtils } from "./stats/PositionUtils";
 
 import { format as dateFormat, parse as dateParse, addYears } from "date-fns";
 
+/** Set to `false` to silence browser-console diagnostics for position-split queries. */
+const isDebug = true;
+
+function positionSplitDebug(label: string, payload?: unknown) {
+  if (!isDebug) return;
+  if (payload !== undefined) {
+    console.warn(`[QueryUtils position-split] ${label}`, payload);
+  } else {
+    console.warn(`[QueryUtils position-split] ${label}`);
+  }
+}
+
+export type PositionSplitLineupRow = {
+  lineupKey: string;
+  sortedIds: PlayerId[];
+  xPosition: number;
+  lowerIds: PlayerId[];
+  higherIds: PlayerId[];
+};
+
+export type PositionSplitContext = {
+  /** Union of ids below X / above X in lineups where X plays (partition + corrupt checks). */
+  lowerIds: PlayerId[];
+  higherIds: PlayerId[];
+  isCorrupt: boolean;
+  positionsPlayed: number[];
+  lineupRows: PositionSplitLineupRow[];
+  /**
+   * For ordered slot index 0..4 (PG..C), ids that ever occupy that slot in any qualifying 5-man
+   * team lineup. Used for normal-path `{pool}=k` clauses so all roster backcourt/frontcourt combos
+   * are allowed, not only teammates who happened to sit below/above X when X was on the court.
+   */
+  teamSlotOccupants: PlayerId[][];
+};
+
 export type CommonFilterTypeSimple =
   | "Conf"
   | "Home"
@@ -811,12 +846,260 @@ export class QueryUtils {
   }
 
   /**
+   * Context for position-split lineup queries: who ever played below/above the focal player
+   * (ordered slots), whether lower/higher sets overlap (corrupt), and per-lineup rows for OR fallback.
+   */
+  static identifyHigherLowerSets(
+    lineups: LineupStatSet[],
+    resolved: PlayerCodeId,
+    positionFromPlayerKey: Record<PlayerId, IndivPosInfo>,
+    teamSeasonLookup: string,
+  ): PositionSplitContext {
+    const qualifyingLineups = _.chain(lineups)
+      .reject(
+        (l) =>
+          l.key === LineupTableUtils.totalLineupId ||
+          l.key === LineupTableUtils.droppedLineupId,
+      )
+      .filter((l) => LineupTableUtils.buildCodesAndIds(l).length === 5)
+      .value();
+
+    const orderedRows = _.chain(qualifyingLineups)
+      .map((l) => {
+        const codesAndIds = LineupTableUtils.buildCodesAndIds(l);
+        const sorted = PositionUtils.orderLineup(
+          codesAndIds,
+          positionFromPlayerKey,
+          teamSeasonLookup,
+        );
+        return { l, sorted };
+      })
+      .value();
+
+    const teamSlotOccupants = _.chain(_.range(0, 5))
+      .map((slot) =>
+        _.chain(orderedRows)
+          .map((row) => row.sorted[slot]?.id)
+          .compact()
+          .uniq()
+          .sortBy()
+          .value(),
+      )
+      .value();
+
+    const lineupRows = _.chain(orderedRows)
+      .filter((row) => _.some(row.sorted, (p) => p.id === resolved.id))
+      .map((row) => {
+        const { l, sorted } = row;
+        const idx = _.findIndex(sorted, (p) => p.id === resolved.id);
+        if (idx < 0) return undefined;
+        const lowerIds = _.map(sorted.slice(0, idx), "id");
+        const higherIds = _.map(sorted.slice(idx + 1), "id");
+        return {
+          lineupKey: l.key,
+          sortedIds: _.map(sorted, "id"),
+          xPosition: idx + 1,
+          lowerIds,
+          higherIds,
+        };
+      })
+      .compact()
+      .value();
+
+    const lowerUnion = _.chain(lineupRows)
+      .flatMap("lowerIds")
+      .uniq()
+      .sortBy()
+      .value();
+    const higherUnion = _.chain(lineupRows)
+      .flatMap("higherIds")
+      .uniq()
+      .sortBy()
+      .value();
+    const lowerSet = new Set(lowerUnion);
+    const isCorrupt = _.some(higherUnion, (id) => lowerSet.has(id));
+    const corruptIntersectionIds = _.chain(higherUnion)
+      .filter((id) => lowerSet.has(id))
+      .sortBy()
+      .value();
+
+    const positionsPlayed = _.chain(lineupRows)
+      .map("xPosition")
+      .uniq()
+      .sortBy()
+      .value();
+
+    if (isDebug) {
+      positionSplitDebug("identifyHigherLowerSets", {
+        resolved: { code: resolved.code, id: resolved.id },
+        teamSeasonLookup,
+        qualifyingFiveManLineupCount: qualifyingLineups.length,
+        xLineupRowCount: lineupRows.length,
+        lowerUnion,
+        higherUnion,
+        corruptIntersectionIds,
+        isCorrupt,
+        positionsPlayed,
+        perXLineup: _.map(lineupRows, (r) => ({
+          key: r.lineupKey,
+          xPosition: r.xPosition,
+          sortedIds: r.sortedIds,
+          lowerIds: r.lowerIds,
+          higherIds: r.higherIds,
+        })),
+        teamSlotOccupants: _.map(teamSlotOccupants, (ids, slot) => ({
+          slot,
+          label: ["PG", "SG", "SF", "PF", "C"][slot],
+          ids,
+        })),
+      });
+    }
+
+    return {
+      lowerIds: lowerUnion,
+      higherIds: higherUnion,
+      isCorrupt,
+      positionsPlayed,
+      lineupRows,
+      teamSlotOccupants,
+    };
+  }
+
+  /**
+   * Normal path: X on court, exactly (P-1) from lower slots' team-wide pool and (5-P) from higher
+   * slots' team-wide pool (`teamSlotOccupants`), not only ids observed below/above X in X-lineups.
+   * See `basicOrAdvancedQuery` strict `{pool}=k` expansion (all k-combos from the pool).
+   * Corrupt path: OR of full `{id1;...;id5}=5` for each distinct ordered lineup where X held that slot.
+   * Degenerate: X always at 5 when on court → query `*` for that split.
+   */
+  static buildPositionQueriesFromSets(
+    resolved: PlayerCodeId,
+    positionsPlayed: number[],
+    ctx: PositionSplitContext,
+  ): Record<number, string> {
+    const playerId = resolved.id;
+    const xAlwaysAtFive = _.every(ctx.lineupRows, (r) => r.xPosition === 5);
+    const slots = ctx.teamSlotOccupants;
+
+    const poolClause = (ids: PlayerId[], k: number): string | undefined => {
+      if (k === 0) return undefined;
+      if (_.isEmpty(ids)) return undefined;
+      return `{${_.map(ids, (id) => `"${id}"`).join(";")}}=${k}`;
+    };
+
+    const unionSlotPools = (slotIndices: number[]): PlayerId[] =>
+      _.chain(slotIndices)
+        .flatMap((s) => slots[s] || [])
+        .uniq()
+        .without(playerId)
+        .sortBy()
+        .value();
+
+    const normalQueryForPosition = (pos: number): string => {
+      const nLower = pos - 1;
+      const nHigher = 5 - pos;
+      if (xAlwaysAtFive && pos === 5 && positionsPlayed.length === 1) {
+        return "*";
+      }
+      const lowerPool = unionSlotPools(_.range(0, pos - 1));
+      const higherPool = unionSlotPools(_.range(pos, 5));
+      const parts = _.compact([
+        `{"${playerId}"}=1`,
+        poolClause(lowerPool, nLower),
+        poolClause(higherPool, nHigher),
+      ]);
+      return parts.join(" AND ");
+    };
+
+    const corruptQueryForPosition = (pos: number): string => {
+      const rows = _.filter(ctx.lineupRows, (r) => r.xPosition === pos);
+      const terms = _.chain(rows)
+        .map((r) => r.sortedIds)
+        .uniqWith((a, b) => _.isEqual(a, b))
+        .map((ids) => `{${_.map(ids, (id) => `"${id}"`).join(";")}}=5`)
+        .value();
+      return _.isEmpty(terms) ? `{"${playerId}"}=1` : terms.join(" OR ");
+    };
+
+    if (isDebug) {
+      positionSplitDebug("buildPositionQueriesFromSets (input)", {
+        resolved: { code: resolved.code, id: resolved.id },
+        isCorrupt: ctx.isCorrupt,
+        positionsPlayed,
+        xAlwaysAtFive,
+        lowerUnionFromXLineups: ctx.lowerIds,
+        higherUnionFromXLineups: ctx.higherIds,
+        branch: ctx.isCorrupt
+          ? "CORRUPT → explicit OR of =5 lineups (hideous lineup call)"
+          : "NORMAL → pool clauses from teamSlotOccupants",
+      });
+    }
+
+    if (isDebug) {
+      _.forEach(positionsPlayed, (pos) => {
+        if (ctx.isCorrupt) {
+          const rowsAtPos = _.filter(
+            ctx.lineupRows,
+            (r) => r.xPosition === pos,
+          );
+          const distinctFiveTuples = _.chain(rowsAtPos)
+            .map((r) => r.sortedIds)
+            .uniqWith((a, b) => _.isEqual(a, b))
+            .value();
+          positionSplitDebug(
+            `buildPositionQueriesFromSets pos=${pos} CORRUPT`,
+            {
+              matchingLineupRows: rowsAtPos.length,
+              distinctFiveTuples: distinctFiveTuples.length,
+              tuplesPreview: distinctFiveTuples.slice(0, 8),
+              queryPreview: corruptQueryForPosition(pos).slice(0, 500),
+            },
+          );
+        } else {
+          const nLower = pos - 1;
+          const nHigher = 5 - pos;
+          const lowerPool = unionSlotPools(_.range(0, pos - 1));
+          const higherPool = unionSlotPools(_.range(pos, 5));
+          positionSplitDebug(`buildPositionQueriesFromSets pos=${pos} NORMAL`, {
+            nLower,
+            nHigher,
+            lowerPoolSize: lowerPool.length,
+            higherPoolSize: higherPool.length,
+            lowerPool,
+            higherPool,
+            queryPreview: normalQueryForPosition(pos).slice(0, 500),
+          });
+        }
+      });
+    }
+
+    return _.chain(positionsPlayed)
+      .map(
+        (pos) =>
+          [
+            pos,
+            ctx.isCorrupt
+              ? corruptQueryForPosition(pos)
+              : normalQueryForPosition(pos),
+          ] as [number, string],
+      )
+      .fromPairs()
+      .value() as Record<number, string>;
+  }
+
+  /**
+   * Placeholder for shrinking `{P1..Pn}=k` clauses when pools are large. Currently a no-op.
+   */
+  static compressPositionQueries(
+    queryByPosition: Record<number, string>,
+    _ctx: PositionSplitContext,
+  ): Record<number, string> {
+    return queryByPosition;
+  }
+
+  /**
    * Builds partial GameFilterParams for splitting by positions a player played.
-   * Each split is "player at position N": onQuery/offQuery/otherQueries are real lineup queries
-   * (include target player, exclude players who shared the court with them when they were not at that position).
-   * splitPhrases are display-only labels: `${playerCode}=[1]` etc.
-   *
-   * See also LineupStatsTable.table (const enrichedLineups calc, leads to a call to TableDisplayUtils.buildGameUrl)
+   * Pipeline: identifyHigherLowerSets → buildPositionQueriesFromSets → compressPositionQueries (no-op).
    */
   static buildGameFilterParamsByPlayerPositions(
     lineups: LineupStatSet[],
@@ -835,90 +1118,73 @@ export class QueryUtils {
     const normalizedId = _.trim(playerIdentifier).toLowerCase();
     if (!normalizedId) return empty;
 
-    let resolved: PlayerCodeId | undefined;
-    const seen = new Set<string>();
-    for (const lineup of lineups) {
-      if (
-        lineup.key === LineupTableUtils.totalLineupId ||
-        lineup.key === LineupTableUtils.droppedLineupId
+    const resolved = _.chain(lineups)
+      .reject(
+        (l) =>
+          l.key === LineupTableUtils.totalLineupId ||
+          l.key === LineupTableUtils.droppedLineupId,
       )
-        continue;
-      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-      for (const cid of codesAndIds) {
-        const key = `${cid.id}`;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        if (
-          (cid.code && cid.code.toLowerCase() === normalizedId) ||
-          (cid.id && cid.id.toLowerCase() === normalizedId)
-        ) {
-          resolved = cid;
-          break;
-        }
-      }
-      if (resolved) break;
-    }
+      .flatMap((l) => LineupTableUtils.buildCodesAndIds(l))
+      .uniqBy((c) => c.id)
+      .find((c) =>
+        Boolean(
+          (c.code && c.code.toLowerCase() === normalizedId) ||
+          (c.id && c.id.toLowerCase() === normalizedId),
+        ),
+      )
+      .value();
     if (!resolved) return empty;
 
-    const positionsPlayed = new Set<number>();
-    const excludeByPosition: Record<number, Set<PlayerId>> = {
-      1: new Set(),
-      2: new Set(),
-      3: new Set(),
-      4: new Set(),
-      5: new Set(),
-    };
-
-    for (const lineup of lineups) {
-      if (
-        lineup.key === LineupTableUtils.totalLineupId ||
-        lineup.key === LineupTableUtils.droppedLineupId
-      )
-        continue;
-      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
-      if (codesAndIds.length !== 5) continue;
-      const sorted = PositionUtils.orderLineup(
-        codesAndIds,
-        positionFromPlayerKey,
-        teamSeasonLookup,
-      );
-      const idx = sorted.findIndex((p) => p.id === resolved!.id);
-      if (idx < 0) continue;
-      const position = idx + 1;
-      positionsPlayed.add(position);
-      const otherIds = sorted
-        .filter((p) => p.id !== resolved!.id)
-        .map((p) => p.id);
-      for (let q = 1; q <= 5; q++) {
-        if (q !== position) {
-          otherIds.forEach((id) => excludeByPosition[q].add(id));
-        }
-      }
-    }
-
-    const sortedPositions = _.sortBy(Array.from(positionsPlayed));
-    if (sortedPositions.length === 0) return empty;
-
-    const buildQuery = (pos: number) => {
-      const excludes = Array.from(excludeByPosition[pos]);
-      const includePart = `{"${resolved!.id}"}=1`;
-      const notPart =
-        excludes.length > 0
-          ? ` AND NOT (${excludes.map((id) => `"${id}"`).join(" OR ")})`
-          : "";
-      return includePart + notPart;
-    };
-
-    const onQuery = buildQuery(sortedPositions[0]!);
-    const offQuery =
-      sortedPositions.length >= 2 ? buildQuery(sortedPositions[1]!) : "";
-    const otherQueries = sortedPositions
-      .slice(2)
-      .map((pos) => ({ query: buildQuery(pos) }));
-
-    const splitPhrases = sortedPositions.map(
-      (pos) => `${resolved!.code}=[${pos}]`,
+    const ctx = QueryUtils.identifyHigherLowerSets(
+      lineups,
+      resolved,
+      positionFromPlayerKey,
+      teamSeasonLookup,
     );
+
+    if (_.isEmpty(ctx.positionsPlayed)) return empty;
+
+    const queryByPositionRaw = QueryUtils.buildPositionQueriesFromSets(
+      resolved,
+      ctx.positionsPlayed,
+      ctx,
+    );
+    const queryByPosition = QueryUtils.compressPositionQueries(
+      queryByPositionRaw,
+      ctx,
+    );
+
+    const sortedPositions = _.sortBy(ctx.positionsPlayed);
+    const onQuery = queryByPosition[sortedPositions[0]!] ?? "";
+    const offQuery =
+      sortedPositions.length >= 2
+        ? (queryByPosition[sortedPositions[1]!] ?? "")
+        : "";
+    const otherQueries = _.chain(sortedPositions)
+      .slice(2)
+      .map((pos) => ({ query: queryByPosition[pos] ?? "" }))
+      .value();
+
+    const splitPhrases = _.map(
+      sortedPositions,
+      (pos) => `${resolved.code}=[${pos}]`,
+    );
+
+    if (isDebug) {
+      positionSplitDebug("buildGameFilterParamsByPlayerPositions (result)", {
+        playerIdentifier: normalizedId,
+        isCorrupt: ctx.isCorrupt,
+        positionsPlayed: sortedPositions,
+        splitPhrases,
+        onQueryPreview: onQuery.slice(0, 600),
+        offQueryPreview: offQuery.slice(0, 400),
+        otherQueriesCount: otherQueries.length,
+        /** True when raw query uses corrupt fallback `{...}=5 OR {...}=5` (not expanded). */
+        rawQueryHasExplicitFiveManOr: _.some(queryByPosition, (q) =>
+          /\}=5 OR/.test(q || ""),
+        ),
+      });
+    }
 
     return {
       onQuery,

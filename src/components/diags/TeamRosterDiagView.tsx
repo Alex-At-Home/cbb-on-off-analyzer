@@ -17,10 +17,19 @@ import { TableDisplayUtils } from "../../utils/tables/TableDisplayUtils";
 
 // Component imports
 import GenericTable, { GenericTableOps } from "../GenericTable";
-import { IndivStatSet, PlayerId, IndivPosInfo } from "../../utils/StatModels";
-import { ParamDefaults } from "../../utils/FilterModels";
+import {
+  IndivStatSet,
+  PlayerId,
+  IndivPosInfo,
+  LineupStatSet,
+} from "../../utils/StatModels";
+import { GameFilterParams, ParamDefaults } from "../../utils/FilterModels";
+import { UrlRouting } from "../../utils/UrlRouting";
+import { QueryUtils } from "../../utils/QueryUtils";
 
 type Props = {
+  /** For reference, the lineups used to build this */
+  rawLineups: LineupStatSet[];
   /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) ... global stats */
   positionInfoGlobal: PositionInfo[][];
   /**  PositionInfo indexed first by position (0-4) then by player (arbitrary order) ... baseline stats */
@@ -29,15 +38,20 @@ type Props = {
   rosterStatsByPlayerId: Record<PlayerId, IndivStatSet>;
   /** For the tooltip display */
   positionFromPlayerId: Record<PlayerId, IndivPosInfo>;
+  /** For the expanstion */
+  gameFilterParams: GameFilterParams;
   teamSeasonLookup: string;
   showHelp: boolean;
   useSampleStatsOverride?: boolean;
 };
 const TeamRosterDiagView: React.FunctionComponent<Props> = ({
+  rawLineups,
   positionInfoSample,
   positionInfoGlobal: positionInfoBase,
   rosterStatsByPlayerId,
   positionFromPlayerId,
+  gameFilterParams,
+  teamSeasonLookup,
   useSampleStatsOverride,
 }) => {
   const tableCols = ["pg", "sg", "sf", "pf", "c"];
@@ -48,42 +62,42 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
       CommonTableDefs.singleLineRowSpanCalculator,
       "",
       GenericTableOps.htmlFormatter,
-      0
+      0,
     ),
     pg: GenericTableOps.addDataCol(
       `PG`,
       "Roster distribution for PG slot",
       CbbColors.applyThemedBackground,
-      GenericTableOps.percentOrHtmlFormatter
+      GenericTableOps.percentOrHtmlFormatter,
     ),
     sg: GenericTableOps.addDataCol(
       `SG`,
       "Roster distribution for SG slot",
       CbbColors.applyThemedBackground,
-      GenericTableOps.percentOrHtmlFormatter
+      GenericTableOps.percentOrHtmlFormatter,
     ),
     sf: GenericTableOps.addDataCol(
       `SF`,
       "Roster distribution for SF slot",
       CbbColors.applyThemedBackground,
-      GenericTableOps.percentOrHtmlFormatter
+      GenericTableOps.percentOrHtmlFormatter,
     ),
     pf: GenericTableOps.addDataCol(
       `PF`,
       "Roster distribution for PF slot",
       CbbColors.applyThemedBackground,
-      GenericTableOps.percentOrHtmlFormatter
+      GenericTableOps.percentOrHtmlFormatter,
     ),
     c: GenericTableOps.addDataCol(
       `C`,
       "Roster distribution for C slot",
       CbbColors.applyThemedBackground,
-      GenericTableOps.percentOrHtmlFormatter
+      GenericTableOps.percentOrHtmlFormatter,
     ),
   };
 
   const [useSampleStats, setUseSampleStats] = useState(
-    useSampleStatsOverride ? true : false
+    useSampleStatsOverride ? true : false,
   );
   const positionInfo =
     positionInfoSample && useSampleStats
@@ -120,7 +134,25 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
             true,
             ParamDefaults.defaultLineupFontSize,
             {},
-            true
+            true,
+            //TODO:
+            /**/
+            // (sortedLineup: { code: string; id: string }[]) => {
+            //   return UrlRouting.getGameUrl(
+            //     {
+            //       ...gameFilterParams,
+            //       ...(sortedLineup[0]
+            //         ? QueryUtils.buildGameFilterParamsByPlayerPositions(
+            //             rawLineups,
+            //             sortedLineup[0].id,
+            //             positionFromPlayerId,
+            //             teamSeasonLookup,
+            //           )
+            //         : {}),
+            //     },
+            //     {},
+            //   );
+            // },
           );
           const playerNum =
             rosterStatsByPlayerId[playerCodeId.id]?.roster?.number;
@@ -132,7 +164,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
                   className="float-right"
                   style={CommonTableDefs.getTextShadow(
                     { value: pct },
-                    CbbColors.posFreq
+                    CbbColors.posFreq,
                   )}
                 >
                   {pct.toFixed(0)}%
@@ -161,8 +193,8 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
     GenericTableOps.buildDataRow(
       row,
       GenericTableOps.defaultFormatter,
-      GenericTableOps.defaultCellMeta
-    )
+      GenericTableOps.defaultCellMeta,
+    ),
   );
 
   return (

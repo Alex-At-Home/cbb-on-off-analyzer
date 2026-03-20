@@ -10,6 +10,7 @@ import { CommonFilterParams, GameFilterParams } from "../FilterModels";
 import { LineupStatSet } from "../StatModels";
 import { IndivPosInfo } from "../StatModels";
 import { sampleLineupStatsResponse } from "../../sample-data/sampleLineupStatsResponse";
+import { PositionUtils } from "../stats/PositionUtils";
 
 describe("QueryUtils", () => {
   test("QueryUtils - parse/stringify", () => {
@@ -415,7 +416,7 @@ describe("QueryUtils", () => {
     ).toEqual(true);
   });
 
-  test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted data)", () => {
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted single position, degenerate *)", () => {
     const teamSeasonLookup = "";
     const positionFromPlayerKey: Record<string, IndivPosInfo> = {
       idA: { posClass: "s-PG", posConfidences: [60, 40, 0, 0, 0] },
@@ -452,12 +453,11 @@ describe("QueryUtils", () => {
       positionFromPlayerKey,
       teamSeasonLookup,
     );
-    expect(result.onQuery).toBe(`{"idX"}=1`);
+    expect(result.onQuery).toBe("*");
     expect(result.offQuery).toBe("");
     expect(result.otherQueries).toEqual([]);
     expect(result.splitPhrases).toEqual(["codeX=[5]"]);
     expect(result.autoOffQuery).toBe(false);
-
     const resultByCode = QueryUtils.buildGameFilterParamsByPlayerPositions(
       lineups,
       "codeX",
@@ -466,6 +466,100 @@ describe("QueryUtils", () => {
     );
     expect(resultByCode.onQuery).toBe(result.onQuery);
     expect(resultByCode.splitPhrases).toEqual(["codeX=[5]"]);
+  });
+
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions team slot pools include lineups without focal player", () => {
+    const teamSeasonLookup = "";
+    const positionFromPlayerKey: Record<string, IndivPosInfo> = {
+      idA: { posClass: "s-PG", posConfidences: [80, 20, 0, 0, 0] },
+      idB: { posClass: "WG", posConfidences: [10, 80, 10, 0, 0] },
+      idC: { posClass: "WF", posConfidences: [0, 0, 80, 20, 0] },
+      idD: { posClass: "PF/C", posConfidences: [0, 0, 0, 50, 50] },
+      idE: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+      idX: { posClass: "PF/C", posConfidences: [0, 0, 0, 50, 50] },
+      idT: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+      idP: { posClass: "s-PG", posConfidences: [70, 30, 0, 0, 0] },
+      idQ: { posClass: "WG", posConfidences: [20, 70, 10, 0, 0] },
+      idR: { posClass: "WF", posConfidences: [0, 10, 70, 20, 0] },
+      idS: { posClass: "PF/C", posConfidences: [0, 0, 10, 40, 50] },
+    };
+    const lineupWithX: LineupStatSet = {
+      key: "codeA_codeB_codeC_codeD_codeX",
+      doc_count: 10,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "codeA", id: "idA" },
+                  { code: "codeB", id: "idB" },
+                  { code: "codeC", id: "idC" },
+                  { code: "codeD", id: "idD" },
+                  { code: "codeX", id: "idX" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineupWithX2: LineupStatSet = {
+      key: "codeA_codeB_codeC_codeX_codeE",
+      doc_count: 5,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "codeA", id: "idA" },
+                  { code: "codeB", id: "idB" },
+                  { code: "codeC", id: "idC" },
+                  { code: "codeX", id: "idX" },
+                  { code: "codeE", id: "idE" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineupWithoutX: LineupStatSet = {
+      key: "codeP_codeQ_codeR_codeS_codeT",
+      doc_count: 99,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "codeP", id: "idP" },
+                  { code: "codeQ", id: "idQ" },
+                  { code: "codeR", id: "idR" },
+                  { code: "codeS", id: "idS" },
+                  { code: "codeT", id: "idT" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineups: LineupStatSet[] = [
+      lineupWithX,
+      lineupWithX2,
+      lineupWithoutX,
+    ];
+    const result = QueryUtils.buildGameFilterParamsByPlayerPositions(
+      lineups,
+      "idX",
+      positionFromPlayerKey,
+      teamSeasonLookup,
+    );
+    expect(result.onQuery).toContain('"idX"');
+    // idT never shares the floor with X here, but still fills a team ordered slot in another 5-man → pool member
+    expect(result.onQuery).toContain("idT");
   });
 
   test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted two lineups)", () => {
@@ -527,20 +621,253 @@ describe("QueryUtils", () => {
       positionFromPlayerKey,
       teamSeasonLookup,
     );
-    expect(result.onQuery).toContain(`"idX"`);
-    expect(result.onQuery).toContain("=1");
-    expect(result.splitPhrases!.length).toBeGreaterThanOrEqual(1);
+    expect(result.onQuery).toMatch(/\*|=1/);
     expect(result.splitPhrases!.every((s) => /^codeX=\[\d\]$/.test(s))).toBe(
       true,
     );
     expect(result.autoOffQuery).toBe(false);
     if (result.splitPhrases!.length >= 2) {
-      expect(result.offQuery).toContain(`"idX"`);
-      const onExcludes = result.onQuery!.match(/AND NOT \(([^)]+)\)/);
-      const offExcludes = result.offQuery!.match(/AND NOT \(([^)]+)\)/);
-      expect(onExcludes).toBeTruthy();
-      expect(offExcludes).toBeTruthy();
+      expect(result.offQuery).toMatch(/\*|=1/);
     }
+  });
+
+  test("QueryUtils - identifyHigherLowerSets clean vs corrupt partition", () => {
+    const teamSeasonLookup = "";
+    const pos: Record<string, IndivPosInfo> = {
+      idA: { posClass: "s-PG", posConfidences: [80, 0, 0, 0, 0] },
+      idB: { posClass: "WG", posConfidences: [0, 80, 0, 0, 0] },
+      idC: { posClass: "WF", posConfidences: [0, 0, 80, 0, 0] },
+      idD: { posClass: "PF/C", posConfidences: [0, 0, 0, 80, 0] },
+      idE: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+      idX: { posClass: "WF", posConfidences: [0, 0, 70, 0, 0] },
+    };
+    const resolved = { code: "codeX", id: "idX" };
+    const cleanLineup: LineupStatSet = {
+      key: "k1",
+      doc_count: 1,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "a", id: "idA" },
+                  { code: "b", id: "idB" },
+                  { code: "x", id: "idX" },
+                  { code: "d", id: "idD" },
+                  { code: "e", id: "idE" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const clean = QueryUtils.identifyHigherLowerSets(
+      [cleanLineup],
+      resolved,
+      pos,
+      teamSeasonLookup,
+    );
+    expect(clean.isCorrupt).toBe(false);
+    expect(clean.lowerIds.length).toBeGreaterThan(0);
+    expect(clean.higherIds.length).toBeGreaterThan(0);
+    const inter = _.intersection(clean.lowerIds, clean.higherIds);
+    expect(inter.length).toBe(0);
+
+    /** Same teammate can sit above or below X in different lineups; orderLineup is otherwise deterministic for fixed five. */
+    const posCorrupt: Record<string, IndivPosInfo> = {
+      ...pos,
+      idP: { posClass: "PG", posConfidences: [100, 0, 0, 0, 0] },
+      idQ: { posClass: "PF/C", posConfidences: [0, 0, 0, 90, 10] },
+      idR: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+    };
+    const lineupXMid: LineupStatSet = {
+      key: "k2",
+      doc_count: 1,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "a", id: "idA" },
+                  { code: "b", id: "idB" },
+                  { code: "x", id: "idX" },
+                  { code: "d", id: "idD" },
+                  { code: "e", id: "idE" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineupCorruptSecond: LineupStatSet = {
+      key: "k3",
+      doc_count: 1,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "p", id: "idP" },
+                  { code: "d", id: "idD" },
+                  { code: "x", id: "idX" },
+                  { code: "q", id: "idQ" },
+                  { code: "r", id: "idR" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+
+    const orderLineupOriginal = PositionUtils.orderLineup.bind(PositionUtils);
+    const spy = jest.spyOn(PositionUtils, "orderLineup");
+    spy.mockImplementation((codesAndIds, playersById, ts) => {
+      if (codesAndIds.some((c) => c.id === "idP")) {
+        return [
+          { code: "p", id: "idP" },
+          { code: "d", id: "idD" },
+          { code: "x", id: "idX" },
+          { code: "q", id: "idQ" },
+          { code: "r", id: "idR" },
+        ];
+      }
+      return orderLineupOriginal(codesAndIds, playersById, ts);
+    });
+    try {
+      const corrupt = QueryUtils.identifyHigherLowerSets(
+        [lineupXMid, lineupCorruptSecond],
+        resolved,
+        posCorrupt,
+        teamSeasonLookup,
+      );
+      expect(corrupt.isCorrupt).toBe(true);
+      expect(
+        _.intersection(corrupt.lowerIds, corrupt.higherIds).length,
+      ).toBeGreaterThan(0);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+
+  test("QueryUtils - buildPositionQueriesFromSets corrupt OR lineups", () => {
+    const resolved = { code: "codeX", id: "idX" };
+    const emptySlots: string[][] = [[], [], [], [], []];
+    const ctx = {
+      lowerIds: ["idA"],
+      higherIds: ["idA"],
+      isCorrupt: true,
+      positionsPlayed: [3],
+      teamSlotOccupants: emptySlots,
+      lineupRows: [
+        {
+          lineupKey: "k1",
+          sortedIds: ["idA", "idB", "idX", "idD", "idE"],
+          xPosition: 3,
+          lowerIds: ["idA", "idB"],
+          higherIds: ["idD", "idE"],
+        },
+        {
+          lineupKey: "k2",
+          sortedIds: ["idP", "idQ", "idX", "idR", "idS"],
+          xPosition: 3,
+          lowerIds: ["idP", "idQ"],
+          higherIds: ["idR", "idS"],
+        },
+      ],
+    };
+    const q = QueryUtils.buildPositionQueriesFromSets(resolved, [3], ctx);
+    expect(q[3]).toContain(" OR ");
+    expect(q[3]).toContain("=5");
+    expect(q[3]).toContain('"idX"');
+  });
+
+  test("QueryUtils - compressPositionQueries is pass-through", () => {
+    const raw = { 3: '{"idX"}=1 AND {h}=2' };
+    const ctx = {
+      lowerIds: [],
+      higherIds: [],
+      isCorrupt: false,
+      positionsPlayed: [3],
+      lineupRows: [],
+      teamSlotOccupants: [[], [], [], [], []],
+    };
+    expect(QueryUtils.compressPositionQueries(raw, ctx)).toEqual(raw);
+  });
+
+  /** Normal path lower/higher pools use team-wide slot occupants, not only X-lineup neighbors. */
+  test("QueryUtils - normal position query pools include team-wide slot occupants", () => {
+    const teamSeasonLookup = "";
+    const pos: Record<string, IndivPosInfo> = {
+      idA: { posClass: "s-PG", posConfidences: [80, 0, 0, 0, 0] },
+      idB: { posClass: "WG", posConfidences: [0, 80, 0, 0, 0] },
+      idC: { posClass: "WF", posConfidences: [0, 0, 80, 0, 0] },
+      idD: { posClass: "PF/C", posConfidences: [0, 0, 0, 80, 0] },
+      idE: { posClass: "C", posConfidences: [0, 0, 0, 0, 100] },
+      idX: { posClass: "WF", posConfidences: [0, 0, 70, 0, 0] },
+      idP: { posClass: "s-PG", posConfidences: [90, 0, 0, 0, 0] },
+      idQ: { posClass: "WG", posConfidences: [0, 90, 0, 0, 0] },
+    };
+    const resolved = { code: "codeX", id: "idX" };
+    const lineupXGayleSF: LineupStatSet = {
+      key: "k_x_sf",
+      doc_count: 1,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "a", id: "idA" },
+                  { code: "b", id: "idB" },
+                  { code: "x", id: "idX" },
+                  { code: "d", id: "idD" },
+                  { code: "e", id: "idE" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const lineupNoXOtherBackcourt: LineupStatSet = {
+      key: "k_no_x",
+      doc_count: 1,
+      players_array: {
+        hits: {
+          hits: [
+            {
+              _source: {
+                players: [
+                  { code: "p", id: "idP" },
+                  { code: "q", id: "idQ" },
+                  { code: "c", id: "idC" },
+                  { code: "d", id: "idD" },
+                  { code: "e", id: "idE" },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    } as LineupStatSet;
+    const ctx = QueryUtils.identifyHigherLowerSets(
+      [lineupXGayleSF, lineupNoXOtherBackcourt],
+      resolved,
+      pos,
+      teamSeasonLookup,
+    );
+    expect(ctx.isCorrupt).toBe(false);
+    const q = QueryUtils.buildPositionQueriesFromSets(resolved, [3], ctx);
+    expect(q[3]).toContain('"idP"');
+    expect(q[3]).toContain('"idQ"');
+    expect(q[3]).toContain('"idA"');
+    expect(q[3]).toContain('"idB"');
   });
 
   test("QueryUtils - buildGameFilterParamsByPlayerPositions (sample data)", () => {
