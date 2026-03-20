@@ -137,22 +137,22 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
             true,
             //TODO:
             /**/
-            // (sortedLineup: { code: string; id: string }[]) => {
-            //   return UrlRouting.getGameUrl(
-            //     {
-            //       ...gameFilterParams,
-            //       ...(sortedLineup[0]
-            //         ? QueryUtils.buildGameFilterParamsByPlayerPositions(
-            //             rawLineups,
-            //             sortedLineup[0].id,
-            //             positionFromPlayerId,
-            //             teamSeasonLookup,
-            //           )
-            //         : {}),
-            //     },
-            //     {},
-            //   );
-            // },
+            (sortedLineup: { code: string; id: string }[]) => {
+              return UrlRouting.getGameUrl(
+                {
+                  ...gameFilterParams,
+                  ...(sortedLineup[0]
+                    ? QueryUtils.buildGameFilterParamsByPlayerPositions(
+                        rawLineups,
+                        sortedLineup[0].id,
+                        positionFromPlayerId,
+                        teamSeasonLookup,
+                      )
+                    : {}),
+                },
+                {},
+              );
+            },
           );
           const playerNum =
             rosterStatsByPlayerId[playerCodeId.id]?.roster?.number;

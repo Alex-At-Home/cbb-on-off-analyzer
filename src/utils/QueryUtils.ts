@@ -144,6 +144,50 @@ export class QueryUtils {
   static readonly customGamesAliasName = "Custom-Games";
   static readonly customGamesPrefix = "Opponents:";
 
+  /**
+   * URL fields that must be `string[]` in app state. `query-string` returns a plain string when the
+   * key appears once (e.g. `?splitPhrases=foo`), which then breaks lodash zip / indexing (string acts
+   * like char[]). We coerce on parse and pad length-1 arrays on stringify so the query repeats the key
+   * (`splitPhrases=a&splitPhrases=`).
+   *
+   * Other minimal library-level options (not used here): use `arrayFormat: 'bracket'` consistently
+   * on parse+stringify (`splitPhrases[]=a`) — would change every URL; or ensure every producer passes
+   * a second sentinel value (see `buildGameFilterParamsByPlayerPositions`, `MatchupFilter`, `TableDisplayUtils`).
+   */
+  private static readonly stringArrayUrlKeys = [
+    "splitPhrases",
+    "splitText",
+  ] as const;
+
+  /** Coerce `query-string` output to `string[]` for splitPhrases / splitText. */
+  private static coerceUrlValueToStringArray(
+    value: unknown,
+  ): string[] | undefined {
+    if (value === undefined || value === null) return undefined;
+    if (Array.isArray(value)) return value.map((v) => String(v));
+    if (typeof value === "string") return [value];
+    return undefined;
+  }
+
+  private static normalizeParsedStringArrayFields(parsed: Record<string, any>) {
+    _.forEach(QueryUtils.stringArrayUrlKeys, (key) => {
+      const coerced = QueryUtils.coerceUrlValueToStringArray(parsed[key]);
+      if (coerced !== undefined) {
+        parsed[key] = coerced;
+      }
+    });
+  }
+
+  /** Ensures repeated query keys so parse yields an array; keeps a harmless second slot for zip/UX. */
+  private static padStringArrayUrlFieldsForStringify(obj: Record<string, any>) {
+    _.forEach(QueryUtils.stringArrayUrlKeys, (key) => {
+      const arr = obj[key];
+      if (_.isArray(arr) && arr.length === 1) {
+        obj[key] = [arr[0], ""];
+      }
+    });
+  }
+
   /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
   static parse(str: string): any {
     const parsed: Record<string, any> = queryString.parse(str, {
@@ -218,6 +262,7 @@ export class QueryUtils {
     if (!_.isEmpty(luck)) {
       parsed.luck = luck;
     }
+    QueryUtils.normalizeParsedStringArrayFields(parsed);
     return parsed;
   }
   /** Wraps QueryUtils.parse but with luck/baseQuery/lineupQuery handling */
@@ -276,6 +321,7 @@ export class QueryUtils {
       delete (objCopy as any)[QueryUtils.legacyQueryField];
     }
     QueryUtils.cleanseQuery(objCopy);
+    QueryUtils.padStringArrayUrlFieldsForStringify(objCopy);
     return queryString.stringify(objCopy);
   }
 
@@ -1165,10 +1211,14 @@ export class QueryUtils {
       .map((pos) => ({ query: queryByPosition[pos] ?? "" }))
       .value();
 
-    const splitPhrases = _.map(
-      sortedPositions,
-      (pos) => `${resolved.code}=[${pos}]`,
-    );
+    const splitPhrases = (() => {
+      const phrases = _.map(
+        sortedPositions,
+        (pos) => `${resolved.code}=[${pos}]`,
+      );
+      // Single phrase → string in query-string → char-zip bug; mirror MatchupFilter / TableDisplayUtils
+      return phrases.length === 1 ? [...phrases, ""] : phrases;
+    })();
 
     if (isPosSplitBuilderDebug) {
       positionSplitDebug("buildGameFilterParamsByPlayerPositions (result)", {

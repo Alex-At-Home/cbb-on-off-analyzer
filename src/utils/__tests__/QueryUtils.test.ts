@@ -24,6 +24,18 @@ describe("QueryUtils", () => {
     expect(
       QueryUtils.parse("lineupQuery=a&otherField=true&numField=1"),
     ).toEqual({ baseQuery: "a", otherField: true, numField: "1" });
+    // query-string: single splitPhrases value is a string, not string[] (breaks zip / [0])
+    expect(QueryUtils.parse("splitPhrases=foo").splitPhrases).toEqual(["foo"]);
+    expect(
+      QueryUtils.parse("splitPhrases=a&splitPhrases=").splitPhrases,
+    ).toEqual(["a", ""]);
+    expect(
+      QueryUtils.parse("splitText=%3Cdiv%3E&splitText=").splitText,
+    ).toEqual(["<div>", ""]);
+    const spRound = QueryUtils.parse(
+      QueryUtils.stringify({ splitPhrases: ["only"] } as CommonFilterParams),
+    );
+    expect(spRound.splitPhrases).toEqual(["only", ""]);
     // Check garbageFilter handling
     expect(
       QueryUtils.stringify({
@@ -456,7 +468,7 @@ describe("QueryUtils", () => {
     expect(result.onQuery).toBe("*");
     expect(result.offQuery).toBe("");
     expect(result.otherQueries).toEqual([]);
-    expect(result.splitPhrases).toEqual(["codeX=[5]"]);
+    expect(result.splitPhrases).toEqual(["codeX=[5]", ""]);
     expect(result.autoOffQuery).toBe(false);
     const resultByCode = QueryUtils.buildGameFilterParamsByPlayerPositions(
       lineups,
@@ -465,7 +477,7 @@ describe("QueryUtils", () => {
       teamSeasonLookup,
     );
     expect(resultByCode.onQuery).toBe(result.onQuery);
-    expect(resultByCode.splitPhrases).toEqual(["codeX=[5]"]);
+    expect(resultByCode.splitPhrases).toEqual(["codeX=[5]", ""]);
   });
 
   test("QueryUtils - buildGameFilterParamsByPlayerPositions team slot pools include lineups without focal player", () => {
@@ -622,11 +634,13 @@ describe("QueryUtils", () => {
       teamSeasonLookup,
     );
     expect(result.onQuery).toMatch(/\*|=1/);
-    expect(result.splitPhrases!.every((s) => /^codeX=\[\d\]$/.test(s))).toBe(
-      true,
-    );
+    expect(
+      result
+        .splitPhrases!.filter(Boolean)
+        .every((s) => /^codeX=\[\d\]$/.test(s)),
+    ).toBe(true);
     expect(result.autoOffQuery).toBe(false);
-    if (result.splitPhrases!.length >= 2) {
+    if (result.splitPhrases!.filter(Boolean).length >= 2) {
       expect(result.offQuery).toMatch(/\*|=1/);
     }
   });
@@ -908,10 +922,14 @@ describe("QueryUtils", () => {
     );
     expect(result.onQuery).toContain('"Ayala, Eric"');
     expect(result.onQuery).toContain("=1");
-    expect(result.splitPhrases!.length).toBeGreaterThanOrEqual(1);
-    expect(result.splitPhrases!.every((s) => /^ErAyala=\[\d\]$/.test(s))).toBe(
-      true,
+    expect(result.splitPhrases!.filter(Boolean).length).toBeGreaterThanOrEqual(
+      1,
     );
+    expect(
+      result
+        .splitPhrases!.filter(Boolean)
+        .every((s) => /^ErAyala=\[\d\]$/.test(s)),
+    ).toBe(true);
     expect(result.autoOffQuery).toBe(false);
 
     const resultById = QueryUtils.buildGameFilterParamsByPlayerPositions(
