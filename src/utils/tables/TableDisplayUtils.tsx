@@ -218,6 +218,8 @@ export class TableDisplayUtils {
     params: CommonFilterParams,
     extendedTooltipView: boolean = false,
     onClickOverride?: (sortedLineup: { code: string; id: string }[]) => string,
+    /** Optional footer line on the hover tooltip (replaces the default “click to open…” when set). */
+    nonStandardOnClickText?: string,
   ) {
     const tooltipBuilder = (pid: number) =>
       TableDisplayUtils.buildTooltipTexts(
@@ -226,6 +228,7 @@ export class TableDisplayUtils {
         perLineupPlayerMap,
         positionFromPlayerKey,
         extendedTooltipView,
+        nonStandardOnClickText,
       );
 
     if (decorateLineup) {
@@ -287,6 +290,7 @@ export class TableDisplayUtils {
     perLineupPlayerMap: Record<string, Record<string, any>>,
     positionFromPlayerKey: Record<string, { posClass: string }>,
     extendedView: boolean = false,
+    nonStandardOnClickText?: string,
   ) {
     const tooltipTexts = _.flatMap(
       sortedLineup,
@@ -309,11 +313,18 @@ export class TableDisplayUtils {
             <br />
           </span>
         ))}
-        {extendedView
-          ? ""
-          : `Click to open a more detailed analysis page for this lineup ${
-              sortedLineup.length < 5 ? " family" : ""
-            }`}
+        {nonStandardOnClickText ? (
+          <>
+            <br />
+            {nonStandardOnClickText}
+          </>
+        ) : extendedView ? (
+          ""
+        ) : (
+          `Click to open a more detailed analysis page for this lineup ${
+            sortedLineup.length < 5 ? " family" : ""
+          }`
+        )}
       </Tooltip>
     );
 

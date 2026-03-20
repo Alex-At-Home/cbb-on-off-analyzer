@@ -135,12 +135,12 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
             ParamDefaults.defaultLineupFontSize,
             {},
             true,
-            //TODO:
-            /**/
             (sortedLineup: { code: string; id: string }[]) => {
               return UrlRouting.getGameUrl(
                 {
                   ...gameFilterParams,
+                  possAsPct: false, //(always show)
+                  filter: sortedLineup[0].id,
                   ...(sortedLineup[0]
                     ? QueryUtils.buildGameFilterParamsByPlayerPositions(
                         rawLineups,
@@ -153,6 +153,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
                 {},
               );
             },
+            "Click to view positional splits for this player",
           );
           const playerNum =
             rosterStatsByPlayerId[playerCodeId.id]?.roster?.number;

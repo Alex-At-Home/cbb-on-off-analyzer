@@ -23,7 +23,7 @@ import { PositionUtils } from "./stats/PositionUtils";
 import { format as dateFormat, parse as dateParse, addYears } from "date-fns";
 
 /** Set to `false` to silence browser-console diagnostics for position-split queries. */
-const isPosSplitBuilderDebug = false;
+const isPosSplitBuilderDebug = true;
 
 function positionSplitDebug(label: string, payload?: unknown) {
   if (!isPosSplitBuilderDebug) return;
@@ -50,9 +50,9 @@ export type PositionSplitContext = {
   positionsPlayed: number[];
   lineupRows: PositionSplitLineupRow[];
   /**
-   * For ordered slot index 0..4 (PG..C), ids that ever occupy that slot in any qualifying 5-man
-   * team lineup. Used for normal-path `{pool}=k` clauses so all roster backcourt/frontcourt combos
-   * are allowed, not only teammates who happened to sit below/above X when X was on the court.
+   * Per ordered slot 0..4, ids that ever occupy that slot in any qualifying 5-man team lineup.
+   * Not used for normal position-split queries (those use `lowerIds`/`higherIds` only); kept for
+   * debug output and future `compressPositionQueries` ideas.
    */
   teamSlotOccupants: PlayerId[][];
 };
@@ -1012,10 +1012,10 @@ export class QueryUtils {
   }
 
   /**
-   * Normal path: X on court, exactly (P-1) from lower slots' team-wide pool and (5-P) from higher
-   * slots' team-wide pool (`teamSlotOccupants`), not only ids observed below/above X in X-lineups.
-   * See `basicOrAdvancedQuery` strict `{pool}=k` expansion (all k-combos from the pool).
-   * Corrupt path: OR of full `{id1;...;id5}=5` for each distinct ordered lineup where X held that slot.
+   * Normal path: one **per-player** lower pool and higher pool (`identifyHigherLowerSets`). For split
+   * position P (1-based), require `(P-1)` teammates from the lower pool and `(5-P)` from the higher
+   * pool — i.e. `{lowerIds}=P-1 AND {higherIds}=5-P` with `basicOrAdvancedQuery` strict `{pool}=k`.
+   * Corrupt path: OR of full `{id1;...;id5}=5` per distinct lineup where X held that slot.
    * Degenerate: X always at 5 when on court → query `*` for that split.
    */
   static buildPositionQueriesFromSets(
@@ -1025,7 +1025,6 @@ export class QueryUtils {
   ): Record<number, string> {
     const playerId = resolved.id;
     const xAlwaysAtFive = _.every(ctx.lineupRows, (r) => r.xPosition === 5);
-    const slots = ctx.teamSlotOccupants;
 
     const poolClause = (ids: PlayerId[], k: number): string | undefined => {
       if (k === 0) return undefined;
@@ -1033,13 +1032,12 @@ export class QueryUtils {
       return `{${_.map(ids, (id) => `"${id}"`).join(";")}}=${k}`;
     };
 
-    const unionSlotPools = (slotIndices: number[]): PlayerId[] =>
-      _.chain(slotIndices)
-        .flatMap((s) => slots[s] || [])
-        .uniq()
-        .without(playerId)
-        .sortBy()
-        .value();
+    /** Single pools for X from all X-lineups; exclude focal id if ever present. */
+    const lowerPool = _.chain(ctx.lowerIds).without(playerId).sortBy().value();
+    const higherPool = _.chain(ctx.higherIds)
+      .without(playerId)
+      .sortBy()
+      .value();
 
     const normalQueryForPosition = (pos: number): string => {
       const nLower = pos - 1;
@@ -1047,8 +1045,6 @@ export class QueryUtils {
       if (xAlwaysAtFive && pos === 5 && positionsPlayed.length === 1) {
         return "*";
       }
-      const lowerPool = unionSlotPools(_.range(0, pos - 1));
-      const higherPool = unionSlotPools(_.range(pos, 5));
       const parts = _.compact([
         `{"${playerId}"}=1`,
         poolClause(lowerPool, nLower),
@@ -1077,7 +1073,7 @@ export class QueryUtils {
         higherUnionFromXLineups: ctx.higherIds,
         branch: ctx.isCorrupt
           ? "CORRUPT → explicit OR of =5 lineups (hideous lineup call)"
-          : "NORMAL → pool clauses from teamSlotOccupants",
+          : "NORMAL → per-player lowerIds/higherIds with (P-1)/(5-P) counts",
       });
     }
 
@@ -1104,8 +1100,6 @@ export class QueryUtils {
         } else {
           const nLower = pos - 1;
           const nHigher = 5 - pos;
-          const lowerPool = unionSlotPools(_.range(0, pos - 1));
-          const higherPool = unionSlotPools(_.range(pos, 5));
           positionSplitDebug(`buildPositionQueriesFromSets pos=${pos} NORMAL`, {
             nLower,
             nHigher,

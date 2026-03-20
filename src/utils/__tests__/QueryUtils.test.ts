@@ -480,7 +480,7 @@ describe("QueryUtils", () => {
     expect(resultByCode.splitPhrases).toEqual(["codeX=[5]", ""]);
   });
 
-  test("QueryUtils - buildGameFilterParamsByPlayerPositions team slot pools include lineups without focal player", () => {
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions pools from X-lineups only (no idT from other lineups)", () => {
     const teamSeasonLookup = "";
     const positionFromPlayerKey: Record<string, IndivPosInfo> = {
       idA: { posClass: "s-PG", posConfidences: [80, 20, 0, 0, 0] },
@@ -570,8 +570,7 @@ describe("QueryUtils", () => {
       teamSeasonLookup,
     );
     expect(result.onQuery).toContain('"idX"');
-    // idT never shares the floor with X here, but still fills a team ordered slot in another 5-man → pool member
-    expect(result.onQuery).toContain("idT");
+    expect(result.onQuery).not.toContain("idT");
   });
 
   test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted two lineups)", () => {
@@ -814,8 +813,8 @@ describe("QueryUtils", () => {
     expect(QueryUtils.compressPositionQueries(raw, ctx)).toEqual(raw);
   });
 
-  /** Normal path lower/higher pools use team-wide slot occupants, not only X-lineup neighbors. */
-  test("QueryUtils - normal position query pools include team-wide slot occupants", () => {
+  /** Normal path: pools are per-player unions from X-lineups only, not other 5-man lineups. */
+  test("QueryUtils - normal position query pools exclude teammates from lineups without X", () => {
     const teamSeasonLookup = "";
     const pos: Record<string, IndivPosInfo> = {
       idA: { posClass: "s-PG", posConfidences: [80, 0, 0, 0, 0] },
@@ -878,10 +877,10 @@ describe("QueryUtils", () => {
     );
     expect(ctx.isCorrupt).toBe(false);
     const q = QueryUtils.buildPositionQueriesFromSets(resolved, [3], ctx);
-    expect(q[3]).toContain('"idP"');
-    expect(q[3]).toContain('"idQ"');
     expect(q[3]).toContain('"idA"');
     expect(q[3]).toContain('"idB"');
+    expect(q[3]).not.toContain('"idP"');
+    expect(q[3]).not.toContain('"idQ"');
   });
 
   test("QueryUtils - buildGameFilterParamsByPlayerPositions (sample data)", () => {
