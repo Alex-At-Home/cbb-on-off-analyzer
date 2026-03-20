@@ -23,10 +23,10 @@ import { PositionUtils } from "./stats/PositionUtils";
 import { format as dateFormat, parse as dateParse, addYears } from "date-fns";
 
 /** Set to `false` to silence browser-console diagnostics for position-split queries. */
-const isDebug = true;
+const isPosSplitBuilderDebug = false;
 
 function positionSplitDebug(label: string, payload?: unknown) {
-  if (!isDebug) return;
+  if (!isPosSplitBuilderDebug) return;
   if (payload !== undefined) {
     console.warn(`[QueryUtils position-split] ${label}`, payload);
   } else {
@@ -929,7 +929,7 @@ export class QueryUtils {
       .sortBy()
       .value();
 
-    if (isDebug) {
+    if (isPosSplitBuilderDebug) {
       positionSplitDebug("identifyHigherLowerSets", {
         resolved: { code: resolved.code, id: resolved.id },
         teamSeasonLookup,
@@ -1021,7 +1021,7 @@ export class QueryUtils {
       return _.isEmpty(terms) ? `{"${playerId}"}=1` : terms.join(" OR ");
     };
 
-    if (isDebug) {
+    if (isPosSplitBuilderDebug) {
       positionSplitDebug("buildPositionQueriesFromSets (input)", {
         resolved: { code: resolved.code, id: resolved.id },
         isCorrupt: ctx.isCorrupt,
@@ -1035,7 +1035,7 @@ export class QueryUtils {
       });
     }
 
-    if (isDebug) {
+    if (isPosSplitBuilderDebug) {
       _.forEach(positionsPlayed, (pos) => {
         if (ctx.isCorrupt) {
           const rowsAtPos = _.filter(
@@ -1170,7 +1170,7 @@ export class QueryUtils {
       (pos) => `${resolved.code}=[${pos}]`,
     );
 
-    if (isDebug) {
+    if (isPosSplitBuilderDebug) {
       positionSplitDebug("buildGameFilterParamsByPlayerPositions (result)", {
         playerIdentifier: normalizedId,
         isCorrupt: ctx.isCorrupt,
