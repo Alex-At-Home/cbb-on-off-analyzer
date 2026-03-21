@@ -468,7 +468,11 @@ describe("QueryUtils", () => {
     expect(result.onQuery).toBe("*");
     expect(result.offQuery).toBe("");
     expect(result.otherQueries).toEqual([]);
-    expect(result.splitPhrases).toEqual(["codeX=[5]", ""]);
+    expect(result.splitPhrases).toEqual(["cd=[5]", ""]);
+    expect(result.splitText).toEqual([
+      '<div><small class="d-xl-none">cd=[5]</small><small class="d-none d-xl-block">codeX=[5]</small></div>',
+      "",
+    ]);
     expect(result.autoOffQuery).toBe(false);
     const resultByCode = QueryUtils.buildGameFilterParamsByPlayerPositions(
       lineups,
@@ -477,7 +481,8 @@ describe("QueryUtils", () => {
       teamSeasonLookup,
     );
     expect(resultByCode.onQuery).toBe(result.onQuery);
-    expect(resultByCode.splitPhrases).toEqual(["codeX=[5]", ""]);
+    expect(resultByCode.splitPhrases).toEqual(["cd=[5]", ""]);
+    expect(resultByCode.splitText).toEqual(result.splitText);
   });
 
   test("QueryUtils - buildGameFilterParamsByPlayerPositions pools from X-lineups only (no idT from other lineups)", () => {
@@ -634,9 +639,7 @@ describe("QueryUtils", () => {
     );
     expect(result.onQuery).toMatch(/\*|=1/);
     expect(
-      result
-        .splitPhrases!.filter(Boolean)
-        .every((s) => /^codeX=\[\d\]$/.test(s)),
+      result.splitPhrases!.filter(Boolean).every((s) => /^cd=\[\d\]$/.test(s)),
     ).toBe(true);
     expect(result.autoOffQuery).toBe(false);
     if (result.splitPhrases!.filter(Boolean).length >= 2) {
@@ -925,9 +928,7 @@ describe("QueryUtils", () => {
       1,
     );
     expect(
-      result
-        .splitPhrases!.filter(Boolean)
-        .every((s) => /^ErAyala=\[\d\]$/.test(s)),
+      result.splitPhrases!.filter(Boolean).every((s) => /^EA=\[\d\]$/.test(s)),
     ).toBe(true);
     expect(result.autoOffQuery).toBe(false);
 

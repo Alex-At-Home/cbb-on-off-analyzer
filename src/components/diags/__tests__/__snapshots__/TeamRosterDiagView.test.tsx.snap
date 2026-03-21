@@ -80,12 +80,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 1%, DRB 9%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -133,7 +146,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </span>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -202,12 +215,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -242,7 +268,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -311,12 +337,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 4%, DRB 15%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -358,7 +397,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </span>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -427,12 +466,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -467,7 +519,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -536,12 +588,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -576,7 +641,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -655,12 +720,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -695,7 +773,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -766,12 +844,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -806,7 +897,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose base
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -987,12 +1078,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 1%, DRB 9%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1040,7 +1144,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             </span>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1109,12 +1213,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1149,7 +1266,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1218,12 +1335,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 4%, DRB 15%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1265,7 +1395,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             </span>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1334,12 +1464,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1374,7 +1517,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1443,12 +1586,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1483,7 +1639,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose samp
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1664,12 +1820,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 1%, DRB 9%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1717,7 +1886,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </span>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1786,12 +1955,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1826,7 +2008,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -1895,12 +2077,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 4%, DRB 15%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -1942,7 +2137,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </span>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -2011,12 +2206,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -2051,7 +2259,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -2120,12 +2328,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -2160,7 +2381,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -2239,12 +2460,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -2279,7 +2513,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>
@@ -2350,12 +2584,25 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             ORB 0%, DRB 0%
                             <br />
                           </span>
-                          
+                          <React.Fragment>
+                            <br />
+                            Click to view positional splits for this player
+                          </React.Fragment>
                         </Tooltip>
                       }
                       placement="auto"
                     >
-                      <div>
+                      <a
+                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "inherit",
+                            "textDecoration": "inherit",
+                          }
+                        }
+                        target="_blank"
+                      >
                         <span>
                           <span
                             style={
@@ -2390,7 +2637,7 @@ exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
                             </Badge>
                           </span>
                         </span>
-                      </div>
+                      </a>
                     </OverlayTrigger>
                   </div>
                 </Col>

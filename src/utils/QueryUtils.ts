@@ -23,7 +23,7 @@ import { PositionUtils } from "./stats/PositionUtils";
 import { format as dateFormat, parse as dateParse, addYears } from "date-fns";
 
 /** Set to `false` to silence browser-console diagnostics for position-split queries. */
-const isPosSplitBuilderDebug = true;
+const isPosSplitBuilderDebug = false;
 
 function positionSplitDebug(label: string, payload?: unknown) {
   if (!isPosSplitBuilderDebug) return;
@@ -1205,10 +1205,29 @@ export class QueryUtils {
       .map((pos) => ({ query: queryByPosition[pos] ?? "" }))
       .value();
 
+    const codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
+
     const splitPhrases = (() => {
       const phrases = _.map(
         sortedPositions,
-        (pos) => `${resolved.code}=[${pos}]`,
+        (pos) => `${codeTruncator(resolved.code)}=[${pos}]`,
+      );
+      // Single phrase → string in query-string → char-zip bug; mirror MatchupFilter / TableDisplayUtils
+      return phrases.length === 1 ? [...phrases, ""] : phrases;
+    })();
+
+    const splitText = (() => {
+      const phrases = _.map(
+        sortedPositions,
+        (pos) =>
+          `<div>` +
+          `<small class="d-xl-none">` +
+          `${codeTruncator(resolved.code)}=[${pos}]` +
+          `</small>` +
+          `<small class="d-none d-xl-block">` +
+          `${resolved.code}=[${pos}]` +
+          `</small>` +
+          `</div>`,
       );
       // Single phrase → string in query-string → char-zip bug; mirror MatchupFilter / TableDisplayUtils
       return phrases.length === 1 ? [...phrases, ""] : phrases;
@@ -1235,6 +1254,7 @@ export class QueryUtils {
       offQuery,
       otherQueries,
       splitPhrases,
+      splitText,
       autoOffQuery: false,
     };
   }

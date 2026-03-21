@@ -141,6 +141,7 @@ const TeamRosterDiagView: React.FunctionComponent<Props> = ({
                   ...gameFilterParams,
                   possAsPct: false, //(always show)
                   filter: sortedLineup[0].id,
+                  showBase: true,
                   ...(sortedLineup[0]
                     ? QueryUtils.buildGameFilterParamsByPlayerPositions(
                         rawLineups,

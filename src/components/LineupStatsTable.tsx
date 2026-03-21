@@ -969,12 +969,29 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
 
           const linkParams = getCommonFilterParams(startingState);
           const maybeOnClickOverride = _.thru(aggregateByPos, (agg) => {
+            let varSplitBuilder: undefined | ((codes: string[]) => string) =
+              undefined;
             switch (agg) {
               case "PG":
+                if (!varSplitBuilder)
+                  varSplitBuilder = (codes: string[]) =>
+                    `PG=[${codes[0] || "???"}]`;
               case "Backcourt":
+                if (!varSplitBuilder)
+                  varSplitBuilder = (codes: string[]) =>
+                    `bc: [${codes.map((cc) => cc || "???").join("; ")}]`;
               case "PG+C":
+                if (!varSplitBuilder)
+                  varSplitBuilder = (codes: string[]) =>
+                    `PG=[${codes[0] || "???"}]; C=[${codes[1] || "???"}]`;
               case "Frontcourt":
+                if (!varSplitBuilder)
+                  varSplitBuilder = (codes: string[]) =>
+                    `fc: [${codes.map((cc) => cc || "???").join("; ")}]`;
               case "C":
+                if (!varSplitBuilder)
+                  varSplitBuilder = (codes: string[]) =>
+                    `C=[${codes[0] || "???"}]`;
                 return (codes: { code: string; id: string }[]) => {
                   const excludeList = enrichedLineupsPhase1
                     .filter((l) => {
@@ -1010,6 +1027,7 @@ const LineupStatsTable: React.FunctionComponent<Props> = ({
                     linkParams,
                     codes,
                     excludeList,
+                    varSplitBuilder,
                   );
                 };
               default:

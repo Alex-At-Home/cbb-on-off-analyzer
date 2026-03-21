@@ -128,37 +128,58 @@ export class TableDisplayUtils {
     );
   }
 
+  /** For lineup display - keeping row titles readable (in mobile mode) */
+  private static codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
+  /** For lineup display - keeping row titles readable (for long titles) */
+  private static codeLimiter = (s: string) => s.substring(0, 8);
+
   /** Builds a handy lineup text for display row names, which truncates in mobile mode */
   static splitTextBuilder(
     includeCodes: string[],
     excludeCodes: string[],
   ): string {
-    const codeTruncator = (s: string) => (s?.[0] || "") + (s?.[2] || "");
-    const codeLimiter = (s: string) => s.substring(0, 8);
-
     return (
       `<div>` +
       `<small class="d-xl-none">` +
-      includeCodes.map((p) => codeTruncator(p)).join(", ") +
+      includeCodes.map((p) => TableDisplayUtils.codeTruncator(p)).join(", ") +
       (_.isEmpty(excludeCodes)
         ? ""
-        : ` ! ${excludeCodes.map((p) => `${codeTruncator(p)}`).join(", ")}`) +
+        : ` ! ${excludeCodes.map((p) => `${TableDisplayUtils.codeTruncator(p)}`).join(", ")}`) +
       `</small>` +
       `<small class="d-none d-xl-block">` +
-      includeCodes.map((p) => codeLimiter(p)).join(", ") +
+      includeCodes.map((p) => TableDisplayUtils.codeLimiter(p)).join(", ") +
       (_.isEmpty(excludeCodes)
         ? ""
-        : ` NOT ${excludeCodes.map((p) => `${codeLimiter(p)}`).join(", ")}`) +
+        : ` NOT ${excludeCodes.map((p) => `${TableDisplayUtils.codeLimiter(p)}`).join(", ")}`) +
       `</small>` +
       `</div>`
     );
   }
 
+  /** Builds a handy lineup text for display row names, which truncates in mobile mode */
+  private static splitTextOverrideBuilder(
+    codes: string[],
+    textOverrideBuilder: (codes: string[]) => string,
+  ): string {
+    return (
+      `<div>` +
+      `<small class="d-xl-none">` +
+      textOverrideBuilder(
+        codes.map((p) => TableDisplayUtils.codeTruncator(p)),
+      ) +
+      `</small>` +
+      `<small class="d-none d-xl-block">` +
+      textOverrideBuilder(codes) + //(don't limit since normally text is quite small anyway)
+      `</small>` +
+      `</div>`
+    );
+  }
   /** Builds a Game URL for a single lineup */
   static buildGameUrl(
     params: CommonFilterParams,
     sortedLineup: { code: string; id: string }[],
     excludes: { code: string; id: string }[],
+    textOverrideBuilder?: (codes: string[]) => string,
   ): string {
     const [includes, extraExcludes] = _.partition(
       sortedLineup,
@@ -175,10 +196,15 @@ export class TableDisplayUtils {
         ...params,
         splitPhrases: [isRawLineup ? "Lineup" : "Lineups", ""],
         splitText: [
-          TableDisplayUtils.splitTextBuilder(
-            includes.map((p) => p.code),
-            excludes.concat(extraExcludes).map((p) => p.code),
-          ),
+          textOverrideBuilder
+            ? TableDisplayUtils.splitTextOverrideBuilder(
+                includes.map((p) => p.code),
+                textOverrideBuilder,
+              )
+            : TableDisplayUtils.splitTextBuilder(
+                includes.map((p) => p.code),
+                excludes.concat(extraExcludes).map((p) => p.code),
+              ),
           "",
         ],
         teamDiffs: true,
