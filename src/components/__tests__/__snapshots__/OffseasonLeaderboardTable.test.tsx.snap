@@ -413,14 +413,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                     B1G
                   </small>,
                   "def": Object {
-                    "value": 94.62219277428653,
+                    "value": 94.85255986076992,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.653855275153472,
+                    "value": 7.358987482430078,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -471,31 +471,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.555330339999999,
+                    "value": -5.47995424,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.680191209999999,
+                    "value": 5.60118037,
                   },
                   "net": Object {
-                    "value": 21.572834855153474,
+                    "value": 21.336695642430083,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.19502762944,
+                    "value": 116.1892555032,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.12486087000000007,
+                    "value": -0.12122612999999996,
                   },
                   "roster": <span
                     style={
@@ -1217,14 +1217,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     B1G
                   </small>,
                   "def": Object {
-                    "value": 94.62219277428653,
+                    "value": 94.85255986076992,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.653855275153472,
+                    "value": 7.358987482430078,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -1275,31 +1275,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.555330339999999,
+                    "value": -5.47995424,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.680191209999999,
+                    "value": 5.60118037,
                   },
                   "net": Object {
-                    "value": 21.572834855153474,
+                    "value": 21.336695642430083,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.19502762944,
+                    "value": 116.1892555032,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.12486087000000007,
+                    "value": -0.12122612999999996,
                   },
                   "roster": <span
                     style={
@@ -3938,14 +3938,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     B1G
                   </small>,
                   "def": Object {
-                    "value": 90.08293239163997,
+                    "value": 90.03502459120563,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.145105168195615,
+                    "value": 7.16643712334266,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -3996,7 +3996,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.35940754,
+                    "value": -5.373351100000001,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -4006,14 +4006,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 23.246267788195613,
+                    "value": 23.22235248334266,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 113.32920017983558,
+                    "value": 113.25737707454829,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -4034,7 +4034,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 5.35940754,
+                    "value": 5.373351100000001,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -4103,14 +4103,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 93.14567808989297,
+                    "value": 93.27148152616061,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 6.222663072724634,
+                    "value": 6.071762971425775,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -4151,7 +4151,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </Button>
                   </OverlayTrigger>,
                   "fr_margin": Object {
-                    "value": 1.588302050269983,
+                    "value": 1.5809719631422776,
                   },
                   "high_grade": Object {
                     "samples": 106,
@@ -4161,7 +4161,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -10.578380839730018,
+                    "value": -10.548947236857723,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -4171,14 +4171,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.723636865393061,
+                    "value": 15.601753498274288,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 108.86931495528603,
+                    "value": 108.87323502443489,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -4199,7 +4199,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 12.16668289,
+                    "value": 12.1299192,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -17069,14 +17069,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     B1G
                   </small>,
                   "def": Object {
-                    "value": 94.62219277428653,
+                    "value": 94.85255986076992,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.653855275153472,
+                    "value": 7.358987482430078,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -17127,31 +17127,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.555330339999999,
+                    "value": -5.47995424,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.680191209999999,
+                    "value": 5.60118037,
                   },
                   "net": Object {
-                    "value": 21.572834855153474,
+                    "value": 21.336695642430083,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.19502762944,
+                    "value": 116.1892555032,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.12486087000000007,
+                    "value": -0.12122612999999996,
                   },
                   "roster": <span
                     style={
@@ -17255,1088 +17255,1088 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       "players": Array [
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -3.2523,
+                                                    "old_value": -3.203,
                                                     "override": "Luck adjusted",
-                                                    "value": -3.128,
+                                                    "value": -3.0787,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.5109,
+                                                    "old_value": -3.5435,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -3.3589,
+                                                    "value": -3.3921,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.7213,
+                                                    "old_value": -2.7466,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.6035,
+                                                    "value": -2.6292,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -4.196,
+                                                    "old_value": -4.1323,
                                                     "override": "Luck adjusted",
-                                                    "value": -4.0355,
+                                                    "value": -3.9719,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 85.8487,
+                                                    "old_value": 86.1843,
                                                     "override": "Luck adjusted",
-                                                    "value": 86.6945,
+                                                    "value": 87.0297,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.6983,
-                                                    "value": 4.6983,
+                                                    "old_value": 4.6976,
+                                                    "value": 4.6976,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.6622,
+                                                    "old_value": -1.7191,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.3947,
+                                                    "value": -1.4531,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.1548,
+                                                    "old_value": -3.1551,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.8715,
+                                                    "value": -2.8734,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.427,
+                                                    "old_value": -2.4272,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.2091,
+                                                    "value": -2.2105,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.1606,
+                                                    "old_value": -2.2346,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.8129,
+                                                    "value": -1.8888,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 96.985,
+                                                    "old_value": 96.593,
                                                     "override": "Luck adjusted",
-                                                    "value": 98.8258,
+                                                    "value": 98.4239,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 3.7453,
-                                                    "value": 3.7453,
+                                                    "old_value": 3.77,
+                                                    "value": 3.77,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -2.1636,
+                                                    "old_value": -2.16,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.9377,
+                                                    "value": -1.9344,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -4.0789,
+                                                    "old_value": -4.0616,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -3.9224,
+                                                    "value": -3.9034,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.9205,
+                                                    "old_value": -2.9081,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.8084,
+                                                    "value": -2.7948,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -3.0218,
+                                                    "old_value": -3.0167,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.7063,
+                                                    "value": -2.7017,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 91.8879,
+                                                    "old_value": 91.9147,
                                                     "override": "Luck adjusted",
-                                                    "value": 93.5486,
+                                                    "value": 93.573,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 2.4437,
-                                                    "value": 2.4437,
+                                                    "old_value": 2.4397,
+                                                    "value": 2.4397,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.4985,
+                                                    "old_value": -1.4766,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.4115,
+                                                    "value": -1.3897,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.3883,
+                                                    "old_value": -1.4151,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.2921,
+                                                    "value": -1.3189,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.1942,
+                                                    "old_value": -1.2172,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.1114,
+                                                    "value": -1.1344,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.7421,
+                                                    "old_value": -1.7167,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.6409,
+                                                    "value": -1.6156,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 98.8496,
+                                                    "old_value": 98.9836,
                                                     "override": "Luck adjusted",
-                                                    "value": 99.3832,
+                                                    "value": 99.517,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.8962,
-                                                    "value": 4.8962,
+                                                    "old_value": 4.8857,
+                                                    "value": 4.8857,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.2129,
+                                                    "old_value": -1.2699,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.0973,
+                                                    "value": -1.155,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.2375,
+                                                    "old_value": -1.2429,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.0092,
+                                                    "value": -1.0146,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.894,
+                                                    "old_value": -0.8978,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.729,
+                                                    "value": -0.733,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.6789,
+                                                    "old_value": -1.7579,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.5189,
+                                                    "value": -1.5988,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 99.9141,
+                                                    "old_value": 99.4944,
                                                     "override": "Luck adjusted",
-                                                    "value": 100.7646,
+                                                    "value": 100.3402,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.5112,
-                                                    "value": 4.5112,
+                                                    "old_value": 4.482,
+                                                    "value": 4.482,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.9687,
+                                                    "old_value": -2.0009,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.9058,
+                                                    "value": -1.9383,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.1682,
+                                                    "old_value": -3.1569,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.9894,
+                                                    "value": -2.9765,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.9255,
+                                                    "old_value": -1.9187,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.8169,
+                                                    "value": -1.809,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -3.2392,
+                                                    "old_value": -3.2922,
                                                     "override": "Luck adjusted",
-                                                    "value": -3.1357,
+                                                    "value": -3.1892,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 91.2892,
+                                                    "old_value": 91.0086,
                                                     "override": "Luck adjusted",
-                                                    "value": 91.8372,
+                                                    "value": 91.5539,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.8651,
-                                                    "value": 1.8651,
+                                                    "old_value": 1.8136,
+                                                    "value": 1.8136,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.7558,
+                                                    "old_value": -0.7836,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.6596,
+                                                    "value": -0.6879,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -0.9763,
+                                                    "old_value": -0.9768,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.8011,
+                                                    "value": -0.8024,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.4176,
+                                                    "old_value": -0.4178,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.3427,
+                                                    "value": -0.3432,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.7669,
+                                                    "old_value": -1.8319,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.5419,
+                                                    "value": -1.608,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 99.457,
+                                                    "old_value": 99.1117,
                                                     "override": "Luck adjusted",
-                                                    "value": 100.653,
+                                                    "value": 100.3014,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 3.5374,
-                                                    "value": 3.5374,
+                                                    "old_value": 3.4896,
+                                                    "value": 3.4896,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.862,
+                                                    "old_value": -0.8924,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.7156,
+                                                    "value": -0.7469,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.2223,
+                                                    "old_value": -2.2173,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.0006,
+                                                    "value": -1.9974,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.899,
+                                                    "old_value": -0.897,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.8093,
+                                                    "value": -0.808,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.1308,
+                                                    "old_value": -2.206,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.769,
+                                                    "value": -1.8461,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 96.3216,
+                                                    "old_value": 95.9269,
                                                     "override": "Luck adjusted",
-                                                    "value": 98.2206,
+                                                    "value": 97.8158,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 2.2427,
-                                                    "value": 2.2427,
+                                                    "old_value": 2.1804,
+                                                    "value": 2.1804,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -2.0252,
+                                                    "old_value": -2.0629,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.745,
+                                                    "value": -1.7842,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.3132,
+                                                    "old_value": -3.301,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -3.0318,
+                                                    "value": -3.0213,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.1534,
+                                                    "old_value": -2.1454,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.9704,
+                                                    "value": -1.9636,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -3.116,
+                                                    "old_value": -3.174,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.6849,
+                                                    "value": -2.7452,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 91.2948,
+                                                    "old_value": 90.9902,
                                                     "override": "Luck adjusted",
-                                                    "value": 93.5619,
+                                                    "value": 93.2447,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.0091,
-                                                    "value": 1.0091,
+                                                    "old_value": 1.0817,
+                                                    "value": 1.0817,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.7174,
+                                                    "old_value": -0.7399,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.8217,
+                                                    "value": -0.8436,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.5292,
+                                                    "old_value": -2.5258,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.52,
+                                                    "value": -2.5106,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.6949,
+                                                    "old_value": -0.694,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.6924,
+                                                    "value": -0.6898,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.6111,
+                                                    "old_value": -2.693,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.9907,
+                                                    "value": -3.0704,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 92.6625,
+                                                    "old_value": 92.2378,
                                                     "override": "Luck adjusted",
-                                                    "value": 90.6936,
+                                                    "value": 90.2805,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.5587,
-                                                    "value": 0.5587,
+                                                    "old_value": 0.602,
+                                                    "value": 0.602,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.0822,
+                                                    "old_value": -1.0686,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.9475,
+                                                    "value": -0.934,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.1901,
+                                                    "old_value": -2.1632,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.0885,
+                                                    "value": -2.0608,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.5282,
+                                                    "old_value": -1.5093,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.4572,
+                                                    "value": -1.4379,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.5509,
+                                                    "old_value": -1.5315,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.358,
+                                                    "value": -1.3386,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 99.7423,
+                                                    "old_value": 99.845,
                                                     "override": "Luck adjusted",
-                                                    "value": 100.7592,
+                                                    "value": 100.8612,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.9503,
-                                                    "value": 0.9503,
+                                                    "old_value": 0.9652,
+                                                    "value": 0.9652,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.3981,
+                                                    "old_value": -1.3641,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.1745,
+                                                    "value": -1.1404,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.0336,
+                                                    "old_value": -3.0414,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.8738,
+                                                    "value": -2.8804,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.5948,
+                                                    "old_value": -1.5989,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.5108,
+                                                    "value": -1.5143,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.6595,
+                                                    "old_value": -2.5948,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.2342,
+                                                    "value": -2.1693,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 94.3816,
+                                                    "old_value": 94.7243,
                                                     "override": "Luck adjusted",
-                                                    "value": 96.634,
+                                                    "value": 96.9778,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.1403,
-                                                    "value": 0.1403,
+                                                    "old_value": 0.1163,
+                                                    "value": 0.1163,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.4016,
+                                                    "old_value": -1.3741,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.3938,
+                                                    "value": -1.3663,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.2445,
+                                                    "old_value": -1.2147,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.1671,
+                                                    "value": -1.1381,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.8677,
+                                                    "old_value": -0.847,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.8138,
+                                                    "value": -0.7936,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.0102,
+                                                    "old_value": -1.9708,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.9989,
+                                                    "value": -1.9595,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 97.5443,
+                                                    "old_value": 97.7524,
                                                     "override": "Luck adjusted",
-                                                    "value": 97.6038,
+                                                    "value": 97.8119,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.3888,
-                                                    "value": 0.3888,
+                                                    "old_value": 0.3662,
+                                                    "value": 0.3662,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.1539,
+                                                    "old_value": -0.4768,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.0702,
+                                                    "value": -0.5193,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.463,
+                                                    "old_value": -1.5044,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.2695,
+                                                    "value": -1.4327,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.8559,
+                                                    "old_value": -0.4169,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.7427,
+                                                    "value": -0.397,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.9725,
+                                                    "old_value": -1.7204,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.8293,
+                                                    "value": -1.8739,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 97.8379,
+                                                    "old_value": 96.8098,
                                                     "override": "Luck adjusted",
-                                                    "value": 98.5945,
+                                                    "value": 96.0176,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -0.8428,
-                                                    "value": -0.8428,
+                                                    "old_value": -0.9771,
+                                                    "value": -0.9771,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.4471,
+                                                    "old_value": -1.2006,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.4899,
+                                                    "value": -1.1173,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.4968,
+                                                    "old_value": -1.4651,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.4281,
+                                                    "value": -1.2714,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.4148,
+                                                    "old_value": -0.8571,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.3958,
+                                                    "value": -0.7438,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.6133,
+                                                    "old_value": -2.0521,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.7678,
+                                                    "value": -1.9098,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 97.3625,
+                                                    "old_value": 97.4167,
                                                     "override": "Luck adjusted",
-                                                    "value": 96.5653,
+                                                    "value": 98.169,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.0042,
-                                                    "value": -1.0042,
+                                                    "old_value": -0.8301,
+                                                    "value": -0.8301,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.5696,
+                                                    "old_value": -0.5854,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.5257,
+                                                    "value": -0.5418,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.2874,
+                                                    "old_value": -1.2858,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.1525,
+                                                    "value": -1.1507,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.3275,
+                                                    "old_value": -0.3271,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.2932,
+                                                    "value": -0.2927,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.239,
+                                                    "old_value": -2.3014,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.0667,
+                                                    "value": -2.1299,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 95.5064,
+                                                    "old_value": 95.1795,
                                                     "override": "Luck adjusted",
-                                                    "value": 96.4086,
+                                                    "value": 96.0774,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.1588,
-                                                    "value": -1.1588,
+                                                    "old_value": -1.1168,
+                                                    "value": -1.1168,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -2.9136,
+                                                    "old_value": -3.075,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.5856,
+                                                    "value": -2.7521,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.2807,
+                                                    "old_value": -3.1392,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.8644,
+                                                    "value": -2.7514,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.4324,
+                                                    "old_value": -2.3275,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.1237,
+                                                    "value": -2.04,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -3.9298,
+                                                    "old_value": -4.1475,
                                                     "override": "Luck adjusted",
-                                                    "value": -3.4873,
+                                                    "value": -3.7119,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 89.7543,
+                                                    "old_value": 88.6005,
                                                     "override": "Luck adjusted",
-                                                    "value": 92.1002,
+                                                    "value": 90.9094,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 4.7745,
-                                                    "value": 4.7745,
+                                                    "old_value": 4.7809,
+                                                    "value": 4.7809,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.5976,
+                                                    "old_value": -1.7038,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.4345,
+                                                    "value": -1.5418,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.162,
+                                                    "old_value": -2.2057,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.028,
+                                                    "value": -2.0721,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.9002,
+                                                    "old_value": -1.9387,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.7825,
+                                                    "value": -1.8213,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.8176,
+                                                    "old_value": -1.9384,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.6321,
+                                                    "value": -1.7542,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 99.9585,
+                                                    "old_value": 99.3245,
                                                     "override": "Luck adjusted",
-                                                    "value": 100.9326,
+                                                    "value": 100.2916,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 3.9954,
-                                                    "value": 3.9954,
+                                                    "old_value": 4.0308,
+                                                    "value": 4.0308,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.5306,
+                                                    "old_value": -1.7795,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.2441,
+                                                    "value": -1.4976,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.5764,
+                                                    "old_value": -2.5077,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.1542,
+                                                    "value": -2.1097,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -2.2433,
+                                                    "old_value": -2.1835,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.8757,
+                                                    "value": -1.837,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.7578,
+                                                    "old_value": -2.0437,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.4288,
+                                                    "value": -1.72,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 101.0865,
+                                                    "old_value": 99.5735,
                                                     "override": "Luck adjusted",
-                                                    "value": 102.8277,
+                                                    "value": 101.2869,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 3.4155,
-                                                    "value": 3.4155,
+                                                    "old_value": 3.415,
+                                                    "value": 3.415,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.7667,
+                                                    "old_value": -1.922,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.4171,
+                                                    "value": -1.5778,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.569,
+                                                    "old_value": -2.5611,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.1767,
+                                                    "value": -2.2007,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.6493,
+                                                    "old_value": -1.6442,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.3974,
+                                                    "value": -1.4128,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.7519,
+                                                    "old_value": -2.9938,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.2074,
+                                                    "value": -2.4577,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 95.7444,
+                                                    "old_value": 94.4655,
                                                     "override": "Luck adjusted",
-                                                    "value": 98.6232,
+                                                    "value": 97.2999,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 2.8969,
-                                                    "value": 2.8969,
+                                                    "old_value": 2.9359,
+                                                    "value": 2.9359,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.3465,
+                                                    "old_value": -1.5011,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.2562,
+                                                    "value": -1.4122,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -3.012,
+                                                    "old_value": -2.8942,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.6045,
+                                                    "value": -2.5948,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.7846,
+                                                    "old_value": -1.7148,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.5432,
+                                                    "value": -1.5375,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.2725,
+                                                    "old_value": -2.5334,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.1201,
+                                                    "value": -2.3835,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 97.6432,
+                                                    "old_value": 96.2722,
                                                     "override": "Luck adjusted",
-                                                    "value": 98.4433,
+                                                    "value": 97.0599,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.4918,
-                                                    "value": 1.4918,
+                                                    "old_value": 1.4551,
+                                                    "value": 1.4551,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.4696,
+                                                    "old_value": -1.5487,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.2179,
+                                                    "value": -1.2987,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.4835,
+                                                    "old_value": -2.4802,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.3406,
+                                                    "value": -2.3388,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.7615,
+                                                    "old_value": -1.7592,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.6602,
+                                                    "value": -1.6589,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.0719,
+                                                    "old_value": -2.1834,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.717,
+                                                    "value": -1.831,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 98.6402,
+                                                    "old_value": 98.0548,
                                                     "override": "Luck adjusted",
-                                                    "value": 100.5037,
+                                                    "value": 99.9053,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.2232,
-                                                    "value": 1.2232,
+                                                    "old_value": 1.1824,
+                                                    "value": 1.1824,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.3018,
+                                                    "old_value": -1.4834,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.8525,
+                                                    "value": -1.0412,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.8191,
+                                                    "old_value": -2.7442,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.3412,
+                                                    "value": -2.3631,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.8388,
+                                                    "old_value": -1.7899,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.527,
+                                                    "value": -1.5413,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.9959,
+                                                    "old_value": -2.2743,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.3071,
+                                                    "value": -1.5963,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 100.2887,
+                                                    "old_value": 98.8084,
                                                     "override": "Luck adjusted",
-                                                    "value": 103.9506,
+                                                    "value": 102.4127,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.1485,
-                                                    "value": 1.1485,
+                                                    "old_value": 1.1433,
+                                                    "value": 1.1433,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.6148,
+                                                    "old_value": -1.6955,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.4249,
+                                                    "value": -1.5071,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -1.9007,
+                                                    "old_value": -1.8434,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.7714,
+                                                    "value": -1.7148,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.4373,
+                                                    "old_value": -1.394,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.3395,
+                                                    "value": -1.2967,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.1354,
+                                                    "old_value": -2.2422,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.8844,
+                                                    "value": -1.993,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 98.3936,
+                                                    "old_value": 97.8323,
                                                     "override": "Luck adjusted",
-                                                    "value": 99.7128,
+                                                    "value": 99.1421,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.0875,
-                                                    "value": 0.0875,
+                                                    "old_value": 0.0739,
+                                                    "value": 0.0739,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.5168,
+                                                    "old_value": -0.6069,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.3822,
+                                                    "value": -0.4733,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -0.8281,
+                                                    "old_value": -0.8855,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.7194,
+                                                    "value": -0.7773,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.5944,
+                                                    "old_value": -0.6356,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.5164,
+                                                    "value": -0.558,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -0.72,
+                                                    "old_value": -0.8455,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.5324,
+                                                    "value": -0.6593,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 105.2748,
+                                                    "old_value": 104.6187,
                                                     "override": "Luck adjusted",
-                                                    "value": 106.255,
+                                                    "value": 105.5919,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.9843,
-                                                    "value": 0.9843,
+                                                    "old_value": 0.9235,
+                                                    "value": 0.9235,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -1.1051,
+                                                    "old_value": -1.1979,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.8859,
+                                                    "value": -0.9803,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -2.2651,
+                                                    "old_value": -2.2361,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -2.1312,
+                                                    "value": -2.1034,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -1.7157,
+                                                    "old_value": -1.6938,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -1.6143,
+                                                    "value": -1.5932,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -1.4589,
+                                                    "old_value": -1.5814,
                                                     "override": "Luck adjusted",
-                                                    "value": -1.1696,
+                                                    "value": -1.2942,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 102.0628,
+                                                    "old_value": 101.4183,
                                                     "override": "Luck adjusted",
-                                                    "value": 103.5851,
+                                                    "value": 102.9295,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.0202,
-                                                    "value": -1.0202,
+                                                    "old_value": -0.9607,
+                                                    "value": -0.9607,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.6249,
+                                                    "old_value": -0.8463,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.4596,
+                                                    "value": -0.6837,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": 0.0963,
+                                                    "old_value": -0.1979,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": 0.2239,
+                                                    "value": 0.1168,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": 0.0692,
+                                                    "old_value": -0.1422,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": 0.1609,
+                                                    "value": 0.0839,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -0.8695,
+                                                    "old_value": -1.1776,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.6395,
+                                                    "value": -0.9514,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 105.8119,
+                                                    "old_value": 104.1808,
                                                     "override": "Luck adjusted",
-                                                    "value": 107.0291,
+                                                    "value": 105.3783,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 1.0034,
-                                                    "value": 1.0034,
+                                                    "old_value": 0.9992,
+                                                    "value": 0.9992,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.2431,
+                                                    "old_value": -0.3249,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.2164,
+                                                    "value": -0.2987,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -0.2588,
+                                                    "old_value": -0.3268,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.1417,
+                                                    "value": -0.1457,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.0797,
+                                                    "old_value": -0.1007,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.0436,
+                                                    "value": -0.0449,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -0.789,
+                                                    "old_value": -1.0547,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.7026,
+                                                    "value": -0.9696,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 104.4334,
+                                                    "old_value": 103.051,
                                                     "override": "Luck adjusted",
-                                                    "value": 104.8829,
+                                                    "value": 103.4938,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.2644,
-                                                    "value": 0.2644,
+                                                    "old_value": 0.2662,
+                                                    "value": 0.2662,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.2693,
+                                                    "old_value": -0.3049,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.2949,
+                                                    "value": -0.3303,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": 0.3828,
+                                                    "old_value": 0.4084,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": 0.4212,
+                                                    "value": 0.4483,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": 0.1279,
+                                                    "old_value": 0.1365,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": 0.1407,
+                                                    "value": 0.1498,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -0.8059,
+                                                    "old_value": -0.9123,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.8824,
+                                                    "value": -0.9883,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 104.7986,
+                                                    "old_value": 104.2425,
                                                     "override": "Luck adjusted",
-                                                    "value": 104.3984,
+                                                    "value": 103.845,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": 0.1591,
-                                                    "value": 0.1591,
+                                                    "old_value": 0.2049,
+                                                    "value": 0.2049,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": -0.8247,
+                                                    "old_value": -0.915,
                                                     "override": "Luck adjusted",
-                                                    "value": -0.9163,
+                                                    "value": -1.0051,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": -0.6567,
+                                                    "old_value": -0.7799,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.6415,
+                                                    "value": -0.6478,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": -0.2023,
+                                                    "old_value": -0.2403,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": -0.1976,
+                                                    "value": -0.1996,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": -2.6769,
+                                                    "old_value": -2.9702,
                                                     "override": "Luck adjusted",
-                                                    "value": -2.9742,
+                                                    "value": -3.2626,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 94.8393,
+                                                    "old_value": 93.3095,
                                                     "override": "Luck adjusted",
-                                                    "value": 93.2884,
+                                                    "value": 91.7846,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -1.5165,
-                                                    "value": -1.5165,
+                                                    "old_value": -1.5168,
+                                                    "value": -1.5168,
                                                   }},
                         {
                           def_adj_prod: Object {
-                                                    "old_value": 0.2556,
+                                                    "old_value": 0.2219,
                                                     "override": "Luck adjusted",
-                                                    "value": 0.084,
+                                                    "value": 0.0514,
                                                   }
 
                           def_adj_rapm: Object {
-                                                    "old_value": 1.7592,
+                                                    "old_value": 1.7792,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": 1.6898,
+                                                    "value": 1.7146,
                                                   }
 
                           def_adj_rapm_prod: Object {
-                                                    "old_value": 0.5099,
+                                                    "old_value": 0.5157,
                                                     "override": "Adjusted from Def 3P%",
-                                                    "value": 0.4898,
+                                                    "value": 0.497,
                                                   }
 
                           def_adj_rtg: Object {
-                                                    "old_value": 0.882,
+                                                    "old_value": 0.7656,
                                                     "override": "Luck adjusted",
-                                                    "value": 0.2897,
+                                                    "value": 0.1772,
                                                   }
 
                           def_rtg: Object {
-                                                    "old_value": 113.7399,
+                                                    "old_value": 113.1312,
                                                     "override": "Luck adjusted",
-                                                    "value": 110.6418,
+                                                    "value": 110.0532,
                                                   }
 
                           off_adj_rapm: Object {
-                                                    "old_value": -0.5459,
-                                                    "value": -0.5459,
+                                                    "old_value": -0.5361,
+                                                    "value": -0.5361,
                                                   }},
                       ],
                       "transfers": Array [
@@ -18364,8 +18364,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                       "dedup_sample_size": 106,
                       "dedup_samples": Object {
                         "def_adj_ppp": Array [
-                          94.62219277428653,
-                          96.21260770744225,
+                          94.85255986076992,
+                          96.44787018392144,
                           104.3,
                           104.3,
                           104.3,
@@ -18469,10 +18469,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           104.3,
                           104.3,
                           104.3,
-                          105.19879195733465,
+                          105.23741249290224,
                         ],
                         "off_adj_ppp": Array [
-                          102.66424317422857,
+                          102.66437404657142,
                           104.3,
                           104.3,
                           104.3,
@@ -18576,11 +18576,11 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           104.3,
                           104.3,
                           104.3,
-                          111.3099169624239,
-                          116.19502762944,
+                          111.38232515716123,
+                          116.1892555032,
                         ],
                         "off_net": Array [
-                          -2.5345487831060747,
+                          -2.573038446330809,
                           0,
                           0,
                           0,
@@ -18684,8 +18684,8 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           0,
                           0,
                           0,
-                          15.09730925498166,
-                          21.572834855153474,
+                          14.934454973239792,
+                          21.336695642430083,
                         ],
                       },
                       "precision": "native",
@@ -18801,19 +18801,19 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "105": Array [
                               105,
-                              105.19879196,
+                              105.23741249,
                             ],
                             "95": Array [
                               0,
-                              94.62219277,
+                              94.85255986,
                             ],
                             "96": Array [
                               1,
-                              96.21260771,
+                              96.44787018,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 94.62219277,
+                          "min": 94.85255986,
                           "size": 106,
                         },
                         "off_adj_ppp": Object {
@@ -18821,7 +18821,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "103": Array [
                               0,
-                              102.66424317,
+                              102.66437405,
                             ],
                             "104": Array [
                               1,
@@ -18931,15 +18931,15 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "111": Array [
                               104,
-                              111.30991696,
+                              111.38232516,
                             ],
                             "116": Array [
                               105,
-                              116.19502763,
+                              116.1892555,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": 102.66424317,
+                          "min": 102.66437405,
                           "size": 106,
                         },
                         "off_net": Object {
@@ -18947,7 +18947,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                           "lut": Object {
                             "-3": Array [
                               0,
-                              -2.53454878,
+                              -2.57303845,
                             ],
                             "0": Array [
                               1,
@@ -19057,15 +19057,15 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                             ],
                             "15": Array [
                               104,
-                              15.09730925,
+                              14.93445497,
                             ],
-                            "22": Array [
+                            "21": Array [
                               105,
-                              21.57283486,
+                              21.33669564,
                             ],
                           },
                           "lutMult": undefined,
-                          "min": -2.53454878,
+                          "min": -2.57303845,
                           "size": 106,
                         },
                         "off_raw_net": undefined,
@@ -19093,14 +19093,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 96.21260770744225,
+                    "value": 96.44787018392144,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 5.431076332198709,
+                    "value": 5.25588755045684,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -19151,7 +19151,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -1.2139587299999999,
+                    "value": -1.21243039,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -19161,14 +19161,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.09730925498166,
+                    "value": 14.934454973239792,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 111.3099169624239,
+                    "value": 111.38232515716123,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -19189,7 +19189,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 1.2139587299999999,
+                    "value": 1.21243039,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -31101,14 +31101,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     B1G
                   </small>,
                   "def": Object {
-                    "value": 94.62219277428653,
+                    "value": 94.85255986076992,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.653855275153472,
+                    "value": 7.358987482430078,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -31159,31 +31159,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.555330339999999,
+                    "value": -5.47995424,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.680191209999999,
+                    "value": 5.60118037,
                   },
                   "net": Object {
-                    "value": 21.572834855153474,
+                    "value": 21.336695642430083,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.19502762944,
+                    "value": 116.1892555032,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.12486087000000007,
+                    "value": -0.12122612999999996,
                   },
                   "roster": <span
                     style={
@@ -31262,14 +31262,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     BE
                   </small>,
                   "def": Object {
-                    "value": 96.21260770744225,
+                    "value": 96.44787018392144,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "dev_margin": Object {
-                    "value": 5.431076332198709,
+                    "value": 5.25588755045684,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -31320,7 +31320,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -1.2139587299999999,
+                    "value": -1.21243039,
                   },
                   "low_grade": Object {
                     "samples": 106,
@@ -31330,14 +31330,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     "value": 0,
                   },
                   "net": Object {
-                    "value": 15.09730925498166,
+                    "value": 14.934454973239792,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 0.9905660377358491,
                   },
                   "off": Object {
-                    "value": 111.3099169624239,
+                    "value": 111.38232515716123,
                   },
                   "off_grade": Object {
                     "samples": 106,
@@ -31358,7 +31358,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     </small>
                   </span>,
                   "sr_margin": Object {
-                    "value": 1.2139587299999999,
+                    "value": 1.21243039,
                   },
                   "title": <span>
                     <OverlayTrigger
@@ -43490,14 +43490,14 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                     B1G
                   </small>,
                   "def": Object {
-                    "value": 94.62219277428653,
+                    "value": 94.85255986076992,
                   },
                   "def_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "dev_margin": Object {
-                    "value": 7.653855275153472,
+                    "value": 7.358987482430078,
                   },
                   "edit": <OverlayTrigger
                     overlay={
@@ -43548,31 +43548,31 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                     "value": 0,
                   },
                   "inout_margin": Object {
-                    "value": -5.555330339999999,
+                    "value": -5.47995424,
                   },
                   "low_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "nba_margin": Object {
-                    "value": 5.680191209999999,
+                    "value": 5.60118037,
                   },
                   "net": Object {
-                    "value": 21.572834855153474,
+                    "value": 21.336695642430083,
                   },
                   "net_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "off": Object {
-                    "value": 116.19502762944,
+                    "value": 116.1892555032,
                   },
                   "off_grade": Object {
                     "samples": 106,
                     "value": 1,
                   },
                   "out_margin": Object {
-                    "value": -0.12486087000000007,
+                    "value": -0.12122612999999996,
                   },
                   "roster": <span
                     style={

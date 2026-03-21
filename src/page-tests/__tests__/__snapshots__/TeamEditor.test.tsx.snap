@@ -2,6 +2,7 @@
 
 exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
 <Container
+  className="medium_screen"
   fluid={false}
 >
   <SiteModeDropdown />
@@ -42,6 +43,20 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
       }
       thisPage="team-_editor"
     />
+  </Row>
+  <Row
+    className="mt-2"
+    noGutters={false}
+  >
+    <Col
+      className="text-center"
+      xs={12}
+    >
+      <OffseasonPredictionWarning
+        gender=""
+        year=""
+      />
+    </Col>
   </Row>
   <Row
     className="mt-3"
