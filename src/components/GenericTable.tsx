@@ -706,7 +706,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
 
     // First, add all title columns from the original (they are not configurable)
     Object.entries(baseTableFields).forEach(([key, colProps]) => {
-      if (colProps.isTitle) {
+      if (colProps && colProps.isTitle) {
         result[key] = colProps;
       }
     });

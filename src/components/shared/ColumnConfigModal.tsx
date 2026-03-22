@@ -69,7 +69,7 @@ export type TableColumnConfig = {
 export const buildOptimizedConfig = (
   currentColumns: string[],
   disabledColumns: string[],
-  originalTableFieldKeys: string[]
+  originalTableFieldKeys: string[],
 ): TableColumnConfig => {
   // Check if all columns match original order exactly
   // (same length, same keys, same order, no extra columns from external sets)
@@ -239,7 +239,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 }) => {
   // Build the initial column list from tableFields (excluding titles)
   const buildInitialColumns = (
-    disabledCols: string[] | undefined
+    disabledCols: string[] | undefined,
   ): ColumnEntry[] => {
     let separatorCount = 0;
     const entries: ColumnEntry[] = [];
@@ -247,8 +247,8 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     const disabledSet = new Set(disabledCols || []);
 
     Object.entries(tableFields).forEach(([key, colProps]) => {
-      // Skip title columns
-      if (colProps.isTitle) return;
+      // Skip title columns (guard: undefined col defs can appear on bad colSets)
+      if (!colProps || colProps.isTitle) return;
 
       const isSeparator = isSeparatorColFn(colProps);
       if (isSeparator) {
@@ -315,7 +315,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
     // Then add any columns from tableFields that weren't in config (as disabled)
     Object.entries(tableFields).forEach(([key, colProps]) => {
-      if (colProps.isTitle) return;
+      if (!colProps || colProps.isTitle) return;
       if (usedKeys.has(key)) return;
 
       const isSeparator = isSeparatorColFn(colProps);
@@ -368,7 +368,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -429,7 +429,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   // Get original table field keys in order (excluding titles) for comparison during save
   const originalTableFieldKeys = useMemo(() => {
     return Object.entries(tableFields)
-      .filter(([_, colProps]) => !colProps.isTitle)
+      .filter(([_, colProps]) => colProps && !colProps.isTitle)
       .map(([key]) => key);
   }, [tableFields]);
 
@@ -439,7 +439,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
     const config = buildOptimizedConfig(
       currentColumns,
       disabledCols,
-      originalTableFieldKeys
+      originalTableFieldKeys,
     );
     onSave(config);
     onHide();
@@ -460,7 +460,7 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
 
   // Helper to get description for special separator cases
   const getSpecialSeparatorDescription = (
-    colProps: GenericTableColProps
+    colProps: GenericTableColProps,
   ): string => {
     if (
       typeof colProps.colName === "string" &&
@@ -516,8 +516,8 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
   const baseTableFieldKeys = useMemo(() => {
     return new Set(
       Object.entries(tableFields)
-        .filter(([_, colProps]) => !colProps.isTitle)
-        .map(([key]) => key)
+        .filter(([_, colProps]) => colProps && !colProps.isTitle)
+        .map(([key]) => key),
     );
   }, [tableFields]);
 
@@ -532,16 +532,17 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
       if (extraColSet?.isLibrary === false) return false;
 
       // Check if any column in this set is NOT in the base table fields
-      return Object.keys(colSet).some(
-        (colKey) => !colSet[colKey].isTitle && !baseTableFieldKeys.has(colKey)
-      );
+      return Object.keys(colSet).some((colKey) => {
+        const c = colSet[colKey];
+        return c && !c.isTitle && !baseTableFieldKeys.has(colKey);
+      });
     });
   }, [extraColSets, baseTableFieldKeys]);
 
   // Helper to get display name for extra set columns
   const getExtraColDisplayName = (
     colProps: GenericTableColProps,
-    colKey: string
+    colKey: string,
   ): string => {
     if (isSeparatorColFn(colProps)) return "Separator";
 
@@ -651,11 +652,11 @@ const ColumnConfigModal: React.FunctionComponent<Props> = ({
                     <div className={styles.headerDescription}>Description</div>
                   </div>
                   {Object.entries(colSet)
-                    .filter(([_, colProps]) => !colProps.isTitle)
+                    .filter(([_, colProps]) => colProps && !colProps.isTitle)
                     .map(([colKey, colProps]) => {
                       const fullKey = `${setKey}.${colKey}`;
                       const alreadyAdded = columns.some(
-                        (c) => c.key === fullKey
+                        (c) => c.key === fullKey,
                       );
                       const isSeparator = isSeparatorColFn(colProps);
 

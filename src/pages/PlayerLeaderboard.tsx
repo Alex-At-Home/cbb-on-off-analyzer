@@ -38,6 +38,7 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 
 type Props = {
   testMode?: boolean; //works around SSR issues, see below
@@ -247,6 +248,13 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       playerLeaderboardParams.advancedFilter || ""
     ).includes("team_stats.");
 
+    const needExtraPlayerStats =
+      FeatureFlags.isActiveWindow(FeatureFlags.netPointsOngoingWork) &&
+      IndivTableDefs.isNetPtsImpactTableSelected(
+        paramObj.tablePreset,
+        paramObj.tableConfigExtraCols,
+      );
+
     if (
       year.startsWith(DateUtils.MultiYearPrefix) ||
       year == DateUtils.AllYears ||
@@ -283,6 +291,21 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         transferYearIn,
         [],
       );
+
+      const fetchExtraAll = needExtraPlayerStats
+        ? LeaderboardUtils.getMultiYearPlayerLboards(
+            dataSubEventKey == "all" && paramObj.incLowVol
+              ? "all-lowvol"
+              : dataSubEventKey,
+            gender,
+            fullYear,
+            tier,
+            transferYearIn,
+            [],
+            true,
+          )
+        : Promise.resolve([]);
+
       const teamStatsPromise = needsTeamStats
         ? LeaderboardUtils.getMultiYearTeamDetails(
             "all", //(too restrictive to force team queries to be the same as player filter)
@@ -293,51 +316,53 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           )
         : Promise.resolve([]);
 
-      Promise.all([fetchAll, teamStatsPromise]).then((fetchResults) => {
-        const [jsonsIn, teamStats] = fetchResults;
-        const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
+      Promise.all([fetchAll, fetchExtraAll, teamStatsPromise]).then(
+        (fetchResults) => {
+          const [jsonsIn, extraJsonsIn, teamStats] = fetchResults;
+          const jsons = _.dropRight(jsonsIn, transferMode ? 1 : 0);
 
-        setDataSubEvent({
-          players: _.chain(jsons)
-            .map(
-              (d) =>
-                (d.players || []).map((p: any) => {
-                  p.tier = d.tier;
-                  return p;
-                }) || [],
-            )
-            .flatten()
-            .value(),
-          teams: needsTeamStats
-            ? _.chain(teamStats)
-                .flatMap((d) => d.teams || [])
-                .flatten()
-                .map((t) => {
-                  // Some processing that is needed in TeamStatsExplorerTable.phase1Processing
-                  // (see there for details)
-                  // TODO: should add this logic to a TableUtils
-                  LuckUtils.injectLuck(t, undefined, undefined);
-                  t.off_raw_net = {
-                    value:
-                      (t.off_ppp?.value || 100) - (t.def_ppp?.value || 100),
-                  };
-                  return [`${t.team_name}_${t.year}`, t];
-                })
-                .fromPairs()
-                .value()
-            : undefined,
-          confs: _.chain(jsons)
-            .map((d) => d.confs || [])
-            .flatten()
-            .uniq()
-            .value(),
-          transfers: (transferMode
-            ? gender == "Men"
-              ? _.last(jsonsIn)
-              : { __NA__: [] }
-            : undefined) as Record<string, Array<TransferModel>>,
-        });
-      });
+          setDataSubEvent({
+            players: _.chain(jsons)
+              .map(
+                (d) =>
+                  (d.players || []).map((p: any) => {
+                    p.tier = d.tier;
+                    return p;
+                  }) || [],
+              )
+              .flatten()
+              .value(),
+            teams: needsTeamStats
+              ? _.chain(teamStats)
+                  .flatMap((d) => d.teams || [])
+                  .flatten()
+                  .map((t) => {
+                    // Some processing that is needed in TeamStatsExplorerTable.phase1Processing
+                    // (see there for details)
+                    // TODO: should add this logic to a TableUtils
+                    LuckUtils.injectLuck(t, undefined, undefined);
+                    t.off_raw_net = {
+                      value:
+                        (t.off_ppp?.value || 100) - (t.def_ppp?.value || 100),
+                    };
+                    return [`${t.team_name}_${t.year}`, t];
+                  })
+                  .fromPairs()
+                  .value()
+              : undefined,
+            confs: _.chain(jsons)
+              .map((d) => d.confs || [])
+              .flatten()
+              .uniq()
+              .value(),
+            transfers: (transferMode
+              ? gender == "Men"
+                ? _.last(jsonsIn)
+                : { __NA__: [] }
+              : undefined) as Record<string, Array<TransferModel>>,
+          });
+        },
+      );
     } else {
       if (
         !dataEvent[dataSubEventKey]?.players?.length ||

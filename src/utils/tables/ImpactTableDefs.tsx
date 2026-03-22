@@ -7,6 +7,7 @@ import {
 
 // Util imports
 import { CbbColors } from "../CbbColors";
+import type { CompressedNetPoints } from "../stats/RatingUtils";
 
 // Lodash:
 import _ from "lodash";
@@ -146,6 +147,80 @@ export class ImpactTableDefs {
       GenericTableOps.pointsOrHtmlFormatter,
     ),
   };
+
+  /** Match `team_*`, `off_*`, `def_*`, `diff_*` data keys; return `prefix_netpts_rest` or undefined for title/seps. */
+  static renameImpactDecompKeyToNetPtsCol(key: string): string | undefined {
+    if (key == "title") return "off_title";
+    else {
+      const m = /^(team|off|def|diff)_(.+)$/.exec(key);
+      return m ? `${m[1]}_netpts_${m[2]}` : undefined;
+    }
+  }
+
+  /** Column set for Player Career dev preset: same as impactDecompTable but keys renamed to `*_netpts_*`. */
+  static buildIndivNetPtsImpactColSet(): typeof ImpactTableDefs.impactDecompTable {
+    const src = ImpactTableDefs.impactDecompTable;
+    return _.mapKeys(
+      src,
+      (_v, k) => ImpactTableDefs.renameImpactDecompKeyToNetPtsCol(k) ?? k,
+    ) as typeof ImpactTableDefs.impactDecompTable;
+  }
+
+  /**
+   * Flattens CompressedNetPoints onto row keys matching buildIndivNetPtsImpactColSet.
+   * Semantics align with ImpactBreakdownUtils.buildOnePlayerGameRow.
+   */
+  static applyCompressedNetPtsToPlayerRow(
+    player: Record<string, any>,
+    netPts: CompressedNetPoints | undefined | null,
+  ): void {
+    if (!netPts) return;
+
+    const v = (n: number) => ({ value: n });
+
+    if (player.off_team_poss_pct != null) {
+      player.team_netpts_poss_pct = player.off_team_poss_pct;
+    }
+
+    const { o, d, oSos, dSos } = netPts;
+    player.diff_netpts_adj_rapm = v(o + d);
+    player.diff_netpts_adj_rtg = v(o + d - netPts.oWowy - netPts.dWowy);
+    player.diff_netpts_unadj_rapm = v(o + d - oSos - dSos);
+    player.off_netpts_adj_rapm = v(o);
+    player.def_netpts_adj_rapm = v(d);
+    player.off_netpts_adj_rtg = v(o - netPts.oWowy);
+    player.def_netpts_adj_rtg = v(d - netPts.dWowy);
+    player.off_netpts_unadj_rapm = v(o - oSos);
+    player.def_netpts_unadj_rapm = v(d - dSos);
+
+    player.off_netpts_net_3p = v(netPts.o3P);
+    player.off_netpts_net_mid = v(netPts.oMid);
+    player.off_netpts_net_rim = v(netPts.oRim);
+    player.off_netpts_net_ft = v(netPts.oFt);
+    player.off_netpts_net_to = v(netPts.oTo);
+    player.off_netpts_net_orb = v(netPts.oOrb);
+    /** Combined AST — extraInfo matches ImpactBreakdownUtils.buildOnePlayerGameRow */
+    player.off_netpts_net_ast = {
+      value: netPts.oAst2 + netPts.oAst3,
+      extraInfo: `2P Assists: [${netPts.oAst2.toFixed(2)}]pts, 3P Assists: [${netPts.oAst3.toFixed(2)}]pts`,
+    };
+    player.off_netpts_sos_bonus = v(netPts.oSos);
+    /** WOWY + volume — extraInfo matches ImpactBreakdownUtils.buildOnePlayerGameRow */
+    player.off_netpts_gravity_bonus = {
+      value: netPts.oVolume + netPts.oWowy,
+      extraInfo: `RAPM/WOWY bonus: [${netPts.oWowy.toFixed(2)}]pts, Shot volume bonus: [${netPts.oVolume.toFixed(2)}]pts`,
+    };
+
+    player.def_netpts_net_team = v(netPts.dTeam);
+    /** Stl + Blk — extraInfo matches ImpactBreakdownUtils.buildOnePlayerGameRow */
+    player.def_netpts_net_stks = {
+      value: netPts.dStl + netPts.dBlk,
+      extraInfo: `Stl: [${netPts.dStl.toFixed(2)}]pts, Blk: [${netPts.dBlk.toFixed(2)}]pts`,
+    };
+    player.def_netpts_net_drb = v(netPts.dReb);
+    player.def_netpts_sos_bonus = v(netPts.dSos);
+    player.def_netpts_gravity_bonus = v(netPts.dWowy);
+  }
 
   /** Short header labels for repeating sub-header rows (ideally ≤4 chars). Keys match colName string or getNodeText(colName) for JSX. */
   static repeatingLineupHeaderFields: Record<string, string> = {

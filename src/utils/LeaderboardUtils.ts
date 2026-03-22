@@ -27,6 +27,7 @@ export class LeaderboardUtils {
     tier: string,
     transferYears: string[],
     otherYears: string[],
+    extraPlayerData?: boolean,
   ): Promise<any[]> {
     return LeaderboardUtils.getMultiYearLboards(
       gender,
@@ -37,8 +38,20 @@ export class LeaderboardUtils {
       (gender: string, subYear: string, inTier: string) =>
         dataSubEventKey == "all-lowvol"
           ? [
-              LeaderboardUtils.getPlayerUrl("all", gender, subYear, inTier),
-              LeaderboardUtils.getPlayerUrl("lowvol", gender, subYear, inTier),
+              LeaderboardUtils.getPlayerUrl(
+                "all",
+                gender,
+                subYear,
+                inTier,
+                extraPlayerData,
+              ),
+              LeaderboardUtils.getPlayerUrl(
+                "lowvol",
+                gender,
+                subYear,
+                inTier,
+                extraPlayerData,
+              ),
             ]
           : [
               LeaderboardUtils.getPlayerUrl(
@@ -46,6 +59,7 @@ export class LeaderboardUtils {
                 gender,
                 subYear,
                 inTier,
+                extraPlayerData,
               ),
             ],
     );
@@ -268,16 +282,18 @@ export class LeaderboardUtils {
     gender: string,
     subYear: string,
     inTier: string,
+    extraData?: boolean,
   ) => {
     if (
       DateUtils.inSeasonYear.startsWith(subYear) &&
       !LeaderboardUtils.fetchLocally
     ) {
       // Access from dynamic storage
-      return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}`;
+      return `/api/getLeaderboard?src=players&oppo=${oppo}&gender=${gender}&year=${subYear}&tier=${inTier}&extraData=${extraData ?? false}`;
     } else {
+      const extraDataInfix = extraData ? "extra_" : "";
       //archived
-      return `/leaderboards/lineups/players_${oppo}_${gender}_${subYear}_${inTier}.json`;
+      return `/leaderboards/lineups/players_${extraDataInfix}${oppo}_${gender}_${subYear}_${inTier}.json`;
     }
   };
 

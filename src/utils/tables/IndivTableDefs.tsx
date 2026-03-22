@@ -15,6 +15,7 @@ import { TableSortPopupMenuState } from "../../components/shared/TableSortPopupM
 import React from "react";
 import { OverlayTrigger } from "react-bootstrap";
 import { TableDisplayUtils } from "./TableDisplayUtils";
+import { ImpactTableDefs } from "./ImpactTableDefs";
 
 /** Holds all the different column definitions for the similar tables used for Player tables */
 export class IndivTableDefs {
@@ -732,6 +733,16 @@ export class IndivTableDefs {
   /** The classic "dual-row" view */
   static readonly detailedViewName = "Detailed";
 
+  /** Dev preset: impact decomposition columns keyed as `*_netpts_*` (see ImpactTableDefs). */
+  static readonly netPtsImpactPresetName = "NetPtsImpact";
+
+  static isNetPtsImpactTableSelected(
+    tablePreset: string | undefined,
+    _tableConfigExtraCols?: string[],
+  ): boolean {
+    return tablePreset === IndivTableDefs.netPtsImpactPresetName;
+  }
+
   static readonly indivExtraColSet = _.memoize(
     (
       scaleType: "P%" | "T%",
@@ -760,6 +771,8 @@ export class IndivTableDefs {
           name: "Extra",
           description: "Additional stats for the single-row player table",
           colSet: {
+            //TODO: add off/def adj rapm + rapm + prod
+            //TODO: need to fix consistency of prod/per-game
             def_to: GenericTableOps.addPctCol(
               "Stl%",
               "Steal%",
@@ -819,9 +832,23 @@ export class IndivTableDefs {
             "Dual",
           ),
         },
+        ...(devMode
+          ? {
+              [IndivTableDefs.netPtsImpactPresetName]: {
+                isPreset: true,
+                rowMode: "Mixed" as const,
+                name: "Net Points",
+                description:
+                  "Decomposition of a player's impact into various categories (Net Points)",
+                colSet: {
+                  ...ImpactTableDefs.buildIndivNetPtsImpactColSet(),
+                },
+              },
+            }
+          : {}),
       };
     },
-    (scaleType, possAsPct, includeRapm) =>
-      `${scaleType}_${possAsPct}_${includeRapm}`,
+    (scaleType, possAsPct, includeRapm, devMode) =>
+      `${scaleType}_${possAsPct}_${includeRapm}_${devMode ?? false}`,
   );
 }

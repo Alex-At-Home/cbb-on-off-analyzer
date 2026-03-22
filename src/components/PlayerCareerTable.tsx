@@ -34,6 +34,7 @@ import {
   OffDefDualMixed,
 } from "../utils/tables/CommonTableDefs";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
+import { ImpactTableDefs } from "../utils/tables/ImpactTableDefs";
 import { RosterTableUtils } from "../utils/tables/RosterTableUtils";
 import {
   Button,
@@ -116,6 +117,11 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   playerSimilarityMode,
 }) => {
   const isDebug = process.env.NODE_ENV !== "production";
+
+  /** Unlocks dev-only column presets (e.g. net points impact) in indivExtraColSet. */
+  const devModeIndivTables = FeatureFlags.isActiveWindow(
+    FeatureFlags.netPointsOngoingWork,
+  );
 
   // 1] Input state
 
@@ -483,9 +489,12 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       : IndivTableDefs.detailedViewName,
   );
   const rowMode: OffDefDualMixed =
-    IndivTableDefs.indivExtraColSet("T%", false, false)[
-      tablePreset || ParamDefaults.defaultTablePreset
-    ]?.rowMode || "Off";
+    IndivTableDefs.indivExtraColSet(
+      factorMins ? "T%" : "P%",
+      possAsPct,
+      true,
+      devModeIndivTables,
+    )[tablePreset || ParamDefaults.defaultTablePreset]?.rowMode || "Off";
   /** Splits out offensive and defensive metrics into separate rows */
   const expandedView = rowMode == "Dual";
 
@@ -903,6 +912,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     playerDiffMode?: boolean,
   ): GenericTableRow[] => {
     // Misc stats
+
+    if (
+      IndivTableDefs.isNetPtsImpactTableSelected(
+        tablePreset,
+        tableConfigExtraCols,
+      )
+    ) {
+      ImpactTableDefs.applyCompressedNetPtsToPlayerRow(
+        player as Record<string, any>,
+        (player as { net_pts?: unknown }).net_pts as any,
+      );
+    }
 
     player.off_drb = player.def_orb; //(just for display, all processing should use def_orb)
     TableDisplayUtils.injectPlayTypeInfo(player, true, true, teamSeasonLookup);
@@ -2663,6 +2684,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     factorMins ? "T%" : "P%",
     possAsPct,
     true, //(useRapm)
+    devModeIndivTables,
   );
   /** TODO: note this gets hammered by calls on load, should probably memoize? */
   const table = (
@@ -2702,6 +2724,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 def_3p: "off_ft",
                 def_3pr: "off_3p_ast",
                 def_2primr: "off_2prim_ast",
+                // Net points top-level are just the RAPM/AdjRtg+
+                diff_netpts_adj_rapm: "off_adj_rapm_margin",
+                off_netpts_adj_rapm: "off_adj_rapm",
+                def_netpts_adj_rapm: "def_adj_rapm",
               },
             }
           : undefined
@@ -2878,6 +2904,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ? "Show single row of player stats"
                 : "Show expanded player stats",
               toggled: expandedView,
+              disabled:
+                Boolean(tablePreset) &&
+                tablePreset != ParamDefaults.defaultTablePreset &&
+                tablePreset != IndivTableDefs.detailedViewName,
               onClick: () => {
                 setTableConfigExtraCols([]);
                 setTableConfigDisabledCols(undefined);
