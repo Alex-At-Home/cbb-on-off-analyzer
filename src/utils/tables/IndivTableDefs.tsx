@@ -359,7 +359,7 @@ export class IndivTableDefs {
     possAsPct: boolean,
     includeRapm: boolean,
     rowMode: OffDefDualMixed,
-  ) => {
+  ): Record<string, GenericTableColProps> => {
     const expandedView = rowMode == "Dual";
     const factorMins = scaleType == "T%"; //TODO: handle /G
     return _.omit(
@@ -738,9 +738,16 @@ export class IndivTableDefs {
 
   static isNetPtsImpactTableSelected(
     tablePreset: string | undefined,
-    _tableConfigExtraCols?: string[],
+    tableConfigExtraCols?: string[],
   ): boolean {
-    return tablePreset === IndivTableDefs.netPtsImpactPresetName;
+    return (
+      tablePreset === IndivTableDefs.netPtsImpactPresetName ||
+      Boolean(
+        _.find(tableConfigExtraCols || [], (k) =>
+          _.startsWith(k, `${IndivTableDefs.netPtsImpactPresetName}.`),
+        ),
+      )
+    );
   }
 
   static readonly indivExtraColSet = _.memoize(
@@ -841,7 +848,19 @@ export class IndivTableDefs {
                 description:
                   "Decomposition of a player's impact into various categories (Net Points)",
                 colSet: {
-                  ...ImpactTableDefs.buildIndivNetPtsImpactColSet(),
+                  ...ImpactTableDefs.buildIndivNetPtsImpactColSet(possAsPct),
+                  ...(possAsPct
+                    ? {}
+                    : {
+                        off_team_poss: GenericTableOps.addDataCol(
+                          "Poss",
+                          "Total number of team possessions for selected lineups",
+                          GenericTableOps.defaultColorPicker,
+                          GenericTableOps.offHighlightFormatter(
+                            GenericTableOps.intFormatter,
+                          ),
+                        ),
+                      }),
                 },
               },
             }

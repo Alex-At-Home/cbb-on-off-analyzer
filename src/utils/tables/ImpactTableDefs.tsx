@@ -21,7 +21,7 @@ export class ImpactTableDefs {
   ////////////////////////////////////////////
   // Table Defs:
 
-  static readonly impactDecompTable = {
+  static readonly impactDecompTable: Record<string, GenericTableColProps> = {
     title: GenericTableOps.addTitle(
       "",
       "",
@@ -158,12 +158,22 @@ export class ImpactTableDefs {
   }
 
   /** Column set for Player Career dev preset: same as impactDecompTable but keys renamed to `*_netpts_*`. */
-  static buildIndivNetPtsImpactColSet(): typeof ImpactTableDefs.impactDecompTable {
+  static buildIndivNetPtsImpactColSet(
+    possAsPct: boolean,
+  ): Record<string, GenericTableColProps> {
     const src = ImpactTableDefs.impactDecompTable;
-    return _.mapKeys(
-      src,
-      (_v, k) => ImpactTableDefs.renameImpactDecompKeyToNetPtsCol(k) ?? k,
-    ) as typeof ImpactTableDefs.impactDecompTable;
+    return _.mapKeys(src, (_v, k) => {
+      if (k == "team_poss_pct") {
+        // (replace with field from main table)
+        if (possAsPct) {
+          return "off_team_poss_pct";
+        } else {
+          return "off_team_poss";
+        }
+      } else {
+        return ImpactTableDefs.renameImpactDecompKeyToNetPtsCol(k) ?? k;
+      }
+    }) as typeof ImpactTableDefs.impactDecompTable;
   }
 
   /**

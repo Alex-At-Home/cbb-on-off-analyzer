@@ -119,9 +119,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const isDebug = process.env.NODE_ENV !== "production";
 
   /** Unlocks dev-only column presets (e.g. net points impact) in indivExtraColSet. */
-  const devModeIndivTables = FeatureFlags.isActiveWindow(
-    FeatureFlags.netPointsOngoingWork,
-  );
+  //TODO: remove this once all other tables are done
+  const devModeIndivTables = true;
 
   // 1] Input state
 
