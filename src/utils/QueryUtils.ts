@@ -1016,7 +1016,7 @@ export class QueryUtils {
    * position P (1-based), require `(P-1)` teammates from the lower pool and `(5-P)` from the higher
    * pool — i.e. `{lowerIds}=P-1 AND {higherIds}=5-P` with `basicOrAdvancedQuery` strict `{pool}=k`.
    * Corrupt path: OR of full `{id1;...;id5}=5` per distinct lineup where X held that slot.
-   * Degenerate: X always at 5 when on court → query `*` for that split.
+   * Degenerate: X always at 5 and only one split → `{"X"}=1` (not `*`, which would drop the player filter).
    */
   static buildPositionQueriesFromSets(
     resolved: PlayerCodeId,
@@ -1043,7 +1043,7 @@ export class QueryUtils {
       const nLower = pos - 1;
       const nHigher = 5 - pos;
       if (xAlwaysAtFive && pos === 5 && positionsPlayed.length === 1) {
-        return "*";
+        return `{"${playerId}"}=1`;
       }
       const parts = _.compact([
         `{"${playerId}"}=1`,

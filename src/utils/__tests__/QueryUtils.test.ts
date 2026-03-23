@@ -428,7 +428,7 @@ describe("QueryUtils", () => {
     ).toEqual(true);
   });
 
-  test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted single position, degenerate *)", () => {
+  test("QueryUtils - buildGameFilterParamsByPlayerPositions (crafted single position, degenerate =1)", () => {
     const teamSeasonLookup = "";
     const positionFromPlayerKey: Record<string, IndivPosInfo> = {
       idA: { posClass: "s-PG", posConfidences: [60, 40, 0, 0, 0] },
@@ -465,7 +465,7 @@ describe("QueryUtils", () => {
       positionFromPlayerKey,
       teamSeasonLookup,
     );
-    expect(result.onQuery).toBe("*");
+    expect(result.onQuery).toBe('{"idX"}=1');
     expect(result.offQuery).toBe("");
     expect(result.otherQueries).toEqual([]);
     expect(result.splitPhrases).toEqual(["cd=[5]", ""]);
