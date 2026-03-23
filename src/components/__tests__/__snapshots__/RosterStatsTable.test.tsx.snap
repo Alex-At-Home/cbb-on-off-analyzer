@@ -8790,514 +8790,690 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
               <tbody>
                 <tr>
                   <td
-                    class="small"
+                    class="small square-bg-cell"
                     colspan="1"
                     rowspan="2"
                     style="text-align: right; width: 18.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <span>
-                      <span
-                        class="d-none d-xl-block"
-                      >
-                        <b>
-                          Cowan, Anthony
-                        </b>
-                         
-                      </span>
-                      <span
-                        class="d-block d-xl-none"
-                      >
-                        <b>
-                          Cowan, Anthony
-                        </b>
-                      </span>
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
-                  >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        OFF
-                      </b>
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
-                  >
-                    <div>
-                      <div>
+                      <span>
                         <span
-                          style="opacity: 0.75;"
+                          class="d-none d-xl-block"
                         >
-                          100
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                           
                         </span>
-                        <small>
-                          <sup
-                            class="infoBadge"
-                          />
-                        </small>
-                      </div>
+                        <span
+                          class="d-block d-xl-none"
+                        >
+                          <b>
+                            Cowan, Anthony
+                          </b>
+                        </span>
+                      </span>
                     </div>
                   </td>
                   <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(31, 143, 31); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      117.6
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 214, 140); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      24.5
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(110, 183, 110); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      5.7
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 176, 176); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      46.9
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 191, 74); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      <div>
-                        29.2
-                        <small>
-                          <sup
-                            class="infoBadge"
-                          />
-                        </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(225, 240, 225); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      15.3
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(197, 227, 237); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      1.7
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(0, 128, 0); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      <div>
-                        59.6
-                        <small>
-                          <sup
-                            class="infoBadge"
-                          />
-                        </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b />
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 171, 17); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      48.9
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          OFF
+                        </b>
+                      </span>
                     </div>
                   </td>
                   <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(188, 223, 235); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      18.3
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(254, 255, 255); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      32.9
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
-                  >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
-                    >
-                      <b />
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 225, 225); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      32.2
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 143, 143); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      45.6
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      27.7
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 142, 142); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      55.6
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      108.0
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <div>
+                          <span
+                            style="opacity: 0.75;"
+                          >
+                            100
+                          </span>
+                          <small>
+                            <sup
+                              class="infoBadge"
+                            />
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #1f8f1f; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        117.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffd68c; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        24.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #6eb76e; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        5.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffb0b0; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        46.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffbf4a; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <div>
+                          29.2
+                          <small>
+                            <sup
+                              class="infoBadge"
+                            />
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #e1f0e1; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        15.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #c5e3ed; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        1.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <div>
+                          59.6
+                          <small>
+                            <sup
+                              class="infoBadge"
+                            />
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b />
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffab11; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        48.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #bcdfeb; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        18.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #feffff; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        32.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b />
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffe1e1; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        32.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ff8f8f; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        45.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        27.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ff8e8e; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        55.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        108.0
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        DEF
-                      </b>
-                    </span>
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          DEF
+                        </b>
+                      </span>
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <span
-                      style="opacity: 0.33;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      100
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(246, 250, 246); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      99.3
+                      <span
+                        style="opacity: 0.33;"
+                      >
+                        100
+                      </span>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #f6faf6; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        99.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      <small>
-                        s-PG
-                      </small>
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <small>
+                          s-PG
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(214, 234, 214); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #d6ead6; vertical-align: middle; color: black;"
                   >
-                    <div>
-                      -1.6
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        -1.6
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="2"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(242, 249, 251); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      1.7
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 163, 163); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #f2f9fb; vertical-align: middle; color: black;"
                   >
-                    <div>
-                      9.6
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        1.7
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffa3a3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        9.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      2.5
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        2.5
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        AST
-                      </b>
-                    </span>
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          AST
+                        </b>
+                      </span>
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        63
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500; font-size: 0.875em;"
+                      >
+                        <i>
+                          63
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #add8e6,0px 0px 15px #add8e6,0px 0px 15px #add8e6; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        0
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #add8e6,0px 0px 15px #add8e6,0px 0px 15px #add8e6; font-size: 0.875em;"
+                      >
+                        <i>
+                          0
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        26
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5,0px 0px 15px #e0f0f5; font-size: 0.875em;"
+                      >
+                        <i>
+                          26
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        FT%
-                      </b>
-                    </span>
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          FT%
+                        </b>
+                      </span>
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        81
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #42a142,0px 0px 15px #42a142,0px 0px 15px #42a142; font-size: 0.875em;"
+                      >
+                        <i>
+                          81
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 250, 242); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      0.5
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #fffaf2; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        0.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      96.6
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        96.6
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -9376,514 +9552,690 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, !expanded) - should c
                 </tr>
                 <tr>
                   <td
-                    class="small"
+                    class="small square-bg-cell"
                     colspan="1"
                     rowspan="2"
                     style="text-align: right; width: 18.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <span>
-                      <span
-                        class="d-none d-xl-block"
-                      >
-                        <b>
-                          Wiggins, Aaron
-                        </b>
-                         
-                      </span>
-                      <span
-                        class="d-block d-xl-none"
-                      >
-                        <b>
-                          Wiggins, Aaron
-                        </b>
-                      </span>
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
-                  >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        OFF
-                      </b>
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
-                  >
-                    <div>
-                      <div>
+                      <span>
                         <span
-                          style="opacity: 0.75;"
+                          class="d-none d-xl-block"
                         >
-                          100
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                           
                         </span>
-                        <small>
-                          <sup
-                            class="infoBadge"
-                          />
-                        </small>
-                      </div>
+                        <span
+                          class="d-block d-xl-none"
+                        >
+                          <b>
+                            Wiggins, Aaron
+                          </b>
+                        </span>
+                      </span>
                     </div>
                   </td>
                   <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 252, 252); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      99.8
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(251, 253, 254); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      19.5
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(241, 248, 241); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      0.6
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 166, 166); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      46.5
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(229, 242, 247); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      <div>
-                        10.2
-                        <small>
-                          <sup
-                            class="infoBadge"
-                          />
-                        </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(254, 255, 254); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      16.0
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(232, 244, 248); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      4.4
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      <div>
-                        20.0
-                        <small>
-                          <sup
-                            class="infoBadge"
-                          />
-                        </small>
-                      </div>
-                    </div>
-                  </td>
-                  <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b />
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 165, 0); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      55.7
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          OFF
+                        </b>
+                      </span>
                     </div>
                   </td>
                   <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(217, 237, 243); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      24.7
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(194, 226, 236); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      19.7
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
-                  >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
-                    >
-                      <b />
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 209, 209); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      31.7
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 130, 130); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      45.1
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 0, 0); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      24.3
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(0, 128, 0); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      71.2
-                    </div>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
-                  >
-                    <div />
-                  </td>
-                  <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      107.8
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <div>
+                          <span
+                            style="opacity: 0.75;"
+                          >
+                            100
+                          </span>
+                          <small>
+                            <sup
+                              class="infoBadge"
+                            />
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #fffcfc; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        99.8
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #fbfdfe; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        19.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #f1f8f1; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        0.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffa6a6; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        46.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #e5f2f7; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <div>
+                          10.2
+                          <small>
+                            <sup
+                              class="infoBadge"
+                            />
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #fefffe; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        16.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #e8f4f8; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        4.4
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <div>
+                          20.0
+                          <small>
+                            <sup
+                              class="infoBadge"
+                            />
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b />
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffa500; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        55.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #d9edf3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        24.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #c2e2ec; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        19.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b />
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffd1d1; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        31.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ff8282; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        45.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        24.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        71.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        107.8
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        DEF
-                      </b>
-                    </span>
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          DEF
+                        </b>
+                      </span>
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <span
-                      style="opacity: 0.33;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      100
-                    </span>
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(155, 205, 155); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      92.2
+                      <span
+                        style="opacity: 0.33;"
+                      >
+                        100
+                      </span>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #9bcd9b; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        92.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      <small>
-                        WG
-                      </small>
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        <small>
+                          WG
+                        </small>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(181, 218, 181); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #b5dab5; vertical-align: middle; color: black;"
                   >
-                    <div>
-                      -2.9
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        -2.9
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="2"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(245, 250, 252); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      1.7
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 235, 235); vertical-align: middle; color: black;"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #f5fafc; vertical-align: middle; color: black;"
                   >
-                    <div>
-                      13.8
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        1.7
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #ffebeb; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        13.8
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      2.3
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        2.3
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        AST
-                      </b>
-                    </span>
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          AST
+                        </b>
+                      </span>
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        92
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500; font-size: 0.875em;"
+                      >
+                        <i>
+                          92
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #fffdfa,0px 0px 15px #fffdfa,0px 0px 15px #fffdfa; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        33
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #fffdfa,0px 0px 15px #fffdfa,0px 0px 15px #fffdfa; font-size: 0.875em;"
+                      >
+                        <i>
+                          33
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #ffbe47,0px 0px 15px #ffbe47,0px 0px 15px #ffbe47; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        45
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #ffbe47,0px 0px 15px #ffbe47,0px 0px 15px #ffbe47; font-size: 0.875em;"
+                      >
+                        <i>
+                          45
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82); padding-left: 5px; padding-right: 5px; opacity: 0.5;"
                   >
-                    <span
-                      style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                    <div
+                      style="position: relative; z-index: 1;"
                     >
-                      <b>
-                        FT%
-                      </b>
-                    </span>
+                      <span
+                        style="display: inline-block; width: 1ch; word-break: break-all; line-height: 1.2; text-align: center; font-size: 0.6em;"
+                      >
+                        <b>
+                          FT%
+                        </b>
+                      </span>
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
                     <div
-                      style="text-shadow: 0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3; font-size: 0.875em;"
+                      style="position: relative; z-index: 1;"
                     >
-                      <i>
-                        72
-                        %
-                      </i>
+                      <div
+                        style="text-shadow: 0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3,0px 0px 15px #e3f1e3; font-size: 0.875em;"
+                      >
+                        <i>
+                          72
+                          %
+                        </i>
+                      </div>
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
-                  </td>
-                  <td
-                    class=""
-                    colspan="1"
-                    rowspan="1"
-                    style="text-align: center; width: 4.5%; font-weight: normal; background-color: rgb(255, 240, 213); vertical-align: middle; color: black;"
-                  >
-                    <div>
-                      1.6
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
                     </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 4.5%; font-weight: normal; --cell-bg: #fff0d5; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        1.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 1.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div />
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
                   </td>
                   <td
-                    class=""
+                    class=" square-bg-cell"
                     colspan="1"
                     rowspan="1"
                     style="text-align: center; width: 4.5%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
                   >
-                    <div>
-                      96.8
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        96.8
+                      </div>
                     </div>
                   </td>
                 </tr>

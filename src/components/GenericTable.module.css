@@ -1,5 +1,5 @@
 .infoBadge::after {
-  content: "*"
+  content: "*";
 }
 
 .clickableHeader {
@@ -8,4 +8,20 @@
 
 .clickableHeader:hover {
   text-decoration: underline;
+}
+
+.square-bg-cell {
+  position: relative;
+}
+.square-bg-cell::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto; /* or omit width - left/right will define it */
+  height: min(3.5rem, 100%);
+  background-color: var(--cell-bg);
+  z-index: 0;
 }

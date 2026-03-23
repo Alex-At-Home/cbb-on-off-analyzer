@@ -111,12 +111,11 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -125,17 +124,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Cowan, Anthony
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Cowan, Anthony
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -144,17 +151,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -163,17 +178,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      100
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        100
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -182,19 +205,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      1522
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        1522
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -203,17 +234,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Fernando, Bruno
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Fernando, Bruno
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -222,17 +261,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -241,17 +288,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      78.6
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        78.6
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -260,19 +315,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      1197
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        1197
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -281,17 +344,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Ayala, Eric
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Ayala, Eric
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -300,17 +371,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -319,17 +398,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      70.0
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        70.0
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -338,19 +425,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      1066
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        1066
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -359,17 +454,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Morsell, Darryl
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Morsell, Darryl
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -378,17 +481,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -397,17 +508,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      69.8
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        69.8
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -416,19 +535,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      1062
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        1062
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -437,17 +564,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Smith, Jalen
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Smith, Jalen
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -456,17 +591,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -475,17 +618,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      67.2
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        67.2
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -494,19 +645,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      1023
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        1023
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -515,17 +674,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Wiggins, Aaron
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Wiggins, Aaron
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -534,17 +701,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -553,17 +728,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      52.4
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        52.4
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -572,19 +755,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      798
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        798
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -593,17 +784,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Lindo Jr., Ricky
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Lindo Jr., Ricky
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -612,17 +811,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -631,17 +838,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      28.1
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        28.1
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -650,19 +865,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      427
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        427
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -671,17 +894,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Smith Jr., Serrel
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Smith Jr., Serrel
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -690,17 +921,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -709,17 +948,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      25.4
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        25.4
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -728,19 +975,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      387
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        387
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -749,17 +1004,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Bender, Ivan
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Bender, Ivan
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -768,17 +1031,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -787,17 +1058,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      5.3
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        5.3
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -806,19 +1085,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      81
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        81
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -827,17 +1114,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Tomaic, Joshua
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Tomaic, Joshua
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -846,17 +1141,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -865,17 +1168,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      3.1
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        3.1
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -884,8 +1195,17 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      47
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        47
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -1002,12 +1322,11 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1016,17 +1335,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Cowan, Anthony
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Cowan, Anthony
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1035,17 +1362,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1054,17 +1389,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      100
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        100
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1073,19 +1416,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      798
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        798
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1094,17 +1445,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Wiggins, Aaron
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Wiggins, Aaron
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1113,17 +1472,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1132,17 +1499,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      100
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        100
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1151,19 +1526,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      798
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        798
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1172,17 +1555,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Fernando, Bruno
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Fernando, Bruno
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1191,17 +1582,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1210,17 +1609,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      69.7
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        69.7
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1229,19 +1636,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      556
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        556
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1250,17 +1665,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Smith, Jalen
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Smith, Jalen
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1269,17 +1692,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1288,17 +1719,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      53.3
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        53.3
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1307,19 +1746,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      425
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        425
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1328,17 +1775,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Ayala, Eric
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Ayala, Eric
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1347,17 +1802,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1366,17 +1829,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      50.4
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        50.4
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1385,19 +1856,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      402
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        402
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1406,17 +1885,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Morsell, Darryl
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Morsell, Darryl
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1425,17 +1912,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1444,17 +1939,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      44.1
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        44.1
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1463,19 +1966,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      352
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        352
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1484,17 +1995,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Lindo Jr., Ricky
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Lindo Jr., Ricky
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1503,17 +2022,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1522,17 +2049,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      37.0
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        37.0
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1541,19 +2076,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      295
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        295
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1562,17 +2105,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Smith Jr., Serrel
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Smith Jr., Serrel
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1581,17 +2132,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1600,17 +2159,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      34.3
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        34.3
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1619,19 +2186,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      274
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        274
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1640,17 +2215,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Bender, Ivan
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Bender, Ivan
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1659,17 +2242,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1678,17 +2269,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      6.8
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        6.8
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1697,19 +2296,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      54
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        54
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1718,17 +2325,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Tomaic, Joshua
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Tomaic, Joshua
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1737,17 +2352,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1756,17 +2379,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      4.5
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        4.5
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1775,8 +2406,17 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      36
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        36
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -1893,12 +2533,11 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
               <tbody>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1907,17 +2546,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Cowan, Anthony
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Cowan, Anthony
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1926,17 +2573,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1945,17 +2600,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      100
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        100
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -1964,19 +2627,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      724
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        724
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -1985,17 +2656,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Morsell, Darryl
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Morsell, Darryl
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2004,17 +2683,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2023,17 +2710,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      98.1
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        98.1
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2042,19 +2737,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      710
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        710
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2063,17 +2766,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Ayala, Eric
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Ayala, Eric
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2082,17 +2793,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2101,17 +2820,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      91.7
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        91.7
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2120,19 +2847,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      664
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        664
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2141,17 +2876,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Fernando, Bruno
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Fernando, Bruno
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2160,17 +2903,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2179,17 +2930,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      88.5
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        88.5
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2198,19 +2957,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      641
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        641
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2219,17 +2986,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Smith, Jalen
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Smith, Jalen
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2238,17 +3013,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2257,17 +3040,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      82.6
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        82.6
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2276,19 +3067,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      598
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        598
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2297,17 +3096,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Lindo Jr., Ricky
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Lindo Jr., Ricky
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2316,17 +3123,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2335,17 +3150,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      18.2
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        18.2
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2354,19 +3177,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      132
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        132
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2375,17 +3206,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Smith Jr., Serrel
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Smith Jr., Serrel
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2394,17 +3233,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2413,17 +3260,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      15.6
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        15.6
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2432,19 +3287,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      113
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        113
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2453,17 +3316,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Bender, Ivan
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Bender, Ivan
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2472,17 +3343,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2491,17 +3370,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      3.7
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        3.7
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2510,19 +3397,27 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      27
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        27
+                      </div>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "bold",
                         "textAlign": "right",
@@ -2531,17 +3426,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      Tomaic, Joshua
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        Tomaic, Joshua
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2550,17 +3453,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2569,17 +3480,25 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      1.5
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        1.5
+                      </div>
                     </div>
                   </td>
                   <td
-                    className=""
+                    className=" square-bg-cell"
                     colSpan={1}
                     rowSpan={1}
                     style={
                       Object {
-                        "backgroundColor": undefined,
                         "color": "#525252",
                         "fontWeight": "normal",
                         "textAlign": "center",
@@ -2588,8 +3507,17 @@ exports[`RosterCompareTable RosterCompareTable - should create snapshot 1`] = `
                       }
                     }
                   >
-                    <div>
-                      11
+                    <div
+                      style={
+                        Object {
+                          "position": "relative",
+                          "zIndex": 1,
+                        }
+                      }
+                    >
+                      <div>
+                        11
+                      </div>
                     </div>
                   </td>
                 </tr>

@@ -1381,7 +1381,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
               boxSizing: "border-box",
               border: "1px solid black",
               borderRadius: "50%",
-              background: style.backgroundColor ?? "transparent",
+              background: style["--cell-bg"] ?? "transparent",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -1403,7 +1403,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
           </div>
         </div>
       ) : (
-        <>
+        <div style={{ position: "relative", zIndex: 1 }}>
           {mainContent}
           {rankOrPctile && (
             <div
@@ -1416,11 +1416,11 @@ const GenericTable: React.FunctionComponent<Props> = ({
               {rankOrPctile}
             </div>
           )}
-        </>
+        </div>
       );
       return rowSpan > 0 && colSpan > 0 ? (
         <td
-          className={className}
+          className={`${className} ${ringedColor ? "" : styles["square-bg-cell"]}`}
           rowSpan={rowSpan}
           colSpan={colSpan}
           key={"" + index}
@@ -1546,7 +1546,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
         colProps.isTitle && _.isString(val)
           ? ("bold" as "bold")
           : ("normal" as "normal"),
-      backgroundColor: colorToUse,
+      ...(colorToUse && { "--cell-bg": colorToUse }), //(replaces backgroundColor, see the module CSS)
       verticalAlign: "middle",
       ...rowStyleOverride,
       color: colorOverride || (resolvedTheme == "dark" ? "#ebebeb" : "#525252"),
