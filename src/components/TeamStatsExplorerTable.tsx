@@ -262,14 +262,25 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     year == DateUtils.AllYears || year.startsWith(DateUtils.MultiYearPrefix)
       ? _.chain(
           _.flatMap(AvailableTeams.byName, (teams, teamName) => {
-            return [teamName].concat(
-              // Just do "ADD_SEASON" and let user fill it in
-              `${teamName}:ADD_SEASON`,
-              // Not doing: add every year, more intuitive but doesn't scale
-              // teams
-              //   .filter((t) => t.year && t.gender == gender)
-              //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
-            );
+            // If season is all or more than 3 seasons are selected in multi-season mode then
+            // the user has to type season by hand
+            const yearsToUse = year.startsWith(DateUtils.MultiYearPrefix)
+              ? DateUtils.getMultiYearSelection(year)
+              : [];
+            if (_.size(yearsToUse) > 0 && _.size(yearsToUse) < 4) {
+              return [teamName].concat(
+                yearsToUse.map((y) => `${teamName}:${y.substring(2, 4)}+`),
+              );
+            } else {
+              return [teamName].concat(
+                // Just do "ADD_SEASON" and let user fill it in
+                `${teamName}:ADD_SEASON`,
+                // Not doing: add every year, more intuitive but doesn't scale
+                // teams - see above for compromize
+                //   .filter((t) => t.year && t.gender == gender)
+                //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
+              );
+            }
           }),
         )
           .flatMap((team) => {
@@ -587,6 +598,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
         ? !_.isNil(
             queryFiltersAsMap[t.team] ||
               queryFiltersAsMap[`${t.team}:${t.year}`] ||
+              queryFiltersAsMap[
+                `${t.team}:${(t.year || "").substring(2, 4)}+`
+              ] ||
               queryFiltersAsMap[`${t.team}:${(t.year || "").substring(0, 4)}`],
           )
         : !_.isNil(queryFiltersAsMap[t.team])
@@ -701,6 +715,9 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
             return (
               queryFiltersAsMap[team.team_name] ||
               queryFiltersAsMap[`${team.team_name}:${team.year}`] ||
+              queryFiltersAsMap[
+                `${team.team_name}:${(team.year || "").substring(2, 4)}+`
+              ] ||
               queryFiltersAsMap[
                 `${team.team_name}:${(team.year || "").substring(0, 4)}`
               ] ||
