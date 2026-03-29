@@ -2901,7 +2901,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <Container>
+    <Container fluid>
       {overrideGrades ? null : (
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
@@ -3225,24 +3225,30 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       </Row>
       <Row className="mt-2">
         <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
-          <LoadingOverlay
-            active={needToLoadQuery()}
-            spinner
-            text={"Loading Team Editor..."}
-          >
-            {rosterTable}
-          </LoadingOverlay>
+          <Container>
+            <LoadingOverlay
+              active={needToLoadQuery()}
+              spinner
+              text={"Loading Team Editor..."}
+            >
+              {rosterTable}
+            </LoadingOverlay>
+          </Container>
         </Col>
       </Row>
       <Row>
-        <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
+        <Col
+          className="w-100"
+          style={{ paddingLeft: "5px", paddingRight: "5px" }}
+        >
           <GenericCollapsibleCard
             minimizeMargin={true}
             title="Add New Player"
             helpLink={undefined}
             startClosed={false}
+            screenSize={"medium_screen"}
           >
-            <Container>
+            <Container fluid className="w-100">
               <Row>
                 <Form.Group as={Col} xs="4" className="mt-2">
                   <Form.Check
