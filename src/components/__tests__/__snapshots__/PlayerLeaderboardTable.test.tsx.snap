@@ -1360,7 +1360,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -3749,6 +3749,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -5586,7 +5588,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -7119,7 +7121,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
                   off_adj_prod: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Prod",
+                                    "colName": "Adj+ oPrd",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -9520,6 +9522,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -11345,7 +11349,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
               off_adj_prod: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Prod",
+                            "colName": "Adj+ oPrd",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -12912,7 +12916,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -15301,6 +15305,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -17050,6 +17056,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -18854,7 +18862,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -20387,7 +20395,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
                   off_adj_prod: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Prod",
+                                    "colName": "Adj+ oPrd",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -22788,6 +22796,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -24613,7 +24623,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
               off_adj_prod: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Prod",
+                            "colName": "Adj+ oPrd",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -26142,7 +26152,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -26895,7 +26905,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -28440,7 +28450,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -30829,6 +30839,8 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -32666,7 +32678,7 @@ exports[`PlayerLeaderboardTable PlayerLeaderboardTable - should create snapshot 
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,

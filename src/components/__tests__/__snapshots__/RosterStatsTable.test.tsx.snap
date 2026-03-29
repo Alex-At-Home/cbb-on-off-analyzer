@@ -5244,11 +5244,11 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "desc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Defensive)",
                       "value": "asc:def_adj_rtg:baseline",
                     },
                   ],
@@ -5309,43 +5309,43 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                       "value": "asc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Net)",
+                      "label": "Base Adj+ oRtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Net)",
+                      "label": "Base Adj+ oRtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Offensive)",
                       "value": "asc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Defensive)",
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Net)",
+                      "label": "Base Adj+ oPrd (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Offensive)",
                       "value": "desc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Defensive)",
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Net)",
+                      "label": "Base Adj+ oPrd (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Defensive)",
                       "value": "desc:def_adj_prod:baseline",
                     },
                     Object {
@@ -5902,7 +5902,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -7733,7 +7733,7 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -13610,7 +13610,7 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -20311,7 +20311,7 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -25540,11 +25540,11 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "desc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Defensive)",
                       "value": "asc:def_adj_rtg:baseline",
                     },
                   ],
@@ -25605,43 +25605,43 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                       "value": "asc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Net)",
+                      "label": "Base Adj+ oRtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Net)",
+                      "label": "Base Adj+ oRtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Offensive)",
                       "value": "asc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Defensive)",
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Net)",
+                      "label": "Base Adj+ oPrd (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Offensive)",
                       "value": "desc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Defensive)",
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Net)",
+                      "label": "Base Adj+ oPrd (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Defensive)",
                       "value": "desc:def_adj_prod:baseline",
                     },
                     Object {
@@ -26198,7 +26198,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -27112,6 +27112,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -27403,6 +27405,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -27694,6 +27698,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -28065,7 +28071,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -33862,6 +33868,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -34314,6 +34322,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -34766,6 +34776,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -35298,7 +35310,7 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -40647,11 +40659,11 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "desc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Defensive)",
                       "value": "asc:def_adj_rtg:baseline",
                     },
                   ],
@@ -40712,43 +40724,43 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                       "value": "asc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Net)",
+                      "label": "Base Adj+ oRtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Net)",
+                      "label": "Base Adj+ oRtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Offensive)",
                       "value": "asc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Defensive)",
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Net)",
+                      "label": "Base Adj+ oPrd (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Offensive)",
                       "value": "desc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Defensive)",
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Net)",
+                      "label": "Base Adj+ oPrd (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Defensive)",
                       "value": "desc:def_adj_prod:baseline",
                     },
                     Object {
@@ -41305,7 +41317,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -42505,6 +42517,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -43082,6 +43096,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -43659,6 +43675,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -44316,7 +44334,7 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -49882,11 +49900,11 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "desc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Defensive)",
                       "value": "asc:def_adj_rtg:baseline",
                     },
                   ],
@@ -49947,43 +49965,43 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                       "value": "asc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Net)",
+                      "label": "Base Adj+ oRtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Net)",
+                      "label": "Base Adj+ oRtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Offensive)",
                       "value": "asc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Defensive)",
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Net)",
+                      "label": "Base Adj+ oPrd (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Offensive)",
                       "value": "desc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Defensive)",
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Net)",
+                      "label": "Base Adj+ oPrd (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Defensive)",
                       "value": "desc:def_adj_prod:baseline",
                     },
                     Object {
@@ -50548,7 +50566,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -52582,6 +52600,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -53993,6 +54013,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -55404,6 +55426,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -56877,7 +56901,7 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,
@@ -62123,11 +62147,11 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "desc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Offensive)",
                       "value": "desc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Defensive)",
                       "value": "asc:def_adj_rtg:baseline",
                     },
                   ],
@@ -62188,43 +62212,43 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                       "value": "asc:off_usage:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Net)",
+                      "label": "Base Adj+ oRtg (Desc. / Net)",
                       "value": "desc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Net)",
+                      "label": "Base Adj+ oRtg (Asc. / Net)",
                       "value": "asc:diff_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Asc. / Offensive)",
+                      "label": "Base Adj+ oRtg (Asc. / Offensive)",
                       "value": "asc:off_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Rtg (Desc. / Defensive)",
+                      "label": "Base Adj+ oRtg (Desc. / Defensive)",
                       "value": "desc:def_adj_rtg:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Net)",
+                      "label": "Base Adj+ oPrd (Desc. / Net)",
                       "value": "desc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Offensive)",
                       "value": "desc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Defensive)",
                       "value": "asc:def_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Net)",
+                      "label": "Base Adj+ oPrd (Asc. / Net)",
                       "value": "asc:diff_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Asc. / Offensive)",
+                      "label": "Base Adj+ oPrd (Asc. / Offensive)",
                       "value": "asc:off_adj_prod:baseline",
                     },
                     Object {
-                      "label": "Base Adj+ Prod (Desc. / Defensive)",
+                      "label": "Base Adj+ oPrd (Desc. / Defensive)",
                       "value": "desc:def_adj_prod:baseline",
                     },
                     Object {
@@ -62789,7 +62813,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
                   off_adj_rtg: GenericTableColProps {
                                     "className": "",
-                                    "colName": "Adj+ Rtg",
+                                    "colName": "Adj+ oRtg",
                                     "colorPicker": [Function],
                                     "formatter": [Function],
                                     "isTitle": false,
@@ -63973,6 +63997,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -64534,6 +64560,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -65095,6 +65123,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                   "3P% FT%": "3P%",
                   "Adj+ Prod": "Adj+",
                   "Adj+ Rtg": "Adj+",
+                  "Adj+ oPrd": "oAdj+",
+                  "Adj+ oRtg": "oAdj+",
                   "Box Rtg": "Box",
                   "FTR F/50": "FTR",
                   "RAPM Prod": "RAPM",
@@ -65736,7 +65766,7 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
 
               off_adj_rtg: GenericTableColProps {
                             "className": "",
-                            "colName": "Adj+ Rtg",
+                            "colName": "Adj+ oRtg",
                             "colorPicker": [Function],
                             "formatter": [Function],
                             "isTitle": false,

@@ -332,13 +332,13 @@ export class CommonTableDefs {
         GenericTableOps.percentOrHtmlFormatter,
       ), //TODO needs to be steeper
       adj_rtg: GenericTableOps.addPtsCol(
-        "Adj+ Rtg",
+        expandedView ? "Adj+ Rtg" : "Adj+ oRtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " rating vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
         CbbColors.picker(...CbbColors.diff10_p100_redGreen),
       ),
       adj_prod: GenericTableOps.addPtsCol(
-        "Adj+ Prod",
+        expandedView ? "Adj+ Prod" : "Adj+ oPrd",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " production (ratings * mins%) vs average in selected lineups adjusted for SoS and (for ORtg) the player's usage",
         CbbColors.picker(...CbbColors.diff10_p100_redGreen),
