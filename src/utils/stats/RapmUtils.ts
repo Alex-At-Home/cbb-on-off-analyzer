@@ -285,7 +285,7 @@ export class RapmUtils {
     /** For component priors, lets us combine player stats and D1 averages */
     const withAvgOrUndef = (
       field: string,
-      stats: IndivStatSet,
+      stats: PureStatSet,
       fn: (avg: number, player: number) => number,
       avgWeight: number = 1.0,
     ): number | undefined => {
@@ -299,7 +299,7 @@ export class RapmUtils {
     };
     const defaultPrior = (
       field: string,
-      stats: IndivStatSet,
+      stats: PureStatSet,
       usage: number,
       avgWeight: number = 1.0,
     ): number | undefined => {
@@ -364,7 +364,9 @@ export class RapmUtils {
               "off_3pr",
               stats,
               offUsage,
-              0.5 * (1.0 - getVal(stats.off_2prim)), //(rim attackers aren't expected to take as many 3s)
+              // I originally had a "clever weight" here but having a different weight for 3pr/midr/2pr
+              // meant they didn't add up to 0, which was counter-intuitive
+              //0.5 * (1.0 - getVal(stats.off_2prim)), //(rim attackers aren't expected to take as many 3s)
             ),
             off_2pmidr: defaultPrior("off_2pmidr", stats, offUsage),
             off_2primr: defaultPrior("off_2primr", stats, offUsage),
@@ -692,12 +694,22 @@ export class RapmUtils {
                 ]) || undefined;
               if (removedPlayerInfo) {
                 const removedPlayerStat = removedPlayerInfo[2] || {};
+                //(for all the other stats we can treat removed players as providing 0
+                // even if it's not ideal .. but for the shot rates we need them to sum to 1
+                // or we get some counter intuitive numbers)
+                removedPlayerStat.def_3pr = { value: 0.33 };
+                removedPlayerStat.def_2primr = { value: 0.33 };
+                removedPlayerStat.def_2pmidr = { value: 0.33 };
                 const removedPlayerStatAboveMean =
                   field == "adj_ppp"
                     ? getVal[prefix](removedPlayerStat[`${prefix}_adj_rtg`]) +
                       ctx.priorInfo.basis[prefix]
                     : getVal[prefix](removedPlayerStat[`${prefix}_${field}`]) -
                       offsets[prefix];
+                // (avoid mutating the removedPlayerStat)
+                delete removedPlayerStat.def_3pr;
+                delete removedPlayerStat.def_2primr;
+                delete removedPlayerStat.def_2pmidr;
                 return acc + removedPlayerStatAboveMean;
               } else {
                 //(else exception case)
