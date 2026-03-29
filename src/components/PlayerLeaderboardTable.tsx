@@ -382,7 +382,9 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [maxTableSize, setMaxTableSize] = useState(startingMaxTableSize);
   const [sortBy, setSortBy] = useState(
     startingState.sortBy ||
-      ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins),
+      (_.includes(startingState.transferMode || "", ":prediction")
+        ? "desc:diff_adj_rapm_pred"
+        : ParamDefaults.defaultPlayerLboardSortBy(useRapm, factorMins)),
   );
   const [sortMenuState, setSortMenuState] = useState<
     TableSortPopupMenuState | undefined
@@ -437,11 +439,13 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       : undefined,
     zoom: startingState.geoZoom ? parseInt(startingState.geoZoom) : undefined,
   });
+  const [transferMode, setTransferMode] = useState(
+    startingState.transferMode?.toString() || "",
+  );
 
   /** If enabled we show a prediction for next year for the player */
-  const transferInfoSplit = (
-    startingState.transferMode?.toString() || ""
-  ).split(":");
+  const transferInfoSplit = transferMode.split(":");
+  const transferFilterEnabled = transferInfoSplit[0] == "true";
   const transferPredictionMode = transferInfoSplit[1] == "predictions"; //(don't filter on transfers but do show predictions)
 
   /** Show the number of possessions as a % of total team count */
@@ -730,6 +734,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       tablePreset,
       tableConfigExtraCols,
       tableConfigDisabledCols,
+      transferMode,
     };
     onChangeState(newState);
   }, [
@@ -763,6 +768,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     tablePreset,
     tableConfigExtraCols,
     tableConfigDisabledCols,
+    transferMode,
   ]);
 
   // Events that trigger building or rebuilding the division stats cache (for each year which we might need)
@@ -1048,16 +1054,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   : false
                 : true;
 
+              /** In prediction mode, filter out  */
+              const ageMatch =
+                transferFilterEnabled ||
+                !transferPredictionMode ||
+                dataEvent.syntheticData ||
+                player?.roster?.year_class != "Sr";
+
               /** Keep track of this for display purposes */
               varNoGeoFilters =
                 varNoGeoFilters && (!playerHasLatLong || geoMatch);
 
               const isMatch =
+                ageMatch &&
                 geoMatch &&
-                (_.isEmpty(transferInfoSplit[0]) ||
+                (!transferFilterEnabled ||
                   _.isEmpty(dataEvent.transfers) || //(if not specified, don't care about transfers)
-                  (maybeTxfer &&
-                    (!maybeTxfer.t || transferInfoSplit[0] != "true"))) &&
+                  (maybeTxfer && !maybeTxfer.t)) &&
                 //(transferred and either doesn't have a destination, or we don't care)
                 (filterFragmentsPve.length == 0 ||
                   (_.find(
@@ -2159,7 +2172,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               ? `<${numFiltered - playerDuplicates}`
               : numFiltered - playerDuplicates
           }`
-        : !_.isEmpty(transferInfoSplit[0]) && tier != "All"
+        : transferFilterEnabled && tier != "All"
           ? `, ${numFiltered} in tier`
           : "",
     );
@@ -2337,6 +2350,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     possAsPct,
     useRapm,
     expandedView,
+    transferMode,
   ]);
 
   // 3.2] Sorting utils
@@ -2629,7 +2643,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             >
               <ConferenceSelector
                 emptyLabel={`All ${
-                  !_.isEmpty(transferInfoSplit[0]) ? "Transfers" : "Teams"
+                  transferFilterEnabled ? "Transfers" : "Teams"
                 } in ${tier} Tier${tier == "All" ? "s" : ""}`}
                 confStr={confs}
                 tier={tier}
@@ -3010,7 +3024,35 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                       toggled: showInfoSubHeader,
                       onClick: () => setShowInfoSubHeader(!showInfoSubHeader),
                     },
-                  ]) as Array<any>
+                  ])
+                  .concat(
+                    transferPredictionMode && !dataEvent.syntheticData
+                      ? [
+                          {
+                            label: "| ",
+                            tooltip: "",
+                            toggled: true,
+                            onClick: () => {},
+                            isLabelOnly: true,
+                          },
+                          {
+                            label: "Txfers",
+                            tooltip: transferFilterEnabled
+                              ? "Show all non-senior players"
+                              : "Show only players believed to be in the portal",
+                            toggled: transferFilterEnabled,
+                            onClick: () =>
+                              friendlyChange(
+                                () =>
+                                  setTransferMode(
+                                    `${!transferFilterEnabled}:predictions`,
+                                  ),
+                                true,
+                              ),
+                          },
+                        ]
+                      : [],
+                  ) as Array<any>
               ).concat(
                 showHelp
                   ? [
@@ -3027,8 +3069,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             />
           </Col>
           <Col xs={11} sm={11} md={11} lg={3} className="pt-1">
-            {!_.isEmpty(transferInfoSplit[0]) &&
-            !_.isEmpty(dataEvent.transfers) ? (
+            {transferFilterEnabled && !_.isEmpty(dataEvent.transfers) ? (
               <div className="float-right">
                 <small>
                   (Available transfers:{" "}
