@@ -94,6 +94,7 @@ import ThemedSelect from "./shared/ThemedSelect";
 import TableSortPopupMenu, {
   TableSortPopupMenuState,
 } from "./shared/TableSortPopupMenu";
+import PortalProspectEvalBlock from "./portal/PortalProspectEvalBlock";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -1684,8 +1685,24 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         <span> (&gt;{player.transfer_dest})</span>
       ) : null;
 
+      const portalProspectEvalEnabled = FeatureFlags.isActiveWindow(
+        FeatureFlags.portalProspectEval,
+      );
+
       const predictionLine = _.thru(transferPredictionMode, (__) => {
         if (transferPredictionMode) {
+          const { tierToUse: predTierToUse, gradeFormat: predGradeFormat } =
+            GradeTableUtils.buildPlayerTierInfo(
+              showGrades || "rank:Combo",
+              {
+                comboTier: divisionStatsCacheByYear.Combo,
+                highTier: divisionStatsCacheByYear.High,
+                mediumTier: divisionStatsCacheByYear.Medium,
+                lowTier: divisionStatsCacheByYear.Low,
+              },
+              positionalStatsCache[player.year || year] || {},
+            );
+
           const offPred = player.off_adj_rapm_pred?.value || 0;
           const defPred = player.def_adj_rapm_pred?.value || 0;
           const netPred = offPred - defPred;
@@ -1765,24 +1782,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   off_usage: player.off_usage_pred,
                 };
 
-                const { tierToUse, gradeFormat, ...unused } =
-                  GradeTableUtils.buildPlayerTierInfo(
-                    showGrades || "rank:Combo",
-                    {
-                      comboTier: divisionStatsCacheByYear.Combo,
-                      highTier: divisionStatsCacheByYear.High,
-                      mediumTier: divisionStatsCacheByYear.Medium,
-                      lowTier: divisionStatsCacheByYear.Low,
-                    },
-                    positionalStatsCache[player.year || year] || {},
-                  );
-
-                const predictedGrades = tierToUse
+                const predictedGrades = predTierToUse
                   ? GradeUtils.buildPlayerPercentiles(
-                      tierToUse,
+                      predTierToUse,
                       statsToGrade,
                       _.keys(statsToGrade),
-                      gradeFormat == "rank",
+                      predGradeFormat == "rank",
                     )
                   : {};
 
@@ -1791,7 +1796,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     &nbsp;(
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_adj_rapm_margin,
-                      gradeFormat,
+                      predGradeFormat,
                       CbbColors.off_pctile_qual,
                     )}
                     )
@@ -1803,7 +1808,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     &nbsp;(
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_adj_rapm,
-                      gradeFormat,
+                      predGradeFormat,
                       CbbColors.off_pctile_qual,
                     )}
                     )
@@ -1815,7 +1820,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     &nbsp;(
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.def_adj_rapm,
-                      gradeFormat,
+                      predGradeFormat,
                       CbbColors.off_pctile_qual,
                     )}
                     )
@@ -1827,7 +1832,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     &nbsp;(
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_rtg,
-                      gradeFormat,
+                      predGradeFormat,
                       CbbColors.off_pctile_qual,
                     )}
                     )
@@ -1839,7 +1844,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     &nbsp;(
                     {GradeTableUtils.buildPlayerGradeTextElement(
                       predictedGrades.off_usage,
-                      gradeFormat,
+                      predGradeFormat,
                       CbbColors.all_pctile_freq,
                     )}
                     )
@@ -1879,10 +1884,29 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           );
           return (
             <span>
-              {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
-              off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
-              {defGrade}
-              {smallComp3}
+              {portalProspectEvalEnabled ? (
+                <PortalProspectEvalBlock
+                  tierToUse={predTierToUse}
+                  gradeFormat={predGradeFormat}
+                  player={player}
+                  avgEfficiency={
+                    efficiencyAverages[`${gender}_${player.year || year}`] ||
+                    efficiencyAverages.fallback
+                  }
+                >
+                  {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
+                  off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
+                  {defGrade}
+                  {smallComp3}
+                </PortalProspectEvalBlock>
+              ) : (
+                <>
+                  {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
+                  off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
+                  {defGrade}
+                  {smallComp3}
+                </>
+              )}
             </span>
           );
         } else {
@@ -2192,8 +2216,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       possAsPct,
       true, // useRapm
     );
-    /**/
-    console.log(`rende1r`);
     //TODO: OK what's happening here is that in mixed mode, the table returns "off_adj_rapm"
     // and the sort options are off_/diff_
     return {
