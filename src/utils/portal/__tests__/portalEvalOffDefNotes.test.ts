@@ -44,7 +44,7 @@ describe("portalEvalOffDefNotes", () => {
         off_rtg_pred: 110,
         avgEfficiency: avg,
       }),
-    ).toMatch(/could be too low usage/);
+    ).toMatch(/could be their usage is too low to be impactful/);
     expect(
       portalEvalOffenseRapmNote({
         off_adj_rapm: 5,

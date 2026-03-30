@@ -1685,10 +1685,6 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         <span> (&gt;{player.transfer_dest})</span>
       ) : null;
 
-      const portalProspectEvalEnabled = FeatureFlags.isActiveWindow(
-        FeatureFlags.portalProspectEval,
-      );
-
       const predictionLine = _.thru(transferPredictionMode, (__) => {
         if (transferPredictionMode) {
           const { tierToUse: predTierToUse, gradeFormat: predGradeFormat } =
@@ -1884,29 +1880,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           );
           return (
             <span>
-              {portalProspectEvalEnabled ? (
-                <PortalProspectEvalBlock
-                  tierToUse={predTierToUse}
-                  gradeFormat={predGradeFormat}
-                  player={player}
-                  avgEfficiency={
-                    efficiencyAverages[`${gender}_${player.year || year}`] ||
-                    efficiencyAverages.fallback
-                  }
-                >
-                  {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
-                  off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
-                  {defGrade}
-                  {smallComp3}
-                </PortalProspectEvalBlock>
-              ) : (
-                <>
-                  {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
-                  off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
-                  {defGrade}
-                  {smallComp3}
-                </>
-              )}
+              <PortalProspectEvalBlock
+                tierToUse={predTierToUse}
+                gradeFormat={predGradeFormat}
+                player={player}
+                avgEfficiency={
+                  efficiencyAverages[`${gender}_${player.year || year}`] ||
+                  efficiencyAverages.fallback
+                }
+              >
+                {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
+                off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
+                {defGrade}
+                {smallComp3}
+              </PortalProspectEvalBlock>
             </span>
           );
         } else {
