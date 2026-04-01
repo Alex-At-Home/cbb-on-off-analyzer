@@ -473,8 +473,6 @@ export class RapmUtils {
 
     // Now need to go through lineups, remove any that don't include RAPM info
 
-    var varLineupsWithNoOffPoss = 0; //(hacky to save a few CPU cycles/code complexity)
-    var varLineupsWithNoDefPoss = 0;
     const currFilteredLineupSet = _.chain(lineups)
       .flatMap((l: any) => {
         // THIS FLATMAP HAS SIDE-EFFECTS - ADDS rapmRemove to some lineups
@@ -485,9 +483,6 @@ export class RapmUtils {
           lineupPlayers,
           (p: any) => !_.isNil(removedPlayersSet[p.id as string]),
         ); //contains _only_ removed players
-
-        if (!l.off_poss?.value) varLineupsWithNoOffPoss++;
-        if (!l.def_poss?.value) varLineupsWithNoDefPoss++;
 
         if (shouldRemoveLineup) {
           l.rapmRemove = true; //(temp flag for peformance in calculateAggregatedLineupStats)
@@ -525,8 +520,12 @@ export class RapmUtils {
       teamInfo: teamInfo,
       avgEfficiency: avgEfficiency,
       numPlayers: sortedPlayers.length,
-      numOffLineups: currFilteredLineupSet.length - varLineupsWithNoOffPoss,
-      numDefLineups: currFilteredLineupSet.length - varLineupsWithNoDefPoss,
+      numOffLineups: currFilteredLineupSet.filter((l) =>
+        Boolean(l.off_poss?.value),
+      ).length,
+      numDefLineups: currFilteredLineupSet.filter((l) =>
+        Boolean(l.def_poss?.value),
+      ).length,
       offLineupPoss: teamInfo.off_poss?.value || 0,
       defLineupPoss: teamInfo.def_poss?.value || 0,
       priorInfo: RapmUtils.buildPriors(
