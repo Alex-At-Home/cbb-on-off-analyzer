@@ -12,12 +12,15 @@ import {
   runOffenseEvalRules,
   type PortalEvalOffenseDefenseSnapshot,
 } from "../../utils/portal/portalEvalOffDefNotes";
+import { UrlRouting } from "../../utils/UrlRouting";
 
 export type PortalProspectEvalBlockProps = {
   tierToUse: DivisionStatistics | undefined;
   /** First segment of grade config, e.g. `"rank"` vs `"pct"`. */
   gradeFormat: string;
   player: Record<string, any>;
+  /** For PlayerCareer / similarity links (e.g. `Men` / `Women`). */
+  gender: string;
   /** D1 efficiency prior for usage / offense comparisons (e.g. KenPom-style). */
   avgEfficiency: number;
   /** Inline content after the Eval link (e.g. “Next year’s RAPM predictions: …”). */
@@ -45,6 +48,7 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
   tierToUse,
   gradeFormat,
   player,
+  gender,
   avgEfficiency,
   children,
 }) => {
@@ -103,6 +107,17 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
   const offenseNotes = runOffenseEvalRules(odSnap);
   const defenseNotes = runDefenseEvalRules(odSnap);
 
+  const ncaaId = player.roster?.ncaa_id as string | undefined;
+  const playerCompsFollowingYearUrl =
+    ncaaId && String(ncaaId).length > 0
+      ? UrlRouting.getPlayerCareer({
+          ncaaId: String(ncaaId),
+          gender,
+          hidePlayerOverview: true,
+          showNextYear: true,
+        })
+      : null;
+
   return (
     <>
       <span>
@@ -121,6 +136,19 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
         <div className="d-block small mt-1 mb-1">
           <div>
             Overall: {league} <strong>{netCat}</strong>
+            {playerCompsFollowingYearUrl ? (
+              <ul className="mb-0 mt-1 ps-3">
+                <li>
+                  <a
+                    href={playerCompsFollowingYearUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View how player comps did their following year (new tab)
+                  </a>
+                </li>
+              </ul>
+            ) : null}
           </div>
           {caveats.length > 0 ? (
             <ul className="mt-1 mb-2 ps-3">

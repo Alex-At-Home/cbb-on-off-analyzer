@@ -1886,6 +1886,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 tierToUse={predTierToUse}
                 gradeFormat={predGradeFormat}
                 player={player}
+                gender={gender}
                 avgEfficiency={
                   efficiencyAverages[`${gender}_${player.year || year}`] ||
                   efficiencyAverages.fallback
