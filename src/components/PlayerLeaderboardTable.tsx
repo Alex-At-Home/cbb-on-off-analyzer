@@ -297,10 +297,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     string[] | undefined
   >(startingState.tableConfigDisabledCols);
   const anyTableOverride = Boolean(
-    tablePreset ||
+    (tablePreset &&
+      tablePreset != ParamDefaults.defaultTablePreset &&
+      tablePreset != IndivTableDefs.detailedViewName) ||
     !_.isEmpty(tableConfigExtraCols) ||
     !_.isEmpty(tableConfigDisabledCols),
-  );
+  ); //(only works because there is no memo over the table)
   useEffect(() => {
     //(because of the memo, need to explicitly disable it .. since don't want every
     // change to the table config to trigger a table rebuild)
@@ -3013,17 +3015,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                                 true,
                               ),
                           },
+                          {
+                            label: "| ",
+                            tooltip: "",
+                            toggled: true,
+                            onClick: () => {},
+                            isLabelOnly: true,
+                          },
                         ]
                       : [],
                   )
                   .concat([
-                    {
-                      label: "| ",
-                      tooltip: "",
-                      toggled: true,
-                      onClick: () => {},
-                      isLabelOnly: true,
-                    },
                     {
                       label: "+ Info",
                       disabled: anyTableOverride,

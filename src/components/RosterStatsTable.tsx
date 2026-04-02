@@ -326,7 +326,9 @@ const RosterStatsTable: React.FunctionComponent<Props> = ({
     string[] | undefined
   >(gameFilterParams.playerTableConfigDisabledCols);
   const anyTableOverride = Boolean(
-    tablePreset ||
+    (tablePreset &&
+      tablePreset != ParamDefaults.defaultTablePreset &&
+      tablePreset != IndivTableDefs.detailedViewName) ||
     !_.isEmpty(tableConfigExtraCols) ||
     !_.isEmpty(tableConfigDisabledCols),
   ); //(only works because there is no memo over the table)

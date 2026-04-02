@@ -506,7 +506,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     string[] | undefined
   >(playerCareerParams.tableConfigDisabledCols);
   const anyTableOverride = Boolean(
-    tablePreset ||
+    (tablePreset &&
+      tablePreset != ParamDefaults.defaultTablePreset &&
+      tablePreset != IndivTableDefs.detailedViewName) ||
     !_.isEmpty(tableConfigExtraCols) ||
     !_.isEmpty(tableConfigDisabledCols),
   ); //(only works because there is no memo over the table)
