@@ -12,6 +12,7 @@ import {
   runOffenseEvalRules,
   type PortalEvalOffenseDefenseSnapshot,
 } from "../../utils/portal/portalEvalOffDefNotes";
+import { DefaultSimilarityConfig } from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
 
 export type PortalProspectEvalBlockProps = {
@@ -108,6 +109,10 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
   const defenseNotes = runDefenseEvalRules(odSnap);
 
   const ncaaId = player.roster?.ncaa_id as string | undefined;
+  /** Fr with no prior season row (mirrors TeamEditor “true freshman” vs redshirt/fake Fr when prev year is present). */
+  const isFreshmanOnly =
+    player.roster?.year_class === "Fr" && player.prevYear == null;
+
   const playerCompsFollowingYearUrl =
     ncaaId && String(ncaaId).length > 0
       ? UrlRouting.getPlayerCareer({
@@ -116,6 +121,14 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
           hidePlayerOverview: true,
           showNextYear: true,
           expandSearch: true,
+          ...(isFreshmanOnly
+            ? {
+                similarityConfig: {
+                  ...DefaultSimilarityConfig,
+                  classWeighting: "fr_only",
+                },
+              }
+            : {}),
         })
       : null;
 
