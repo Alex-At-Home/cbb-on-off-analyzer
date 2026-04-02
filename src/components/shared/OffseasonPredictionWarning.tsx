@@ -69,7 +69,7 @@ const OffseasonPredictionWarning: React.FunctionComponent<Props> = ({
       </p>
       <p>
         - Where it's different to your intuition (/"obviously wrong"!), the way
-        in which it's wrong can be useful.
+        in which it's wrong can be useful.{" "}
         <i>
           Eg a team that always has a good defense is projected to have a bad
           defense - this usually means they've lost their best defenders, or

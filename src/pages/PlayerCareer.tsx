@@ -33,6 +33,7 @@ import Head from "next/head";
 import { DateUtils } from "../utils/DateUtils";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import OffseasonPredictionWarning from "../components/shared/OffseasonPredictionWarning";
 import GenericCollapsibleCard from "../components/shared/GenericCollapsibleCard";
 import { RequestUtils } from "../utils/RequestUtils";
 import fetchBuilder from "fetch-retry-ts";
@@ -390,6 +391,24 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
           thisPage={`${ParamPrefixes.player}_leaderboard`}
         />
       </Row>
+      {playerCareerParams.portalEvalMode ? (
+        <Row className="mt-2">
+          <Col xs={12} className="text-center">
+            <OffseasonPredictionWarning
+              year={
+                playerCareerParams.year ||
+                dataEvent[0]?.year ||
+                DateUtils.coreYears[0]
+              }
+              gender={
+                playerCareerParams.gender ||
+                currGender ||
+                ParamDefaults.defaultGender
+              }
+            />
+          </Col>
+        </Row>
+      ) : null}
       <Row className="mt-3"></Row>
       <Row className="mt-3">
         <GenericCollapsibleCard

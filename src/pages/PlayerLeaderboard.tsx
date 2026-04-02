@@ -38,6 +38,7 @@ import { LuckUtils } from "../utils/stats/LuckUtils";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
 import SiteModeDropdown from "../components/shared/SiteModeDropdown";
+import OffseasonPredictionWarning from "../components/shared/OffseasonPredictionWarning";
 import { IndivTableDefs } from "../utils/tables/IndivTableDefs";
 
 type Props = {
@@ -435,6 +436,12 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   const thumbnailUrl = `${
     server != "localhost" ? `https://${server}` : "http://localhost:3000"
   }/thumbnails/player_leaderboard_thumbnail.png`;
+
+  const transferModeStr =
+    playerLeaderboardParams.transferMode?.toString() || "";
+  const transferPredictionMode =
+    transferModeStr.split(":")[1] === "predictions";
+
   return (
     <Container className={isWideScreen ? "wide_screen" : "medium_screen"}>
       <SiteModeDropdown />
@@ -445,7 +452,11 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       <Row className="mt-2">
         <Col xs={12} className="text-center">
           <LandingPageIcon />
-          <h3>Player Leaderboard</h3>
+          <h3>
+            {transferPredictionMode
+              ? "Portal Leaderboard"
+              : "Player Leaderboard"}
+          </h3>
         </Col>
       </Row>
       <Row className="border-bottom">
@@ -457,6 +468,21 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           thisPage={`${ParamPrefixes.player}_leaderboard`}
         />
       </Row>
+      {transferPredictionMode ? (
+        <Row className="mt-2">
+          <Col xs={12} className="text-center">
+            <OffseasonPredictionWarning
+              year={
+                playerLeaderboardParams.year ||
+                ParamDefaults.defaultLeaderboardYear
+              }
+              gender={
+                playerLeaderboardParams.gender || ParamDefaults.defaultGender
+              }
+            />
+          </Col>
+        </Row>
+      ) : null}
       <Row className="mt-3">{table}</Row>
       <Footer
         dateOverride={dataEvent.all?.lastUpdated}

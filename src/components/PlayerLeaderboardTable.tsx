@@ -2604,7 +2604,11 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       <LoadingOverlay
         active={needToLoadQuery()}
         spinner
-        text={"Loading Player Leaderboard..."}
+        text={
+          transferPredictionMode
+            ? "Loading Portal Leaderboard..."
+            : "Loading Player Leaderboard..."
+        }
       >
         {dataEvent.syntheticData ? null : (
           <Form.Group as={Row}>
