@@ -516,6 +516,8 @@ export type PlayerCareerParams = {
   queryPos?: string; //(only used for API interface)
   extraSimilarityQuery?: string;
   showNextYear?: boolean; //(if true, fetch next year data for similar players)
+  /** Similarity finder only: if true, auto-run “Find Similar Players” once on load (read from URL; not persisted as UI state). */
+  expandSearch?: boolean;
   hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
   pinnedIds?: string; //(comma-separated list of pinned player IDs)
   unpinnedIds?: string; //(comma-separated list of unpinned player IDs)
@@ -818,6 +820,7 @@ export class ParamDefaults {
   static readonly defaultHideTimeline = false;
   // Player Career
   static readonly defaultShowNextYear = false;
+  static readonly defaultExpandSearch = false;
   static readonly defaultHidePlayerOverview = false;
   static readonly defaultPinnedIds = "";
   static readonly defaultUnpinnedIds = "";

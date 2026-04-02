@@ -115,6 +115,7 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
           gender,
           hidePlayerOverview: true,
           showNextYear: true,
+          expandSearch: true,
         })
       : null;
 

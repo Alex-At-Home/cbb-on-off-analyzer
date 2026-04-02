@@ -2287,6 +2287,29 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     }
   };
 
+  /** One-shot from URL: similarity finder auto-runs Find Similar Players when expandSearch=true. */
+  const expandSearchAutoRunRef = useRef(false);
+  useEffect(() => {
+    if (!playerSimilarityMode) {
+      return;
+    }
+    if (!playerCareerParams.expandSearch) {
+      return;
+    }
+    if (expandSearchAutoRunRef.current) {
+      return;
+    }
+    if (!currPlayerSelected) {
+      return;
+    }
+    expandSearchAutoRunRef.current = true;
+    requestSimilarPlayers();
+  }, [
+    playerSimilarityMode,
+    playerCareerParams.expandSearch,
+    currPlayerSelected,
+  ]);
+
   // Similarity controls component (separate variable but will be used in table)
   const similarityControlsComponent = (
     <SimilarityWeights

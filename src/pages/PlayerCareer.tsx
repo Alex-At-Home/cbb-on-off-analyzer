@@ -126,6 +126,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.conf ? ["conf"] : [],
         !rawParams.yearsToShow ? ["yearsToShow"] : [],
         !rawParams.showNextYear ? ["showNextYear"] : [],
+        !rawParams.expandSearch ? ["expandSearch"] : [],
         ["showExpanded"], // (show expanded has been replaced by tablePreset, we keep it for bwc)
         !rawParams.pinnedIds ? ["pinnedIds"] : [],
         !rawParams.unpinnedIds ? ["unpinnedIds"] : [],
@@ -335,6 +336,8 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
             playerCareerParamsRef.current?.gender ||
             ParamDefaults.defaultGender,
           similarityConfig: playerCareerParamsRef.current?.similarityConfig,
+          expandSearch: playerCareerParamsRef.current?.expandSearch,
+          showNextYear: playerCareerParamsRef.current?.showNextYear,
         }}
         onPlayerCareerParamsChange={(params: PlayerCareerParams) =>
           onPlayerCareerParamsChange(params, true)
