@@ -1385,7 +1385,7 @@ export async function main() {
                           t2[0] == "off_team_poss_pct" ||
                           t2[0] == "def_team_poss" ||
                           t2[0] == "def_team_poss_pct" ||
-                          // We actually diag_off_rtg/diag_def_rtg these for some RAPM calcs later
+                          // We actually keep diag_off_rtg/diag_def_rtg these for some RAPM calcs later
                           (_.startsWith(t2[0], "diag_") && !ignoreRapm) ||
                           (t2[0] != "off_luck" &&
                             t2[0] != "def_luck" &&
@@ -1816,20 +1816,19 @@ export async function main() {
                     });
                   }
                 }
-                //(since !ignoreRapm, need to remove diag_off_rtg and diag_def_rtg)
-                // (which prevoiusly we did with all the other stats, but needed to hang onto because of RAPM)
-                if (player && player.diag_off_rtg && player.diag_def_rtg) {
-                  delete player.diag_off_rtg;
-                  delete player.diag_def_rtg;
-                }
               });
+              //(since !ignoreRapm, need to remove diag_off_rtg and diag_def_rtg)
+              // (which previously we did with all the other stats, but needed to hang onto because of RAPM)
+              // (do it here because if RAPM fails players won't appear in rapmInfo?.enrichedPlayers)
+              _.values(enrichedAndFilteredPlayersMap)
+                .concat(_.values(cutdownEnrichedPlayersMap))
+                .forEach((player) => {
+                  if (player && player.diag_off_rtg && player.diag_def_rtg) {
+                    delete player.diag_off_rtg;
+                    delete player.diag_def_rtg;
+                  }
+                });
             } //(end RAPM)
-
-            //TODO: start with all players
-            // one have attached RAPM, _then_ remove players but keeping "hidden gems" (5mpg vs 0.25, RAPM above some tier-based threshold)
-            // TO DECIDE: could put that in separate file where we massively cut down on the fields we keep
-            // (since we only need off/def rtg/adj rtg/rapm)
-            // ^ fair bit of this is done now... still need to manage the filter by RAPM
 
             const tableData = _.take(preRapmTableData, 5).map((tmpLineup) => {
               // (removes unused fields from the JSON, to save space)
