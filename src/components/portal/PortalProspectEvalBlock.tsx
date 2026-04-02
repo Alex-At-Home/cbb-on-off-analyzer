@@ -26,6 +26,8 @@ export type PortalProspectEvalBlockProps = {
   avgEfficiency: number;
   /** Inline content after the Eval link (e.g. “Next year’s RAPM predictions: …”). */
   children: React.ReactNode;
+  /** If true, start with the detailed eval panel open (Eval−). */
+  defaultExpanded?: boolean;
 };
 
 function offenseDefenseSnapshotFromPlayer(
@@ -52,8 +54,9 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
   gender,
   avgEfficiency,
   children,
+  defaultExpanded = false,
 }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   if (!tierToUse) {
     return <>{children}</>;

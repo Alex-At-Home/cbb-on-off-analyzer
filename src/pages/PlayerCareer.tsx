@@ -127,6 +127,7 @@ const PlayerCareer: NextPage<Props> = ({ testMode }) => {
         !rawParams.yearsToShow ? ["yearsToShow"] : [],
         !rawParams.showNextYear ? ["showNextYear"] : [],
         !rawParams.expandSearch ? ["expandSearch"] : [],
+        !rawParams.portalEvalMode ? ["portalEvalMode"] : [],
         ["showExpanded"], // (show expanded has been replaced by tablePreset, we keep it for bwc)
         !rawParams.pinnedIds ? ["pinnedIds"] : [],
         !rawParams.unpinnedIds ? ["unpinnedIds"] : [],

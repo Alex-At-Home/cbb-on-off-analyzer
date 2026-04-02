@@ -518,6 +518,8 @@ export type PlayerCareerParams = {
   showNextYear?: boolean; //(if true, fetch next year data for similar players)
   /** Similarity finder only: if true, auto-run “Find Similar Players” once on load (read from URL; not persisted as UI state). */
   expandSearch?: boolean;
+  /** Non–similarity-mode only: show portal-style transfer eval below each season’s first stats row. */
+  portalEvalMode?: boolean;
   hidePlayerOverview?: boolean; //(if true, start with player overview card closed)
   pinnedIds?: string; //(comma-separated list of pinned player IDs)
   unpinnedIds?: string; //(comma-separated list of unpinned player IDs)
@@ -821,6 +823,7 @@ export class ParamDefaults {
   // Player Career
   static readonly defaultShowNextYear = false;
   static readonly defaultExpandSearch = false;
+  static readonly defaultPortalEvalMode = false;
   static readonly defaultHidePlayerOverview = false;
   static readonly defaultPinnedIds = "";
   static readonly defaultUnpinnedIds = "";
