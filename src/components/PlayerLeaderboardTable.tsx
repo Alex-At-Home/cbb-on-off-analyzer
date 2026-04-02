@@ -1488,6 +1488,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                     showPlayerPlayTypesPlayType,
                     playerShotCharts: showPlayerShots,
                     possAsPct,
+                    ...(transferPredictionMode ? { portalEvalMode: true } : {}),
                   })
                 : UrlRouting.getPlayerLeaderboardUrl(playerLeaderboardParams)
             }

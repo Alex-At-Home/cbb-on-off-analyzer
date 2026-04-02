@@ -1154,6 +1154,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     titleOverride?: DataType,
     titleSuffix?: DataType,
     playerDiffMode?: boolean,
+    /** Insert after main Off (+ Def in dual) stat rows, before charts / comparison / grades. */
+    portalEvalTextRow?: GenericTableRow | null,
   ): GenericTableRow[] => {
     // Misc stats
 
@@ -1812,6 +1814,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 ),
               ]
             : [],
+          portalEvalTextRow ? [portalEvalTextRow] : [],
           comparisonPlayer && isPlayerCompSource
             ? playerRowBuilder(
                 comparisonPlayer,
@@ -1820,6 +1823,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 undefined,
                 undefined,
                 true,
+                undefined,
               )
             : [],
           diffMode && isPlayerCompSource && !_.isEmpty(similarOrPinnedPlayers)
@@ -2023,36 +2027,16 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     .take(playerSimilarityMode ? 1 : 1e9)
     .flatMap(([year, playerCareerInfo], index) => {
       const topYear = index == 0;
-      const baseSeasonRows = showAll
-        ? playerRowBuilder(playerCareerInfo.season, year, topYear)
-        : [];
-      const baseConfRows =
-        playerCareerInfo.conf && showConf
-          ? playerRowBuilder(
-              playerCareerInfo.conf,
-              year,
-              topYear || showAll,
-              showAll && !extraCharts ? "Conf Stats" : undefined,
-              "Conf Stats",
-            )
-          : [];
-      const baseT100Rows =
-        playerCareerInfo.t100 && showT100
-          ? playerRowBuilder(
-              playerCareerInfo.t100,
-              year,
-              topYear || showAll || showConf,
-              (showAll || showConf) && !extraCharts ? "vs T100" : undefined,
-              "vs T100",
-            )
-          : [];
+      const firstBlockWithRows = showAll
+        ? "season"
+        : playerCareerInfo.conf && showConf
+          ? "conf"
+          : playerCareerInfo.t100 && showT100
+            ? "t100"
+            : null;
 
       const portalEvalTextRow =
-        !playerSimilarityMode &&
-        portalEvalMode &&
-        (baseSeasonRows.length > 0 ||
-          baseConfRows.length > 0 ||
-          baseT100Rows.length > 0)
+        !playerSimilarityMode && portalEvalMode && firstBlockWithRows
           ? GenericTableOps.buildTextRow(
               <PlayerCareerPortalEvalRow
                 seasonPlayer={playerCareerInfo.season}
@@ -2067,36 +2051,47 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               />,
               "small",
             )
-          : null;
+          : undefined;
 
-      const injectPortalEvalAfterFirst = (rows: GenericTableRow[]) => {
-        if (!portalEvalTextRow || rows.length === 0) {
-          return rows;
-        }
-        return [rows[0], portalEvalTextRow, ...rows.slice(1)];
-      };
+      const baseSeasonRows = showAll
+        ? playerRowBuilder(
+            playerCareerInfo.season,
+            year,
+            topYear,
+            undefined,
+            undefined,
+            undefined,
+            firstBlockWithRows === "season" ? portalEvalTextRow : undefined,
+          )
+        : [];
+      const baseConfRows =
+        playerCareerInfo.conf && showConf
+          ? playerRowBuilder(
+              playerCareerInfo.conf,
+              year,
+              topYear || showAll,
+              showAll && !extraCharts ? "Conf Stats" : undefined,
+              "Conf Stats",
+              undefined,
+              firstBlockWithRows === "conf" ? portalEvalTextRow : undefined,
+            )
+          : [];
+      const baseT100Rows =
+        playerCareerInfo.t100 && showT100
+          ? playerRowBuilder(
+              playerCareerInfo.t100,
+              year,
+              topYear || showAll || showConf,
+              (showAll || showConf) && !extraCharts ? "vs T100" : undefined,
+              "vs T100",
+              undefined,
+              firstBlockWithRows === "t100" ? portalEvalTextRow : undefined,
+            )
+          : [];
 
-      const firstBlockWithRows =
-        baseSeasonRows.length > 0
-          ? "season"
-          : baseConfRows.length > 0
-            ? "conf"
-            : baseT100Rows.length > 0
-              ? "t100"
-              : null;
-
-      const seasonRows =
-        firstBlockWithRows === "season"
-          ? injectPortalEvalAfterFirst(baseSeasonRows)
-          : baseSeasonRows;
-      const confRows =
-        firstBlockWithRows === "conf"
-          ? injectPortalEvalAfterFirst(baseConfRows)
-          : baseConfRows;
-      const t100Rows =
-        firstBlockWithRows === "t100"
-          ? injectPortalEvalAfterFirst(baseT100Rows)
-          : baseT100Rows;
+      const seasonRows = baseSeasonRows;
+      const confRows = baseConfRows;
+      const t100Rows = baseT100Rows;
 
       const seasonRowIsTopRow = topYear;
       const confRowIsTopRow = _.isEmpty(seasonRows) && topYear;
