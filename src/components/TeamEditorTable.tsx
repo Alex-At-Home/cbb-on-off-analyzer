@@ -2665,17 +2665,19 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
   const playerLeaderboard = React.useMemo(() => {
     setLboardParams(startingState);
+    const transferMode = !nextYearBeforePortalIsActive
+      ? yearWithStats == DateUtils.offseasonYear
+        ? onlyTransfers
+          ? "true:predictions"
+          : "false:predictions"
+        : `${onlyTransfers ? DateUtils.getOffseasonOfYear(yearWithStats) : "false"}:predictions`
+      : "false:predictions";
+
     return (
       <PlayerLeaderboardTable
         startingState={{
           ...startingState,
-          transferMode: !nextYearBeforePortalIsActive
-            ? yearWithStats == DateUtils.offseasonYear
-              ? onlyTransfers
-                ? "true:predictions"
-                : ":predictions"
-              : `${DateUtils.getOffseasonOfYear(yearWithStats)}:predictions`
-            : ":predictions",
+          transferMode,
           //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
           year: onlyThisYear ? yearWithStats : "All",
           tier: "All",
@@ -2752,6 +2754,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           } else {
             setLboardAltDataSource(undefined); //(use default)
           }
+          newParams.transferMode = transferMode; //(this is handled separately for synthetic data)
           setLboardParams(newParams);
         }}
         teamEditorMode={(p: IndivStatSet) => {

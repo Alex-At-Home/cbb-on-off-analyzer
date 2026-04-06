@@ -445,6 +445,12 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
   const [transferMode, setTransferMode] = useState(
     startingState.transferMode?.toString() || "",
   );
+  //(can be set from outside the leaderboard)
+  useEffect(() => {
+    if (dataEvent.syntheticData) {
+      setTransferMode(startingState.transferMode?.toString() || "");
+    }
+  }, [startingState.transferMode, dataEvent.syntheticData]);
 
   /** If enabled we show a prediction for next year for the player */
   const transferInfoSplit = transferMode.split(":");
