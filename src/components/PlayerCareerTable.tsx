@@ -2988,7 +2988,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showInfoSubHeader && !anyTableOverride
       ? RosterTableUtils.buildInformationalSubheader(
           true,
-          true,
+          expandedView,
           resolvedTheme == "dark",
         )
       : [];

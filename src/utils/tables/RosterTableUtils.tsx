@@ -17,7 +17,7 @@ export class RosterTableUtils {
     players: Array<any>,
     rosterInfo: Record<string, any> | undefined,
     includePosCat?: boolean,
-    teamSeasonLookup?: string
+    teamSeasonLookup?: string,
   ): RosterStatsByCode {
     return _.chain(players)
       .map((p) => {
@@ -35,7 +35,7 @@ export class RosterTableUtils {
             posConfs,
             posConfsDiags.confsNoHeight,
             p,
-            teamSeasonLookup || ""
+            teamSeasonLookup || "",
           );
           p.posClass = _.values(posConfs);
           p.role = pos;
@@ -51,7 +51,7 @@ export class RosterTableUtils {
   static buildInformationalSubheader(
     calcRapm: boolean,
     expandedView: boolean,
-    darkMode: boolean
+    darkMode: boolean,
   ) {
     const brace = (color: string, widthPct: number = 100) => (
       <hr
@@ -73,7 +73,7 @@ export class RosterTableUtils {
     const braceText = (
       text: ReactNode,
       color: string,
-      braceWidth: number = 100
+      braceWidth: number = 100,
     ) => (
       <div>
         <p style={{ color: color }}>
@@ -94,19 +94,27 @@ export class RosterTableUtils {
           [
             braceText(
               "The higher 'Usg' (avg 20) the harder it is to keep ORtg high",
-              darkMode ? "#5bc0de" : "blue"
+              darkMode ? "#5bc0de" : "blue",
             ),
             2,
           ],
           calcRapm
             ? [
                 braceText(
-                  <p style={{ width: "120%" }}>
-                    2x {expandedView ? `O/D` : `Off`} Ratings as pts/100 above
-                    D1 average (the 2 form a good range)
-                  </p>,
+                  expandedView ? (
+                    <p style={{ width: "120%" }}>
+                      2x O/D Ratings as pts/100 above D1 average (the 2 form a
+                      good range)
+                    </p>
+                  ) : (
+                    <p style={{ width: "120%" }}>
+                      Left: ORtg as pts/100 above D1 average, Right: Net RAPM
+                      (Off-Def)
+                    </p>
+                  ),
+
                   darkMode ? "#e83e8c" : "purple",
-                  75
+                  75,
                 ),
                 3,
               ]
@@ -116,7 +124,7 @@ export class RosterTableUtils {
                     {expandedView ? `O/D Ratings` : `Off Rating`} as pts/100
                     above D1 average
                   </p>,
-                  darkMode ? "#e83e8c" : "purple"
+                  darkMode ? "#e83e8c" : "purple",
                 ),
                 2,
               ],
@@ -128,7 +136,7 @@ export class RosterTableUtils {
           [
             braceText(
               `Scoring signature (FTR is how often player is fouled shooting, ${whereIsAssistedPct})`,
-              "teal"
+              "teal",
             ),
             5,
           ],
@@ -136,7 +144,7 @@ export class RosterTableUtils {
           [braceText("Scoring quality", "green"), 4],
           ["", 1],
         ],
-        `small ${styles.centerAlignCol} ${styles.bottomAlignCol}`
+        `small ${styles.centerAlignCol} ${styles.bottomAlignCol}`,
       ),
     ];
   }
