@@ -33,6 +33,7 @@ import HeaderBar from "../components/shared/HeaderBar";
 import { UrlRouting } from "../utils/UrlRouting";
 import Head from "next/head";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
+import { NIL_ALLOCATOR_DEFAULT_DESIRED_NET } from "../utils/stats/NilAllocator";
 import { DateUtils } from "../utils/DateUtils";
 import { dataLastUpdated } from "../utils/internal-data/dataLastUpdated";
 import LandingPageIcon from "../components/shared/LandingPageIcon";
@@ -118,6 +119,17 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.alwaysShowBench ? ["alwaysShowBench"] : [],
         !rawParams.superSeniorsBack ? ["superSeniorsBack"] : [],
         !rawParams.enableNil ? ["enableNil"] : [],
+        !rawParams.enableNil ||
+        _.isNil(rawParams.nilBudgetMillions) ||
+        rawParams.nilBudgetMillions === ""
+          ? ["nilBudgetMillions"]
+          : [],
+        !rawParams.enableNil ||
+        _.isNil(rawParams.nilDesiredNet) ||
+        rawParams.nilDesiredNet === "" ||
+        Number(rawParams.nilDesiredNet) === NIL_ALLOCATOR_DEFAULT_DESIRED_NET
+          ? ["nilDesiredNet"]
+          : [],
         !rawParams.showGrades ? ["showGrades"] : [],
 
         !rawParams.allEditOpen ? ["allEditOpen"] : [],

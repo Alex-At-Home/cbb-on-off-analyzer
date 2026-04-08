@@ -83,9 +83,19 @@ import {
 } from "../utils/public-data/ConferenceInfo";
 import { efficiencyInfo } from "../utils/internal-data/efficiencyInfo";
 import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import {
+  NIL_ALLOCATOR_DEFAULT_DESIRED_NET,
+  nilFullBudgetDollarsPerMarginalPoint,
+  nilFullBudgetMillionsPerMarginalPoint,
+  nilMarginalPointsAboveReplacement,
+  parseNilBudgetMillions,
+  parseNilDesiredNet,
+  totalImprovementNeededPoints,
+} from "../utils/stats/NilAllocator";
 import { CbbColors } from "../utils/CbbColors";
 import { IndivStatSet } from "../utils/StatModels";
 import ThemedSelect from "./shared/ThemedSelect";
+import AsyncFormControl from "./shared/AsyncFormControl";
 
 // Input params/models
 
@@ -120,6 +130,9 @@ const reduceNumberSize = (k: string, v: any) => {
     return v;
   }
 };
+
+/** Dev-only: set `true` to log `[NIL budget Δ debug]` in the browser console */
+const DEBUG_NIL_BUDGET_DELTA = false;
 
 // Functional component
 
@@ -183,6 +196,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ? FeatureFlags.isActiveWindow(FeatureFlags.estimateNilValue)
       : startingState.enableNil,
   );
+  const [nilBudgetInput, setNilBudgetInput] = useState(
+    startingState.nilBudgetMillions != null &&
+      startingState.nilBudgetMillions !== ""
+      ? String(startingState.nilBudgetMillions)
+      : "",
+  );
+  const [nilDesiredNetInput, setNilDesiredNetInput] = useState(() => {
+    if (
+      startingState.nilDesiredNet != null &&
+      startingState.nilDesiredNet !== ""
+    ) {
+      return String(startingState.nilDesiredNet);
+    }
+    return String(NIL_ALLOCATOR_DEFAULT_DESIRED_NET);
+  });
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
     _.isNil(startingState.showGrades) ? "" : startingState.showGrades,
@@ -375,6 +403,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         allEditOpen: allEditOpen,
         diffBasis: _.isNil(diffBasis) ? undefined : JSON.stringify(diffBasis),
         enableNil: enableNil,
+        nilBudgetMillions: nilBudgetInput.trim() || undefined,
+        nilDesiredNet:
+          !nilDesiredNetInput.trim() ||
+          parseFloat(nilDesiredNetInput) === NIL_ALLOCATOR_DEFAULT_DESIRED_NET
+            ? undefined
+            : nilDesiredNetInput,
         showGrades: showGrades,
       };
       onChangeState(newState);
@@ -393,6 +427,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     editOpen,
     diffBasis,
     enableNil,
+    nilBudgetInput,
+    nilDesiredNetInput,
     lboardParams,
     showPrevSeasons,
     factorMins,
@@ -558,6 +594,39 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     }
   }, [year, gender, showGrades]);
 
+  const nilDesiredNetRankLabel = React.useMemo(() => {
+    if (!enableNil) {
+      return null;
+    }
+    const tierForNilRank =
+      usePreseasonRanksOnly && preSeasonDivisionStats
+        ? preSeasonDivisionStats
+        : divisionStatsCache.Combo || divisionStatsCache.High;
+    if (!tierForNilRank) {
+      return null;
+    }
+    const desiredVal = parseNilDesiredNet(nilDesiredNetInput);
+    const grades = GradeUtils.buildTeamPercentiles(
+      tierForNilRank,
+      { off_net: { value: desiredVal } },
+      ["net", "adj_ppp"],
+      true,
+    );
+    const stat = grades.off_net as Statistic | undefined;
+    if (!stat || !_.isNumber(stat.value)) {
+      return null;
+    }
+    const numTeams = stat.samples || 400;
+    const rank = 1 + Math.round((1 - (stat.value || 0)) * numTeams);
+    return `(rank: ${rank}${GenericTableOps.rankSuffix(rank)})`;
+  }, [
+    enableNil,
+    usePreseasonRanksOnly,
+    preSeasonDivisionStats,
+    divisionStatsCache,
+    nilDesiredNetInput,
+  ]);
+
   /////////////////////////////////////
 
   // Build Team table
@@ -696,6 +765,160 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       prevYearFreshmen,
     );
     const avgPts100 = (100 * pxResults.teamSosDef) / (pxResults.avgEff || 1);
+
+    const nilFilteredForAllocator = TeamEditorUtils.getFilteredPlayersWithBench(
+      pxResults,
+      disabledPlayers,
+    );
+    /** Team depth net (ok) spread evenly in "net per unit poss" so Σ marginal pts includes depth like buildTotals.net */
+    const nilAllocatorDepthBonus = enableNil
+      ? TeamEditorUtils.calcDepthBonus(nilFilteredForAllocator, team)
+      : { off: 0, def: 0 };
+    const nilAllocatorPossSum = enableNil
+      ? _.sumBy(
+          nilFilteredForAllocator,
+          (t) => t.ok.off_team_poss_pct?.value || 0,
+        )
+      : 0;
+    const NIL_ALLOCATOR_POSS_SUM_MIN = 1e-6;
+    const nilDepthNetPerPossForMarginal =
+      enableNil && nilAllocatorPossSum > NIL_ALLOCATOR_POSS_SUM_MIN
+        ? (nilAllocatorDepthBonus.off - nilAllocatorDepthBonus.def) /
+          nilAllocatorPossSum
+        : 0;
+
+    const nilBudgetM = parseNilBudgetMillions(nilBudgetInput);
+    const nilDesiredNetNum = parseNilDesiredNet(nilDesiredNetInput);
+    const useNilBudgetAllocator = enableNil && nilBudgetM !== undefined;
+    const nilManualSumForAllocator = useNilBudgetAllocator
+      ? _.sumBy(nilFilteredForAllocator, (triple) => {
+          const o = pxResults.unpausedOverrides[triple.key];
+          return _.isNil(o?.nil) ? 0 : o.nil!;
+        })
+      : 0;
+
+    const nilPlayerMarginalPts = (triple: GoodBadOkTriple) => {
+      const possPct = triple.ok.off_team_poss_pct?.value || 0;
+      const projectedNet =
+        TeamEditorUtils.getNet(triple.ok, 1.0) + nilDepthNetPerPossForMarginal;
+      return nilMarginalPointsAboveReplacement(projectedNet, possPct);
+    };
+
+    const nilManualMarginalSumForAllocator = useNilBudgetAllocator
+      ? _.sumBy(nilFilteredForAllocator, (triple) => {
+          const o = pxResults.unpausedOverrides[triple.key];
+          return _.isNil(o?.nil) ? 0 : nilPlayerMarginalPts(triple);
+        })
+      : 0;
+
+    const nilTargetImprovementPts = useNilBudgetAllocator
+      ? totalImprovementNeededPoints(nilDesiredNetNum)
+      : undefined;
+
+    const nilRemainingTargetPts =
+      nilTargetImprovementPts !== undefined
+        ? Math.max(
+            0,
+            nilTargetImprovementPts - nilManualMarginalSumForAllocator,
+          )
+        : undefined;
+
+    const nilBudgetDollars =
+      useNilBudgetAllocator && nilBudgetM !== undefined
+        ? nilBudgetM * 1e6
+        : undefined;
+
+    const nilRemainingBudgetDollars =
+      nilBudgetDollars !== undefined
+        ? nilBudgetDollars - nilManualSumForAllocator
+        : undefined;
+
+    const NIL_RATE_DENOM_MIN = 1e-3;
+    const nilAutoDollarsPerMarginalPt =
+      nilRemainingBudgetDollars !== undefined &&
+      nilRemainingTargetPts !== undefined
+        ? nilRemainingBudgetDollars > 0 &&
+          nilRemainingTargetPts > NIL_RATE_DENOM_MIN
+          ? nilRemainingBudgetDollars / nilRemainingTargetPts
+          : 0
+        : undefined;
+
+    const nilFullBudgetDollarsPerPt =
+      useNilBudgetAllocator && nilBudgetM !== undefined
+        ? nilFullBudgetDollarsPerMarginalPoint(
+            nilBudgetM * 1e6,
+            nilDesiredNetNum,
+          )
+        : undefined;
+
+    const resolveRosterNil = (
+      triple: GoodBadOkTriple,
+      maybeOverride: PlayerEditModel | undefined,
+    ): {
+      dollars: number | undefined;
+      isManual: boolean;
+      isBudgetAuto: boolean;
+    } => {
+      if (!enableNil) {
+        return { dollars: undefined, isManual: false, isBudgetAuto: false };
+      }
+      if (!_.isNil(maybeOverride?.nil)) {
+        return {
+          dollars: Math.max(0, maybeOverride!.nil!),
+          isManual: true,
+          isBudgetAuto: false,
+        };
+      }
+      if (nilAutoDollarsPerMarginalPt !== undefined) {
+        const marginal = nilPlayerMarginalPts(triple);
+        const raw = marginal * nilAutoDollarsPerMarginalPt;
+        return {
+          dollars: Math.max(0, Math.round(raw)),
+          isManual: false,
+          isBudgetAuto: true,
+        };
+      }
+      return {
+        dollars: triple.nil,
+        isManual: false,
+        isBudgetAuto: false,
+      };
+    };
+
+    /** Auto NIL dollars if this row were not manual (same global rate / legacy blend). */
+    const nilReferenceAutoDollars = (triple: GoodBadOkTriple): number => {
+      if (!enableNil) {
+        return 0;
+      }
+      if (nilFullBudgetDollarsPerPt !== undefined) {
+        const marginal = nilPlayerMarginalPts(triple);
+        return Math.max(0, Math.round(marginal * nilFullBudgetDollarsPerPt));
+      }
+      return Math.round(triple.nil || 0);
+    };
+
+    const buildNilMillionsCell = (
+      triple: GoodBadOkTriple,
+      maybeOverride: PlayerEditModel | undefined,
+    ): { value: number; extraInfo?: string } | undefined => {
+      const resolved = resolveRosterNil(triple, maybeOverride);
+      if (_.isNil(resolved.dollars)) {
+        return undefined;
+      }
+      const value = resolved.dollars / 1e6;
+      if (resolved.isManual) {
+        const ref = nilReferenceAutoDollars(triple);
+        const surplusM = (resolved.dollars - ref) / 1e6;
+        const surplusAbs = Math.abs(surplusM).toFixed(2);
+        const surplusVs =
+          surplusM >= 0 ? `+$${surplusAbs}M` : `-$${surplusAbs}M`;
+        return {
+          value,
+          extraInfo: `Manually estimated; vs model at full-budget $/pt: ${surplusVs}.`,
+        };
+      }
+      return { value };
+    };
 
     ///////////////////////////////////////////////
 
@@ -1036,10 +1259,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           ? {}
           : { extraInfo: `Manually adjusted, see Player Editor tab` };
 
-      const nilToUse = _.isNil(maybeOverride?.nil)
-        ? triple.nil
-        : maybeOverride?.nil;
-
       const okNet = TeamEditorUtils.getNet(triple.ok, okProdFactor);
       const okOff = TeamEditorUtils.getOff(triple.ok, okProdFactor);
       const okDef = TeamEditorUtils.getDef(triple.ok, okProdFactor);
@@ -1088,11 +1307,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 ? undefined
                 : "Overridden, see Player Editor tab",
             },
-        nil: _.isNil(nilToUse) ? undefined : (
-          <small>
-            <i>{nilToUse.toFixed(0)}</i>
-          </small>
-        ),
+        nil: buildNilMillionsCell(triple, maybeOverride),
         ortg: triple.ok.off_rtg,
         ptsPlus: factorMins ? { value: approxPtsCalc * 0.7 } : undefined, //TODO, make this be the average team tempo
         usage: triple.ok.off_usage,
@@ -1408,6 +1623,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const benchOverrides = tripleIn
         ? pxResults.allOverrides[tripleIn.key]
         : undefined;
+      const benchUnpausedOverride = tripleIn
+        ? pxResults.unpausedOverrides[tripleIn.key]
+        : undefined;
 
       const hasEditPage =
         allEditOpen || (tripleIn ? editOpen[tripleIn.key] : false);
@@ -1442,11 +1660,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           return {
             title: <b>{triple.orig.key}</b>,
             mpg: { value: mpg },
-            nil: _.isNil(triple.nil) ? undefined : (
-              <small>
-                <i>{triple.nil.toFixed(0)}</i>
-              </small>
-            ),
+            nil: buildNilMillionsCell(triple, benchUnpausedOverride),
             act_caliber:
               caliberMode && triple.actualResults
                 ? { value: TeamEditorUtils.getNet(triple.actualResults, 1.0) }
@@ -1689,6 +1903,16 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         disabledPlayers,
       );
 
+      const depthBonus = TeamEditorUtils.calcDepthBonus(
+        filteredPlayerSet,
+        team,
+      );
+      const okTotals = TeamEditorUtils.buildTotals(
+        filteredPlayerSet,
+        "ok",
+        depthBonus,
+      );
+
       //(Diagnostic - will display if it's <0)
       const totalMins =
         _.sumBy(filteredPlayerSet, (p) => p.ok.off_team_poss_pct.value!) * 0.2;
@@ -1696,12 +1920,144 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ? _.sumBy(filteredPlayerSet, (triple) => {
             const maybeOverride: PlayerEditModel | undefined =
               pxResults.unpausedOverrides[triple.key];
-            const nilToUse = _.isNil(maybeOverride?.nil)
-              ? triple.nil
-              : maybeOverride?.nil;
-            return nilToUse || 0;
+            const r = resolveRosterNil(triple, maybeOverride);
+            return r.dollars || 0;
           })
         : 0;
+
+      if (
+        DEBUG_NIL_BUDGET_DELTA &&
+        enableNil &&
+        useNilBudgetAllocator &&
+        nilBudgetM !== undefined
+      ) {
+        const S = _.sumBy(
+          filteredPlayerSet,
+          (t) =>
+            TeamEditorUtils.getNet(t.ok, 1.0) *
+            (t.ok.off_team_poss_pct?.value || 0),
+        );
+        const P = _.sumBy(
+          filteredPlayerSet,
+          (t) => t.ok.off_team_poss_pct?.value || 0,
+        );
+        const sumM = _.sumBy(filteredPlayerSet, (t) => nilPlayerMarginalPts(t));
+        const sumMpos = _.sumBy(filteredPlayerSet, (t) =>
+          Math.max(0, nilPlayerMarginalPts(t)),
+        );
+        const sumMneg = _.sumBy(filteredPlayerSet, (t) =>
+          Math.min(0, nilPlayerMarginalPts(t)),
+        );
+        const nMarginalNeg = _.filter(
+          filteredPlayerSet,
+          (t) => nilPlayerMarginalPts(t) < 0,
+        ).length;
+        const Tfull = totalImprovementNeededPoints(nilDesiredNetNum);
+        const depthNet = depthBonus.off - depthBonus.def;
+        const depthNetNilAllocator =
+          nilAllocatorDepthBonus.off - nilAllocatorDepthBonus.def;
+        const okNetMinusDepth = okTotals.net - depthNet;
+        let sumAutoRawDollars = 0;
+        let sumAutoRoundedDollars = 0;
+        let nManual = 0;
+        for (const t of filteredPlayerSet) {
+          const o = pxResults.unpausedOverrides[t.key];
+          const m = nilPlayerMarginalPts(t);
+          if (!_.isNil(o?.nil)) {
+            nManual += 1;
+          } else if (nilAutoDollarsPerMarginalPt !== undefined) {
+            const raw = m * nilAutoDollarsPerMarginalPt;
+            sumAutoRawDollars += raw;
+            sumAutoRoundedDollars += Math.max(0, Math.round(raw));
+          }
+        }
+        const B = nilBudgetM * 1e6;
+        const continuousAtFullRate = Tfull > 0 ? (B * sumM) / Tfull : 0;
+        console.log("[NIL budget Δ debug]", {
+          team,
+          depthBonus,
+          depthNet,
+          depthNetNilAllocator,
+          nilDepthNetPerPossForMarginal,
+          okTotalsNet: okTotals.net,
+          okNetMinusDepth_vs_S: {
+            okNetMinusDepth,
+            S,
+            delta: okNetMinusDepth - S,
+          },
+          desiredNet: nilDesiredNetNum,
+          P,
+          S_plus_P: S + P,
+          sumMarginalPts: sumM,
+          check_S_plus_P_plus_depth: S + P + depthNetNilAllocator - sumM,
+          Tfull,
+          sumM_minus_T: sumM - Tfull,
+          sumMpos,
+          sumMneg,
+          nMarginalNeg,
+          budgetM: nilBudgetM,
+          nilAutoDollarsPerMarginalPt,
+          nilRemainingBudgetDollars,
+          nilRemainingTargetPts,
+          totalNil_M: totalNil / 1e6,
+          budget_minus_total_M: nilBudgetM - totalNil / 1e6,
+          nManual,
+          sumAutoRaw_M: sumAutoRawDollars / 1e6,
+          sumAutoRounded_M: sumAutoRoundedDollars / 1e6,
+          roundingAuto_M: (sumAutoRawDollars - sumAutoRoundedDollars) / 1e6,
+          continuousAtFullRate_M: continuousAtFullRate / 1e6,
+        });
+      }
+
+      let nilTeamTotalsExtraInfo: string | undefined;
+      if (enableNil) {
+        if (useNilBudgetAllocator && nilBudgetM !== undefined) {
+          const nilRateM = nilFullBudgetMillionsPerMarginalPoint(
+            nilBudgetM,
+            nilDesiredNetNum,
+          );
+          const rateSuffix =
+            nilRateM !== undefined
+              ? ` (Spending rate: ${nilRateM.toFixed(2)} $M/pt)`
+              : "";
+
+          const budgetM = nilBudgetM;
+          const totalM = totalNil / 1e6;
+          const diffM = budgetM - totalM;
+          const ad = Math.abs(diffM);
+          const manualM = nilManualSumForAllocator / 1e6;
+          const netVsDesired = okTotals.net - nilDesiredNetNum;
+          const NET_TOL = 0.35;
+
+          const autoNegMarginalCount = _.filter(
+            filteredPlayerSet,
+            (t) =>
+              _.isNil(pxResults.unpausedOverrides[t.key]?.nil) &&
+              nilPlayerMarginalPts(t) < 0,
+          ).length;
+
+          if (manualM > budgetM + 0.005) {
+            nilTeamTotalsExtraInfo = `Manual NIL sums ($${manualM.toFixed(2)}M) exceed the estimated budget; auto rows are $0. Values in $M.${rateSuffix}`;
+          } else if (ad < 0.02 && Math.abs(netVsDesired) < NET_TOL) {
+            nilTeamTotalsExtraInfo = `Total ≈ budget while projected balanced team net ≈ your desired rating. Values in $M.${rateSuffix}`;
+          } else if (
+            autoNegMarginalCount > 0 &&
+            diffM > 0.02 &&
+            (nilRemainingBudgetDollars ?? 0) > 0
+          ) {
+            nilTeamTotalsExtraInfo = `Total is $${ad.toFixed(2)}M below budget partly because ${autoNegMarginalCount} auto player(s) are below replacement on marginal value (NIL floored at $0). Values in $M.${rateSuffix}`;
+          } else if (netVsDesired < -NET_TOL) {
+            nilTeamTotalsExtraInfo = `Balanced team net (${okTotals.net.toFixed(1)}) is below desired (${nilDesiredNetNum.toFixed(1)}), so roster marginal points fall short of the target gap—total NIL is usually below the budget. Values in $M.${rateSuffix}`;
+          } else if (netVsDesired > NET_TOL) {
+            nilTeamTotalsExtraInfo = `Balanced team net (${okTotals.net.toFixed(1)}) is above desired (${nilDesiredNetNum.toFixed(1)}), so marginal points exceed that target—total NIL can run above the budget. Values in $M.${rateSuffix}`;
+          } else {
+            nilTeamTotalsExtraInfo = `Total differs from the budget by $${ad.toFixed(2)}M (manual $ and marginal “removed” from the target vs what’s left for autos). Values in $M.${rateSuffix}`;
+          }
+        } else {
+          nilTeamTotalsExtraInfo =
+            "Sum of roster NIL in $M (millions USD). Enable a budget to compare total to your estimate.";
+        }
+      }
       const totalActualMins = evalMode
         ? _.sumBy(
             actualResultsForReview,
@@ -1714,19 +2070,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           TeamEditorUtils.getBenchLevelScoring(team, yearWithStats)
         : 0;
 
-      const depthBonus = TeamEditorUtils.calcDepthBonus(
-        filteredPlayerSet,
-        team,
-      );
-
       //Depth diag:
       //console.log(`Team depth bonus: [${team}], off=[${depthBonus.off.toFixed(2)}] def=[${depthBonus.def.toFixed(2)}] net=[${(depthBonus.off-depthBonus.def).toFixed(2)}]`);
-
-      const okTotals = TeamEditorUtils.buildTotals(
-        filteredPlayerSet,
-        "ok",
-        depthBonus,
-      );
 
       // Off-season and eval mode only: good and bad vs neutral ... In-season: ok vs orig
       const stdDevFactor = 1.0 / Math.sqrt(5); //(1 std dev, so divide by root of team size)
@@ -2050,11 +2395,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         title: teamLink,
         //(for diag only)
         mpg: totalMins < 0.99 ? { value: totalMins - 1.0 } : undefined,
-        nil: (
-          <small>
-            <i>{totalNil.toFixed(0)}</i>
-          </small>
-        ),
+        nil: enableNil
+          ? {
+              value: totalNil / 1e6,
+              ...(nilTeamTotalsExtraInfo
+                ? { extraInfo: nilTeamTotalsExtraInfo }
+                : {}),
+            }
+          : undefined,
 
         // Eval mode
         actual_mpg:
@@ -2656,6 +3004,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     alwaysShowBench,
     diffBasis,
     enableNil,
+    nilBudgetInput,
+    nilDesiredNetInput,
     showGrades,
   ]);
 
@@ -2903,6 +3253,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     setDiffBasis(undefined); //(turn off diff basis since data format is changing)
   }
 
+  /** NIL allocator is only available in off-season mode, not What If? or Review */
+  const nilModeBlockedByScenario = !offSeasonMode || evalMode;
+
   return (
     <Container fluid>
       {overrideGrades ? null : (
@@ -3047,6 +3400,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 disabled={year > DateUtils.offseasonYear}
                 onSelect={() =>
                   friendlyChange(() => {
+                    if (offSeasonMode) {
+                      setEnableNil(false);
+                    }
                     setOffSeasonModeWithEffects(!offSeasonMode);
                     setEvalMode(false);
                   }, true)
@@ -3055,13 +3411,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               <GenericTogglingMenuItem
                 text={
                   <span>
-                    NIL mode enabled <Badge variant="dark">fictional!</Badge>
+                    Enable experimental NIL analysis mode{" "}
+                    <Badge variant="dark">fictional!</Badge>
                   </span>
                 }
                 truthVal={enableNil}
+                disabled={nilModeBlockedByScenario}
                 onSelect={() =>
                   friendlyChange(() => {
-                    setEnableNil(!enableNil);
+                    if (!nilModeBlockedByScenario) {
+                      setEnableNil(!enableNil);
+                    }
                   }, true)
                 }
               />
@@ -3072,6 +3432,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 disabled={year > DateUtils.offseasonYear}
                 onSelect={() =>
                   friendlyChange(() => {
+                    if (!evalMode) {
+                      setEnableNil(false);
+                    }
                     setOffSeasonModeWithEffects(true);
                     setEvalMode(!evalMode);
                   }, true)
@@ -3175,6 +3538,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       disabled: year > DateUtils.offseasonYear,
                       onClick: () =>
                         friendlyChange(() => {
+                          if (offSeasonMode) {
+                            setEnableNil(false);
+                          }
                           setOffSeasonModeWithEffects(!offSeasonMode);
                           setEvalMode(false);
                         }, true),
@@ -3187,8 +3553,23 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                       disabled: year > DateUtils.offseasonYear,
                       onClick: () =>
                         friendlyChange(() => {
+                          if (!evalMode) {
+                            setEnableNil(false);
+                          }
                           setOffSeasonModeWithEffects(true);
                           setEvalMode(!evalMode);
+                        }, true),
+                    },
+                    {
+                      label: "NIL",
+                      tooltip: "Enable experimental NIL analysis mode",
+                      toggled: enableNil,
+                      disabled: nilModeBlockedByScenario,
+                      onClick: () =>
+                        friendlyChange(() => {
+                          if (!nilModeBlockedByScenario) {
+                            setEnableNil(!enableNil);
+                          }
                         }, true),
                     },
                   ],
@@ -3226,6 +3607,54 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           </Col>
         ) : null}
       </Row>
+      {enableNil ? (
+        <Row className="mt-2 mb-1 align-items-center flex-wrap gx-2">
+          <Col xs="auto">
+            <Form.Label className="small mb-0 me-1 mr-1">
+              Estimated Budget ($M):
+            </Form.Label>
+            <AsyncFormControl
+              size="sm"
+              className="d-inline-block"
+              style={{ width: "4.5rem" }}
+              placeholder="—"
+              startingVal={nilBudgetInput}
+              validate={(t) => t === "" || /^\d{0,2}(\.\d{0,2})?$/.test(t)}
+              onChange={(t) => setNilBudgetInput(t)}
+              timeout={400}
+            />
+          </Col>
+          <Col xs="auto">
+            <Form.Label className="small mb-0 me-1 mr-1">
+              Desired rating:
+            </Form.Label>
+            <AsyncFormControl
+              size="sm"
+              className="d-inline-block"
+              style={{ width: "4rem" }}
+              startingVal={nilDesiredNetInput}
+              validate={(t) => t === "" || /^-?\d{0,2}(\.\d{0,2})?$/.test(t)}
+              onChange={(t) => setNilDesiredNetInput(t)}
+              timeout={400}
+            />
+            {nilDesiredNetRankLabel ? (
+              <span className="small text-muted ms-2 ml-1">
+                {nilDesiredNetRankLabel}
+              </span>
+            ) : null}
+          </Col>
+          <Col xs="auto" className="ms-auto">
+            <a
+              href="https://nikoza2.substack.com/p/how-to-value-college-basketball-free"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="small"
+            >
+              Based on Nik Oza&apos;s work
+            </a>
+          </Col>
+        </Row>
+      ) : null}
       <Row className="mt-2">
         <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
           <Container>

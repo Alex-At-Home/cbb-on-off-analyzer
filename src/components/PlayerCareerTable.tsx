@@ -1239,17 +1239,48 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     const adjMarginPer100 =
       ((player.off_adj_rapm as Statistic)?.value || 0) -
       ((player.def_adj_rapm as Statistic)?.value || 0);
+    const adjMarginPer100_adj =
+      ((player.off_adj_rapm as Statistic)?.old_value ??
+        (player.off_adj_rapm as Statistic)?.value ??
+        0) -
+      ((player.def_adj_rapm as Statistic)?.old_value ??
+        (player.def_adj_rapm as Statistic)?.value ??
+        0);
     const adjMarginProd =
       ((player.off_adj_rapm_prod as Statistic)?.value || 0) -
       ((player.def_adj_rapm_prod as Statistic)?.value || 0);
+    const adjMarginProd_adj =
+      ((player.off_adj_rapm_prod as Statistic)?.value ??
+        (player.off_adj_rapm_prod as Statistic)?.old_value ??
+        0) -
+      ((player.def_adj_rapm_prod as Statistic)?.value ??
+        (player.def_adj_rapm_prod as Statistic)?.old_value ??
+        0);
     const adjMargin = factorMins ? adjMarginProd : adjMarginPer100;
     player.off_adj_rapm_margin = {
       value: adjMarginPer100,
     };
-
     player.off_adj_rapm_margin_prod = {
       value: adjMarginProd,
     };
+    if (adjMarginPer100 != adjMarginPer100_adj) {
+      player.off_adj_rapm_margin.old_value = adjMarginPer100_adj;
+      player.off_adj_rapm_margin_prod.old_value = adjMarginProd_adj;
+      //(currently only defense has this)
+      player.off_adj_rapm_margin.override = (
+        player.def_adj_rapm as Statistic
+      )?.override;
+      player.off_adj_rapm_margin.extraInfo = (
+        player.def_adj_rapm as Statistic
+      )?.extraInfo;
+      player.off_adj_rapm_margin_prod.override = (
+        player.def_adj_rapm as Statistic
+      )?.override;
+      player.off_adj_rapm_margin_prod.extraInfo = (
+        player.def_adj_rapm as Statistic
+      )?.extraInfo;
+    }
+
     // Play style
 
     const fullYear = DateUtils.fullYearFromShortYear(player.year || "") || "";
@@ -1588,7 +1619,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
               posBreakdown,
             )}
           >
-            <small>{player.posClass || "??"}</small>
+            <small>
+              {player.posClass || "??"}
+              <sup>*</sup>
+            </small>
           </OverlayTrigger>
         </i>
       </span>

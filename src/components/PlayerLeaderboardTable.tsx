@@ -1271,8 +1271,18 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           player.off_adj_rapm && player.def_adj_rapm
             ? {
                 value:
-                  (player.off_adj_rapm?.value || 0) -
-                  (player.def_adj_rapm?.value || 0),
+                  (player.off_adj_rapm?.value ?? 0) -
+                  (player.def_adj_rapm?.value ?? 0),
+                old_value:
+                  (player.off_adj_rapm?.old_value ??
+                    player.off_adj_rapm?.value ??
+                    0) -
+                  (player.def_adj_rapm?.old_value ??
+                    player.def_adj_rapm?.value ??
+                    0),
+                // Currently only defense has this info:
+                override: player.def_adj_rapm?.override,
+                extraInfo: player.def_adj_rapm?.extraInfo,
               }
             : undefined;
 
@@ -1281,7 +1291,14 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           player.off_adj_rapm_prod_margin = {
             value: adjRapmMargin.value! * player.off_team_poss_pct.value!,
             override: adjRapmMargin.override,
+            extraInfo: adjRapmMargin.extraInfo,
           };
+          if (adjRapmMargin.value == adjRapmMargin.old_value) {
+            delete adjRapmMargin.old_value;
+          } else {
+            player.off_adj_rapm_prod_margin.old_value =
+              (adjRapmMargin.old_value || 0) * player.off_team_poss_pct.value!;
+          }
         }
       } else {
         player.off_adj_rapm_margin = undefined;
@@ -1611,7 +1628,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 posBreakdown,
               )}
             >
-              <small>{player.posClass || "??"}</small>
+              <small>
+                {player.posClass || "??"}
+                <sup>*</sup>
+              </small>
             </OverlayTrigger>
           </i>
         </span>

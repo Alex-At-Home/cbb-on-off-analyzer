@@ -44,6 +44,14 @@ type Props = {
   enableNil?: boolean;
 };
 
+function nilDollarsToInputString(dollars: number | undefined) {
+  if (_.isNil(dollars)) {
+    return "";
+  }
+  const s = (dollars / 1e6).toFixed(2);
+  return String(parseFloat(s));
+}
+
 const TeamRosterEditor: React.FunctionComponent<Props> = ({
   overrides,
   onDelete,
@@ -57,16 +65,18 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
   // Starting values:
   const [currName, setCurrName] = useState(overrides?.name || "");
   const [currMins, setCurrMins] = useState(overrides?.mins?.toFixed(1) || "");
-  const [currNil, setCurrNil] = useState(overrides?.nil?.toFixed(0) || "");
+  const [currNil, setCurrNil] = useState(
+    nilDollarsToInputString(overrides?.nil),
+  );
   const [currProfile, setCurrProfile] = useState(
-    (overrides?.profile || (addNewPlayerMode ? "4*" : "Auto")) as Profiles
+    (overrides?.profile || (addNewPlayerMode ? "4*" : "Auto")) as Profiles,
   );
   const [currPos, setCurrPos] = useState(overrides?.pos || "WG");
   const [currOffAdj, setCurrOffAdj] = useState(
-    (overrides?.global_off_adj || 0) as number | undefined
+    (overrides?.global_off_adj || 0) as number | undefined,
   );
   const [currDefAdj, setCurrDefAdj] = useState(
-    -(overrides?.global_def_adj || 0) as number | undefined
+    -(overrides?.global_def_adj || 0) as number | undefined,
   );
 
   // Start: some ugly logic to handle resetting Fr global adjustments
@@ -79,6 +89,10 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
       setCurrDefAdj(-(overrides?.global_def_adj || 0));
     }
   }, [overrides]); // This doesn't get called if overrides is the same value after the reset, so fallback to...
+
+  useEffect(() => {
+    setCurrNil(nilDollarsToInputString(overrides?.nil));
+  }, [overrides?.nil]);
 
   // ... this will get called normally before the above useEffect; but if we need to change the value, useEffect will get called anyway
 
@@ -135,7 +149,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
 
   const nilApplyTooltip = (
     <Tooltip id="nilApplyTooltip">
-      Add a manual estimate for the player's NIL old_value.&nbsp; Clear the
+      Enter NIL in millions of dollars (e.g. 0.75 for $750k).&nbsp; Clear the
       field and apply to return to the automatically calculated version.
     </Tooltip>
   );
@@ -313,7 +327,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                                 onUpdate(
                                   _.isEmpty(currOverrides)
                                     ? undefined
-                                    : currOverrides
+                                    : currOverrides,
                                 );
                               }
                             }
@@ -328,16 +342,19 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                     <Col xs={3}>
                       <InputGroup>
                         <InputGroup.Prepend>
-                          <InputGroup.Text id="minPct">NIL $</InputGroup.Text>
+                          <InputGroup.Text id="minPct">
+                            NIL ($M)
+                          </InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
                           disabled={overrides?.pause}
                           onChange={(ev: any) => {
-                            if (/^[0-9]*$/.exec(ev.target.value || "")) {
-                              setCurrNil(ev.target.value || "");
+                            const v = ev.target.value || "";
+                            if (v === "" || /^\d*\.?\d{0,3}$/.test(v)) {
+                              setCurrNil(v);
                             }
                           }}
-                          placeholder="eg 100"
+                          placeholder="0.75"
                           value={currNil}
                         />
                       </InputGroup>
@@ -357,24 +374,35 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                             variant="outline-secondary"
                             disabled={overrides?.pause}
                             onClick={() => {
-                              if (
-                                !(
-                                  parseInt(currNil || "-1") == overrides?.nil ||
-                                  (!currNil && _.isNil(overrides?.nil))
-                                )
-                              ) {
+                              const parsedM =
+                                currNil === ""
+                                  ? undefined
+                                  : parseFloat(currNil);
+                              const nextDollars =
+                                parsedM !== undefined &&
+                                Number.isFinite(parsedM)
+                                  ? Math.round(parsedM * 1e6)
+                                  : undefined;
+                              const matches =
+                                (nextDollars === undefined &&
+                                  _.isNil(overrides?.nil)) ||
+                                nextDollars === overrides?.nil;
+                              if (!matches) {
                                 const currOverrides = overrides
                                   ? _.clone(overrides)
                                   : {};
                                 if (currNil == "") {
                                   delete currOverrides.nil;
-                                } else {
-                                  currOverrides.nil = parseInt(currNil);
+                                } else if (
+                                  nextDollars !== undefined &&
+                                  nextDollars >= 0
+                                ) {
+                                  currOverrides.nil = nextDollars;
                                 }
                                 onUpdate(
                                   _.isEmpty(currOverrides)
                                     ? undefined
-                                    : currOverrides
+                                    : currOverrides,
                                 );
                               }
                             }}
@@ -441,7 +469,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                               onUpdate(
                                 _.isEmpty(currOverrides)
                                   ? undefined
-                                  : currOverrides
+                                  : currOverrides,
                               );
                             }
                           }}
@@ -513,7 +541,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                               onUpdate(
                                 _.isEmpty(currOverrides)
                                   ? undefined
-                                  : currOverrides
+                                  : currOverrides,
                               );
                             }}
                           >
@@ -544,7 +572,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                           isDisabled={overrides?.pause}
                           value={stringToOption(currPos)}
                           options={_.keys(PositionUtils.idToPosition).map(
-                            stringToOption
+                            stringToOption,
                           )}
                           onChange={(option: any) => {
                             const selection = (option as any)?.value || "";
@@ -571,7 +599,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                               onUpdate(
                                 _.isEmpty(currOverrides)
                                   ? undefined
-                                  : currOverrides
+                                  : currOverrides,
                               );
                             }}
                           >
@@ -650,7 +678,7 @@ const TeamRosterEditor: React.FunctionComponent<Props> = ({
                             onUpdate(
                               _.isEmpty(currOverrides)
                                 ? undefined
-                                : currOverrides
+                                : currOverrides,
                             );
                           }}
                         >

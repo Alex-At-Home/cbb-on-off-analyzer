@@ -12,6 +12,7 @@ type Props = {
   // Extra fields to pass in:
   className?: string;
   size?: "sm" | "lg";
+  style?: React.CSSProperties;
 };
 
 /** More responsive form control - must set if validate is set then startingVal is locked else just starting */
@@ -44,7 +45,7 @@ const AsyncFormControl: React.FunctionComponent<Props> = ({
       window.setTimeout(() => {
         onChange(toSet);
         setTimeoutId(-1);
-      }, timeout)
+      }, timeout),
     );
   };
   /** Only allow validated characters */

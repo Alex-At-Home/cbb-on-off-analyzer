@@ -346,6 +346,10 @@ export type TeamEditorParams = {
   showOnlyCurrentYear?: boolean; //(defaults to true)
   diffBasis?: string; //JSON representation of the starting point for showing diffs
   enableNil?: boolean;
+  /** NIL allocator: estimated roster budget in millions (e.g. "12.5") */
+  nilBudgetMillions?: string;
+  /** NIL allocator: target team net rating (string for URL; default 20) */
+  nilDesiredNet?: string;
   // Editor state
   deletedPlayers?: string; //;-separated list
   disabledPlayers?: string; //;-separated list

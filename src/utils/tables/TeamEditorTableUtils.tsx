@@ -43,7 +43,7 @@ export class TeamEditorTableUtils {
     offSeasonMode: boolean,
     minPct: boolean,
     caliberMode: boolean,
-    enableNil: boolean = false
+    enableNil: boolean = false,
   ) {
     const minPctStr = minPct ? " (weighted for a player's mpg)" : "";
 
@@ -55,7 +55,7 @@ export class TeamEditorTableUtils {
           CommonTableDefs.rowSpanCalculator,
           "small",
           GenericTableOps.htmlFormatter,
-          20
+          20,
         ),
         sep0: GenericTableOps.addColSeparator(0.5),
 
@@ -63,62 +63,62 @@ export class TeamEditorTableUtils {
           "Pos",
           "Positional class of player (algorithmically generated)",
           CbbColors.applyThemedBackground,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         nil: GenericTableOps.addDataCol(
           "NIL",
-          "User entered guess at players' NIL value / team's NIL costs",
+          "A player's NIL 'fair value' according to the budget and their contribution. Values are in millions of USD ($M); A '*' indicates a manually set budget - hover over to see surplus",
           CbbColors.applyThemedBackground,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.twoDpFormatter,
         ),
         actual_mpg: GenericTableOps.addPtsCol(
           "act. mpg",
           "Actual minutes per game (bench minutes are currently estimated)",
-          CbbColors.applyThemedBackground
+          CbbColors.applyThemedBackground,
         ),
         mpg: GenericTableOps.addPtsCol(
           "mpg",
           "Approximate expected minutes per game (missing minutes per team shown if there are any)",
-          CbbColors.applyThemedBackground
+          CbbColors.applyThemedBackground,
         ),
         "sep0.6": GenericTableOps.addColSeparator(0.05),
         ortg: GenericTableOps.addPtsCol(
           "ORtg",
           "Offensive Rating, for 'Balanced' projections",
-          CbbColors.varPicker(CbbColors.off_pp100)
+          CbbColors.varPicker(CbbColors.off_pp100),
         ),
         usage: GenericTableOps.addPctCol(
           "Usg",
           "Usage for `Balanced` projections",
-          CbbColors.varPicker(CbbColors.usg_offDef)
+          CbbColors.varPicker(CbbColors.usg_offDef),
         ),
         ptsPlus: GenericTableOps.addPtsCol(
           "Pts+",
           "Points per game scored or created - weighted according to scored/assisted/rebounded: a reasonable proxy for PPG ('Balanced' projection, assumes a 70 possession game)",
-          CbbColors.applyThemedBackground
+          CbbColors.applyThemedBackground,
         ),
         rebound: GenericTableOps.addPctCol(
           "RB%",
           "% of available defensive rebounds made by this player (just last season's numbers)",
-          CbbColors.varPicker(CbbColors.p_def_OR)
+          CbbColors.varPicker(CbbColors.p_def_OR),
         ),
         rpg: GenericTableOps.addPtsCol(
           "Rpg",
           "Rebounds per game, offensive and defensive (approximately last season's numbers)",
-          CbbColors.applyThemedBackground
+          CbbColors.applyThemedBackground,
         ),
 
         act_caliber: GenericTableOps.addDataCol(
           <u>act.</u>,
           "The caliber associated with the player's actual results instead of the expected results",
           CbbColors.varPicker(TeamEditorTableUtils.caliberColor),
-          TeamEditorTableUtils.caliberFormatter
+          TeamEditorTableUtils.caliberFormatter,
         ),
         caliber: GenericTableOps.addDataCol(
           <u>Cal.</u>,
           "'Caliber', A color indication of where a player might fit into a NCAAT team (the extremes show upside/downside), see color key in next row",
           CbbColors.varPicker(TeamEditorTableUtils.caliberColor),
-          TeamEditorTableUtils.caliberFormatter
+          TeamEditorTableUtils.caliberFormatter,
         ),
 
         sep1: GenericTableOps.addColSeparator(2),
@@ -127,20 +127,20 @@ export class TeamEditorTableUtils {
           "Net",
           "Net Adjusted Pts/100 above an average D1 player, what actually happened" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         "actual_sep1.5": GenericTableOps.addColSeparator(0.05),
         actual_off: GenericTableOps.addPtsCol(
           "Off",
           "Offensive Adjusted Pts/100 above an average D1 player, what actually happened" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         actual_def: GenericTableOps.addPtsCol(
           "Def",
           "Defensive Adjusted Pts/100 above an average D1 player, what actually happened" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
         ),
         actual_sep2: GenericTableOps.addColSeparator(3),
 
@@ -148,20 +148,20 @@ export class TeamEditorTableUtils {
           "Net",
           "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         "sep2.5": GenericTableOps.addColSeparator(0.05),
         ok_off: GenericTableOps.addPtsCol(
           "Off",
           "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         ok_def: GenericTableOps.addPtsCol(
           "Def",
           "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
         ),
         sep3: GenericTableOps.addColSeparator(3),
 
@@ -169,20 +169,20 @@ export class TeamEditorTableUtils {
           "Net",
           "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         "sep1.5": GenericTableOps.addColSeparator(0.05),
         good_off: GenericTableOps.addPtsCol(
           "Off",
           "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         good_def: GenericTableOps.addPtsCol(
           "Def",
           "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
         ),
         sep2: GenericTableOps.addColSeparator(3),
 
@@ -190,20 +190,20 @@ export class TeamEditorTableUtils {
           "Net",
           "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         "sep3.5": GenericTableOps.addColSeparator(0.05),
         bad_off: GenericTableOps.addPtsCol(
           "Off",
           "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
         ),
         bad_def: GenericTableOps.addPtsCol(
           "Def",
           "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections" +
             minPctStr,
-          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen)
+          CbbColors.varPicker(CbbColors.def_diff10_p100_redGreen),
         ),
         sep4: GenericTableOps.addColSeparator(2),
 
@@ -211,50 +211,50 @@ export class TeamEditorTableUtils {
           "",
           "Edit the Optimistic/Balanced/Pessmistic projections for the player",
           CbbColors.applyThemedBackground,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
         disable: GenericTableOps.addDataCol(
           "",
           "Disable/re-enabled this player from the roster",
           CbbColors.applyThemedBackground,
-          GenericTableOps.htmlFormatter
+          GenericTableOps.htmlFormatter,
         ),
       },
       (evalMode && offSeasonMode
         ? ["ortg", "usage", "rebound", "sep0.6"]
         : !offSeasonMode
-        ? [
-            "actual_net",
-            "actual_off",
-            "actual_def",
-            "actual_sep1.5",
-            "actual_sep2",
-            "bad_net",
-            "bad_off",
-            "bad_def",
-            "sep3.5",
-            "sep4",
-          ]
-        : [
-            "actual_net",
-            "actual_off",
-            "actual_def",
-            "actual_sep1.5",
-            "actual_sep2",
-            "actual_mpg",
-          ]
+          ? [
+              "actual_net",
+              "actual_off",
+              "actual_def",
+              "actual_sep1.5",
+              "actual_sep2",
+              "bad_net",
+              "bad_off",
+              "bad_def",
+              "sep3.5",
+              "sep4",
+            ]
+          : [
+              "actual_net",
+              "actual_off",
+              "actual_def",
+              "actual_sep1.5",
+              "actual_sep2",
+              "actual_mpg",
+            ]
       )
         .concat(
           //TODO: decide on the best display here (would I rather calc rebounds/game or show usage?)
           //            minPct ? [ "usage", "rebound" ] : [ "ptsPlus", "rpg" ]
-          minPct ? ["rebound", "rpg"] : ["ptsPlus", "rpg"]
+          minPct ? ["rebound", "rpg"] : ["ptsPlus", "rpg"],
         )
         .concat(
           caliberMode
             ? ["ortg", "usage", "rebound"].concat(evalMode ? [] : "act_caliber")
-            : ["caliber", "act_caliber"]
+            : ["caliber", "act_caliber"],
         )
-        .concat(enableNil ? [] : ["nil"])
+        .concat(enableNil ? [] : ["nil"]),
     ) as Record<string, GenericTableColProps>;
   }
 
@@ -265,83 +265,83 @@ export class TeamEditorTableUtils {
       CommonTableDefs.rowSpanCalculator,
       "small",
       GenericTableOps.htmlFormatter,
-      20
+      20,
     ),
 
     mpg: GenericTableOps.addPtsCol(
       "mpg",
       "Approximate expected minutes per game",
-      CbbColors.applyThemedBackground
+      CbbColors.applyThemedBackground,
     ),
 
     // Only used in eval mode:
     actual_mpg: GenericTableOps.addPtsCol(
       "act. mpg",
       "Actual minutes per game",
-      CbbColors.applyThemedBackground
+      CbbColors.applyThemedBackground,
     ),
     actual_net: GenericTableOps.addPtsCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, what actually happened",
-      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen)
+      CbbColors.varPicker(CbbColors.off_diff10_p100_redGreen),
     ),
     actual_off: GenericTableOps.addPtsCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, what actually happened",
-      CbbColors.varPicker(CbbColors.off_pp100)
+      CbbColors.varPicker(CbbColors.off_pp100),
     ),
     actual_def: GenericTableOps.addPtsCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, what actually happened",
-      CbbColors.varPicker(CbbColors.def_pp100)
+      CbbColors.varPicker(CbbColors.def_pp100),
     ),
 
     good_net: GenericTableOps.addPtsCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
-      CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)
+      CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen),
     ),
     good_off: GenericTableOps.addPtsCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
-      CbbColors.varPicker(CbbColors.off_pp100)
+      CbbColors.varPicker(CbbColors.off_pp100),
     ),
     good_def: GenericTableOps.addPtsCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
-      CbbColors.varPicker(CbbColors.def_pp100)
+      CbbColors.varPicker(CbbColors.def_pp100),
     ),
 
     ok_net: GenericTableOps.addPtsCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
-      CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)
+      CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen),
     ),
     ok_off: GenericTableOps.addPtsCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
-      CbbColors.varPicker(CbbColors.off_pp100)
+      CbbColors.varPicker(CbbColors.off_pp100),
     ),
     ok_def: GenericTableOps.addPtsCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
-      CbbColors.varPicker(CbbColors.def_pp100)
+      CbbColors.varPicker(CbbColors.def_pp100),
     ),
 
     bad_net: GenericTableOps.addPtsCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
-      CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen)
+      CbbColors.varPicker(CbbColors.off_diff35_p100_redGreen),
     ),
     bad_off: GenericTableOps.addPtsCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
-      CbbColors.varPicker(CbbColors.off_pp100)
+      CbbColors.varPicker(CbbColors.off_pp100),
     ),
     bad_def: GenericTableOps.addPtsCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
-      CbbColors.varPicker(CbbColors.def_pp100)
+      CbbColors.varPicker(CbbColors.def_pp100),
     ),
   };
   static readonly gradeTableDef = {
@@ -351,89 +351,89 @@ export class TeamEditorTableUtils {
       CommonTableDefs.rowSpanCalculator,
       "small",
       GenericTableOps.htmlFormatter,
-      20
+      20,
     ),
 
     // Only used in eval mode:
     actual_mpg: GenericTableOps.addPtsCol(
       "act. mpg",
       "Actual minutes per game",
-      CbbColors.applyThemedBackground
+      CbbColors.applyThemedBackground,
     ),
     actual_net: GenericTableOps.addDataCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, what actually happened",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     actual_off: GenericTableOps.addDataCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, what actually happened",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     actual_def: GenericTableOps.addDataCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, what actually happened",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
 
     ok_net: GenericTableOps.addDataCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     ok_off: GenericTableOps.addDataCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     ok_def: GenericTableOps.addDataCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, for 'Balanced' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
 
     good_net: GenericTableOps.addDataCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     good_off: GenericTableOps.addDataCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     good_def: GenericTableOps.addDataCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, for 'Optimistic' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
 
     bad_net: GenericTableOps.addDataCol(
       "Net",
       "Net Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     bad_off: GenericTableOps.addDataCol(
       "Off",
       "Offensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
     bad_def: GenericTableOps.addDataCol(
       "Def",
       "Defensive Adjusted Pts/100 above an average D1 player, for 'Pessimistic' projections",
       CbbColors.varPicker(CbbColors.high_pctile_qual),
-      GenericTableOps.gradeOrHtmlFormatter
+      GenericTableOps.gradeOrHtmlFormatter,
     ),
   };
 }
