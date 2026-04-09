@@ -1873,8 +1873,38 @@ export class TeamEditorManualFixes {
           string,
           TeamEditorManualFixModel
         > = {
+          Alabama: {
+            leftTeam: ["LaPhilon::"], //(NBA)
+          },
+          Arizona: {
+            leftTeam: ["KoPeat::"], //(NBA)
+          },
+          Arkansas: {
+            leftTeam: ["DaAcuff::"], //(NBA)
+          },
+          BYU: {
+            leftTeam: ["AjDybantsa::"], //(NBA)
+          },
+          Duke: {
+            leftTeam: ["CmBoozer::"], //(NBA)
+          },
+          Houston: {
+            leftTeam: ["KiFlemings::"], //(NBA)
+          },
+          Illinois: {
+            leftTeam: ["KeWagler::"], //(NBA)
+          },
+          Kansas: {
+            leftTeam: ["DaPeterson::"], //(NBA)
+          },
+          Kentucky: {
+            leftTeam: ["JaQuaintance::"], //(NBA)
+          },
+          Louisville: {
+            leftTeam: ["MiBrown::"], //(NBA)
+          },
           Maryland: {
-            leftTeam: ["CoMetcalf::"],
+            leftTeam: ["CoMetcalf::"], //(was listed as Jr but is Sr)
             superSeniorsReturning: new Set(["PhPayne::"]),
             ...TeamEditorManualFixes.buildOverrides({
               "": {
@@ -1891,6 +1921,18 @@ export class TeamEditorManualFixes {
                 },
               },
             })[""],
+          },
+          "North Carolina": {
+            leftTeam: ["CaWilson::"], //(NBA)
+          },
+          Tennessee: {
+            leftTeam: ["NaAment::"], //(NBA)
+          },
+          "Texas Tech": {
+            leftTeam: ["ChAnderson::"], //(NBA)
+          },
+          Washington: {
+            leftTeam: ["HaSteinbach::"], //(NBA)
           },
         };
 
