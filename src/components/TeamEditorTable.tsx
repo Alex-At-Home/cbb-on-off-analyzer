@@ -594,38 +594,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     }
   }, [year, gender, showGrades]);
 
-  const nilDesiredNetRankLabel = React.useMemo(() => {
-    if (!enableNil) {
-      return null;
-    }
-    const tierForNilRank =
-      usePreseasonRanksOnly && preSeasonDivisionStats
-        ? preSeasonDivisionStats
-        : divisionStatsCache.Combo || divisionStatsCache.High;
-    if (!tierForNilRank) {
-      return null;
-    }
-    const desiredVal = parseNilDesiredNet(nilDesiredNetInput);
-    const grades = GradeUtils.buildTeamPercentiles(
-      tierForNilRank,
-      { off_net: { value: desiredVal } },
-      ["net", "adj_ppp"],
-      true,
-    );
-    const stat = grades.off_net as Statistic | undefined;
-    if (!stat || !_.isNumber(stat.value)) {
-      return null;
-    }
-    const numTeams = stat.samples || 400;
-    const rank = 1 + Math.round((1 - (stat.value || 0)) * numTeams);
-    return `(rank: ${rank}${GenericTableOps.rankSuffix(rank)})`;
-  }, [
-    enableNil,
-    usePreseasonRanksOnly,
-    preSeasonDivisionStats,
-    divisionStatsCache,
-    nilDesiredNetInput,
-  ]);
+  /** Filled inside rosterTable useMemo when NIL is enabled (team net vs desired for rank line) */
+  const nilAllocatorUiRef = React.useRef<{
+    nilDesiredNetNum: number;
+    nilEffectiveDesiredNet: number;
+    nilDesiredCappedByTeam: boolean;
+    teamOkNet: number;
+  } | null>(null);
 
   /////////////////////////////////////
 
@@ -633,6 +608,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
   const rosterTable = React.useMemo(() => {
     setLoadingOverride(false);
+    nilAllocatorUiRef.current = null;
 
     // First time through ... Rebuild the state from the input params
     if (
@@ -788,7 +764,28 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         : 0;
 
     const nilBudgetM = parseNilBudgetMillions(nilBudgetInput);
+    const nilOkTotalsForAllocator = enableNil
+      ? TeamEditorUtils.buildTotals(
+          nilFilteredForAllocator,
+          "ok",
+          nilAllocatorDepthBonus,
+        )
+      : { net: 0, off: 0, def: 0 };
     const nilDesiredNetNum = parseNilDesiredNet(nilDesiredNetInput);
+    const nilEffectiveDesiredNet = enableNil
+      ? Math.max(nilDesiredNetNum, nilOkTotalsForAllocator.net)
+      : nilDesiredNetNum;
+    const nilDesiredCappedByTeam =
+      enableNil && nilOkTotalsForAllocator.net > nilDesiredNetNum + 1e-6;
+    nilAllocatorUiRef.current = enableNil
+      ? {
+          nilDesiredNetNum,
+          nilEffectiveDesiredNet,
+          nilDesiredCappedByTeam,
+          teamOkNet: nilOkTotalsForAllocator.net,
+        }
+      : null;
+
     const useNilBudgetAllocator = enableNil && nilBudgetM !== undefined;
     const nilManualSumForAllocator = useNilBudgetAllocator
       ? _.sumBy(nilFilteredForAllocator, (triple) => {
@@ -812,7 +809,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       : 0;
 
     const nilTargetImprovementPts = useNilBudgetAllocator
-      ? totalImprovementNeededPoints(nilDesiredNetNum)
+      ? totalImprovementNeededPoints(nilEffectiveDesiredNet)
       : undefined;
 
     const nilRemainingTargetPts =
@@ -847,7 +844,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       useNilBudgetAllocator && nilBudgetM !== undefined
         ? nilFullBudgetDollarsPerMarginalPoint(
             nilBudgetM * 1e6,
-            nilDesiredNetNum,
+            nilEffectiveDesiredNet,
           )
         : undefined;
 
@@ -1952,7 +1949,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           filteredPlayerSet,
           (t) => nilPlayerMarginalPts(t) < 0,
         ).length;
-        const Tfull = totalImprovementNeededPoints(nilDesiredNetNum);
+        const Tfull = totalImprovementNeededPoints(nilEffectiveDesiredNet);
         const depthNet = depthBonus.off - depthBonus.def;
         const depthNetNilAllocator =
           nilAllocatorDepthBonus.off - nilAllocatorDepthBonus.def;
@@ -1985,7 +1982,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             S,
             delta: okNetMinusDepth - S,
           },
-          desiredNet: nilDesiredNetNum,
+          desiredNetInput: nilDesiredNetNum,
+          desiredNetEffective: nilEffectiveDesiredNet,
           P,
           S_plus_P: S + P,
           sumMarginalPts: sumM,
@@ -2014,7 +2012,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         if (useNilBudgetAllocator && nilBudgetM !== undefined) {
           const nilRateM = nilFullBudgetMillionsPerMarginalPoint(
             nilBudgetM,
-            nilDesiredNetNum,
+            nilEffectiveDesiredNet,
           );
           const rateSuffix =
             nilRateM !== undefined
@@ -2026,7 +2024,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           const diffM = budgetM - totalM;
           const ad = Math.abs(diffM);
           const manualM = nilManualSumForAllocator / 1e6;
-          const netVsDesired = okTotals.net - nilDesiredNetNum;
+          const netVsEffectiveDesired = okTotals.net - nilEffectiveDesiredNet;
           const NET_TOL = 0.35;
 
           const autoNegMarginalCount = _.filter(
@@ -2038,18 +2036,21 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
           if (manualM > budgetM + 0.005) {
             nilTeamTotalsExtraInfo = `Manual NIL sums ($${manualM.toFixed(2)}M) exceed the estimated budget; auto rows are $0. Values in $M.${rateSuffix}`;
-          } else if (ad < 0.02 && Math.abs(netVsDesired) < NET_TOL) {
-            nilTeamTotalsExtraInfo = `Total ≈ budget while projected balanced team net ≈ your desired rating. Values in $M.${rateSuffix}`;
+          } else if (ad < 0.02 && Math.abs(netVsEffectiveDesired) < NET_TOL) {
+            const capNote = nilDesiredCappedByTeam
+              ? ` NIL target uses balanced team net (${okTotals.net.toFixed(1)}) because it exceeds the rating you entered (${nilDesiredNetNum.toFixed(1)}).`
+              : "";
+            nilTeamTotalsExtraInfo = `Total ≈ budget while projected balanced team net matches the NIL spending target.${capNote} Values in $M.${rateSuffix}`;
           } else if (
             autoNegMarginalCount > 0 &&
             diffM > 0.02 &&
             (nilRemainingBudgetDollars ?? 0) > 0
           ) {
             nilTeamTotalsExtraInfo = `Total is $${ad.toFixed(2)}M below budget partly because ${autoNegMarginalCount} auto player(s) are below replacement on marginal value (NIL floored at $0). Values in $M.${rateSuffix}`;
-          } else if (netVsDesired < -NET_TOL) {
-            nilTeamTotalsExtraInfo = `Balanced team net (${okTotals.net.toFixed(1)}) is below desired (${nilDesiredNetNum.toFixed(1)}), so roster marginal points fall short of the target gap—total NIL is usually below the budget. Values in $M.${rateSuffix}`;
-          } else if (netVsDesired > NET_TOL) {
-            nilTeamTotalsExtraInfo = `Balanced team net (${okTotals.net.toFixed(1)}) is above desired (${nilDesiredNetNum.toFixed(1)}), so marginal points exceed that target—total NIL can run above the budget. Values in $M.${rateSuffix}`;
+          } else if (netVsEffectiveDesired < -NET_TOL) {
+            nilTeamTotalsExtraInfo = `Balanced team net (${okTotals.net.toFixed(1)}) is below the NIL target (${nilEffectiveDesiredNet.toFixed(1)}), so roster marginal points fall short—total NIL is usually below the budget. Values in $M.${rateSuffix}`;
+          } else if (netVsEffectiveDesired > NET_TOL) {
+            nilTeamTotalsExtraInfo = `Balanced team net (${okTotals.net.toFixed(1)}) is above the NIL target (${nilEffectiveDesiredNet.toFixed(1)}), so marginal points exceed that target—total NIL can run above the budget. Values in $M.${rateSuffix}`;
           } else {
             nilTeamTotalsExtraInfo = `Total differs from the budget by $${ad.toFixed(2)}M (manual $ and marginal “removed” from the target vs what’s left for autos). Values in $M.${rateSuffix}`;
           }
@@ -3009,6 +3010,53 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     showGrades,
   ]);
 
+  let nilDesiredRatingSuffix: React.ReactNode = null;
+  if (enableNil) {
+    const meta = nilAllocatorUiRef.current;
+    if (meta) {
+      const tierForNilRank =
+        usePreseasonRanksOnly && preSeasonDivisionStats
+          ? preSeasonDivisionStats
+          : divisionStatsCache.Combo || divisionStatsCache.High;
+      let rankStr: string | null = null;
+      if (tierForNilRank) {
+        const grades = GradeUtils.buildTeamPercentiles(
+          tierForNilRank,
+          { off_net: { value: meta.nilEffectiveDesiredNet } },
+          ["net", "adj_ppp"],
+          true,
+        );
+        const stat = grades.off_net as Statistic | undefined;
+        if (stat && _.isNumber(stat.value)) {
+          const numTeams = stat.samples || 400;
+          const rank = 1 + Math.round((1 - (stat.value || 0)) * numTeams);
+          rankStr = `(rank: ${rank}${GenericTableOps.rankSuffix(rank)})`;
+        }
+      }
+      if (meta.nilDesiredCappedByTeam) {
+        nilDesiredRatingSuffix = (
+          <>
+            <span className="small ms-2 ml-1">
+              USING [{meta.teamOkNet.toFixed(1)}] pts+/100
+            </span>
+            {rankStr ? (
+              <span className="small text-muted ms-1 ml-1">{rankStr}</span>
+            ) : null}
+          </>
+        );
+      } else {
+        nilDesiredRatingSuffix = (
+          <>
+            <span className="small text-muted ms-2 ml-1">pts+/100</span>
+            {rankStr ? (
+              <span className="small text-muted ms-1 ml-1">{rankStr}</span>
+            ) : null}
+          </>
+        );
+      }
+    }
+  }
+
   /////////////////////////////////////
 
   // Add players: show the player leaderboard
@@ -3608,53 +3656,62 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ) : null}
       </Row>
       {enableNil ? (
-        <Row className="mt-2 mb-1 align-items-center flex-wrap gx-2">
-          <Col xs="auto">
-            <Form.Label className="small mb-0 me-1 mr-1">
-              Estimated Budget ($M):
-            </Form.Label>
-            <AsyncFormControl
-              size="sm"
-              className="d-inline-block"
-              style={{ width: "4.5rem" }}
-              placeholder="—"
-              startingVal={nilBudgetInput}
-              validate={(t) => t === "" || /^\d{0,2}(\.\d{0,2})?$/.test(t)}
-              onChange={(t) => setNilBudgetInput(t)}
-              timeout={400}
-            />
-          </Col>
-          <Col xs="auto">
-            <Form.Label className="small mb-0 me-1 mr-1">
-              Desired rating:
-            </Form.Label>
-            <AsyncFormControl
-              size="sm"
-              className="d-inline-block"
-              style={{ width: "4rem" }}
-              startingVal={nilDesiredNetInput}
-              validate={(t) => t === "" || /^-?\d{0,2}(\.\d{0,2})?$/.test(t)}
-              onChange={(t) => setNilDesiredNetInput(t)}
-              timeout={400}
-            />
-            <span className="small text-muted ms-2 ml-1">pts+/100</span>
-            {nilDesiredNetRankLabel ? (
-              <span className="small text-muted ms-2 ml-1">
-                {nilDesiredNetRankLabel}
-              </span>
-            ) : null}
-          </Col>
-          <Col xs="auto" className="ms-auto">
-            <a
-              href="https://nikoza2.substack.com/p/how-to-value-college-basketball-free"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="small"
-            >
-              Based on Nik Oza&apos;s work
-            </a>
-          </Col>
-        </Row>
+        <>
+          <Row className="mt-2 mb-1 align-items-center flex-wrap gx-2">
+            <Col xs="auto">
+              <Form.Label className="small mb-0 me-1 mr-1">
+                Estimated Budget ($M):
+              </Form.Label>
+              <AsyncFormControl
+                size="sm"
+                className="d-inline-block"
+                style={{ width: "4.5rem" }}
+                placeholder="—"
+                startingVal={nilBudgetInput}
+                validate={(t) => t === "" || /^\d{0,2}(\.\d{0,2})?$/.test(t)}
+                onChange={(t) => setNilBudgetInput(t)}
+                timeout={400}
+              />
+            </Col>
+            <Col xs="auto">
+              <Form.Label className="small mb-0 me-1 mr-1">
+                Desired rating:
+              </Form.Label>
+              <AsyncFormControl
+                size="sm"
+                className="d-inline-block"
+                style={{ width: "4rem" }}
+                startingVal={nilDesiredNetInput}
+                validate={(t) => t === "" || /^-?\d{0,2}(\.\d{0,2})?$/.test(t)}
+                onChange={(t) => setNilDesiredNetInput(t)}
+                timeout={400}
+              />
+              {nilDesiredRatingSuffix}
+            </Col>
+            <Col xs="auto" className="ms-auto">
+              <a
+                href="https://nikoza2.substack.com/p/how-to-value-college-basketball-free"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="small"
+              >
+                Based on Nik Oza&apos;s work
+              </a>
+            </Col>
+          </Row>
+          {nilBudgetInput.trim() === "" ? (
+            <Row className="mb-1">
+              <Col>
+                <span className="small text-muted">
+                  Instructions: Guess/enter the team&apos;s budget, enter the
+                  team&apos;s desired rating (in pts/100 over average, like
+                  their KenPom margin). You can enter known/guessed player NILs
+                  via the edit icons to the right.
+                </span>
+              </Col>
+            </Row>
+          ) : null}
+        </>
       ) : null}
       <Row className="mt-2">
         <Col style={{ paddingLeft: "5px", paddingRight: "5px" }}>
