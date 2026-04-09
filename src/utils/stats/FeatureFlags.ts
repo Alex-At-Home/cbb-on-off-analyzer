@@ -13,9 +13,6 @@ export class FeatureFlags {
   }
   // Feature flags themselves:
 
-  /** For team editor - short term work on generating make-believe NIL estimates - otherwise just a user-editable field */
-  static readonly estimateNilValue = false;
-
   /** For team editor - showing the caliber of a player */
   static readonly playerCaliberMode = false;
 

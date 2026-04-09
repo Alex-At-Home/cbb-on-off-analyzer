@@ -485,7 +485,7 @@ export const freshmenMen2025_26: Record<string, any> = {
     "Boozer, Cameron": {
       pos: "PF/C",
       pr: "5*/Lotto",
-      c: "CaBoozer",
+      c: "CmBoozer",
       h: "6-9",
       r: -12,
     },
@@ -503,7 +503,7 @@ export const freshmenMen2025_26: Record<string, any> = {
       h: "6-7",
       r: -56,
     },
-    "Boozer, Cayden": { pos: "PG", pr: "5*", c: "CnBoozer", h: "6-4", r: -60 },
+    "Boozer, Cayden": { pos: "PG", pr: "5*", c: "CyBoozer", h: "6-4", r: -60 },
   },
   Stanford: {
     "Okorie, Ebuka": {

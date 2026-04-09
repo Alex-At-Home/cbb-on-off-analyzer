@@ -130,7 +130,10 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         Number(rawParams.nilDesiredNet) === NIL_ALLOCATOR_DEFAULT_DESIRED_NET
           ? ["nilDesiredNet"]
           : [],
-        !rawParams.showGrades ? ["showGrades"] : [],
+        _.isNil(rawParams.showGrades) ||
+        rawParams.showGrades === ParamDefaults.defaultEnabledGrade
+          ? ["showGrades"]
+          : [],
 
         !rawParams.allEditOpen ? ["allEditOpen"] : [],
         //(currently not used anywhere - will leave for now and decided whether to remove after more play testing)

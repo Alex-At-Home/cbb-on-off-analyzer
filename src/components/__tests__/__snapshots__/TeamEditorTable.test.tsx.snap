@@ -1576,8 +1576,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -1666,12 +1671,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -1743,6 +1742,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -6865,8 +6891,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -6955,12 +6986,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -7032,6 +7057,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -11919,8 +11971,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -12009,12 +12066,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -12086,6 +12137,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -17861,8 +17939,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -17951,12 +18034,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -18028,6 +18105,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -23960,8 +24064,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -24050,12 +24159,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -24127,6 +24230,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -30065,8 +30195,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -30155,12 +30290,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -30232,6 +30361,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -35583,8 +35739,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -35673,12 +35834,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -35750,6 +35905,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -39841,8 +40023,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -39931,12 +40118,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -40008,6 +40189,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -43989,8 +44197,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -44079,12 +44292,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -44156,6 +44363,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [
@@ -47361,8 +47595,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
       <GenericTogglingMenu>
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show projection ranks/%iles"
+          text="Show grade controls"
           truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          onSelect={[Function]}
+          text="Show grades"
+          truthVal={true}
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
@@ -47451,12 +47690,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "tooltip": "When enabled - saves the team grades from the current roster config, and shows that along with the new grades coming from any subsequent edits",
             },
             Object {
-              "label": "Grades",
-              "onClick": [Function],
-              "toggled": false,
-              "tooltip": "If enabled show the ranks/%iles corresponding to the players' projections",
-            },
-            Object {
               "label": "History",
               "onClick": [Function],
               "toggled": false,
@@ -47528,6 +47761,33 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
           text="Loading Team Editor..."
         >
           <GenericTable
+            integratedGrades={
+              Object {
+                "colorChooser": Array [
+                  Object {
+                    "expectedResult": "#ffa500",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#ff0000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                  Object {
+                    "expectedResult": "#008000",
+                    "gradeColor": [Function],
+                    "valToTest": 1000,
+                  },
+                ],
+                "customKeyMappings": Object {
+                  "def_2primr": "off_2prim_ast",
+                  "def_3p": "off_ft",
+                  "def_3pr": "off_3p_ast",
+                },
+                "hybridMode": true,
+              }
+            }
             tableCopyId="rosterEditorTable"
             tableData={
               Array [

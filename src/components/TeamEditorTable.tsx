@@ -134,6 +134,71 @@ const reduceNumberSize = (k: string, v: any) => {
 /** Dev-only: set `true` to log `[NIL budget Δ debug]` in the browser console */
 const DEBUG_NIL_BUDGET_DELTA = false;
 
+/** Inline / hybrid integrated grades on player/bench stat rows (mirrors GradeTableUtils.buildProjectedPlayerGradeTableRows). */
+function buildTeamEditorIntegratedGradesForRow(
+  tableEl: Record<string, unknown>,
+  playerForDisclaimers: PureStatSet,
+  showGrades: string,
+  playerStats: {
+    comboTier: DivisionStatistics | undefined;
+    highTier: DivisionStatistics | undefined;
+    mediumTier: DivisionStatistics | undefined;
+    lowTier: DivisionStatistics | undefined;
+  },
+  playerPosStats: PositionStatsCache,
+  factorMins: boolean,
+): Record<string, Statistic> | undefined {
+  const { tierToUse, gradeFormat } = GradeTableUtils.buildPlayerTierInfo(
+    showGrades || "rank:Combo",
+    {
+      comboTier: playerStats.comboTier,
+      highTier: playerStats.highTier,
+      mediumTier: playerStats.mediumTier,
+      lowTier: playerStats.lowTier,
+    },
+    playerPosStats,
+  );
+  if (!tierToUse) {
+    return undefined;
+  }
+  const netRapmField = factorMins
+    ? "off_adj_rapm_prod_margin"
+    : "off_adj_rapm_margin";
+  const fieldSuffix = factorMins ? "_prod" : "";
+  const acc: Record<string, Statistic> = {};
+  for (const v of ["good", "bad", "ok", "actual"] as const) {
+    if (v === "actual" && !tableEl.actual_net) {
+      continue;
+    }
+    const tmp: PureStatSet = {};
+    tmp[`off_adj_rapm${fieldSuffix}`] = tableEl[`${v}_off`] as Statistic;
+    tmp[`def_adj_rapm${fieldSuffix}`] = tableEl[`${v}_def`] as Statistic;
+    tmp[netRapmField] = tableEl[`${v}_net`] as Statistic;
+    const perProjectionPercentiles = GradeUtils.buildPlayerPercentiles(
+      tierToUse,
+      tmp,
+      [
+        `off_adj_rapm${fieldSuffix}`,
+        `def_adj_rapm${fieldSuffix}`,
+        netRapmField,
+      ],
+      gradeFormat == "rank",
+    );
+    acc[`${v}_off`] = perProjectionPercentiles[
+      `off_adj_rapm${fieldSuffix}`
+    ] as Statistic;
+    acc[`${v}_def`] = perProjectionPercentiles[
+      `def_adj_rapm${fieldSuffix}`
+    ] as Statistic;
+    acc[`${v}_net`] = perProjectionPercentiles[netRapmField] as Statistic;
+  }
+  GradeTableUtils.injectPlayerSampleSizeDisclaimers(
+    playerForDisclaimers,
+    acc as PureStatSet,
+  );
+  return acc;
+}
+
 // Functional component
 
 const TeamEditorTable: React.FunctionComponent<Props> = ({
@@ -191,11 +256,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ? undefined
       : JSON.parse(startingState.diffBasis)) as undefined | DiffBasisObj,
   );
-  const [enableNil, setEnableNil] = useState(
-    _.isNil(startingState.enableNil)
-      ? FeatureFlags.isActiveWindow(FeatureFlags.estimateNilValue)
-      : startingState.enableNil,
-  );
+  const [enableNil, setEnableNil] = useState(startingState.enableNil ?? false);
   const [nilBudgetInput, setNilBudgetInput] = useState(
     startingState.nilBudgetMillions != null &&
       startingState.nilBudgetMillions !== ""
@@ -213,8 +274,13 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
   });
   /** Show team and individual grades */
   const [showGrades, setShowGrades] = useState(
-    _.isNil(startingState.showGrades) ? "" : startingState.showGrades,
+    _.isNil(startingState.showGrades)
+      ? ParamDefaults.defaultEnabledGrade
+      : startingState.showGrades,
   );
+  const [hideGlobalGradeSettings, setHideGlobalGradeSettings] = useState(true);
+  const showStandaloneGrades =
+    GradeTableUtils.showingStandaloneGrades(showGrades);
   const [caliberMode, setCaliberMode] = useState<boolean>(
     FeatureFlags.isActiveWindow(FeatureFlags.playerCaliberMode),
   ); //TODO: wire up
@@ -541,7 +607,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
 
   // Events that trigger building or rebuilding the *player*  division stats cache
   useEffect(() => {
-    if (showGrades) {
+    if (showGrades != "") {
       const yearToUse = // pick the closest year for which we have data (regardless of eval mode etc)
         _.find(DateUtils.coreYears, year) ||
         (year < DateUtils.firstYearWithData
@@ -1472,33 +1538,53 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ),
       };
 
-      const playerGradesEl = showGrades
-        ? _.take(
-            GradeTableUtils.buildProjectedPlayerGradeTableRows({
-              selectionTitle: `Projected Grades`,
-              config: showGrades,
-              setConfig: (newConfig: string) => {
-                setShowGrades(newConfig);
-              },
-              playerStats: {
-                comboTier: playerDivisionStatsCache.Combo,
-                highTier: playerDivisionStatsCache.High,
-                mediumTier: playerDivisionStatsCache.Medium,
-                lowTier: playerDivisionStatsCache.Low,
-              },
-              playerPosStats: positionalStatsCache,
+      if (showGrades != "" && !showStandaloneGrades) {
+        const integrated = buildTeamEditorIntegratedGradesForRow(
+          tableEl as Record<string, unknown>,
+          triple.ok,
+          showGrades,
+          {
+            comboTier: playerDivisionStatsCache.Combo,
+            highTier: playerDivisionStatsCache.High,
+            mediumTier: playerDivisionStatsCache.Medium,
+            lowTier: playerDivisionStatsCache.Low,
+          },
+          positionalStatsCache,
+          factorMins,
+        );
+        if (integrated) {
+          (tableEl as Record<string, unknown>).grades = integrated;
+        }
+      }
 
-              code: triple.key,
-              playerProjections: tableEl as PureStatSet,
-              evalMode,
-              offSeasonMode,
-              factorMins,
-              caliberMode,
-              enableNil,
-            }),
-            1,
-          ) //(skip the control row)
-        : undefined;
+      const playerGradesEl =
+        showGrades != "" && showStandaloneGrades
+          ? _.take(
+              GradeTableUtils.buildProjectedPlayerGradeTableRows({
+                selectionTitle: `Projected Grades`,
+                config: showGrades,
+                setConfig: (newConfig: string) => {
+                  setShowGrades(newConfig);
+                },
+                playerStats: {
+                  comboTier: playerDivisionStatsCache.Combo,
+                  highTier: playerDivisionStatsCache.High,
+                  mediumTier: playerDivisionStatsCache.Medium,
+                  lowTier: playerDivisionStatsCache.Low,
+                },
+                playerPosStats: positionalStatsCache,
+
+                code: triple.key,
+                playerProjections: tableEl as PureStatSet,
+                evalMode,
+                offSeasonMode,
+                factorMins,
+                caliberMode,
+                enableNil,
+              }),
+              1,
+            ) //(skip the control row)
+          : undefined;
 
       return (
         allEditOpen ? [GenericTableOps.buildHeaderRepeatRow({}, "small")] : []
@@ -1777,38 +1863,63 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         }
       });
 
-      // If grades are enabled, then add a control row immediately befpre the bench info:
-      const benchGradesEl = showGrades
-        ? _.takeRight(
-            GradeTableUtils.buildProjectedPlayerGradeTableRows({
-              selectionTitle: `Projected Grades`,
-              config: showGrades,
-              setConfig: (newConfig: string) => {
-                setShowGrades(newConfig);
-              },
-              playerStats: {
-                comboTier: playerDivisionStatsCache.Combo,
-                highTier: playerDivisionStatsCache.High,
-                mediumTier: playerDivisionStatsCache.Medium,
-                lowTier: playerDivisionStatsCache.Low,
-              },
-              playerPosStats: positionalStatsCache,
+      if (
+        tripleIn &&
+        showGrades != "" &&
+        !showStandaloneGrades &&
+        !_.isEmpty(tableEl)
+      ) {
+        const integrated = buildTeamEditorIntegratedGradesForRow(
+          tableEl as Record<string, unknown>,
+          tripleIn.ok,
+          showGrades,
+          {
+            comboTier: playerDivisionStatsCache.Combo,
+            highTier: playerDivisionStatsCache.High,
+            mediumTier: playerDivisionStatsCache.Medium,
+            lowTier: playerDivisionStatsCache.Low,
+          },
+          positionalStatsCache,
+          factorMins,
+        );
+        if (integrated) {
+          (tableEl as Record<string, unknown>).grades = integrated;
+        }
+      }
 
-              code: benchName,
-              playerProjections: tableEl as PureStatSet,
-              evalMode,
-              offSeasonMode,
-              factorMins,
-              caliberMode,
-              enableNil,
-            }),
-            1,
-          ) //(skip bench grades, the aren't super useful because low minutes and lots of garbage minutes etc)
-        : undefined;
+      // If grades are enabled (standalone / Row view), add the bench control row before the bench stat row:
+      const benchGradesEl =
+        showGrades != "" && showStandaloneGrades
+          ? _.takeRight(
+              GradeTableUtils.buildProjectedPlayerGradeTableRows({
+                selectionTitle: `Projected Grades`,
+                config: showGrades,
+                setConfig: (newConfig: string) => {
+                  setShowGrades(newConfig);
+                },
+                playerStats: {
+                  comboTier: playerDivisionStatsCache.Combo,
+                  highTier: playerDivisionStatsCache.High,
+                  mediumTier: playerDivisionStatsCache.Medium,
+                  lowTier: playerDivisionStatsCache.Low,
+                },
+                playerPosStats: positionalStatsCache,
+
+                code: benchName,
+                playerProjections: tableEl as PureStatSet,
+                evalMode,
+                offSeasonMode,
+                factorMins,
+                caliberMode,
+                enableNil,
+              }),
+              1,
+            ) //(skip bench grades, the aren't super useful because low minutes and lots of garbage minutes etc)
+          : undefined;
 
       return (benchGradesEl || [])
         .concat(
-          tableEl
+          tripleIn
             ? [
                 GenericTableOps.buildDataRow(
                   tableEl,
@@ -2880,36 +2991,82 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ? _.sortBy(triples, (triple) => -TeamEditorUtils.getNet(triple.ok, 1.0))
         : triples;
 
-    const rosterTableDataGuards = [buildPosHeaderRow("Guards", rosterGuardMins)]
+    const maybePerPosGradeControls = (
+      controlRowId: string,
+      selectionTitle: string,
+    ) =>
+      !hideGlobalGradeSettings
+        ? [
+            GenericTableOps.buildTextRow(
+              GradeTableUtils.buildPlayerGradeControlState(
+                controlRowId,
+                {
+                  selectionTitle,
+                  config: showGrades,
+                  setConfig: (newConfig: string) => setShowGrades(newConfig),
+                  playerStats: {
+                    comboTier: playerDivisionStatsCache.Combo,
+                    highTier: playerDivisionStatsCache.High,
+                    mediumTier: playerDivisionStatsCache.Medium,
+                    lowTier: playerDivisionStatsCache.Low,
+                  },
+                  playerPosStats: positionalStatsCache,
+                },
+                {
+                  countsAreExample: false,
+                  onHide: () => setHideGlobalGradeSettings(true),
+                },
+              ).controlRow,
+              "",
+            ),
+          ]
+        : [];
+
+    const rosterTableDataGuards = [
+      buildPosHeaderRow("Guards", rosterGuardMins),
+      ...maybePerPosGradeControls("TeamEdGuards", "Grades (Guards)"),
+    ]
       .concat(
         _.flatMap(maybeSorted(rosterGuards), (triple) => {
           return buildDataRowFromTriple(triple);
         }),
       )
       .concat(
-        maybeBenchGuard || showGrades
+        maybeBenchGuard ||
+          alwaysShowBench ||
+          (showGrades != "" && showStandaloneGrades)
           ? buildBenchDataRowFromTriple("Guards", maybeBenchGuard)
           : [],
       );
-    const rosterTableDataWings = [buildPosHeaderRow("Wings", rosterWingMins)]
+    const rosterTableDataWings = [
+      buildPosHeaderRow("Wings", rosterWingMins),
+      ...maybePerPosGradeControls("TeamEdWings", "Grades (Wings)"),
+    ]
       .concat(
         _.flatMap(maybeSorted(rosterWings), (triple) => {
           return buildDataRowFromTriple(triple);
         }),
       )
       .concat(
-        maybeBenchWing || showGrades
+        maybeBenchWing ||
+          alwaysShowBench ||
+          (showGrades != "" && showStandaloneGrades)
           ? buildBenchDataRowFromTriple("Wings", maybeBenchWing)
           : [],
       );
-    const rosterTableDataBigs = [buildPosHeaderRow("Bigs", rosterBigMins)]
+    const rosterTableDataBigs = [
+      buildPosHeaderRow("Bigs", rosterBigMins),
+      ...maybePerPosGradeControls("TeamEdBigs", "Grades (Bigs)"),
+    ]
       .concat(
         _.flatMap(maybeSorted(rosterBigs), (triple) => {
           return buildDataRowFromTriple(triple);
         }),
       )
       .concat(
-        maybeBenchBig || showGrades
+        maybeBenchBig ||
+          alwaysShowBench ||
+          (showGrades != "" && showStandaloneGrades)
           ? buildBenchDataRowFromTriple("Bigs", maybeBenchBig)
           : [],
       );
@@ -2980,6 +3137,20 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         )}
         tableData={teamRows.concat(rosterTableData)}
         cellTooltipMode={undefined}
+        integratedGrades={
+          showGrades != "" && !showStandaloneGrades
+            ? {
+                hybridMode:
+                  GradeTableUtils.showingHybridOrStandaloneGrades(showGrades),
+                colorChooser: CbbColors.integratedColorsDefault,
+                customKeyMappings: {
+                  def_3p: "off_ft",
+                  def_3pr: "off_3p_ast",
+                  def_2primr: "off_2prim_ast",
+                },
+              }
+            : undefined
+        }
       />
     );
   }, [
@@ -3008,6 +3179,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     nilBudgetInput,
     nilDesiredNetInput,
     showGrades,
+    hideGlobalGradeSettings,
   ]);
 
   let nilDesiredRatingSuffix: React.ReactNode = null;
@@ -3387,18 +3559,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           <Form.Group as={Col} sm="1">
             <GenericTogglingMenu>
               <GenericTogglingMenuItem
-                text={"Show projection ranks/%iles"}
-                truthVal={showGrades != ""}
+                text={"Show grade controls"}
+                truthVal={!hideGlobalGradeSettings}
                 onSelect={() =>
-                  friendlyChange(() => {
-                    if (showGrades == "" && showPrevSeasons) {
-                      // (can't show grades and history at the same time, UI reasons)
-                      setShowPrevSeasons(false);
-                    }
-                    setShowGrades(
-                      showGrades ? "" : ParamDefaults.defaultEnabledGrade,
-                    );
-                  }, true)
+                  setHideGlobalGradeSettings(!hideGlobalGradeSettings)
                 }
               />
               <GenericTogglingMenuItem
@@ -3406,10 +3570,6 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 truthVal={showPrevSeasons}
                 onSelect={() =>
                   friendlyChange(() => {
-                    if (!showPrevSeasons && showGrades) {
-                      // (can't show grades and history at the same time, UI reasons)
-                      setShowGrades("");
-                    }
                     setShowPrevSeasons(!showPrevSeasons);
                   }, true)
                 }
@@ -3516,32 +3676,12 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                   }, true),
               },
               {
-                label: "Grades",
-                tooltip:
-                  "If enabled show the ranks/%iles corresponding to the players' projections",
-                toggled: showGrades != "",
-                onClick: () =>
-                  friendlyChange(() => {
-                    if (showGrades == "" && showPrevSeasons) {
-                      // (can't show grades and history at the same time, UI reasons)
-                      setShowPrevSeasons(false);
-                    }
-                    setShowGrades(
-                      showGrades ? "" : ParamDefaults.defaultEnabledGrade,
-                    );
-                  }, true),
-              },
-              {
                 label: "History",
                 tooltip:
                   "If enabled show player's previous 2 seasons (useful sanity check for projections)",
                 toggled: showPrevSeasons,
                 onClick: () =>
                   friendlyChange(() => {
-                    if (!showPrevSeasons && showGrades) {
-                      // (can't show grades and history at the same time, UI reasons)
-                      setShowGrades("");
-                    }
                     setShowPrevSeasons(!showPrevSeasons);
                   }, true),
               },
