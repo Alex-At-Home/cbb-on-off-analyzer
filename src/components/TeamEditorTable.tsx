@@ -3637,6 +3637,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
               onChange={(t) => setNilDesiredNetInput(t)}
               timeout={400}
             />
+            <span className="small text-muted ms-2 ml-1">pts+/100</span>
             {nilDesiredNetRankLabel ? (
               <span className="small text-muted ms-2 ml-1">
                 {nilDesiredNetRankLabel}
