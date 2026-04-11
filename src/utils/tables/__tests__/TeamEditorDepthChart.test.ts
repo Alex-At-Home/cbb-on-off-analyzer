@@ -1,5 +1,6 @@
 import type { GoodBadOkTriple } from "../../stats/TeamEditorUtils";
 import {
+  buildDepthChartViewModelFromSortedBuckets,
   buildTwoDepthRows,
   defaultDepthChartMinutes,
 } from "../TeamEditorDepthChart";
@@ -23,6 +24,18 @@ function mt(key: string, mpg: number, posClass = "PG"): GoodBadOkTriple {
 }
 
 describe("TeamEditorDepthChart", () => {
+  test("buildDepthChartViewModelFromSortedBuckets exposes rows and per-player maps", () => {
+    const g = mt("g1", 20, "PG");
+    const w = mt("w1", 15, "WF");
+    const b = mt("b1", 25, "C");
+    const m = buildDepthChartViewModelFromSortedBuckets([g], [w], [b], {
+      factorMins: false,
+    });
+    expect(m.rows).toHaveLength(2);
+    expect(m.rosterStatsByPlayerId["g1"]).toBeDefined();
+    expect(m.positionFromPlayerId["g1"]?.posClass).toBe("PG");
+  });
+
   test("defaultDepthChartMinutes matches mpg", () => {
     const t = mt("a", 20);
     expect(defaultDepthChartMinutes(t)).toBe(20);

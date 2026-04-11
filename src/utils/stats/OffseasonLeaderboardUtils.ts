@@ -20,6 +20,10 @@ import {
   TeamStatInfo,
 } from "../StatModels";
 import { GoodBadOkTriple, TeamEditorUtils } from "../stats/TeamEditorUtils";
+import {
+  buildDepthChartViewModelFromPxResults,
+  type TeamDepthChartViewModel,
+} from "../tables/TeamEditorDepthChart";
 import { GradeUtils } from "./GradeUtils";
 import {
   TeamEditorManualFixes,
@@ -59,6 +63,8 @@ export type OffseasonTeamInfo = {
 
   players?: Array<GoodBadOkTriple>;
   year: string;
+  /** Present when `buildAllTeamStats` is called with `attachDepthChartViewModel: true`. */
+  depthChart?: TeamDepthChartViewModel;
 };
 
 export type OffseasonLeaderboardsStats = {
@@ -104,7 +110,8 @@ export class OffseasonLeaderboardUtils {
      */
     ifEvalModeActualAvgEff: number,
 
-    includeTeams: boolean = false
+    includeTeams: boolean = false,
+    attachDepthChartViewModel: boolean = false,
   ): OffseasonLeaderboardsStats {
     const {
       confs,
@@ -124,17 +131,17 @@ export class OffseasonLeaderboardUtils {
           .concat(
             _.flatMap(dataEvent.transfers || [], (txfers) => {
               return ((txfers || {})[p.code || ""] || []).flatMap((txfer) =>
-                txfer.t ? [txfer.t, txfer.f] : [txfer.f]
+                txfer.t ? [txfer.t, txfer.f] : [txfer.f],
               );
-            })
+            }),
           )
           .concat(
             // Add all players that might be added to this team
             _.flatMap(teamOverrides, (teamEdit, teamName) =>
               (teamEdit.addedPlayers || "").indexOf((p.code || "") + ":") >= 0
                 ? [teamName]
-                : []
-            )
+                : [],
+            ),
           );
         teams.forEach((team) => {
           if (!acc[team]) {
@@ -143,7 +150,7 @@ export class OffseasonLeaderboardUtils {
           acc[team]!.push(p);
         });
       },
-      {} as Record<string, IndivStatSet[]>
+      {} as Record<string, IndivStatSet[]>,
     );
 
     const nextSeasonForEvalMode = DateUtils.getNextYear(yearWithStats);
@@ -159,12 +166,12 @@ export class OffseasonLeaderboardUtils {
       {
         projYear: {} as Record<string, TeamStatInfo>,
         actualYear: {} as Record<string, TeamStatInfo>,
-      }
+      },
     );
 
     // Come up with a superset of which (RSish) freshmen might be on which teams, for performance reasons
     const genderPrevSeason = `${gender}_${DateUtils.getPrevYear(
-      yearWithStats
+      yearWithStats,
     )}`; //(For fr)
     const pretYearFrPartition = _.transform(
       TeamEditorManualFixes.getFreshmenForYear(genderPrevSeason),
@@ -172,7 +179,7 @@ export class OffseasonLeaderboardUtils {
         // To be quick just include the entire overrides object if any transfer matches
         const inject = (
           teamKeyIn: string,
-          toInject: TeamEditorManualFixModel
+          toInject: TeamEditorManualFixModel,
         ) => {
           if (!acc[teamKeyIn]) {
             acc[teamKeyIn] = {};
@@ -191,13 +198,13 @@ export class OffseasonLeaderboardUtils {
           inject(teamKeyIn, frPerTeam);
         });
       },
-      {} as Record<string, Record<string, TeamEditorManualFixModel>>
+      {} as Record<string, Record<string, TeamEditorManualFixModel>>,
     );
 
     // Get a list of teams
     const teamList = _.flatMap(AvailableTeams.byName, (teams, teamName) => {
       const maybeTeam = teams.find(
-        (t) => t.year == yearWithStats && t.gender == gender
+        (t) => t.year == yearWithStats && t.gender == gender,
       );
       return maybeTeam ? [maybeTeam.team] : [];
     });
@@ -229,20 +236,20 @@ export class OffseasonLeaderboardUtils {
               playerPartition[t] || [],
               dataEvent.transfers?.[1] || {},
               false,
-              maybeOverride.superSeniorsBack || false
+              maybeOverride.superSeniorsBack || false,
             )
           : {};
         const overrides = maybeOverride.overrides
           ? TeamEditorUtils.urlParamstoPlayerEditModels(maybeOverride.overrides)
           : {};
         const disabledPlayers = _.chain(
-          (maybeOverride.disabledPlayers || "").split(";")
+          (maybeOverride.disabledPlayers || "").split(";"),
         )
           .map((p) => [p, true])
           .fromPairs()
           .value();
         const deletedPlayers = _.chain(
-          (maybeOverride.deletedPlayers || "").split(";")
+          (maybeOverride.deletedPlayers || "").split(";"),
         )
           .map((p) => [p, "unknown"])
           .fromPairs()
@@ -264,11 +271,11 @@ export class OffseasonLeaderboardUtils {
           maybeOverride.superSeniorsBack || false,
           false,
           avgEff,
-          pretYearFrPartition[t] || {}
+          pretYearFrPartition[t] || {},
         );
         const filteredPlayerSet = TeamEditorUtils.getFilteredPlayersWithBench(
           pxResults,
-          disabledPlayers
+          disabledPlayers,
         );
 
         if (diagnosticCompareWithRosters && !_.isEmpty(rostersPerTeam)) {
@@ -279,7 +286,9 @@ export class OffseasonLeaderboardUtils {
           const ignoreExistingSSrOverrides = false;
 
           const onTeamSet = new Set(
-            pxResults.basePlayersPlusHypos.map((p) => `${p.orig?.code || ""}::`)
+            pxResults.basePlayersPlusHypos.map(
+              (p) => `${p.orig?.code || ""}::`,
+            ),
           );
 
           const superSrsOnRoster = _.uniq(
@@ -292,9 +301,9 @@ export class OffseasonLeaderboardUtils {
                   roster[p.code || ""]
                 ); //(players who were Srs last year on this year's roster)
               })
-              .map((p) => `${p.code || ""}::`)
+              .map((p) => `${p.code || ""}::`),
           ).filter(
-            (code) => ignoreExistingSSrOverrides || !onTeamSet.has(code)
+            (code) => ignoreExistingSSrOverrides || !onTeamSet.has(code),
           );
 
           if (!_.isEmpty(superSrsOnRoster)) {
@@ -308,14 +317,14 @@ export class OffseasonLeaderboardUtils {
           if (rosterCodes.size >= 10) {
             const notOnTeamNonTransfers = pxResults.basePlayersPlusHypos
               .filter(
-                (p) => p.orig.team == t && !rosterCodes.has(p.orig.code || "")
+                (p) => p.orig.team == t && !rosterCodes.has(p.orig.code || ""),
               )
               .map((p) => p.key);
             //(for transfers we just assume the player got missed off the roster)
 
             const notOnTeamFreshhmen = pxResults.basePlayersPlusHypos
               .filter(
-                (p) => !p.orig.team && !rosterCodes.has(p.key.split(":")[0])
+                (p) => !p.orig.team && !rosterCodes.has(p.key.split(":")[0]),
               )
               .map((p) => p.key);
 
@@ -325,8 +334,8 @@ export class OffseasonLeaderboardUtils {
               if (diagnosticCompareWithRostersDebugOnly) {
                 console.log(
                   `[${t}]: unexpected_Fr=[${notOnTeamFreshhmen}] from team=[${pxResults.basePlayersPlusHypos.map(
-                    (p) => p.orig.code
-                  )}] / roster=[${_.keys(roster)}]`
+                    (p) => p.orig.code,
+                  )}] / roster=[${_.keys(roster)}]`,
                 );
               }
             }
@@ -334,8 +343,8 @@ export class OffseasonLeaderboardUtils {
               if (diagnosticCompareWithRostersDebugOnly) {
                 console.log(
                   `${t}: unexpected=[${notOnTeamNonTransfers}] from team=[${pxResults.basePlayersPlusHypos.map(
-                    (p) => p.orig.code
-                  )}] / roster=[${_.keys(roster)}]`
+                    (p) => p.orig.code,
+                  )}] / roster=[${_.keys(roster)}]`,
                 );
               }
               leftTeamUnexpectedly[t] = notOnTeamNonTransfers;
@@ -343,7 +352,7 @@ export class OffseasonLeaderboardUtils {
           } else {
             if (diagnosticCompareWithRostersDebugOnly) {
               console.log(
-                `Skip [${t}] since roster size too small ([${rosterCodes.size}])`
+                `Skip [${t}] since roster size too small ([${rosterCodes.size}])`,
               );
             }
           }
@@ -353,13 +362,13 @@ export class OffseasonLeaderboardUtils {
           triples: GoodBadOkTriple[],
           range: "good" | "bad" | "ok" | "orig",
           depthBonus: { off: number; def: number },
-          adj: number = 0
+          adj: number = 0,
         ) => {
           const { off, def, net } = TeamEditorUtils.buildTotals(
             triples,
             range,
             depthBonus,
-            adj
+            adj,
           );
 
           const netInfo = _.transform(
@@ -389,7 +398,7 @@ export class OffseasonLeaderboardUtils {
               numRotation: 0,
               playersInPrediction: 0,
               playersInPredictionMins: 0.0,
-            }
+            },
           );
           return { off, def, net, ...netInfo };
         };
@@ -436,7 +445,7 @@ export class OffseasonLeaderboardUtils {
           {},
           derivedDivisionStats,
           true,
-          ["off_adj_ppp", "def_adj_ppp", "off_net"]
+          ["off_adj_ppp", "def_adj_ppp", "off_net"],
         );
 
         // Eval mode:
@@ -444,7 +453,7 @@ export class OffseasonLeaderboardUtils {
         const totalActualMins = evalMode
           ? _.sumBy(
               pxResults.actualResultsForReview,
-              (p) => p.orig.off_team_poss_pct.value!
+              (p) => p.orig.off_team_poss_pct.value!,
             ) * 0.2
           : undefined;
         const finalActualEffAdj = totalActualMins
@@ -481,7 +490,7 @@ export class OffseasonLeaderboardUtils {
                 pxResults.actualResultsForReview,
                 "orig",
                 depthBonus,
-                finalActualEffAdj
+                finalActualEffAdj,
               )
             : undefined;
         const dummyTeamActualFromPlayers = actualTotalsFromPlayers
@@ -509,14 +518,14 @@ export class OffseasonLeaderboardUtils {
             (maybeOff) =>
               _.isUndefined(maybeOff)
                 ? undefined
-                : maybeOff - ifEvalModeActualAvgEff
+                : maybeOff - ifEvalModeActualAvgEff,
           ),
           actualDefMargin: _.thru(
             dummyTeamActual?.def_adj_ppp?.value,
             (maybeDef) =>
               _.isUndefined(maybeDef)
                 ? undefined
-                : maybeDef - ifEvalModeActualAvgEff
+                : maybeDef - ifEvalModeActualAvgEff,
           ),
           team: t,
           conf: ConferenceToNickname[confStr] || "???",
@@ -536,6 +545,12 @@ export class OffseasonLeaderboardUtils {
 
           players: includeTeams ? pxResults.basePlayersPlusHypos : undefined,
           year,
+          depthChart: attachDepthChartViewModel
+            ? buildDepthChartViewModelFromPxResults(pxResults, {
+                factorMins: maybeOverride.factorMins === true,
+                sortByNetDescending: false,
+              })
+            : undefined,
         };
       })
       .sortBy((t) => {
@@ -579,8 +594,8 @@ export class OffseasonLeaderboardUtils {
       console.log(
         `export const superSeniors${year.replace(
           "/",
-          "_"
-        )} = \n${JSON.stringify(superSeniorsReturning, null, 3)}`
+          "_",
+        )} = \n${JSON.stringify(superSeniorsReturning, null, 3)}`,
       );
     }
     if (
@@ -592,8 +607,8 @@ export class OffseasonLeaderboardUtils {
         `export const leftTeam${year.replace("/", "_")} = \n${JSON.stringify(
           leftTeamUnexpectedly,
           null,
-          3
-        )}`
+          3,
+        )}`,
       );
     }
 
@@ -626,7 +641,7 @@ export class OffseasonLeaderboardUtils {
 
     GradeUtils.buildAndInjectTeamDivisionStatsLUT(
       derivedDivisionStats,
-      "native" //(going to be used directly, not via a file which truncates)
+      "native", //(going to be used directly, not via a file which truncates)
     );
 
     return {
@@ -653,7 +668,7 @@ export class OffseasonLeaderboardUtils {
     EvalRule,
     EvalRule,
     EvalRule,
-    EvalRule
+    EvalRule,
   ] = [
     { lowerRank: 10, goodThresholdRank: 15, badThresholdRank: 30 },
     { lowerRank: 25, goodThresholdRank: 35, badThresholdRank: 60 },
@@ -671,12 +686,12 @@ export class OffseasonLeaderboardUtils {
     off: number,
     def: number,
     net: number,
-    mutableSubResults: EvalStatSubResults
+    mutableSubResults: EvalStatSubResults,
   ) => {
     const incorpIntoStats = (
       datum: number,
       sample: number,
-      mutableStats: EvalStatInfo
+      mutableStats: EvalStatInfo,
     ) => {
       const lerp = (a: number, b: number, tt: number) =>
         a * (1.0 - tt) + b * tt;
@@ -684,7 +699,7 @@ export class OffseasonLeaderboardUtils {
       mutableStats.meanSq = lerp(
         mutableStats.meanSq,
         datum * datum,
-        1.0 / sample
+        1.0 / sample,
       );
     };
     mutableSubResults.samples = mutableSubResults.samples + 1;
@@ -699,7 +714,7 @@ export class OffseasonLeaderboardUtils {
     dataPreMaybeFiltering: _.CollectionChain<[OffseasonTeamInfo, number]>,
     getActualNetRank: (t: OffseasonTeamInfo) => number,
     datasetSize: number,
-    isFilteredData: Boolean
+    isFilteredData: Boolean,
   ) => {
     const middleIndex = Math.round(datasetSize / 2) - 1;
     const [filteredRowsToEval, middleActualRank] = _.thru(
@@ -710,7 +725,7 @@ export class OffseasonLeaderboardUtils {
             .map((tt) => tt[0])
             .value();
           const filteredRowsToEvalSortedByActualNet = _.chain(
-            filteredRowsToEval
+            filteredRowsToEval,
           )
             .map((t) => getActualNetRank(t))
             .sortBy((rank) => rank)
@@ -723,7 +738,7 @@ export class OffseasonLeaderboardUtils {
         } else {
           return [[], -1];
         }
-      }
+      },
     );
 
     return _.transform(
@@ -749,7 +764,7 @@ export class OffseasonLeaderboardUtils {
                   t.actualOffMargin - t.off,
                   t.actualDefMargin - t.def,
                   t.actualNet - t.net,
-                  ruleInfo.predicted.stats
+                  ruleInfo.predicted.stats,
                 );
               }
               if (
@@ -760,7 +775,7 @@ export class OffseasonLeaderboardUtils {
                   t.actualOffMargin - t.off,
                   t.actualDefMargin - t.def,
                   t.actualNet - t.net,
-                  ruleInfo.actual.stats
+                  ruleInfo.actual.stats,
                 );
               }
             }
@@ -932,7 +947,7 @@ export class OffseasonLeaderboardUtils {
               predVsActual: [],
               predVsActualRuleOnly: [],
             },
-          ] as [EvalResults, EvalResults, EvalResults, EvalResults])
+          ] as [EvalResults, EvalResults, EvalResults, EvalResults]),
     );
   };
 }

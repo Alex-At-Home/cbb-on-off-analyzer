@@ -394,6 +394,8 @@ export type OffseasonLeaderboardParams = {
   evalMode?: boolean;
   transferInOutMode?: boolean;
   showAllTeams?: boolean;
+  /** When true, each team row is followed by a 2-deep depth chart. */
+  showDepthChartRows?: boolean;
   sortBy?: string; //(for transferInOutMode)
   queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)

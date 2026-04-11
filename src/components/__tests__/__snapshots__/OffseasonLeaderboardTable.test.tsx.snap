@@ -219,6 +219,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}
+          text="Show 2-deep under each team"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
           text="Show breakdown of team's offseason metrics"
           truthVal={false}
         />
@@ -1174,6 +1180,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       lg={1}
     >
       <GenericTogglingMenu>
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show 2-deep under each team"
+          truthVal={false}
+        />
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}
@@ -3891,6 +3903,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       lg={1}
     >
       <GenericTogglingMenu>
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show 2-deep under each team"
+          truthVal={false}
+        />
         <GenericTogglingMenuItem
           disabled={true}
           onSelect={[Function]}
@@ -17015,6 +17033,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}
+          text="Show 2-deep under each team"
+          truthVal={false}
+        />
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
           text="Show breakdown of team's offseason metrics"
           truthVal={false}
         />
@@ -19078,6 +19102,7 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                     Object {
                       "evalMode": false,
                       "gender": "Men",
+                      "showDepthChart": false,
                       "team": "Maryland",
                       "year": "2019/20",
                     }
@@ -31044,6 +31069,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
       lg={1}
     >
       <GenericTogglingMenu>
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show 2-deep under each team"
+          truthVal={false}
+        />
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}
@@ -43213,6 +43244,12 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
       lg={1}
     >
       <GenericTogglingMenu>
+        <GenericTogglingMenuItem
+          disabled={false}
+          onSelect={[Function]}
+          text="Show 2-deep under each team"
+          truthVal={false}
+        />
         <GenericTogglingMenuItem
           disabled={false}
           onSelect={[Function]}

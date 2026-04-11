@@ -178,7 +178,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
   //(controlling the leaderboard table)
   const [lboardParams, setLboardParams] = useState(
-    startingState as PlayerLeaderboardParams
+    startingState as PlayerLeaderboardParams,
   );
 
   // (don't support tier changes)
@@ -191,16 +191,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     confs.indexOf(ConfSelectorConstants.queryFiltersName) >= 0;
 
   const [year, setYear] = useState(
-    startingState.year || DateUtils.mostRecentYearWithData
+    startingState.year || DateUtils.mostRecentYearWithData,
   );
 
   const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
 
   const [queryFilters, setQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const [tmpQueryFilters, setTmpQueryFilters] = useState(
-    startingState.queryFilters || ""
+    startingState.queryFilters || "",
   );
   const separatorKeyword = "BREAK"; //(not used but leave the logic in here in case we change our mind later)
 
@@ -211,21 +211,21 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           _.flatMap(AvailableTeams.byName, (teams, teamName) => {
             return [teamName].concat(
               // Just do "ADD_SEASON" and let user fill it in
-              `${teamName}:ADD_SEASON`
+              `${teamName}:ADD_SEASON`,
               // Not doing: add every year, more intuitive but doesn't scale
               // teams
               //   .filter((t) => t.year && t.gender == gender)
               //   .map((t) => `${t.team}:${t.year.substring(2, 4)}+`)
             );
-          })
+          }),
         )
           .flatMap((team) => {
             const teamFrags = team.split(`:`);
             // Add aliases in:
             return [team].concat(
               (AvailableTeams.teamAliases[teamFrags[0]] || []).map((s) =>
-                teamFrags[1] ? `${s}:${teamFrags[1]}` : s
-              )
+                teamFrags[1] ? `${s}:${teamFrags[1]}` : s,
+              ),
             );
           })
           .uniq()
@@ -233,10 +233,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       : _.chain(
           _.flatMap(AvailableTeams.byName, (teams, __) => {
             const maybeTeam = teams.find(
-              (t) => t.year == year && t.gender == gender
+              (t) => t.year == year && t.gender == gender,
             );
             return maybeTeam ? [maybeTeam.team] : [];
-          })
+          }),
         )
           .flatMap((team) => {
             // Add aliases in:
@@ -256,29 +256,29 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           .map((p) => [p, true])
           .fromPairs()
           .value()
-      : {}
+      : {},
   );
   const globalScatterChartRef = React.createRef<any>();
 
   const [incLowVol, setIncLowVol] = useState<boolean>(
-    startingState.incLowVol || false
+    startingState.incLowVol || false,
   );
 
   // All the complex config:
 
   // If there's a title show that, otherwise show the config
   const [showConfigOptions, setShowConfigOptions] = useState<boolean>(
-    startingState.showConfig || !startingState.title
+    startingState.showConfig || !startingState.title,
   );
 
   // If there's a title show that, otherwise show the config
   const [showTable, setShowTable] = useState<boolean>(
-    startingState.showTable || false
+    startingState.showTable || false,
   );
 
   // Whether to show prev and next seasons for each player
   const [showPrevNextInTable, setShowPrevNextInTable] = useState<boolean>(
-    startingState.showPrevNextInTable || false
+    startingState.showPrevNextInTable || false,
   );
 
   // Whether to show only manually selected players in the table (if there are any)
@@ -286,15 +286,15 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     useState<boolean>(
       _.isNil(startingState.showOnlyHandSelectedInTable)
         ? true
-        : startingState.showOnlyHandSelectedInTable
+        : startingState.showOnlyHandSelectedInTable,
     );
 
   // Filter text (show/hide):
   const [datasetFilterStr, setAdvancedFilterStr] = useState(
-    startingState.datasetFilter || ""
+    startingState.datasetFilter || "",
   );
   const [datasetFilterError, setAdvancedFilterError] = useState(
-    undefined as string | undefined
+    undefined as string | undefined,
   );
   const datasetFilterPresets = [
     ["All players", "ALL"],
@@ -334,10 +334,10 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
 
   // Highlight text (show/hide):
   const [highlightFilterStr, setHighlightFilterStr] = useState(
-    startingState.highlightFilter || ""
+    startingState.highlightFilter || "",
   );
   const [highlightFilterError, setHighlightFilterError] = useState(
-    undefined as string | undefined
+    undefined as string | undefined,
   );
 
   // Chart control
@@ -376,16 +376,16 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     ["Possession% (off)", "next_off_team_poss_pct"],
   ] as Array<[string, string]>;
   const [dotColorMap, setDotColorMap] = useState(
-    startingState.dotColorMap || "Default"
+    startingState.dotColorMap || "Default",
   );
   const colorMapOptions = CbbColors.colorMapOptions(resolvedTheme);
 
   const [labelStrategy, setLabelStrategy] = useState(
-    startingState.labelStrategy || "None"
+    startingState.labelStrategy || "None",
   );
 
   const [pointMarkerType, setPointMarkerType] = useState(
-    startingState.pointMarkerType || "Colored Dot"
+    startingState.pointMarkerType || "Colored Dot",
   );
 
   // On page load, if title is specified and the other params aren't then pre-load
@@ -395,34 +395,34 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       setAdvancedFilterStr(
         datasetFilterPresets.find((t) => t[0] == preset.datasetFilter)?.[1] ||
           preset.datasetFilter ||
-          ""
+          "",
       );
       setHighlightFilterStr(
         datasetFilterPresets.find((t) => t[0] == preset.highlightFilter)?.[1] ||
           preset.highlightFilter ||
-          ""
+          "",
       );
       const xAxisFrags = (preset.xAxis || "").split("//", 2).map(_.trim);
       setXAxis(
         (axisPresets.find((t) => t[0] == xAxisFrags[0])?.[1] ||
           xAxisFrags[0] ||
-          "") + (xAxisFrags.length > 1 ? ` //${xAxisFrags[1]}` : "")
+          "") + (xAxisFrags.length > 1 ? ` //${xAxisFrags[1]}` : ""),
       );
       const yAxisFrags = (preset.yAxis || "").split("//", 2).map(_.trim);
       setYAxis(
         (axisPresets.find((t) => t[0] == yAxisFrags[0])?.[1] ||
           yAxisFrags[0] ||
-          "") + (yAxisFrags.length > 1 ? ` //${yAxisFrags[1]}` : "")
+          "") + (yAxisFrags.length > 1 ? ` //${yAxisFrags[1]}` : ""),
       );
       setDotColor(
         axisPresets.find((t) => t[0] == preset.dotColor)?.[1] ||
           preset.dotColor ||
-          ""
+          "",
       );
       setDotSize(
         axisPresets.find((t) => t[0] == preset.dotSize)?.[1] ||
           preset.dotSize ||
-          ""
+          "",
       );
       setDotColorMap(preset.dotColorMap || "Default");
       setLabelStrategy(preset.labelStrategy || "None");
@@ -434,7 +434,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     if (title && !xAxis && !yAxis) {
       const maybePreset = _.find(
         overallPlayerChartPresets,
-        (kv) => kv[0] == title || kv[1]?.title == title
+        (kv) => kv[0] == title || kv[1]?.title == title,
       );
       if (maybePreset) applyPresetChart(maybePreset[1]);
     }
@@ -528,7 +528,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
   const friendlyChange = (
     change: () => void,
     guard: boolean,
-    timeout: number = 250
+    timeout: number = 250,
   ) => {
     if (guard) {
       setLoadingOverride(true);
@@ -619,7 +619,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
     const has = (target: string) => {
       return _.find(
         [xAxis, yAxis, dotColor, dotSize],
-        (axis) => axis.indexOf(target) >= 0
+        (axis) => axis.indexOf(target) >= 0,
       );
     };
     const prevSeasonExtractor = extractBubbleAttr(`orig:${field}`);
@@ -751,7 +751,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 Net RAPM:{" "}
                 <b>
                   {fieldValExtractor("adj_rapm")(
-                    data?.p?.actualResults
+                    data?.p?.actualResults,
                   ).toFixed(1)}
                 </b>{" "}
                 pts/100
@@ -763,7 +763,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 Off RAPM:{" "}
                 <b>
                   {fieldValExtractor("off_adj_rapm")(
-                    data?.p?.actualResults
+                    data?.p?.actualResults,
                   ).toFixed(1)}
                 </b>{" "}
                 pts/100
@@ -775,7 +775,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 Def RAPM:{" "}
                 <b>
                   {fieldValExtractor("def_adj_rapm")(
-                    data?.p?.actualResults
+                    data?.p?.actualResults,
                   ).toFixed(1)}
                 </b>{" "}
                 pts/100
@@ -787,7 +787,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 Off Rtg:{" "}
                 <b>
                   {fieldValExtractor("off_rtg")(data?.p?.actualResults).toFixed(
-                    1
+                    1,
                   )}
                 </b>
               </span>
@@ -811,7 +811,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                 <b>
                   {(
                     fieldValExtractor("off_team_poss_pct")(
-                      data?.p?.actualResults
+                      data?.p?.actualResults,
                     ) * 40
                   ).toFixed(1)}
                 </b>
@@ -884,11 +884,12 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             {},
             avgEff,
             actualResultsAvgEff,
-            true
+            true,
+            false,
           );
           acc.teamRanks = acc.teamRanks.concat(teamRanksPerYear);
         },
-        { teamRanks: [] as OffseasonTeamInfo[] }
+        { teamRanks: [] as OffseasonTeamInfo[] },
       )
       .value();
 
@@ -897,7 +898,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       const offseasonYear = DateUtils.getNextYear(t.year);
       const offseasonTransfers = dataEvent[offseasonYear]?.transfers?.[0];
       const chain = _.chain(t.players).filter(
-        (p) => !_.isNil(p?.actualResults)
+        (p) => !_.isNil(p?.actualResults),
       );
       return (
         offseasonTransfers
@@ -908,7 +909,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                   offseasonTransfers[actualResults.code || "???"] || [];
                 const maybeTransfer = _.find(
                   maybeTransfers,
-                  (txfer) => txfer.f == actualResults.team
+                  (txfer) => txfer.f == actualResults.team,
                 );
                 if (maybeTransfer) {
                   (actualResults as any).transfer_src = actualResults.team;
@@ -936,7 +937,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           }
         },
         true,
-        250
+        250,
       ); //(i experimented with making this shorter but it tended not to appear a bit too often)
     };
 
@@ -953,7 +954,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
             z: dotSize,
             color: dotColor,
           },
-          true
+          true,
         )
       : [[], undefined];
     setAdvancedFilterError(tmpAdvancedFilterError);
@@ -965,7 +966,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
           (year: string) => undefined, //(player rank queries not yet supported)
           (year: string) => undefined, //(team rank queries not yet supported)
           {},
-          true
+          true,
         )
       : [undefined, undefined];
     setHighlightFilterError(tmpHighlightFilterError);
@@ -981,8 +982,8 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
       ? new Set(
           _.flatMap(
             (confs || "").split(","),
-            (c) => specialCases[c] || [NicknameToConference[c] || c]
-          )
+            (c) => specialCases[c] || [NicknameToConference[c] || c],
+          ),
         )
       : undefined;
 
@@ -1378,7 +1379,7 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                       onChange={() => {
                         friendlyChange(
                           () => setShowPrevNextInTable(!showPrevNextInTable),
-                          true
+                          true,
                         );
                       }}
                       label="Show Both Years' Stats"
@@ -1395,9 +1396,9 @@ const PlayerSeasonComparisonChart: React.FunctionComponent<Props> = ({
                         friendlyChange(
                           () =>
                             setShowOnlyHandSelectedInTable(
-                              !showOnlyHandSelectedInTable
+                              !showOnlyHandSelectedInTable,
                             ),
-                          true
+                          true,
                         );
                       }}
                       label="Show only hand-selected players"

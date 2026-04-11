@@ -75,7 +75,7 @@ import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import TeamRosterEditor from "./shared/TeamRosterEditor";
 import TeamDepthChartView from "./TeamDepthChartView";
 import { TeamEditorTableUtils } from "../utils/tables/TeamEditorTableUtils";
-import { buildTwoDepthRows } from "../utils/tables/TeamEditorDepthChart";
+import { buildDepthChartViewModelFromSortedBuckets } from "../utils/tables/TeamEditorDepthChart";
 import { UrlRouting } from "../utils/UrlRouting";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { DateUtils } from "../utils/DateUtils";
@@ -3004,26 +3004,14 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     const sortedWings = maybeSorted(rosterWings);
     const sortedBigs = maybeSorted(rosterBigs);
 
-    const depthChartRosterStats: Record<string, IndivStatSet> = {};
-    const depthChartPosInfo: Record<string, IndivPosInfo> = {};
-    for (const t of sortedGuards.concat(sortedWings).concat(sortedBigs)) {
-      const okProdFactor = factorMins
-        ? t.ok.off_team_poss_pct?.value || 0
-        : 1.0;
-      depthChartRosterStats[t.orig.key] = {
-        ...t.ok,
-        key: t.orig.key,
-        code: t.orig.code,
-        roster: t.orig.roster,
-        /** Matches roster "Net" column (`TeamEditorUtils.getNet`); used only for depth-chart badge color. */
-        ok_net: { value: TeamEditorUtils.getNet(t.ok, okProdFactor) },
-      } as unknown as IndivStatSet;
-      depthChartPosInfo[t.orig.key] = {
-        posClass: t.orig.posClass || "",
-        posConfidences: t.orig.posConfidences || [1, 0, 0, 0, 0],
-        roster: t.orig.roster,
-      };
-    }
+    const depthChartModel = showDepthChart
+      ? buildDepthChartViewModelFromSortedBuckets(
+          sortedGuards,
+          sortedWings,
+          sortedBigs,
+          { factorMins },
+        )
+      : undefined;
 
     const maybePerPosGradeControls = (
       controlRowId: string,
@@ -3143,35 +3131,36 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       </span>
     );
 
-    const depthChartPrefix = showDepthChart
-      ? [
-          GenericTableOps.buildTextRow(
-            <span>
-              <TeamDepthChartView
-                rows={buildTwoDepthRows(sortedGuards, sortedWings, sortedBigs)}
-                rosterStatsByPlayerId={depthChartRosterStats}
-                positionFromPlayerId={depthChartPosInfo}
-                factorMins={factorMins}
-                showPreviousSeasonInTooltip={showPrevSeasons && offSeasonMode}
-                getPlayerCareerUrl={(triple) => {
-                  const showLinks =
-                    !triple.manualProfile ||
-                    ((!offSeasonMode || evalMode) && triple.actualResults);
-                  if (!showLinks || !triple.orig.roster?.ncaa_id) {
-                    return undefined;
-                  }
-                  return UrlRouting.getPlayerCareer({
-                    ncaaId: triple.orig.roster.ncaa_id,
-                    gender,
-                    showInfoSubHeader: true,
-                  });
-                }}
-              />
-            </span>,
-            "small pt-2",
-          ),
-        ]
-      : [];
+    const depthChartPrefix =
+      depthChartModel != null
+        ? [
+            GenericTableOps.buildTextRow(
+              <span>
+                <TeamDepthChartView
+                  rows={depthChartModel.rows}
+                  rosterStatsByPlayerId={depthChartModel.rosterStatsByPlayerId}
+                  positionFromPlayerId={depthChartModel.positionFromPlayerId}
+                  factorMins={factorMins}
+                  showPreviousSeasonInTooltip={showPrevSeasons && offSeasonMode}
+                  getPlayerCareerUrl={(triple) => {
+                    const showLinks =
+                      !triple.manualProfile ||
+                      ((!offSeasonMode || evalMode) && triple.actualResults);
+                    if (!showLinks || !triple.orig.roster?.ncaa_id) {
+                      return undefined;
+                    }
+                    return UrlRouting.getPlayerCareer({
+                      ncaaId: triple.orig.roster.ncaa_id,
+                      gender,
+                      showInfoSubHeader: true,
+                    });
+                  }}
+                />
+              </span>,
+              "small pt-2",
+            ),
+          ]
+        : [];
 
     const rosterTableData = _.flatten([
       depthChartPrefix,

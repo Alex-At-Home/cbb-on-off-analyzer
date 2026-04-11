@@ -48,6 +48,7 @@ import { GradeUtils } from "../utils/stats/GradeUtils";
 import { UrlRouting } from "../utils/UrlRouting";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import TeamEditorTable, { TeamEditorStatsModel } from "./TeamEditorTable";
+import TeamDepthChartView from "./TeamDepthChartView";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
 import { DateUtils } from "../utils/DateUtils";
 import { InputGroup } from "react-bootstrap";
@@ -68,6 +69,7 @@ import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
 import ThemedSelect from "./shared/ThemedSelect";
+import { buildTwoDepthRows } from "../utils/tables/TeamEditorDepthChart";
 
 type Props = {
   startingState: OffseasonLeaderboardParams;
@@ -169,6 +171,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     useState<Boolean>(false); //TODO make this display param (this option is mostly for me at the moment, so not a prio)
 
   const [sortBy, setSortBy] = useState(startingState.sortBy || "net");
+
+  const [showDepthChartRows, setShowDepthChartRows] = useState(
+    startingState.showDepthChartRows === true,
+  );
+  useEffect(() => {
+    setShowDepthChartRows(startingState.showDepthChartRows === true);
+  }, [startingState.showDepthChartRows]);
 
   const [rostersPerTeam, setRostersPerTeam] = useState(
     {} as Record<string, Record<string, RosterEntry>>,
@@ -280,6 +289,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           sortBy: sortBy,
           queryFilters: queryFilters,
           showAllTeams,
+          showDepthChartRows,
         },
         _.chain(teamOverrides)
           .flatMap((teamEdit, teamToOver) => {
@@ -301,6 +311,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     evalMode,
     transferInOutMode,
     showAllTeams,
+    showDepthChartRows,
     sortBy,
     queryFilters,
   ]);
@@ -422,6 +433,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       avgEff,
       actualResultsAvgEff,
       logDivisionStatsToFile && typeof window === `undefined`, //(in preseason-building mode, include teams)
+      showDepthChartRows,
     );
 
     //Useful for building late off-season grade lists (copy to public/leaderboard/lineups/stats_all_Men_YYYY_Preseason.json)
@@ -1001,6 +1013,39 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             ),
           ])
           .concat(
+            showDepthChartRows && t.depthChart
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <TeamDepthChartView
+                      rows={t.depthChart.rows}
+                      rosterStatsByPlayerId={t.depthChart.rosterStatsByPlayerId}
+                      positionFromPlayerId={t.depthChart.positionFromPlayerId}
+                      factorMins={teamOverrides[t.team]?.factorMins === true}
+                      showPreviousSeasonInTooltip={
+                        teamOverrides[t.team]?.showPrevSeasons === true
+                      }
+                      getPlayerCareerUrl={(triple) => {
+                        const offSeasonMode = true;
+                        const showLinks =
+                          !triple.manualProfile ||
+                          ((!offSeasonMode || evalMode) &&
+                            triple.actualResults);
+                        if (!showLinks || !triple.orig.roster?.ncaa_id) {
+                          return undefined;
+                        }
+                        return UrlRouting.getPlayerCareer({
+                          ncaaId: triple.orig.roster.ncaa_id,
+                          gender,
+                          showInfoSubHeader: true,
+                        });
+                      }}
+                    />,
+                    "small pt-1",
+                  ),
+                ]
+              : [],
+          )
+          .concat(
             teamView == t.team
               ? [
                   GenericTableOps.buildTextRow(
@@ -1009,6 +1054,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                         team: teamView,
                         gender,
                         year,
+                        showDepthChart: false,
                         evalMode: evalMode,
                         ...(teamOverrides[teamView] || {}),
                       }}
@@ -1060,6 +1106,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     queryFilters,
     rostersPerTeam,
     showExtraStatsInEvalMode,
+    showDepthChartRows,
   ]);
 
   // 3] View
@@ -1190,6 +1237,17 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         </Col>
         <Col lg={1} className="mt-1">
           <GenericTogglingMenu>
+            <GenericTogglingMenuItem
+              text={"Show 2-deep under each team"}
+              truthVal={showDepthChartRows}
+              disabled={false}
+              onSelect={() =>
+                friendlyChange(
+                  () => setShowDepthChartRows(!showDepthChartRows),
+                  true,
+                )
+              }
+            />
             <GenericTogglingMenuItem
               text={"Show breakdown of team's offseason metrics"}
               truthVal={transferInOutMode}

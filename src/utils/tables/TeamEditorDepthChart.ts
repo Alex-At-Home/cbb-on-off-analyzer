@@ -1,7 +1,12 @@
 import _ from "lodash";
 
+import type { IndivPosInfo, IndivStatSet } from "../StatModels";
 import { PositionUtils } from "../stats/PositionUtils";
-import type { GoodBadOkTriple } from "../stats/TeamEditorUtils";
+import {
+  TeamEditorUtils,
+  type GoodBadOkTriple,
+  type TeamEditorProcessingResults,
+} from "../stats/TeamEditorUtils";
 
 export type DepthSlotKey = "pg" | "sg" | "sf" | "pf" | "c";
 
@@ -264,4 +269,64 @@ export function buildTwoDepthRows(
   const used1 = rowKeys(row1);
   const row2 = buildRow(guards, wings, bigs, used1, minutes, displayPct, true);
   return [row1, row2];
+}
+
+/** Serializable inputs for [`TeamDepthChartView`](../../components/TeamDepthChartView.tsx). */
+export type TeamDepthChartViewModel = {
+  rows: [DepthRow, DepthRow];
+  rosterStatsByPlayerId: Record<string, IndivStatSet>;
+  positionFromPlayerId: Record<string, IndivPosInfo>;
+};
+
+/** After optional caliber sort — shared by Team Editor roster and offseason leaderboard. */
+export function buildDepthChartViewModelFromSortedBuckets(
+  sortedGuards: GoodBadOkTriple[],
+  sortedWings: GoodBadOkTriple[],
+  sortedBigs: GoodBadOkTriple[],
+  options: { factorMins: boolean },
+): TeamDepthChartViewModel {
+  const rosterStatsByPlayerId: Record<string, IndivStatSet> = {};
+  const positionFromPlayerId: Record<string, IndivPosInfo> = {};
+  for (const t of sortedGuards.concat(sortedWings).concat(sortedBigs)) {
+    const okProdFactor = options.factorMins
+      ? t.ok.off_team_poss_pct?.value || 0
+      : 1.0;
+    rosterStatsByPlayerId[t.orig.key] = {
+      ...t.ok,
+      key: t.orig.key,
+      code: t.orig.code,
+      roster: t.orig.roster,
+      ok_net: { value: TeamEditorUtils.getNet(t.ok, okProdFactor) },
+    } as unknown as IndivStatSet;
+    positionFromPlayerId[t.orig.key] = {
+      posClass: t.orig.posClass || "",
+      posConfidences: t.orig.posConfidences || [1, 0, 0, 0, 0],
+      roster: t.orig.roster,
+    };
+  }
+  return {
+    rows: buildTwoDepthRows(sortedGuards, sortedWings, sortedBigs),
+    rosterStatsByPlayerId,
+    positionFromPlayerId,
+  };
+}
+
+/**
+ * Builds depth-chart props from Team Editor pipeline output (leaderboard: default `sortByNetDescending: false`).
+ */
+export function buildDepthChartViewModelFromPxResults(
+  pxResults: TeamEditorProcessingResults,
+  options: { factorMins: boolean; sortByNetDescending: boolean },
+): TeamDepthChartViewModel {
+  const { rosterGuards, rosterWings, rosterBigs } = pxResults;
+  const maybeSorted = (triples: GoodBadOkTriple[]) =>
+    options.sortByNetDescending
+      ? _.sortBy(triples, (triple) => -TeamEditorUtils.getNet(triple.ok, 1.0))
+      : triples;
+  return buildDepthChartViewModelFromSortedBuckets(
+    maybeSorted(rosterGuards),
+    maybeSorted(rosterWings),
+    maybeSorted(rosterBigs),
+    { factorMins: options.factorMins },
+  );
 }
