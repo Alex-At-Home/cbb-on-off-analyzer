@@ -362,14 +362,15 @@ export function buildDepthChartViewModelFromSortedBuckets(
     const okProdFactor = options.factorMins
       ? t.ok.off_team_poss_pct?.value || 0
       : 1.0;
-    rosterStatsByPlayerId[t.orig.key] = {
+    /** `triple.key` disambiguates duplicate display names (e.g. two Jayden Ross); `orig.key` is not unique. */
+    rosterStatsByPlayerId[t.key] = {
       ...t.ok,
       key: t.orig.key,
       code: t.orig.code,
       roster: t.orig.roster,
       ok_net: { value: TeamEditorUtils.getNet(t.ok, okProdFactor) },
     } as unknown as IndivStatSet;
-    positionFromPlayerId[t.orig.key] = {
+    positionFromPlayerId[t.key] = {
       posClass: t.orig.posClass || "",
       posConfidences: t.orig.posConfidences || [1, 0, 0, 0, 0],
       roster: t.orig.roster,

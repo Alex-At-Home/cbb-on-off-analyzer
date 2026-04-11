@@ -1931,6 +1931,9 @@ export class TeamEditorManualFixes {
           "Texas Tech": {
             leftTeam: ["ChAnderson::"], //(NBA)
           },
+          UConn: {
+            leftTeam: ["JaRoss::"], //(What a mess, he was JnRoss last season, need to fix the code to merge these 2)
+          },
           Washington: {
             leftTeam: ["HaSteinbach::"], //(NBA)
           },

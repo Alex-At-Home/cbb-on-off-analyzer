@@ -93,7 +93,10 @@ function hasUsableHistoricSeasonStats(
 /** Extended-style lines matching `TableDisplayUtils` lineup tooltips (historic season row). */
 function historicSeasonExtendedStatLines(
   playerInfo: IndivStatSet,
-  cid: { code: string; id: string },
+  /** Roster display name (e.g. `triple.orig.key`), not `triple.key`. */
+  displayName: string,
+  /** Map key for `positionFromPlayerId` — `triple.key`, unique per player row. */
+  lineupMapKey: string,
   positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
 ): string[] {
   const oRtgStr = (playerInfo.off_rtg?.value || 0).toFixed(0);
@@ -119,11 +122,11 @@ function historicSeasonExtendedStatLines(
     (100 * (playerInfo.off_2prim?.value || 0)).toFixed(0) + "%";
 
   return [
-    `${cid.id}`,
+    displayName,
     _.chain([
       playerInfo.roster?.year_class,
       playerInfo.roster?.height,
-      positionFromPlayerId[cid.id]?.posClass,
+      positionFromPlayerId[lineupMapKey]?.posClass,
     ])
       .filter((p) => p != undefined && p != "-")
       .join(" / ")
@@ -137,6 +140,9 @@ function historicSeasonExtendedStatLines(
 }
 
 function buildDepthChartTooltip(
+  /** `triple.orig.key` — human-readable; may collide across siblings; not used as map key. */
+  playerDisplayName: string,
+  /** `{ code, id }` with `id === triple.key` for `perLineupPlayerMap` / pos lookups. */
   cid: { code: string; id: string },
   ok: IndivStatSet,
   positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
@@ -178,20 +184,21 @@ function buildDepthChartTooltip(
   const previousSeasonLines = showPreviousSeasonBlock
     ? historicSeasonExtendedStatLines(
         historicSeason,
-        cid,
+        playerDisplayName,
+        cid.id,
         positionFromPlayerId,
       ).slice(2)
     : [];
 
   return (
     <>
-      <span>{cid.id}</span>
+      <span>{playerDisplayName}</span>
       <br />
       <span>{posLine}</span>
       <br />
       <strong>Predicted:</strong>
       <br />
-      <span style={{ whiteSpace: "nowrap" }}>
+      <span>
         {`Impact: ${predRapm.toFixed(1)} pts/100 (o=[${offR.toFixed(1)}] d=[${defR.toFixed(1)}])`}
       </span>
       <br />
@@ -229,9 +236,10 @@ function buildCellNode(
     return undefined;
   }
   const { triple, displayPct } = cell;
+  const playerDisplayName = triple.orig.key;
   const playerCodeId = {
     code: (triple.orig.code || triple.orig.key) as string,
-    id: triple.orig.key,
+    id: triple.key,
   };
   const careerUrl = getPlayerCareerUrl?.(triple);
   const okStats = rosterStatsByPlayerId[playerCodeId.id];
@@ -244,6 +252,7 @@ function buildCellNode(
 
   const tooltipOverride = okStats
     ? buildDepthChartTooltip(
+        playerDisplayName,
         playerCodeId,
         okStats,
         positionFromPlayerId,

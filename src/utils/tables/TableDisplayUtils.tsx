@@ -261,7 +261,7 @@ export class TableDisplayUtils {
 
     const overlayTooltip =
       tooltipOverride !== undefined ? (
-        <Tooltip id={`${key}_info`}>
+        <Tooltip id={`${key}_info`} style={{ maxWidth: "min(96vw, 22rem)" }}>
           {tooltipOverride}
           {nonStandardOnClickText ? (
             <>
