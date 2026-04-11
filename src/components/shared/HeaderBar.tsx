@@ -494,6 +494,28 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           {highlight ? <b>Teams</b> : "Teams"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
+          {DateUtils.showOffseasonMetrics && (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Off-season Team Builder",
+                teamBuilderTooltip,
+                getTeamBuilderUrl(),
+                `${ParamPrefixes.team}_editor`,
+              )}
+            </Dropdown.Item>
+          )}
+          {DateUtils.showOffseasonMetrics ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Off-season Depth Charts",
+                teamLeaderboardTooltip,
+                UrlRouting.getOffseasonLeaderboard({
+                  showDepthChartRows: true,
+                } as OffseasonLeaderboardParams),
+                `${ParamPrefixes.team}_leaderboard`,
+              )}
+            </Dropdown.Item>
+          ) : undefined}
           {DateUtils.showOffseasonMetrics ? (
             <Dropdown.Item>
               {buildNavItem(
@@ -506,21 +528,11 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               )}
             </Dropdown.Item>
           ) : undefined}
-          {DateUtils.showOffseasonMetrics && (
-            <Dropdown.Item>
-              {buildNavItem(
-                "Build your own off-season roster!",
-                teamBuilderTooltip,
-                getTeamBuilderUrl(),
-                `${ParamPrefixes.team}_editor`,
-              )}
-            </Dropdown.Item>
-          )}
           {DateUtils.frontPageIsOffseasonLeaderboard ? (
             <>
               <Dropdown.Item>
                 {buildNavItem(
-                  "Editable off-season leaderboard!",
+                  "Editable Off-season Leaderboard",
                   teamLeaderboardTooltip,
                   getTeamLeaderboardUrl(),
                   `${ParamPrefixes.team}_leaderboard`,
@@ -528,7 +540,7 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               </Dropdown.Item>
               <Dropdown.Item>
                 {buildNavItem(
-                  "Off-season Tier List!!",
+                  "Off-season Tier Lists",
                   offseasonTierListTooltip,
                   UrlRouting.getOffseasonTierList({}),
                   `${ParamPrefixes.team}_tierList`,

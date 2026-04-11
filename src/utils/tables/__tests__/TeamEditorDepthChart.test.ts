@@ -182,6 +182,37 @@ describe("TeamEditorDepthChart", () => {
       expect(r1.pf?.triple.key).toBe("stretch");
     });
 
+    test("row 1: remaining big at PF if ≥4 mpg or ≥10% poss vs current PF", () => {
+      const guards = [
+        mt("g1", 35, "PG"),
+        mt("g2", 34, "SG"),
+        mt("g3", 33, "CG"),
+        mt("g4", 3, "CG"),
+        mt("g5", 2, "PG"),
+      ];
+      const bigs = [
+        mt("cStart", 28, "C"),
+        mt("bBench", 10, "PF"),
+        mt("bThird", 2, "C"),
+      ];
+      const [r1] = buildTwoDepthRows(guards, [], bigs);
+      expect(r1.c?.triple.key).toBe("cStart");
+      expect(r1.pf?.triple.key).toBe("bBench");
+    });
+
+    test("row 1: no PF big swap when bench big only slightly edges PF", () => {
+      const guards = [
+        mt("g1", 35, "PG"),
+        mt("g2", 34, "SG"),
+        mt("g3", 33, "CG"),
+        mt("g4", 8, "CG"),
+      ];
+      const bigs = [mt("cStart", 28, "C"), mt("bBench", 10, "PF")];
+      const [r1] = buildTwoDepthRows(guards, [], bigs);
+      expect(r1.c?.triple.key).toBe("cStart");
+      expect(r1.pf?.triple.key).toBe("g4");
+    });
+
     test("row 2 with 4 perimeter uses standard PG–PF order (no bench sparse)", () => {
       const guards = [
         mt("a", 40),

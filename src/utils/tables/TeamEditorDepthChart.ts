@@ -237,13 +237,78 @@ function rowKeys(row: DepthRow): Set<string> {
   return s;
 }
 
+function possessionFrac(t: GoodBadOkTriple): number {
+  return t.ok.off_team_poss_pct?.value || 0;
+}
+
+/** After row1 uses `cKey` at C and `candidatePfKey` at PF, some other big must still exist for row 2 C. */
+function canStillStaffRow2C(
+  bigs: GoodBadOkTriple[],
+  cKey: string,
+  candidatePfKey: string,
+  minutes: (t: GoodBadOkTriple) => number,
+): boolean {
+  return bigs.some(
+    (b) => b.key !== cKey && b.key !== candidatePfKey && minutes(b) > 0,
+  );
+}
+
+/**
+ * Row 1 only: if some big not at C plays **≥4 more projected MPG** or **≥0.10 more possession
+ * fraction** than whoever holds PF, put that big at PF (prefer highest minutes among qualifiers
+ * that still leaves another big for row 2 center).
+ */
+function applyRow1BigPfUpgradeIfStronger(
+  row: DepthRow,
+  bigs: GoodBadOkTriple[],
+  minutes: (t: GoodBadOkTriple) => number,
+  displayPct: (t: GoodBadOkTriple) => number,
+): DepthRow {
+  const pfCell = row.pf;
+  const cCell = row.c;
+  if (!pfCell || !cCell) {
+    return row;
+  }
+  const cKey = cCell.triple.key;
+  const pfTriple = pfCell.triple;
+  const pfMin = minutes(pfTriple);
+  const pfPoss = possessionFrac(pfTriple);
+
+  const qualifiers = _.orderBy(
+    bigs.filter((b) => {
+      if (b.key === cKey || b.key === pfTriple.key) {
+        return false;
+      }
+      const bm = minutes(b);
+      const bp = possessionFrac(b);
+      return bm >= pfMin + 4 || bp >= pfPoss + 0.1;
+    }),
+    [(b) => minutes(b)],
+    ["desc"],
+  );
+
+  const best = qualifiers.find((b) =>
+    canStillStaffRow2C(bigs, cKey, b.key, minutes),
+  );
+  if (!best) {
+    return row;
+  }
+  return {
+    ...row,
+    pf: cell(best, displayPct),
+  };
+}
+
 /**
  * Two depth rows for PG–C from Team Editor positional buckets (Guards / Wings / Bigs),
  * in the order already used for the roster table.
  *
  * Row 1: C = max minutes among Bigs; PG–PF = the four Guards/Wings with the most minutes,
  * placed using **main-table vertical order** (Guards then Wings), with PG–SF only for
- * players below PF/C on `posClassToScore`; PF/C+ may appear only in PF or C.
+ * players below PF/C on `posClassToScore`; PF/C+ may appear only in PF or C. Then, if some
+ * other big (not at C) projects **≥4 more MPG** or **≥0.10 more possession share** than the
+ * current PF *and* another big remains for row 2’s center, PF is upgraded to the strongest
+ * such big (by minutes).
  *
  * Row 2: C = max minutes among Bigs not used in row 1; PG–PF = same rule among remaining
  * Guards/Wings. If there are fewer than 4 perimeter players, **bench alignment**: first
@@ -257,7 +322,7 @@ export function buildTwoDepthRows(
   minutes: (t: GoodBadOkTriple) => number = defaultDepthChartMinutes,
   displayPct: (t: GoodBadOkTriple) => number = defaultDepthChartDisplayPct,
 ): [DepthRow, DepthRow] {
-  const row1 = buildRow(
+  const row1Raw = buildRow(
     guards,
     wings,
     bigs,
@@ -265,6 +330,12 @@ export function buildTwoDepthRows(
     minutes,
     displayPct,
     false,
+  );
+  const row1 = applyRow1BigPfUpgradeIfStronger(
+    row1Raw,
+    bigs,
+    minutes,
+    displayPct,
   );
   const used1 = rowKeys(row1);
   const row2 = buildRow(guards, wings, bigs, used1, minutes, displayPct, true);
