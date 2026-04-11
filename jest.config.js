@@ -1,18 +1,20 @@
+/** @type {import("ts-jest").JestConfigWithTsJest} */
 module.exports = {
-  globals: {
-    "ts-jest": {
-      babelConfig: ".babelrc",
-      diagnostics: {
-        ignoreCodes: "TS2307", //(sometimes get these spurious errors during coverage testing)
-      },
-    },
-  },
   roots: ["<rootDir>/src"],
   preset: "ts-jest",
   snapshotSerializers: ["enzyme-to-json/serializer"],
   testEnvironment: "node",
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        babelConfig: ".babelrc",
+        diagnostics: {
+          // Sometimes spurious errors during coverage testing
+          ignoreCodes: [2307],
+        },
+      },
+    ],
   },
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
   testRegex: "/__tests__/.*\\.test.(ts|tsx)$",

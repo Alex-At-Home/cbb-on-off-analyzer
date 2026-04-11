@@ -55,6 +55,8 @@ describe("TeamRosterDiagView", () => {
   test("TeamRosterDiagView - global only", () => {
     const wrapper = shallow(
       <TeamRosterDiagView
+        rawLineups={testLineupData.lineups || []}
+        gameFilterParams={{}}
         positionInfoGlobal={LineupTableUtils.getPositionalInfo(
           (testLineupData.lineups || []) as unknown as Array<LineupStatSet>, positionFromPlayerIdGlobal, teamSeasonLookup
         )}
@@ -70,6 +72,8 @@ describe("TeamRosterDiagView", () => {
   test("TeamRosterDiagView - global and sample - choose baseline", () => {
     const wrapper = shallow(
       <TeamRosterDiagView
+        rawLineups={testLineupData.lineups || []}
+        gameFilterParams={{}}
         positionInfoGlobal={LineupTableUtils.getPositionalInfo(
           (testLineupData.lineups || []) as unknown as Array<LineupStatSet>, positionFromPlayerIdGlobal, teamSeasonLookup
         )}
@@ -87,6 +91,8 @@ describe("TeamRosterDiagView", () => {
   test("TeamRosterDiagView - global and sample - choose sample", () => {
     const wrapper = shallow(
       <TeamRosterDiagView
+        rawLineups={testLineupData.lineups || []}
+        gameFilterParams={{}}
         positionInfoGlobal={LineupTableUtils.getPositionalInfo(
           (testLineupData.lineups || []) as unknown as Array<LineupStatSet>, positionFromPlayerIdGlobal, teamSeasonLookup
         )}
