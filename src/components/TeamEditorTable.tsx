@@ -65,13 +65,17 @@ import {
   DivisionStatistics,
   Statistic,
   TeamStatInfo,
+  IndivStatSet,
+  IndivPosInfo,
 } from "../utils/StatModels";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 import GenericCollapsibleCard from "./shared/GenericCollapsibleCard";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { LeaderboardUtils, TransferModel } from "../utils/LeaderboardUtils";
 import TeamRosterEditor from "./shared/TeamRosterEditor";
+import TeamDepthChartView from "./TeamDepthChartView";
 import { TeamEditorTableUtils } from "../utils/tables/TeamEditorTableUtils";
+import { buildTwoDepthRows } from "../utils/tables/TeamEditorDepthChart";
 import { UrlRouting } from "../utils/UrlRouting";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { DateUtils } from "../utils/DateUtils";
@@ -93,7 +97,6 @@ import {
   totalImprovementNeededPoints,
 } from "../utils/stats/NilAllocator";
 import { CbbColors } from "../utils/CbbColors";
-import { IndivStatSet } from "../utils/StatModels";
 import ThemedSelect from "./shared/ThemedSelect";
 import AsyncFormControl from "./shared/AsyncFormControl";
 
@@ -239,6 +242,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     _.isNil(startingState.alwaysShowBench)
       ? false
       : startingState.alwaysShowBench,
+  );
+  const [showDepthChart, setShowDepthChart] = useState(
+    startingState.showDepthChart ?? false,
   );
   const [superSeniorsBack, setSuperSeniorsBack] = useState(
     _.isNil(startingState.superSeniorsBack)
@@ -464,6 +470,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         offSeason: offSeasonMode,
         showPrevSeasons: showPrevSeasons,
         alwaysShowBench: alwaysShowBench,
+        showDepthChart: showDepthChart,
         superSeniorsBack: superSeniorsBack,
         evalMode: evalMode,
         allEditOpen: allEditOpen,
@@ -500,6 +507,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     factorMins,
     offSeasonMode,
     alwaysShowBench,
+    showDepthChart,
     superSeniorsBack,
     evalMode,
     showGrades,
@@ -2991,6 +2999,26 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         ? _.sortBy(triples, (triple) => -TeamEditorUtils.getNet(triple.ok, 1.0))
         : triples;
 
+    const sortedGuards = maybeSorted(rosterGuards);
+    const sortedWings = maybeSorted(rosterWings);
+    const sortedBigs = maybeSorted(rosterBigs);
+
+    const depthChartRosterStats: Record<string, IndivStatSet> = {};
+    const depthChartPosInfo: Record<string, IndivPosInfo> = {};
+    for (const t of sortedGuards.concat(sortedWings).concat(sortedBigs)) {
+      depthChartRosterStats[t.orig.key] = {
+        ...t.ok,
+        key: t.orig.key,
+        code: t.orig.code,
+        roster: t.orig.roster,
+      } as IndivStatSet;
+      depthChartPosInfo[t.orig.key] = {
+        posClass: t.orig.posClass || "",
+        posConfidences: t.orig.posConfidences || [1, 0, 0, 0, 0],
+        roster: t.orig.roster,
+      };
+    }
+
     const maybePerPosGradeControls = (
       controlRowId: string,
       selectionTitle: string,
@@ -3027,7 +3055,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ...maybePerPosGradeControls("TeamEdGuards", "Grades (Guards)"),
     ]
       .concat(
-        _.flatMap(maybeSorted(rosterGuards), (triple) => {
+        _.flatMap(sortedGuards, (triple) => {
           return buildDataRowFromTriple(triple);
         }),
       )
@@ -3043,7 +3071,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ...maybePerPosGradeControls("TeamEdWings", "Grades (Wings)"),
     ]
       .concat(
-        _.flatMap(maybeSorted(rosterWings), (triple) => {
+        _.flatMap(sortedWings, (triple) => {
           return buildDataRowFromTriple(triple);
         }),
       )
@@ -3059,7 +3087,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ...maybePerPosGradeControls("TeamEdBigs", "Grades (Bigs)"),
     ]
       .concat(
-        _.flatMap(maybeSorted(rosterBigs), (triple) => {
+        _.flatMap(sortedBigs, (triple) => {
           return buildDataRowFromTriple(triple);
         }),
       )
@@ -3109,7 +3137,36 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       </span>
     );
 
+    const depthChartPrefix = showDepthChart
+      ? [
+          GenericTableOps.buildTextRow(
+            <span>
+              <TeamDepthChartView
+                rows={buildTwoDepthRows(sortedGuards, sortedWings, sortedBigs)}
+                rosterStatsByPlayerId={depthChartRosterStats}
+                positionFromPlayerId={depthChartPosInfo}
+                getPlayerCareerUrl={(triple) => {
+                  const showLinks =
+                    !triple.manualProfile ||
+                    ((!offSeasonMode || evalMode) && triple.actualResults);
+                  if (!showLinks || !triple.orig.roster?.ncaa_id) {
+                    return undefined;
+                  }
+                  return UrlRouting.getPlayerCareer({
+                    ncaaId: triple.orig.roster.ncaa_id,
+                    gender,
+                    showInfoSubHeader: true,
+                  });
+                }}
+              />
+            </span>,
+            "small pt-2",
+          ),
+        ]
+      : [];
+
     const rosterTableData = _.flatten([
+      depthChartPrefix,
       rosterTableDataGuards,
       rosterTableDataWings,
       rosterTableDataBigs,
@@ -3180,6 +3237,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     nilDesiredNetInput,
     showGrades,
     hideGlobalGradeSettings,
+    showDepthChart,
+    gender,
   ]);
 
   let nilDesiredRatingSuffix: React.ReactNode = null;
@@ -3701,6 +3760,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 onClick: () =>
                   friendlyChange(
                     () => setAlwaysShowBench(!alwaysShowBench),
+                    true,
+                  ),
+              },
+              {
+                label: "2-deep",
+                tooltip:
+                  "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
+                toggled: showDepthChart,
+                onClick: () =>
+                  friendlyChange(
+                    () => setShowDepthChart(!showDepthChart),
                     true,
                   ),
               },

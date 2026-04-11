@@ -1581,11 +1581,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -1687,6 +1682,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -6896,11 +6897,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -7002,6 +6998,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -11976,11 +11978,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -12082,6 +12079,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -17944,11 +17947,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -18050,6 +18048,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -24069,11 +24073,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -24175,6 +24174,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -30200,11 +30205,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -30306,6 +30306,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "onClick": [Function],
               "toggled": true,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -35744,11 +35750,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -35850,6 +35851,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "onClick": [Function],
               "toggled": true,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -40028,11 +40035,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -40134,6 +40136,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -44202,11 +44210,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -44308,6 +44311,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "onClick": [Function],
               "toggled": false,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",
@@ -47600,11 +47609,6 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
         />
         <GenericTogglingMenuItem
           onSelect={[Function]}
-          text="Show grades"
-          truthVal={true}
-        />
-        <GenericTogglingMenuItem
-          onSelect={[Function]}
           text="Show players' previous seasons"
           truthVal={false}
         />
@@ -47706,6 +47710,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "onClick": [Function],
               "toggled": true,
               "tooltip": "If enabled show bench position groups even if they play no minutes (useful if you want to override the minutes)",
+            },
+            Object {
+              "label": "2-deep",
+              "onClick": [Function],
+              "toggled": false,
+              "tooltip": "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
             },
             Object {
               "label": "Super Sr",

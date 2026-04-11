@@ -340,6 +340,8 @@ export type TeamEditorParams = {
   offSeason?: boolean; //(defaults to true, else shows current performance - for building all star teams and seeing effect of injury)
   evalMode?: boolean; //(defaults to false, if true will compare the season X with the predictions from the previous offseason)
   alwaysShowBench?: boolean; //(defaults to false)
+  /** When true, show a 2-row PG–C depth chart above positional roster sections */
+  showDepthChart?: boolean;
   superSeniorsBack?: boolean; //(defaults to false)
   // Controls what transfers are shown
   showOnlyTransfers?: boolean; //(defaults to true)
