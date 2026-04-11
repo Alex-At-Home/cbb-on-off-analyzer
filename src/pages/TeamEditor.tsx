@@ -117,7 +117,10 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         !rawParams.showPrevSeasons ? ["showPrevSeasons"] : [],
         !rawParams.factorMins ? ["factorMins"] : [],
         !rawParams.alwaysShowBench ? ["alwaysShowBench"] : [],
-        !rawParams.showDepthChart ? ["showDepthChart"] : [],
+        rawParams.showDepthChart === false ||
+        String(rawParams.showDepthChart).toLowerCase() === "false"
+          ? []
+          : ["showDepthChart"],
         !rawParams.superSeniorsBack ? ["superSeniorsBack"] : [],
         !rawParams.enableNil ? ["enableNil"] : [],
         !rawParams.enableNil ||

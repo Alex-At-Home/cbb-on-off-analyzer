@@ -24,8 +24,12 @@ const TABLE_COLS = ["pg", "sg", "sf", "pf", "c"] as const;
 
 export type TeamDepthChartViewProps = {
   rows: [DepthRow, DepthRow];
+  /** Projected (ok) stats per player — Predicted tooltip; includes `ok_net` for badge color. */
   rosterStatsByPlayerId: Record<PlayerId, IndivStatSet>;
   positionFromPlayerId: Record<PlayerId, IndivPosInfo>;
+  factorMins: boolean;
+  /** When true, tooltip may include a "Previous season" block from `triple.orig` (same row as roster table). */
+  showPreviousSeasonInTooltip?: boolean;
   /** When set, opens this URL in a new tab from buildDecoratedLineup; otherwise name is not a link. */
   getPlayerCareerUrl?: (triple: GoodBadOkTriple) => string | undefined;
 };
@@ -71,11 +75,154 @@ const tableFields = {
   ),
 };
 
+/** True when we have enough stats to show a "Previous season" block (mirrors usefulness of roster sub-row). */
+function hasUsableHistoricSeasonStats(
+  season: IndivStatSet | undefined,
+): boolean {
+  if (!season) {
+    return false;
+  }
+  const mp = season.min_played?.value;
+  if (mp != null && mp > 0) {
+    return true;
+  }
+  const ortg = season.off_rtg?.value;
+  return ortg != null && ortg > 0;
+}
+
+/** Extended-style lines matching `TableDisplayUtils` lineup tooltips (historic season row). */
+function historicSeasonExtendedStatLines(
+  playerInfo: IndivStatSet,
+  cid: { code: string; id: string },
+  positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
+): string[] {
+  const oRtgStr = (playerInfo.off_rtg?.value || 0).toFixed(0);
+  const usageStr = (100 * (playerInfo.off_usage?.value || 0)).toFixed(0) + "%";
+  const defRbStr = (100 * (playerInfo.def_orb?.value || 0)).toFixed(0) + "%";
+  const adjOffRtg = playerInfo.off_adj_rtg?.value || 0;
+  const adjOffRtgSgn = adjOffRtg >= 0 ? "+" : "";
+  const adjOffRtgStr = adjOffRtgSgn + adjOffRtg.toFixed(1);
+  const assistRateStr =
+    (100 * (playerInfo.off_assist?.value || 0)).toFixed(0) + "%";
+  const toRateStr = (100 * (playerInfo.off_to?.value || 0)).toFixed(0) + "%";
+  const offRbStr = (100 * (playerInfo.off_orb?.value || 0)).toFixed(0) + "%";
+  const freethrowRateStr =
+    (100 * (playerInfo.off_ftr?.value || 0)).toFixed(0) + "%";
+  const efgStr = (100 * (playerInfo.off_efg?.value || 0)).toFixed(0) + "%";
+  const threePointRate = 100 * (playerInfo.off_3pr?.value || 0);
+  const threePointRateStr = threePointRate.toFixed(0) + "%";
+  const threePointPctStr =
+    (100 * (playerInfo.off_3p?.value || 0)).toFixed(0) + "%";
+  const rimRateStr =
+    (100 * (playerInfo.off_2primr?.value || 0)).toFixed(0) + "%";
+  const rimPointPctStr =
+    (100 * (playerInfo.off_2prim?.value || 0)).toFixed(0) + "%";
+
+  return [
+    `${cid.id}`,
+    _.chain([
+      playerInfo.roster?.year_class,
+      playerInfo.roster?.height,
+      positionFromPlayerId[cid.id]?.posClass,
+    ])
+      .filter((p) => p != undefined && p != "-")
+      .join(" / ")
+      .value(),
+    `ORtg ${oRtgStr} on ${usageStr} (${adjOffRtgStr})`,
+    `3P ${threePointPctStr} on ${threePointRateStr}, eFG ${efgStr}`,
+    `Rim ${rimPointPctStr} on ${rimRateStr}, FTR ${freethrowRateStr}`,
+    `AST ${assistRateStr} : TO ${toRateStr}`,
+    `ORB ${offRbStr}, DRB ${defRbStr}`,
+  ];
+}
+
+function buildDepthChartTooltip(
+  cid: { code: string; id: string },
+  ok: IndivStatSet,
+  positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
+  factorMins: boolean,
+  /** Most recent season with stats (`triple.orig`), same source as roster "Previous season" row — not `prevYear`. */
+  historicSeason: IndivStatSet | undefined,
+): React.ReactNode {
+  const marginKey = factorMins
+    ? "off_adj_rapm_prod_margin"
+    : "off_adj_rapm_margin";
+  const offKey = factorMins ? "off_adj_rapm_prod" : "off_adj_rapm";
+  const defKey = factorMins ? "def_adj_rapm_prod" : "def_adj_rapm";
+
+  const marginVal = (ok as Record<string, { value?: number }>)[marginKey]
+    ?.value;
+  const offVal = (ok as Record<string, { value?: number }>)[offKey]?.value;
+  const defVal = (ok as Record<string, { value?: number }>)[defKey]?.value;
+
+  const predRapm =
+    marginVal ?? (offVal != null && defVal != null ? offVal - defVal : 0);
+  const offR = offVal ?? 0;
+  const defR = defVal ?? 0;
+
+  const oRtgStr = (ok.off_rtg?.value || 0).toFixed(0);
+  const usageStr = (100 * (ok.off_usage?.value || 0)).toFixed(0) + "%";
+
+  const posLine = _.chain([
+    ok.roster?.year_class,
+    ok.roster?.height,
+    positionFromPlayerId[cid.id]?.posClass,
+  ])
+    .filter((p) => p != undefined && p != "-")
+    .join(" / ")
+    .value();
+
+  const showPreviousSeasonBlock =
+    historicSeason && hasUsableHistoricSeasonStats(historicSeason);
+  /** Same strings as `TableDisplayUtils.buildTooltipText` extended view; drop name + class/height/pos (already above). */
+  const previousSeasonLines = showPreviousSeasonBlock
+    ? historicSeasonExtendedStatLines(
+        historicSeason,
+        cid,
+        positionFromPlayerId,
+      ).slice(2)
+    : [];
+
+  return (
+    <>
+      <span>{cid.id}</span>
+      <br />
+      <span>{posLine}</span>
+      <br />
+      <strong>Predicted:</strong>
+      <br />
+      <span style={{ whiteSpace: "nowrap" }}>
+        {`Impact: ${predRapm.toFixed(1)} pts/100 (o=[${offR.toFixed(1)}] d=[${defR.toFixed(1)}])`}
+      </span>
+      <br />
+      <span>
+        ORtg {oRtgStr} on {usageStr}
+      </span>
+      {showPreviousSeasonBlock ? (
+        <>
+          <br />
+          <br />
+          <strong>Previous season:</strong>
+          <br />
+          {previousSeasonLines.map((line, i) => (
+            <React.Fragment key={i}>
+              {i > 0 ? <br /> : null}
+              <span>{line}</span>
+            </React.Fragment>
+          ))}
+        </>
+      ) : null}
+    </>
+  );
+}
+
 function buildCellNode(
   col: string,
   cell: DepthCell | undefined,
   rosterStatsByPlayerId: Record<PlayerId, IndivStatSet>,
   positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
+  factorMins: boolean,
+  showPreviousSeasonInTooltip: boolean | undefined,
   getPlayerCareerUrl: TeamDepthChartViewProps["getPlayerCareerUrl"],
 ): React.ReactNode {
   if (!cell) {
@@ -87,18 +234,37 @@ function buildCellNode(
     id: triple.orig.key,
   };
   const careerUrl = getPlayerCareerUrl?.(triple);
+  const okStats = rosterStatsByPlayerId[playerCodeId.id];
+  const historicForTooltip =
+    showPreviousSeasonInTooltip &&
+    !triple.manualProfile &&
+    hasUsableHistoricSeasonStats(triple.orig)
+      ? triple.orig
+      : undefined;
+
+  const tooltipOverride = okStats
+    ? buildDepthChartTooltip(
+        playerCodeId,
+        okStats,
+        positionFromPlayerId,
+        factorMins,
+        historicForTooltip,
+      )
+    : undefined;
+
   const decoratedPlayerInfo = TableDisplayUtils.buildDecoratedLineup(
     playerCodeId.code + col,
     [playerCodeId],
     rosterStatsByPlayerId,
     positionFromPlayerId,
-    "off_adj_rtg",
+    "ok_net",
     true,
     ParamDefaults.defaultLineupFontSize,
     {},
     true,
     careerUrl ? () => careerUrl : undefined,
     careerUrl ? "Open Player Career page" : undefined,
+    tooltipOverride,
   );
   const playerNum = rosterStatsByPlayerId[playerCodeId.id]?.roster?.number;
   return (
@@ -132,6 +298,8 @@ function rowToDataObj(
   row: DepthRow,
   rosterStatsByPlayerId: Record<PlayerId, IndivStatSet>,
   positionFromPlayerId: Record<PlayerId, IndivPosInfo>,
+  factorMins: boolean,
+  showPreviousSeasonInTooltip: boolean | undefined,
   getPlayerCareerUrl: TeamDepthChartViewProps["getPlayerCareerUrl"],
 ): Record<string, unknown> {
   return _.chain(TABLE_COLS)
@@ -142,6 +310,8 @@ function rowToDataObj(
         row[col],
         rosterStatsByPlayerId,
         positionFromPlayerId,
+        factorMins,
+        showPreviousSeasonInTooltip,
         getPlayerCareerUrl,
       ),
     ])
@@ -154,6 +324,8 @@ const TeamDepthChartView: React.FunctionComponent<TeamDepthChartViewProps> = ({
   rows,
   rosterStatsByPlayerId,
   positionFromPlayerId,
+  factorMins,
+  showPreviousSeasonInTooltip,
   getPlayerCareerUrl,
 }) => {
   const tableData = rows.map((row) =>
@@ -162,6 +334,8 @@ const TeamDepthChartView: React.FunctionComponent<TeamDepthChartViewProps> = ({
         row,
         rosterStatsByPlayerId,
         positionFromPlayerId,
+        factorMins,
+        showPreviousSeasonInTooltip,
         getPlayerCareerUrl,
       ),
       GenericTableOps.defaultFormatter,

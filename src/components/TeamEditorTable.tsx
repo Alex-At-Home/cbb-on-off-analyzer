@@ -243,9 +243,10 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       ? false
       : startingState.alwaysShowBench,
   );
-  const [showDepthChart, setShowDepthChart] = useState(
-    startingState.showDepthChart ?? false,
-  );
+  const [showDepthChart, setShowDepthChart] = useState(() => {
+    const v = startingState.showDepthChart;
+    return v === false || String(v).toLowerCase() === "false" ? false : true;
+  });
   const [superSeniorsBack, setSuperSeniorsBack] = useState(
     _.isNil(startingState.superSeniorsBack)
       ? false
@@ -3006,12 +3007,17 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
     const depthChartRosterStats: Record<string, IndivStatSet> = {};
     const depthChartPosInfo: Record<string, IndivPosInfo> = {};
     for (const t of sortedGuards.concat(sortedWings).concat(sortedBigs)) {
+      const okProdFactor = factorMins
+        ? t.ok.off_team_poss_pct?.value || 0
+        : 1.0;
       depthChartRosterStats[t.orig.key] = {
         ...t.ok,
         key: t.orig.key,
         code: t.orig.code,
         roster: t.orig.roster,
-      } as IndivStatSet;
+        /** Matches roster "Net" column (`TeamEditorUtils.getNet`); used only for depth-chart badge color. */
+        ok_net: { value: TeamEditorUtils.getNet(t.ok, okProdFactor) },
+      } as unknown as IndivStatSet;
       depthChartPosInfo[t.orig.key] = {
         posClass: t.orig.posClass || "",
         posConfidences: t.orig.posConfidences || [1, 0, 0, 0, 0],
@@ -3145,6 +3151,8 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
                 rows={buildTwoDepthRows(sortedGuards, sortedWings, sortedBigs)}
                 rosterStatsByPlayerId={depthChartRosterStats}
                 positionFromPlayerId={depthChartPosInfo}
+                factorMins={factorMins}
+                showPreviousSeasonInTooltip={showPrevSeasons && offSeasonMode}
                 getPlayerCareerUrl={(triple) => {
                   const showLinks =
                     !triple.manualProfile ||

@@ -246,6 +246,8 @@ export class TableDisplayUtils {
     onClickOverride?: (sortedLineup: { code: string; id: string }[]) => string,
     /** Optional footer line on the hover tooltip (replaces the default “click to open…” when set). */
     nonStandardOnClickText?: string,
+    /** When set, replaces the default lineup tooltip body (footer line still appended if set). */
+    tooltipOverride?: React.ReactNode,
   ) {
     const tooltipBuilder = (pid: number) =>
       TableDisplayUtils.buildTooltipTexts(
@@ -255,6 +257,21 @@ export class TableDisplayUtils {
         positionFromPlayerKey,
         extendedTooltipView,
         nonStandardOnClickText,
+      );
+
+    const overlayTooltip =
+      tooltipOverride !== undefined ? (
+        <Tooltip id={`${key}_info`}>
+          {tooltipOverride}
+          {nonStandardOnClickText ? (
+            <>
+              <br />
+              {nonStandardOnClickText}
+            </>
+          ) : null}
+        </Tooltip>
+      ) : (
+        tooltipBuilder(0)
       );
 
     if (decorateLineup) {
@@ -271,7 +288,7 @@ export class TableDisplayUtils {
         },
       );
       return (
-        <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
+        <OverlayTrigger placement="auto" overlay={overlayTooltip}>
           {extendedTooltipView && !onClickOverride ? (
             <div>{lineupElement}</div>
           ) : (
@@ -294,7 +311,7 @@ export class TableDisplayUtils {
       );
     } else {
       return (
-        <OverlayTrigger placement="auto" overlay={tooltipBuilder(0)}>
+        <OverlayTrigger placement="auto" overlay={overlayTooltip}>
           <span>
             <a href="#" style={{ color: "inherit", textDecoration: "inherit" }}>
               <b>
@@ -459,6 +476,12 @@ export class TableDisplayUtils {
           return CbbColors.off_diff10_p100_redGreen;
         case "def_adj_rtg":
           return CbbColors.def_diff10_p100_redGreen;
+        /** Injected for Team Editor depth chart to match roster Net column coloring. */
+        case "ok_net":
+          return CbbColors.off_diff10_p100_redGreen;
+        case "off_adj_rapm_margin":
+        case "off_adj_rapm_prod_margin":
+          return CbbColors.p_rapmCaliber;
         case "off_3pr":
           return CbbColors.fgr_offDef;
         default:
