@@ -85,9 +85,6 @@ exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 
       "off_adj_opp": {
         "value": 108.03972067039106,
       },
-      "off_adj_oppo_margin": {
-        "value": 0,
-      },
       "off_adj_prod": {
         "value": 3.802595103710068,
       },
@@ -407,9 +404,6 @@ exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 
       },
       "off_adj_opp": {
         "value": 107.7926845637584,
-      },
-      "off_adj_oppo_margin": {
-        "value": 0,
       },
       "off_adj_prod": {
         "value": -1.0114607803583409,
@@ -745,9 +739,6 @@ exports[`buildLeaderboards buildLeaderboards - main / completeLineupLeaderboard 
       },
       "off_adj_opp": {
         "value": 108.03972067039106,
-      },
-      "off_adj_oppo_margin": {
-        "value": 0,
       },
       "off_adj_prod": {
         "value": 3.802595103710068,
@@ -24142,6 +24133,9 @@ exports[`buildLeaderboards buildLeaderboards - main / division player stats 1`] 
     "off_adj_opp": [
       107.7926845637584,
     ],
+    "off_adj_opp_margin": [
+      11.023221476510074,
+    ],
     "off_adj_prod": [
       -1.0114607803583409,
     ],
@@ -24871,6 +24865,18 @@ exports[`buildLeaderboards buildLeaderboards - main / division player stats 1`] 
       },
       "lutMult": undefined,
       "min": 107.79268456,
+      "size": 1,
+    },
+    "off_adj_opp_margin": {
+      "isPct": false,
+      "lut": {
+        "11": [
+          0,
+          11.02322148,
+        ],
+      },
+      "lutMult": undefined,
+      "min": 11.02322148,
       "size": 1,
     },
     "off_adj_prod": {

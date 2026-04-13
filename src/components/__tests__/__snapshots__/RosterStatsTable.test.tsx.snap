@@ -113,8 +113,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.4931506849315068,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -383,8 +383,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.46875,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -653,8 +653,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -883,8 +883,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.540650406504065,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -1153,8 +1153,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -1383,8 +1383,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.3333333333333333,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -1666,8 +1666,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -1903,8 +1903,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -2142,8 +2142,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -2419,8 +2419,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -2698,8 +2698,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -2975,8 +2975,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -3254,8 +3254,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -3531,8 +3531,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -3810,8 +3810,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -4047,8 +4047,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -4286,8 +4286,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -4563,8 +4563,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -4875,8 +4875,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -5105,8 +5105,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -6720,8 +6720,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 0.4931506849315068,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -6997,8 +6997,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 0.46875,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -7278,8 +7278,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 0.540650406504065,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -7559,8 +7559,8 @@ exports[`RosterStatsTable RosterStatsTable (!expanded) - should create snapshot 
                                     "value": 0.3333333333333333,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -10508,8 +10508,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -10678,8 +10678,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -10861,8 +10861,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -11038,8 +11038,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -11217,8 +11217,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -11394,8 +11394,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -11606,8 +11606,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -11776,8 +11776,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -13026,8 +13026,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.43787709497208,
                                   }
 
                   off_adj_prod: {
@@ -13203,8 +13203,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.43787709497208,
                                   }
 
                   off_adj_prod: {
@@ -13384,8 +13384,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.023221476510074,
                                   }
 
                   off_adj_prod: {
@@ -13561,8 +13561,8 @@ exports[`RosterStatsTable RosterStatsTable (baseline only, expanded) - should cr
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.023221476510074,
                                   }
 
                   off_adj_prod: {
@@ -14029,8 +14029,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -14216,8 +14216,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -14403,8 +14403,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -14590,8 +14590,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -14777,8 +14777,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -14964,8 +14964,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -15164,8 +15164,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -15358,8 +15358,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -15554,8 +15554,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -15748,8 +15748,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -15944,8 +15944,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -16138,8 +16138,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -16334,8 +16334,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -16528,8 +16528,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -16724,8 +16724,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -16918,8 +16918,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -17114,8 +17114,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -17308,8 +17308,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -17537,8 +17537,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -17724,8 +17724,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -18991,8 +18991,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -19185,8 +19185,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -19379,8 +19379,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -19573,8 +19573,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -19771,8 +19771,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -19965,8 +19965,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -20163,8 +20163,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -20357,8 +20357,8 @@ exports[`RosterStatsTable RosterStatsTable (expanded) - should create snapshot 1
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -20869,8 +20869,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.4931506849315068,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -21113,8 +21113,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.46875,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -21357,8 +21357,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -21601,8 +21601,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.540650406504065,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -21845,8 +21845,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -22089,8 +22089,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.3333333333333333,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -22346,8 +22346,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -22597,8 +22597,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -22850,8 +22850,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -23101,8 +23101,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -23354,8 +23354,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -23605,8 +23605,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -23858,8 +23858,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -24109,8 +24109,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -24362,8 +24362,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -24613,8 +24613,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -24866,8 +24866,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -25117,8 +25117,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -25403,8 +25403,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -25647,8 +25647,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -27276,8 +27276,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     "value": 0.4931506849315068,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -27570,8 +27570,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     "value": 0.46875,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -27868,8 +27868,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     "value": 0.540650406504065,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -28166,8 +28166,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, !expanded) - should create s
                                     "value": 0.3333333333333333,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -28707,8 +28707,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -28908,8 +28908,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -29109,8 +29109,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -29310,8 +29310,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -29511,8 +29511,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -29712,8 +29712,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -29926,8 +29926,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -30134,8 +30134,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -30344,8 +30344,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -30552,8 +30552,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -30762,8 +30762,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -30970,8 +30970,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -31180,8 +31180,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -31388,8 +31388,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -31598,8 +31598,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -31806,8 +31806,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -32016,8 +32016,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -32224,8 +32224,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                 grades: {}
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -32467,8 +32467,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -32668,8 +32668,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
             grades: {}
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -33949,8 +33949,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -34157,8 +34157,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -34408,8 +34408,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -34616,8 +34616,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -34871,8 +34871,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -35079,8 +35079,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -35334,8 +35334,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -35542,8 +35542,8 @@ exports[`RosterStatsTable RosterStatsTable (grades, expanded) - should create sn
 
                   grades: {}
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -36088,8 +36088,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.4931506849315068,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -36338,8 +36338,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.46875,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -36588,8 +36588,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -36838,8 +36838,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.540650406504065,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -37088,8 +37088,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -37338,8 +37338,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.3333333333333333,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -37601,8 +37601,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -37858,8 +37858,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -38117,8 +38117,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -38374,8 +38374,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -38633,8 +38633,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -38890,8 +38890,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -39149,8 +39149,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -39406,8 +39406,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -39665,8 +39665,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -39922,8 +39922,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -40181,8 +40181,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -40438,8 +40438,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -40730,8 +40730,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -40980,8 +40980,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -42615,8 +42615,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.4931506849315068,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -42894,8 +42894,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.4931506849315068,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.94437129690587,
                                           }
 
                       off_adj_prod: {
@@ -43199,8 +43199,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.46875,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -43478,8 +43478,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.46875,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 8.598892988929876,
                                           }
 
                       off_adj_prod: {
@@ -43787,8 +43787,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.540650406504065,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -44066,8 +44066,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.540650406504065,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.603919933277737,
                                           }
 
                       off_adj_prod: {
@@ -44375,8 +44375,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                     "value": 0.3333333333333333,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -44654,8 +44654,8 @@ exports[`RosterStatsTable RosterStatsTable (luck enabled, all the diags) - shoul
                                             "value": 0.3333333333333333,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": -0.75,
                                           }
 
                       off_adj_prod: {
@@ -45227,8 +45227,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.4931506849315068,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -45485,8 +45485,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.46875,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -45743,8 +45743,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -46001,8 +46001,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.540650406504065,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -46271,8 +46271,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -46529,8 +46529,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.3333333333333333,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -46821,8 +46821,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -47086,8 +47086,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -47353,8 +47353,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -47618,8 +47618,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -47885,8 +47885,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -48150,8 +48150,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -48417,8 +48417,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -48676,8 +48676,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -48949,8 +48949,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -49226,8 +49226,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -49493,8 +49493,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -49758,8 +49758,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -50058,8 +50058,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -50328,8 +50328,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -51979,8 +51979,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.4931506849315068,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -52266,8 +52266,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.4931506849315068,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.94437129690587,
                                           }
 
                       off_adj_prod: {
@@ -52585,8 +52585,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.4931506849315068,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.94437129690587,
                                           }
 
                       off_adj_prod: {
@@ -52841,8 +52841,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.5566666666666666,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.023221476510074,
                                               }
 
                         off_adj_prod: {
@@ -53099,8 +53099,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.4887640449438202,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.43787709497208,
                                               }
 
                         off_adj_prod: {
@@ -53409,8 +53409,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.46875,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -53696,8 +53696,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.46875,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 8.598892988929876,
                                           }
 
                       off_adj_prod: {
@@ -54015,8 +54015,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.46875,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 8.598892988929876,
                                           }
 
                       off_adj_prod: {
@@ -54271,8 +54271,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.5566666666666666,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.023221476510074,
                                               }
 
                         off_adj_prod: {
@@ -54529,8 +54529,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.4887640449438202,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.43787709497208,
                                               }
 
                         off_adj_prod: {
@@ -54843,8 +54843,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.540650406504065,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -55130,8 +55130,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.540650406504065,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.603919933277737,
                                           }
 
                       off_adj_prod: {
@@ -55449,8 +55449,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.540650406504065,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.603919933277737,
                                           }
 
                       off_adj_prod: {
@@ -55705,8 +55705,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.5566666666666666,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.023221476510074,
                                               }
 
                         off_adj_prod: {
@@ -55963,8 +55963,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.4887640449438202,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.43787709497208,
                                               }
 
                         off_adj_prod: {
@@ -56277,8 +56277,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                     "value": 0.3333333333333333,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -56558,8 +56558,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.3333333333333333,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": -0.75,
                                           }
 
                       off_adj_prod: {
@@ -56871,8 +56871,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                             "value": 0.3333333333333333,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": -0.75,
                                           }
 
                       off_adj_prod: {
@@ -57121,8 +57121,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.5566666666666666,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.023221476510074,
                                               }
 
                         off_adj_prod: {
@@ -57379,8 +57379,8 @@ exports[`RosterStatsTable RosterStatsTable (luck+overrides enabled, all the diag
                                                 "value": 0.4887640449438202,
                                               }
 
-                        off_adj_oppo_margin: {
-                                                "value": 0,
+                        off_adj_opp_margin: {
+                                                "value": 11.43787709497208,
                                               }
 
                         off_adj_prod: {
@@ -57951,8 +57951,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.4931506849315068,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.94437129690587,
                       }
 
             off_adj_prod: {
@@ -58193,8 +58193,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.46875,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 8.598892988929876,
                       }
 
             off_adj_prod: {
@@ -58441,8 +58441,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -58689,8 +58689,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.540650406504065,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.603919933277737,
                       }
 
             off_adj_prod: {
@@ -58931,8 +58931,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -59173,8 +59173,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.3333333333333333,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": -0.75,
                       }
 
             off_adj_prod: {
@@ -59443,8 +59443,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -59704,8 +59704,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.4887640449438202,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.43787709497208,
                               }
 
                 off_adj_prod: {
@@ -59961,8 +59961,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -60210,8 +60210,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.46875,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 8.598892988929876,
                               }
 
                 off_adj_prod: {
@@ -60461,8 +60461,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -60710,8 +60710,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.4931506849315068,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.94437129690587,
                               }
 
                 off_adj_prod: {
@@ -60961,8 +60961,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -61210,8 +61210,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.3333333333333333,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": -0.75,
                               }
 
                 off_adj_prod: {
@@ -61461,8 +61461,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -61710,8 +61710,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.5566666666666666,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.023221476510074,
                               }
 
                 off_adj_prod: {
@@ -61961,8 +61961,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -62210,8 +62210,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                 "value": 0.540650406504065,
                               }
 
-                off_adj_oppo_margin: {
-                                "value": 0,
+                off_adj_opp_margin: {
+                                "value": 11.603919933277737,
                               }
 
                 off_adj_prod: {
@@ -62500,8 +62500,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.4887640449438202,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.43787709497208,
                       }
 
             off_adj_prod: {
@@ -62748,8 +62748,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                         "value": 0.5566666666666666,
                       }
 
-            off_adj_oppo_margin: {
-                        "value": 0,
+            off_adj_opp_margin: {
+                        "value": 11.023221476510074,
                       }
 
             off_adj_prod: {
@@ -64383,8 +64383,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 0.4931506849315068,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.94437129690587,
                                   }
 
                   off_adj_prod: {
@@ -64654,8 +64654,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.4931506849315068,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.94437129690587,
                                           }
 
                       off_adj_prod: {
@@ -64951,8 +64951,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 0.46875,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 8.598892988929876,
                                   }
 
                   off_adj_prod: {
@@ -65222,8 +65222,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.46875,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 8.598892988929876,
                                           }
 
                       off_adj_prod: {
@@ -65523,8 +65523,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 0.540650406504065,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": 11.603919933277737,
                                   }
 
                   off_adj_prod: {
@@ -65794,8 +65794,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.540650406504065,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": 11.603919933277737,
                                           }
 
                       off_adj_prod: {
@@ -66095,8 +66095,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                     "value": 0.3333333333333333,
                                   }
 
-                  off_adj_oppo_margin: {
-                                    "value": 0,
+                  off_adj_opp_margin: {
+                                    "value": -0.75,
                                   }
 
                   off_adj_prod: {
@@ -66366,8 +66366,8 @@ exports[`RosterStatsTable RosterStatsTable (manual enabled - manual dialog showi
                                             "value": 0.3333333333333333,
                                           }
 
-                      off_adj_oppo_margin: {
-                                            "value": 0,
+                      off_adj_opp_margin: {
+                                            "value": -0.75,
                                           }
 
                       off_adj_prod: {
