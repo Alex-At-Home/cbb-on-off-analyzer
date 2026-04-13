@@ -3,13 +3,13 @@
 exports[`ManualOverride ManualOverride - should create snapshot (not initialized at all) 1`] = `
 <div>
   <ManualOverrideModal
-    inStats={Array []}
+    inStats={[]}
     onHide={[Function]}
     onSave={[Function]}
-    overrides={Array []}
+    overrides={[]}
     show={true}
     showHelp={false}
-    statsAsTable={Object {}}
+    statsAsTable={{}}
     tableType="player-"
   />
 </div>
@@ -19,17 +19,17 @@ exports[`ManualOverride ManualOverride - should create snapshot (pick first in l
 <div>
   <ManualOverrideModal
     inStats={
-      Array [
-        Object {
+      [
+        {
           "key": "Player1",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.3,
           },
           "onOffKey": "Baseline",
         },
-        Object {
+        {
           "key": "Player2",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.4,
           },
           "onOffKey": "On",
@@ -39,8 +39,8 @@ exports[`ManualOverride ManualOverride - should create snapshot (pick first in l
     onHide={[Function]}
     onSave={[Function]}
     overrides={
-      Array [
-        Object {
+      [
+        {
           "newVal": 0.5,
           "rowId": "Player2 / On",
           "statName": "off_3p",
@@ -51,8 +51,8 @@ exports[`ManualOverride ManualOverride - should create snapshot (pick first in l
     show={true}
     showHelp={true}
     statsAsTable={
-      Object {
-        "Player1 / Baseline": Array [
+      {
+        "Player1 / Baseline": [
           GenericTableTextRow {
             "className": "",
             "kind": "text-row",
@@ -72,17 +72,17 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
 <div>
   <ManualOverrideModal
     inStats={
-      Array [
-        Object {
+      [
+        {
           "key": "Player1",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.3,
           },
           "onOffKey": "Baseline",
         },
-        Object {
+        {
           "key": "Player2",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.4,
           },
           "onOffKey": "On",
@@ -92,8 +92,8 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
     onHide={[Function]}
     onSave={[Function]}
     overrides={
-      Array [
-        Object {
+      [
+        {
           "newVal": 0.5,
           "rowId": "Player1 / Baseline",
           "statName": "off_3p",
@@ -104,8 +104,8 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
     show={true}
     showHelp={true}
     statsAsTable={
-      Object {
-        "Player1 / Baseline": Array [
+      {
+        "Player1 / Baseline": [
           GenericTableTextRow {
             "className": "",
             "kind": "text-row",
@@ -130,24 +130,24 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
       }
     }
     inStats={
-      Array [
-        Object {
+      [
+        {
           "key": "Player1",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.3,
           },
           "onOffKey": "Baseline",
         },
-        Object {
+        {
           "key": "Player2",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.4,
           },
           "onOffKey": "On",
         },
-        Object {
+        {
           "key": "Player3",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.4,
           },
           "onOffKey": "Off",
@@ -157,14 +157,14 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
     onHide={[Function]}
     onSave={[Function]}
     overrides={
-      Array [
-        Object {
+      [
+        {
           "newVal": 0.5,
           "rowId": "Player1 / Baseline",
           "statName": "off_3p",
           "use": true,
         },
-        Object {
+        {
           "newVal": 0.5,
           "rowId": "Player3 / Off",
           "statName": "off_3p",
@@ -175,8 +175,8 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
     show={true}
     showHelp={true}
     statsAsTable={
-      Object {
-        "Player1 / Baseline": Array [
+      {
+        "Player1 / Baseline": [
           GenericTableTextRow {
             "className": "",
             "kind": "text-row",
@@ -185,7 +185,7 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
             </p>,
           },
         ],
-        "Player3 / Off": Array [
+        "Player3 / Off": [
           GenericTableTextRow {
             "className": "",
             "kind": "text-row",
@@ -205,24 +205,24 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
 <div>
   <ManualOverrideModal
     inStats={
-      Array [
-        Object {
+      [
+        {
           "key": "Player1",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.3,
           },
           "onOffKey": "Baseline",
         },
-        Object {
+        {
           "key": "Player2",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.4,
           },
           "onOffKey": "On",
         },
-        Object {
+        {
           "key": "Player3",
-          "off_3p": Object {
+          "off_3p": {
             "value": 0.4,
           },
           "onOffKey": "Off",
@@ -232,14 +232,14 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
     onHide={[Function]}
     onSave={[Function]}
     overrides={
-      Array [
-        Object {
+      [
+        {
           "newVal": 0.5,
           "rowId": "Player1 / Baseline",
           "statName": "off_3p",
           "use": true,
         },
-        Object {
+        {
           "newVal": 0.5,
           "rowId": "Player3 / Off",
           "statName": "off_3p",
@@ -250,7 +250,7 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
     show={true}
     showHelp={true}
     startOverride={
-      Object {
+      {
         "newVal": 0.5,
         "rowId": "Player1 / Baseline",
         "statName": "off_3p",
@@ -258,8 +258,8 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
       }
     }
     statsAsTable={
-      Object {
-        "Player1 / Baseline": Array [
+      {
+        "Player1 / Baseline": [
           GenericTableTextRow {
             "className": "",
             "kind": "text-row",
@@ -268,7 +268,7 @@ exports[`ManualOverride ManualOverride - should create snapshot (players and ove
             </p>,
           },
         ],
-        "Player3 / Off": Array [
+        "Player3 / Off": [
           GenericTableTextRow {
             "className": "",
             "kind": "text-row",

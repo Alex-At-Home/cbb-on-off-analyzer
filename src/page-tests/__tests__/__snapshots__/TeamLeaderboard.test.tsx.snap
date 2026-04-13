@@ -35,7 +35,7 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
   >
     <HeaderBar
       common={
-        Object {
+        {
           "gender": "Men",
           "year": "2025/26",
         }
@@ -49,14 +49,14 @@ exports[`TeamLeaderboardPage TeamLeaderboardPage - should create snapshot 1`] = 
   >
     <TeamLeaderboardTable
       dataEvent={
-        Object {
-          "confs": Array [],
+        {
+          "confs": [],
           "lastUpdated": 0,
-          "teams": Array [],
+          "teams": [],
         }
       }
       onChangeState={[Function]}
-      startingState={Object {}}
+      startingState={{}}
     />
   </Row>
   <Footer

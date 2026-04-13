@@ -208,9 +208,9 @@ exports[`RapmPlayerDiagView RapmPlayerDiagView - should create snapshot 1`] = `
 `;
 
 exports[`RapmUtils RapmUtils - buildPlayerContext 1`] = `
-Object {
+{
   "avgEfficiency": 100,
-  "colToPlayer": Array [
+  "colToPlayer": [
     "Wiggins, Aaron",
     "Cowan, Anthony",
     "Smith, Jalen",
@@ -220,7 +220,7 @@ Object {
     "Player, Other",
     "Data, Dummy",
   ],
-  "config": Object {
+  "config": {
     "fixedRegression": -1,
     "priorMode": -1,
     "removalPct": 0,
@@ -230,7 +230,7 @@ Object {
   "numOffLineups": 5,
   "numPlayers": 8,
   "offLineupPoss": 959,
-  "playerToCol": Object {
+  "playerToCol": {
     "Ayala, Eric": 4,
     "Cowan, Anthony": 1,
     "Data, Dummy": 7,
@@ -240,16 +240,16 @@ Object {
     "Smith, Jalen": 2,
     "Wiggins, Aaron": 0,
   },
-  "priorInfo": Object {
-    "basis": Object {
+  "priorInfo": {
+    "basis": {
       "def": 0,
       "off": 0,
     },
-    "includeStrong": Object {},
+    "includeStrong": {},
     "keyUsed": "value",
     "noWeakPrior": false,
-    "playersStrong": Array [
-      Object {
+    "playersStrong": [
+      {
         "def_ftr": -0.0048993288590604145,
         "def_orb": undefined,
         "def_to": 0.0074496644295301995,
@@ -267,7 +267,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.0007262569832402338,
         "def_orb": undefined,
         "def_to": 0.006759776536312849,
@@ -285,7 +285,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -303,7 +303,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -321,7 +321,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -339,7 +339,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -357,7 +357,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -375,7 +375,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -394,50 +394,50 @@ Object {
         "off_to": undefined,
       },
     ],
-    "playersWeak": Array [
-      Object {
+    "playersWeak": [
+      {
         "def_adj_ppp": -4.5,
         "off_adj_ppp": 4.5,
         "off_adj_ppp_alt": -20.864782871120426,
         "off_usage": 0.20864782871120427,
       },
-      Object {
+      {
         "def_adj_ppp": -5,
         "off_adj_ppp": 5,
         "off_adj_ppp_alt": -25.0546350615718,
         "off_usage": 0.250546350615718,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
@@ -447,15 +447,15 @@ Object {
     "strongWeight": -1,
     "useRecursiveWeakPrior": false,
   },
-  "removedPlayers": Object {},
+  "removedPlayers": {},
   "unbiasWeight": 0,
 }
 `;
 
 exports[`RapmUtils RapmUtils - buildPlayerContext 2`] = `
-Object {
+{
   "avgEfficiency": 100,
-  "colToPlayer": Array [
+  "colToPlayer": [
     "Wiggins, Aaron",
     "Cowan, Anthony",
     "Smith, Jalen",
@@ -463,7 +463,7 @@ Object {
     "Ayala, Eric",
     "Scott, Donta",
   ],
-  "config": Object {
+  "config": {
     "fixedRegression": -1,
     "priorMode": -1,
     "removalPct": 0.2,
@@ -473,7 +473,7 @@ Object {
   "numOffLineups": 5,
   "numPlayers": 6,
   "offLineupPoss": 959,
-  "playerToCol": Object {
+  "playerToCol": {
     "Ayala, Eric": 4,
     "Cowan, Anthony": 1,
     "Morsell, Darryl": 3,
@@ -481,16 +481,16 @@ Object {
     "Smith, Jalen": 2,
     "Wiggins, Aaron": 0,
   },
-  "priorInfo": Object {
-    "basis": Object {
+  "priorInfo": {
+    "basis": {
       "def": 0,
       "off": 0,
     },
-    "includeStrong": Object {},
+    "includeStrong": {},
     "keyUsed": "value",
     "noWeakPrior": false,
-    "playersStrong": Array [
-      Object {
+    "playersStrong": [
+      {
         "def_ftr": -0.0048993288590604145,
         "def_orb": undefined,
         "def_to": 0.0074496644295301995,
@@ -508,7 +508,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.0007262569832402338,
         "def_orb": undefined,
         "def_to": 0.006759776536312849,
@@ -526,7 +526,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -544,7 +544,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -562,7 +562,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -580,7 +580,7 @@ Object {
         "off_orb": undefined,
         "off_to": undefined,
       },
-      Object {
+      {
         "def_ftr": -0.05,
         "def_orb": undefined,
         "def_to": -0.01,
@@ -599,38 +599,38 @@ Object {
         "off_to": undefined,
       },
     ],
-    "playersWeak": Array [
-      Object {
+    "playersWeak": [
+      {
         "def_adj_ppp": -4.5,
         "off_adj_ppp": 4.5,
         "off_adj_ppp_alt": -20.864782871120426,
         "off_usage": 0.20864782871120427,
       },
-      Object {
+      {
         "def_adj_ppp": -5,
         "off_adj_ppp": 5,
         "off_adj_ppp_alt": -25.0546350615718,
         "off_usage": 0.250546350615718,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
         "off_usage": 0,
       },
-      Object {
+      {
         "def_adj_ppp": 0,
         "off_adj_ppp": 0,
         "off_adj_ppp_alt": 0,
@@ -640,31 +640,31 @@ Object {
     "strongWeight": -1,
     "useRecursiveWeakPrior": false,
   },
-  "removedPlayers": Object {
-    "Data, Dummy": Array [
+  "removedPlayers": {
+    "Data, Dummy": [
       0.05254860746190226,
       0,
-      Object {
-        "def_poss": Object {
+      {
+        "def_poss": {
           "value": 50,
         },
         "doc_count": 0,
         "key": "empty",
-        "off_poss": Object {
+        "off_poss": {
           "value": 50,
         },
       },
     ],
-    "Player, Other": Array [
+    "Player, Other": [
       0.1576458223857068,
       0,
-      Object {
-        "def_poss": Object {
+      {
+        "def_poss": {
           "value": 150,
         },
         "doc_count": 0,
         "key": "empty",
-        "off_poss": Object {
+        "off_poss": {
           "value": 150,
         },
       },

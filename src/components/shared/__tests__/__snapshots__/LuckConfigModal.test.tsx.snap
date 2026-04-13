@@ -4,7 +4,7 @@ exports[`LuckConfigModal LuckConfigModal - should create snapshot 1`] = `
 <div>
   <LuckConfigModal
     luck={
-      Object {
+      {
         "base": "baseline",
       }
     }

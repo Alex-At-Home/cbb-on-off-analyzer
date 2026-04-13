@@ -1,11 +1,21 @@
-import renderer from "react-test-renderer";
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
+import { render } from "@testing-library/react";
 import PositionalDiagView from "../PositionalDiagView";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
-import { shallow } from "enzyme";
-import toJson from "enzyme-to-json";
 
 describe("PositionalDiagView", () => {
+  beforeEach(() => {
+    jest.spyOn(Math, "random").mockReturnValue(0.123456789);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   const testData = {
     on:
       samplePlayerStatsResponse.responses[0].aggregations?.tri_filter?.buckets
@@ -19,7 +29,7 @@ describe("PositionalDiagView", () => {
     error_code: undefined,
   };
   test("PositionalDiagView - should create snapshot (details, help)", () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <PositionalDiagView
         showHelp={true}
         player={testData.on[0]}
@@ -27,10 +37,10 @@ describe("PositionalDiagView", () => {
         showDetailsOverride={true}
       />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   test("PositionalDiagView - should create snapshot (basic details, !help)", () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <PositionalDiagView
         showHelp={false}
         player={testData.baseline[0]}
@@ -38,10 +48,10 @@ describe("PositionalDiagView", () => {
         showDetailsOverride={false}
       />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   test("PositionalDiagView - should create snapshot (use height, basic details, !help)", () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <PositionalDiagView
         showHelp={false}
         player={{ ...testData.baseline[0], roster: { height_in: 81 } }}
@@ -49,6 +59,6 @@ describe("PositionalDiagView", () => {
         showDetailsOverride={false}
       />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -91,6 +91,7 @@
     "react-ga": "^3.3.0",
     "react-ga4": "^2.1.0",
     "react-leaflet": "^3.2.5",
+    "react-querybuilder": "^6.5.5",
     "react-select": "^3.2.0",
     "recharts": "^2.3.0",
     "reshake": "^1.2.1",
@@ -112,7 +113,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.14.5",
-    "@testing-library/dom": "^10.4.0",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^12.1.5",
     "@types/dompurify": "^3.0.5",
     "@types/enzyme": "^3.10.10",
@@ -132,8 +133,9 @@
     "handlebars": "^4.7.7",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react-test-renderer": "^17.0.2",
-    "ts-jest": "^29.2.5",
+    "ts-jest": "29.2.5",
     "typescript": "~5.6.3"
   }
 }

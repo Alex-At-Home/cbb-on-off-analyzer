@@ -36,7 +36,7 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
   >
     <HeaderBar
       common={
-        Object {
+        {
           "gender": "",
           "year": "",
         }
@@ -50,15 +50,15 @@ exports[`PlayerLeaderboardPage PlayerLeaderboardPage - should create snapshot 1`
   >
     <PlayerLeaderboardTable
       dataEvent={
-        Object {
-          "confs": Array [],
+        {
+          "confs": [],
           "lastUpdated": 0,
-          "players": Array [],
-          "teams": Object {},
+          "players": [],
+          "teams": {},
         }
       }
       onChangeState={[Function]}
-      startingState={Object {}}
+      startingState={{}}
     />
   </Row>
   <Footer

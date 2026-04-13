@@ -1,2725 +1,1601 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose baseline 1`] = `
-<Container
-  fluid={true}
->
-  <Col
-    xs={12}
+<DocumentFragment>
+  <div
+    class="container-fluid"
   >
-    <GenericTable
-      responsive={false}
-      tableCopyId="rosterView"
-      tableData={
-        Array [
-          GenericTableDataRow {
-            "cellMetaFn": [Function],
-            "colSpanOverride": undefined,
-            "dataObj": Object {
-              "c": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="AnCowanc0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Cowan, Anthony
-                            <br />
-                          </span>
-                          <span>
-                            0.760762422093867,0.2351360404369902,0.0038957588300876787,0.0002057715835554099,7.055499757258406e-9
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 107 on 29% (+3.9)
-                            <br />
-                          </span>
-                          <span>
-                            3P 33% on 49%, eFG 47%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 56% on 33%, FTR 58%
-                            <br />
-                          </span>
-                          <span>
-                            AST 29% : TO 16%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 1%, DRB 9%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "#9bcd9b80",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": 700,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                AnCowan
-                              </span>
-                            </Badge>
-                            <span
-                              style={Object {}}
-                            >
-                              <sup
-                                className="threePointBadge"
-                              />
-                              <sub
-                                className="freeThrowBadge"
-                              />
-                              <sup
-                                className="megaAssistBadge"
-                              />
-                            </span>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "pf": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffbc43,0px 0px 15px #ffbc43,0px 0px 15px #ffbc43",
-                      }
-                    }
-                  >
-                    74
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="ErAyalapf0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Ayala, Eric
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                ErAyala
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "pg": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="AaWigginspg0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Wiggins, Aaron
-                            <br />
-                          </span>
-                          <span>
-                            0.009299272313726412,0.3163133818467351,0.45996027869775635,0.21442190950269246,0.000005157639089630108
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 87 on 24% (-1.9)
-                            <br />
-                          </span>
-                          <span>
-                            3P 29% on 54%, eFG 44%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 71% on 20%, FTR 21%
-                            <br />
-                          </span>
-                          <span>
-                            AST 9% : TO 16%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 4%, DRB 15%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "#ffcece80",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": 600,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                AaWiggins
-                              </span>
-                            </Badge>
-                            <span
-                              style={Object {}}
-                            >
-                              <sup
-                                className="threePointBadge"
-                              />
-                            </span>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "sf": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="JaSmithsf0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Smith, Jalen
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                JaSmith
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "sg": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e",
-                      }
-                    }
-                  >
-                    76
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DaMorsellsg0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Morsell, Darryl
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                DaMorsell
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-            },
-            "kind": "data-row",
-            "prefixFn": [Function],
-            "tableFieldsOverride": undefined,
-          },
-          GenericTableDataRow {
-            "cellMetaFn": [Function],
-            "colSpanOverride": undefined,
-            "dataObj": Object {
-              "c": undefined,
-              "pf": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc",
-                      }
-                    }
-                  >
-                    26
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DoScottpf0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Scott, Donta
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                DoScott
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "pg": undefined,
-              "sf": undefined,
-              "sg": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1",
-                      }
-                    }
-                  >
-                    24
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DoScottsg0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Scott, Donta
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                DoScott
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-            },
-            "kind": "data-row",
-            "prefixFn": [Function],
-            "tableFieldsOverride": undefined,
-          },
-        ]
-      }
-      tableFields={
-        Object {
-          "c": GenericTableColProps {
-            "className": "",
-            "colName": "C",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for C slot",
-            "widthUnits": 2,
-          },
-          "pf": GenericTableColProps {
-            "className": "",
-            "colName": "PF",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for PF slot",
-            "widthUnits": 2,
-          },
-          "pg": GenericTableColProps {
-            "className": "",
-            "colName": "PG",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for PG slot",
-            "widthUnits": 2,
-          },
-          "sf": GenericTableColProps {
-            "className": "",
-            "colName": "SF",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for SF slot",
-            "widthUnits": 2,
-          },
-          "sg": GenericTableColProps {
-            "className": "",
-            "colName": "SG",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for SG slot",
-            "widthUnits": 2,
-          },
-          "title": GenericTableColProps {
-            "className": "",
-            "colName": "",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": true,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "",
-            "widthUnits": 0,
-          },
-        }
-      }
-    />
-  </Col>
-  <Col>
-    Using [
-    global
-    ] stats -
-     
-    <a
-      href="#"
-      onClick={[Function]}
+    <div
+      class="col-12"
     >
-      switch to 
-      sample
-       stats
-    </a>
-  </Col>
-</Container>
+      <table
+        class="table table-sm"
+        id="rosterView"
+      >
+        <thead>
+          <tr>
+            <th
+              style="text-align: right; width: 0.0%; font-weight: bold;"
+            >
+              <div>
+                <button
+                  class="float-left btn btn-outline-secondary btn-sm"
+                  id="rosterView_copy"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-clipboard "
+                    data-icon="clipboard"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 384 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  PG
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  SG
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  SF
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  PF
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  C
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: right; width: 0.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: rgba(255, 206, 206, 0.502);"
+                              >
+                                <span
+                                  style="font-size: small; font-weight: 600;"
+                                >
+                                  AaWiggins
+                                </span>
+                              </span>
+                              <span>
+                                <sup
+                                  class="threePointBadge"
+                                />
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e;"
+                    >
+                      76%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DaMorsell
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  JaSmith
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffbc43,0px 0px 15px #ffbc43,0px 0px 15px #ffbc43;"
+                    >
+                      74%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  ErAyala
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: rgba(155, 205, 155, 0.502);"
+                              >
+                                <span
+                                  style="font-size: small; font-weight: 700;"
+                                >
+                                  AnCowan
+                                </span>
+                              </span>
+                              <span>
+                                <sup
+                                  class="threePointBadge"
+                                />
+                                <sub
+                                  class="freeThrowBadge"
+                                />
+                                <sup
+                                  class="megaAssistBadge"
+                                />
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: right; width: 0.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1;"
+                    >
+                      24%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DoScott
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc;"
+                    >
+                      26%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DoScott
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="col"
+    >
+      Using [global] stats - 
+      <a
+        href="#"
+      >
+        switch to sample stats
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TeamRosterDiagView TeamRosterDiagView - global and sample - choose sample 1`] = `
-<Container
-  fluid={true}
->
-  <Col
-    xs={12}
+<DocumentFragment>
+  <div
+    class="container-fluid"
   >
-    <GenericTable
-      responsive={false}
-      tableCopyId="rosterView"
-      tableData={
-        Array [
-          GenericTableDataRow {
-            "cellMetaFn": [Function],
-            "colSpanOverride": undefined,
-            "dataObj": Object {
-              "c": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="AnCowanc0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Cowan, Anthony
-                            <br />
-                          </span>
-                          <span>
-                            0.760762422093867,0.2351360404369902,0.0038957588300876787,0.0002057715835554099,7.055499757258406e-9
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 107 on 29% (+3.9)
-                            <br />
-                          </span>
-                          <span>
-                            3P 33% on 49%, eFG 47%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 56% on 33%, FTR 58%
-                            <br />
-                          </span>
-                          <span>
-                            AST 29% : TO 16%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 1%, DRB 9%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "#9bcd9b80",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": 700,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                AnCowan
-                              </span>
-                            </Badge>
-                            <span
-                              style={Object {}}
-                            >
-                              <sup
-                                className="threePointBadge"
-                              />
-                              <sub
-                                className="freeThrowBadge"
-                              />
-                              <sup
-                                className="megaAssistBadge"
-                              />
-                            </span>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "pf": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="ErAyalapf0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Ayala, Eric
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                ErAyala
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "pg": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="AaWigginspg0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Wiggins, Aaron
-                            <br />
-                          </span>
-                          <span>
-                            0.009299272313726412,0.3163133818467351,0.45996027869775635,0.21442190950269246,0.000005157639089630108
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 87 on 24% (-1.9)
-                            <br />
-                          </span>
-                          <span>
-                            3P 29% on 54%, eFG 44%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 71% on 20%, FTR 21%
-                            <br />
-                          </span>
-                          <span>
-                            AST 9% : TO 16%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 4%, DRB 15%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "#ffcece80",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": 600,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                AaWiggins
-                              </span>
-                            </Badge>
-                            <span
-                              style={Object {}}
-                            >
-                              <sup
-                                className="threePointBadge"
-                              />
-                            </span>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "sf": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="JaSmithsf0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Smith, Jalen
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                JaSmith
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "sg": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DaMorsellsg0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Morsell, Darryl
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                DaMorsell
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-            },
-            "kind": "data-row",
-            "prefixFn": [Function],
-            "tableFieldsOverride": undefined,
-          },
-        ]
-      }
-      tableFields={
-        Object {
-          "c": GenericTableColProps {
-            "className": "",
-            "colName": "C",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for C slot",
-            "widthUnits": 2,
-          },
-          "pf": GenericTableColProps {
-            "className": "",
-            "colName": "PF",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for PF slot",
-            "widthUnits": 2,
-          },
-          "pg": GenericTableColProps {
-            "className": "",
-            "colName": "PG",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for PG slot",
-            "widthUnits": 2,
-          },
-          "sf": GenericTableColProps {
-            "className": "",
-            "colName": "SF",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for SF slot",
-            "widthUnits": 2,
-          },
-          "sg": GenericTableColProps {
-            "className": "",
-            "colName": "SG",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for SG slot",
-            "widthUnits": 2,
-          },
-          "title": GenericTableColProps {
-            "className": "",
-            "colName": "",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": true,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "",
-            "widthUnits": 0,
-          },
-        }
-      }
-    />
-  </Col>
-  <Col>
-    Using [
-    sample
-    ] stats -
-     
-    <a
-      href="#"
-      onClick={[Function]}
+    <div
+      class="col-12"
     >
-      switch to 
-      global
-       stats
-    </a>
-  </Col>
-</Container>
+      <table
+        class="table table-sm"
+        id="rosterView"
+      >
+        <thead>
+          <tr>
+            <th
+              style="text-align: right; width: 0.0%; font-weight: bold;"
+            >
+              <div>
+                <button
+                  class="float-left btn btn-outline-secondary btn-sm"
+                  id="rosterView_copy"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-clipboard "
+                    data-icon="clipboard"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 384 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  PG
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  SG
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  SF
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  PF
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  C
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: right; width: 0.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: rgba(255, 206, 206, 0.502);"
+                              >
+                                <span
+                                  style="font-size: small; font-weight: 600;"
+                                >
+                                  AaWiggins
+                                </span>
+                              </span>
+                              <span>
+                                <sup
+                                  class="threePointBadge"
+                                />
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DaMorsell
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  JaSmith
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  ErAyala
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: rgba(155, 205, 155, 0.502);"
+                              >
+                                <span
+                                  style="font-size: small; font-weight: 700;"
+                                >
+                                  AnCowan
+                                </span>
+                              </span>
+                              <span>
+                                <sup
+                                  class="threePointBadge"
+                                />
+                                <sub
+                                  class="freeThrowBadge"
+                                />
+                                <sup
+                                  class="megaAssistBadge"
+                                />
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="col"
+    >
+      Using [sample] stats - 
+      <a
+        href="#"
+      >
+        switch to global stats
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TeamRosterDiagView TeamRosterDiagView - global only 1`] = `
-<Container
-  fluid={true}
->
-  <Col
-    xs={12}
+<DocumentFragment>
+  <div
+    class="container-fluid"
   >
-    <GenericTable
-      responsive={false}
-      tableCopyId="rosterView"
-      tableData={
-        Array [
-          GenericTableDataRow {
-            "cellMetaFn": [Function],
-            "colSpanOverride": undefined,
-            "dataObj": Object {
-              "c": <Row
-                noGutters={false}
+    <div
+      class="col-12"
+    >
+      <table
+        class="table table-sm"
+        id="rosterView"
+      >
+        <thead>
+          <tr>
+            <th
+              style="text-align: right; width: 0.0%; font-weight: bold;"
+            >
+              <div>
+                <button
+                  class="float-left btn btn-outline-secondary btn-sm"
+                  id="rosterView_copy"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-clipboard "
+                    data-icon="clipboard"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 384 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  PG
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  SG
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  SF
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  PF
+                </span>
+              </div>
+            </th>
+            <th
+              style="text-align: center; width: 20.0%; font-weight: bold;"
+            >
+              <div>
+                <span>
+                  C
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: right; width: 0.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
               >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
                 >
                   <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
+                    class="pr-0 pl-0 col-3"
                   >
-                    100
-                    %
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
                   </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
                   <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
+                    class="col-auto"
                   >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="AnCowanc0_info"
-                          placement="right"
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
                         >
                           <span>
-                            Cowan, Anthony
-                            <br />
-                          </span>
-                          <span>
-                            0.760762422093867,0.2351360404369902,0.0038957588300876787,0.0002057715835554099,7.055499757258406e-9
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 107 on 29% (+3.9)
-                            <br />
-                          </span>
-                          <span>
-                            3P 33% on 49%, eFG 47%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 56% on 33%, FTR 58%
-                            <br />
-                          </span>
-                          <span>
-                            AST 29% : TO 16%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 1%, DRB 9%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "#9bcd9b80",
-                                }
-                              }
-                              variant="light"
+                            <span
+                              style="white-space: nowrap;"
                             >
                               <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": 700,
-                                    "opacity": undefined,
-                                  }
-                                }
+                                class="badge badge-light"
+                                style="background-color: rgba(255, 206, 206, 0.502);"
                               >
-                                
-                                
-                                AnCowan
+                                <span
+                                  style="font-size: small; font-weight: 600;"
+                                >
+                                  AaWiggins
+                                </span>
                               </span>
-                            </Badge>
-                            <span
-                              style={Object {}}
-                            >
-                              <sup
-                                className="threePointBadge"
-                              />
-                              <sub
-                                className="freeThrowBadge"
-                              />
-                              <sup
-                                className="megaAssistBadge"
-                              />
+                              <span>
+                                <sup
+                                  class="threePointBadge"
+                                />
+                              </span>
                             </span>
                           </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </Col>
-              </Row>,
-              "pf": <Row
-                noGutters={false}
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
               >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
+                <div
+                  class="row"
                 >
                   <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffbc43,0px 0px 15px #ffbc43,0px 0px 15px #ffbc43",
-                      }
-                    }
+                    class="pr-0 pl-0 col-3"
                   >
-                    74
-                    %
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e;"
+                    >
+                      76%
+                    </div>
                   </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
                   <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
+                    class="col-auto"
                   >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="ErAyalapf0_info"
-                          placement="right"
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
                         >
                           <span>
-                            Ayala, Eric
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                ErAyala
-                              </span>
-                            </Badge>
-                          </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
-                  </div>
-                </Col>
-              </Row>,
-              "pg": <Row
-                noGutters={false}
-              >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
-                >
-                  <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
-                  >
-                    100
-                    %
-                  </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
-                  <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
-                  >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="AaWigginspg0_info"
-                          placement="right"
-                        >
-                          <span>
-                            Wiggins, Aaron
-                            <br />
-                          </span>
-                          <span>
-                            0.009299272313726412,0.3163133818467351,0.45996027869775635,0.21442190950269246,0.000005157639089630108
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 87 on 24% (-1.9)
-                            <br />
-                          </span>
-                          <span>
-                            3P 29% on 54%, eFG 44%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 71% on 20%, FTR 21%
-                            <br />
-                          </span>
-                          <span>
-                            AST 9% : TO 16%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 4%, DRB 15%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AaWiggins&offQuery=&onQuery=%7B%22Wiggins%2C%20Aaron%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAW%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAaWiggin%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "#ffcece80",
-                                }
-                              }
-                              variant="light"
-                            >
-                              <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": 600,
-                                    "opacity": undefined,
-                                  }
-                                }
-                              >
-                                
-                                
-                                AaWiggins
-                              </span>
-                            </Badge>
                             <span
-                              style={Object {}}
+                              style="white-space: nowrap;"
                             >
-                              <sup
-                                className="threePointBadge"
-                              />
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DaMorsell
+                                </span>
+                              </span>
                             </span>
                           </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </Col>
-              </Row>,
-              "sf": <Row
-                noGutters={false}
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
               >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
+                <div
+                  class="row"
                 >
                   <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500",
-                      }
-                    }
+                    class="pr-0 pl-0 col-3"
                   >
-                    100
-                    %
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
                   </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
                   <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
+                    class="col-auto"
                   >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="JaSmithsf0_info"
-                          placement="right"
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
                         >
                           <span>
-                            Smith, Jalen
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=JaSmith&offQuery=&onQuery=%7B%22Smith%2C%20Jalen%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EJS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EJaSmith%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
+                            <span
+                              style="white-space: nowrap;"
                             >
                               <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
+                                class="badge badge-light"
+                                style="background-color: grey;"
                               >
-                                
-                                
-                                JaSmith
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  JaSmith
+                                </span>
                               </span>
-                            </Badge>
+                            </span>
                           </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </Col>
-              </Row>,
-              "sg": <Row
-                noGutters={false}
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
               >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
+                <div
+                  class="row"
                 >
                   <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e,0px 0px 15px #ffbb3e",
-                      }
-                    }
+                    class="pr-0 pl-0 col-3"
                   >
-                    76
-                    %
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffbc43,0px 0px 15px #ffbc43,0px 0px 15px #ffbc43;"
+                    >
+                      74%
+                    </div>
                   </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
                   <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
+                    class="col-auto"
                   >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DaMorsellsg0_info"
-                          placement="right"
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=ErAyala&offQuery=&onQuery=%7B%22Ayala%2C%20Eric%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EEA%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EErAyala%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
                         >
                           <span>
-                            Morsell, Darryl
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DaMorsell&offQuery=&onQuery=%7B%22Morsell%2C%20Darryl%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDM%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDaMorsel%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
+                            <span
+                              style="white-space: nowrap;"
                             >
                               <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
+                                class="badge badge-light"
+                                style="background-color: grey;"
                               >
-                                
-                                
-                                DaMorsell
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  ErAyala
+                                </span>
                               </span>
-                            </Badge>
+                            </span>
                           </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </Col>
-              </Row>,
-            },
-            "kind": "data-row",
-            "prefixFn": [Function],
-            "tableFieldsOverride": undefined,
-          },
-          GenericTableDataRow {
-            "cellMetaFn": [Function],
-            "colSpanOverride": undefined,
-            "dataObj": Object {
-              "c": undefined,
-              "pf": <Row
-                noGutters={false}
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
               >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
+                <div
+                  class="row"
                 >
                   <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc",
-                      }
-                    }
+                    class="pr-0 pl-0 col-3"
                   >
-                    26
-                    %
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffa500,0px 0px 15px #ffa500,0px 0px 15px #ffa500;"
+                    >
+                      100%
+                    </div>
                   </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
                   <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
+                    class="col-auto"
                   >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DoScottpf0_info"
-                          placement="right"
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=AnCowan&offQuery=&onQuery=%7B%22Cowan%2C%20Anthony%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EAC%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EAnCowan%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
                         >
                           <span>
-                            Scott, Donta
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
+                            <span
+                              style="white-space: nowrap;"
                             >
                               <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
+                                class="badge badge-light"
+                                style="background-color: rgba(155, 205, 155, 0.502);"
                               >
-                                
-                                
-                                DoScott
+                                <span
+                                  style="font-size: small; font-weight: 700;"
+                                >
+                                  AnCowan
+                                </span>
                               </span>
-                            </Badge>
+                              <span>
+                                <sup
+                                  class="threePointBadge"
+                                />
+                                <sub
+                                  class="freeThrowBadge"
+                                />
+                                <sup
+                                  class="megaAssistBadge"
+                                />
+                              </span>
+                            </span>
                           </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </Col>
-              </Row>,
-              "pg": undefined,
-              "sf": undefined,
-              "sg": <Row
-                noGutters={false}
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: right; width: 0.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
               >
-                <Col
-                  className="pr-0 pl-0"
-                  xs="3"
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
                 >
                   <div
-                    className="float-right"
-                    style={
-                      Object {
-                        "textShadow": "0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1",
-                      }
-                    }
+                    class="pr-0 pl-0 col-3"
                   >
-                    24
-                    %
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1,0px 0px 15px #ffe9c1;"
+                    >
+                      24%
+                    </div>
                   </div>
-                </Col>
-                <Col
-                  xs="auto"
-                >
                   <div
-                    className="float-left"
-                    style={
-                      Object {
-                        "display": "flex",
-                      }
-                    }
+                    class="col-auto"
                   >
-                    <OverlayTrigger
-                      overlay={
-                        <Tooltip
-                          id="DoScottsg0_info"
-                          placement="right"
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
                         >
                           <span>
-                            Scott, Donta
-                            <br />
-                          </span>
-                          <span>
-                            
-                            <br />
-                          </span>
-                          <span>
-                            ORtg 0 on 0% (+0.0)
-                            <br />
-                          </span>
-                          <span>
-                            3P 0% on 0%, eFG 0%
-                            <br />
-                          </span>
-                          <span>
-                            Rim 0% on 0%, FTR 0%
-                            <br />
-                          </span>
-                          <span>
-                            AST 0% : TO 0%
-                            <br />
-                          </span>
-                          <span>
-                            ORB 0%, DRB 0%
-                            <br />
-                          </span>
-                          <React.Fragment>
-                            <br />
-                            Click to view positional splits for this player
-                          </React.Fragment>
-                        </Tooltip>
-                      }
-                      placement="auto"
-                    >
-                      <a
-                        href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
-                        onClick={[Function]}
-                        style={
-                          Object {
-                            "color": "inherit",
-                            "textDecoration": "inherit",
-                          }
-                        }
-                        target="_blank"
-                      >
-                        <span>
-                          <span
-                            style={
-                              Object {
-                                "whiteSpace": "nowrap",
-                              }
-                            }
-                          >
-                            <Badge
-                              pill={false}
-                              style={
-                                Object {
-                                  "backgroundColor": "grey",
-                                }
-                              }
-                              variant="light"
+                            <span
+                              style="white-space: nowrap;"
                             >
                               <span
-                                style={
-                                  Object {
-                                    "color": undefined,
-                                    "fontSize": "small",
-                                    "fontWeight": undefined,
-                                    "opacity": undefined,
-                                  }
-                                }
+                                class="badge badge-light"
+                                style="background-color: grey;"
                               >
-                                
-                                
-                                DoScott
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DoScott
+                                </span>
                               </span>
-                            </Badge>
+                            </span>
                           </span>
-                        </span>
-                      </a>
-                    </OverlayTrigger>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </Col>
-              </Row>,
-            },
-            "kind": "data-row",
-            "prefixFn": [Function],
-            "tableFieldsOverride": undefined,
-          },
-        ]
-      }
-      tableFields={
-        Object {
-          "c": GenericTableColProps {
-            "className": "",
-            "colName": "C",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for C slot",
-            "widthUnits": 2,
-          },
-          "pf": GenericTableColProps {
-            "className": "",
-            "colName": "PF",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for PF slot",
-            "widthUnits": 2,
-          },
-          "pg": GenericTableColProps {
-            "className": "",
-            "colName": "PG",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for PG slot",
-            "widthUnits": 2,
-          },
-          "sf": GenericTableColProps {
-            "className": "",
-            "colName": "SF",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for SF slot",
-            "widthUnits": 2,
-          },
-          "sg": GenericTableColProps {
-            "className": "",
-            "colName": "SG",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": false,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "Roster distribution for SG slot",
-            "widthUnits": 2,
-          },
-          "title": GenericTableColProps {
-            "className": "",
-            "colName": "",
-            "colorPicker": [Function],
-            "formatter": [Function],
-            "isTitle": true,
-            "missingData": undefined,
-            "rowSpan": [Function],
-            "toolTip": "",
-            "widthUnits": 0,
-          },
-        }
-      }
-    />
-  </Col>
-</Container>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div
+                  class="row"
+                >
+                  <div
+                    class="pr-0 pl-0 col-3"
+                  >
+                    <div
+                      class="float-right"
+                      style="text-shadow: 0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc,0px 0px 15px #ffe8bc;"
+                    >
+                      26%
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto"
+                  >
+                    <div
+                      class="float-left"
+                      style="display: flex;"
+                    >
+                      <div>
+                        <a
+                          href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=DoScott&offQuery=&onQuery=%7B%22Scott%2C%20Donta%22%7D%3D1&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineups&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3EDS%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3EDoScott%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
+                          style="text-decoration: inherit;"
+                          target="_blank"
+                        >
+                          <span>
+                            <span
+                              style="white-space: nowrap;"
+                            >
+                              <span
+                                class="badge badge-light"
+                                style="background-color: grey;"
+                              >
+                                <span
+                                  style="font-size: small;"
+                                >
+                                  DoScott
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td
+              class=" square-bg-cell"
+              colspan="1"
+              rowspan="1"
+              style="text-align: center; width: 20.0%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+            >
+              <div
+                style="position: relative; z-index: 1;"
+              >
+                <div />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
 `;

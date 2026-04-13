@@ -24,7 +24,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <HeaderBar
-      common={Object {}}
+      common={{}}
       thisPage="game-"
     />
   </Row>
@@ -45,30 +45,30 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
         onStats={[Function]}
         onSwitchToAdvancedMode={[Function]}
         propKey={0}
-        startingState={Object {}}
+        startingState={{}}
       />
     </GenericCollapsibleCard>
   </Row>
   <InternalNavBarInRow
     refs={
-      Object {
-        "Players": Object {
-          "ref": Object {
+      {
+        "Players": {
+          "ref": {
             "current": null,
           },
         },
-        "Roster Comp.": Object {
-          "ref": Object {
+        "Roster Comp.": {
+          "ref": {
             "current": null,
           },
         },
-        "Teams": Object {
-          "ref": Object {
+        "Teams": {
+          "ref": {
             "current": null,
           },
         },
-        "Top": Object {
-          "ref": Object {
+        "Top": {
+          "ref": {
             "current": null,
           },
         },
@@ -79,7 +79,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   <Row
     noGutters={false}
     style={
-      Object {
+      {
         "breakBefore": "page",
       }
     }
@@ -92,127 +92,127 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     >
       <TeamStatsTable
         dataEvent={
-          Object {
-            "lineupStats": Array [],
-            "playerShotStats": Object {
-              "baseline": Object {},
-              "off": Object {},
-              "on": Object {},
-              "other": Array [],
+          {
+            "lineupStats": [],
+            "playerShotStats": {
+              "baseline": {},
+              "off": {},
+              "on": {},
+              "other": [],
             },
-            "rosterStats": Object {
-              "baseline": Array [],
-              "global": Array [],
-              "off": Array [],
-              "on": Array [],
-              "other": Array [],
+            "rosterStats": {
+              "baseline": [],
+              "global": [],
+              "off": [],
+              "on": [],
+              "other": [],
             },
-            "shotStats": Object {
-              "baseline": Object {
-                "def": Object {},
-                "off": Object {},
+            "shotStats": {
+              "baseline": {
+                "def": {},
+                "off": {},
               },
-              "off": Object {
-                "def": Object {},
-                "off": Object {},
+              "off": {
+                "def": {},
+                "off": {},
               },
-              "on": Object {
-                "def": Object {},
-                "off": Object {},
+              "on": {
+                "def": {},
+                "off": {},
               },
             },
-            "teamStats": Object {
-              "baseline": Object {
+            "teamStats": {
+              "baseline": {
                 "doc_count": 0,
               },
-              "global": Object {
+              "global": {
                 "doc_count": 0,
               },
-              "off": Object {
+              "off": {
                 "doc_count": 0,
               },
-              "on": Object {
+              "on": {
                 "doc_count": 0,
               },
             },
           }
         }
-        gameFilterParams={Object {}}
+        gameFilterParams={{}}
         key="0"
         navigationRefs={
-          Object {
-            "otherRefs": Array [
-              Object {
+          {
+            "otherRefs": [
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
-              Object {
+              {
                 "current": null,
               },
             ],
-            "refA": Object {
+            "refA": {
               "current": null,
             },
-            "refB": Object {
+            "refB": {
               "current": null,
             },
-            "refBase": Object {
+            "refBase": {
               "current": null,
             },
-            "refDiffs": Object {
+            "refDiffs": {
               "current": null,
             },
           }
@@ -224,7 +224,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   <Row
     noGutters={false}
     style={
-      Object {
+      {
         "breakBefore": "page",
       }
     }
@@ -237,52 +237,52 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
     >
       <RosterStatsTable
         dataEvent={
-          Object {
-            "lineupStats": Array [],
-            "playerShotStats": Object {
-              "baseline": Object {},
-              "off": Object {},
-              "on": Object {},
-              "other": Array [],
+          {
+            "lineupStats": [],
+            "playerShotStats": {
+              "baseline": {},
+              "off": {},
+              "on": {},
+              "other": [],
             },
-            "rosterStats": Object {
-              "baseline": Array [],
-              "global": Array [],
-              "off": Array [],
-              "on": Array [],
-              "other": Array [],
+            "rosterStats": {
+              "baseline": [],
+              "global": [],
+              "off": [],
+              "on": [],
+              "other": [],
             },
-            "shotStats": Object {
-              "baseline": Object {
-                "def": Object {},
-                "off": Object {},
+            "shotStats": {
+              "baseline": {
+                "def": {},
+                "off": {},
               },
-              "off": Object {
-                "def": Object {},
-                "off": Object {},
+              "off": {
+                "def": {},
+                "off": {},
               },
-              "on": Object {
-                "def": Object {},
-                "off": Object {},
+              "on": {
+                "def": {},
+                "off": {},
               },
             },
-            "teamStats": Object {
-              "baseline": Object {
+            "teamStats": {
+              "baseline": {
                 "doc_count": 0,
               },
-              "global": Object {
+              "global": {
                 "doc_count": 0,
               },
-              "off": Object {
+              "off": {
                 "doc_count": 0,
               },
-              "on": Object {
+              "on": {
                 "doc_count": 0,
               },
             },
           }
         }
-        gameFilterParams={Object {}}
+        gameFilterParams={{}}
         key="0"
         onChangeState={[Function]}
       />
@@ -291,7 +291,7 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
   <Row
     noGutters={false}
     style={
-      Object {
+      {
         "breakBefore": "page",
       }
     }
@@ -302,12 +302,12 @@ exports[`OnOffAnalyzerPage OnOffAnalyzerPage - should create snapshot 1`] = `
       title="Lineup Comparison"
     >
       <RosterCompareTable
-        gameFilterParams={Object {}}
+        gameFilterParams={{}}
         rosterCompareStats={
-          Object {
-            "baseline": Object {},
-            "off": Object {},
-            "on": Object {},
+          {
+            "baseline": {},
+            "off": {},
+            "on": {},
           }
         }
       />

@@ -24,7 +24,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <HeaderBar
-      common={Object {}}
+      common={{}}
       thisPage="lineup-"
     />
   </Row>
@@ -46,7 +46,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
         onSwitchToAdvancedMode={[Function]}
         propKey={0}
         startingLineupLinks={[Function]}
-        startingState={Object {}}
+        startingState={{}}
       />
     </GenericCollapsibleCard>
   </Row>
@@ -61,26 +61,26 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
     >
       <LineupStatsTable
         dataEvent={
-          Object {
-            "lineupStats": Object {},
-            "rosterStats": Object {
-              "baseline": Array [],
-              "global": Array [],
-              "off": Array [],
-              "on": Array [],
-              "other": Array [],
+          {
+            "lineupStats": {},
+            "rosterStats": {
+              "baseline": [],
+              "global": [],
+              "off": [],
+              "on": [],
+              "other": [],
             },
-            "teamStats": Object {
-              "baseline": Object {
+            "teamStats": {
+              "baseline": {
                 "doc_count": 0,
               },
-              "global": Object {
+              "global": {
                 "doc_count": 0,
               },
-              "off": Object {
+              "off": {
                 "doc_count": 0,
               },
-              "on": Object {
+              "on": {
                 "doc_count": 0,
               },
             },
@@ -88,7 +88,7 @@ exports[`LineupAnalyzerPage LineupAnalyzerPage - should create snapshot 1`] = `
         }
         key="0"
         onChangeState={[Function]}
-        startingState={Object {}}
+        startingState={{}}
       />
     </GenericCollapsibleCard>
   </Row>

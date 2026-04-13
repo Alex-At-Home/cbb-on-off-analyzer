@@ -1,465 +1,361 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!details, help) 1`] = `
-<span>
-  <QuickSwitchBar
-    modes={
-      Array [
-        "link",
-        "timer",
-      ]
-    }
-    setQuickSwitchTimer={[Function]}
-    title="Title"
-    updateQuickSwitch={[Function]}
-  />
-  <Container
-    className="mt-2"
-    fluid={false}
-  >
-    <Col
-      xs={10}
+<DocumentFragment>
+  <span>
+    <div
+      style="display: flex; flex-wrap: wrap; align-items: baseline;"
     >
-      <GenericTable
-        responsive={false}
-        tableCopyId="teamAssistNetworks"
-        tableData={Array []}
-        tableFields={
-          Object {
-            "sepsource": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.75,
-            },
-            "sepsourceast": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.25,
-            },
-            "septarget": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.75,
-            },
-            "septarget3p": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.125,
-            },
-            "septargetmid": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.125,
-            },
-            "septargetrim": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.125,
-            },
-            "source_3p_ast": GenericTableColProps {
-              "className": "",
-              "colName": "3P ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions of this shot type assisted BY the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "source_mid_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Mid ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions of this shot type assisted BY the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "source_rim_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Rim ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions of this shot type assisted BY the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "source_sf": GenericTableColProps {
-              "className": "",
-              "colName": "SF",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions ending in a trip to the FT line",
-              "widthUnits": 2,
-            },
-            "target_3p_ast": GenericTableColProps {
-              "className": "",
-              "colName": "3P AST% ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
-              "widthUnits": 2,
-            },
-            "target_3p_efg": GenericTableColProps {
-              "className": "",
-              "colName": "eFG",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "The season eFG% of this shot type / row (positional role)",
-              "widthUnits": 2,
-            },
-            "target_ast": GenericTableColProps {
-              "className": "",
-              "colName": "AST",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions ending with an assist FOR the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "target_mid_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Mid AST% ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
-              "widthUnits": 2,
-            },
-            "target_mid_efg": GenericTableColProps {
-              "className": "",
-              "colName": "eFG",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "The season eFG% of this shot type / row (positional role)",
-              "widthUnits": 2,
-            },
-            "target_rim_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Rim AST% ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
-              "widthUnits": 2,
-            },
-            "target_rim_efg": GenericTableColProps {
-              "className": "",
-              "colName": "eFG",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "The season eFG% of this shot type / row (positional role)",
-              "widthUnits": 2,
-            },
-            "title": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": true,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 8,
-            },
-          }
-        }
-      />
-    </Col>
-  </Container>
-</span>
+      <span
+        style="white-space: nowrap;"
+      >
+        <b>
+          Analysis: [Title]
+        </b>
+      </span>
+    </div>
+    <div
+      class="mt-2 container"
+    >
+      <div
+        class="col-10"
+      >
+        <table
+          class="table table-sm"
+          id="teamAssistNetworks"
+        >
+          <thead>
+            <tr>
+              <th
+                style="text-align: right; width: 24.9%; font-weight: bold;"
+              >
+                <div>
+                  <button
+                    class="float-left btn btn-outline-secondary btn-sm"
+                    id="teamAssistNetworks_copy"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="svg-inline--fa fa-clipboard "
+                      data-icon="clipboard"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      viewBox="0 0 384 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 2.3%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    3P 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Mid 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Rim 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    SF
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.8%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    AST
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 2.3%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    3P AST% 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    eFG
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.4%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Mid AST% 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    eFG
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.4%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Rim AST% 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    eFG
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.4%; font-weight: bold;"
+              />
+            </tr>
+          </thead>
+          <tbody />
+        </table>
+      </div>
+    </div>
+  </span>
+</DocumentFragment>
 `;
 
 exports[`TeamPlayTypeDiagView TeamPlayTypeDiagView - should create snapshot (!help) 1`] = `
-<span>
-  <QuickSwitchBar
-    modes={
-      Array [
-        "link",
-        "timer",
-      ]
-    }
-    setQuickSwitchTimer={[Function]}
-    title="Title"
-    updateQuickSwitch={[Function]}
-  />
-  <Container
-    className="mt-2"
-    fluid={false}
-  >
-    <Col
-      xs={10}
+<DocumentFragment>
+  <span>
+    <div
+      style="display: flex; flex-wrap: wrap; align-items: baseline;"
     >
-      <GenericTable
-        responsive={false}
-        tableCopyId="teamAssistNetworks"
-        tableData={Array []}
-        tableFields={
-          Object {
-            "sepsource": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.75,
-            },
-            "sepsourceast": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.25,
-            },
-            "septarget": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.75,
-            },
-            "septarget3p": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.125,
-            },
-            "septargetmid": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.125,
-            },
-            "septargetrim": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 0.125,
-            },
-            "source_3p_ast": GenericTableColProps {
-              "className": "",
-              "colName": "3P ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions of this shot type assisted BY the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "source_mid_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Mid ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions of this shot type assisted BY the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "source_rim_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Rim ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions of this shot type assisted BY the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "source_sf": GenericTableColProps {
-              "className": "",
-              "colName": "SF",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions ending in a trip to the FT line",
-              "widthUnits": 2,
-            },
-            "target_3p_ast": GenericTableColProps {
-              "className": "",
-              "colName": "3P AST% ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
-              "widthUnits": 2,
-            },
-            "target_3p_efg": GenericTableColProps {
-              "className": "",
-              "colName": "eFG",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "The season eFG% of this shot type / row (positional role)",
-              "widthUnits": 2,
-            },
-            "target_ast": GenericTableColProps {
-              "className": "",
-              "colName": "AST",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of team total possessions ending with an assist FOR the specified row (positional role)",
-              "widthUnits": 2,
-            },
-            "target_mid_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Mid AST% ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
-              "widthUnits": 2,
-            },
-            "target_mid_efg": GenericTableColProps {
-              "className": "",
-              "colName": "eFG",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "The season eFG% of this shot type / row (positional role)",
-              "widthUnits": 2,
-            },
-            "target_rim_ast": GenericTableColProps {
-              "className": "",
-              "colName": "Rim AST% ",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "% of total assists to the specified row (positional role) for this shot type",
-              "widthUnits": 2,
-            },
-            "target_rim_efg": GenericTableColProps {
-              "className": "",
-              "colName": "eFG",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": false,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "The season eFG% of this shot type / row (positional role)",
-              "widthUnits": 2,
-            },
-            "title": GenericTableColProps {
-              "className": "",
-              "colName": "",
-              "colorPicker": [Function],
-              "formatter": [Function],
-              "isTitle": true,
-              "missingData": undefined,
-              "rowSpan": [Function],
-              "toolTip": "",
-              "widthUnits": 8,
-            },
-          }
-        }
-      />
-    </Col>
-  </Container>
-</span>
+      <span
+        style="white-space: nowrap;"
+      >
+        <b>
+          Analysis: [Title]
+        </b>
+      </span>
+    </div>
+    <div
+      class="mt-2 container"
+    >
+      <div
+        class="col-10"
+      >
+        <table
+          class="table table-sm"
+          id="teamAssistNetworks"
+        >
+          <thead>
+            <tr>
+              <th
+                style="text-align: right; width: 24.9%; font-weight: bold;"
+              >
+                <div>
+                  <button
+                    class="float-left btn btn-outline-secondary btn-sm"
+                    id="teamAssistNetworks_copy"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="svg-inline--fa fa-clipboard "
+                      data-icon="clipboard"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      viewBox="0 0 384 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 2.3%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    3P 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Mid 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Rim 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    SF
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.8%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    AST
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 2.3%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    3P AST% 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    eFG
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.4%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Mid AST% 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    eFG
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.4%; font-weight: bold;"
+              />
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    Rim AST% 
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 6.2%; font-weight: bold;"
+              >
+                <div>
+                  <span>
+                    eFG
+                  </span>
+                </div>
+              </th>
+              <th
+                style="text-align: center; width: 0.4%; font-weight: bold;"
+              />
+            </tr>
+          </thead>
+          <tbody />
+        </table>
+      </div>
+    </div>
+  </span>
+</DocumentFragment>
 `;

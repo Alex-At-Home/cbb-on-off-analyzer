@@ -16,7 +16,7 @@ exports[`TableDisplayUtils addQueryInfo 2`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -40,7 +40,7 @@ exports[`TableDisplayUtils addQueryInfo 3`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -64,7 +64,7 @@ exports[`TableDisplayUtils addQueryInfo 4`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -88,7 +88,7 @@ exports[`TableDisplayUtils addQueryInfo 5`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -112,7 +112,7 @@ exports[`TableDisplayUtils addQueryInfo 6`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -136,7 +136,7 @@ exports[`TableDisplayUtils addQueryInfo 7`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -160,7 +160,7 @@ exports[`TableDisplayUtils addQueryInfo 8`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -184,7 +184,7 @@ exports[`TableDisplayUtils addQueryInfo 9`] = `
 >
   <u
     style={
-      Object {
+      {
         "textDecorationStyle": "dotted",
       }
     }
@@ -281,7 +281,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
       href="/OnOffAnalyzer?autoOffQuery=false&calcRapm=true&diffsHideDatasets=on&filter=p1%2Cp2%2Cp3%2Cp4%2Cp5&offQuery=&onQuery=%7B%22player1%22%3B%22player2%22%3B%22player3%22%3B%22player4%22%3B%22player5%22%7D%3D5&playerDiffs=true&playerDiffsHideDatasets=on&possAsPct=false&showExpanded=true&showExtraInfo=true&showRoster=true&showTeamPlayTypes=true&sortBy=desc%3Aoff_team_poss_pct%25%3Aon&splitPhrases=Lineup&splitPhrases=&splitText=%3Cdiv%3E%3Csmall%20class%3D%22d-xl-none%22%3Ep%2C%20p%2C%20p%2C%20p%2C%20p%3C%2Fsmall%3E%3Csmall%20class%3D%22d-none%20d-xl-block%22%3Ep1%2C%20p2%2C%20p3%2C%20p4%2C%20p5%3C%2Fsmall%3E%3C%2Fdiv%3E&splitText=&teamDiffs=true&teamShotCharts=true&"
       onClick={[Function]}
       style={
-        Object {
+        {
           "color": "inherit",
           "textDecoration": "inherit",
         }
@@ -291,7 +291,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
       <span>
         <span
           style={
-            Object {
+            {
               "whiteSpace": "nowrap",
             }
           }
@@ -299,14 +299,14 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
           <span
             className="badge badge-light"
             style={
-              Object {
+              {
                 "backgroundColor": "#f2f9f280",
               }
             }
           >
             <span
               style={
-                Object {
+                {
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 100,
@@ -320,7 +320,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             </span>
           </span>
           <span
-            style={Object {}}
+            style={{}}
           >
             <sup
               className="megaThreePointBadge"
@@ -332,7 +332,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
         </span>
         <span
           style={
-            Object {
+            {
               "opacity": 0,
             }
           }
@@ -343,7 +343,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
       <span>
         <span
           style={
-            Object {
+            {
               "whiteSpace": "nowrap",
             }
           }
@@ -351,14 +351,14 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
           <span
             className="badge badge-light"
             style={
-              Object {
+              {
                 "backgroundColor": "#e5f2e580",
               }
             }
           >
             <span
               style={
-                Object {
+                {
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 300,
@@ -372,7 +372,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             </span>
           </span>
           <span
-            style={Object {}}
+            style={{}}
           >
             <sub
               className="megaFreeThrowBadge"
@@ -384,7 +384,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
         </span>
         <span
           style={
-            Object {
+            {
               "opacity": 0,
             }
           }
@@ -395,7 +395,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
       <span>
         <span
           style={
-            Object {
+            {
               "whiteSpace": "nowrap",
             }
           }
@@ -403,14 +403,14 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
           <span
             className="badge badge-light"
             style={
-              Object {
+              {
                 "backgroundColor": "#d9ecd980",
               }
             }
           >
             <span
               style={
-                Object {
+                {
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 500,
@@ -424,7 +424,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             </span>
           </span>
           <span
-            style={Object {}}
+            style={{}}
           >
             <sup
               className="megaTwoPointBadge"
@@ -433,7 +433,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
         </span>
         <span
           style={
-            Object {
+            {
               "opacity": 0,
             }
           }
@@ -444,7 +444,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
       <span>
         <span
           style={
-            Object {
+            {
               "whiteSpace": "nowrap",
             }
           }
@@ -452,14 +452,14 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
           <span
             className="badge badge-light"
             style={
-              Object {
+              {
                 "backgroundColor": "#cce6cc80",
               }
             }
           >
             <span
               style={
-                Object {
+                {
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 600,
@@ -473,7 +473,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             </span>
           </span>
           <span
-            style={Object {}}
+            style={{}}
           >
             <sup
               className="twoPointBadge"
@@ -485,7 +485,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
         </span>
         <span
           style={
-            Object {
+            {
               "opacity": 0,
             }
           }
@@ -496,7 +496,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
       <span>
         <span
           style={
-            Object {
+            {
               "whiteSpace": "nowrap",
             }
           }
@@ -504,14 +504,14 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
           <span
             className="badge badge-light"
             style={
-              Object {
+              {
                 "backgroundColor": "#bfdfbf80",
               }
             }
           >
             <span
               style={
-                Object {
+                {
                   "color": undefined,
                   "fontSize": "small",
                   "fontWeight": 700,
@@ -525,7 +525,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - decorated version 1`] = `
             </span>
           </span>
           <span
-            style={Object {}}
+            style={{}}
           >
             <sup
               className="threePointBadge"
@@ -551,7 +551,7 @@ exports[`TableDisplayUtils buildDecoratedLineup - plain version 1`] = `
       <a
         href="#"
         style={
-          Object {
+          {
             "color": "inherit",
             "textDecoration": "inherit",
           }
@@ -568,14 +568,14 @@ exports[`TableDisplayUtils buildDecoratedLineup - plain version 1`] = `
 
 exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
 {
-  def_2pmidr: Object {
+  def_2pmidr: {
     "extraInfo": <span>
       23% assisted
     </span>,
     "value": 0.2997032640949555,
   }
 
-  def_2prim: Object {
+  def_2prim: {
     "extraInfo": <span>
       Block:
        
@@ -585,21 +585,21 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.5436893203883495,
   }
 
-  def_2primr: Object {
+  def_2primr: {
     "extraInfo": <span>
       45% assisted
     </span>,
     "value": 0.3056379821958457,
   }
 
-  def_3pr: Object {
+  def_3pr: {
     "extraInfo": <span>
       88% assisted
     </span>,
     "value": 0.39465875370919884,
   }
 
-  def_assist: Object {
+  def_assist: {
     "extraInfo": <span>
       Assist breakdown:
       <li>
@@ -618,7 +618,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.5275590551181102,
   }
 
-  def_ftr: Object {
+  def_ftr: {
     "extraInfo": <span>
       FT: 
       74.7
@@ -627,7 +627,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.27002967359050445,
   }
 
-  def_ppp: Object {
+  def_ppp: {
     "extraInfo": <span>
       Play category breakdown:
       <li>
@@ -650,7 +650,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 93.29896907216495,
   }
 
-  def_to: Object {
+  def_to: {
     "extraInfo": <span>
       Stl: 
       8.0
@@ -664,28 +664,28 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.15206185567010308,
   }
 
-  off_2pmidr: Object {
+  off_2pmidr: {
     "extraInfo": <span>
       21% assisted
     </span>,
     "value": 0.17956656346749225,
   }
 
-  off_2primr: Object {
+  off_2primr: {
     "extraInfo": <span>
       43% assisted
     </span>,
     "value": 0.3653250773993808,
   }
 
-  off_3pr: Object {
+  off_3pr: {
     "extraInfo": <span>
       78% assisted
     </span>,
     "value": 0.4551083591331269,
   }
 
-  off_assist: Object {
+  off_assist: {
     "extraInfo": <span>
       Assist breakdown:
       <li>
@@ -704,7 +704,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.5211267605633803,
   }
 
-  off_ftr: Object {
+  off_ftr: {
     "extraInfo": <span>
       FT: 
       76.6
@@ -713,7 +713,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 0.5696594427244582,
   }
 
-  off_poss: Object {
+  off_poss: {
     "extraInfo": <span>
       71.7
        poss/g
@@ -721,7 +721,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
     "value": 401,
   }
 
-  off_ppp: Object {
+  off_ppp: {
     "extraInfo": <span>
       Play category breakdown:
       <li>
@@ -747,44 +747,44 @@ exports[`TableDisplayUtils injectPlayTypeInfo - lineups 1`] = `
 
 exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
 {
-  def_2pmidr: Object {
+  def_2pmidr: {
     "value": 0,
   }
 
-  def_2primr: Object {
+  def_2primr: {
     "value": 0.26153846153846155,
   }
 
-  def_3p: Object {
+  def_3p: {
     "value": 0.8113207547169812,
   }
 
-  def_3pr: Object {
+  def_3pr: {
     "value": 0.625,
   }
 
-  off_2pmidr: Object {
+  off_2pmidr: {
     "extraInfo": <span>
       0% assisted
     </span>,
     "value": 0.18258426966292135,
   }
 
-  off_2primr: Object {
+  off_2primr: {
     "extraInfo": <span>
       26% assisted
     </span>,
     "value": 0.32865168539325845,
   }
 
-  off_3pr: Object {
+  off_3pr: {
     "extraInfo": <span>
       63% assisted
     </span>,
     "value": 0.4887640449438202,
   }
 
-  off_assist: Object {
+  off_assist: {
     "extraInfo": <span>
       Assist breakdown:
       <li>
@@ -803,7 +803,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
     "value": 0.2916666666666667,
   }
 
-  off_ftr: Object {
+  off_ftr: {
     "extraInfo": <span>
       FT: 
       81.1
@@ -812,7 +812,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
     "value": 0.5955056179775281,
   }
 
-  off_team_poss: Object {
+  off_team_poss: {
     "extraInfo": <span>
       80.1
        poss/g
@@ -823,23 +823,23 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (!expanded) 1`] = `
 
 exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
 {
-  def_2pmidr: Object {
+  def_2pmidr: {
     "value": 0,
   }
 
-  def_2primr: Object {
+  def_2primr: {
     "value": 0.26153846153846155,
   }
 
-  def_3p: Object {
+  def_3p: {
     "value": 0.8113207547169812,
   }
 
-  def_3pr: Object {
+  def_3pr: {
     "value": 0.625,
   }
 
-  off_assist: Object {
+  off_assist: {
     "extraInfo": <span>
       Assist breakdown:
       <li>
@@ -858,7 +858,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
     "value": 0.2916666666666667,
   }
 
-  off_ftr: Object {
+  off_ftr: {
     "extraInfo": <span>
       FT: 
       81.1
@@ -867,7 +867,7 @@ exports[`TableDisplayUtils injectPlayTypeInfo - players (expanded) 1`] = `
     "value": 0.5955056179775281,
   }
 
-  off_team_poss: Object {
+  off_team_poss: {
     "extraInfo": <span>
       80.1
        poss/g

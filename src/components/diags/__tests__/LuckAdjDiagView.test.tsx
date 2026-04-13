@@ -1,27 +1,30 @@
-import renderer from 'react-test-renderer';
-import React from 'react';
-import LuckAdjDiagView from '../LuckAdjDiagView';
-import { sampleOffOnOffLuckDiagnostics, sampleDefOnOffLuckDiagnostics } from "../../../sample-data/sampleOnOffLuckDiagnostics";
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
+/**
+ * @jest-environment jsdom
+ */
+
+import React from "react";
+import { render } from "@testing-library/react";
+import LuckAdjDiagView from "../LuckAdjDiagView";
+import {
+  sampleOffOnOffLuckDiagnostics,
+  sampleDefOnOffLuckDiagnostics,
+} from "../../../sample-data/sampleOnOffLuckDiagnostics";
 
 describe("LuckAdjDiagView", () => {
   test("LuckAdjDiagView - should create snapshot (season, !override)", () => {
-
-    const wrapper = shallow(
+    const { asFragment } = render(
       <LuckAdjDiagView
         name="Test1"
         offLuck={sampleOffOnOffLuckDiagnostics}
         defLuck={sampleDefOnOffLuckDiagnostics}
         baseline="season"
         showHelp={false}
-      />
+      />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   test("LuckAdjDiagView - should create snapshot (baseline, override)", () => {
-
-    const wrapper = shallow(
+    const { asFragment } = render(
       <LuckAdjDiagView
         name="Test2"
         offLuck={sampleOffOnOffLuckDiagnostics}
@@ -29,13 +32,12 @@ describe("LuckAdjDiagView", () => {
         baseline="baseline"
         showHelp={true}
         showDetailsOverride={true}
-      />
+      />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   test("LuckAdjDiagView - should create snapshot (individual mode, baseline, override)", () => {
-
-    const wrapper = shallow(
+    const { asFragment } = render(
       <LuckAdjDiagView
         name="Test2"
         offLuck={sampleOffOnOffLuckDiagnostics}
@@ -44,8 +46,8 @@ describe("LuckAdjDiagView", () => {
         individualMode={true}
         showHelp={true}
         showDetailsOverride={true}
-      />
+      />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

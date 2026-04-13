@@ -3,10 +3,10 @@
 exports[`OnBallDefenseModal OnBallDefenseModal - should create snapshot (not initialized at all) 1`] = `
 <div>
   <OnBallDefenseModal
-    onBallDefense={Array []}
+    onBallDefense={[]}
     onHide={[Function]}
     onSave={[Function]}
-    players={Array []}
+    players={[]}
     show={true}
     showHelp={false}
   />

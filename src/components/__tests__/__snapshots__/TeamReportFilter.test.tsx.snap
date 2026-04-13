@@ -6,7 +6,7 @@ exports[`TeamReportFilter TeamReportFilter - should create snapshot 1`] = `
   childHandleResponse={[Function]}
   onChangeCommonState={[Function]}
   onChangeState={[Function]}
-  startingState={Object {}}
+  startingState={{}}
   tablePrefix="report-"
 />
 `;

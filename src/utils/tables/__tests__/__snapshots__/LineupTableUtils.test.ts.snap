@@ -1,47 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LineupTableUtils getPositionalInfo 1`] = `
-Array [
-  Array [
-    Object {
+[
+  [
+    {
       "code": "AnCowan",
       "id": "Cowan, Anthony",
       "numPoss": 809,
     },
   ],
-  Array [
-    Object {
+  [
+    {
       "code": "AaWiggins",
       "id": "Wiggins, Aaron",
       "numPoss": 809,
     },
   ],
-  Array [
-    Object {
+  [
+    {
       "code": "JaSmith",
       "id": "Smith, Jalen",
       "numPoss": 809,
     },
   ],
-  Array [
-    Object {
+  [
+    {
       "code": "ErAyala",
       "id": "Ayala, Eric",
       "numPoss": 598,
     },
-    Object {
+    {
       "code": "DoScott",
       "id": "Scott, Donta",
       "numPoss": 211,
     },
   ],
-  Array [
-    Object {
+  [
+    {
       "code": "DaMorsell",
       "id": "Morsell, Darryl",
       "numPoss": 612,
     },
-    Object {
+    {
       "code": "DoScott",
       "id": "Scott, Donta",
       "numPoss": 197,

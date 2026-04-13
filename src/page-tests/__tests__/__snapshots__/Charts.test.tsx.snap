@@ -23,7 +23,7 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <HeaderBar
-      common={Object {}}
+      common={{}}
       thisPage="charts"
     />
   </Row>
@@ -41,7 +41,7 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
       >
         <DropdownItem
           as={
-            Object {
+            {
               "$$typeof": Symbol(react.forward_ref),
               "render": [Function],
             }
@@ -75,9 +75,9 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                 closeLabel="Close alert"
                 show={true}
                 transition={
-                  Object {
+                  {
                     "$$typeof": Symbol(react.forward_ref),
-                    "defaultProps": Object {
+                    "defaultProps": {
                       "appear": false,
                       "in": false,
                       "mountOnEnter": false,
@@ -133,9 +133,9 @@ exports[`ChartsPage ChartsPage - should create snapshot 1`] = `
                 closeLabel="Close alert"
                 show={true}
                 transition={
-                  Object {
+                  {
                     "$$typeof": Symbol(react.forward_ref),
-                    "defaultProps": Object {
+                    "defaultProps": {
                       "appear": false,
                       "in": false,
                       "mountOnEnter": false,

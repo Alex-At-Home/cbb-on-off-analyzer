@@ -1,16 +1,18 @@
+const path = require("path");
+
 /** @type {import("ts-jest").JestConfigWithTsJest} */
 module.exports = {
   roots: ["<rootDir>/src"],
-  preset: "ts-jest",
+  // Do not use preset: "ts-jest" here — it merges a second transform regex that
+  // breaks matching and can skip transpilation for .tsx tests.
   snapshotSerializers: ["enzyme-to-json/serializer"],
   testEnvironment: "node",
   transform: {
-    "^.+\\.tsx?$": [
+    "^.+\\.(ts|tsx)$": [
       "ts-jest",
       {
-        babelConfig: ".babelrc",
+        tsconfig: path.join(__dirname, "tsconfig.jest.json"),
         diagnostics: {
-          // Sometimes spurious errors during coverage testing
           ignoreCodes: [2307],
         },
       },
@@ -27,7 +29,9 @@ module.exports = {
     "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js",
     "^chroma-js$": "<rootDir>/node_modules/chroma-js/dist/chroma.cjs",
     "^d3$": "<rootDir>/node_modules/d3/dist/d3.min.js",
-    "^@elastic/search-ui-elasticsearch-connector/api-proxy$": "<rootDir>/__mocks__/@elastic/search-ui-elasticsearch-connector/api-proxy.js",
-    "^@elastic/react-search-ui$": "<rootDir>/__mocks__/@elastic/react-search-ui.js",
+    "^@elastic/search-ui-elasticsearch-connector/api-proxy$":
+      "<rootDir>/__mocks__/@elastic/search-ui-elasticsearch-connector/api-proxy.js",
+    "^@elastic/react-search-ui$":
+      "<rootDir>/__mocks__/@elastic/react-search-ui.js",
   },
 };

@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LineupUtils LineupUtils - calculateAggregatedLineupStats 1`] = `
-Object {
-  "def_adj_ppp": Object {
+{
+  "def_adj_ppp": {
     "old_value": "85.948",
     "override": "Test override",
     "value": "85.948",
   },
-  "def_poss": Object {
+  "def_poss": {
     "value": "581.000",
   },
-  "off_adj_ppp": Object {
+  "off_adj_ppp": {
     "old_value": "122.338",
     "override": "Test override",
     "value": "122.338",
   },
-  "off_poss": Object {
+  "off_poss": {
     "value": "598.000",
   },
 }
 `;
 
 exports[`LineupUtils LineupUtils - gameGameInfo 1`] = `
-Array [
-  Object {
+[
+  {
     "date": "2021-02-02",
     "num_def_poss": 17,
     "num_off_poss": 18,
@@ -31,7 +31,7 @@ Array [
     "num_pts_for": 23,
     "opponent": "H:Purdue",
   },
-  Object {
+  {
     "date": "2021-02-05",
     "num_def_poss": 14,
     "num_off_poss": 16,
@@ -39,7 +39,7 @@ Array [
     "num_pts_for": 12,
     "opponent": "A:Penn St.",
   },
-  Object {
+  {
     "date": "2021-02-14",
     "num_def_poss": 14,
     "num_off_poss": 14,
@@ -47,7 +47,7 @@ Array [
     "num_pts_for": 15,
     "opponent": "H:Minnesota",
   },
-  Object {
+  {
     "date": "2021-02-16",
     "num_def_poss": 14,
     "num_off_poss": 15,
@@ -55,7 +55,7 @@ Array [
     "num_pts_for": 14,
     "opponent": "H:Nebraska",
   },
-  Object {
+  {
     "date": "2021-02-18",
     "num_def_poss": 19,
     "num_off_poss": 19,
@@ -67,8 +67,8 @@ Array [
 `;
 
 exports[`LineupUtils LineupUtils - gameGameInfo 2`] = `
-Object {
-  "2021-02-02 H:Purdue": Object {
+{
+  "2021-02-02 H:Purdue": {
     "date": "2021-02-02",
     "num_def_poss": 0,
     "num_off_poss": 0,
@@ -76,7 +76,7 @@ Object {
     "num_pts_for": 0,
     "opponent": "H:Purdue",
   },
-  "2021-02-05 A:Penn St.": Object {
+  "2021-02-05 A:Penn St.": {
     "date": "2021-02-05",
     "num_def_poss": 0,
     "num_off_poss": 0,
@@ -84,7 +84,7 @@ Object {
     "num_pts_for": 0,
     "opponent": "A:Penn St.",
   },
-  "2021-02-14 H:Minnesota": Object {
+  "2021-02-14 H:Minnesota": {
     "date": "2021-02-14",
     "num_def_poss": 0,
     "num_off_poss": 0,
@@ -92,7 +92,7 @@ Object {
     "num_pts_for": 0,
     "opponent": "H:Minnesota",
   },
-  "2021-02-16 H:Nebraska": Object {
+  "2021-02-16 H:Nebraska": {
     "date": "2021-02-16",
     "num_def_poss": 0,
     "num_off_poss": 0,
@@ -100,7 +100,7 @@ Object {
     "num_pts_for": 0,
     "opponent": "H:Nebraska",
   },
-  "2021-02-18 H:Nebraska": Object {
+  "2021-02-18 H:Nebraska": {
     "date": "2021-02-18",
     "num_def_poss": 0,
     "num_off_poss": 0,
@@ -112,300 +112,300 @@ Object {
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[-500] incOnOff=[false] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {},
+  {},
 ]
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[-500] incOnOff=[true] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "-0.021",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.016",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "1.584",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "-0.000",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "477.529",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "6.313",
       "override": "Test override",
       "value": "6.313",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "79.905",
     },
     "key": "'r:On-Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "-1.014",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.050",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "-0.079",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "-0.020",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "480.266",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "7.652",
       "override": "Test override",
       "value": "7.652",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "0.000",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "404.075",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "528.702",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "114.193",
     },
   },
@@ -413,422 +413,422 @@ Array [
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[0] incOnOff=[false] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {},
+  {},
 ]
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[0] incOnOff=[false] 2`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {},
+  {},
 ]
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[0] incOnOff=[true] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "-0.022",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.016",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "1.658",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "-0.000",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "477.529",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "6.610",
       "override": "Test override",
       "value": "6.610",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "79.905",
     },
     "key": "'r:On-Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "-1.056",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.050",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "-0.082",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "-0.021",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "480.266",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "7.966",
       "override": "Test override",
       "value": "7.966",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "0.000",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "404.075",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "528.702",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "114.193",
     },
   },
@@ -836,178 +836,178 @@ Array [
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[0] regressDiffs=[0] incOnOff=[true] 2`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "-0.022",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.016",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "1.658",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "-0.000",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "477.529",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "6.610",
       "override": "Test override",
       "value": "6.610",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "79.905",
     },
     "key": "'r:On-Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "-1.056",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.050",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "-0.082",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "-0.021",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "480.266",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "7.966",
       "override": "Test override",
       "value": "7.966",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "0.000",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "404.075",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "528.702",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "114.193",
     },
   },
@@ -1015,300 +1015,300 @@ Array [
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[10] regressDiffs=[-500] incOnOff=[false] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {},
+  {},
 ]
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[10] regressDiffs=[-500] incOnOff=[true] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "-0.021",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.016",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "1.584",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "-0.000",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "477.529",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "6.313",
       "override": "Test override",
       "value": "6.313",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "79.905",
     },
     "key": "'r:On-Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "-1.014",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.050",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "-0.079",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "-0.020",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "480.266",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "7.652",
       "override": "Test override",
       "value": "7.652",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "0.000",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "404.075",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "528.702",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "114.193",
     },
   },
@@ -1316,422 +1316,422 @@ Array [
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[10] regressDiffs=[0] incOnOff=[false] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {},
+  {},
 ]
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[10] regressDiffs=[0] incOnOff=[false] 2`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {},
+  {},
 ]
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[10] regressDiffs=[0] incOnOff=[true] 1`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "-0.022",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.016",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "1.658",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "-0.000",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "477.529",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "6.610",
       "override": "Test override",
       "value": "6.610",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "79.905",
     },
     "key": "'r:On-Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "-1.056",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.050",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "-0.082",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "-0.021",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "480.266",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "7.966",
       "override": "Test override",
       "value": "7.966",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "0.000",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "404.075",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "528.702",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "114.193",
     },
   },
@@ -1739,178 +1739,178 @@ Array [
 `;
 
 exports[`LineupUtils LineupUtils - lineupToTeamReport: diagMode=[10] regressDiffs=[0] incOnOff=[true] 2`] = `
-Array [
-  Object {
-    "def_2prim": Object {
+[
+  {
+    "def_2prim": {
       "value": "0.533",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.320",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "96.743",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.261",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "581.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "91.222",
       "override": "Test override",
       "value": "91.222",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "342.042",
     },
     "key": "'On' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "108.385",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.764",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.446",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.296",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "598.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "115.552",
       "override": "Test override",
       "value": "115.552",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "113.458",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "505.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "691.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "137.855",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "0.554",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.308",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "94.879",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "0.268",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "213.000",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "84.038",
       "override": "Test override",
       "value": "84.038",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "131.068",
     },
     "key": "'Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "109.452",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.713",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "0.500",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "0.319",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "211.000",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "107.109",
       "override": "Test override",
       "value": "107.109",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "137.757",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "174.000",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "226.000",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "54.259",
     },
   },
-  Object {
-    "def_2prim": Object {
+  {
+    "def_2prim": {
       "value": "-0.022",
     },
-    "def_2primr": Object {
+    "def_2primr": {
       "value": "0.016",
     },
-    "def_adj_opp": Object {
+    "def_adj_opp": {
       "value": "1.658",
     },
-    "def_orb": Object {
+    "def_orb": {
       "value": "-0.000",
     },
-    "def_poss": Object {
+    "def_poss": {
       "value": "477.529",
     },
-    "def_ppp": Object {
+    "def_ppp": {
       "old_value": "6.610",
       "override": "Test override",
       "value": "6.610",
     },
-    "duration_mins": Object {
+    "duration_mins": {
       "value": "79.905",
     },
     "key": "'r:On-Off' Ayala, Eric",
-    "off_adj_opp": Object {
+    "off_adj_opp": {
       "value": "-1.056",
     },
-    "off_ft": Object {
+    "off_ft": {
       "value": "0.050",
     },
-    "off_ftr": Object {
+    "off_ftr": {
       "value": "-0.082",
     },
-    "off_orb": Object {
+    "off_orb": {
       "value": "-0.021",
     },
-    "off_poss": Object {
+    "off_poss": {
       "value": "480.266",
     },
-    "off_ppp": Object {
+    "off_ppp": {
       "old_value": "7.966",
       "override": "Test override",
       "value": "7.966",
     },
-    "off_scramble_ppp": Object {
+    "off_scramble_ppp": {
       "value": "0.000",
     },
-    "total_off_fga": Object {
+    "total_off_fga": {
       "value": "404.075",
     },
-    "total_off_pts": Object {
+    "total_off_pts": {
       "value": "528.702",
     },
-    "total_off_trans_poss": Object {
+    "total_off_trans_poss": {
       "value": "114.193",
     },
   },

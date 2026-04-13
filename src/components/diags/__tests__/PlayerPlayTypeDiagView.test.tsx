@@ -1,12 +1,13 @@
-import renderer from "react-test-renderer";
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
+import { render } from "@testing-library/react";
 import PlayerPlayTypeDiagView from "../PlayerPlayTypeDiagView";
 import { samplePlayerStatsResponse } from "../../../sample-data/samplePlayerStatsResponse";
 import { sampleTeamStatsResponse } from "../../../sample-data/sampleTeamStatsResponse";
-import { GameFilterParams } from "../../../utils/FilterModels";
 import { RosterTableUtils } from "../../../utils/tables/RosterTableUtils";
-import { shallow } from "enzyme";
-import toJson from "enzyme-to-json";
 import { IndivStatSet, TeamStatSet } from "../../../utils/StatModels";
 
 describe("PlayerPlayTypeDiagView", () => {
@@ -29,10 +30,10 @@ describe("PlayerPlayTypeDiagView", () => {
     testData.on,
     undefined,
     true,
-    teamSeasonLookup
+    teamSeasonLookup,
   );
   test("PlayerPlayTypeDiagView - should create snapshot (!details, help)", () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <PlayerPlayTypeDiagView
         player={
           { ...testData.on[0], posClass: "WG" } as unknown as IndivStatSet
@@ -40,12 +41,12 @@ describe("PlayerPlayTypeDiagView", () => {
         teamStats={testTeamData}
         rosterStatsByCode={rosterStatsByCode}
         showHelp={true}
-      />
+      />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   test("PlayerPlayTypeDiagView - should create snapshot (details, !help)", () => {
-    const wrapper = shallow(
+    const { asFragment } = render(
       <PlayerPlayTypeDiagView
         player={
           { ...testData.on[0], posClass: "WG" } as unknown as IndivStatSet
@@ -54,8 +55,8 @@ describe("PlayerPlayTypeDiagView", () => {
         rosterStatsByCode={rosterStatsByCode}
         showHelp={false}
         showDetailsOverride={true}
-      />
+      />,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

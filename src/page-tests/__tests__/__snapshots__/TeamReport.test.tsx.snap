@@ -24,7 +24,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
     noGutters={false}
   >
     <HeaderBar
-      common={Object {}}
+      common={{}}
       thisPage="report-"
     />
   </Row>
@@ -40,7 +40,7 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
       <TeamReportFilter
         onChangeState={[Function]}
         onStats={[Function]}
-        startingState={Object {}}
+        startingState={{}}
       />
     </GenericCollapsibleCard>
   </Row>
@@ -55,33 +55,33 @@ exports[`TeamReportPage TeamReportPage - should create snapshot 1`] = `
     >
       <TeamReportStatsTable
         dataEvent={
-          Object {
-            "lineupStats": Object {},
-            "rosterStats": Object {
-              "baseline": Array [],
-              "global": Array [],
-              "off": Array [],
-              "on": Array [],
-              "other": Array [],
+          {
+            "lineupStats": {},
+            "rosterStats": {
+              "baseline": [],
+              "global": [],
+              "off": [],
+              "on": [],
+              "other": [],
             },
-            "teamStats": Object {
-              "baseline": Object {
+            "teamStats": {
+              "baseline": {
                 "doc_count": 0,
               },
-              "global": Object {
+              "global": {
                 "doc_count": 0,
               },
-              "off": Object {
+              "off": {
                 "doc_count": 0,
               },
-              "on": Object {
+              "on": {
                 "doc_count": 0,
               },
             },
           }
         }
         onChangeState={[Function]}
-        startingState={Object {}}
+        startingState={{}}
       />
     </GenericCollapsibleCard>
   </Row>

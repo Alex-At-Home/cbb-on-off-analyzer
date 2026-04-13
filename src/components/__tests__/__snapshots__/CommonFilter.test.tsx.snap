@@ -11,7 +11,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     autoFocus={true}
     backdrop={true}
     dialogAs={
-      Object {
+      {
         "$$typeof": Symbol(react.forward_ref),
         "render": [Function],
       }
@@ -83,11 +83,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     show={false}
   />
   <GameSelectorModal
-    games={Array []}
+    games={[]}
     onClose={[Function]}
     onSubmit={[Function]}
     queryType="Baseline Query"
-    selectedGames={Array []}
+    selectedGames={[]}
     show={false}
   />
   <Form
@@ -95,9 +95,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
   >
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -114,19 +114,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
+              {
                 "label": "Women",
                 "value": "Women",
               },
             ]
           }
           value={
-            Object {
+            {
               "label": "Men",
               "value": "Men",
             }
@@ -143,52 +143,52 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "2025/26",
                 "value": "2025/26",
               },
-              Object {
+              {
                 "label": "2024/25",
                 "value": "2024/25",
               },
-              Object {
+              {
                 "label": "2023/24",
                 "value": "2023/24",
               },
-              Object {
+              {
                 "label": "2022/23",
                 "value": "2022/23",
               },
-              Object {
+              {
                 "label": "2021/22",
                 "value": "2021/22",
               },
-              Object {
+              {
                 "label": "2020/21",
                 "value": "2020/21",
               },
-              Object {
+              {
                 "label": "2019/20",
                 "value": "2019/20",
               },
-              Object {
+              {
                 "label": "2018/9",
                 "value": "2018/9",
               },
-              Object {
+              {
                 "label": "Extra",
                 "value": "Extra",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "2025/26",
               "value": "2025/26",
             }
@@ -209,1516 +209,1516 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           isClearable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Maryland",
                 "value": "Maryland",
               },
-              Object {
+              {
                 "label": "A&M-Corpus Christi",
                 "value": "A&M-Corpus Christi",
               },
-              Object {
+              {
                 "label": "Abilene Christian",
                 "value": "Abilene Christian",
               },
-              Object {
+              {
                 "label": "Air Force",
                 "value": "Air Force",
               },
-              Object {
+              {
                 "label": "Akron",
                 "value": "Akron",
               },
-              Object {
+              {
                 "label": "Alabama",
                 "value": "Alabama",
               },
-              Object {
+              {
                 "label": "Alabama A&M",
                 "value": "Alabama A&M",
               },
-              Object {
+              {
                 "label": "Alabama St.",
                 "value": "Alabama St.",
               },
-              Object {
+              {
                 "label": "UAlbany",
                 "value": "UAlbany",
               },
-              Object {
+              {
                 "label": "Albany (NY)",
                 "value": "UAlbany",
               },
-              Object {
+              {
                 "label": "Alcorn",
                 "value": "Alcorn",
               },
-              Object {
+              {
                 "label": "American",
                 "value": "American",
               },
-              Object {
+              {
                 "label": "App State",
                 "value": "App State",
               },
-              Object {
+              {
                 "label": "Arizona",
                 "value": "Arizona",
               },
-              Object {
+              {
                 "label": "Arizona St.",
                 "value": "Arizona St.",
               },
-              Object {
+              {
                 "label": "Ark.-Pine Bluff",
                 "value": "Ark.-Pine Bluff",
               },
-              Object {
+              {
                 "label": "Arkansas",
                 "value": "Arkansas",
               },
-              Object {
+              {
                 "label": "Arkansas St.",
                 "value": "Arkansas St.",
               },
-              Object {
+              {
                 "label": "Army West Point",
                 "value": "Army West Point",
               },
-              Object {
+              {
                 "label": "Auburn",
                 "value": "Auburn",
               },
-              Object {
+              {
                 "label": "Austin Peay",
                 "value": "Austin Peay",
               },
-              Object {
+              {
                 "label": "BYU",
                 "value": "BYU",
               },
-              Object {
+              {
                 "label": "Ball St.",
                 "value": "Ball St.",
               },
-              Object {
+              {
                 "label": "Baylor",
                 "value": "Baylor",
               },
-              Object {
+              {
                 "label": "Bellarmine",
                 "value": "Bellarmine",
               },
-              Object {
+              {
                 "label": "Belmont",
                 "value": "Belmont",
               },
-              Object {
+              {
                 "label": "Bethune-Cookman",
                 "value": "Bethune-Cookman",
               },
-              Object {
+              {
                 "label": "Binghamton",
                 "value": "Binghamton",
               },
-              Object {
+              {
                 "label": "Boise St.",
                 "value": "Boise St.",
               },
-              Object {
+              {
                 "label": "Boston College",
                 "value": "Boston College",
               },
-              Object {
+              {
                 "label": "Boston U.",
                 "value": "Boston U.",
               },
-              Object {
+              {
                 "label": "Bowling Green",
                 "value": "Bowling Green",
               },
-              Object {
+              {
                 "label": "Bradley",
                 "value": "Bradley",
               },
-              Object {
+              {
                 "label": "Brown",
                 "value": "Brown",
               },
-              Object {
+              {
                 "label": "Bryant",
                 "value": "Bryant",
               },
-              Object {
+              {
                 "label": "Bucknell",
                 "value": "Bucknell",
               },
-              Object {
+              {
                 "label": "Buffalo",
                 "value": "Buffalo",
               },
-              Object {
+              {
                 "label": "Butler",
                 "value": "Butler",
               },
-              Object {
+              {
                 "label": "CSU Bakersfield",
                 "value": "CSU Bakersfield",
               },
-              Object {
+              {
                 "label": "CSUN",
                 "value": "CSUN",
               },
-              Object {
+              {
                 "label": "Cal Poly",
                 "value": "Cal Poly",
               },
-              Object {
+              {
                 "label": "Cal St. Fullerton",
                 "value": "Cal St. Fullerton",
               },
-              Object {
+              {
                 "label": "California",
                 "value": "California",
               },
-              Object {
+              {
                 "label": "California Baptist",
                 "value": "California Baptist",
               },
-              Object {
+              {
                 "label": "Campbell",
                 "value": "Campbell",
               },
-              Object {
+              {
                 "label": "Canisius",
                 "value": "Canisius",
               },
-              Object {
+              {
                 "label": "Central Ark.",
                 "value": "Central Ark.",
               },
-              Object {
+              {
                 "label": "Central Conn. St.",
                 "value": "Central Conn. St.",
               },
-              Object {
+              {
                 "label": "Central Mich.",
                 "value": "Central Mich.",
               },
-              Object {
+              {
                 "label": "Charleston So.",
                 "value": "Charleston So.",
               },
-              Object {
+              {
                 "label": "Charlotte",
                 "value": "Charlotte",
               },
-              Object {
+              {
                 "label": "Chattanooga",
                 "value": "Chattanooga",
               },
-              Object {
+              {
                 "label": "Chicago St.",
                 "value": "Chicago St.",
               },
-              Object {
+              {
                 "label": "Cincinnati",
                 "value": "Cincinnati",
               },
-              Object {
+              {
                 "label": "Clemson",
                 "value": "Clemson",
               },
-              Object {
+              {
                 "label": "Cleveland St.",
                 "value": "Cleveland St.",
               },
-              Object {
+              {
                 "label": "Coastal Carolina",
                 "value": "Coastal Carolina",
               },
-              Object {
+              {
                 "label": "Col. of Charleston",
                 "value": "Col. of Charleston",
               },
-              Object {
+              {
                 "label": "Colgate",
                 "value": "Colgate",
               },
-              Object {
+              {
                 "label": "Colorado",
                 "value": "Colorado",
               },
-              Object {
+              {
                 "label": "Colorado St.",
                 "value": "Colorado St.",
               },
-              Object {
+              {
                 "label": "Columbia",
                 "value": "Columbia",
               },
-              Object {
+              {
                 "label": "Coppin St.",
                 "value": "Coppin St.",
               },
-              Object {
+              {
                 "label": "Cornell",
                 "value": "Cornell",
               },
-              Object {
+              {
                 "label": "Creighton",
                 "value": "Creighton",
               },
-              Object {
+              {
                 "label": "Dartmouth",
                 "value": "Dartmouth",
               },
-              Object {
+              {
                 "label": "Davidson",
                 "value": "Davidson",
               },
-              Object {
+              {
                 "label": "Dayton",
                 "value": "Dayton",
               },
-              Object {
+              {
                 "label": "DePaul",
                 "value": "DePaul",
               },
-              Object {
+              {
                 "label": "Delaware",
                 "value": "Delaware",
               },
-              Object {
+              {
                 "label": "Delaware St.",
                 "value": "Delaware St.",
               },
-              Object {
+              {
                 "label": "Denver",
                 "value": "Denver",
               },
-              Object {
+              {
                 "label": "Detroit Mercy",
                 "value": "Detroit Mercy",
               },
-              Object {
+              {
                 "label": "Utah Tech",
                 "value": "Utah Tech",
               },
-              Object {
+              {
                 "label": "Dixie St.",
                 "value": "Utah Tech",
               },
-              Object {
+              {
                 "label": "Drake",
                 "value": "Drake",
               },
-              Object {
+              {
                 "label": "Drexel",
                 "value": "Drexel",
               },
-              Object {
+              {
                 "label": "Duke",
                 "value": "Duke",
               },
-              Object {
+              {
                 "label": "Duquesne",
                 "value": "Duquesne",
               },
-              Object {
+              {
                 "label": "ETSU",
                 "value": "ETSU",
               },
-              Object {
+              {
                 "label": "East Carolina",
                 "value": "East Carolina",
               },
-              Object {
+              {
                 "label": "Eastern Ill.",
                 "value": "Eastern Ill.",
               },
-              Object {
+              {
                 "label": "Eastern Ky.",
                 "value": "Eastern Ky.",
               },
-              Object {
+              {
                 "label": "Eastern Mich.",
                 "value": "Eastern Mich.",
               },
-              Object {
+              {
                 "label": "Eastern Wash.",
                 "value": "Eastern Wash.",
               },
-              Object {
+              {
                 "label": "Elon",
                 "value": "Elon",
               },
-              Object {
+              {
                 "label": "Evansville",
                 "value": "Evansville",
               },
-              Object {
+              {
                 "label": "FGCU",
                 "value": "FGCU",
               },
-              Object {
+              {
                 "label": "FIU",
                 "value": "FIU",
               },
-              Object {
+              {
                 "label": "Fairfield",
                 "value": "Fairfield",
               },
-              Object {
+              {
                 "label": "FDU",
                 "value": "FDU",
               },
-              Object {
+              {
                 "label": "Fairleigh Dickinson",
                 "value": "FDU",
               },
-              Object {
+              {
                 "label": "Fla. Atlantic",
                 "value": "Fla. Atlantic",
               },
-              Object {
+              {
                 "label": "Florida",
                 "value": "Florida",
               },
-              Object {
+              {
                 "label": "Florida A&M",
                 "value": "Florida A&M",
               },
-              Object {
+              {
                 "label": "Florida St.",
                 "value": "Florida St.",
               },
-              Object {
+              {
                 "label": "Fordham",
                 "value": "Fordham",
               },
-              Object {
+              {
                 "label": "Fresno St.",
                 "value": "Fresno St.",
               },
-              Object {
+              {
                 "label": "Furman",
                 "value": "Furman",
               },
-              Object {
+              {
                 "label": "Ga. Southern",
                 "value": "Ga. Southern",
               },
-              Object {
+              {
                 "label": "Gardner-Webb",
                 "value": "Gardner-Webb",
               },
-              Object {
+              {
                 "label": "George Mason",
                 "value": "George Mason",
               },
-              Object {
+              {
                 "label": "George Washington",
                 "value": "George Washington",
               },
-              Object {
+              {
                 "label": "Georgetown",
                 "value": "Georgetown",
               },
-              Object {
+              {
                 "label": "Georgia",
                 "value": "Georgia",
               },
-              Object {
+              {
                 "label": "Georgia St.",
                 "value": "Georgia St.",
               },
-              Object {
+              {
                 "label": "Georgia Tech",
                 "value": "Georgia Tech",
               },
-              Object {
+              {
                 "label": "Gonzaga",
                 "value": "Gonzaga",
               },
-              Object {
+              {
                 "label": "Grambling",
                 "value": "Grambling",
               },
-              Object {
+              {
                 "label": "Grand Canyon",
                 "value": "Grand Canyon",
               },
-              Object {
+              {
                 "label": "Green Bay",
                 "value": "Green Bay",
               },
-              Object {
+              {
                 "label": "Hampton",
                 "value": "Hampton",
               },
-              Object {
+              {
                 "label": "Harvard",
                 "value": "Harvard",
               },
-              Object {
+              {
                 "label": "Hawaii",
                 "value": "Hawaii",
               },
-              Object {
+              {
                 "label": "High Point",
                 "value": "High Point",
               },
-              Object {
+              {
                 "label": "Hofstra",
                 "value": "Hofstra",
               },
-              Object {
+              {
                 "label": "Holy Cross",
                 "value": "Holy Cross",
               },
-              Object {
+              {
                 "label": "Houston",
                 "value": "Houston",
               },
-              Object {
+              {
                 "label": "Houston Christian",
                 "value": "Houston Christian",
               },
-              Object {
+              {
                 "label": "Houston Baptist",
                 "value": "Houston Christian",
               },
-              Object {
+              {
                 "label": "Howard",
                 "value": "Howard",
               },
-              Object {
+              {
                 "label": "IU Indy",
                 "value": "IU Indy",
               },
-              Object {
+              {
                 "label": "IUPUI",
                 "value": "IU Indy",
               },
-              Object {
+              {
                 "label": "Idaho",
                 "value": "Idaho",
               },
-              Object {
+              {
                 "label": "Idaho St.",
                 "value": "Idaho St.",
               },
-              Object {
+              {
                 "label": "Illinois",
                 "value": "Illinois",
               },
-              Object {
+              {
                 "label": "Illinois St.",
                 "value": "Illinois St.",
               },
-              Object {
+              {
                 "label": "Indiana",
                 "value": "Indiana",
               },
-              Object {
+              {
                 "label": "Indiana St.",
                 "value": "Indiana St.",
               },
-              Object {
+              {
                 "label": "Iona",
                 "value": "Iona",
               },
-              Object {
+              {
                 "label": "Iowa",
                 "value": "Iowa",
               },
-              Object {
+              {
                 "label": "Iowa St.",
                 "value": "Iowa St.",
               },
-              Object {
+              {
                 "label": "Jackson St.",
                 "value": "Jackson St.",
               },
-              Object {
+              {
                 "label": "Jacksonville",
                 "value": "Jacksonville",
               },
-              Object {
+              {
                 "label": "Jacksonville St.",
                 "value": "Jacksonville St.",
               },
-              Object {
+              {
                 "label": "James Madison",
                 "value": "James Madison",
               },
-              Object {
+              {
                 "label": "Kansas",
                 "value": "Kansas",
               },
-              Object {
+              {
                 "label": "Kansas City",
                 "value": "Kansas City",
               },
-              Object {
+              {
                 "label": "Kansas St.",
                 "value": "Kansas St.",
               },
-              Object {
+              {
                 "label": "Kennesaw St.",
                 "value": "Kennesaw St.",
               },
-              Object {
+              {
                 "label": "Kent St.",
                 "value": "Kent St.",
               },
-              Object {
+              {
                 "label": "Kentucky",
                 "value": "Kentucky",
               },
-              Object {
+              {
                 "label": "Le Moyne",
                 "value": "Le Moyne",
               },
-              Object {
+              {
                 "label": "LIU",
                 "value": "LIU",
               },
-              Object {
+              {
                 "label": "LMU (CA)",
                 "value": "LMU (CA)",
               },
-              Object {
+              {
                 "label": "LSU",
                 "value": "LSU",
               },
-              Object {
+              {
                 "label": "La Salle",
                 "value": "La Salle",
               },
-              Object {
+              {
                 "label": "Lafayette",
                 "value": "Lafayette",
               },
-              Object {
+              {
                 "label": "Lamar University",
                 "value": "Lamar University",
               },
-              Object {
+              {
                 "label": "Lehigh",
                 "value": "Lehigh",
               },
-              Object {
+              {
                 "label": "Liberty",
                 "value": "Liberty",
               },
-              Object {
+              {
                 "label": "Lindenwood",
                 "value": "Lindenwood",
               },
-              Object {
+              {
                 "label": "Lipscomb",
                 "value": "Lipscomb",
               },
-              Object {
+              {
                 "label": "Little Rock",
                 "value": "Little Rock",
               },
-              Object {
+              {
                 "label": "Long Beach St.",
                 "value": "Long Beach St.",
               },
-              Object {
+              {
                 "label": "Longwood",
                 "value": "Longwood",
               },
-              Object {
+              {
                 "label": "Louisiana",
                 "value": "Louisiana",
               },
-              Object {
+              {
                 "label": "Louisiana Tech",
                 "value": "Louisiana Tech",
               },
-              Object {
+              {
                 "label": "Louisville",
                 "value": "Louisville",
               },
-              Object {
+              {
                 "label": "Loyola Chicago",
                 "value": "Loyola Chicago",
               },
-              Object {
+              {
                 "label": "Loyola Maryland",
                 "value": "Loyola Maryland",
               },
-              Object {
+              {
                 "label": "Maine",
                 "value": "Maine",
               },
-              Object {
+              {
                 "label": "Manhattan",
                 "value": "Manhattan",
               },
-              Object {
+              {
                 "label": "Marist",
                 "value": "Marist",
               },
-              Object {
+              {
                 "label": "Marquette",
                 "value": "Marquette",
               },
-              Object {
+              {
                 "label": "Marshall",
                 "value": "Marshall",
               },
-              Object {
+              {
                 "label": "Massachusetts",
                 "value": "Massachusetts",
               },
-              Object {
+              {
                 "label": "McNeese",
                 "value": "McNeese",
               },
-              Object {
+              {
                 "label": "Memphis",
                 "value": "Memphis",
               },
-              Object {
+              {
                 "label": "Mercer",
                 "value": "Mercer",
               },
-              Object {
+              {
                 "label": "Mercyhurst",
                 "value": "Mercyhurst",
               },
-              Object {
+              {
                 "label": "Merrimack",
                 "value": "Merrimack",
               },
-              Object {
+              {
                 "label": "Miami (FL)",
                 "value": "Miami (FL)",
               },
-              Object {
+              {
                 "label": "Miami (OH)",
                 "value": "Miami (OH)",
               },
-              Object {
+              {
                 "label": "Michigan",
                 "value": "Michigan",
               },
-              Object {
+              {
                 "label": "Michigan St.",
                 "value": "Michigan St.",
               },
-              Object {
+              {
                 "label": "Middle Tenn.",
                 "value": "Middle Tenn.",
               },
-              Object {
+              {
                 "label": "Milwaukee",
                 "value": "Milwaukee",
               },
-              Object {
+              {
                 "label": "Minnesota",
                 "value": "Minnesota",
               },
-              Object {
+              {
                 "label": "Mississippi St.",
                 "value": "Mississippi St.",
               },
-              Object {
+              {
                 "label": "Mississippi Val.",
                 "value": "Mississippi Val.",
               },
-              Object {
+              {
                 "label": "Missouri",
                 "value": "Missouri",
               },
-              Object {
+              {
                 "label": "Missouri St.",
                 "value": "Missouri St.",
               },
-              Object {
+              {
                 "label": "Monmouth",
                 "value": "Monmouth",
               },
-              Object {
+              {
                 "label": "Montana",
                 "value": "Montana",
               },
-              Object {
+              {
                 "label": "Montana St.",
                 "value": "Montana St.",
               },
-              Object {
+              {
                 "label": "Morehead St.",
                 "value": "Morehead St.",
               },
-              Object {
+              {
                 "label": "Morgan St.",
                 "value": "Morgan St.",
               },
-              Object {
+              {
                 "label": "Mount St. Mary's",
                 "value": "Mount St. Mary's",
               },
-              Object {
+              {
                 "label": "Murray St.",
                 "value": "Murray St.",
               },
-              Object {
+              {
                 "label": "N.C. A&T",
                 "value": "N.C. A&T",
               },
-              Object {
+              {
                 "label": "N.C. Central",
                 "value": "N.C. Central",
               },
-              Object {
+              {
                 "label": "NC State",
                 "value": "NC State",
               },
-              Object {
+              {
                 "label": "NJIT",
                 "value": "NJIT",
               },
-              Object {
+              {
                 "label": "Navy",
                 "value": "Navy",
               },
-              Object {
+              {
                 "label": "Nebraska",
                 "value": "Nebraska",
               },
-              Object {
+              {
                 "label": "Nevada",
                 "value": "Nevada",
               },
-              Object {
+              {
                 "label": "New Hampshire",
                 "value": "New Hampshire",
               },
-              Object {
+              {
                 "label": "New Haven",
                 "value": "New Haven",
               },
-              Object {
+              {
                 "label": "New Mexico",
                 "value": "New Mexico",
               },
-              Object {
+              {
                 "label": "New Mexico St.",
                 "value": "New Mexico St.",
               },
-              Object {
+              {
                 "label": "New Orleans",
                 "value": "New Orleans",
               },
-              Object {
+              {
                 "label": "Niagara",
                 "value": "Niagara",
               },
-              Object {
+              {
                 "label": "Nicholls",
                 "value": "Nicholls",
               },
-              Object {
+              {
                 "label": "Nicholls St.",
                 "value": "Nicholls",
               },
-              Object {
+              {
                 "label": "Norfolk St.",
                 "value": "Norfolk St.",
               },
-              Object {
+              {
                 "label": "North Ala.",
                 "value": "North Ala.",
               },
-              Object {
+              {
                 "label": "North Carolina",
                 "value": "North Carolina",
               },
-              Object {
+              {
                 "label": "North Dakota",
                 "value": "North Dakota",
               },
-              Object {
+              {
                 "label": "North Dakota St.",
                 "value": "North Dakota St.",
               },
-              Object {
+              {
                 "label": "North Florida",
                 "value": "North Florida",
               },
-              Object {
+              {
                 "label": "North Texas",
                 "value": "North Texas",
               },
-              Object {
+              {
                 "label": "Northeastern",
                 "value": "Northeastern",
               },
-              Object {
+              {
                 "label": "Northern Ariz.",
                 "value": "Northern Ariz.",
               },
-              Object {
+              {
                 "label": "Northern Colo.",
                 "value": "Northern Colo.",
               },
-              Object {
+              {
                 "label": "NIU",
                 "value": "NIU",
               },
-              Object {
+              {
                 "label": "Northern Ill.",
                 "value": "NIU",
               },
-              Object {
+              {
                 "label": "Northern Ky.",
                 "value": "Northern Ky.",
               },
-              Object {
+              {
                 "label": "Northwestern",
                 "value": "Northwestern",
               },
-              Object {
+              {
                 "label": "Northwestern St.",
                 "value": "Northwestern St.",
               },
-              Object {
+              {
                 "label": "Notre Dame",
                 "value": "Notre Dame",
               },
-              Object {
+              {
                 "label": "Oakland",
                 "value": "Oakland",
               },
-              Object {
+              {
                 "label": "Ohio",
                 "value": "Ohio",
               },
-              Object {
+              {
                 "label": "Ohio St.",
                 "value": "Ohio St.",
               },
-              Object {
+              {
                 "label": "Oklahoma",
                 "value": "Oklahoma",
               },
-              Object {
+              {
                 "label": "Oklahoma St.",
                 "value": "Oklahoma St.",
               },
-              Object {
+              {
                 "label": "Old Dominion",
                 "value": "Old Dominion",
               },
-              Object {
+              {
                 "label": "Ole Miss",
                 "value": "Ole Miss",
               },
-              Object {
+              {
                 "label": "Omaha",
                 "value": "Omaha",
               },
-              Object {
+              {
                 "label": "Oral Roberts",
                 "value": "Oral Roberts",
               },
-              Object {
+              {
                 "label": "Oregon",
                 "value": "Oregon",
               },
-              Object {
+              {
                 "label": "Oregon St.",
                 "value": "Oregon St.",
               },
-              Object {
+              {
                 "label": "Pacific",
                 "value": "Pacific",
               },
-              Object {
+              {
                 "label": "Penn",
                 "value": "Penn",
               },
-              Object {
+              {
                 "label": "Penn St.",
                 "value": "Penn St.",
               },
-              Object {
+              {
                 "label": "Pepperdine",
                 "value": "Pepperdine",
               },
-              Object {
+              {
                 "label": "Pittsburgh",
                 "value": "Pittsburgh",
               },
-              Object {
+              {
                 "label": "Portland",
                 "value": "Portland",
               },
-              Object {
+              {
                 "label": "Portland St.",
                 "value": "Portland St.",
               },
-              Object {
+              {
                 "label": "Prairie View",
                 "value": "Prairie View",
               },
-              Object {
+              {
                 "label": "Presbyterian",
                 "value": "Presbyterian",
               },
-              Object {
+              {
                 "label": "Princeton",
                 "value": "Princeton",
               },
-              Object {
+              {
                 "label": "Providence",
                 "value": "Providence",
               },
-              Object {
+              {
                 "label": "Purdue",
                 "value": "Purdue",
               },
-              Object {
+              {
                 "label": "Purdue Fort Wayne",
                 "value": "Purdue Fort Wayne",
               },
-              Object {
+              {
                 "label": "Queens (NC)",
                 "value": "Queens (NC)",
               },
-              Object {
+              {
                 "label": "Quinnipiac",
                 "value": "Quinnipiac",
               },
-              Object {
+              {
                 "label": "Radford",
                 "value": "Radford",
               },
-              Object {
+              {
                 "label": "Rhode Island",
                 "value": "Rhode Island",
               },
-              Object {
+              {
                 "label": "Rice",
                 "value": "Rice",
               },
-              Object {
+              {
                 "label": "Richmond",
                 "value": "Richmond",
               },
-              Object {
+              {
                 "label": "Rider",
                 "value": "Rider",
               },
-              Object {
+              {
                 "label": "Robert Morris",
                 "value": "Robert Morris",
               },
-              Object {
+              {
                 "label": "Rutgers",
                 "value": "Rutgers",
               },
-              Object {
+              {
                 "label": "SFA",
                 "value": "SFA",
               },
-              Object {
+              {
                 "label": "SIUE",
                 "value": "SIUE",
               },
-              Object {
+              {
                 "label": "SMU",
                 "value": "SMU",
               },
-              Object {
+              {
                 "label": "Sacramento St.",
                 "value": "Sacramento St.",
               },
-              Object {
+              {
                 "label": "Sacred Heart",
                 "value": "Sacred Heart",
               },
-              Object {
+              {
                 "label": "Saint Francis",
                 "value": "Saint Francis",
               },
-              Object {
+              {
                 "label": "Saint Francis (PA)",
                 "value": "Saint Francis",
               },
-              Object {
+              {
                 "label": "Saint Joseph's",
                 "value": "Saint Joseph's",
               },
-              Object {
+              {
                 "label": "Saint Louis",
                 "value": "Saint Louis",
               },
-              Object {
+              {
                 "label": "Saint Mary's (CA)",
                 "value": "Saint Mary's (CA)",
               },
-              Object {
+              {
                 "label": "Saint Peter's",
                 "value": "Saint Peter's",
               },
-              Object {
+              {
                 "label": "Sam Houston",
                 "value": "Sam Houston",
               },
-              Object {
+              {
                 "label": "Sam Houston St.",
                 "value": "Sam Houston",
               },
-              Object {
+              {
                 "label": "Samford",
                 "value": "Samford",
               },
-              Object {
+              {
                 "label": "San Diego",
                 "value": "San Diego",
               },
-              Object {
+              {
                 "label": "San Diego St.",
                 "value": "San Diego St.",
               },
-              Object {
+              {
                 "label": "San Francisco",
                 "value": "San Francisco",
               },
-              Object {
+              {
                 "label": "San Jose St.",
                 "value": "San Jose St.",
               },
-              Object {
+              {
                 "label": "Santa Clara",
                 "value": "Santa Clara",
               },
-              Object {
+              {
                 "label": "Seattle U",
                 "value": "Seattle U",
               },
-              Object {
+              {
                 "label": "Seton Hall",
                 "value": "Seton Hall",
               },
-              Object {
+              {
                 "label": "Siena",
                 "value": "Siena",
               },
-              Object {
+              {
                 "label": "South Alabama",
                 "value": "South Alabama",
               },
-              Object {
+              {
                 "label": "South Carolina",
                 "value": "South Carolina",
               },
-              Object {
+              {
                 "label": "South Carolina St.",
                 "value": "South Carolina St.",
               },
-              Object {
+              {
                 "label": "South Dakota",
                 "value": "South Dakota",
               },
-              Object {
+              {
                 "label": "South Dakota St.",
                 "value": "South Dakota St.",
               },
-              Object {
+              {
                 "label": "South Fla.",
                 "value": "South Fla.",
               },
-              Object {
+              {
                 "label": "Southeast Mo. St.",
                 "value": "Southeast Mo. St.",
               },
-              Object {
+              {
                 "label": "Southeastern La.",
                 "value": "Southeastern La.",
               },
-              Object {
+              {
                 "label": "Southern California",
                 "value": "Southern California",
               },
-              Object {
+              {
                 "label": "Southern Ill.",
                 "value": "Southern Ill.",
               },
-              Object {
+              {
                 "label": "Southern Ind.",
                 "value": "Southern Ind.",
               },
-              Object {
+              {
                 "label": "Southern Miss.",
                 "value": "Southern Miss.",
               },
-              Object {
+              {
                 "label": "Southern U.",
                 "value": "Southern U.",
               },
-              Object {
+              {
                 "label": "Southern Utah",
                 "value": "Southern Utah",
               },
-              Object {
+              {
                 "label": "St. Bonaventure",
                 "value": "St. Bonaventure",
               },
-              Object {
+              {
                 "label": "St. John's (NY)",
                 "value": "St. John's (NY)",
               },
-              Object {
+              {
                 "label": "St. Thomas (MN)",
                 "value": "St. Thomas (MN)",
               },
-              Object {
+              {
                 "label": "Stanford",
                 "value": "Stanford",
               },
-              Object {
+              {
                 "label": "Stetson",
                 "value": "Stetson",
               },
-              Object {
+              {
                 "label": "Stonehill",
                 "value": "Stonehill",
               },
-              Object {
+              {
                 "label": "Stony Brook",
                 "value": "Stony Brook",
               },
-              Object {
+              {
                 "label": "Syracuse",
                 "value": "Syracuse",
               },
-              Object {
+              {
                 "label": "TCU",
                 "value": "TCU",
               },
-              Object {
+              {
                 "label": "Tarleton St.",
                 "value": "Tarleton St.",
               },
-              Object {
+              {
                 "label": "Temple",
                 "value": "Temple",
               },
-              Object {
+              {
                 "label": "Tennessee",
                 "value": "Tennessee",
               },
-              Object {
+              {
                 "label": "Tennessee St.",
                 "value": "Tennessee St.",
               },
-              Object {
+              {
                 "label": "Tennessee Tech",
                 "value": "Tennessee Tech",
               },
-              Object {
+              {
                 "label": "East Texas A&M",
                 "value": "East Texas A&M",
               },
-              Object {
+              {
                 "label": "Tex. A&M-Commerce",
                 "value": "East Texas A&M",
               },
-              Object {
+              {
                 "label": "Texas",
                 "value": "Texas",
               },
-              Object {
+              {
                 "label": "Texas A&M",
                 "value": "Texas A&M",
               },
-              Object {
+              {
                 "label": "Texas Southern",
                 "value": "Texas Southern",
               },
-              Object {
+              {
                 "label": "Texas St.",
                 "value": "Texas St.",
               },
-              Object {
+              {
                 "label": "Texas Tech",
                 "value": "Texas Tech",
               },
-              Object {
+              {
                 "label": "The Citadel",
                 "value": "The Citadel",
               },
-              Object {
+              {
                 "label": "Toledo",
                 "value": "Toledo",
               },
-              Object {
+              {
                 "label": "Towson",
                 "value": "Towson",
               },
-              Object {
+              {
                 "label": "Troy",
                 "value": "Troy",
               },
-              Object {
+              {
                 "label": "Tulane",
                 "value": "Tulane",
               },
-              Object {
+              {
                 "label": "Tulsa",
                 "value": "Tulsa",
               },
-              Object {
+              {
                 "label": "UAB",
                 "value": "UAB",
               },
-              Object {
+              {
                 "label": "UC Davis",
                 "value": "UC Davis",
               },
-              Object {
+              {
                 "label": "UC Irvine",
                 "value": "UC Irvine",
               },
-              Object {
+              {
                 "label": "UC Riverside",
                 "value": "UC Riverside",
               },
-              Object {
+              {
                 "label": "UC San Diego",
                 "value": "UC San Diego",
               },
-              Object {
+              {
                 "label": "UC Santa Barbara",
                 "value": "UC Santa Barbara",
               },
-              Object {
+              {
                 "label": "UCF",
                 "value": "UCF",
               },
-              Object {
+              {
                 "label": "UCLA",
                 "value": "UCLA",
               },
-              Object {
+              {
                 "label": "UConn",
                 "value": "UConn",
               },
-              Object {
+              {
                 "label": "UIC",
                 "value": "UIC",
               },
-              Object {
+              {
                 "label": "UIW",
                 "value": "UIW",
               },
-              Object {
+              {
                 "label": "ULM",
                 "value": "ULM",
               },
-              Object {
+              {
                 "label": "UMBC",
                 "value": "UMBC",
               },
-              Object {
+              {
                 "label": "UMES",
                 "value": "UMES",
               },
-              Object {
+              {
                 "label": "UMass Lowell",
                 "value": "UMass Lowell",
               },
-              Object {
+              {
                 "label": "UNC Asheville",
                 "value": "UNC Asheville",
               },
-              Object {
+              {
                 "label": "UNC Greensboro",
                 "value": "UNC Greensboro",
               },
-              Object {
+              {
                 "label": "UNCW",
                 "value": "UNCW",
               },
-              Object {
+              {
                 "label": "UNI",
                 "value": "UNI",
               },
-              Object {
+              {
                 "label": "UNLV",
                 "value": "UNLV",
               },
-              Object {
+              {
                 "label": "USC Upstate",
                 "value": "USC Upstate",
               },
-              Object {
+              {
                 "label": "UT Arlington",
                 "value": "UT Arlington",
               },
-              Object {
+              {
                 "label": "UT Martin",
                 "value": "UT Martin",
               },
-              Object {
+              {
                 "label": "UTEP",
                 "value": "UTEP",
               },
-              Object {
+              {
                 "label": "UTRGV",
                 "value": "UTRGV",
               },
-              Object {
+              {
                 "label": "UTSA",
                 "value": "UTSA",
               },
-              Object {
+              {
                 "label": "Utah",
                 "value": "Utah",
               },
-              Object {
+              {
                 "label": "Utah St.",
                 "value": "Utah St.",
               },
-              Object {
+              {
                 "label": "Utah Valley",
                 "value": "Utah Valley",
               },
-              Object {
+              {
                 "label": "VCU",
                 "value": "VCU",
               },
-              Object {
+              {
                 "label": "VMI",
                 "value": "VMI",
               },
-              Object {
+              {
                 "label": "Valparaiso",
                 "value": "Valparaiso",
               },
-              Object {
+              {
                 "label": "Vanderbilt",
                 "value": "Vanderbilt",
               },
-              Object {
+              {
                 "label": "Vermont",
                 "value": "Vermont",
               },
-              Object {
+              {
                 "label": "Villanova",
                 "value": "Villanova",
               },
-              Object {
+              {
                 "label": "Virginia",
                 "value": "Virginia",
               },
-              Object {
+              {
                 "label": "Virginia Tech",
                 "value": "Virginia Tech",
               },
-              Object {
+              {
                 "label": "Wagner",
                 "value": "Wagner",
               },
-              Object {
+              {
                 "label": "Wake Forest",
                 "value": "Wake Forest",
               },
-              Object {
+              {
                 "label": "Washington",
                 "value": "Washington",
               },
-              Object {
+              {
                 "label": "Washington St.",
                 "value": "Washington St.",
               },
-              Object {
+              {
                 "label": "Weber St.",
                 "value": "Weber St.",
               },
-              Object {
+              {
                 "label": "West Ga.",
                 "value": "West Ga.",
               },
-              Object {
+              {
                 "label": "West Virginia",
                 "value": "West Virginia",
               },
-              Object {
+              {
                 "label": "Western Caro.",
                 "value": "Western Caro.",
               },
-              Object {
+              {
                 "label": "Western Ill.",
                 "value": "Western Ill.",
               },
-              Object {
+              {
                 "label": "Western Ky.",
                 "value": "Western Ky.",
               },
-              Object {
+              {
                 "label": "Western Mich.",
                 "value": "Western Mich.",
               },
-              Object {
+              {
                 "label": "Wichita St.",
                 "value": "Wichita St.",
               },
-              Object {
+              {
                 "label": "William & Mary",
                 "value": "William & Mary",
               },
-              Object {
+              {
                 "label": "Winthrop",
                 "value": "Winthrop",
               },
-              Object {
+              {
                 "label": "Wisconsin",
                 "value": "Wisconsin",
               },
-              Object {
+              {
                 "label": "Wofford",
                 "value": "Wofford",
               },
-              Object {
+              {
                 "label": "Wright St.",
                 "value": "Wright St.",
               },
-              Object {
+              {
                 "label": "Wyoming",
                 "value": "Wyoming",
               },
-              Object {
+              {
                 "label": "Xavier",
                 "value": "Xavier",
               },
-              Object {
+              {
                 "label": "Yale",
                 "value": "Yale",
               },
-              Object {
+              {
                 "label": "Youngstown St.",
                 "value": "Youngstown St.",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "Choose Team...",
               "value": undefined,
             }
@@ -1735,7 +1735,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               id="popover-positioned-left"
               placement="right"
               style={
-                Object {
+                {
                   "maxWidth": "600px",
                 }
               }
@@ -1766,11 +1766,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     512,
                     512,
-                    Array [
+                    [
                       "history",
                     ],
                     "f1da",
@@ -1809,11 +1809,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     640,
                     512,
-                    Array [
+                    [
                       128279,
                       "chain",
                     ],
@@ -1834,9 +1834,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     />
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -1867,7 +1867,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
           >
             <InputGroup>
               <LineupQueryAutoSuggestText
-                games={Array []}
+                games={[]}
                 gender="Men"
                 initValue=""
                 onChange={[Function]}
@@ -1880,7 +1880,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
               />
               <InputGroupAppend>
                 <QueryFilterDropdown
-                  queryFilters={Array []}
+                  queryFilters={[]}
                   setQueryFilters={[Function]}
                   showCustomRangeFilter={[Function]}
                   showGameSelectorModal={[Function]}
@@ -1893,9 +1893,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (empty) 1`] = `
     </FormGroup>
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -2057,7 +2057,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     autoFocus={true}
     backdrop={true}
     dialogAs={
-      Object {
+      {
         "$$typeof": Symbol(react.forward_ref),
         "render": [Function],
       }
@@ -2130,11 +2130,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     year="2018/9"
   />
   <GameSelectorModal
-    games={Array []}
+    games={[]}
     onClose={[Function]}
     onSubmit={[Function]}
     queryType="Baseline Query"
-    selectedGames={Array []}
+    selectedGames={[]}
     show={false}
   />
   <Form
@@ -2142,9 +2142,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
   >
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -2161,19 +2161,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
+              {
                 "label": "Women",
                 "value": "Women",
               },
             ]
           }
           value={
-            Object {
+            {
               "label": "Men",
               "value": "Men",
             }
@@ -2190,52 +2190,52 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "2025/26",
                 "value": "2025/26",
               },
-              Object {
+              {
                 "label": "2024/25",
                 "value": "2024/25",
               },
-              Object {
+              {
                 "label": "2023/24",
                 "value": "2023/24",
               },
-              Object {
+              {
                 "label": "2022/23",
                 "value": "2022/23",
               },
-              Object {
+              {
                 "label": "2021/22",
                 "value": "2021/22",
               },
-              Object {
+              {
                 "label": "2020/21",
                 "value": "2020/21",
               },
-              Object {
+              {
                 "label": "2019/20",
                 "value": "2019/20",
               },
-              Object {
+              {
                 "label": "2018/9",
                 "value": "2018/9",
               },
-              Object {
+              {
                 "label": "Extra",
                 "value": "Extra",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "2018/9",
               "value": "2018/9",
             }
@@ -2254,447 +2254,447 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
       >
         <ThemedSelect
           components={
-            Object {
+            {
               "MenuList": [Function],
             }
           }
           isClearable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Maryland",
                 "value": "Maryland",
               },
-              Object {
+              {
                 "label": "Alabama",
                 "value": "Alabama",
               },
-              Object {
+              {
                 "label": "Arizona",
                 "value": "Arizona",
               },
-              Object {
+              {
                 "label": "Arizona St.",
                 "value": "Arizona St.",
               },
-              Object {
+              {
                 "label": "Arkansas",
                 "value": "Arkansas",
               },
-              Object {
+              {
                 "label": "Auburn",
                 "value": "Auburn",
               },
-              Object {
+              {
                 "label": "BYU",
                 "value": "BYU",
               },
-              Object {
+              {
                 "label": "Baylor",
                 "value": "Baylor",
               },
-              Object {
+              {
                 "label": "Boston College",
                 "value": "Boston College",
               },
-              Object {
+              {
                 "label": "Butler",
                 "value": "Butler",
               },
-              Object {
+              {
                 "label": "California",
                 "value": "California",
               },
-              Object {
+              {
                 "label": "Cincinnati",
                 "value": "Cincinnati",
               },
-              Object {
+              {
                 "label": "Clemson",
                 "value": "Clemson",
               },
-              Object {
+              {
                 "label": "Colorado",
                 "value": "Colorado",
               },
-              Object {
+              {
                 "label": "Creighton",
                 "value": "Creighton",
               },
-              Object {
+              {
                 "label": "Davidson",
                 "value": "Davidson",
               },
-              Object {
+              {
                 "label": "Dayton",
                 "value": "Dayton",
               },
-              Object {
+              {
                 "label": "DePaul",
                 "value": "DePaul",
               },
-              Object {
+              {
                 "label": "Duke",
                 "value": "Duke",
               },
-              Object {
+              {
                 "label": "Duquesne",
                 "value": "Duquesne",
               },
-              Object {
+              {
                 "label": "East Carolina",
                 "value": "East Carolina",
               },
-              Object {
+              {
                 "label": "Florida",
                 "value": "Florida",
               },
-              Object {
+              {
                 "label": "Florida St.",
                 "value": "Florida St.",
               },
-              Object {
+              {
                 "label": "Fordham",
                 "value": "Fordham",
               },
-              Object {
+              {
                 "label": "George Mason",
                 "value": "George Mason",
               },
-              Object {
+              {
                 "label": "George Washington",
                 "value": "George Washington",
               },
-              Object {
+              {
                 "label": "Georgetown",
                 "value": "Georgetown",
               },
-              Object {
+              {
                 "label": "Georgia",
                 "value": "Georgia",
               },
-              Object {
+              {
                 "label": "Georgia Tech",
                 "value": "Georgia Tech",
               },
-              Object {
+              {
                 "label": "Gonzaga",
                 "value": "Gonzaga",
               },
-              Object {
+              {
                 "label": "Houston",
                 "value": "Houston",
               },
-              Object {
+              {
                 "label": "Illinois",
                 "value": "Illinois",
               },
-              Object {
+              {
                 "label": "Indiana",
                 "value": "Indiana",
               },
-              Object {
+              {
                 "label": "Iowa",
                 "value": "Iowa",
               },
-              Object {
+              {
                 "label": "Iowa St.",
                 "value": "Iowa St.",
               },
-              Object {
+              {
                 "label": "Kansas",
                 "value": "Kansas",
               },
-              Object {
+              {
                 "label": "Kansas St.",
                 "value": "Kansas St.",
               },
-              Object {
+              {
                 "label": "Kentucky",
                 "value": "Kentucky",
               },
-              Object {
+              {
                 "label": "LSU",
                 "value": "LSU",
               },
-              Object {
+              {
                 "label": "La Salle",
                 "value": "La Salle",
               },
-              Object {
+              {
                 "label": "Louisville",
                 "value": "Louisville",
               },
-              Object {
+              {
                 "label": "Marquette",
                 "value": "Marquette",
               },
-              Object {
+              {
                 "label": "Massachusetts",
                 "value": "Massachusetts",
               },
-              Object {
+              {
                 "label": "Memphis",
                 "value": "Memphis",
               },
-              Object {
+              {
                 "label": "Miami (FL)",
                 "value": "Miami (FL)",
               },
-              Object {
+              {
                 "label": "Michigan",
                 "value": "Michigan",
               },
-              Object {
+              {
                 "label": "Michigan St.",
                 "value": "Michigan St.",
               },
-              Object {
+              {
                 "label": "Minnesota",
                 "value": "Minnesota",
               },
-              Object {
+              {
                 "label": "Mississippi St.",
                 "value": "Mississippi St.",
               },
-              Object {
+              {
                 "label": "Missouri",
                 "value": "Missouri",
               },
-              Object {
+              {
                 "label": "NC State",
                 "value": "NC State",
               },
-              Object {
+              {
                 "label": "Nebraska",
                 "value": "Nebraska",
               },
-              Object {
+              {
                 "label": "North Carolina",
                 "value": "North Carolina",
               },
-              Object {
+              {
                 "label": "Northwestern",
                 "value": "Northwestern",
               },
-              Object {
+              {
                 "label": "Notre Dame",
                 "value": "Notre Dame",
               },
-              Object {
+              {
                 "label": "Ohio St.",
                 "value": "Ohio St.",
               },
-              Object {
+              {
                 "label": "Oklahoma",
                 "value": "Oklahoma",
               },
-              Object {
+              {
                 "label": "Oklahoma St.",
                 "value": "Oklahoma St.",
               },
-              Object {
+              {
                 "label": "Ole Miss",
                 "value": "Ole Miss",
               },
-              Object {
+              {
                 "label": "Oregon",
                 "value": "Oregon",
               },
-              Object {
+              {
                 "label": "Oregon St.",
                 "value": "Oregon St.",
               },
-              Object {
+              {
                 "label": "Penn St.",
                 "value": "Penn St.",
               },
-              Object {
+              {
                 "label": "Pittsburgh",
                 "value": "Pittsburgh",
               },
-              Object {
+              {
                 "label": "Providence",
                 "value": "Providence",
               },
-              Object {
+              {
                 "label": "Purdue",
                 "value": "Purdue",
               },
-              Object {
+              {
                 "label": "Rhode Island",
                 "value": "Rhode Island",
               },
-              Object {
+              {
                 "label": "Richmond",
                 "value": "Richmond",
               },
-              Object {
+              {
                 "label": "Rutgers",
                 "value": "Rutgers",
               },
-              Object {
+              {
                 "label": "SMU",
                 "value": "SMU",
               },
-              Object {
+              {
                 "label": "Saint Joseph's",
                 "value": "Saint Joseph's",
               },
-              Object {
+              {
                 "label": "Saint Louis",
                 "value": "Saint Louis",
               },
-              Object {
+              {
                 "label": "Saint Mary's (CA)",
                 "value": "Saint Mary's (CA)",
               },
-              Object {
+              {
                 "label": "San Diego St.",
                 "value": "San Diego St.",
               },
-              Object {
+              {
                 "label": "Seton Hall",
                 "value": "Seton Hall",
               },
-              Object {
+              {
                 "label": "South Carolina",
                 "value": "South Carolina",
               },
-              Object {
+              {
                 "label": "South Fla.",
                 "value": "South Fla.",
               },
-              Object {
+              {
                 "label": "Southern California",
                 "value": "Southern California",
               },
-              Object {
+              {
                 "label": "St. Bonaventure",
                 "value": "St. Bonaventure",
               },
-              Object {
+              {
                 "label": "St. John's (NY)",
                 "value": "St. John's (NY)",
               },
-              Object {
+              {
                 "label": "Stanford",
                 "value": "Stanford",
               },
-              Object {
+              {
                 "label": "Syracuse",
                 "value": "Syracuse",
               },
-              Object {
+              {
                 "label": "TCU",
                 "value": "TCU",
               },
-              Object {
+              {
                 "label": "Temple",
                 "value": "Temple",
               },
-              Object {
+              {
                 "label": "Tennessee",
                 "value": "Tennessee",
               },
-              Object {
+              {
                 "label": "Texas",
                 "value": "Texas",
               },
-              Object {
+              {
                 "label": "Texas A&M",
                 "value": "Texas A&M",
               },
-              Object {
+              {
                 "label": "Texas Tech",
                 "value": "Texas Tech",
               },
-              Object {
+              {
                 "label": "Tulane",
                 "value": "Tulane",
               },
-              Object {
+              {
                 "label": "Tulsa",
                 "value": "Tulsa",
               },
-              Object {
+              {
                 "label": "UCF",
                 "value": "UCF",
               },
-              Object {
+              {
                 "label": "UCLA",
                 "value": "UCLA",
               },
-              Object {
+              {
                 "label": "UConn",
                 "value": "UConn",
               },
-              Object {
+              {
                 "label": "Utah",
                 "value": "Utah",
               },
-              Object {
+              {
                 "label": "Utah St.",
                 "value": "Utah St.",
               },
-              Object {
+              {
                 "label": "VCU",
                 "value": "VCU",
               },
-              Object {
+              {
                 "label": "Vanderbilt",
                 "value": "Vanderbilt",
               },
-              Object {
+              {
                 "label": "Villanova",
                 "value": "Villanova",
               },
-              Object {
+              {
                 "label": "Virginia",
                 "value": "Virginia",
               },
-              Object {
+              {
                 "label": "Virginia Tech",
                 "value": "Virginia Tech",
               },
-              Object {
+              {
                 "label": "Wake Forest",
                 "value": "Wake Forest",
               },
-              Object {
+              {
                 "label": "Washington",
                 "value": "Washington",
               },
-              Object {
+              {
                 "label": "Washington St.",
                 "value": "Washington St.",
               },
-              Object {
+              {
                 "label": "West Virginia",
                 "value": "West Virginia",
               },
-              Object {
+              {
                 "label": "Wichita St.",
                 "value": "Wichita St.",
               },
-              Object {
+              {
                 "label": "Wisconsin",
                 "value": "Wisconsin",
               },
-              Object {
+              {
                 "label": "Xavier",
                 "value": "Xavier",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "Maryland",
               "value": "Maryland",
             }
@@ -2711,7 +2711,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               id="popover-positioned-left"
               placement="right"
               style={
-                Object {
+                {
                   "maxWidth": "600px",
                 }
               }
@@ -2742,11 +2742,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     512,
                     512,
-                    Array [
+                    [
                       "history",
                     ],
                     "f1da",
@@ -2785,11 +2785,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     640,
                     512,
-                    Array [
+                    [
                       128279,
                       "chain",
                     ],
@@ -2810,9 +2810,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     />
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -2843,7 +2843,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           >
             <InputGroup>
               <LineupQueryAutoSuggestText
-                games={Array []}
+                games={[]}
                 gender="Men"
                 initValue=""
                 onChange={[Function]}
@@ -2857,7 +2857,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
               <InputGroupAppend>
                 <QueryFilterDropdown
                   queryFilters={
-                    Array [
+                    [
                       "Home",
                       "Away",
                     ]
@@ -2950,9 +2950,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
     </FormGroup>
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -3097,11 +3097,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (filter badges) 1`] 
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     448,
                     512,
-                    Array [
+                    [
                       61460,
                       "trash-alt",
                     ],
@@ -3132,7 +3132,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     autoFocus={true}
     backdrop={true}
     dialogAs={
-      Object {
+      {
         "$$typeof": Symbol(react.forward_ref),
         "render": [Function],
       }
@@ -3205,11 +3205,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     year="2018/9"
   />
   <GameSelectorModal
-    games={Array []}
+    games={[]}
     onClose={[Function]}
     onSubmit={[Function]}
     queryType="Baseline Query"
-    selectedGames={Array []}
+    selectedGames={[]}
     show={false}
   />
   <Form
@@ -3217,9 +3217,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
   >
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -3236,19 +3236,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
+              {
                 "label": "Women",
                 "value": "Women",
               },
             ]
           }
           value={
-            Object {
+            {
               "label": "Men",
               "value": "Men",
             }
@@ -3265,52 +3265,52 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "2025/26",
                 "value": "2025/26",
               },
-              Object {
+              {
                 "label": "2024/25",
                 "value": "2024/25",
               },
-              Object {
+              {
                 "label": "2023/24",
                 "value": "2023/24",
               },
-              Object {
+              {
                 "label": "2022/23",
                 "value": "2022/23",
               },
-              Object {
+              {
                 "label": "2021/22",
                 "value": "2021/22",
               },
-              Object {
+              {
                 "label": "2020/21",
                 "value": "2020/21",
               },
-              Object {
+              {
                 "label": "2019/20",
                 "value": "2019/20",
               },
-              Object {
+              {
                 "label": "2018/9",
                 "value": "2018/9",
               },
-              Object {
+              {
                 "label": "Extra",
                 "value": "Extra",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "2018/9",
               "value": "2018/9",
             }
@@ -3329,447 +3329,447 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
       >
         <ThemedSelect
           components={
-            Object {
+            {
               "MenuList": [Function],
             }
           }
           isClearable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Maryland",
                 "value": "Maryland",
               },
-              Object {
+              {
                 "label": "Alabama",
                 "value": "Alabama",
               },
-              Object {
+              {
                 "label": "Arizona",
                 "value": "Arizona",
               },
-              Object {
+              {
                 "label": "Arizona St.",
                 "value": "Arizona St.",
               },
-              Object {
+              {
                 "label": "Arkansas",
                 "value": "Arkansas",
               },
-              Object {
+              {
                 "label": "Auburn",
                 "value": "Auburn",
               },
-              Object {
+              {
                 "label": "BYU",
                 "value": "BYU",
               },
-              Object {
+              {
                 "label": "Baylor",
                 "value": "Baylor",
               },
-              Object {
+              {
                 "label": "Boston College",
                 "value": "Boston College",
               },
-              Object {
+              {
                 "label": "Butler",
                 "value": "Butler",
               },
-              Object {
+              {
                 "label": "California",
                 "value": "California",
               },
-              Object {
+              {
                 "label": "Cincinnati",
                 "value": "Cincinnati",
               },
-              Object {
+              {
                 "label": "Clemson",
                 "value": "Clemson",
               },
-              Object {
+              {
                 "label": "Colorado",
                 "value": "Colorado",
               },
-              Object {
+              {
                 "label": "Creighton",
                 "value": "Creighton",
               },
-              Object {
+              {
                 "label": "Davidson",
                 "value": "Davidson",
               },
-              Object {
+              {
                 "label": "Dayton",
                 "value": "Dayton",
               },
-              Object {
+              {
                 "label": "DePaul",
                 "value": "DePaul",
               },
-              Object {
+              {
                 "label": "Duke",
                 "value": "Duke",
               },
-              Object {
+              {
                 "label": "Duquesne",
                 "value": "Duquesne",
               },
-              Object {
+              {
                 "label": "East Carolina",
                 "value": "East Carolina",
               },
-              Object {
+              {
                 "label": "Florida",
                 "value": "Florida",
               },
-              Object {
+              {
                 "label": "Florida St.",
                 "value": "Florida St.",
               },
-              Object {
+              {
                 "label": "Fordham",
                 "value": "Fordham",
               },
-              Object {
+              {
                 "label": "George Mason",
                 "value": "George Mason",
               },
-              Object {
+              {
                 "label": "George Washington",
                 "value": "George Washington",
               },
-              Object {
+              {
                 "label": "Georgetown",
                 "value": "Georgetown",
               },
-              Object {
+              {
                 "label": "Georgia",
                 "value": "Georgia",
               },
-              Object {
+              {
                 "label": "Georgia Tech",
                 "value": "Georgia Tech",
               },
-              Object {
+              {
                 "label": "Gonzaga",
                 "value": "Gonzaga",
               },
-              Object {
+              {
                 "label": "Houston",
                 "value": "Houston",
               },
-              Object {
+              {
                 "label": "Illinois",
                 "value": "Illinois",
               },
-              Object {
+              {
                 "label": "Indiana",
                 "value": "Indiana",
               },
-              Object {
+              {
                 "label": "Iowa",
                 "value": "Iowa",
               },
-              Object {
+              {
                 "label": "Iowa St.",
                 "value": "Iowa St.",
               },
-              Object {
+              {
                 "label": "Kansas",
                 "value": "Kansas",
               },
-              Object {
+              {
                 "label": "Kansas St.",
                 "value": "Kansas St.",
               },
-              Object {
+              {
                 "label": "Kentucky",
                 "value": "Kentucky",
               },
-              Object {
+              {
                 "label": "LSU",
                 "value": "LSU",
               },
-              Object {
+              {
                 "label": "La Salle",
                 "value": "La Salle",
               },
-              Object {
+              {
                 "label": "Louisville",
                 "value": "Louisville",
               },
-              Object {
+              {
                 "label": "Marquette",
                 "value": "Marquette",
               },
-              Object {
+              {
                 "label": "Massachusetts",
                 "value": "Massachusetts",
               },
-              Object {
+              {
                 "label": "Memphis",
                 "value": "Memphis",
               },
-              Object {
+              {
                 "label": "Miami (FL)",
                 "value": "Miami (FL)",
               },
-              Object {
+              {
                 "label": "Michigan",
                 "value": "Michigan",
               },
-              Object {
+              {
                 "label": "Michigan St.",
                 "value": "Michigan St.",
               },
-              Object {
+              {
                 "label": "Minnesota",
                 "value": "Minnesota",
               },
-              Object {
+              {
                 "label": "Mississippi St.",
                 "value": "Mississippi St.",
               },
-              Object {
+              {
                 "label": "Missouri",
                 "value": "Missouri",
               },
-              Object {
+              {
                 "label": "NC State",
                 "value": "NC State",
               },
-              Object {
+              {
                 "label": "Nebraska",
                 "value": "Nebraska",
               },
-              Object {
+              {
                 "label": "North Carolina",
                 "value": "North Carolina",
               },
-              Object {
+              {
                 "label": "Northwestern",
                 "value": "Northwestern",
               },
-              Object {
+              {
                 "label": "Notre Dame",
                 "value": "Notre Dame",
               },
-              Object {
+              {
                 "label": "Ohio St.",
                 "value": "Ohio St.",
               },
-              Object {
+              {
                 "label": "Oklahoma",
                 "value": "Oklahoma",
               },
-              Object {
+              {
                 "label": "Oklahoma St.",
                 "value": "Oklahoma St.",
               },
-              Object {
+              {
                 "label": "Ole Miss",
                 "value": "Ole Miss",
               },
-              Object {
+              {
                 "label": "Oregon",
                 "value": "Oregon",
               },
-              Object {
+              {
                 "label": "Oregon St.",
                 "value": "Oregon St.",
               },
-              Object {
+              {
                 "label": "Penn St.",
                 "value": "Penn St.",
               },
-              Object {
+              {
                 "label": "Pittsburgh",
                 "value": "Pittsburgh",
               },
-              Object {
+              {
                 "label": "Providence",
                 "value": "Providence",
               },
-              Object {
+              {
                 "label": "Purdue",
                 "value": "Purdue",
               },
-              Object {
+              {
                 "label": "Rhode Island",
                 "value": "Rhode Island",
               },
-              Object {
+              {
                 "label": "Richmond",
                 "value": "Richmond",
               },
-              Object {
+              {
                 "label": "Rutgers",
                 "value": "Rutgers",
               },
-              Object {
+              {
                 "label": "SMU",
                 "value": "SMU",
               },
-              Object {
+              {
                 "label": "Saint Joseph's",
                 "value": "Saint Joseph's",
               },
-              Object {
+              {
                 "label": "Saint Louis",
                 "value": "Saint Louis",
               },
-              Object {
+              {
                 "label": "Saint Mary's (CA)",
                 "value": "Saint Mary's (CA)",
               },
-              Object {
+              {
                 "label": "San Diego St.",
                 "value": "San Diego St.",
               },
-              Object {
+              {
                 "label": "Seton Hall",
                 "value": "Seton Hall",
               },
-              Object {
+              {
                 "label": "South Carolina",
                 "value": "South Carolina",
               },
-              Object {
+              {
                 "label": "South Fla.",
                 "value": "South Fla.",
               },
-              Object {
+              {
                 "label": "Southern California",
                 "value": "Southern California",
               },
-              Object {
+              {
                 "label": "St. Bonaventure",
                 "value": "St. Bonaventure",
               },
-              Object {
+              {
                 "label": "St. John's (NY)",
                 "value": "St. John's (NY)",
               },
-              Object {
+              {
                 "label": "Stanford",
                 "value": "Stanford",
               },
-              Object {
+              {
                 "label": "Syracuse",
                 "value": "Syracuse",
               },
-              Object {
+              {
                 "label": "TCU",
                 "value": "TCU",
               },
-              Object {
+              {
                 "label": "Temple",
                 "value": "Temple",
               },
-              Object {
+              {
                 "label": "Tennessee",
                 "value": "Tennessee",
               },
-              Object {
+              {
                 "label": "Texas",
                 "value": "Texas",
               },
-              Object {
+              {
                 "label": "Texas A&M",
                 "value": "Texas A&M",
               },
-              Object {
+              {
                 "label": "Texas Tech",
                 "value": "Texas Tech",
               },
-              Object {
+              {
                 "label": "Tulane",
                 "value": "Tulane",
               },
-              Object {
+              {
                 "label": "Tulsa",
                 "value": "Tulsa",
               },
-              Object {
+              {
                 "label": "UCF",
                 "value": "UCF",
               },
-              Object {
+              {
                 "label": "UCLA",
                 "value": "UCLA",
               },
-              Object {
+              {
                 "label": "UConn",
                 "value": "UConn",
               },
-              Object {
+              {
                 "label": "Utah",
                 "value": "Utah",
               },
-              Object {
+              {
                 "label": "Utah St.",
                 "value": "Utah St.",
               },
-              Object {
+              {
                 "label": "VCU",
                 "value": "VCU",
               },
-              Object {
+              {
                 "label": "Vanderbilt",
                 "value": "Vanderbilt",
               },
-              Object {
+              {
                 "label": "Villanova",
                 "value": "Villanova",
               },
-              Object {
+              {
                 "label": "Virginia",
                 "value": "Virginia",
               },
-              Object {
+              {
                 "label": "Virginia Tech",
                 "value": "Virginia Tech",
               },
-              Object {
+              {
                 "label": "Wake Forest",
                 "value": "Wake Forest",
               },
-              Object {
+              {
                 "label": "Washington",
                 "value": "Washington",
               },
-              Object {
+              {
                 "label": "Washington St.",
                 "value": "Washington St.",
               },
-              Object {
+              {
                 "label": "West Virginia",
                 "value": "West Virginia",
               },
-              Object {
+              {
                 "label": "Wichita St.",
                 "value": "Wichita St.",
               },
-              Object {
+              {
                 "label": "Wisconsin",
                 "value": "Wisconsin",
               },
-              Object {
+              {
                 "label": "Xavier",
                 "value": "Xavier",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "Maryland",
               "value": "Maryland",
             }
@@ -3786,7 +3786,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               id="popover-positioned-left"
               placement="right"
               style={
-                Object {
+                {
                   "maxWidth": "600px",
                 }
               }
@@ -3817,11 +3817,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     512,
                     512,
-                    Array [
+                    [
                       "history",
                     ],
                     "f1da",
@@ -3860,11 +3860,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     640,
                     512,
-                    Array [
+                    [
                       128279,
                       "chain",
                     ],
@@ -3885,9 +3885,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     />
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -3918,7 +3918,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           >
             <InputGroup>
               <LineupQueryAutoSuggestText
-                games={Array []}
+                games={[]}
                 gender="Men"
                 initValue=""
                 onChange={[Function]}
@@ -3931,7 +3931,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
               />
               <InputGroupAppend>
                 <QueryFilterDropdown
-                  queryFilters={Array []}
+                  queryFilters={[]}
                   setQueryFilters={[Function]}
                   showCustomRangeFilter={[Function]}
                   showGameSelectorModal={[Function]}
@@ -3944,9 +3944,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
     </FormGroup>
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -4091,11 +4091,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (preloaded) 1`] = `
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     448,
                     512,
-                    Array [
+                    [
                       61460,
                       "trash-alt",
                     ],
@@ -4126,7 +4126,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     autoFocus={true}
     backdrop={true}
     dialogAs={
-      Object {
+      {
         "$$typeof": Symbol(react.forward_ref),
         "render": [Function],
       }
@@ -4199,11 +4199,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     year="2018/9"
   />
   <GameSelectorModal
-    games={Array []}
+    games={[]}
     onClose={[Function]}
     onSubmit={[Function]}
     queryType="Baseline Query"
-    selectedGames={Array []}
+    selectedGames={[]}
     show={false}
   />
   <Form
@@ -4211,9 +4211,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
   >
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -4230,19 +4230,19 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Men",
                 "value": "Men",
               },
-              Object {
+              {
                 "label": "Women",
                 "value": "Women",
               },
             ]
           }
           value={
-            Object {
+            {
               "label": "Men",
               "value": "Men",
             }
@@ -4259,52 +4259,52 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           isSearchable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "2025/26",
                 "value": "2025/26",
               },
-              Object {
+              {
                 "label": "2024/25",
                 "value": "2024/25",
               },
-              Object {
+              {
                 "label": "2023/24",
                 "value": "2023/24",
               },
-              Object {
+              {
                 "label": "2022/23",
                 "value": "2022/23",
               },
-              Object {
+              {
                 "label": "2021/22",
                 "value": "2021/22",
               },
-              Object {
+              {
                 "label": "2020/21",
                 "value": "2020/21",
               },
-              Object {
+              {
                 "label": "2019/20",
                 "value": "2019/20",
               },
-              Object {
+              {
                 "label": "2018/9",
                 "value": "2018/9",
               },
-              Object {
+              {
                 "label": "Extra",
                 "value": "Extra",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "2018/9",
               "value": "2018/9",
             }
@@ -4323,447 +4323,447 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
       >
         <ThemedSelect
           components={
-            Object {
+            {
               "MenuList": [Function],
             }
           }
           isClearable={false}
           onChange={[Function]}
           options={
-            Array [
-              Object {
+            [
+              {
                 "label": "Maryland",
                 "value": "Maryland",
               },
-              Object {
+              {
                 "label": "Alabama",
                 "value": "Alabama",
               },
-              Object {
+              {
                 "label": "Arizona",
                 "value": "Arizona",
               },
-              Object {
+              {
                 "label": "Arizona St.",
                 "value": "Arizona St.",
               },
-              Object {
+              {
                 "label": "Arkansas",
                 "value": "Arkansas",
               },
-              Object {
+              {
                 "label": "Auburn",
                 "value": "Auburn",
               },
-              Object {
+              {
                 "label": "BYU",
                 "value": "BYU",
               },
-              Object {
+              {
                 "label": "Baylor",
                 "value": "Baylor",
               },
-              Object {
+              {
                 "label": "Boston College",
                 "value": "Boston College",
               },
-              Object {
+              {
                 "label": "Butler",
                 "value": "Butler",
               },
-              Object {
+              {
                 "label": "California",
                 "value": "California",
               },
-              Object {
+              {
                 "label": "Cincinnati",
                 "value": "Cincinnati",
               },
-              Object {
+              {
                 "label": "Clemson",
                 "value": "Clemson",
               },
-              Object {
+              {
                 "label": "Colorado",
                 "value": "Colorado",
               },
-              Object {
+              {
                 "label": "Creighton",
                 "value": "Creighton",
               },
-              Object {
+              {
                 "label": "Davidson",
                 "value": "Davidson",
               },
-              Object {
+              {
                 "label": "Dayton",
                 "value": "Dayton",
               },
-              Object {
+              {
                 "label": "DePaul",
                 "value": "DePaul",
               },
-              Object {
+              {
                 "label": "Duke",
                 "value": "Duke",
               },
-              Object {
+              {
                 "label": "Duquesne",
                 "value": "Duquesne",
               },
-              Object {
+              {
                 "label": "East Carolina",
                 "value": "East Carolina",
               },
-              Object {
+              {
                 "label": "Florida",
                 "value": "Florida",
               },
-              Object {
+              {
                 "label": "Florida St.",
                 "value": "Florida St.",
               },
-              Object {
+              {
                 "label": "Fordham",
                 "value": "Fordham",
               },
-              Object {
+              {
                 "label": "George Mason",
                 "value": "George Mason",
               },
-              Object {
+              {
                 "label": "George Washington",
                 "value": "George Washington",
               },
-              Object {
+              {
                 "label": "Georgetown",
                 "value": "Georgetown",
               },
-              Object {
+              {
                 "label": "Georgia",
                 "value": "Georgia",
               },
-              Object {
+              {
                 "label": "Georgia Tech",
                 "value": "Georgia Tech",
               },
-              Object {
+              {
                 "label": "Gonzaga",
                 "value": "Gonzaga",
               },
-              Object {
+              {
                 "label": "Houston",
                 "value": "Houston",
               },
-              Object {
+              {
                 "label": "Illinois",
                 "value": "Illinois",
               },
-              Object {
+              {
                 "label": "Indiana",
                 "value": "Indiana",
               },
-              Object {
+              {
                 "label": "Iowa",
                 "value": "Iowa",
               },
-              Object {
+              {
                 "label": "Iowa St.",
                 "value": "Iowa St.",
               },
-              Object {
+              {
                 "label": "Kansas",
                 "value": "Kansas",
               },
-              Object {
+              {
                 "label": "Kansas St.",
                 "value": "Kansas St.",
               },
-              Object {
+              {
                 "label": "Kentucky",
                 "value": "Kentucky",
               },
-              Object {
+              {
                 "label": "LSU",
                 "value": "LSU",
               },
-              Object {
+              {
                 "label": "La Salle",
                 "value": "La Salle",
               },
-              Object {
+              {
                 "label": "Louisville",
                 "value": "Louisville",
               },
-              Object {
+              {
                 "label": "Marquette",
                 "value": "Marquette",
               },
-              Object {
+              {
                 "label": "Massachusetts",
                 "value": "Massachusetts",
               },
-              Object {
+              {
                 "label": "Memphis",
                 "value": "Memphis",
               },
-              Object {
+              {
                 "label": "Miami (FL)",
                 "value": "Miami (FL)",
               },
-              Object {
+              {
                 "label": "Michigan",
                 "value": "Michigan",
               },
-              Object {
+              {
                 "label": "Michigan St.",
                 "value": "Michigan St.",
               },
-              Object {
+              {
                 "label": "Minnesota",
                 "value": "Minnesota",
               },
-              Object {
+              {
                 "label": "Mississippi St.",
                 "value": "Mississippi St.",
               },
-              Object {
+              {
                 "label": "Missouri",
                 "value": "Missouri",
               },
-              Object {
+              {
                 "label": "NC State",
                 "value": "NC State",
               },
-              Object {
+              {
                 "label": "Nebraska",
                 "value": "Nebraska",
               },
-              Object {
+              {
                 "label": "North Carolina",
                 "value": "North Carolina",
               },
-              Object {
+              {
                 "label": "Northwestern",
                 "value": "Northwestern",
               },
-              Object {
+              {
                 "label": "Notre Dame",
                 "value": "Notre Dame",
               },
-              Object {
+              {
                 "label": "Ohio St.",
                 "value": "Ohio St.",
               },
-              Object {
+              {
                 "label": "Oklahoma",
                 "value": "Oklahoma",
               },
-              Object {
+              {
                 "label": "Oklahoma St.",
                 "value": "Oklahoma St.",
               },
-              Object {
+              {
                 "label": "Ole Miss",
                 "value": "Ole Miss",
               },
-              Object {
+              {
                 "label": "Oregon",
                 "value": "Oregon",
               },
-              Object {
+              {
                 "label": "Oregon St.",
                 "value": "Oregon St.",
               },
-              Object {
+              {
                 "label": "Penn St.",
                 "value": "Penn St.",
               },
-              Object {
+              {
                 "label": "Pittsburgh",
                 "value": "Pittsburgh",
               },
-              Object {
+              {
                 "label": "Providence",
                 "value": "Providence",
               },
-              Object {
+              {
                 "label": "Purdue",
                 "value": "Purdue",
               },
-              Object {
+              {
                 "label": "Rhode Island",
                 "value": "Rhode Island",
               },
-              Object {
+              {
                 "label": "Richmond",
                 "value": "Richmond",
               },
-              Object {
+              {
                 "label": "Rutgers",
                 "value": "Rutgers",
               },
-              Object {
+              {
                 "label": "SMU",
                 "value": "SMU",
               },
-              Object {
+              {
                 "label": "Saint Joseph's",
                 "value": "Saint Joseph's",
               },
-              Object {
+              {
                 "label": "Saint Louis",
                 "value": "Saint Louis",
               },
-              Object {
+              {
                 "label": "Saint Mary's (CA)",
                 "value": "Saint Mary's (CA)",
               },
-              Object {
+              {
                 "label": "San Diego St.",
                 "value": "San Diego St.",
               },
-              Object {
+              {
                 "label": "Seton Hall",
                 "value": "Seton Hall",
               },
-              Object {
+              {
                 "label": "South Carolina",
                 "value": "South Carolina",
               },
-              Object {
+              {
                 "label": "South Fla.",
                 "value": "South Fla.",
               },
-              Object {
+              {
                 "label": "Southern California",
                 "value": "Southern California",
               },
-              Object {
+              {
                 "label": "St. Bonaventure",
                 "value": "St. Bonaventure",
               },
-              Object {
+              {
                 "label": "St. John's (NY)",
                 "value": "St. John's (NY)",
               },
-              Object {
+              {
                 "label": "Stanford",
                 "value": "Stanford",
               },
-              Object {
+              {
                 "label": "Syracuse",
                 "value": "Syracuse",
               },
-              Object {
+              {
                 "label": "TCU",
                 "value": "TCU",
               },
-              Object {
+              {
                 "label": "Temple",
                 "value": "Temple",
               },
-              Object {
+              {
                 "label": "Tennessee",
                 "value": "Tennessee",
               },
-              Object {
+              {
                 "label": "Texas",
                 "value": "Texas",
               },
-              Object {
+              {
                 "label": "Texas A&M",
                 "value": "Texas A&M",
               },
-              Object {
+              {
                 "label": "Texas Tech",
                 "value": "Texas Tech",
               },
-              Object {
+              {
                 "label": "Tulane",
                 "value": "Tulane",
               },
-              Object {
+              {
                 "label": "Tulsa",
                 "value": "Tulsa",
               },
-              Object {
+              {
                 "label": "UCF",
                 "value": "UCF",
               },
-              Object {
+              {
                 "label": "UCLA",
                 "value": "UCLA",
               },
-              Object {
+              {
                 "label": "UConn",
                 "value": "UConn",
               },
-              Object {
+              {
                 "label": "Utah",
                 "value": "Utah",
               },
-              Object {
+              {
                 "label": "Utah St.",
                 "value": "Utah St.",
               },
-              Object {
+              {
                 "label": "VCU",
                 "value": "VCU",
               },
-              Object {
+              {
                 "label": "Vanderbilt",
                 "value": "Vanderbilt",
               },
-              Object {
+              {
                 "label": "Villanova",
                 "value": "Villanova",
               },
-              Object {
+              {
                 "label": "Virginia",
                 "value": "Virginia",
               },
-              Object {
+              {
                 "label": "Virginia Tech",
                 "value": "Virginia Tech",
               },
-              Object {
+              {
                 "label": "Wake Forest",
                 "value": "Wake Forest",
               },
-              Object {
+              {
                 "label": "Washington",
                 "value": "Washington",
               },
-              Object {
+              {
                 "label": "Washington St.",
                 "value": "Washington St.",
               },
-              Object {
+              {
                 "label": "West Virginia",
                 "value": "West Virginia",
               },
-              Object {
+              {
                 "label": "Wichita St.",
                 "value": "Wichita St.",
               },
-              Object {
+              {
                 "label": "Wisconsin",
                 "value": "Wisconsin",
               },
-              Object {
+              {
                 "label": "Xavier",
                 "value": "Xavier",
               },
             ]
           }
           styles={
-            Object {
+            {
               "menu": [Function],
             }
           }
           value={
-            Object {
+            {
               "label": "Maryland",
               "value": "Maryland",
             }
@@ -4780,7 +4780,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               id="popover-positioned-left"
               placement="right"
               style={
-                Object {
+                {
                   "maxWidth": "600px",
                 }
               }
@@ -4811,11 +4811,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     512,
                     512,
-                    Array [
+                    [
                       "history",
                     ],
                     "f1da",
@@ -4854,11 +4854,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     640,
                     512,
-                    Array [
+                    [
                       128279,
                       "chain",
                     ],
@@ -4879,9 +4879,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     />
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -4912,7 +4912,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           >
             <InputGroup>
               <LineupQueryAutoSuggestText
-                games={Array []}
+                games={[]}
                 gender="Men"
                 initValue=""
                 onChange={[Function]}
@@ -4926,7 +4926,7 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
               <InputGroupAppend>
                 <QueryFilterDropdown
                   queryFilters={
-                    Array [
+                    [
                       "Conf",
                     ]
                   }
@@ -5022,9 +5022,9 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
     </FormGroup>
     <FormGroup
       as={
-        Object {
+        {
           "$$typeof": Symbol(react.forward_ref),
-          "defaultProps": Object {
+          "defaultProps": {
             "noGutters": false,
           },
           "render": [Function],
@@ -5169,11 +5169,11 @@ exports[`CommonFilter CommonFilter - should create snapshot (special inverted ba
           >
             <FontAwesomeIcon
               icon={
-                Object {
-                  "icon": Array [
+                {
+                  "icon": [
                     448,
                     512,
-                    Array [
+                    [
                       61460,
                       "trash-alt",
                     ],

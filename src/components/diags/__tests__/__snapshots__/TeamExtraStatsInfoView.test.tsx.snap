@@ -1,1449 +1,2047 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TeamExtraStatsInfoView TeamExtraStatsInfoView - should create snapshot 1`] = `
-<span>
-  <b>
-    Extra stats info for [
-    test
-    ]
-  </b>
-  <br />
-  <br />
-  <Container
-    className="float-left"
-    fluid={true}
-  >
-    <Row
-      noGutters={false}
+<DocumentFragment>
+  <span>
+    <b>
+      Extra stats info for [test]
+    </b>
+    <br />
+    <br />
+    <div
+      class="float-left container-fluid"
     >
-      <Col
-        lg={8}
-        sm={12}
-        xl={7}
-        xs={8}
+      <div
+        class="row"
       >
-        <span>
-          Play type stats:
-        </span>
-        <GenericTable
-          tableCopyId="playTypeStats_test"
-          tableData={
-            Array [
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "grades": undefined,
-                  "off_2p": Object {
-                    "value": 0.44155844155844154,
-                  },
-                  "off_3p": Object {
-                    "value": 0.3132530120481928,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.45604395604395603,
-                  },
-                  "off_delta_ppp": Object {
-                    "value": -8.168606042987534,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.2904238618524333,
-                  },
-                  "off_pct": Object {
-                    "value": 0.6963835534084439,
-                  },
-                  "off_pct_orbs": undefined,
-                  "off_ppp": Object {
-                    "value": 99.00520233447996,
-                  },
-                  "off_title": "Half-Court Offense",
-                  "off_to": Object {
-                    "value": 0.16731326092838095,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": Object {
-                  "pct": GenericTableColProps {
-                    "className": "",
-                    "colName": "%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Percentage of possessions this play type occurs",
-                    "widthUnits": 2,
-                  },
-                },
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "grades": undefined,
-                  "off_2p": Object {
-                    "value": 0.6779661016949152,
-                  },
-                  "off_3p": Object {
-                    "value": 0.30935251798561153,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.439873417721519,
-                  },
-                  "off_delta_ppp": Object {
-                    "value": 0.0905502377016063,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.6708860759493671,
-                  },
-                  "off_pct": Object {
-                    "value": 0.24058738565238325,
-                  },
-                  "off_pct_orbs": Object {
-                    "value": 0.9164480019258545,
-                  },
-                  "off_ppp": Object {
-                    "value": 107.2643586151691,
-                  },
-                  "off_title": "Transition Offense",
-                  "off_to": Object {
-                    "value": 0.16609965979587754,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": Object {
-                  "pct_orbs": GenericTableColProps {
-                    "className": "",
-                    "colName": "%ORB",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Percentage of Off rebounds resulting in a scramble play type",
-                    "widthUnits": 2,
-                  },
-                },
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "grades": undefined,
-                  "off_2p": Object {
-                    "value": 0.5755395683453237,
-                  },
-                  "off_3p": Object {
-                    "value": 0.28888888888888886,
-                  },
-                  "off_3pr": Object {
-                    "value": 0.24456521739130435,
-                  },
-                  "off_delta_ppp": Object {
-                    "value": 8.046930109156818,
-                  },
-                  "off_ftr": Object {
-                    "value": 0.47282608695652173,
-                  },
-                  "off_pct": Object {
-                    "value": 0.10780838866433026,
-                  },
-                  "off_pct_orbs": Object {
-                    "value": 0.6415989205037649,
-                  },
-                  "off_ppp": Object {
-                    "value": 115.22073848662431,
-                  },
-                  "off_title": <OverlayTrigger
-                    defaultShow={false}
-                    overlay={
-                      <Tooltip
-                        id="scrambleDeftest"
-                        placement="right"
-                      >
-                        Possessions finishing after an ORB, but not counting plays where the offense resets
-                      </Tooltip>
-                    }
-                    placement="auto"
-                    trigger={
-                      Array [
-                        "hover",
-                        "focus",
-                      ]
-                    }
-                  >
-                    <b>
-                      Scramble 
-                      Offense
-                      <sup>
-                        *
-                      </sup>
-                    </b>
-                  </OverlayTrigger>,
-                  "off_to": Object {
-                    "value": 0.12057984260228126,
-                  },
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": Object {
-                  "pct": GenericTableColProps {
-                    "className": "",
-                    "colName": "%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Percentage of possessions this play type occurs",
-                    "widthUnits": 2,
-                  },
-                },
-              },
-              GenericTableSeparator {
-                "kind": "separator",
-                "padding": undefined,
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.42577675489067895,
-                  },
-                  "def_3p": Object {
-                    "value": 0.3125,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.38499646142958244,
-                  },
-                  "def_delta_ppp": Object {
-                    "value": -4.097871890660414,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.18683651804670912,
-                  },
-                  "def_pct": Object {
-                    "value": 0.7545500494232297,
-                  },
-                  "def_pct_orbs": undefined,
-                  "def_ppp": Object {
-                    "value": 91.9617148464852,
-                  },
-                  "def_title": "Half-Court Defense",
-                  "def_to": Object {
-                    "value": 0.16621888902307919,
-                  },
-                  "grades": undefined,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": Object {
-                  "pct": GenericTableColProps {
-                    "className": "",
-                    "colName": "%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Percentage of possessions this play type occurs",
-                    "widthUnits": 2,
-                  },
-                },
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.5286624203821656,
-                  },
-                  "def_3p": Object {
-                    "value": 0.35294117647058826,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.4311594202898551,
-                  },
-                  "def_delta_ppp": Object {
-                    "value": -5.395533808941735,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.42028985507246375,
-                  },
-                  "def_pct": Object {
-                    "value": 0.19610764055742433,
-                  },
-                  "def_pct_orbs": Object {
-                    "value": 0.6282187453959897,
-                  },
-                  "def_ppp": Object {
-                    "value": 90.66405292820387,
-                  },
-                  "def_title": "Transition Defense",
-                  "def_to": Object {
-                    "value": 0.18867924528301885,
-                  },
-                  "grades": undefined,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": Object {
-                  "pct_orbs": GenericTableColProps {
-                    "className": "",
-                    "colName": "%ORB",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Percentage of Off rebounds resulting in a scramble play type",
-                    "widthUnits": 2,
-                  },
-                },
-              },
-              GenericTableDataRow {
-                "cellMetaFn": [Function],
-                "colSpanOverride": undefined,
-                "dataObj": Object {
-                  "def_2p": Object {
-                    "value": 0.4766355140186916,
-                  },
-                  "def_3p": Object {
-                    "value": 0.42857142857142855,
-                  },
-                  "def_3pr": Object {
-                    "value": 0.24647887323943662,
-                  },
-                  "def_delta_ppp": Object {
-                    "value": 8.196096883864556,
-                  },
-                  "def_ftr": Object {
-                    "value": 0.4507042253521127,
-                  },
-                  "def_pct": Object {
-                    "value": 0.08527071563674632,
-                  },
-                  "def_pct_orbs": Object {
-                    "value": 0.583711708026543,
-                  },
-                  "def_ppp": Object {
-                    "value": 104.25568362101016,
-                  },
-                  "def_title": <OverlayTrigger
-                    defaultShow={false}
-                    overlay={
-                      <Tooltip
-                        id="scrambleDeftest"
-                        placement="right"
-                      >
-                        Possessions finishing after an ORB, but not counting plays where the offense resets
-                      </Tooltip>
-                    }
-                    placement="auto"
-                    trigger={
-                      Array [
-                        "hover",
-                        "focus",
-                      ]
-                    }
-                  >
-                    <b>
-                      Scramble 
-                      Defense
-                      <sup>
-                        *
-                      </sup>
-                    </b>
-                  </OverlayTrigger>,
-                  "def_to": Object {
-                    "value": 0.14088605894731104,
-                  },
-                  "grades": undefined,
-                },
-                "kind": "data-row",
-                "prefixFn": [Function],
-                "tableFieldsOverride": Object {
-                  "pct": GenericTableColProps {
-                    "className": "",
-                    "colName": "%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Percentage of possessions this play type occurs",
-                    "widthUnits": 2,
-                  },
-                },
-              },
-            ]
-          }
-          tableFields={
-            Object {
-              "2p": GenericTableColProps {
-                "className": "",
-                "colName": "2P%",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "2 point field goal percentage for this play type",
-                "widthUnits": 2,
-              },
-              "3p": GenericTableColProps {
-                "className": "",
-                "colName": "3P%",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "3 point field goal percentage for this play type",
-                "widthUnits": 2,
-              },
-              "3pr": GenericTableColProps {
-                "className": "",
-                "colName": "3PR",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Percentage of 3 pointers taken against all field goals for this play type",
-                "widthUnits": 2,
-              },
-              "delta_ppp": GenericTableColProps {
-                "className": "",
-                "colName": <span>
-                  Δ/100
-                </span>,
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Delta points per 100 possessions between overall play and this play type",
-                "widthUnits": 2,
-              },
-              "ftr": GenericTableColProps {
-                "className": "",
-                "colName": "FTR",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Free throw rate  for this play type",
-                "widthUnits": 2,
-              },
-              "pct": GenericTableColProps {
-                "className": "",
-                "colName": "%",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Percentage of possessions ending in this play type",
-                "widthUnits": 2,
-              },
-              "pct_orbs": GenericTableColProps {
-                "className": "",
-                "colName": "%ORB",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Scramble: Percentage of Off rebounds resulting in a scramble play type / Transition: Ratio of Transition Offense% to ORB% conceded",
-                "widthUnits": 2,
-              },
-              "ppp": GenericTableColProps {
-                "className": "",
-                "colName": "P/100",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Points per 100 possessions ending in this play type",
-                "widthUnits": 2,
-              },
-              "sep1": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep2": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "sep3": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 0.5,
-              },
-              "title": GenericTableColProps {
-                "className": "",
-                "colName": "",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": true,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "",
-                "widthUnits": 8,
-              },
-              "to": GenericTableColProps {
-                "className": "",
-                "colName": "TO%",
-                "colorPicker": [Function],
-                "formatter": [Function],
-                "isTitle": false,
-                "missingData": undefined,
-                "rowSpan": [Function],
-                "toolTip": "Turnover % for this play type",
-                "widthUnits": 2,
-              },
-            }
-          }
-        />
-      </Col>
-      <Col
-        lg={8}
-        sm={12}
-        xl={5}
-        xs={8}
-      >
-        <Container
-          fluid={true}
+        <div
+          class="col-xl-7 col-lg-8 col-sm-12 col-8"
         >
-          <Row
-            noGutters={false}
+          <span>
+            Play type stats:
+          </span>
+          <div
+            class="table-responsive"
           >
-            <span>
-              More assist stats:
-            </span>
-            <GenericTable
-              tableCopyId="assistStats_test"
-              tableData={
-                Array [
-                  GenericTableSubHeaderRow {
-                    "className": "text-center",
-                    "cols": Array [
-                      "",
-                      <i>
-                        Assist distribution
-                      </i>,
-                      "",
-                      <i>
-                        % of these shots assisted
-                      </i>,
-                    ],
-                    "kind": "subheader-row",
-                    "spans": Array [
-                      2,
-                      3,
-                      1,
-                      3,
-                    ],
-                  },
-                  GenericTableDataRow {
-                    "cellMetaFn": [Function],
-                    "colSpanOverride": undefined,
-                    "dataObj": Object {
-                      "grades": undefined,
-                      "off_3p_ast": Object {
-                        "value": 0.4938875305623472,
-                      },
-                      "off_ast_3p": Object {
-                        "value": 0.8487394957983193,
-                      },
-                      "off_ast_mid": Object {
-                        "value": 0.27450980392156865,
-                      },
-                      "off_ast_rim": Object {
-                        "value": 0.4430693069306931,
-                      },
-                      "off_mid_ast": Object {
-                        "value": 0.06845965770171149,
-                      },
-                      "off_rim_ast": Object {
-                        "value": 0.43765281173594134,
-                      },
-                      "off_title": "Offense",
-                    },
-                    "kind": "data-row",
-                    "prefixFn": [Function],
-                    "tableFieldsOverride": undefined,
-                  },
-                  GenericTableDataRow {
-                    "cellMetaFn": [Function],
-                    "colSpanOverride": undefined,
-                    "dataObj": Object {
-                      "def_3p_ast": Object {
-                        "value": 0.485,
-                      },
-                      "def_ast_3p": Object {
-                        "value": 0.8546255506607929,
-                      },
-                      "def_ast_mid": Object {
-                        "value": 0.3254437869822485,
-                      },
-                      "def_ast_rim": Object {
-                        "value": 0.4507462686567164,
-                      },
-                      "def_mid_ast": Object {
-                        "value": 0.1375,
-                      },
-                      "def_rim_ast": Object {
-                        "value": 0.3775,
-                      },
-                      "def_title": "Defense",
-                      "grades": undefined,
-                    },
-                    "kind": "data-row",
-                    "prefixFn": [Function],
-                    "tableFieldsOverride": undefined,
-                  },
-                ]
-              }
-              tableFields={
-                Object {
-                  "3p_ast": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "% of assists that are for 3P",
-                    "widthUnits": 2,
-                  },
-                  "ast_3p": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "% of 3P that are assisted",
-                    "widthUnits": 2,
-                  },
-                  "ast_mid": GenericTableColProps {
-                    "className": "",
-                    "colName": "Mid",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "% of mid-range 2P that are assisted",
-                    "widthUnits": 2,
-                  },
-                  "ast_rim": GenericTableColProps {
-                    "className": "",
-                    "colName": "Rim",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "% of 2PAs at the rim that are assisted",
-                    "widthUnits": 2,
-                  },
-                  "mid_ast": GenericTableColProps {
-                    "className": "",
-                    "colName": "Mid",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "% of assists that are for mid-range 2P",
-                    "widthUnits": 2,
-                  },
-                  "rim_ast": GenericTableColProps {
-                    "className": "",
-                    "colName": "Rim",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "% of assists that are for 2PAs at the rim",
-                    "widthUnits": 2,
-                  },
-                  "sep1": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 0.5,
-                  },
-                  "sep2": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 0.5,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 8,
-                  },
-                }
-              }
-            />
-          </Row>
-          <Row
-            noGutters={false}
+            <table
+              class="table table-sm"
+              id="playTypeStats_test"
+            >
+              <thead>
+                <tr>
+                  <th
+                    style="text-align: right; width: 29.1%; font-weight: bold;"
+                  >
+                    <div>
+                      <button
+                        class="float-left btn btn-outline-secondary btn-sm"
+                        id="playTypeStats_test_copy"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="svg-inline--fa fa-clipboard "
+                          data-icon="clipboard"
+                          data-prefix="fas"
+                          focusable="false"
+                          role="img"
+                          viewBox="0 0 384 512"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 1.8%; font-weight: bold;"
+                  />
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        %
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        %ORB
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        P/100
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        <span>
+                          Δ/100
+                        </span>
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 1.8%; font-weight: bold;"
+                  />
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        TO%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        FTR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3PR
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 1.8%; font-weight: bold;"
+                  />
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        3P%
+                      </span>
+                    </div>
+                  </th>
+                  <th
+                    style="text-align: center; width: 7.3%; font-weight: bold;"
+                  >
+                    <div>
+                      <span>
+                        2P%
+                      </span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: right; width: 29.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        Half-Court Offense
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        69.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #fff2f2; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        99.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffc3c3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        -8.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffe0e0; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        16.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffe7e7; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        29.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffbc42; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        45.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffc2c2; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        31.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ff6a6a; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        44.2
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: right; width: 29.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        Transition Offense
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffa500; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        24.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #2b952b; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        91.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #a2d1a2; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        107.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #fefffe; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        0.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffe5e5; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        16.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        67.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffc55a; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        44.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffb4b4; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        30.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        67.8
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: right; width: 29.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <b>
+                        Scramble Offense
+                        <sup>
+                          *
+                        </sup>
+                      </b>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        10.8
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        64.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #3d9e3d; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        115.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #c4e2c4; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        8.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #57ac57; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        12.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        47.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #d8ecf3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        24.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ff6969; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        28.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #3e9f3e; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        57.6
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="divider"
+                >
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                </tr>
+                <tr>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: right; width: 29.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        Half-Court Defense
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        75.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #99cc99; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        92.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #e1f0e1; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        -4.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #e5f2e5; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        16.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        18.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffe2ad; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        38.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #bfdfbf; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        31.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #42a142; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        42.6
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: right; width: 29.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        Transition Defense
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffe2ad; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        19.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #bedebe; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        62.8
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #88c488; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        90.7
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #d8ebd8; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        -5.4
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #85c285; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        18.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        42.0
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffc967; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        43.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffabab; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        35.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffb6b6; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        52.9
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: right; width: 29.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <b>
+                        Scramble Defense
+                        <sup>
+                          *
+                        </sup>
+                      </b>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        8.5
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        58.4
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffc9c9; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        104.3
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffc3c3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        8.2
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ffaeae; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        14.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        45.1
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #d9edf3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        24.6
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 1.8%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div />
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        42.9
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class=" square-bg-cell"
+                    colspan="1"
+                    rowspan="1"
+                    style="text-align: center; width: 7.3%; font-weight: normal; --cell-bg: #c3e1c3; vertical-align: middle; color: black;"
+                  >
+                    <div
+                      style="position: relative; z-index: 1;"
+                    >
+                      <div>
+                        47.7
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          class="col-xl-5 col-lg-8 col-sm-12 col-8"
+        >
+          <div
+            class="container-fluid"
           >
-            <span>
-              Misc other stats:
-            </span>
-            <GenericTable
-              tableCopyId="otherStats_test"
-              tableData={
-                Array [
-                  GenericTableDataRow {
-                    "cellMetaFn": [Function],
-                    "colSpanOverride": undefined,
-                    "dataObj": Object {
-                      "def_2prim_ast": Object {
-                        "value": 0.4507462686567164,
-                      },
-                      "def_3p_ast": Object {
-                        "value": 0.8546255506607929,
-                      },
-                      "def_3p_opp": Object {
-                        "value": 32.98939828080229,
-                      },
-                      "def_ast_3p": Object {
-                        "value": 0.485,
-                      },
-                      "def_ast_rim": Object {
-                        "value": 0.3775,
-                      },
-                      "def_blk": Object {
-                        "value": 0.11827007943512798,
-                      },
-                      "def_ft": Object {
-                        "value": 0.6981981981981982,
-                      },
-                      "def_half": Object {
-                        "value": 0.7545500494232297,
-                      },
-                      "def_half_2p": Object {
-                        "value": 0.42577675489067895,
-                      },
-                      "def_half_3p": Object {
-                        "value": 0.3125,
-                      },
-                      "def_half_3pr": Object {
-                        "value": 0.38499646142958244,
-                      },
-                      "def_half_delta_ppp": Object {
-                        "value": -4.097871890660414,
-                      },
-                      "def_half_ftr": Object {
-                        "value": 0.18683651804670912,
-                      },
-                      "def_half_ppp": Object {
-                        "value": 91.9617148464852,
-                      },
-                      "def_half_to": Object {
-                        "value": 0.16621888902307919,
-                      },
-                      "def_scramble": Object {
-                        "value": 0.08527071563674632,
-                      },
-                      "def_scramble_2p": Object {
-                        "value": 0.4766355140186916,
-                      },
-                      "def_scramble_3p": Object {
-                        "value": 0.42857142857142855,
-                      },
-                      "def_scramble_3pr": Object {
-                        "value": 0.24647887323943662,
-                      },
-                      "def_scramble_delta_ppp": Object {
-                        "value": 8.196096883864556,
-                      },
-                      "def_scramble_ftr": Object {
-                        "value": 0.4507042253521127,
-                      },
-                      "def_scramble_per_orb": Object {
-                        "value": 0.583711708026543,
-                      },
-                      "def_scramble_ppp": Object {
-                        "value": 104.25568362101016,
-                      },
-                      "def_scramble_to": Object {
-                        "value": 0.14088605894731104,
-                      },
-                      "def_stk": Object {
-                        "value": 0.09325325211544962,
-                      },
-                      "def_stl": Object {
-                        "value": 0.06823642479577126,
-                      },
-                      "def_to_nonstl": Object {
-                        "value": 0.10619894281595386,
-                      },
-                      "def_trans": Object {
-                        "value": 0.19610764055742433,
-                      },
-                      "def_trans_2p": Object {
-                        "value": 0.5286624203821656,
-                      },
-                      "def_trans_3p": Object {
-                        "value": 0.35294117647058826,
-                      },
-                      "def_trans_3pr": Object {
-                        "value": 0.4311594202898551,
-                      },
-                      "def_trans_delta_ppp": Object {
-                        "value": -5.395533808941735,
-                      },
-                      "def_trans_ftr": Object {
-                        "value": 0.42028985507246375,
-                      },
-                      "def_trans_per_orb": Object {
-                        "value": 0.6282187453959897,
-                      },
-                      "def_trans_ppp": Object {
-                        "value": 90.66405292820387,
-                      },
-                      "def_trans_to": Object {
-                        "value": 0.18867924528301885,
-                      },
-                      "grades": undefined,
-                      "off_2prim_ast": Object {
-                        "value": 0.4430693069306931,
-                      },
-                      "off_3p_ast": Object {
-                        "value": 0.8487394957983193,
-                      },
-                      "off_ast_3p": Object {
-                        "value": 0.4938875305623472,
-                      },
-                      "off_ast_rim": Object {
-                        "value": 0.43765281173594134,
-                      },
-                      "off_blk": Object {
-                        "value": 0.10901883052527254,
-                      },
-                      "off_ft": Object {
-                        "value": 0.7473841554559043,
-                      },
-                      "off_half": Object {
-                        "value": 0.6963835534084439,
-                      },
-                      "off_half_2p": Object {
-                        "value": 0.44155844155844154,
-                      },
-                      "off_half_3p": Object {
-                        "value": 0.3132530120481928,
-                      },
-                      "off_half_3pr": Object {
-                        "value": 0.45604395604395603,
-                      },
-                      "off_half_delta_ppp": Object {
-                        "value": -8.168606042987534,
-                      },
-                      "off_half_ftr": Object {
-                        "value": 0.2904238618524333,
-                      },
-                      "off_half_ppp": Object {
-                        "value": 99.00520233447996,
-                      },
-                      "off_half_to": Object {
-                        "value": 0.16731326092838095,
-                      },
-                      "off_scramble": Object {
-                        "value": 0.10780838866433026,
-                      },
-                      "off_scramble_2p": Object {
-                        "value": 0.5755395683453237,
-                      },
-                      "off_scramble_3p": Object {
-                        "value": 0.28888888888888886,
-                      },
-                      "off_scramble_3pr": Object {
-                        "value": 0.24456521739130435,
-                      },
-                      "off_scramble_delta_ppp": Object {
-                        "value": 8.046930109156818,
-                      },
-                      "off_scramble_ftr": Object {
-                        "value": 0.47282608695652173,
-                      },
-                      "off_scramble_per_orb": Object {
-                        "value": 0.6415989205037649,
-                      },
-                      "off_scramble_ppp": Object {
-                        "value": 115.22073848662431,
-                      },
-                      "off_scramble_to": Object {
-                        "value": 0.12057984260228126,
-                      },
-                      "off_stk": Object {
-                        "value": 0.09543382546966564,
-                      },
-                      "off_stl": Object {
-                        "value": 0.08184882041405873,
-                      },
-                      "off_tempo": Object {
-                        "value": 83.16,
-                      },
-                      "off_title": "Offense",
-                      "off_to_nonstl": Object {
-                        "value": 0.08762638420799229,
-                      },
-                      "off_trans": Object {
-                        "value": 0.24058738565238325,
-                      },
-                      "off_trans_2p": Object {
-                        "value": 0.6779661016949152,
-                      },
-                      "off_trans_3p": Object {
-                        "value": 0.30935251798561153,
-                      },
-                      "off_trans_3pr": Object {
-                        "value": 0.439873417721519,
-                      },
-                      "off_trans_delta_ppp": Object {
-                        "value": 0.0905502377016063,
-                      },
-                      "off_trans_ftr": Object {
-                        "value": 0.6708860759493671,
-                      },
-                      "off_trans_per_orb": Object {
-                        "value": 0.9164480019258545,
-                      },
-                      "off_trans_ppp": Object {
-                        "value": 107.2643586151691,
-                      },
-                      "off_trans_to": Object {
-                        "value": 0.16609965979587754,
-                      },
-                      "tempo": Object {
-                        "value": 83.16,
-                      },
-                      "total_def_half_2p_attempts": Object {
-                        "value": 869,
-                      },
-                      "total_def_half_2p_made": Object {
-                        "value": 370,
-                      },
-                      "total_def_half_3p": Object {
-                        "value": 0,
-                      },
-                      "total_def_half_3p_attempts": Object {
-                        "value": 544,
-                      },
-                      "total_def_half_3p_made": Object {
-                        "value": 170,
-                      },
-                      "total_def_half_fga": Object {
-                        "value": 1413,
-                      },
-                      "total_def_half_fta": Object {
-                        "value": 264,
-                      },
-                      "total_def_half_poss": Object {
-                        "value": 1570.218652849741,
-                      },
-                      "total_def_half_to": Object {
-                        "value": 261,
-                      },
-                      "total_off_half_2p_attempts": Object {
-                        "value": 693,
-                      },
-                      "total_off_half_2p_made": Object {
-                        "value": 306,
-                      },
-                      "total_off_half_3p": Object {
-                        "value": 0,
-                      },
-                      "total_off_half_3p_attempts": Object {
-                        "value": 581,
-                      },
-                      "total_off_half_3p_made": Object {
-                        "value": 182,
-                      },
-                      "total_off_half_fga": Object {
-                        "value": 1274,
-                      },
-                      "total_off_half_fta": Object {
-                        "value": 370,
-                      },
-                      "total_off_half_poss": Object {
-                        "value": 1446.388640429338,
-                      },
-                      "total_off_half_to": Object {
-                        "value": 242,
-                      },
-                    },
-                    "kind": "data-row",
-                    "prefixFn": [Function],
-                    "tableFieldsOverride": undefined,
-                  },
-                  GenericTableDataRow {
-                    "cellMetaFn": [Function],
-                    "colSpanOverride": undefined,
-                    "dataObj": Object {
-                      "def_2prim_ast": Object {
-                        "value": 0.4507462686567164,
-                      },
-                      "def_3p_ast": Object {
-                        "value": 0.8546255506607929,
-                      },
-                      "def_3p_opp": Object {
-                        "value": 32.98939828080229,
-                      },
-                      "def_ast_3p": Object {
-                        "value": 0.485,
-                      },
-                      "def_ast_rim": Object {
-                        "value": 0.3775,
-                      },
-                      "def_blk": Object {
-                        "value": 0.11827007943512798,
-                      },
-                      "def_ft": Object {
-                        "value": 0.6981981981981982,
-                      },
-                      "def_half": Object {
-                        "value": 0.7545500494232297,
-                      },
-                      "def_half_2p": Object {
-                        "value": 0.42577675489067895,
-                      },
-                      "def_half_3p": Object {
-                        "value": 0.3125,
-                      },
-                      "def_half_3pr": Object {
-                        "value": 0.38499646142958244,
-                      },
-                      "def_half_delta_ppp": Object {
-                        "value": -4.097871890660414,
-                      },
-                      "def_half_ftr": Object {
-                        "value": 0.18683651804670912,
-                      },
-                      "def_half_ppp": Object {
-                        "value": 91.9617148464852,
-                      },
-                      "def_half_to": Object {
-                        "value": 0.16621888902307919,
-                      },
-                      "def_scramble": Object {
-                        "value": 0.08527071563674632,
-                      },
-                      "def_scramble_2p": Object {
-                        "value": 0.4766355140186916,
-                      },
-                      "def_scramble_3p": Object {
-                        "value": 0.42857142857142855,
-                      },
-                      "def_scramble_3pr": Object {
-                        "value": 0.24647887323943662,
-                      },
-                      "def_scramble_delta_ppp": Object {
-                        "value": 8.196096883864556,
-                      },
-                      "def_scramble_ftr": Object {
-                        "value": 0.4507042253521127,
-                      },
-                      "def_scramble_per_orb": Object {
-                        "value": 0.583711708026543,
-                      },
-                      "def_scramble_ppp": Object {
-                        "value": 104.25568362101016,
-                      },
-                      "def_scramble_to": Object {
-                        "value": 0.14088605894731104,
-                      },
-                      "def_stk": Object {
-                        "value": 0.09325325211544962,
-                      },
-                      "def_stl": Object {
-                        "value": 0.06823642479577126,
-                      },
-                      "def_tempo": undefined,
-                      "def_title": "Defense",
-                      "def_to_nonstl": Object {
-                        "value": 0.10619894281595386,
-                      },
-                      "def_trans": Object {
-                        "value": 0.19610764055742433,
-                      },
-                      "def_trans_2p": Object {
-                        "value": 0.5286624203821656,
-                      },
-                      "def_trans_3p": Object {
-                        "value": 0.35294117647058826,
-                      },
-                      "def_trans_3pr": Object {
-                        "value": 0.4311594202898551,
-                      },
-                      "def_trans_delta_ppp": Object {
-                        "value": -5.395533808941735,
-                      },
-                      "def_trans_ftr": Object {
-                        "value": 0.42028985507246375,
-                      },
-                      "def_trans_per_orb": Object {
-                        "value": 0.6282187453959897,
-                      },
-                      "def_trans_ppp": Object {
-                        "value": 90.66405292820387,
-                      },
-                      "def_trans_to": Object {
-                        "value": 0.18867924528301885,
-                      },
-                      "grades": undefined,
-                      "off_2prim_ast": Object {
-                        "value": 0.4430693069306931,
-                      },
-                      "off_3p_ast": Object {
-                        "value": 0.8487394957983193,
-                      },
-                      "off_ast_3p": Object {
-                        "value": 0.4938875305623472,
-                      },
-                      "off_ast_rim": Object {
-                        "value": 0.43765281173594134,
-                      },
-                      "off_blk": Object {
-                        "value": 0.10901883052527254,
-                      },
-                      "off_ft": Object {
-                        "value": 0.7473841554559043,
-                      },
-                      "off_half": Object {
-                        "value": 0.6963835534084439,
-                      },
-                      "off_half_2p": Object {
-                        "value": 0.44155844155844154,
-                      },
-                      "off_half_3p": Object {
-                        "value": 0.3132530120481928,
-                      },
-                      "off_half_3pr": Object {
-                        "value": 0.45604395604395603,
-                      },
-                      "off_half_delta_ppp": Object {
-                        "value": -8.168606042987534,
-                      },
-                      "off_half_ftr": Object {
-                        "value": 0.2904238618524333,
-                      },
-                      "off_half_ppp": Object {
-                        "value": 99.00520233447996,
-                      },
-                      "off_half_to": Object {
-                        "value": 0.16731326092838095,
-                      },
-                      "off_scramble": Object {
-                        "value": 0.10780838866433026,
-                      },
-                      "off_scramble_2p": Object {
-                        "value": 0.5755395683453237,
-                      },
-                      "off_scramble_3p": Object {
-                        "value": 0.28888888888888886,
-                      },
-                      "off_scramble_3pr": Object {
-                        "value": 0.24456521739130435,
-                      },
-                      "off_scramble_delta_ppp": Object {
-                        "value": 8.046930109156818,
-                      },
-                      "off_scramble_ftr": Object {
-                        "value": 0.47282608695652173,
-                      },
-                      "off_scramble_per_orb": Object {
-                        "value": 0.6415989205037649,
-                      },
-                      "off_scramble_ppp": Object {
-                        "value": 115.22073848662431,
-                      },
-                      "off_scramble_to": Object {
-                        "value": 0.12057984260228126,
-                      },
-                      "off_stk": Object {
-                        "value": 0.09543382546966564,
-                      },
-                      "off_stl": Object {
-                        "value": 0.08184882041405873,
-                      },
-                      "off_to_nonstl": Object {
-                        "value": 0.08762638420799229,
-                      },
-                      "off_trans": Object {
-                        "value": 0.24058738565238325,
-                      },
-                      "off_trans_2p": Object {
-                        "value": 0.6779661016949152,
-                      },
-                      "off_trans_3p": Object {
-                        "value": 0.30935251798561153,
-                      },
-                      "off_trans_3pr": Object {
-                        "value": 0.439873417721519,
-                      },
-                      "off_trans_delta_ppp": Object {
-                        "value": 0.0905502377016063,
-                      },
-                      "off_trans_ftr": Object {
-                        "value": 0.6708860759493671,
-                      },
-                      "off_trans_per_orb": Object {
-                        "value": 0.9164480019258545,
-                      },
-                      "off_trans_ppp": Object {
-                        "value": 107.2643586151691,
-                      },
-                      "off_trans_to": Object {
-                        "value": 0.16609965979587754,
-                      },
-                      "tempo": Object {
-                        "value": 83.16,
-                      },
-                      "total_def_half_2p_attempts": Object {
-                        "value": 869,
-                      },
-                      "total_def_half_2p_made": Object {
-                        "value": 370,
-                      },
-                      "total_def_half_3p": Object {
-                        "value": 0,
-                      },
-                      "total_def_half_3p_attempts": Object {
-                        "value": 544,
-                      },
-                      "total_def_half_3p_made": Object {
-                        "value": 170,
-                      },
-                      "total_def_half_fga": Object {
-                        "value": 1413,
-                      },
-                      "total_def_half_fta": Object {
-                        "value": 264,
-                      },
-                      "total_def_half_poss": Object {
-                        "value": 1570.218652849741,
-                      },
-                      "total_def_half_to": Object {
-                        "value": 261,
-                      },
-                      "total_off_half_2p_attempts": Object {
-                        "value": 693,
-                      },
-                      "total_off_half_2p_made": Object {
-                        "value": 306,
-                      },
-                      "total_off_half_3p": Object {
-                        "value": 0,
-                      },
-                      "total_off_half_3p_attempts": Object {
-                        "value": 581,
-                      },
-                      "total_off_half_3p_made": Object {
-                        "value": 182,
-                      },
-                      "total_off_half_fga": Object {
-                        "value": 1274,
-                      },
-                      "total_off_half_fta": Object {
-                        "value": 370,
-                      },
-                      "total_off_half_poss": Object {
-                        "value": 1446.388640429338,
-                      },
-                      "total_off_half_to": Object {
-                        "value": 242,
-                      },
-                    },
-                    "kind": "data-row",
-                    "prefixFn": [Function],
-                    "tableFieldsOverride": undefined,
-                  },
-                ]
-              }
-              tableFields={
-                Object {
-                  "3p_opp": GenericTableColProps {
-                    "className": "",
-                    "colName": "3P% SoS",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "How good the team's opponents were at shooting 3 over their season",
-                    "widthUnits": 2,
-                  },
-                  "blk": GenericTableColProps {
-                    "className": "",
-                    "colName": "Blk%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Block %",
-                    "widthUnits": 2,
-                  },
-                  "ft": GenericTableColProps {
-                    "className": "",
-                    "colName": "FT%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Free throw %",
-                    "widthUnits": 2,
-                  },
-                  "sep1": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 0.5,
-                  },
-                  "sep2": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 0.5,
-                  },
-                  "sep3": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 0.5,
-                  },
-                  "sep4": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 0.5,
-                  },
-                  "stl": GenericTableColProps {
-                    "className": "",
-                    "colName": "Stl%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Steal %",
-                    "widthUnits": 2,
-                  },
-                  "tempo": GenericTableColProps {
-                    "className": "",
-                    "colName": "Pace",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Raw tempo (possessions per game)",
-                    "widthUnits": 2,
-                  },
-                  "title": GenericTableColProps {
-                    "className": "",
-                    "colName": "",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": true,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "",
-                    "widthUnits": 8,
-                  },
-                  "to_nonstl": GenericTableColProps {
-                    "className": "",
-                    "colName": "Non-Stl%",
-                    "colorPicker": [Function],
-                    "formatter": [Function],
-                    "isTitle": false,
-                    "missingData": undefined,
-                    "rowSpan": [Function],
-                    "toolTip": "Non-Steal TO%",
-                    "widthUnits": 2,
-                  },
-                }
-              }
-            />
-          </Row>
-        </Container>
-      </Col>
-    </Row>
-  </Container>
-</span>
+            <div
+              class="row"
+            >
+              <span>
+                More assist stats:
+              </span>
+              <div
+                class="table-responsive"
+              >
+                <table
+                  class="table table-sm"
+                  id="assistStats_test"
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        style="text-align: right; width: 38.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <button
+                            class="float-left btn btn-outline-secondary btn-sm"
+                            id="assistStats_test_copy"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-clipboard "
+                              data-icon="clipboard"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              viewBox="0 0 384 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 2.4%; font-weight: bold;"
+                      />
+                      <th
+                        style="text-align: center; width: 9.5%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            3P
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 9.5%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Mid
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 9.5%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Rim
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 2.4%; font-weight: bold;"
+                      />
+                      <th
+                        style="text-align: center; width: 9.5%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            3P
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 9.5%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Mid
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 9.5%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Rim
+                          </span>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        class="text-center"
+                        colspan="2"
+                      />
+                      <td
+                        class="text-center"
+                        colspan="3"
+                      >
+                        <i>
+                          Assist distribution
+                        </i>
+                      </td>
+                      <td
+                        class="text-center"
+                        colspan="1"
+                      />
+                      <td
+                        class="text-center"
+                        colspan="3"
+                      >
+                        <i>
+                          % of these shots assisted
+                        </i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            Offense
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffa809; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            49.4
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #add8e6; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            6.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffc65e; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            43.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffa500; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            84.9
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #e6f3f7; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            27.5
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffc355; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            44.3
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: right; width: 38.1%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            Defense
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffad17; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            48.5
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #add8e6; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            13.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffe6b8; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            37.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.4%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffa500; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            85.5
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #fdfefe; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            32.5
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.5%; font-weight: normal; --cell-bg: #ffbf4a; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            45.1
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <span>
+                Misc other stats:
+              </span>
+              <div
+                class="table-responsive"
+              >
+                <table
+                  class="table table-sm"
+                  id="otherStats_test"
+                >
+                  <thead>
+                    <tr>
+                      <th
+                        style="text-align: right; width: 36.4%; font-weight: bold;"
+                      >
+                        <div>
+                          <button
+                            class="float-left btn btn-outline-secondary btn-sm"
+                            id="otherStats_test_copy"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="svg-inline--fa fa-clipboard "
+                              data-icon="clipboard"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              viewBox="0 0 384 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 2.3%; font-weight: bold;"
+                      />
+                      <th
+                        style="text-align: center; width: 9.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            FT%
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 2.3%; font-weight: bold;"
+                      />
+                      <th
+                        style="text-align: center; width: 9.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Stl%
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 9.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Non-Stl%
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 9.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Blk%
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 2.3%; font-weight: bold;"
+                      />
+                      <th
+                        style="text-align: center; width: 9.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            3P% SoS
+                          </span>
+                        </div>
+                      </th>
+                      <th
+                        style="text-align: center; width: 2.3%; font-weight: bold;"
+                      />
+                      <th
+                        style="text-align: center; width: 9.1%; font-weight: bold;"
+                      >
+                        <div>
+                          <span>
+                            Pace
+                          </span>
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            Offense
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #aed7ae; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            74.7
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #ffefef; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            8.2
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #ffbebe; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            8.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #ff0808; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            10.9
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #ffa500; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            83.2
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: right; width: 36.4%; font-weight: bold; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            Defense
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #fcfdfc; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            69.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #ff9b9b; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            6.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #209020; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            10.6
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #008000; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            11.8
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; --cell-bg: #ff0000; vertical-align: middle; color: black;"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div>
+                            33.0
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 2.3%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                      <td
+                        class=" square-bg-cell"
+                        colspan="1"
+                        rowspan="1"
+                        style="text-align: center; width: 9.1%; font-weight: normal; vertical-align: middle; color: rgb(82, 82, 82);"
+                      >
+                        <div
+                          style="position: relative; z-index: 1;"
+                        >
+                          <div />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</DocumentFragment>
 `;

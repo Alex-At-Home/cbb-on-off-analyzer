@@ -26,7 +26,7 @@ exports[`LineupLeaderboardPage LineupLeaderboardPage - should create snapshot 1`
   >
     <HeaderBar
       common={
-        Object {
+        {
           "gender": "",
           "year": "",
         }
@@ -40,14 +40,14 @@ exports[`LineupLeaderboardPage LineupLeaderboardPage - should create snapshot 1`
   >
     <LineupLeaderboardTable
       dataEvent={
-        Object {
-          "confs": Array [],
+        {
+          "confs": [],
           "lastUpdated": 0,
-          "lineups": Array [],
+          "lineups": [],
         }
       }
       onChangeState={[Function]}
-      startingState={Object {}}
+      startingState={{}}
     />
   </Row>
   <Footer

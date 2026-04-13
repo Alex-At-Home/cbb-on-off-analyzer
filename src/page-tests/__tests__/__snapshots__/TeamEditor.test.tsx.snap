@@ -36,7 +36,7 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
   >
     <HeaderBar
       common={
-        Object {
+        {
           "gender": "",
           "year": "",
         }
@@ -64,14 +64,14 @@ exports[`TeamEditorPage TeamEditorPage - should create snapshot 1`] = `
   >
     <TeamEditorTable
       dataEvent={
-        Object {
-          "confs": Array [],
+        {
+          "confs": [],
           "lastUpdated": 0,
-          "players": Array [],
+          "players": [],
         }
       }
       onChangeState={[Function]}
-      startingState={Object {}}
+      startingState={{}}
     />
   </Row>
   <Footer

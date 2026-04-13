@@ -3,7 +3,7 @@
 exports[`HistorySelector HistorySelector - should create snapshot 1`] = `
 <div
   style={
-    Object {
+    {
       "width": "500px",
     }
   }
@@ -12,28 +12,28 @@ exports[`HistorySelector HistorySelector - should create snapshot 1`] = `
     menuIsOpen={true}
     onChange={[Function]}
     options={
-      Array [
-        Object {
+      [
+        {
           "label": "On/Off Report: 2018/9  (W): query:'' (sort:desc:off_poss, filter:'', show:[])",
-          "value": "[\\"report-\\",{\\"gender\\":\\"Women\\",\\"year\\":\\"2018/9\\"}]",
+          "value": "["report-",{"gender":"Women","year":"2018/9"}]",
         },
-        Object {
+        {
           "label": "Lineups: 2018/9  (W): query:'' (max:50, min-poss:5)",
-          "value": "[\\"lineup-\\",{\\"gender\\":\\"Women\\",\\"year\\":\\"2018/9\\"}]",
+          "value": "["lineup-",{"gender":"Women","year":"2018/9"}]",
         },
-        Object {
+        {
           "label": "On/Off: 2019/20  (M): on:'', auto-off, base:''",
-          "value": "[\\"game-\\",{\\"gender\\":\\"Men\\",\\"year\\":\\"2019/20\\"}]",
+          "value": "["game-",{"gender":"Men","year":"2019/20"}]",
         },
       ]
     }
     styles={
-      Object {
+      {
         "menu": [Function],
       }
     }
     value={
-      Object {
+      {
         "label": "Select analysis from history...",
       }
     }
