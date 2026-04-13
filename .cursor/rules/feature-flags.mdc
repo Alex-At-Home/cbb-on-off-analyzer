@@ -1,0 +1,28 @@
+---
+description: Gate FeatureFlags with isActiveWindow in app code
+globs: src/**/*.{ts,tsx}
+alwaysApply: true
+---
+
+# FeatureFlags usage
+
+In application code (anywhere outside `FeatureFlags.ts` itself), **do not** use a flag constant as a bare boolean (e.g. `if (FeatureFlags.myFlag)`).
+
+Always wrap the flag through **`FeatureFlags.isActiveWindow`** so production builds stay off unless the flag is enabled **and** the code is running on a dev machine (`localhost` / `192.168.*`). SSR uses the `"server"` hostname and treats the window as inactive unless you adjust that logic in `FeatureFlags.ts`.
+
+```typescript
+// Bad
+if (FeatureFlags.visualQueryBuilder) {
+}
+
+// Good
+if (FeatureFlags.isActiveWindow(FeatureFlags.visualQueryBuilder)) {
+}
+
+// Good — name the result when reused
+const visualQueryBuilderUi = FeatureFlags.isActiveWindow(
+  FeatureFlags.visualQueryBuilder,
+);
+```
+
+**Exception:** Inside `FeatureFlags.ts`, defining `isActiveWindow` or the flag constants does not use this pattern on those same reads.

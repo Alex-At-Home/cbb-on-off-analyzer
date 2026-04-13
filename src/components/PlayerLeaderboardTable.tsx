@@ -423,6 +423,10 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     setVisualQueryDraft(advancedFilterStr);
   }, [advancedFilterStr]);
 
+  const visualQueryBuilderUi = FeatureFlags.isActiveWindow(
+    FeatureFlags.visualQueryBuilder,
+  );
+
   const isCustomRanking = advancedFilterStr?.includes("SORT_BY");
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(false); //(|| with advancedFilterStr.length > 0)
   const [advancedFilterError, setAdvancedFilterError] = useState(
@@ -2897,8 +2901,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         </Form.Row>
         {showAdvancedFilter || advancedFilterStr.length > 0 ? (
           <Form.Row className="align-items-start">
-            {FeatureFlags.visualQueryBuilder &&
-            visualQueryDraft !== advancedFilterStr ? (
+            {visualQueryBuilderUi && visualQueryDraft !== advancedFilterStr ? (
               <Col
                 xs="auto"
                 className="pb-4 pr-2 pt-1 d-flex flex-row align-items-center flex-nowrap"
@@ -2947,20 +2950,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
               <LinqExpressionBuilder
                 prompt="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
                 value={
-                  FeatureFlags.visualQueryBuilder &&
-                  visualQueryDraft !== advancedFilterStr
+                  visualQueryBuilderUi && visualQueryDraft !== advancedFilterStr
                     ? ""
                     : advancedFilterStr
                 }
                 placeholder={
-                  FeatureFlags.visualQueryBuilder &&
-                  visualQueryDraft !== advancedFilterStr
+                  visualQueryBuilderUi && visualQueryDraft !== advancedFilterStr
                     ? `${visualQueryDraft} (unapplied, current filter: [${advancedFilterStr}])`
                     : undefined
                 }
                 disabled={
-                  FeatureFlags.visualQueryBuilder &&
-                  visualQueryDraft !== advancedFilterStr
+                  visualQueryBuilderUi && visualQueryDraft !== advancedFilterStr
                 }
                 error={advancedFilterError}
                 autocomplete={
@@ -2975,7 +2975,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
             </Col>
           </Form.Row>
         ) : null}
-        {FeatureFlags.visualQueryBuilder &&
+        {visualQueryBuilderUi &&
         (showAdvancedFilter || advancedFilterStr.length > 0) ? (
           <Form.Row>
             <Col xs={12} sm={12} md={12} lg={12} className="pb-2">
