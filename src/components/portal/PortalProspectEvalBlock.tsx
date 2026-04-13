@@ -101,6 +101,7 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
     teamPossPct: player.off_team_poss_pct?.value,
     rosterHeight: player.roster?.height,
     posFreqs: player.posFreqs,
+    gender,
   });
 
   const netCat = formatCategoryLabel(netRank);

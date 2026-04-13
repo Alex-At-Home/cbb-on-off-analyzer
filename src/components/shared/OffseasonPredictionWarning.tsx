@@ -113,29 +113,51 @@ const OffseasonPredictionWarning: React.FunctionComponent<Props> = ({
   }, [detailsExpanded]);
 
   return (
-    <Card
-      id="offseason-warning"
-      className="landing-page offseason-warning-banner"
-    >
-      <Card.Body>
-        <Card.Text style={{ fontSize: "1rem" }}>
-          <p>
-            <b>Warning</b>: This is a very simple off-season model that isn't
-            intended to provide "good" predictions.{" "}
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setDetailsExpanded(!detailsExpanded);
-              }}
-            >
-              {detailsExpanded ? "(less)" : "(explain please!)"}
-            </a>
-          </p>
-          {detailsExpanded && OFFSEASON_WARNING_DETAILS}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+    <>
+      <Card
+        id="offseason-warning"
+        className="landing-page offseason-warning-banner"
+      >
+        <Card.Body>
+          <Card.Text style={{ fontSize: "1rem" }}>
+            <p>
+              <b>Warning</b>: This is a very simple off-season model that isn't
+              intended to provide "good" predictions.{" "}
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setDetailsExpanded(!detailsExpanded);
+                }}
+              >
+                {detailsExpanded ? "(less)" : "(explain please!)"}
+              </a>
+            </p>
+            {detailsExpanded && OFFSEASON_WARNING_DETAILS}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      {gender == "Women" && (
+        <p className="text-muted small mb-0 mt-2">
+          NCAAW transfer data sourced with kind permission from{" "}
+          <a
+            href="https://x.com/TaliaGoodmanWBB"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @TaliaGoodmanWBB
+          </a>
+          :{" "}
+          <a
+            href="https://www.on3.com/her/news/on3-2025-26-womens-basketball-transfer-portal-tracker/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Portal Tracker
+          </a>
+        </p>
+      )}
+    </>
   );
 };
 

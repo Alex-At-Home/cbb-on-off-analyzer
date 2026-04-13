@@ -52,14 +52,22 @@ describe("portalEvalRules", () => {
     expect(buildPortalCaveats({ teamPossPct: 0.5 })).toEqual([]);
   });
 
-  test("buildPortalOverallCaveats adds small-at-C caveat", () => {
+  test("buildPortalOverallCaveats adds small-at-C caveat for Men only", () => {
     expect(
       buildPortalOverallCaveats({
+        gender: "Men",
         rosterHeight: "6-6",
         posFreqs: [0.1, 0.1, 0.1, 0.1, 0.2],
       }),
     ).toEqual([
       "Small player with [20.0%] Center minutes, may not be positionally viable",
     ]);
+    expect(
+      buildPortalOverallCaveats({
+        gender: "Women",
+        rosterHeight: "6-6",
+        posFreqs: [0.1, 0.1, 0.1, 0.1, 0.2],
+      }),
+    ).toEqual([]);
   });
 });

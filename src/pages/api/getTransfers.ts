@@ -40,15 +40,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const getFilename = () => {
     const transferMode = parsed["transferMode"] || "";
+    const genderPrefix = parsed["gender"] == "Women" ? "women_" : "";
     if (transferMode == "" || transferMode == "true") {
       //(shortcut for current year)
-      return `transfers_${DateUtils.offseasonPredictionYear.substring(
+      return `${genderPrefix}transfers_${DateUtils.offseasonPredictionYear.substring(
         0,
-        4
+        4,
       )}.json`;
     } else {
       //(all transfers from previous years)
-      return `transfers_${transferMode}.json`;
+      return `${genderPrefix}transfers_${transferMode}.json`;
     }
   };
 
@@ -70,7 +71,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         `https://storage.googleapis.com/${process.env.LEADERBOARD_BUCKET}/${filename}`,
         {
           method: "get",
-        }
+        },
       );
       const respJson = await resp.json();
       const jsonWithFixes = _.merge(respJson, transferFixes[filename] || {});
@@ -79,7 +80,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(jsonWithFixes);
     } catch (err: unknown) {
       console.log(
-        `Transfer error: [${err instanceof Error ? err.message : err}]`
+        `Transfer error: [${err instanceof Error ? err.message : err}]`,
       );
       res.status(500).json({ error: "Unknown error" });
     }

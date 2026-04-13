@@ -9,12 +9,27 @@ describe("portalEvalOffDefNotes", () => {
   test("caveatSmallPlayerCenterMinutes", () => {
     expect(
       caveatSmallPlayerCenterMinutes({
+        gender: "Men",
         rosterHeight: "6-8",
         posFreqs: [0.2, 0.2, 0.2, 0.2, 0.16],
       }),
     ).toBeNull();
     expect(
       caveatSmallPlayerCenterMinutes({
+        rosterHeight: "6-7",
+        posFreqs: [0.2, 0.2, 0.2, 0.2, 0.16],
+      }),
+    ).toBeNull();
+    expect(
+      caveatSmallPlayerCenterMinutes({
+        gender: "Women",
+        rosterHeight: "6-7",
+        posFreqs: [0.2, 0.2, 0.2, 0.2, 0.16],
+      }),
+    ).toBeNull();
+    expect(
+      caveatSmallPlayerCenterMinutes({
+        gender: "Men",
         rosterHeight: "6-7",
         posFreqs: [0.2, 0.2, 0.2, 0.2, 0.16],
       }),

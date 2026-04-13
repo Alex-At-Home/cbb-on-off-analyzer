@@ -1,5 +1,8 @@
 import { GradeUtils } from "../stats/GradeUtils";
-import { caveatSmallPlayerCenterMinutes } from "./portalEvalOffDefNotes";
+import {
+  caveatSmallPlayerCenterMinutes,
+  type PortalPositionCaveatInput,
+} from "./portalEvalOffDefNotes";
 
 /** Band: inclusive [minRank, maxRank], rank 1 = best (same as GenericTable D1 rank). */
 export type PortalTierBand = {
@@ -69,10 +72,7 @@ export type PortalCaveatContext = {
   yearClass?: string;
   /** 0–1 fraction of team possessions; same field as player.off_team_poss_pct.value */
   teamPossPct?: number;
-  rosterHeight?: string;
-  /** PG..C minute fractions; index 4 = center */
-  posFreqs?: number[];
-};
+} & PortalPositionCaveatInput;
 
 export function buildPortalCaveats(ctx: PortalCaveatContext): string[] {
   const out: string[] = [];

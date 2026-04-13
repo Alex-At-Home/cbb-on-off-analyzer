@@ -110,13 +110,13 @@ export class LeaderboardUtils {
               : Promise.resolve({ error: "No data available" });
           }),
         );
-      }).concat(LeaderboardUtils.getTransferInfo(transferYears)),
+      }).concat(LeaderboardUtils.getTransferInfo(transferYears, gender)),
     );
     return fetchAll;
   }
 
   /** Returns just the transfer info about a given year */
-  static getTransferInfo(years: string[]): Promise<any>[] {
+  static getTransferInfo(years: string[], gender: string): Promise<any>[] {
     return years.map((transferYear) => {
       const transferJsonPath = _.thru(transferYear, (__) => {
         if (
@@ -124,9 +124,10 @@ export class LeaderboardUtils {
           transferYear.substring(0, 4) ==
             DateUtils.offseasonPredictionYear.substring(0, 4)
         ) {
-          return `/api/getTransfers?transferMode=${transferYear || ""}`;
+          return `/api/getTransfers?transferMode=${transferYear || ""}&gender=${gender || "Men"}`;
         } else {
-          return `/leaderboards/roster_movement/transfers_${transferYear.substring(
+          const genderPrefix = gender == "Women" ? "women_" : "";
+          return `/leaderboards/roster_movement/${genderPrefix}transfers_${transferYear.substring(
             0,
             4,
           )}.json`;

@@ -70,7 +70,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
 
   const [gaInited, setGaInited] = useState(false);
   const [dataEvent, setDataEvent] = useState(
-    {} as Record<string, TeamEditorStatsModel>
+    {} as Record<string, TeamEditorStatsModel>,
   );
   const [currYear, setCurrYear] = useState("");
   const [currGender, setCurrGender] = useState("");
@@ -83,14 +83,14 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
 
   const [playerSeasonComparisonParams, setPlayerSeasonComparisonParams] =
     useState(
-      UrlRouting.removedSavedKeys(allParams) as PlayerSeasonComparisonParams
+      UrlRouting.removedSavedKeys(allParams) as PlayerSeasonComparisonParams,
     );
   const playerSeasonComparisonParamsRef =
     useRef<PlayerSeasonComparisonParams>();
   playerSeasonComparisonParamsRef.current = playerSeasonComparisonParams;
 
   const onPlayerSeasonComparisonParamsChange = (
-    rawParams: PlayerSeasonComparisonParams
+    rawParams: PlayerSeasonComparisonParams,
   ) => {
     const params = _.omit(
       rawParams,
@@ -142,7 +142,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         rawParams.sortBy == ParamDefaults.playerLboardSyntheticSorted
           ? ["sortBy"]
           : [],
-      ])
+      ]),
     );
     if (!_.isEqual(params, playerSeasonComparisonParamsRef.current)) {
       //(to avoid recursion)
@@ -175,13 +175,13 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
 
       // Include the transfer info from the previous season:
       const offseasonTransferYearFull = _.thru(_.last(yearsToDo), (year) =>
-        year ? DateUtils.getNextYear(year) : undefined
+        year ? DateUtils.getNextYear(year) : undefined,
       );
       const offseasonTransferYear = offseasonTransferYearFull
         ? offseasonTransferYearFull.substring(0, 4)
         : undefined;
       const offseasonTransferPromise = offseasonTransferYear
-        ? LeaderboardUtils.getTransferInfo([offseasonTransferYear])
+        ? LeaderboardUtils.getTransferInfo([offseasonTransferYear], gender)
         : [Promise.resolve({})];
 
       const { fetchAllPromise } = _.transform(
@@ -201,20 +201,20 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
             yearWithStats,
             tier,
             transferYears,
-            [yearToDo, prevYearWithStats]
+            [yearToDo, prevYearWithStats],
           );
           const fetchTeamStats = LeaderboardUtils.getMultiYearTeamStats(
             gender,
             yearWithStats,
             tier,
-            [yearToDo]
+            [yearToDo],
           );
           acc.fetchAllPromise = acc.fetchAllPromise.concat([
             fetchPlayers,
             fetchTeamStats,
           ]);
         },
-        { fetchAllPromise: [] as Promise<any[]>[] }
+        { fetchAllPromise: [] as Promise<any[]>[] },
       );
 
       const fetchAllYears = Promise.all(fetchAllPromise);
@@ -236,7 +236,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
                         (d.players || []).map((p: any) => {
                           p.tier = d.tier;
                           return p;
-                        }) || []
+                        }) || [],
                     )
                     .flatten()
                     .value(),
@@ -272,7 +272,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
                         },
                       ],
                     ]
-                  : []
+                  : [],
               )
               .fromPairs()
               .value();

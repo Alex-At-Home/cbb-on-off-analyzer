@@ -7,6 +7,8 @@ export type PortalPositionCaveatInput = {
   rosterHeight?: string;
   /** PG..C minute fractions, length ≥ 5; index 4 = center. */
   posFreqs?: number[];
+  /** Small-at-center caveat applies only for men's portal eval. */
+  gender?: string;
 };
 
 const RAPM_RTG_DELTA_THRESHOLD = 0.8;
@@ -53,6 +55,9 @@ export type PortalEvalOffenseDefenseSnapshot = {
 export function caveatSmallPlayerCenterMinutes(
   ctx: PortalPositionCaveatInput,
 ): string | null {
+  if (ctx.gender !== "Men") {
+    return null;
+  }
   const inches = parseHeightToInches(ctx.rosterHeight);
   if (inches === null || inches > PORTAL_SMALL_PLAYER_MAX_INCHES) {
     return null;
