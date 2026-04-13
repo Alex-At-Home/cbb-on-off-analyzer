@@ -1397,6 +1397,7 @@ export async function main() {
                             !_.startsWith(t2[0], "def_oppo_") &&
                             !_.startsWith(t2[0], "team_") &&
                             !_.startsWith(t2[0], "oppo_") &&
+                            !_.startsWith(t2[0], "off_adj_opp_margin") && //(rebuild this on the other side)
                             !(
                               _.startsWith(t2[0], "total_") &&
                               !GradeUtils.playerTotalsToKeep.has(t2[0]) &&
