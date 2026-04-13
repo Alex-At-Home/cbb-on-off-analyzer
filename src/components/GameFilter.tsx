@@ -194,14 +194,15 @@ const GameFilter: React.FunctionComponent<Props> = ({
     ...startingCommonFilterParams
   } = startingState;
 
-  const rebuildFullState = () => {
+  /** (not sure why autoOffQueryIn is treated differently, but it is!) */
+  const rebuildFullState = (autoOffQueryIn: boolean) => {
     return {
       splitPhrases: startSplitPhrases,
       basePhrase: startBasePhrase,
       splitText: startSplitText,
       baseText: startBaseText,
-      // Team stats
-      autoOffQuery: autoOffQuery, //(TODO: I don't think this is needed)
+      //TODO; not sure what's going on here:
+      autoOffQuery: autoOffQueryIn,
       teamDiffs: startTeamDiffs,
       diffsHideDatasets: startDiffsHideDatasets,
       diffsCompare: startDiffsCompare,
@@ -267,8 +268,9 @@ const GameFilter: React.FunctionComponent<Props> = ({
   );
 
   /** All the game-specific viz options, ie not query/filter */
-  const [newParamsOnSubmit, setNewParamsOnSubmit] =
-    useState<GameFilterParams>(rebuildFullState());
+  const [newParamsOnSubmit, setNewParamsOnSubmit] = useState<GameFilterParams>(
+    rebuildFullState(startAutoOffQuery ?? false),
+  );
 
   /** Ugly pattern that is part of support for force reloading */
   const [internalForceReload1Up, setInternalForceReload1Up] =
@@ -292,7 +294,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
       ...newParamsOnSubmit,
       // The ones that it really needs are calcRapm, showRoster, showGameInfo, teamShotCharts, playerShotCharts
       // We need all the others also, otherwise they get lost when the above are fired
-      ...rebuildFullState(),
+      ...rebuildFullState(autoOffQuery),
     });
   }, [startingState]);
 
@@ -940,7 +942,7 @@ const GameFilter: React.FunctionComponent<Props> = ({
 
     const primaryRequest: GameFilterParams = includeFilterParams
       ? _.assign(buildParamsFromState(false, forQuery)[0], {
-          ...rebuildFullState(),
+          ...rebuildFullState(autoOffQuery),
           ...(advancedView ? {} : maybeNewParams || newParamsOnSubmit), //(in preset mode use the presets)
           // UI
           advancedMode: advancedView,

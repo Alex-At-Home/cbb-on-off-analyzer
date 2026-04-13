@@ -7,7 +7,7 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   childHandleResponse={[Function]}
   forceReload1Up={0}
   gameSelectionRef={
-    Object {
+    {
       "current": undefined,
     }
   }
@@ -17,11 +17,11 @@ exports[`GameFilter GameFilter - should create snapshot 1`] = `
   onGameSelectionChange={[Function]}
   onRosterChange={[Function]}
   rosterRef={
-    Object {
+    {
       "current": undefined,
     }
   }
-  startingState={Object {}}
+  startingState={{}}
   tablePrefix="game-"
 >
   <ContextConsumer>
