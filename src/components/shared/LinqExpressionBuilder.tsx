@@ -29,6 +29,8 @@ import GenericTogglingMenu from "./GenericTogglingMenu";
 type Props = {
   readonly label?: string;
   readonly prompt: string;
+  /** If set, used as the textarea placeholder instead of `prompt`. */
+  readonly placeholder?: string;
   readonly value: string;
   readonly error?: string;
   readonly autocomplete: string[];
@@ -40,11 +42,14 @@ type Props = {
   readonly callback: (newExpr: string, onSync?: boolean) => void; //(if onSync shouldn't set any sync events)
   readonly showHelp?: boolean;
   readonly searchBar?: boolean;
+  /** When true, the editor is read-only and wrapped in a disabled fieldset (presets included). */
+  readonly disabled?: boolean;
 };
 
 const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
   label,
   prompt,
+  placeholder,
   value,
   error,
   autocomplete,
@@ -56,6 +61,7 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
   callback,
   showHelp,
   searchBar,
+  disabled = false,
 }) => {
   const [tmpAdvancedFilterStr, setTmpAdvancedFilterStr] = useState(value);
 
@@ -142,68 +148,76 @@ const LinqExpressionBuilder: React.FunctionComponent<Props> = ({
     </OverlayTrigger>
   );
 
+  const resolvedPlaceholder = placeholder ?? prompt;
+
   return (
-    <InputGroup className="flex-nowrap">
-      <InputGroup.Prepend>
-        {label ? (
+    <fieldset
+      disabled={disabled}
+      className="m-0 p-0 border-0"
+      style={{ minWidth: 0, width: "100%" }}
+    >
+      <InputGroup className="flex-nowrap">
+        <InputGroup.Prepend>
+          {label ? (
+            <InputGroup.Text style={{ maxHeight: "2.4rem" }}>
+              {label}
+              {showHelp ? (
+                <sup>
+                  <a
+                    target="_blank"
+                    href="https://hoop-explorer.blogspot.com/2022/03/"
+                  >
+                    ?
+                  </a>
+                </sup>
+              ) : undefined}
+            </InputGroup.Text>
+          ) : null}
           <InputGroup.Text style={{ maxHeight: "2.4rem" }}>
-            {label}
-            {showHelp ? (
-              <sup>
-                <a
-                  target="_blank"
-                  href="https://hoop-explorer.blogspot.com/2022/03/"
-                >
-                  ?
-                </a>
-              </sup>
-            ) : undefined}
+            {disabled || value != tmpAdvancedFilterStr
+              ? editingAdvFilterText
+              : doneAdvFilterText}
           </InputGroup.Text>
+        </InputGroup.Prepend>
+        <div className="flex-fill">
+          <AdvancedFilterAutoSuggestText
+            readOnly={disabled}
+            placeholder={resolvedPlaceholder}
+            autocomplete={autocomplete}
+            richTextReplacements={richTextReplacements}
+            value={tmpAdvancedFilterStr}
+            onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
+            onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
+            onKeyDown={submitListenerFactory(true)}
+          />
+        </div>
+        {presets ? (
+          <InputGroup.Append>
+            <GenericTogglingMenu
+              style={{ maxHeight: "2.4rem" }}
+              label={<FontAwesomeIcon icon={presetsIcon || faFilter} />}
+              drop="down"
+              closeOnSelect={true}
+              tooltip={presetsTooltip || tooltipForFilterPresets}
+              searchBar={searchBar || false}
+              allowlist={["Clear selection"]}
+            >
+              <GenericTogglingMenuItem
+                text={<i>Clear selection</i>}
+                truthVal={false}
+                onSelect={() => {
+                  if (value != "") {
+                    setTmpAdvancedFilterStr("");
+                    callback("");
+                  }
+                }}
+              />
+              {presets.map((preset) => buildFilterPresetMenuItem(...preset))}
+            </GenericTogglingMenu>
+          </InputGroup.Append>
         ) : null}
-        <InputGroup.Text style={{ maxHeight: "2.4rem" }}>
-          {value != tmpAdvancedFilterStr
-            ? editingAdvFilterText
-            : doneAdvFilterText}
-        </InputGroup.Text>
-      </InputGroup.Prepend>
-      <div className="flex-fill">
-        <AdvancedFilterAutoSuggestText
-          readOnly={false}
-          placeholder={prompt}
-          autocomplete={autocomplete}
-          richTextReplacements={richTextReplacements}
-          value={tmpAdvancedFilterStr}
-          onChange={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
-          onKeyUp={(ev: any) => setTmpAdvancedFilterStr(ev.target.value)}
-          onKeyDown={submitListenerFactory(true)}
-        />
-      </div>
-      {presets ? (
-        <InputGroup.Append>
-          <GenericTogglingMenu
-            style={{ maxHeight: "2.4rem" }}
-            label={<FontAwesomeIcon icon={presetsIcon || faFilter} />}
-            drop="down"
-            closeOnSelect={true}
-            tooltip={presetsTooltip || tooltipForFilterPresets}
-            searchBar={searchBar || false}
-            allowlist={["Clear selection"]}
-          >
-            <GenericTogglingMenuItem
-              text={<i>Clear selection</i>}
-              truthVal={false}
-              onSelect={() => {
-                if (value != "") {
-                  setTmpAdvancedFilterStr("");
-                  callback("");
-                }
-              }}
-            />
-            {presets.map((preset) => buildFilterPresetMenuItem(...preset))}
-          </GenericTogglingMenu>
-        </InputGroup.Append>
-      ) : null}
-    </InputGroup>
+      </InputGroup>
+    </fieldset>
   );
 };
 
