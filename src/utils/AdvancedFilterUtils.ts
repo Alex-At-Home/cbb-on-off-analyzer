@@ -1,5 +1,7 @@
 import _ from "lodash";
 import Enumerable from "linq";
+import { gradeFieldKeyToGradedLinqName } from "./queryBuilder/playerLeaderboardGradedNames";
+import { PLAYER_LEADERBOARD_PLAY_STYLE_FIELD_NAMES } from "./queryBuilder/playerLeaderboardPlayStyleFields";
 import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
 import { PlayTypeUtils } from "./stats/PlayTypeUtils";
@@ -483,52 +485,7 @@ export class AdvancedFilterUtils {
 
   /** The concat of the graded versions of these work slightly different */
   static readonly playerLeaderboardPlayStyles = [
-    //Play styles
-    "off_style_rim_attack_pct",
-    "off_style_rim_attack_usg",
-    "off_style_rim_attack_ppp",
-    "off_style_attack_kick_pct",
-    "off_style_attack_kick_usg",
-    "off_style_attack_kick_ppp",
-    "off_style_perimeter_sniper_pct",
-    "off_style_perimeter_sniper_usg",
-    "off_style_perimeter_sniper_ppp",
-    "off_style_dribble_jumper_pct",
-    "off_style_dribble_jumper_usg",
-    "off_style_dribble_jumper_ppp",
-    "off_style_mid_range_pct",
-    "off_style_mid_range_usg",
-    "off_style_mid_range_ppp",
-    "off_style_hits_cutter_pct",
-    "off_style_hits_cutter_usg",
-    "off_style_hits_cutter_ppp",
-    "off_style_perimeter_cut_pct",
-    "off_style_perimeter_cut_usg",
-    "off_style_perimeter_cut_ppp",
-    "off_style_pnr_passer_pct",
-    "off_style_pnr_passer_usg",
-    "off_style_pnr_passer_ppp",
-    "off_style_big_cut_roll_pct",
-    "off_style_big_cut_roll_usg",
-    "off_style_big_cut_roll_ppp",
-    "off_style_post_up_pct",
-    "off_style_post_up_usg",
-    "off_style_post_up_ppp",
-    "off_style_post_kick_pct",
-    "off_style_post_kick_usg",
-    "off_style_post_kick_ppp",
-    "off_style_pick_pop_pct",
-    "off_style_pick_pop_usg",
-    "off_style_pick_pop_ppp",
-    "off_style_high_low_pct",
-    "off_style_high_low_usg",
-    "off_style_high_low_ppp",
-    "off_style_reb_scramble_pct",
-    "off_style_reb_scramble_usg",
-    "off_style_reb_scramble_ppp",
-    "off_style_transition_pct",
-    "off_style_transition_usg",
-    "off_style_transition_ppp",
+    ...PLAYER_LEADERBOARD_PLAY_STYLE_FIELD_NAMES,
   ];
 
   static readonly playerShotChartZones = _.flatMap(
@@ -678,21 +635,10 @@ export class AdvancedFilterUtils {
     ])
     .concat(AdvancedFilterUtils.playerLeaderboardPlayStyles)
     .concat(
-      ["rank_", "pctile_"].flatMap((prefix) =>
-        _.keys(GradeUtils.playerFields).map((field) => {
-          // Some special cases for fields we are renaming:
-          if (field == "def_ftr") {
-            return `${prefix}def_fc`;
-          } else if (field == "def_2prim") {
-            return `${prefix}def_blk`;
-          } else if (field == "def_to") {
-            return `${prefix}def_stl`;
-          } else if (field.endsWith("_margin") && field.startsWith("off_")) {
-            return `${prefix}${field.substring(4)}`; //(eg off_adj_rapm_margin -> adj_rapm_margin)
-          } else {
-            return `${prefix}${field}`;
-          }
-        }),
+      (["rank_", "pctile_"] as const).flatMap((prefix) =>
+        _.keys(GradeUtils.playerFields).map((field) =>
+          gradeFieldKeyToGradedLinqName(prefix, field),
+        ),
       ),
     )
     .concat([

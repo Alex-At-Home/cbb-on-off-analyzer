@@ -75,6 +75,13 @@ export class LineupTableUtils {
 
     const baselinePlayerInfo = _.fromPairs(
       (players || []).map((mutableP: IndivStatSet) => {
+        // Total adjusted oppo strength
+        mutableP.off_adj_oppo_margin = {
+          value:
+            (mutableP.off_adj_oppo?.value ?? avgEfficiency) -
+            (mutableP.def_adj_oppo?.value ?? avgEfficiency),
+        };
+
         // Possession %
         mutableP.off_team_poss_pct = {
           value: _.min([

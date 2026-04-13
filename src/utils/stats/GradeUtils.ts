@@ -87,6 +87,9 @@ export class GradeUtils {
     off_3p_ast: ["total_off_3p_attempts", 60], //(assisted %s)
     off_2prim_ast: ["total_off_2prim_attempts", 60],
     off_ftr: ["off_team_poss_pct", 0.6],
+    off_adj_opp_margin: undefined,
+    off_adj_opp: undefined,
+    def_adj_opp: undefined,
     // Other stylistic grades: assist breakdowns, transition, scramble etc
     //TODO
   };
@@ -107,7 +110,7 @@ export class GradeUtils {
   static readonly meetsExtraCriterion = (
     playerStats: PureStatSet,
     criterionInfo: QualifyingCriterion,
-    mult: number = 1.0
+    mult: number = 1.0,
   ) => {
     const [field, criterion] = criterionInfo;
     return (playerStats[field]?.value || 0) >= criterion * mult;
@@ -223,7 +226,7 @@ export class GradeUtils {
     derivedStats: PureStatSet,
     mutableDivisionStats: DivisionStatistics,
     inNaturalTier: boolean,
-    fields: Array<string> | undefined = undefined
+    fields: Array<string> | undefined = undefined,
   ) => {
     //TODO: more complex: also style-based fields
     mutableDivisionStats.tier_sample_size += 1;
@@ -269,7 +272,7 @@ export class GradeUtils {
     playStyle: TopLevelPlayAnalysis,
     defensivePlayStyle: TopLevelPlayAnalysis | undefined,
     mutableDivisionStats: DivisionStatistics,
-    inNaturalTier: boolean
+    inNaturalTier: boolean,
   ) => {
     _.forEach([playStyle, defensivePlayStyle], (tmpPlayStyle, isDef) => {
       const defPrefix = isDef == 1 ? "Def" : "";
@@ -306,7 +309,7 @@ export class GradeUtils {
   /** Handy util to get the Medians of each play type */
   static getMedianPlayTypeValue = (
     fieldList: TopLevelPlayType[],
-    divisionStats: DivisionStatistics
+    divisionStats: DivisionStatistics,
   ): TopLevelIndivPlayAnalysis => {
     return _.transform(
       fieldList,
@@ -318,7 +321,7 @@ export class GradeUtils {
             const maybeMedium = _.find(
               el.lut,
               (lutEl) =>
-                lutEl[0] < target && lutEl[0] + lutEl.length - 1 >= target
+                lutEl[0] < target && lutEl[0] + lutEl.length - 1 >= target,
             );
             if (maybeMedium) {
               const currStart = maybeMedium[0];
@@ -339,7 +342,7 @@ export class GradeUtils {
           };
         }
       },
-      {} as TopLevelIndivPlayAnalysis
+      {} as TopLevelIndivPlayAnalysis,
     );
   };
 
@@ -350,7 +353,7 @@ export class GradeUtils {
     inNaturalTier: boolean,
     fields: Array<string> | undefined = undefined,
     criteriaMult: number = 1.0,
-    accessor?: (dataSet: PureStatSet, field: string) => number | undefined
+    accessor?: (dataSet: PureStatSet, field: string) => number | undefined,
   ) => {
     const possPct = playerStats.off_team_poss_pct?.value || 0;
 
@@ -385,7 +388,8 @@ export class GradeUtils {
       const fieldChain = (
         accessor && fields //(derived fields, bypass any manual criteria for inclusion)
           ? _.chain(fields).map(
-              (k) => [k, undefined] as [string, QualifyingCriterion | undefined]
+              (k) =>
+                [k, undefined] as [string, QualifyingCriterion | undefined],
             )
           : _.chain(GradeUtils.playerFields)
               .toPairs()
@@ -402,7 +406,7 @@ export class GradeUtils {
           return GradeUtils.meetsExtraCriterion(
             playerStats,
             value,
-            criteriaMult
+            criteriaMult,
           )
             ? [key]
             : [];
@@ -415,7 +419,7 @@ export class GradeUtils {
   /** Handy util to get the Medians of each play type */
   static getMedianIndivPlayTypeValue = (
     fieldList: TopLevelIndivPlayType[],
-    divisionStats: DivisionStatistics
+    divisionStats: DivisionStatistics,
   ): TopLevelIndivPlayAnalysis => {
     return _.transform(
       fieldList,
@@ -427,7 +431,7 @@ export class GradeUtils {
             const maybeMedium = _.find(
               el.lut,
               (lutEl) =>
-                lutEl[0] < target && lutEl[0] + lutEl.length - 1 >= target
+                lutEl[0] < target && lutEl[0] + lutEl.length - 1 >= target,
             );
             if (maybeMedium) {
               const currStart = maybeMedium[0];
@@ -449,7 +453,7 @@ export class GradeUtils {
           };
         }
       },
-      {} as TopLevelIndivPlayAnalysis
+      {} as TopLevelIndivPlayAnalysis,
     );
   };
 
@@ -458,7 +462,7 @@ export class GradeUtils {
     playStyle: TopLevelIndivPlayAnalysis,
     defensivePlayStyle: TopLevelIndivPlayAnalysis | undefined,
     mutableDivisionStats: DivisionStatistics,
-    inNaturalTier: boolean
+    inNaturalTier: boolean,
   ) => {
     _.forEach([playStyle, defensivePlayStyle], (tmpPlayStyle, isDef) => {
       const defPrefix = isDef == 1 ? `Def` : "";
@@ -466,7 +470,7 @@ export class GradeUtils {
         _.forEach(tmpPlayStyle, (playStyleInfo, playStyleType) => {
           const updateForField = (
             field: string,
-            stat: Statistic | undefined
+            stat: Statistic | undefined,
           ) => {
             if (stat && !_.isNil(stat?.value)) {
               if (!mutableDivisionStats.tier_samples[field]) {
@@ -503,11 +507,11 @@ export class GradeUtils {
    */
   static buildAndInjectTeamDivisionStatsLUT = (
     mutableUnsortedDivisionStats: DivisionStatistics,
-    precision?: "native"
+    precision?: "native",
   ) => {
     const retVal = GradeUtils.buildAndInjectDivisionStatsLUT(
       mutableUnsortedDivisionStats,
-      false
+      false,
     );
     if (precision) retVal.precision = precision;
     return retVal;
@@ -515,22 +519,22 @@ export class GradeUtils {
 
   /** Convert an unsorted list of samples into an LUT for Player Divison Stats */
   static buildAndInjectPlayerDivisionStatsLUT = (
-    mutableUnsortedDivisionStats: DivisionStatistics
+    mutableUnsortedDivisionStats: DivisionStatistics,
   ) => {
     return GradeUtils.buildAndInjectDivisionStatsLUT(
       mutableUnsortedDivisionStats,
-      true
+      true,
     );
   };
 
   /** Convert an unsorted list of samples into an LUT for Divison Stats */
   private static buildAndInjectDivisionStatsLUT = (
     mutableUnsortedDivisionStats: DivisionStatistics,
-    player: boolean
+    player: boolean,
   ) => {
     const sort = (
       samples: Record<string, Array<number>>,
-      comp_factor: number | undefined
+      comp_factor: number | undefined,
     ) => {
       return _.transform(
         samples,
@@ -541,7 +545,7 @@ export class GradeUtils {
               if (comp_factor) {
                 return _.filter(
                   samples,
-                  (__, index) => index % comp_factor == 0
+                  (__, index) => index % comp_factor == 0,
                 );
               } else {
                 return samples;
@@ -549,7 +553,7 @@ export class GradeUtils {
             })
             .value();
         },
-        {} as Record<string, Array<number>>
+        {} as Record<string, Array<number>>,
       );
     };
     const player_compression_factor = 3;
@@ -559,7 +563,7 @@ export class GradeUtils {
     mutableUnsortedDivisionStats.compression_factor = dedup_compression_factor;
 
     const tier_compression_factor = _.isEmpty(
-      mutableUnsortedDivisionStats.dedup_samples
+      mutableUnsortedDivisionStats.dedup_samples,
     )
       ? undefined
       : dedup_compression_factor;
@@ -568,21 +572,21 @@ export class GradeUtils {
     // Dedup samples: used to build the combined stats
     mutableUnsortedDivisionStats.dedup_samples = sort(
       mutableUnsortedDivisionStats.dedup_samples,
-      dedup_compression_factor
+      dedup_compression_factor,
     );
     //(this is a waste of cycles since will sort again in "Combo", but useful for debugging and not on performance critical path)
     //(sorting sorted arrays will likely be faster anyway, so we get some of that back)
 
     const tier_samples = sort(
       mutableUnsortedDivisionStats.tier_samples,
-      tier_compression_factor
+      tier_compression_factor,
     );
     mutableUnsortedDivisionStats.tier_lut = _.transform(
       tier_samples,
       (acc, sample_set, field) => {
         const first_val = GradeUtils.roundToMaxGradePrecision(sample_set[0]);
         const last_val = GradeUtils.roundToMaxGradePrecision(
-          sample_set[sample_set.length - 1]
+          sample_set[sample_set.length - 1],
         );
         const maybeMultiplier = GradeUtils.unusualMultiplier(field, player);
         acc[field] = _.transform(
@@ -612,10 +616,10 @@ export class GradeUtils {
             min: first_val,
             size: 0, //(will mutate this to size during the loop)
             lut: {} as Record<string, Array<number>>,
-          }
+          },
         );
       },
-      {} as Record<string, any>
+      {} as Record<string, any>,
     );
 
     mutableUnsortedDivisionStats.tier_samples = {}; //(replace this by LUT)
@@ -631,7 +635,7 @@ export class GradeUtils {
     array: Array<number>,
     val: number,
     index1: number,
-    index2: number
+    index2: number,
   ): number {
     //TODO: not my finest code, written while I wasn't feeling great in a stream-of-consciousness. Maybe rewrite sometime?
 
@@ -681,7 +685,7 @@ export class GradeUtils {
     array: Array<number>,
     val: number,
     index1: number,
-    index2: number
+    index2: number,
   ): number {
     const offset = array[0]!;
 
@@ -732,7 +736,7 @@ export class GradeUtils {
   /** Builds a LUT for if the initial lookup misses */
   static buildSpacesBetween(
     divStats: DivisionStatistics,
-    field: string
+    field: string,
   ): RedBlackTree.Instance<number, number> {
     const divStatsField = divStats.tier_lut[field];
     if (divStatsField) {
@@ -763,7 +767,7 @@ export class GradeUtils {
     field: string,
     val: number,
     buildLutMissCache: boolean = false,
-    matchMode: "strict" | "closest" = "strict"
+    matchMode: "strict" | "closest" = "strict",
   ): Statistic | undefined {
     // Round to avoid floating point precision issues (e.g., 32.4742 vs 32.474199999999996)
     const roundedVal =
@@ -806,7 +810,7 @@ export class GradeUtils {
             divStatsField.lut,
             (arr, unusedKey) => {
               return arr.length > 1 && arr[1]! > roundedVal;
-            }
+            },
           );
           if (closestLutArray) {
             return {
@@ -826,13 +830,13 @@ export class GradeUtils {
                 lutArray,
                 roundedVal,
                 1,
-                lutArray.length - 1
+                lutArray.length - 1,
               )
             : GradeUtils.binaryChop(
                 lutArray,
                 roundedVal,
                 1,
-                lutArray.length - 1
+                lutArray.length - 1,
               ); //(minPctile is lowest)
         return {
           value: Math.max(minPctile, (offsetIndex + 1) * minPctile),
@@ -904,13 +908,13 @@ export class GradeUtils {
     team: PureStatSet,
     fieldList: string[],
     supportRank: boolean,
-    buildLutMissCache: boolean = false
+    buildLutMissCache: boolean = false,
   ): PureStatSet => {
     const offDefFieldList = _.chain(fieldList)
       .flatMap((field) =>
         GradeUtils.combinedStat[field]
           ? [field]
-          : [`off_${field}`, `def_${field}`]
+          : [`off_${field}`, `def_${field}`],
       )
       .map((key) => {
         return key == "def_net" ? "off_raw_net" : key;
@@ -926,7 +930,7 @@ export class GradeUtils {
       offDefFieldList,
       GradeUtils.teamFieldsToInvert,
       supportRank,
-      buildLutMissCache
+      buildLutMissCache,
     );
     return retVal;
   };
@@ -936,14 +940,14 @@ export class GradeUtils {
     playStyle: TopLevelPlayAnalysis,
     divisionStats: DivisionStatistics,
     scheduleStrengthMult: number | undefined,
-    buildLutMissCache: boolean = false
+    buildLutMissCache: boolean = false,
   ): TopLevelPlayAnalysis => {
     return GradeUtils.getIndivPlayStyleStats(
       playStyle,
       divisionStats,
       scheduleStrengthMult,
       false, //(NA for team stats)
-      buildLutMissCache
+      buildLutMissCache,
     );
   };
 
@@ -953,7 +957,7 @@ export class GradeUtils {
     divisionStats: DivisionStatistics,
     scheduleStrengthMult: number | undefined,
     teamPoss: boolean = false,
-    buildLutMissCache: boolean = false
+    buildLutMissCache: boolean = false,
   ): TopLevelIndivPlayAnalysis => {
     const adjPrefix = _.isNumber(scheduleStrengthMult) ? "Adj" : "";
     const usgPrefix = teamPoss ? "Usg" : "";
@@ -972,13 +976,13 @@ export class GradeUtils {
             divisionStats,
             possPctField,
             playStyleInfo[freqKey]?.value || 0,
-            buildLutMissCache
+            buildLutMissCache,
           );
           const maybePppPctile = GradeUtils.getPercentile(
             divisionStats,
             pppField,
             playStyleInfo.pts.value * pppAdj,
-            buildLutMissCache
+            buildLutMissCache,
           );
           if (maybePossPctile && maybePppPctile) {
             acc[playStyleType] = {
@@ -998,7 +1002,7 @@ export class GradeUtils {
           };
         }
       },
-      {} as Record<string, { possPct: Statistic; pts: Statistic }>
+      {} as Record<string, { possPct: Statistic; pts: Statistic }>,
     ) as TopLevelIndivPlayAnalysis;
   };
 
@@ -1008,7 +1012,7 @@ export class GradeUtils {
     team: PureStatSet,
     fieldList: string[],
     supportRank: boolean,
-    buildLutMissCache: boolean = true
+    buildLutMissCache: boolean = true,
   ): PureStatSet => {
     const playerGrades = GradeUtils.buildPercentiles(
       divStats,
@@ -1016,7 +1020,7 @@ export class GradeUtils {
       fieldList,
       GradeUtils.playerFieldsToInvert,
       supportRank,
-      buildLutMissCache
+      buildLutMissCache,
     );
     playerGrades.off_drb = playerGrades.def_orb;
     return playerGrades;
@@ -1030,7 +1034,7 @@ export class GradeUtils {
     fieldsToInvert: Record<string, boolean>,
     supportRank: boolean,
     buildLutMissCache: boolean = false,
-    accessor?: (dataSet: PureStatSet, field: string) => number | undefined
+    accessor?: (dataSet: PureStatSet, field: string) => number | undefined,
   ): PureStatSet => {
     const format = (f: string, s: Statistic | undefined) => {
       const isDef = f.startsWith("def_");
@@ -1064,8 +1068,8 @@ export class GradeUtils {
                   divStats,
                   key,
                   playerVal,
-                  buildLutMissCache
-                )
+                  buildLutMissCache,
+                ),
               )
             : undefined,
         ];

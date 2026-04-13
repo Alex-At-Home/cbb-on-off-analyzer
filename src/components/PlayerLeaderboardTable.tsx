@@ -78,6 +78,7 @@ import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import { CbbColors } from "../utils/CbbColors";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import LinqExpressionBuilder from "./shared/LinqExpressionBuilder";
+import PlayerQueryBuilder from "./shared/PlayerQueryBuilder";
 import { AvailableTeams } from "../utils/internal-data/AvailableTeams";
 
 // Geo:
@@ -2897,6 +2898,20 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 richTextReplacements={playerLeaderboardRichTextReplacements}
                 callback={(newVal: string) =>
                   friendlyChange(() => setAdvancedFilterStr(newVal), true)
+                }
+                showHelp={showHelp}
+              />
+            </Col>
+          </Form.Row>
+        ) : null}
+        {FeatureFlags.visualQueryBuilder &&
+        (showAdvancedFilter || advancedFilterStr.length > 0) ? (
+          <Form.Row>
+            <Col xs={12} sm={12} md={12} lg={12} className="pb-2">
+              <PlayerQueryBuilder
+                value={advancedFilterStr}
+                onChange={(next) =>
+                  friendlyChange(() => setAdvancedFilterStr(next), true)
                 }
                 showHelp={showHelp}
               />

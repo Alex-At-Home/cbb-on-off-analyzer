@@ -104,6 +104,7 @@ export class IndivTableDefs {
   /** To build a less wordy set of header text for the repeating headers (roster view) */
   static repeatingIndivHeaderFields: Record<string, string> = {
     "Box Rtg": "Box",
+    "Box oRtg": "Box",
     "Adj+ Rtg": "Adj+",
     "Adj+ oRtg": "oAdj+",
     "Adj+ Prod": "Adj+",
@@ -165,7 +166,7 @@ export class IndivTableDefs {
         GenericTableOps.offHighlightFormatter(GenericTableOps.percentFormatter),
       ),
       rtg: GenericTableOps.addPtsCol(
-        "Box Rtg",
+        expandedView ? "Box Rtg" : "Box oRtg",
         (expandedView ? "Offensive/Defensive" : "Offensive") +
           " rating in selected lineups (box-score derived)",
         CommonTableDefs.picker(...CbbColors.pp100, rowMode, mixedMode),

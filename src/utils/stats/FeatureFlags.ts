@@ -31,6 +31,6 @@ export class FeatureFlags {
   /** Extra processing for net points */
   static readonly netPointsOngoingWork = true;
 
-  /** Portal prospect eval (Eval+/Eval−) on transfer prediction player leaderboard — dev-only via {@link isActiveWindow} */
-  static readonly portalProspectEval = true;
+  /** Query builder work */
+  static readonly visualQueryBuilder = true;
 }
