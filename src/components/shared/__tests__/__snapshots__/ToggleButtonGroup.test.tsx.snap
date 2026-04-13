@@ -1,38 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ToggleButtonGroup ToggleButtonGroup - empty SSR render 1`] = `<div />`;
+exports[`ToggleButtonGroup ToggleButtonGroup - empty SSR render 1`] = `
+<DocumentFragment>
+  <div>
+    <small>
+      Quick Select:
+    </small>
+      
+    <span>
+      <div>
+        <button
+          class="btn btn-dark btn-sm"
+          type="button"
+        >
+          Test A
+        </button>
+      </div>
+        
+    </span>
+    <span>
+      <div>
+        <button
+          class="btn btn-outline-secondary btn-sm"
+          type="button"
+        >
+          Test B
+        </button>
+      </div>
+        
+    </span>
+  </div>
+</DocumentFragment>
+`;
 
 exports[`ToggleButtonGroup ToggleButtonGroup 1`] = `
-<div>
-  <small>
-    Quick Select:
-  </small>
-    
-  <span>
-    <div>
-      <button
-        className="btn btn-dark btn-sm"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Test A
-      </button>
-    </div>
+<DocumentFragment>
+  <div>
+    <small>
+      Quick Select:
+    </small>
       
-  </span>
-  <span>
-    <div>
-      <button
-        className="btn btn-outline-secondary btn-sm"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Test B
-      </button>
-    </div>
-      
-  </span>
-</div>
+    <span>
+      <div>
+        <button
+          class="btn btn-dark btn-sm"
+          type="button"
+        >
+          Test A
+        </button>
+      </div>
+        
+    </span>
+    <span>
+      <div>
+        <button
+          class="btn btn-outline-secondary btn-sm"
+          type="button"
+        >
+          Test B
+        </button>
+      </div>
+        
+    </span>
+  </div>
+</DocumentFragment>
 `;

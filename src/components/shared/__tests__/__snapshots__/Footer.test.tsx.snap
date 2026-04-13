@@ -1,121 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Footer Footer - should create snapshot 1`] = `
-<div
-  className="container"
->
+<DocumentFragment>
   <div
-    className="row"
+    class="container"
   >
     <div
-      className="col"
+      class="row"
     >
-      <i>
-        <small>
-          Data updated: [
-          Wed Mar 11 2020 19:18:44 GMT-0400 (EDT)
-          ] [
-          <a
-            href="#"
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
-          >
-            Clear Cache
-          </a>
-          ]
-        </small>
-      </i>
-    </div>
-    <div
-      className="col"
-    >
-      <span
-        className="float-right"
+      <div
+        class="col"
       >
         <i>
           <small>
-            PbP events and roster info from
-             
+            Data updated: [Wed Mar 11 2020 19:18:44 GMT-0400 (EDT)] [
             <a
-              href="https://stats.ncaa.org"
-              target="_blank"
+              href="#"
             >
-              stats.ncaa.org
+              Clear Cache
             </a>
-             
-            and
-             
-            <a
-              href="https://collegebasketballdata.com"
-              target="_blank"
-            >
-              collegebasketballdata.com
-            </a>
+            ]
           </small>
         </i>
-      </span>
-    </div>
-  </div>
-  <div
-    className="row"
-  >
-    <div
-      className="col"
-    >
-      <i>
-        <small>
-          It's a beta(-ish!), so let me know if you see anything weird: 
-          <span>
-            <a
-              href="aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI="
-              onMouseOver={[Function]}
-              target="_blank"
-            >
-              twitter
-            </a>
-             / 
-          </span>
-          <a
-            href="bWFpbHRvOmhvb3AuZXhwbG9yZXJAZ21haWwuY29t"
-            onMouseOver={[Function]}
-            target="_blank"
-          >
-            email
-          </a>
-        </small>
-      </i>
+      </div>
+      <div
+        class="col"
+      >
+        <span
+          class="float-right"
+        >
+          <i>
+            <small>
+              PbP events and roster info from 
+              <a
+                href="https://stats.ncaa.org"
+                target="_blank"
+              >
+                stats.ncaa.org
+              </a>
+               and 
+              <a
+                href="https://collegebasketballdata.com"
+                target="_blank"
+              >
+                collegebasketballdata.com
+              </a>
+            </small>
+          </i>
+        </span>
+      </div>
     </div>
     <div
-      className="col"
+      class="row"
     >
-      <span
-        className="float-right"
+      <div
+        class="col"
       >
         <i>
           <small>
-            SoS stats with kind permission from
-             
+            It's a beta(-ish!), so let me know if you see anything weird: 
+            <span>
+              <a
+                href="aHR0cHM6Ly90d2l0dGVyLmNvbS9JdHNBVGVycF9DQkI="
+                target="_blank"
+              >
+                twitter
+              </a>
+               / 
+            </span>
             <a
-              href="https://kenpom.com"
+              href="bWFpbHRvOmhvb3AuZXhwbG9yZXJAZ21haWwuY29t"
               target="_blank"
             >
-              kenpom.com
-            </a>
-             
-            and 
-            <a
-              href="https://herhoopstats.com"
-              target="_blank"
-            >
-              herhoopstats.com
+              email
             </a>
           </small>
         </i>
-      </span>
+      </div>
+      <div
+        class="col"
+      >
+        <span
+          class="float-right"
+        >
+          <i>
+            <small>
+              SoS stats with kind permission from 
+              <a
+                href="https://kenpom.com"
+                target="_blank"
+              >
+                kenpom.com
+              </a>
+               and 
+              <a
+                href="https://herhoopstats.com"
+                target="_blank"
+              >
+                herhoopstats.com
+              </a>
+            </small>
+          </i>
+        </span>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

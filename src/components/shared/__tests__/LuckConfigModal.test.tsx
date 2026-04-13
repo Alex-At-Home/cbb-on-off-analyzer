@@ -1,24 +1,25 @@
-import React from 'react';
-import LuckConfigModal from '../LuckConfigModal';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import renderer from 'react-test-renderer';
-import { LuckParams } from '../../../utils/FilterModels';
+/**
+ * @jest-environment jsdom
+ */
+
+import React from "react";
+import { render } from "@testing-library/react";
+import LuckConfigModal from "../LuckConfigModal";
+import { LuckParams } from "../../../utils/FilterModels";
 
 describe("LuckConfigModal", () => {
   test("LuckConfigModal - should create snapshot", () => {
-    //(annoyingly this needs to be shallow because Modal doesn't work with full rendering)
-    const wrapper = shallow(
+    const { asFragment } = render(
       <div>
         <LuckConfigModal
           show={true}
           onHide={() => {}}
           onSave={(l: LuckParams) => {}}
-          luck={{base: "baseline"}}
+          luck={{ base: "baseline" }}
           showHelp={true}
         />
-      </div>
+      </div>,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

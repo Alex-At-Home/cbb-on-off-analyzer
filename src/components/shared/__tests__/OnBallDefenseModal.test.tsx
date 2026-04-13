@@ -1,16 +1,23 @@
-import React from 'react';
-import OnBallDefenseModal from '../OnBallDefenseModal';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import renderer from 'react-test-renderer';
-import { ParamPrefixes, ManualOverride } from '../../../utils/FilterModels';
-import { GenericTableOps } from '../../GenericTable';
+/**
+ * @jest-environment jsdom
+ */
+
+import React from "react";
+import { render } from "@testing-library/react";
+import OnBallDefenseModal from "../OnBallDefenseModal";
 import { OnBallDefenseModel } from "../../../utils/stats/RatingUtils";
 
 describe("OnBallDefenseModal", () => {
+  beforeEach(() => {
+    jest.spyOn(Math, "random").mockReturnValue(0.123456789);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("OnBallDefenseModal - should create snapshot (not initialized at all)", () => {
-    //(annoyingly this needs to be shallow because Modal doesn't work with full rendering - which makes it 99% useless)
-    const wrapper = shallow(
+    const { asFragment } = render(
       <div>
         <OnBallDefenseModal
           players={[]}
@@ -20,8 +27,8 @@ describe("OnBallDefenseModal", () => {
           onSave={(onBallDefense: OnBallDefenseModel[]) => false}
           showHelp={false}
         />
-      </div>
+      </div>,
     );
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });

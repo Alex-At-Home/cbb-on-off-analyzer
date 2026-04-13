@@ -1,558 +1,508 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderBar HeaderBar - should create snapshot (game) 1`] = `
-<div
-  className="container"
->
+<DocumentFragment>
   <div
-    className="border-top row"
+    class="container"
   >
     <div
-      className="text-center small col"
+      class="border-top row"
     >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          <b>
-            Teams
-          </b>
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            <b>
+              Teams
+            </b>
+              
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          <b>
-            Players
-          </b>
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            <b>
+              Players
+            </b>
+              
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Lineups
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Lineups  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Games
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Games  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small d-xl-none col"
-    >
       <div
-        className="dropdown"
+        class="text-center small d-xl-none col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Other
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Other  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small d-none d-xl-block col"
-    >
-      <div>
-        <a
-          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_blank"
-        >
-          Docs...
-        </a>
+      <div
+        class="text-center small d-none d-xl-block col"
+      >
+        <div>
+          <a
+            href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+            target="_blank"
+          >
+            Docs...
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`HeaderBar HeaderBar - should create snapshot (lineup) 1`] = `
-<div
-  className="container"
->
+<DocumentFragment>
   <div
-    className="border-top row"
+    class="container"
   >
     <div
-      className="text-center small col"
+      class="border-top row"
     >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Teams
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Teams  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Players
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Players  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          <b>
-            Lineups
-          </b>
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            <b>
+              Lineups
+            </b>
+              
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Games
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Games  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small d-xl-none col"
-    >
       <div
-        className="dropdown"
+        class="text-center small d-xl-none col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Other
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Other  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small d-none d-xl-block col"
-    >
-      <div>
-        <a
-          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_blank"
-        >
-          Docs...
-        </a>
+      <div
+        class="text-center small d-none d-xl-block col"
+      >
+        <div>
+          <a
+            href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+            target="_blank"
+          >
+            Docs...
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`HeaderBar HeaderBar - should create snapshot (report) 1`] = `
-<div
-  className="container"
->
+<DocumentFragment>
   <div
-    className="border-top row"
+    class="container"
   >
     <div
-      className="text-center small col"
+      class="border-top row"
     >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Teams
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Teams  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          <b>
-            Players
-          </b>
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            <b>
+              Players
+            </b>
+              
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Lineups
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Lineups  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small col"
-    >
       <div
-        className="dropdown"
+        class="text-center small col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Games
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Games  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small d-xl-none col"
-    >
       <div
-        className="dropdown"
+        class="text-center small d-xl-none col"
       >
-        <a
-          href=""
-          onClick={[Function]}
+        <div
+          class="dropdown"
         >
-          Other
-            
-          <svg
-            aria-hidden="true"
-            className="svg-inline--fa fa-angle-down "
-            data-icon="angle-down"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            style={{}}
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
+          <a
+            href=""
           >
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-              fill="currentColor"
-              style={{}}
-            />
-          </svg>
-        </a>
+            Other  
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-angle-down "
+              data-icon="angle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
-    </div>
-    <div
-      className="text-center small d-none d-xl-block col"
-    >
-      <div>
-        <a
-          href="https://hoop-explorer.blogspot.com/p/blog-page.html"
-          target="_blank"
-        >
-          Docs...
-        </a>
+      <div
+        class="text-center small d-none d-xl-block col"
+      >
+        <div>
+          <a
+            href="https://hoop-explorer.blogspot.com/p/blog-page.html"
+            target="_blank"
+          >
+            Docs...
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

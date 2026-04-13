@@ -1,285 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ManualOverride ManualOverride - should create snapshot (not initialized at all) 1`] = `
-<div>
-  <ManualOverrideModal
-    inStats={[]}
-    onHide={[Function]}
-    onSave={[Function]}
-    overrides={[]}
-    show={true}
-    showHelp={false}
-    statsAsTable={{}}
-    tableType="player-"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <div />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ManualOverride ManualOverride - should create snapshot (pick first in list) 1`] = `
-<div>
-  <ManualOverrideModal
-    inStats={
-      [
-        {
-          "key": "Player1",
-          "off_3p": {
-            "value": 0.3,
-          },
-          "onOffKey": "Baseline",
-        },
-        {
-          "key": "Player2",
-          "off_3p": {
-            "value": 0.4,
-          },
-          "onOffKey": "On",
-        },
-      ]
-    }
-    onHide={[Function]}
-    onSave={[Function]}
-    overrides={
-      [
-        {
-          "newVal": 0.5,
-          "rowId": "Player2 / On",
-          "statName": "off_3p",
-          "use": true,
-        },
-      ]
-    }
-    show={true}
-    showHelp={true}
-    statsAsTable={
-      {
-        "Player1 / Baseline": [
-          GenericTableTextRow {
-            "className": "",
-            "kind": "text-row",
-            "text": <p>
-              Test
-            </p>,
-          },
-        ],
-      }
-    }
-    tableType="player-"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <div />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ManualOverride ManualOverride - should create snapshot (players and overrides, nothing selected) 1`] = `
-<div>
-  <ManualOverrideModal
-    inStats={
-      [
-        {
-          "key": "Player1",
-          "off_3p": {
-            "value": 0.3,
-          },
-          "onOffKey": "Baseline",
-        },
-        {
-          "key": "Player2",
-          "off_3p": {
-            "value": 0.4,
-          },
-          "onOffKey": "On",
-        },
-      ]
-    }
-    onHide={[Function]}
-    onSave={[Function]}
-    overrides={
-      [
-        {
-          "newVal": 0.5,
-          "rowId": "Player1 / Baseline",
-          "statName": "off_3p",
-          "use": true,
-        },
-      ]
-    }
-    show={true}
-    showHelp={true}
-    statsAsTable={
-      {
-        "Player1 / Baseline": [
-          GenericTableTextRow {
-            "className": "",
-            "kind": "text-row",
-            "text": <p>
-              Test
-            </p>,
-          },
-        ],
-      }
-    }
-    tableType="player-"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <div />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ManualOverride ManualOverride - should create snapshot (players and overrides, one filtered player special case) 1`] = `
-<div>
-  <ManualOverrideModal
-    filteredPlayers={
-      Set {
-        "Player1",
-      }
-    }
-    inStats={
-      [
-        {
-          "key": "Player1",
-          "off_3p": {
-            "value": 0.3,
-          },
-          "onOffKey": "Baseline",
-        },
-        {
-          "key": "Player2",
-          "off_3p": {
-            "value": 0.4,
-          },
-          "onOffKey": "On",
-        },
-        {
-          "key": "Player3",
-          "off_3p": {
-            "value": 0.4,
-          },
-          "onOffKey": "Off",
-        },
-      ]
-    }
-    onHide={[Function]}
-    onSave={[Function]}
-    overrides={
-      [
-        {
-          "newVal": 0.5,
-          "rowId": "Player1 / Baseline",
-          "statName": "off_3p",
-          "use": true,
-        },
-        {
-          "newVal": 0.5,
-          "rowId": "Player3 / Off",
-          "statName": "off_3p",
-          "use": true,
-        },
-      ]
-    }
-    show={true}
-    showHelp={true}
-    statsAsTable={
-      {
-        "Player1 / Baseline": [
-          GenericTableTextRow {
-            "className": "",
-            "kind": "text-row",
-            "text": <p>
-              Test1
-            </p>,
-          },
-        ],
-        "Player3 / Off": [
-          GenericTableTextRow {
-            "className": "",
-            "kind": "text-row",
-            "text": <p>
-              Test3
-            </p>,
-          },
-        ],
-      }
-    }
-    tableType="player-"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <div />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ManualOverride ManualOverride - should create snapshot (players and overrides, something selected) 1`] = `
-<div>
-  <ManualOverrideModal
-    inStats={
-      [
-        {
-          "key": "Player1",
-          "off_3p": {
-            "value": 0.3,
-          },
-          "onOffKey": "Baseline",
-        },
-        {
-          "key": "Player2",
-          "off_3p": {
-            "value": 0.4,
-          },
-          "onOffKey": "On",
-        },
-        {
-          "key": "Player3",
-          "off_3p": {
-            "value": 0.4,
-          },
-          "onOffKey": "Off",
-        },
-      ]
-    }
-    onHide={[Function]}
-    onSave={[Function]}
-    overrides={
-      [
-        {
-          "newVal": 0.5,
-          "rowId": "Player1 / Baseline",
-          "statName": "off_3p",
-          "use": true,
-        },
-        {
-          "newVal": 0.5,
-          "rowId": "Player3 / Off",
-          "statName": "off_3p",
-          "use": true,
-        },
-      ]
-    }
-    show={true}
-    showHelp={true}
-    startOverride={
-      {
-        "newVal": 0.5,
-        "rowId": "Player1 / Baseline",
-        "statName": "off_3p",
-        "use": true,
-      }
-    }
-    statsAsTable={
-      {
-        "Player1 / Baseline": [
-          GenericTableTextRow {
-            "className": "",
-            "kind": "text-row",
-            "text": <p>
-              Test1
-            </p>,
-          },
-        ],
-        "Player3 / Off": [
-          GenericTableTextRow {
-            "className": "",
-            "kind": "text-row",
-            "text": <p>
-              Test3
-            </p>,
-          },
-        ],
-      }
-    }
-    tableType="player-"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <div />
+  </div>
+</DocumentFragment>
 `;

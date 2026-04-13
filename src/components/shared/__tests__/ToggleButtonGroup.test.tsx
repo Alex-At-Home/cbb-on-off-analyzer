@@ -1,49 +1,54 @@
-import React from 'react';
-import ToggleButtonGroup from '../ToggleButtonGroup';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import renderer from 'react-test-renderer';
+/**
+ * @jest-environment jsdom
+ */
 
+import React from "react";
+import { render } from "@testing-library/react";
+import ToggleButtonGroup from "../ToggleButtonGroup";
 
 describe("ToggleButtonGroup", () => {
   test("ToggleButtonGroup", () => {
-    const component = renderer.create(
-      <ToggleButtonGroup override={true} items={[
-        {
-          label: "Test A",
-          tooltip: "Test Tooltip A",
-          toggled: true,
-          onClick: () => {}
-        },
-        {
-          label: "Test B",
-          tooltip: "Test Tooltip A",
-          toggled: false,
-          onClick: () => {}
-        }
-      ]}/>
+    const { asFragment } = render(
+      <ToggleButtonGroup
+        override={true}
+        items={[
+          {
+            label: "Test A",
+            tooltip: "Test Tooltip A",
+            toggled: true,
+            onClick: () => {},
+          },
+          {
+            label: "Test B",
+            tooltip: "Test Tooltip A",
+            toggled: false,
+            onClick: () => {},
+          },
+        ]}
+      />,
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
   test("ToggleButtonGroup - empty SSR render", () => {
-    const component = renderer.create(
-      <ToggleButtonGroup override={false} items={[
-        {
-          label: "Test A",
-          tooltip: "Test Tooltip A",
-          toggled: true,
-          onClick: () => {}
-        },
-        {
-          label: "Test B",
-          tooltip: "Test Tooltip A",
-          toggled: false,
-          onClick: () => {}
-        }
-      ]}/>
+    const { asFragment } = render(
+      <ToggleButtonGroup
+        override={false}
+        items={[
+          {
+            label: "Test A",
+            tooltip: "Test Tooltip A",
+            toggled: true,
+            onClick: () => {},
+          },
+          {
+            label: "Test B",
+            tooltip: "Test Tooltip A",
+            toggled: false,
+            onClick: () => {},
+          },
+        ]}
+      />,
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(asFragment()).toMatchSnapshot();
   });
 });
