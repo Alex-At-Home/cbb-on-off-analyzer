@@ -1352,7 +1352,10 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                   </Form.Group>
                 </StickyRow>
                 {showChart && chartData.length > 0 && (
-                  <div className="mb-2">
+                  <div
+                    className="mb-2"
+                    style={{ position: "relative", zIndex: 2 }}
+                  >
                     <GameImpactDiagView
                       data={chartData}
                       fieldLabel={
@@ -1392,12 +1395,14 @@ const SeasonMatchupAnalyzerPage: React.FunctionComponent = () => {
                   </div>
                 )}
                 {selectedPlayer && tableRows.length > 0 ? (
-                  <GenericTable
-                    tableCopyId="seasonMatchup_impact"
-                    tableFields={ImpactTableDefs.impactDecompTable}
-                    tableData={tableRows}
-                    cellTooltipMode="missing"
-                  />
+                  <div style={{ position: "relative", zIndex: 1 }}>
+                    <GenericTable
+                      tableCopyId="seasonMatchup_impact"
+                      tableFields={ImpactTableDefs.impactDecompTable}
+                      tableData={tableRows}
+                      cellTooltipMode="missing"
+                    />
+                  </div>
                 ) : (
                   <p className="small text-muted mb-0">
                     {!selectedPlayer
