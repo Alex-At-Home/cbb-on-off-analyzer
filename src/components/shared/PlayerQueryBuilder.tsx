@@ -1,11 +1,28 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Alert, Button, ButtonGroup, Form } from "react-bootstrap";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { Button, ButtonGroup, Form } from "react-bootstrap";
 import type {
   ActionWithRulesAndAddersProps,
+  Field,
   FieldSelectorProps,
+  OperatorSelectorProps,
   RuleGroupType,
+  RuleType,
+  ValueEditorProps,
 } from "react-querybuilder";
-import { ActionElement, QueryBuilder, ValueSelector } from "react-querybuilder";
+import {
+  ActionElement,
+  QueryBuilder,
+  ValueEditor,
+  ValueSelector,
+} from "react-querybuilder";
 import "react-querybuilder/dist/query-builder.css";
 import styles from "./PlayerQueryBuilder.module.css";
 import { AdvancedFilterUtils } from "../../utils/AdvancedFilterUtils";
@@ -17,16 +34,77 @@ import {
 } from "../../utils/queryBuilder/playerLeaderboard";
 import {
   composePlayerLeaderboardFilterString,
-  linqToQuery,
   newSortRowId,
   parsePlayerLeaderboardFilterParts,
+  parseWhereCoreToPlayerLeaderboardQuery,
   PLAYER_LEADERBOARD_RQB_OPERATORS,
+  PLAYER_QB_CUSTOM_RULE_FIELD,
   queryToLinq,
+  RQB_PLACEHOLDER_OPERATOR,
   type PlayerLeaderboardSortRow,
+  type PlayerQueryRuleSource,
 } from "../../utils/queryBuilder/playerLeaderboardLinqBridge";
 import LinqExpressionBuilder from "./LinqExpressionBuilder";
 
 const CASCADING_SLICES_CONTEXT_KEY = "playerFieldCascadingSlices";
+
+const playerQueryBuilderCustomRuleField: Field = {
+  name: PLAYER_QB_CUSTOM_RULE_FIELD,
+  label: "Custom expression",
+  operators: [{ name: "=", label: "=" }],
+  defaultOperator: "=",
+};
+
+const playerLeaderboardQueryBuilderFields: Field[] = [
+  ...playerLeaderboardFlatRqbFields,
+  playerQueryBuilderCustomRuleField,
+];
+
+type PlayerQbUiContextValue = {
+  morphToCustom: (path: number[]) => void;
+  morphToPlayer: (path: number[]) => void;
+  showHelp?: boolean;
+};
+
+const PlayerQbUiContext = createContext<PlayerQbUiContextValue | null>(null);
+
+function isRuleGroupNode(x: unknown): x is RuleGroupType {
+  return (
+    typeof x === "object" &&
+    x !== null &&
+    "rules" in x &&
+    Array.isArray((x as RuleGroupType).rules)
+  );
+}
+
+function mapQueryAtPath(
+  root: RuleGroupType,
+  path: number[],
+  updater: (rule: RuleType) => RuleType,
+): RuleGroupType {
+  if (path.length === 1) {
+    const idx = path[0]!;
+    return {
+      ...root,
+      rules: root.rules.map((r, i) =>
+        i === idx && !isRuleGroupNode(r) ? updater(r as RuleType) : r,
+      ),
+    };
+  }
+  const [head, ...rest] = path;
+  return {
+    ...root,
+    rules: root.rules.map((r, i) => {
+      if (i !== head) {
+        return r;
+      }
+      if (!isRuleGroupNode(r)) {
+        return r;
+      }
+      return mapQueryAtPath(r, rest, updater);
+    }),
+  };
+}
 
 export type PlayerQueryBuilderProps = {
   readonly value: string;
@@ -40,15 +118,20 @@ export type PlayerQueryBuilderProps = {
   readonly disabled?: boolean;
 };
 
-type BuilderMode = "structured" | "custom";
-
-/** Two-step field UI: group, then field within that group (not one giant optgroup list). */
+/**
+ * Source (Player | Custom) + stat group + field. Custom rules only show Source;
+ * expression is edited in the value editor (LinqExpressionBuilder).
+ */
 const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
   props,
 ) => {
+  const ui = useContext(PlayerQbUiContext);
   const slices = props.context?.[CASCADING_SLICES_CONTEXT_KEY] as
     | PlayerQueryCascadingSlice[]
     | undefined;
+  const isCustom = props.rule.field === PLAYER_QB_CUSTOM_RULE_FIELD;
+  const source: PlayerQueryRuleSource = isCustom ? "custom" : "player";
+
   if (!slices?.length) {
     return <ValueSelector {...props} />;
   }
@@ -61,49 +144,145 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
 
   return (
     <div
-      className={`d-flex flex-wrap align-items-center ${props.className || ""}`}
+      className={`d-flex flex-column align-items-stretch ${props.className || ""}`}
     >
-      <Form.Control
-        as="select"
-        size="sm"
-        className="mr-1 mb-1"
-        style={{ minWidth: "10rem", maxWidth: "18rem" }}
-        title="Stat group"
+      <div className="d-flex flex-wrap align-items-center">
+        <Form.Control
+          as="select"
+          size="sm"
+          className="mr-1 mb-1"
+          style={{ minWidth: "6.5rem", maxWidth: "10rem" }}
+          title="Rule source"
+          disabled={props.disabled}
+          value={source}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            const v = e.target.value as PlayerQueryRuleSource;
+            if (v === "custom" && source === "player") {
+              ui?.morphToCustom(props.path);
+            } else if (v === "player" && source === "custom") {
+              ui?.morphToPlayer(props.path);
+            }
+          }}
+        >
+          <option value="player">Player</option>
+          <option value="custom">Custom</option>
+        </Form.Control>
+        {!isCustom ? (
+          <Form.Control
+            as="select"
+            size="sm"
+            className="mr-1 mb-1"
+            style={{ minWidth: "10rem", maxWidth: "18rem" }}
+            title="Stat group"
+            disabled={props.disabled}
+            value={sliceId}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              const nextSlice = slices.find((s) => s.id === e.target.value);
+              const first = nextSlice?.fields[0];
+              if (first) {
+                props.handleOnChange(first.name);
+              }
+            }}
+          >
+            {slices.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.title}
+              </option>
+            ))}
+          </Form.Control>
+        ) : null}
+      </div>
+      {!isCustom ? (
+        <div className="d-flex flex-wrap align-items-center">
+          <Form.Control
+            as="select"
+            size="sm"
+            className="mr-1 mb-1"
+            style={{ minWidth: "11rem", maxWidth: "22rem" }}
+            title="Field"
+            disabled={props.disabled}
+            value={currentField}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              props.handleOnChange(e.target.value);
+            }}
+          >
+            <option value="">— Field —</option>
+            {activeSlice.fields.map((f) => (
+              <option key={f.name} value={f.name}>
+                {f.label}
+              </option>
+            ))}
+          </Form.Control>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+function renderOperatorOptions(
+  options: OperatorSelectorProps["options"] | undefined,
+): React.ReactNode[] {
+  const rows: React.ReactNode[] = [];
+  for (const o of options ?? []) {
+    if (!o) {
+      continue;
+    }
+    if ("options" in o && Array.isArray(o.options)) {
+      for (const c of o.options) {
+        rows.push(
+          <option key={c.name} value={c.name}>
+            {c.label}
+          </option>,
+        );
+      }
+    } else if ("name" in o) {
+      const op = o as { name: string; label: string };
+      rows.push(
+        <option key={op.name} value={op.name}>
+          {op.label}
+        </option>,
+      );
+    }
+  }
+  return rows;
+}
+
+const PlayerQbOperatorSelector: React.FC<OperatorSelectorProps> = (props) => {
+  if (props.field === PLAYER_QB_CUSTOM_RULE_FIELD) {
+    return <span className="sr-only">=</span>;
+  }
+  return (
+    <Form.Control
+      as="select"
+      size="sm"
+      className={props.className}
+      disabled={props.disabled}
+      title={props.title}
+      value={props.value}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        props.handleOnChange(e.target.value)
+      }
+    >
+      {renderOperatorOptions(props.options)}
+    </Form.Control>
+  );
+};
+
+const PlayerQbValueEditor: React.FC<ValueEditorProps> = (props) => {
+  const ui = useContext(PlayerQbUiContext);
+  if (props.field !== PLAYER_QB_CUSTOM_RULE_FIELD) {
+    return <ValueEditor {...props} />;
+  }
+  return (
+    <div style={{ minWidth: "12rem", flex: "1 1 14rem" }}>
+      <LinqExpressionBuilder
+        prompt="Custom Linq for this rule (Enter to apply)"
+        value={String(props.value ?? "")}
         disabled={props.disabled}
-        value={sliceId}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          const nextSlice = slices.find((s) => s.id === e.target.value);
-          const first = nextSlice?.fields[0];
-          if (first) {
-            props.handleOnChange(first.name);
-          }
-        }}
-      >
-        {slices.map((s) => (
-          <option key={s.id} value={s.id}>
-            {s.title}
-          </option>
-        ))}
-      </Form.Control>
-      <Form.Control
-        as="select"
-        size="sm"
-        className="mr-1 mb-1"
-        style={{ minWidth: "11rem", maxWidth: "22rem" }}
-        title="Field"
-        disabled={props.disabled}
-        value={currentField}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          props.handleOnChange(e.target.value);
-        }}
-      >
-        <option value="">— Field —</option>
-        {activeSlice.fields.map((f) => (
-          <option key={f.name} value={f.name}>
-            {f.label}
-          </option>
-        ))}
-      </Form.Control>
+        autocomplete={AdvancedFilterUtils.playerLboardWithTeamStatsAutocomplete}
+        callback={(newVal: string) => props.handleOnChange(newVal)}
+        showHelp={ui?.showHelp}
+      />
     </div>
   );
 };
@@ -182,45 +361,76 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
   disabled = false,
 }) => {
   const [query, setQuery] = useState<RuleGroupType>(emptyQuery);
-  const [builderMode, setBuilderMode] = useState<BuilderMode>("structured");
-  const [customWhere, setCustomWhere] = useState("");
   const [sortRows, setSortRows] = useState<PlayerLeaderboardSortRow[]>([]);
   const [limitN, setLimitN] = useState<number | null>(null);
-  const [structuredSwitchError, setStructuredSwitchError] = useState(false);
   const skipNextExternalSync = useRef(false);
 
   const queryRef = useRef(query);
-  const customWhereRef = useRef(customWhere);
-  const builderModeRef = useRef(builderMode);
   const sortRowsRef = useRef(sortRows);
   const limitNRef = useRef(limitN);
   queryRef.current = query;
-  customWhereRef.current = customWhere;
-  builderModeRef.current = builderMode;
   sortRowsRef.current = sortRows;
   limitNRef.current = limitN;
 
   const emitComposed = useCallback(
-    (opts: {
+    (opts?: {
       nextQuery?: RuleGroupType;
-      nextCustomWhere?: string;
-      nextMode?: BuilderMode;
       nextSortRows?: PlayerLeaderboardSortRow[];
       nextLimit?: number | null;
     }) => {
-      const q = opts.nextQuery ?? queryRef.current;
-      const mode = opts.nextMode ?? builderModeRef.current;
-      const sorts = opts.nextSortRows ?? sortRowsRef.current;
+      const q = opts?.nextQuery ?? queryRef.current;
+      const sorts = opts?.nextSortRows ?? sortRowsRef.current;
       const lim =
-        opts.nextLimit !== undefined ? opts.nextLimit : limitNRef.current;
-      const custom = opts.nextCustomWhere ?? customWhereRef.current;
-      const whereCore =
-        mode === "custom" ? custom.trim() : queryToLinq(q).trim();
+        opts?.nextLimit !== undefined ? opts.nextLimit : limitNRef.current;
+      const whereCore = queryToLinq(q).trim();
       const full = composePlayerLeaderboardFilterString(whereCore, sorts, lim);
       skipNextExternalSync.current = true;
       onChange(full);
     },
     [onChange],
+  );
+
+  const morphToCustom = useCallback(
+    (path: number[]) => {
+      const q = queryRef.current;
+      const next = mapQueryAtPath(q, path, (r) => ({
+        ...r,
+        field: PLAYER_QB_CUSTOM_RULE_FIELD,
+        operator: "=",
+        value: "",
+      }));
+      setQuery(next);
+      queryRef.current = next;
+      emitComposed({ nextQuery: next });
+    },
+    [emitComposed],
+  );
+
+  const morphToPlayer = useCallback(
+    (path: number[]) => {
+      const firstField =
+        playerLeaderboardCascadingFieldSlices[0]?.fields[0]?.name ?? "";
+      const q = queryRef.current;
+      const next = mapQueryAtPath(q, path, (r) => ({
+        ...r,
+        field: firstField,
+        operator: RQB_PLACEHOLDER_OPERATOR,
+        value: "",
+      }));
+      setQuery(next);
+      queryRef.current = next;
+      emitComposed({ nextQuery: next });
+    },
+    [emitComposed],
+  );
+
+  const playerQbUiValue = useMemo(
+    () => ({
+      morphToCustom,
+      morphToPlayer,
+      showHelp,
+    }),
+    [morphToCustom, morphToPlayer, showHelp],
   );
 
   const applyCommittedValue = useCallback((committed: string) => {
@@ -237,23 +447,8 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
     sortRowsRef.current = sortRowsHydrated;
     setLimitN(limit);
     limitNRef.current = limit;
-    setStructuredSwitchError(false);
 
-    const parsed = linqToQuery(whereCore);
-    if (parsed === null && whereCore.trim().length > 0) {
-      setBuilderMode("custom");
-      setCustomWhere(whereCore);
-      customWhereRef.current = whereCore;
-      setQuery(emptyQuery());
-      queryRef.current = emptyQuery();
-      builderModeRef.current = "custom";
-      return;
-    }
-    setBuilderMode("structured");
-    builderModeRef.current = "structured";
-    setCustomWhere("");
-    customWhereRef.current = "";
-    const nextQuery = parsed ?? emptyQuery();
+    const nextQuery = parseWhereCoreToPlayerLeaderboardQuery(whereCore);
     setQuery(nextQuery);
     queryRef.current = nextQuery;
   }, []);
@@ -342,28 +537,7 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
     emitComposed({ nextLimit: null });
   }, [emitComposed]);
 
-  const trySwitchToStructured = useCallback(() => {
-    const parsed = linqToQuery(customWhereRef.current);
-    if (parsed === null && customWhereRef.current.trim().length > 0) {
-      setStructuredSwitchError(true);
-      return;
-    }
-    setStructuredSwitchError(false);
-    builderModeRef.current = "structured";
-    setBuilderMode("structured");
-    const nextQuery = parsed ?? emptyQuery();
-    setQuery(nextQuery);
-    queryRef.current = nextQuery;
-    setCustomWhere("");
-    customWhereRef.current = "";
-    emitComposed({
-      nextMode: "structured",
-      nextQuery: nextQuery,
-      nextCustomWhere: "",
-    });
-  }, [emitComposed]);
-
-  const qbContext = React.useMemo(
+  const qbContext = useMemo(
     () => ({
       [CASCADING_SLICES_CONTEXT_KEY]: playerLeaderboardCascadingFieldSlices,
     }),
@@ -436,76 +610,18 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
       [addLimitClause, addSortRow, disabled],
     );
 
-  const customExprPrompt =
-    "Where clause only (SORT_BY / LIMIT are configured below). Example: off_efg > 20%";
-
   const rootClassName = [styles.root, className].filter(Boolean).join(" ");
 
   return (
     <div className={rootClassName || undefined}>
-      {builderMode === "custom" ? (
-        <>
-          <Alert variant="info" className="py-2 mb-2 small">
-            This filter&apos;s where-clause is not supported by the visual rule
-            builder. Edit it as a Linq expression, or switch back if it matches
-            supported rules.
-          </Alert>
-          {structuredSwitchError ? (
-            <Alert variant="warning" className="py-2 mb-2 small">
-              This expression still cannot be represented as rules. Adjust the
-              text and try again.
-            </Alert>
-          ) : null}
-          <div className="mb-2 d-flex flex-wrap align-items-center">
-            <Button
-              size="sm"
-              variant="outline-primary"
-              disabled={disabled}
-              className="mr-2 mb-1"
-              onClick={trySwitchToStructured}
-            >
-              Use visual rule builder
-            </Button>
-            <ButtonGroup size="sm" className="mb-1">
-              <Button
-                variant="outline-secondary"
-                title="Add a SORT_BY clause"
-                disabled={disabled}
-                onClick={addSortRow}
-              >
-                + Sort
-              </Button>
-              <Button
-                variant="outline-secondary"
-                title="Add LIMIT"
-                disabled={disabled}
-                onClick={addLimitClause}
-              >
-                + Limit
-              </Button>
-            </ButtonGroup>
-          </div>
-          <LinqExpressionBuilder
-            prompt={customExprPrompt}
-            value={customWhere}
-            disabled={disabled}
-            autocomplete={
-              AdvancedFilterUtils.playerLboardWithTeamStatsAutocomplete
-            }
-            callback={(newVal: string) => {
-              setCustomWhere(newVal);
-              customWhereRef.current = newVal;
-              emitComposed({ nextCustomWhere: newVal, nextMode: "custom" });
-            }}
-            showHelp={showHelp}
-          />
-        </>
-      ) : (
+      <PlayerQbUiContext.Provider value={playerQbUiValue}>
         <QueryBuilder
-          fields={playerLeaderboardFlatRqbFields}
+          fields={playerLeaderboardQueryBuilderFields}
           context={qbContext}
           controlElements={{
             fieldSelector: PlayerLeaderboardCascadingFieldSelector,
+            operatorSelector: PlayerQbOperatorSelector,
+            valueEditor: PlayerQbValueEditor,
             addRuleAction: PlayerAddRuleAction,
           }}
           query={query}
@@ -521,7 +637,7 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
           disabled={disabled}
           controlClassnames={{ queryBuilder: "player-query-builder" }}
         />
-      )}
+      </PlayerQbUiContext.Provider>
 
       {sortRows.length > 0 ? (
         <div className="mt-2 small text-muted">Sort</div>

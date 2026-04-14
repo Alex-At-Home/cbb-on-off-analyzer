@@ -7,6 +7,14 @@ import { playerQueryBuilderFieldNameSet } from "./playerLeaderboard";
  */
 export const RQB_PLACEHOLDER_OPERATOR = "~" as const;
 
+/**
+ * Sentinel `field` on a RuleType whose `value` is a raw Linq fragment (per-rule custom).
+ * Not a real stat field; omitted from {@link playerQueryBuilderFieldNameSet}.
+ */
+export const PLAYER_QB_CUSTOM_RULE_FIELD = "__PLAYER_QB_CUSTOM__" as const;
+
+export type PlayerQueryRuleSource = "player" | "custom";
+
 /** RQB operator `name` values used by the player leaderboard builder. */
 export const PLAYER_LEADERBOARD_RQB_OPERATORS = [
   { name: ">", label: ">" },
@@ -158,6 +166,9 @@ function isRuleGroup(x: unknown): x is RuleGroupType {
 }
 
 function isNonEmptyRule(r: RuleType): boolean {
+  if ((r as { field?: string }).field === PLAYER_QB_CUSTOM_RULE_FIELD) {
+    return Boolean(String((r as { value?: unknown }).value ?? "").trim());
+  }
   return Boolean((r.field || "").trim() && (r.operator || "").trim());
 }
 
@@ -165,8 +176,13 @@ function isNonEmptyRule(r: RuleType): boolean {
  * Best-effort parse of a committed LINQ filter fragment into an RQB query.
  * Returns `null` if the string is non-empty and not a supported expression.
  */
-export function linqToQuery(committedLinq: string): RuleGroupType | null {
-  idCounter = 0;
+export function linqToQuery(
+  committedLinq: string,
+  options?: { resetIdCounter?: boolean },
+): RuleGroupType | null {
+  if (options?.resetIdCounter !== false) {
+    idCounter = 0;
+  }
   const stripped = stripNonFilterLinqSuffixes(committedLinq);
   if (!stripped) {
     return {
@@ -186,6 +202,158 @@ export function linqToQuery(committedLinq: string): RuleGroupType | null {
     return null;
   }
   return root;
+}
+
+/** Split on top-level `&&` (ignores `&&` inside parentheses and string literals). */
+export function splitWhereOnTopLevelAnd(where: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let start = 0;
+  let inStr: string | null = null;
+  for (let i = 0; i < where.length; i++) {
+    const c = where[i]!;
+    if (inStr) {
+      if (c === "\\" && i + 1 < where.length) {
+        i++;
+        continue;
+      }
+      if (c === inStr) {
+        inStr = null;
+      }
+      continue;
+    }
+    if (c === '"' || c === "'") {
+      inStr = c;
+      continue;
+    }
+    if (c === "(") {
+      depth++;
+      continue;
+    }
+    if (c === ")") {
+      depth = Math.max(0, depth - 1);
+      continue;
+    }
+    if (
+      depth === 0 &&
+      c === "&" &&
+      i + 1 < where.length &&
+      where[i + 1] === "&"
+    ) {
+      parts.push(where.slice(start, i).trim());
+      start = i + 2;
+      i++;
+    }
+  }
+  parts.push(where.slice(start).trim());
+  return parts.filter((p) => p.length > 0);
+}
+
+function stripBalancedOuterParens(s: string): string {
+  let t = s.trim();
+  while (t.length >= 2 && t[0] === "(") {
+    let depth = 0;
+    let closesAtEnd = false;
+    for (let i = 0; i < t.length; i++) {
+      const c = t[i]!;
+      if (c === "(") {
+        depth++;
+      } else if (c === ")") {
+        depth--;
+        if (depth === 0) {
+          closesAtEnd = i === t.length - 1;
+          break;
+        }
+      }
+    }
+    if (closesAtEnd) {
+      t = t.slice(1, -1).trim();
+    } else {
+      break;
+    }
+  }
+  return t;
+}
+
+function simplifyParsedSegmentToRuleOrGroup(
+  parsed: RuleGroupType,
+): RuleType | RuleGroupType {
+  if (
+    parsed.rules.length === 1 &&
+    !parsed.not &&
+    parsed.combinator === "and" &&
+    !isRuleGroup(parsed.rules[0]!)
+  ) {
+    return parsed.rules[0] as RuleType;
+  }
+  return parsed;
+}
+
+/**
+ * Parses a where-core string into an RQB query. If the whole string parses as player rules,
+ * returns that tree. Otherwise splits on top-level `&&` and uses a player subtree per
+ * segment when {@link linqToQuery} succeeds, else a per-rule custom fragment
+ * ({@link PLAYER_QB_CUSTOM_RULE_FIELD}).
+ */
+export function parseWhereCoreToPlayerLeaderboardQuery(
+  whereCore: string,
+): RuleGroupType {
+  const stripped = whereCore.trim();
+  if (!stripped) {
+    return {
+      id: "root",
+      combinator: "and",
+      not: false,
+      rules: [],
+    };
+  }
+  const whole = linqToQuery(stripped);
+  if (whole !== null) {
+    return whole;
+  }
+  const segments = splitWhereOnTopLevelAnd(stripped);
+  idCounter = 0;
+  const rulesOut: Array<RuleType | RuleGroupType> = [];
+  for (const rawSeg of segments) {
+    const seg = rawSeg.trim();
+    if (!seg) {
+      continue;
+    }
+    const normalized = stripBalancedOuterParens(seg);
+    const parsed = linqToQuery(normalized, { resetIdCounter: false });
+    if (parsed !== null) {
+      rulesOut.push(simplifyParsedSegmentToRuleOrGroup(parsed));
+    } else {
+      rulesOut.push({
+        id: nextId("r"),
+        field: PLAYER_QB_CUSTOM_RULE_FIELD,
+        operator: "=",
+        value: seg,
+      });
+    }
+  }
+  if (rulesOut.length === 0) {
+    return {
+      id: "root",
+      combinator: "and",
+      not: false,
+      rules: [],
+    };
+  }
+  return {
+    id: "root",
+    combinator: "and",
+    not: false,
+    rules: rulesOut,
+  };
+}
+
+function emitCustomPlayerRuleFragment(expr: string): string {
+  const t = expr.trim();
+  if (t.includes("&&") || t.includes("||")) {
+    return `(${t})`;
+  }
+  return t;
 }
 
 function parseOr(ctx: ParseCtx): RuleGroupType | null {
@@ -378,6 +546,9 @@ function isPlaceholderBareFieldRule(rule: RuleType): boolean {
 function ruleToLinqFragment(rule: RuleType): string {
   if (!isNonEmptyRule(rule)) {
     return "";
+  }
+  if ((rule as { field?: string }).field === PLAYER_QB_CUSTOM_RULE_FIELD) {
+    return emitCustomPlayerRuleFragment(String(rule.value ?? ""));
   }
   if (isPlaceholderBareFieldRule(rule)) {
     return (rule.field || "").trim();

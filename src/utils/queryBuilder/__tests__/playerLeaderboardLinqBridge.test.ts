@@ -3,8 +3,11 @@ import {
   formatRuleValue,
   linqToQuery,
   parsePlayerLeaderboardFilterParts,
+  parseWhereCoreToPlayerLeaderboardQuery,
+  PLAYER_QB_CUSTOM_RULE_FIELD,
   queryToLinq,
   splitPlayerLeaderboardFilterSuffix,
+  splitWhereOnTopLevelAnd,
   stripNonFilterLinqSuffixes,
 } from "../playerLeaderboardLinqBridge";
 
@@ -109,5 +112,30 @@ describe("playerLeaderboardLinqBridge", () => {
         parts.limit,
       ),
     ).toBe("a && b SORT_BY x ASC LIMIT 10");
+  });
+
+  it("splitWhereOnTopLevelAnd respects parentheses", () => {
+    expect(splitWhereOnTopLevelAnd("a && (b && c)")).toEqual(["a", "(b && c)"]);
+  });
+
+  it("parseWhereCoreToPlayerLeaderboardQuery mixes player and unparsed segments", () => {
+    const src =
+      "off_threep > 40% && pctile_off_style_rim_attack_pct > pctile_off_style_rim_attack_usg";
+    const q = parseWhereCoreToPlayerLeaderboardQuery(src);
+    expect(q.rules).toHaveLength(2);
+    const r1 = q.rules[0] as { field: string };
+    const r2 = q.rules[1] as { field: string; value: string };
+    expect(r1.field).toBe("off_threep");
+    expect(r2.field).toBe(PLAYER_QB_CUSTOM_RULE_FIELD);
+    expect(r2.value).toBe(
+      "pctile_off_style_rim_attack_pct > pctile_off_style_rim_attack_usg",
+    );
+    expect(queryToLinq(q).trim()).toBe(src);
+  });
+
+  it("parseWhereCoreToPlayerLeaderboardQuery returns whole tree when fully parseable", () => {
+    const src = "off_efg > 0.5 && pctile_off_to < 90";
+    const q = parseWhereCoreToPlayerLeaderboardQuery(src);
+    expect(queryToLinq(q)).toBe(src);
   });
 });

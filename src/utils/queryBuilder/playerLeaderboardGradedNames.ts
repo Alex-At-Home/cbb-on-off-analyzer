@@ -22,7 +22,7 @@ export function gradeFieldKeyToGradedLinqName(
   if (field.endsWith("_margin") && field.startsWith("off_")) {
     return `${prefix}${field.substring(4)}`;
   }
-  return `${prefix}${field}`;
+  return `${prefix}${field.replace("2p", "twop").replace("3p", "threep")}`;
 }
 
 /** All rank_/pctile_ field names that appear on the player leaderboard autocomplete list. */
