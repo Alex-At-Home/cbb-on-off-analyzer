@@ -1,6 +1,7 @@
 import _ from "lodash";
 import Enumerable from "linq";
 import { gradeFieldKeyToGradedLinqName } from "./queryBuilder/playerLeaderboardGradedNames";
+import { PLAYER_LEADERBOARD_POS_SLOTS } from "./queryBuilder/playerLeaderboardPosSlots";
 import { PLAYER_LEADERBOARD_PLAY_STYLE_FIELD_NAMES } from "./queryBuilder/playerLeaderboardPlayStyleFields";
 import { DivisionStatistics, Statistic } from "./StatModels";
 import { GradeUtils } from "./stats/GradeUtils";
@@ -517,8 +518,6 @@ export class AdvancedFilterUtils {
 
       // Advanced metadata:
       "posClass",
-      "posConfidences",
-      "posFreqs",
       "roster.ncaa_id",
       "roster.number",
       "roster.height",
@@ -654,7 +653,11 @@ export class AdvancedFilterUtils {
           (field) => `${prefix}${field}`,
         ),
       ),
-    );
+    )
+    .concat(
+      PLAYER_LEADERBOARD_POS_SLOTS.map((slot) => `posConfidences[${slot}]`),
+    )
+    .concat(PLAYER_LEADERBOARD_POS_SLOTS.map((slot) => `posFreqs[${slot}]`));
 
   static readonly playerLboardWithTeamStatsAutocomplete =
     AdvancedFilterUtils.playerLeaderBoardAutocomplete.concat(
@@ -1594,7 +1597,6 @@ export class AdvancedFilterUtils {
     playerDivStats?: (year: string) => DivisionStatistics | undefined,
     teamDivStats?: (year: string) => DivisionStatistics | undefined,
   ): [string, string[]] => {
-    const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
     const headerFieldsPhase1 = _.drop(
       AdvancedFilterUtils.playerLeaderBoardAutocomplete,
       AdvancedFilterUtils.operators.length,
@@ -1604,14 +1606,7 @@ export class AdvancedFilterUtils {
           playerDivStats || //(remove rank/pctile fields if grades not being added)
           (!_.startsWith(field, "rank_") && !_.startsWith(field, "pctile_")),
       )
-      .filter(
-        (field) =>
-          !_.startsWith(field, "hs_region") &&
-          field != "posConfidences" &&
-          field != "posFreqs",
-      ) //(expand these into their arrays)
-      .concat(posGroups.map((pos) => `posConfidences[${pos}]`))
-      .concat(posGroups.map((pos) => `posFreqs[${pos}]`));
+      .filter((field) => !_.startsWith(field, "hs_region"));
     const headerFields = headerFieldsPhase1
       .concat(
         includesPrevYear
@@ -1680,12 +1675,11 @@ export class AdvancedFilterUtils {
     inData: any[],
     teamDivStats?: (year: string) => DivisionStatistics | undefined,
   ): [string, string[]] => {
-    const posGroups = ["_PG_", "_SG_", "_SF_", "_PF_", "_C_"];
     const headerFieldsPhase1 = _.concat(
       AdvancedFilterUtils.lineupMetadata,
       AdvancedFilterUtils.lineupStats,
     ).concat(
-      _.flatMap(posGroups, (__, posIndex) =>
+      _.flatMap(PLAYER_LEADERBOARD_POS_SLOTS, (__, posIndex) =>
         AdvancedFilterUtils.lineupPlayerStats.map(
           (p) => `player_stats[${posIndex}].${p}`,
         ),

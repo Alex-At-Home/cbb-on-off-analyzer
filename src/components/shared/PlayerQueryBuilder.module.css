@@ -7,3 +7,51 @@
   max-width: 28rem;
   min-width: 0;
 }
+
+/*
+ * RQB v7 puts `rule-operators` / `rule-value` on the native <select>/<input>, not a wrapper.
+ * Bootstrap `form-control` uses width:100% on the operator select, which steals the whole row.
+ */
+.root :global(.player-query-builder .rule) {
+  min-width: 0;
+}
+
+.root :global(.player-query-builder .rule select.rule-operators),
+.root :global(.player-query-builder .rule select.form-control.rule-operators) {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 3.25rem;
+  max-width: 5.5rem;
+}
+
+/* Default ValueEditor: class is on the input/textarea itself (often without .form-control). */
+.root :global(.player-query-builder .rule input.rule-value),
+.root :global(.player-query-builder .rule textarea.rule-value),
+.root :global(.player-query-builder .rule select.rule-value) {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.root :global(.player-query-builder .rule input.rule-value.form-control),
+.root :global(.player-query-builder .rule textarea.rule-value.form-control),
+.root :global(.player-query-builder .rule select.rule-value.form-control) {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* When `rule-value` is on a wrapper (custom Linq editor), grow that wrapper */
+.root :global(.player-query-builder .rule .rule-value) {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  max-width: 100%;
+}
+
+/* Custom rule: `rule-value` is merged on this div; flex comes from :global(.rule-value) above */
+.valueEditorCustom {
+  width: 100%;
+  min-width: 0;
+}

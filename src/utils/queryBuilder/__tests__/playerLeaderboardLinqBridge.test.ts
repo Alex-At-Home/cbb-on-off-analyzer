@@ -88,6 +88,27 @@ describe("playerLeaderboardLinqBridge", () => {
     expect(formatRuleValue("3.5%")).toBe("3.5%");
   });
 
+  it("formatRuleValue emits unquoted true and false", () => {
+    expect(formatRuleValue(true)).toBe("true");
+    expect(formatRuleValue(false)).toBe("false");
+    expect(formatRuleValue("true")).toBe("true");
+    expect(formatRuleValue("false")).toBe("false");
+  });
+
+  it("round-trips boolean literals without quotes", () => {
+    const src = "hs_region_dmv = true && off_efg > 0.5";
+    const q = linqToQuery(src);
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe(src);
+  });
+
+  it("parses bracketed posFreqs / posConfidences slots", () => {
+    const src = "posFreqs[_PG_] > 0.01 && posConfidences[_C_] < 0.5";
+    const q = linqToQuery(src);
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe(src);
+  });
+
   it("parsePlayerLeaderboardFilterParts splits where, sorts, and limit", () => {
     const s =
       "off_efg > 0.5 SORT_BY off_adj_rapm ASC SORT_BY def_adj_rapm DESC LIMIT 25";

@@ -1,5 +1,15 @@
 import type { RuleGroupType, RuleType } from "react-querybuilder";
 import { playerQueryBuilderFieldNameSet } from "./playerLeaderboard";
+import { PLAYER_LEADERBOARD_POS_SLOTS } from "./playerLeaderboardPosSlots";
+
+const BRACKETED_POS_SLOT_KEYS = new Set<string>([
+  ...PLAYER_LEADERBOARD_POS_SLOTS,
+  "_1_",
+  "_2_",
+  "_3_",
+  "_4_",
+  "_5_",
+]);
 
 /**
  * react-querybuilder uses `~` as `translations.operators.placeholderName` when no
@@ -73,6 +83,36 @@ function readIdent(ctx: ParseCtx): string | null {
   return ctx.s.slice(start, ctx.i);
 }
 
+/**
+ * Reads a field token: `ident` or `ident[_PG_]`-style (see {@link BRACKETED_POS_SLOT_KEYS}).
+ */
+function readPlayerLinqFieldName(ctx: ParseCtx): string | null {
+  const base = readIdent(ctx);
+  if (!base) {
+    return null;
+  }
+  if (ctx.i >= ctx.s.length || ctx.s[ctx.i] !== "[") {
+    return base;
+  }
+  const bracketStart = ctx.i;
+  ctx.i++;
+  const innerStart = ctx.i;
+  while (ctx.i < ctx.s.length && ctx.s[ctx.i] !== "]") {
+    ctx.i++;
+  }
+  if (ctx.i >= ctx.s.length) {
+    ctx.i = bracketStart;
+    return base;
+  }
+  const inner = ctx.s.slice(innerStart, ctx.i);
+  ctx.i++;
+  if (!BRACKETED_POS_SLOT_KEYS.has(inner)) {
+    ctx.i = bracketStart;
+    return base;
+  }
+  return `${base}[${inner}]`;
+}
+
 function readNumber(ctx: ParseCtx): string | null {
   skipWs(ctx);
   const start = ctx.i;
@@ -126,6 +166,25 @@ function readString(ctx: ParseCtx): string | null {
     }
     out += ch;
     ctx.i++;
+  }
+  return null;
+}
+
+/** Unquoted `true` / `false` (whole words), same idea as numeric literals. */
+function readBooleanLiteral(ctx: ParseCtx): "true" | "false" | null {
+  skipWs(ctx);
+  const rest = ctx.s.slice(ctx.i);
+  const atWordEnd = (len: number) => {
+    const c = rest[len];
+    return c === undefined || !/[A-Za-z0-9_.]/.test(c);
+  };
+  if (rest.startsWith("true") && atWordEnd(4)) {
+    ctx.i += 4;
+    return "true";
+  }
+  if (rest.startsWith("false") && atWordEnd(5)) {
+    ctx.i += 5;
+    return "false";
   }
   return null;
 }
@@ -457,7 +516,7 @@ function parsePrimary(ctx: ParseCtx): RuleGroupType | RuleType | null {
 
 function parseRule(ctx: ParseCtx): RuleType | null {
   const start = ctx.i;
-  const field = readIdent(ctx);
+  const field = readPlayerLinqFieldName(ctx);
   if (!field || !playerQueryBuilderFieldNameSet.has(field)) {
     return null;
   }
@@ -494,13 +553,18 @@ function parseRule(ctx: ParseCtx): RuleType | null {
   }
   skipWs(ctx);
   const strVal = readString(ctx);
-  const value =
-    strVal !== null
-      ? strVal
-      : (() => {
-          const num = readNumber(ctx);
-          return num !== null ? num : null;
-        })();
+  let value: string | null;
+  if (strVal !== null) {
+    value = strVal;
+  } else {
+    const boolLit = readBooleanLiteral(ctx);
+    if (boolLit !== null) {
+      value = boolLit;
+    } else {
+      const num = readNumber(ctx);
+      value = num;
+    }
+  }
   if (value === null) {
     return null;
   }
@@ -516,9 +580,15 @@ export function formatRuleValue(value: unknown): string {
   if (value === null || value === undefined) {
     return "";
   }
+  if (typeof value === "boolean") {
+    return value ? "true" : "false";
+  }
   const s = String(value);
   if (s === "") {
     return `""`;
+  }
+  if (s === "true" || s === "false") {
+    return s;
   }
   if (/^-?\d+(\.\d+)?$/.test(s)) {
     return s;

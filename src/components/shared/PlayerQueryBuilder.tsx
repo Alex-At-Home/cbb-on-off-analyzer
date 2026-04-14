@@ -274,7 +274,9 @@ const PlayerQbValueEditor: React.FC<ValueEditorProps> = (props) => {
     return <ValueEditor {...props} />;
   }
   return (
-    <div style={{ minWidth: "12rem", flex: "1 1 14rem" }}>
+    <div
+      className={`${styles.valueEditorCustom} ${props.className || ""}`.trim()}
+    >
       <LinqExpressionBuilder
         prompt="Custom Linq for this rule (Enter to apply)"
         value={String(props.value ?? "")}

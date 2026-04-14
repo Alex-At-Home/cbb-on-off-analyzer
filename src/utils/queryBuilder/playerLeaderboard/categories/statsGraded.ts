@@ -6,29 +6,6 @@ const row = (linq: string) => ({ linq, label: humanizePlayerLinqField(linq) });
 /** Stat sections from `AdvancedFilterUtils.playerLeaderBoardAutocomplete` that support rank/pctile where generated. */
 export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
   {
-    id: "opposition_strength",
-    title: "Opposition strength",
-    includeRankPctile: true,
-    fields: ["off_adj_opp", "def_adj_opp"].map(row),
-  },
-  {
-    id: "possessions",
-    title: "Possessions",
-    includeRankPctile: true,
-    fields: [
-      "off_poss",
-      "off_team_poss_pct",
-      "def_poss",
-      "def_team_poss_pct",
-    ].map(row),
-  },
-  {
-    id: "four_factors",
-    title: "Four factors",
-    includeRankPctile: true,
-    fields: ["off_efg", "off_to", "off_ftr"].map(row),
-  },
-  {
     id: "overall_ratings",
     title: "Overall ratings",
     includeRankPctile: true,
@@ -48,6 +25,12 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
       "def_adj_rapm",
       "def_adj_prod_rapm",
     ].map(row),
+  },
+  {
+    id: "four_factors",
+    title: "Four factors",
+    includeRankPctile: true,
+    fields: ["off_efg", "off_to", "off_ftr"].map(row),
   },
   {
     id: "shot_creation",
@@ -77,6 +60,39 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
       "off_threep_ast",
       "off_twopmid_ast",
       "off_twoprim_ast",
+    ].map(row),
+  },
+  {
+    id: "rebounding_other",
+    title: "Rebounding",
+    includeRankPctile: true,
+    fields: ["off_orb", "def_orb", "off_reb", "def_reb"].map(row),
+  },
+  {
+    id: "defensive_stats",
+    title: "Defensive Stats",
+    includeRankPctile: true,
+    fields: [
+      { linq: "def_stl", label: "Def steal rate" },
+      { linq: "def_blk", label: "Def block rate" },
+      { linq: "def_fc", label: "Def foul called/50" },
+    ],
+  },
+  {
+    id: "opposition_strength",
+    title: "Opposition strength",
+    includeRankPctile: true,
+    fields: ["off_adj_opp", "def_adj_opp"].map(row),
+  },
+  {
+    id: "possessions",
+    title: "Possessions",
+    includeRankPctile: true,
+    fields: [
+      "off_poss",
+      "off_team_poss_pct",
+      "def_poss",
+      "def_team_poss_pct",
     ].map(row),
   },
   {
@@ -120,22 +136,6 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
     ].map(row),
   },
   {
-    id: "rebounding_other",
-    title: "Rebounding",
-    includeRankPctile: true,
-    fields: ["off_orb", "def_orb", "off_reb", "def_reb"].map(row),
-  },
-  {
-    id: "defensive_stats",
-    title: "Defensive Stats",
-    includeRankPctile: true,
-    fields: [
-      { linq: "def_stl", label: "Def steal rate" },
-      { linq: "def_blk", label: "Def block rate" },
-      { linq: "def_fc", label: "Def foul called/50" },
-    ],
-  },
-  {
     id: "transfer_predictions",
     title: "Transfer predictions",
     includeRankPctile: true,
@@ -146,11 +146,5 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
       "off_usage_pred",
       "adj_rapm_margin_pred",
     ].map(row),
-  },
-  {
-    id: "regional",
-    title: "Regional",
-    includeRankPctile: false,
-    fields: [{ linq: "hs_region_dmv", label: "HS region — DMV" }],
   },
 ];
