@@ -42,7 +42,7 @@ const PlayerGeoMapNoSsr = dynamic(
   () => import("../components/diags/PlayerGeoMap"),
   {
     ssr: false,
-  }
+  },
 );
 
 type Props = {
@@ -119,13 +119,13 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
   }
 
   const [playerLeaderboardParams, setPlayerLeaderboardParams] = useState(
-    UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams
+    UrlRouting.removedSavedKeys(allParams) as PlayerLeaderboardParams,
   );
   const playerLeaderboardParamsRef = useRef<PlayerLeaderboardParams>();
   playerLeaderboardParamsRef.current = playerLeaderboardParams;
 
   const onPlayerLeaderboardParamsChange = (
-    rawParams: PlayerLeaderboardParams
+    rawParams: PlayerLeaderboardParams,
   ) => {
     const params = _.omit(
       rawParams,
@@ -150,6 +150,7 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
         rawParams.showGrades == "" ? ["showGrades"] : [],
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
+        !rawParams.hideAdvFilterBuilder ? ["hideAdvFilterBuilder"] : [],
 
         rawParams.minPoss == ParamDefaults.defaultPlayerLboardMinPos
           ? ["minPoss"]
@@ -165,11 +166,11 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
             : rawParams.useRapm,
           _.isNil(rawParams.factorMins)
             ? ParamDefaults.defaultPlayerLboardFactorMins
-            : rawParams.factorMins
+            : rawParams.factorMins,
         )
           ? ["sortBy"]
           : [],
-      ])
+      ]),
     );
     if (!_.isEqual(params, playerLeaderboardParamsRef.current)) {
       //(to avoid recursion)
@@ -191,8 +192,8 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
     const dataSubEventKey = paramObj.t100
       ? "t100"
       : paramObj.confOnly
-      ? "conf"
-      : "all";
+        ? "conf"
+        : "all";
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = paramObj.year || ParamDefaults.defaultLeaderboardYear;
@@ -238,7 +239,7 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
           fullYear,
           tier,
           transferYearIn,
-          []
+          [],
         );
 
         fetchAll.then((jsonsIn: any[]) => {
@@ -251,7 +252,7 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
                   (d.players || []).map((p: any) => {
                     p.tier = d.tier;
                     return p;
-                  }) || []
+                  }) || [],
               )
               .flatten()
               .value(),
@@ -284,7 +285,7 @@ const PlayLeaderboardPageGeo: NextPage<Props> = ({ testMode }) => {
           dataSubEventKey,
           gender,
           fullYear,
-          tier
+          tier,
         ).then((json: any) => {
           //(if year has changed then clear saved data events)
           setDataEvent({

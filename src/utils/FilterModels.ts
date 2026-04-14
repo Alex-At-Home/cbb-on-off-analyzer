@@ -576,6 +576,8 @@ export type PlayerLeaderboardParams = {
   // Misc view controls
   showExpanded?: boolean;
   stickyQuickToggle?: boolean; //(true by default, if disabled will not show the quick toggle for this page)
+  /** When true, the visual advanced filter builder is hidden (LINQ text field remains). */
+  hideAdvFilterBuilder?: boolean;
   // Shot charts:
   shotCharts?: boolean;
   shotChartsUseEfg?: boolean;
@@ -778,6 +780,7 @@ export class ParamDefaults {
   static readonly defaultPlayerLboardFactorMins = false;
   static readonly defaultPlayerLboardPossAsPct = true;
   static readonly defaultPlayerLboardUseRapm = true;
+  static readonly defaultPlayerLboardHideAdvFilterBuilder = false;
   // Team leaderboard
   static readonly defaultTeamLboardQualityWeight = "0.5";
   static readonly defaultTeamLboardDomWeight = "0.25";

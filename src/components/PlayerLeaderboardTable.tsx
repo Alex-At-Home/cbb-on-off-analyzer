@@ -28,6 +28,7 @@ import {
   faDownload,
   faCheck,
   faTimes,
+  faFlask,
 } from "@fortawesome/free-solid-svg-icons";
 import ClipboardJS from "clipboard";
 
@@ -423,6 +424,17 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     setVisualQueryDraft(advancedFilterStr);
   }, [advancedFilterStr]);
 
+  const readHideAdvFilterBuilder = (p: PlayerLeaderboardParams) =>
+    p.hideAdvFilterBuilder === true ||
+    String(p.hideAdvFilterBuilder).toLowerCase() === "true";
+
+  const [hideAdvFilterBuilder, setHideAdvFilterBuilder] = useState(() =>
+    readHideAdvFilterBuilder(startingState),
+  );
+  useEffect(() => {
+    setHideAdvFilterBuilder(readHideAdvFilterBuilder(startingState));
+  }, [startingState.hideAdvFilterBuilder]);
+
   const visualQueryBuilderUi = FeatureFlags.isActiveWindow(
     FeatureFlags.visualQueryBuilder,
   );
@@ -747,6 +759,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
       geoCenterLon: geoCenterInfo?.lon?.toString(),
       geoZoom: geoCenterInfo?.zoom?.toString(),
       stickyQuickToggle,
+      hideAdvFilterBuilder: hideAdvFilterBuilder || undefined,
       shotCharts: showPlayerShots,
       shotChartsUseEfg: shotChartsUseEfg,
       shotChartsViewMode: shotChartsViewMode,
@@ -782,6 +795,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
     tier,
     geoCenterInfo,
     stickyQuickToggle,
+    hideAdvFilterBuilder,
     showPlayerShots,
     shotChartsUseEfg,
     shotChartsViewMode,
@@ -2946,6 +2960,39 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 </OverlayTrigger>
               </Col>
             ) : null}
+            {visualQueryBuilderUi && visualQueryDraft === advancedFilterStr ? (
+              <Col
+                xs="auto"
+                className="pb-4 pr-2 pt-1 d-flex flex-row align-items-center flex-nowrap"
+              >
+                <OverlayTrigger
+                  placement="auto"
+                  overlay={
+                    <Tooltip id="toggleVisualAdvFilterBuilderTooltip">
+                      Show / hide visual advanced filter builder
+                    </Tooltip>
+                  }
+                >
+                  <Button
+                    variant={
+                      !hideAdvFilterBuilder ? "dark" : "outline-secondary"
+                    }
+                    size="sm"
+                    className="mr-1"
+                    style={
+                      !hideAdvFilterBuilder
+                        ? { borderColor: "#aea79f" }
+                        : undefined
+                    }
+                    onClick={() =>
+                      setHideAdvFilterBuilder(!hideAdvFilterBuilder)
+                    }
+                  >
+                    <FontAwesomeIcon icon={faFlask} />
+                  </Button>
+                </OverlayTrigger>
+              </Col>
+            ) : null}
             <Col className="pb-4 col" style={{ minWidth: 0 }}>
               <LinqExpressionBuilder
                 prompt="eg 'def_adj_rapm < -2 && off_3p > 0.35 && off_3pr >= 0.45 SORT_BY adj_rapm_prod_margin'"
@@ -2976,6 +3023,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
           </Form.Row>
         ) : null}
         {visualQueryBuilderUi &&
+        !hideAdvFilterBuilder &&
         (showAdvancedFilter || advancedFilterStr.length > 0) ? (
           <Form.Row>
             <Col xs={12} sm={12} md={12} lg={12} className="pb-2">

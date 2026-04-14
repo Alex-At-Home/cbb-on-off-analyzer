@@ -183,6 +183,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
 
         !rawParams.showInfoSubHeader ? ["showInfoSubHeader"] : [],
         rawParams.stickyQuickToggle ? ["stickyQuickToggle"] : [],
+        !rawParams.hideAdvFilterBuilder ? ["hideAdvFilterBuilder"] : [],
 
         // Table configuration:
         !rawParams.tablePreset ? ["tablePreset"] : [],
