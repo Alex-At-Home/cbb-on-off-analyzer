@@ -1,8 +1,17 @@
 import type { RuleGroupType, RuleType } from "react-querybuilder";
 import type { LeaderboardRuleSource } from "./leaderboardTeamFieldPrefixes";
-import { playerQueryBuilderFieldNameSet } from "./playerLeaderboard";
+import { mapRankOrPctileSortFieldToRawField } from "./playerLeaderboard/buildRqbFields";
+import {
+  playerLeaderboardCascadingFieldSlices,
+  playerQueryBuilderFieldNameSet,
+} from "./playerLeaderboard";
+import { rawFieldToGradedPair } from "./playerLeaderboardGradedNames";
 import { PLAYER_LEADERBOARD_POS_SLOTS } from "./playerLeaderboardPosSlots";
-import { teamQueryBuilderFieldNameSet } from "./teamLeaderboardRegistry";
+import {
+  teamLeaderboardCascadingFieldSlices,
+  teamQueryBuilderFieldNameSet,
+} from "./teamLeaderboardRegistry";
+import { rawTeamLeaderboardFieldToGradedPair } from "./teamLeaderboardGradedNames";
 
 const BRACKETED_POS_SLOT_KEYS = new Set<string>([
   ...PLAYER_LEADERBOARD_POS_SLOTS,
@@ -690,6 +699,30 @@ function stripTrailingSortDirection(frag: string): string {
   return frag.replace(/\s+(ASC|DESC)\s*$/i, "").trim();
 }
 
+/**
+ * Coerces SORT_BY expressions from rank_/pctile_ graded tokens to the raw value
+ * field when they come from the visual builder’s graded blocks (player or team).
+ */
+export function normalizeLeaderboardSortExpression(expression: string): string {
+  const t = expression.trim();
+  if (!t) {
+    return expression;
+  }
+  const afterPlayer = mapRankOrPctileSortFieldToRawField(
+    t,
+    playerLeaderboardCascadingFieldSlices,
+    rawFieldToGradedPair,
+  );
+  if (afterPlayer !== t) {
+    return afterPlayer;
+  }
+  return mapRankOrPctileSortFieldToRawField(
+    t,
+    teamLeaderboardCascadingFieldSlices,
+    rawTeamLeaderboardFieldToGradedPair,
+  );
+}
+
 function parseLimitFromCommitted(committed: string): number | null {
   const parts = committed.split(/\bLIMIT\b/i);
   if (parts.length < 2) {
@@ -722,7 +755,9 @@ export function parsePlayerLeaderboardFilterParts(committed: string): {
     const ascending = frag.toUpperCase().indexOf("ASC") >= 0;
     return {
       id: `sort-${i}`,
-      expression: stripTrailingSortDirection(frag),
+      expression: normalizeLeaderboardSortExpression(
+        stripTrailingSortDirection(frag),
+      ),
       ascending,
     };
   });
@@ -745,7 +780,7 @@ export function composePlayerLeaderboardFilterString(
   const w = whereCore.trim();
   let out = w;
   for (const row of sortRows) {
-    const expr = row.expression.trim();
+    const expr = normalizeLeaderboardSortExpression(row.expression).trim();
     if (!expr) {
       continue;
     }

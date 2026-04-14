@@ -22,7 +22,10 @@ export type {
   PlayerQueryFieldRow,
 } from "./types";
 
-export { findSliceIdForFieldName } from "./buildRqbFields";
+export {
+  findSliceIdForFieldName,
+  cascadingSlicesValueGroupsOnly,
+} from "./buildRqbFields";
 
 /** Ordered list of field blocks (extend by spreading more slices). */
 export const allPlayerQueryBlocks: PlayerQueryBlock[] = [

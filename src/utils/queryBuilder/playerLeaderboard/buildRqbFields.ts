@@ -84,6 +84,51 @@ export function findSliceIdForFieldName(
   return undefined;
 }
 
+/**
+ * Cascading groups used for SORT_BY in the visual builder: raw/value stats only.
+ * Rank and percentile slices sort the same order as raw for leaderboard purposes
+ * and are omitted from the sort UI until dedicated support exists.
+ */
+export function cascadingSlicesValueGroupsOnly(
+  slices: PlayerQueryCascadingSlice[],
+): PlayerQueryCascadingSlice[] {
+  return slices.filter(
+    (s) => !s.id.endsWith("__rank") && !s.id.endsWith("__pctile"),
+  );
+}
+
+/**
+ * If `expression` names a rank_ or pctile_ field from a graded block, returns the
+ * corresponding raw LINQ field from the sibling `__raw` slice; otherwise returns
+ * `expression` unchanged.
+ */
+export function mapRankOrPctileSortFieldToRawField(
+  expression: string,
+  fullSlices: PlayerQueryCascadingSlice[],
+  gradedPair: GradedPairResolver,
+): string {
+  const t = expression.trim();
+  if (!t) {
+    return expression;
+  }
+  const sid = findSliceIdForFieldName(fullSlices, t);
+  if (!sid || (!sid.endsWith("__rank") && !sid.endsWith("__pctile"))) {
+    return expression;
+  }
+  const rawSliceId = sid.replace(/__(rank|pctile)$/, "__raw");
+  const rawSlice = fullSlices.find((s) => s.id === rawSliceId);
+  if (!rawSlice) {
+    return expression;
+  }
+  for (const rf of rawSlice.fields) {
+    const pair = gradedPair(rf.name);
+    if (pair && (pair.rank === t || pair.pctile === t)) {
+      return rf.name;
+    }
+  }
+  return expression;
+}
+
 /** Every `name` token exposed in the query builder (for LINQ parse validation). */
 export function collectRegistryFieldNames(
   blocks: PlayerQueryBlock[],

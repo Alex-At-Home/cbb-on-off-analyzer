@@ -1,7 +1,12 @@
 import {
+  cascadingSlicesValueGroupsOnly,
+  playerLeaderboardCascadingFieldSlices,
+} from "../playerLeaderboard";
+import {
   composePlayerLeaderboardFilterString,
   formatRuleValue,
   linqToQuery,
+  normalizeLeaderboardSortExpression,
   parsePlayerLeaderboardFilterParts,
   parseWhereCoreToPlayerLeaderboardQuery,
   PLAYER_QB_CUSTOM_RULE_FIELD,
@@ -10,6 +15,7 @@ import {
   splitWhereOnTopLevelAnd,
   stripNonFilterLinqSuffixes,
 } from "../playerLeaderboardLinqBridge";
+import { teamLeaderboardCascadingFieldSlices } from "../teamLeaderboardRegistry";
 
 describe("playerLeaderboardLinqBridge", () => {
   it("strips SORT_BY and LIMIT tails", () => {
@@ -128,6 +134,38 @@ describe("playerLeaderboardLinqBridge", () => {
       ],
       limit: 25,
     });
+  });
+
+  it("parsePlayerLeaderboardFilterParts normalizes rank/pctile sort keys to raw value fields", () => {
+    const s =
+      "true SORT_BY pctile_off_efg DESC SORT_BY rank_team_stats.off_adj_ppp ASC";
+    const { sortRows } = parsePlayerLeaderboardFilterParts(s);
+    expect(sortRows[0]!.expression).toBe("off_efg");
+    expect(sortRows[1]!.expression).toBe("team_stats.off_adj_ppp");
+  });
+
+  it("normalizeLeaderboardSortExpression leaves non-graded sort expressions unchanged", () => {
+    expect(normalizeLeaderboardSortExpression("off_adj_rapm")).toBe(
+      "off_adj_rapm",
+    );
+    expect(normalizeLeaderboardSortExpression("100 * off_efg")).toBe(
+      "100 * off_efg",
+    );
+  });
+
+  it("cascadingSlicesValueGroupsOnly drops rank and percentile groups", () => {
+    const v = cascadingSlicesValueGroupsOnly(
+      playerLeaderboardCascadingFieldSlices,
+    );
+    expect(v.every((s) => !s.id.endsWith("__rank"))).toBe(true);
+    expect(v.every((s) => !s.id.endsWith("__pctile"))).toBe(true);
+    expect(v.length).toBeLessThan(playerLeaderboardCascadingFieldSlices.length);
+    const tv = cascadingSlicesValueGroupsOnly(
+      teamLeaderboardCascadingFieldSlices,
+    );
+    expect(tv.every((s) => !s.id.endsWith("__rank"))).toBe(true);
+    expect(tv.every((s) => !s.id.endsWith("__pctile"))).toBe(true);
+    expect(tv.length).toBeLessThan(teamLeaderboardCascadingFieldSlices.length);
   });
 
   it("composePlayerLeaderboardFilterString round-trips parse parts", () => {

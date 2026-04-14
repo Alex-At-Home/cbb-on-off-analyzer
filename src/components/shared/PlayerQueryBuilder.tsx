@@ -27,6 +27,7 @@ import "react-querybuilder/dist/query-builder.css";
 import styles from "./PlayerQueryBuilder.module.css";
 import { AdvancedFilterUtils } from "../../utils/AdvancedFilterUtils";
 import {
+  cascadingSlicesValueGroupsOnly,
   findSliceIdForFieldName,
   playerLeaderboardCascadingFieldSlices,
   playerLeaderboardFlatRqbFields,
@@ -50,6 +51,14 @@ import {
   teamLeaderboardFlatRqbFields,
 } from "../../utils/queryBuilder/teamLeaderboardRegistry";
 import LinqExpressionBuilder from "./LinqExpressionBuilder";
+
+/** Sort UI: value groups only (no rank / percentile cascading groups). */
+const PLAYER_LBOARD_SORT_SLICES = cascadingSlicesValueGroupsOnly(
+  playerLeaderboardCascadingFieldSlices,
+);
+const TEAM_LBOARD_SORT_SLICES = cascadingSlicesValueGroupsOnly(
+  teamLeaderboardCascadingFieldSlices,
+);
 
 const CASCADING_SLICES_CONTEXT_KEY = "playerFieldCascadingSlices";
 const CASCADING_TEAM_SLICES_CONTEXT_KEY = "teamFieldCascadingSlices";
@@ -329,9 +338,24 @@ const PlayerQbValueEditor: React.FC<ValueEditorProps> = (props) => {
 const SortFieldCascadingSelector: React.FC<{
   readonly expression: string;
   readonly disabled?: boolean;
-  readonly contextSlices: PlayerQueryCascadingSlice[];
+  readonly playerSlices: PlayerQueryCascadingSlice[];
+  readonly teamSlices: PlayerQueryCascadingSlice[];
   readonly onExpressionChange: (fieldName: string) => void;
-}> = ({ expression, disabled, contextSlices, onExpressionChange }) => {
+}> = ({
+  expression,
+  disabled,
+  playerSlices,
+  teamSlices,
+  onExpressionChange,
+}) => {
+  const inferred = inferLeaderboardRuleSource(expression);
+  const source: "player" | "team" = inferred === "team" ? "team" : "player";
+  const contextSlices = source === "team" ? teamSlices : playerSlices;
+
+  if (!contextSlices.length) {
+    return null;
+  }
+
   const sliceId =
     (expression && findSliceIdForFieldName(contextSlices, expression)) ||
     contextSlices[0]!.id;
@@ -339,7 +363,32 @@ const SortFieldCascadingSelector: React.FC<{
     contextSlices.find((s) => s.id === sliceId) ?? contextSlices[0]!;
 
   return (
-    <div className="d-flex flex-wrap align-items-center flex-grow-1">
+    <div
+      className="d-flex flex-wrap align-items-center flex-grow-1"
+      style={{ minWidth: 0 }}
+    >
+      <Form.Control
+        as="select"
+        size="sm"
+        className="mr-1 mb-1"
+        style={{ minWidth: "6.5rem", maxWidth: "10rem" }}
+        title="Rule source"
+        disabled={disabled}
+        value={source}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const v = e.target.value as "player" | "team";
+          if (v === "team") {
+            const first = teamSlices[0]?.fields[0]?.name ?? "";
+            onExpressionChange(first);
+          } else {
+            const first = playerSlices[0]?.fields[0]?.name ?? "";
+            onExpressionChange(first);
+          }
+        }}
+      >
+        <option value="player">Player</option>
+        <option value="team">Team</option>
+      </Form.Control>
       <Form.Control
         as="select"
         size="sm"
@@ -705,39 +754,47 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
       {sortRows.map((row) => (
         <div
           key={row.id}
-          className="d-flex flex-wrap align-items-center mb-1 border rounded px-2 py-1"
+          className="d-flex flex-wrap align-items-center mb-1 border rounded px-2 py-1 w-100"
         >
           <SortFieldCascadingSelector
             expression={row.expression}
             disabled={disabled}
-            contextSlices={playerLeaderboardCascadingFieldSlices}
+            playerSlices={PLAYER_LBOARD_SORT_SLICES}
+            teamSlices={TEAM_LBOARD_SORT_SLICES}
             onExpressionChange={(fieldName) =>
               updateSortRow(row.id, { expression: fieldName })
             }
           />
-          <Form.Control
-            as="select"
-            size="sm"
-            style={{ width: "5.5rem" }}
-            className="mr-1 mb-1"
-            disabled={disabled}
-            value={row.ascending ? "asc" : "desc"}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              updateSortRow(row.id, { ascending: e.target.value === "asc" })
-            }
-          >
-            <option value="desc">DESC</option>
-            <option value="asc">ASC</option>
-          </Form.Control>
-          <Button
-            variant="outline-danger"
-            size="sm"
-            className="mb-1"
-            disabled={disabled}
-            onClick={() => removeSortRow(row.id)}
-          >
-            Remove
-          </Button>
+          <div
+            className="flex-grow-1"
+            style={{ minWidth: "0.75rem" }}
+            aria-hidden
+          />
+          <div className="d-flex flex-wrap align-items-center flex-shrink-0">
+            <Form.Control
+              as="select"
+              size="sm"
+              style={{ width: "5.5rem" }}
+              className="mr-1 mb-1"
+              disabled={disabled}
+              value={row.ascending ? "asc" : "desc"}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                updateSortRow(row.id, { ascending: e.target.value === "asc" })
+              }
+            >
+              <option value="desc">DESC</option>
+              <option value="asc">ASC</option>
+            </Form.Control>
+            <Button
+              variant="outline-danger"
+              size="sm"
+              className="mb-1"
+              disabled={disabled}
+              onClick={() => removeSortRow(row.id)}
+            >
+              Remove
+            </Button>
+          </div>
         </div>
       ))}
 
