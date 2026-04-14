@@ -47,6 +47,25 @@ describe("playerLeaderboardLinqBridge", () => {
     expect(linqToQuery("not_a_real_field > 3")).toBeNull();
   });
 
+  it("serializes RQB placeholder operator + empty value as bare field", () => {
+    const q = linqToQuery("team");
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe("team");
+  });
+
+  it("round-trips bare field with && chain", () => {
+    const src = "team && off_efg > 0.5";
+    const q = linqToQuery(src);
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe(src);
+  });
+
+  it("parses legacy team ~ empty string as bare field", () => {
+    const q = linqToQuery(`team ~ ""`);
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe("team");
+  });
+
   it("parses quoted string values", () => {
     const src = `player_name = 'Smith'`;
     const q = linqToQuery(src);

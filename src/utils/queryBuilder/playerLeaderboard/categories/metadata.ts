@@ -30,4 +30,13 @@ export const playerQueryMetadataBlocks: PlayerQueryBlock[] = [
       "transfer_dest",
     ].map(row),
   },
+  {
+    id: "transfer_",
+    title: "Transfer metadata",
+    includeRankPctile: false,
+    fields: [
+      { linq: "transfer_src", label: "Transfer From" },
+      { linq: "transfer_dst", label: "Transfer To" },
+    ],
+  },
 ];

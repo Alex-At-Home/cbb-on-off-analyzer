@@ -81,7 +81,7 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
   },
   {
     id: "scramble",
-    title: "Scramble",
+    title: "Scramble Stats",
     includeRankPctile: true,
     fields: [
       "off_scramble_twop",
@@ -101,7 +101,7 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
   },
   {
     id: "transition",
-    title: "Transition",
+    title: "Transition Stats",
     includeRankPctile: true,
     fields: [
       "off_trans_twop",
@@ -121,18 +121,18 @@ export const playerQueryGradedStatBlocks: PlayerQueryBlock[] = [
   },
   {
     id: "rebounding_other",
-    title: "Rebounding and other",
+    title: "Rebounding",
     includeRankPctile: true,
     fields: ["off_orb", "def_orb", "off_reb", "def_reb"].map(row),
   },
   {
-    id: "defensive_shorthand",
-    title: "Defensive shorthand",
+    id: "defensive_stats",
+    title: "Defensive Stats",
     includeRankPctile: true,
     fields: [
-      { linq: "def_stl", label: "Def steal rate (def TO%)" },
-      { linq: "def_blk", label: "Def block rate (rim def 2P%)" },
-      { linq: "def_fc", label: "Def foul context (def FT rate)" },
+      { linq: "def_stl", label: "Def steal rate" },
+      { linq: "def_blk", label: "Def block rate" },
+      { linq: "def_fc", label: "Def foul called/50" },
     ],
   },
   {

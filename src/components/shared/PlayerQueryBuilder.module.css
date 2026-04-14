@@ -1,0 +1,9 @@
+/*
+ * RQB uses global class names on its root (.player-query-builder). Scope tweaks
+ * under .root so this stays a CSS Module (Next.js allows .module.css here).
+ */
+.root :global(.player-query-builder .rule-fields) {
+  flex: 0 0 28rem;
+  max-width: 28rem;
+  min-width: 0;
+}

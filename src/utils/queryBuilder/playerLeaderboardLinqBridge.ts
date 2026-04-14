@@ -1,6 +1,12 @@
 import type { RuleGroupType, RuleType } from "react-querybuilder";
 import { playerQueryBuilderFieldNameSet } from "./playerLeaderboard";
 
+/**
+ * react-querybuilder uses `~` as `translations.operators.placeholderName` when no
+ * real operator is selected (`autoSelectOperator={false}`).
+ */
+export const RQB_PLACEHOLDER_OPERATOR = "~" as const;
+
 /** RQB operator `name` values used by the player leaderboard builder. */
 export const PLAYER_LEADERBOARD_RQB_OPERATORS = [
   { name: ">", label: ">" },
@@ -249,6 +255,20 @@ function parseAnd(ctx: ParseCtx): RuleGroupType | RuleType | null {
   };
 }
 
+/** After a bare field name, parsing may stop at these boundaries. */
+function isBareFieldEnd(ctx: ParseCtx): boolean {
+  skipWs(ctx);
+  if (ctx.i >= ctx.s.length) {
+    return true;
+  }
+  const c = ctx.s[ctx.i]!;
+  if (c === ")") {
+    return true;
+  }
+  const two = ctx.s.slice(ctx.i, ctx.i + 2);
+  return two === "&&" || two === "||";
+}
+
 function parsePrimary(ctx: ParseCtx): RuleGroupType | RuleType | null {
   skipWs(ctx);
   if (ctx.s[ctx.i] === "(") {
@@ -268,12 +288,40 @@ function parsePrimary(ctx: ParseCtx): RuleGroupType | RuleType | null {
 }
 
 function parseRule(ctx: ParseCtx): RuleType | null {
+  const start = ctx.i;
   const field = readIdent(ctx);
   if (!field || !playerQueryBuilderFieldNameSet.has(field)) {
     return null;
   }
+  const afterField = ctx.i;
+  skipWs(ctx);
+  // Legacy text from older serialization: `field ~ ""`
+  if (ctx.i < ctx.s.length && ctx.s[ctx.i] === RQB_PLACEHOLDER_OPERATOR) {
+    ctx.i++;
+    skipWs(ctx);
+    const legacyStr = readString(ctx);
+    if (legacyStr !== null && legacyStr === "") {
+      return {
+        id: nextId("r"),
+        field,
+        operator: RQB_PLACEHOLDER_OPERATOR,
+        value: "",
+      };
+    }
+    ctx.i = afterField;
+  }
   const op = readOp(ctx);
   if (!op) {
+    skipWs(ctx);
+    if (isBareFieldEnd(ctx)) {
+      return {
+        id: nextId("r"),
+        field,
+        operator: RQB_PLACEHOLDER_OPERATOR,
+        value: "",
+      };
+    }
+    ctx.i = start;
     return null;
   }
   skipWs(ctx);
@@ -313,9 +361,26 @@ export function formatRuleValue(value: unknown): string {
   return `'${s.replace(/'/g, "\\'")}'`;
 }
 
+function isPlaceholderBareFieldRule(rule: RuleType): boolean {
+  if ((rule.operator || "").trim() !== RQB_PLACEHOLDER_OPERATOR) {
+    return false;
+  }
+  const v = rule.value;
+  if (v === undefined || v === null) {
+    return true;
+  }
+  if (typeof v === "string" && v.trim() === "") {
+    return true;
+  }
+  return false;
+}
+
 function ruleToLinqFragment(rule: RuleType): string {
   if (!isNonEmptyRule(rule)) {
     return "";
+  }
+  if (isPlaceholderBareFieldRule(rule)) {
+    return (rule.field || "").trim();
   }
   return `${rule.field} ${rule.operator} ${formatRuleValue(rule.value)}`;
 }
@@ -381,7 +446,10 @@ export function parsePlayerLeaderboardFilterParts(committed: string): {
     .split(/\bSORT_BY\b/i)
     .map((frag) => frag.split(/\bLIMIT\b/i)[0] ?? frag);
   const whereCore = (filterFrags[0] ?? "").trim();
-  const sortFrags = filterFrags.slice(1).map((f) => f.trim()).filter(Boolean);
+  const sortFrags = filterFrags
+    .slice(1)
+    .map((f) => f.trim())
+    .filter(Boolean);
   const sortRows: PlayerLeaderboardSortRow[] = sortFrags.map((frag, i) => {
     const ascending = frag.toUpperCase().indexOf("ASC") >= 0;
     return {

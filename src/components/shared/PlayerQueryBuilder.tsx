@@ -7,6 +7,7 @@ import type {
 } from "react-querybuilder";
 import { ActionElement, QueryBuilder, ValueSelector } from "react-querybuilder";
 import "react-querybuilder/dist/query-builder.css";
+import styles from "./PlayerQueryBuilder.module.css";
 import { AdvancedFilterUtils } from "../../utils/AdvancedFilterUtils";
 import {
   findSliceIdForFieldName,
@@ -438,8 +439,10 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
   const customExprPrompt =
     "Where clause only (SORT_BY / LIMIT are configured below). Example: off_efg > 20%";
 
+  const rootClassName = [styles.root, className].filter(Boolean).join(" ");
+
   return (
-    <div className={className}>
+    <div className={rootClassName || undefined}>
       {builderMode === "custom" ? (
         <>
           <Alert variant="info" className="py-2 mb-2 small">
