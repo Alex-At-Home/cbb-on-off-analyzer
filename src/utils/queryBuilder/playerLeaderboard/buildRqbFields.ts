@@ -2,11 +2,17 @@ import type { Field } from "react-querybuilder";
 import { rawFieldToGradedPair } from "../playerLeaderboardGradedNames";
 import type { PlayerQueryBlock, PlayerQueryCascadingSlice } from "./types";
 
+/** Maps a raw cascading `linq` token to rank_/pctile_ pair names, or null if ungraded. */
+export type GradedPairResolver = (
+  rawLinqField: string,
+) => { rank: string; pctile: string } | null;
+
 /**
  * Builds separate first-dropdown “slices” (group → then field), instead of one giant optgroup select.
  */
 export function buildCascadingFieldSlices(
   blocks: PlayerQueryBlock[],
+  gradedPair: GradedPairResolver = rawFieldToGradedPair,
 ): PlayerQueryCascadingSlice[] {
   const slices: PlayerQueryCascadingSlice[] = [];
   for (const block of blocks) {
@@ -25,7 +31,7 @@ export function buildCascadingFieldSlices(
     });
 
     const pctileFields = block.fields.flatMap((f) => {
-      const pair = rawFieldToGradedPair(f.linq);
+      const pair = gradedPair(f.linq);
       return pair
         ? [{ name: pair.pctile, label: `${f.label} — percentile` }]
         : [];
@@ -39,7 +45,7 @@ export function buildCascadingFieldSlices(
     }
 
     const rankFields = block.fields.flatMap((f) => {
-      const pair = rawFieldToGradedPair(f.linq);
+      const pair = gradedPair(f.linq);
       return pair ? [{ name: pair.rank, label: `${f.label} — rank` }] : [];
     });
     if (rankFields.length > 0) {
@@ -81,13 +87,14 @@ export function findSliceIdForFieldName(
 /** Every `name` token exposed in the query builder (for LINQ parse validation). */
 export function collectRegistryFieldNames(
   blocks: PlayerQueryBlock[],
+  gradedPair: GradedPairResolver = rawFieldToGradedPair,
 ): string[] {
   const names: string[] = [];
   for (const block of blocks) {
     for (const f of block.fields) {
       names.push(f.linq);
       if (block.includeRankPctile) {
-        const pair = rawFieldToGradedPair(f.linq);
+        const pair = gradedPair(f.linq);
         if (pair) {
           names.push(pair.rank, pair.pctile);
         }

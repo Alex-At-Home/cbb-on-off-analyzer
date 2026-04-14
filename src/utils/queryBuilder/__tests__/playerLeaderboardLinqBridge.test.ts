@@ -109,6 +109,14 @@ describe("playerLeaderboardLinqBridge", () => {
     expect(queryToLinq(q!)).toBe(src);
   });
 
+  it("parses team_stats / rank_team_stats / pctile_team_stats prefixed fields", () => {
+    const src =
+      "team_stats.off_efg > 0.5 && rank_team_stats.def_adj_ppp < 50 && pctile_team_stats.off_adj_ppp > 10%";
+    const q = linqToQuery(src);
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe(src);
+  });
+
   it("parsePlayerLeaderboardFilterParts splits where, sorts, and limit", () => {
     const s =
       "off_efg > 0.5 SORT_BY off_adj_rapm ASC SORT_BY def_adj_rapm DESC LIMIT 25";

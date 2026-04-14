@@ -34,6 +34,7 @@ import {
 } from "../../utils/queryBuilder/playerLeaderboard";
 import {
   composePlayerLeaderboardFilterString,
+  inferLeaderboardRuleSource,
   newSortRowId,
   parsePlayerLeaderboardFilterParts,
   parseWhereCoreToPlayerLeaderboardQuery,
@@ -44,9 +45,14 @@ import {
   type PlayerLeaderboardSortRow,
   type PlayerQueryRuleSource,
 } from "../../utils/queryBuilder/playerLeaderboardLinqBridge";
+import {
+  teamLeaderboardCascadingFieldSlices,
+  teamLeaderboardFlatRqbFields,
+} from "../../utils/queryBuilder/teamLeaderboardRegistry";
 import LinqExpressionBuilder from "./LinqExpressionBuilder";
 
 const CASCADING_SLICES_CONTEXT_KEY = "playerFieldCascadingSlices";
+const CASCADING_TEAM_SLICES_CONTEXT_KEY = "teamFieldCascadingSlices";
 
 const playerQueryBuilderCustomRuleField: Field = {
   name: PLAYER_QB_CUSTOM_RULE_FIELD,
@@ -55,14 +61,28 @@ const playerQueryBuilderCustomRuleField: Field = {
   defaultOperator: "=",
 };
 
-const playerLeaderboardQueryBuilderFields: Field[] = [
-  ...playerLeaderboardFlatRqbFields,
-  playerQueryBuilderCustomRuleField,
-];
+const mergedLeaderboardQueryBuilderFields: Field[] = (() => {
+  const byName = new Map<string, Field>();
+  for (const f of playerLeaderboardFlatRqbFields) {
+    byName.set(String(f.name), f);
+  }
+  for (const f of teamLeaderboardFlatRqbFields) {
+    const n = String(f.name);
+    if (!byName.has(n)) {
+      byName.set(n, f);
+    }
+  }
+  byName.set(
+    String(playerQueryBuilderCustomRuleField.name),
+    playerQueryBuilderCustomRuleField,
+  );
+  return Array.from(byName.values());
+})();
 
 type PlayerQbUiContextValue = {
   morphToCustom: (path: number[]) => void;
   morphToPlayer: (path: number[]) => void;
+  morphToTeam: (path: number[]) => void;
   showHelp?: boolean;
 };
 
@@ -126,21 +146,33 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
   props,
 ) => {
   const ui = useContext(PlayerQbUiContext);
-  const slices = props.context?.[CASCADING_SLICES_CONTEXT_KEY] as
+  const playerSlices = props.context?.[CASCADING_SLICES_CONTEXT_KEY] as
     | PlayerQueryCascadingSlice[]
     | undefined;
-  const isCustom = props.rule.field === PLAYER_QB_CUSTOM_RULE_FIELD;
-  const source: PlayerQueryRuleSource = isCustom ? "custom" : "player";
+  const teamSlices = props.context?.[CASCADING_TEAM_SLICES_CONTEXT_KEY] as
+    | PlayerQueryCascadingSlice[]
+    | undefined;
+  const source: PlayerQueryRuleSource = inferLeaderboardRuleSource(
+    props.rule.field,
+  );
+  const slices =
+    source === "team"
+      ? teamSlices
+      : source === "player"
+        ? playerSlices
+        : undefined;
 
-  if (!slices?.length) {
+  if (!playerSlices?.length) {
     return <ValueSelector {...props} />;
   }
 
   const currentField = props.value ?? "";
+  const activeSliceList = slices ?? playerSlices;
   const sliceId =
-    (currentField && findSliceIdForFieldName(slices, currentField)) ||
-    slices[0]!.id;
-  const activeSlice = slices.find((s) => s.id === sliceId) ?? slices[0]!;
+    (currentField && findSliceIdForFieldName(activeSliceList, currentField)) ||
+    activeSliceList[0]!.id;
+  const activeSlice =
+    activeSliceList.find((s) => s.id === sliceId) ?? activeSliceList[0]!;
 
   return (
     <div
@@ -157,17 +189,20 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
           value={source}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const v = e.target.value as PlayerQueryRuleSource;
-            if (v === "custom" && source === "player") {
+            if (v === "custom" && source !== "custom") {
               ui?.morphToCustom(props.path);
-            } else if (v === "player" && source === "custom") {
+            } else if (v === "player" && source !== "player") {
               ui?.morphToPlayer(props.path);
+            } else if (v === "team" && source !== "team") {
+              ui?.morphToTeam(props.path);
             }
           }}
         >
           <option value="player">Player</option>
+          <option value="team">Team</option>
           <option value="custom">Custom</option>
         </Form.Control>
-        {!isCustom ? (
+        {source !== "custom" ? (
           <Form.Control
             as="select"
             size="sm"
@@ -177,14 +212,16 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
             disabled={props.disabled}
             value={sliceId}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              const nextSlice = slices.find((s) => s.id === e.target.value);
+              const nextSlice = activeSliceList.find(
+                (s) => s.id === e.target.value,
+              );
               const first = nextSlice?.fields[0];
               if (first) {
                 props.handleOnChange(first.name);
               }
             }}
           >
-            {slices.map((s) => (
+            {activeSliceList.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.title}
               </option>
@@ -192,7 +229,7 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
           </Form.Control>
         ) : null}
       </div>
-      {!isCustom ? (
+      {source !== "custom" ? (
         <div className="d-flex flex-wrap align-items-center">
           <Form.Control
             as="select"
@@ -426,13 +463,33 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
     [emitComposed],
   );
 
+  const morphToTeam = useCallback(
+    (path: number[]) => {
+      const firstField =
+        teamLeaderboardCascadingFieldSlices[0]?.fields[0]?.name ??
+        "team_stats.off_adj_ppp";
+      const q = queryRef.current;
+      const next = mapQueryAtPath(q, path, (r) => ({
+        ...r,
+        field: firstField,
+        operator: RQB_PLACEHOLDER_OPERATOR,
+        value: "",
+      }));
+      setQuery(next);
+      queryRef.current = next;
+      emitComposed({ nextQuery: next });
+    },
+    [emitComposed],
+  );
+
   const playerQbUiValue = useMemo(
     () => ({
       morphToCustom,
       morphToPlayer,
+      morphToTeam,
       showHelp,
     }),
-    [morphToCustom, morphToPlayer, showHelp],
+    [morphToCustom, morphToPlayer, morphToTeam, showHelp],
   );
 
   const applyCommittedValue = useCallback((committed: string) => {
@@ -542,6 +599,7 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
   const qbContext = useMemo(
     () => ({
       [CASCADING_SLICES_CONTEXT_KEY]: playerLeaderboardCascadingFieldSlices,
+      [CASCADING_TEAM_SLICES_CONTEXT_KEY]: teamLeaderboardCascadingFieldSlices,
     }),
     [],
   );
@@ -618,7 +676,7 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
     <div className={rootClassName || undefined}>
       <PlayerQbUiContext.Provider value={playerQbUiValue}>
         <QueryBuilder
-          fields={playerLeaderboardQueryBuilderFields}
+          fields={mergedLeaderboardQueryBuilderFields}
           context={qbContext}
           controlElements={{
             fieldSelector: PlayerLeaderboardCascadingFieldSelector,

@@ -1,6 +1,8 @@
 import type { RuleGroupType, RuleType } from "react-querybuilder";
+import type { LeaderboardRuleSource } from "./leaderboardTeamFieldPrefixes";
 import { playerQueryBuilderFieldNameSet } from "./playerLeaderboard";
 import { PLAYER_LEADERBOARD_POS_SLOTS } from "./playerLeaderboardPosSlots";
+import { teamQueryBuilderFieldNameSet } from "./teamLeaderboardRegistry";
 
 const BRACKETED_POS_SLOT_KEYS = new Set<string>([
   ...PLAYER_LEADERBOARD_POS_SLOTS,
@@ -9,6 +11,12 @@ const BRACKETED_POS_SLOT_KEYS = new Set<string>([
   "_3_",
   "_4_",
   "_5_",
+]);
+
+/** Player + team visual-builder tokens (union); used to parse mixed where clauses. */
+const PLAYER_LEADERBOARD_VISUAL_QUERY_FIELD_SET = new Set<string>([
+  ...playerQueryBuilderFieldNameSet,
+  ...teamQueryBuilderFieldNameSet,
 ]);
 
 /**
@@ -23,7 +31,26 @@ export const RQB_PLACEHOLDER_OPERATOR = "~" as const;
  */
 export const PLAYER_QB_CUSTOM_RULE_FIELD = "__PLAYER_QB_CUSTOM__" as const;
 
-export type PlayerQueryRuleSource = "player" | "custom";
+export type PlayerQueryRuleSource = LeaderboardRuleSource;
+
+export function inferLeaderboardRuleSource(
+  field: string | undefined,
+): PlayerQueryRuleSource {
+  if (!field || field.trim() === "") {
+    return "player";
+  }
+  if (field === PLAYER_QB_CUSTOM_RULE_FIELD) {
+    return "custom";
+  }
+  if (
+    field.startsWith("team_stats.") ||
+    field.startsWith("rank_team_stats.") ||
+    field.startsWith("pctile_team_stats.")
+  ) {
+    return "team";
+  }
+  return "player";
+}
 
 /** RQB operator `name` values used by the player leaderboard builder. */
 export const PLAYER_LEADERBOARD_RQB_OPERATORS = [
@@ -517,7 +544,7 @@ function parsePrimary(ctx: ParseCtx): RuleGroupType | RuleType | null {
 function parseRule(ctx: ParseCtx): RuleType | null {
   const start = ctx.i;
   const field = readPlayerLinqFieldName(ctx);
-  if (!field || !playerQueryBuilderFieldNameSet.has(field)) {
+  if (!field || !PLAYER_LEADERBOARD_VISUAL_QUERY_FIELD_SET.has(field)) {
     return null;
   }
   const afterField = ctx.i;

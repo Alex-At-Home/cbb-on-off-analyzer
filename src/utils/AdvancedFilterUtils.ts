@@ -661,9 +661,13 @@ export class AdvancedFilterUtils {
 
   static readonly playerLboardWithTeamStatsAutocomplete =
     AdvancedFilterUtils.playerLeaderBoardAutocomplete.concat(
+      AdvancedFilterUtils.teamExplorerMetadata.map(
+        (field) => `team_stats.${field}`,
+      ),
       AdvancedFilterUtils.teamExplorerAutocomplete
         .filter(
           (field) =>
+            field === "tempo" ||
             _.startsWith(field, "off_") ||
             _.startsWith(field, "def_") ||
             _.startsWith(field, "adj_") ||
@@ -818,59 +822,73 @@ export class AdvancedFilterUtils {
 
   /** Misc transforms to map nice auto-complete-y terms to the ugly objects (normal mode, eg player leaderboard) */
   static singleYearfixObjectFormat(s: string) {
-    return s
-      .replace(/ALL/g, "($.player_code)")
-      .replace(
-        /(off|def)_style_([0-9a-zA-Z_]+)_(pct|ppp|usg)/g,
-        (substr: string, offDef: string, styleType: string, pctPpp: string) =>
-          `$.${
-            offDef == "def" ? "style_def" : "style" //(have to reverse prefix to avoid colliding with def_ below)
-          }?.${AdvancedFilterUtils.playerStyleFromAutocomplete(
-            styleType,
-            pctPpp,
-          )}?.value`,
-      )
-      .replace(
-        /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
-        (
-          substr: string,
-          ignoredCaptureGroup: string,
-          maybeTeamStats: string | undefined,
-        ) => {
-          return maybeTeamStats
-            ? `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
-                substr.substring(maybeTeamStats.length),
-              ).substring(4)}` //(replace $.p. with team stats prefix)
-            : `$.p.${substr}?.value`;
-        },
-      )
-      .replace(
-        /((team_stats[.])(?:adj|raw)_[0-9a-zA-Z_]+)/g, //adj and raw when team stats _is_ specified
-        (
-          substr: string,
-          ignoredCaptureGroup: string,
-          maybeTeamStats: string,
-        ) => {
-          return `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
-            substr.substring(maybeTeamStats.length),
-          ).substring(4)}`; //(replace $.p. with team stats prefix)
-        },
-      )
-      .replace(
-        /(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g,
-        "$1$.margins.off_$2?.value",
-      ) //adj for players (team_stats above)
-      .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.margins.prev_off_$1?.value") //adj for players (prev year only)
-      .replace(/roster[.]height/g, "$.normht")
-      .replace(/transfer_(src|dest)/g, "$.transfer_$1")
-      .replace(/player_(name|code)/g, '$.player_$1.replace(/"/g, "\'")')
-      .replace(
-        /(^| |[(!*+/-]|prev_)(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
-        "$1$.p.$2",
-      )
-      .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
-      .replace(/roster[.]/g, "roster?.") //(roster not always present)
-      .replace(/(off|def)_reb/g, "$1_orb"); //(nicer version of rebound name)
+    return (
+      s
+        .replace(/ALL/g, "($.player_code)")
+        // Team metadata / tempo on `p.team_stats` (player-leaderboard `team_stats.*` LINQ)
+        .replace(/team_stats\.(tempo)\b/g, "$.p.team_stats.tempo?.value")
+        .replace(
+          /team_stats\.(_id|team_name|conf_nick|conf|year|wins|losses|wab|wae|exp_wab|power)\b/g,
+          "$.p.team_stats.$1",
+        )
+        .replace(
+          /(team_stats[.])?(off|def)_style_([0-9a-zA-Z_]+)_(pct|ppp|usg)/g,
+          (
+            substr: string,
+            maybeTeamStats: string | undefined,
+            offDef: string,
+            styleType: string,
+            pctPpp: string,
+          ) =>
+            `$.${maybeTeamStats ? "p.team_stats." : ""}${
+              offDef == "def" ? "style_def" : "style" //(have to reverse prefix to avoid colliding with def_ below)
+            }?.${AdvancedFilterUtils.playerStyleFromAutocomplete(
+              styleType,
+              pctPpp,
+            )}?.value`,
+        )
+        .replace(
+          /((team_stats[.])?(?:off|def)_[0-9a-zA-Z_]+)/g, //(don't include adj, see below)
+          (
+            substr: string,
+            ignoredCaptureGroup: string,
+            maybeTeamStats: string | undefined,
+          ) => {
+            return maybeTeamStats
+              ? `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
+                  substr.substring(maybeTeamStats.length),
+                ).substring(4)}` //(replace $.p. with team stats prefix)
+              : `$.p.${substr}?.value`;
+          },
+        )
+        .replace(
+          /((team_stats[.])(?:adj|raw)_[0-9a-zA-Z_]+)/g, //adj and raw when team stats _is_ specified
+          (
+            substr: string,
+            ignoredCaptureGroup: string,
+            maybeTeamStats: string,
+          ) => {
+            return `$.p.team_stats.${AdvancedFilterUtils.teamFixObjectFormat(
+              substr.substring(maybeTeamStats.length),
+            ).substring(4)}`; //(replace $.p. with team stats prefix)
+          },
+        )
+        .replace(
+          /(^| |[(!*+/-])(adj_[0-9a-zA-Z_]+)/g,
+          "$1$.margins.off_$2?.value",
+        ) //adj for players (team_stats above)
+        .replace(/prev_(adj_[0-9a-zA-Z_]+)/g, "$.margins.prev_off_$1?.value") //adj for players (prev year only)
+        .replace(/roster[.]height/g, "$.normht")
+        .replace(/transfer_(src|dest)/g, "$.transfer_$1")
+        .replace(/player_(name|code)/g, '$.player_$1.replace(/"/g, "\'")')
+        .replace(
+          /(^| |[(!*+/-]|prev_)(roster[.][a-z]+|pos[CF][a-z]+|tier|team|conf|year)/g,
+          "$1$.p.$2",
+        )
+        .replace(/[$][.]p[.]def_ftr[?][.]value/g, "(100*$.p.def_ftr?.value)") //(fouls called/50)
+        .replace(/roster[.]/g, "roster?.") //(roster not always present)
+        .replace(/(off|def)_reb/g, "$1_orb")
+    ); //(nicer version of rebound name)
   }
   /** Misc transforms to map nice auto-complete-y terms to the ugly objects (multi-year, eg player season comparison mode) */
   static multiYearfixObjectFormat(s: string) {
@@ -1734,7 +1752,7 @@ export class AdvancedFilterUtils {
   /** Extracts the fields for which rank/pctil need to be calculated */
   private static buildGradeQueries = (
     filterStrIn: string,
-    prefix: string,
+    prefix: "rank_" | "pctile_" | "rank_team_stats[.]" | "pctile_team_stats[.]",
     extraParams: Record<string, string>,
     isPlayer: boolean,
   ): [string[], string[]] => {
@@ -1771,9 +1789,6 @@ export class AdvancedFilterUtils {
             .replace(/[$][.]p[.](?:off_|def_)([a-zA-Z_0-9]+).*/, "$1")
             .replace(/[$][.]p[.](tempo).*/, "$1"),
         );
-
-    //DEBUG
-    //console.log(`gradeFieldsIncStyle: ${JSON.stringify(gradeFieldsIncStyle)}`);
 
     const isStyleField = (field: string) =>
       _.startsWith(field, "$.p.style") ||
@@ -1818,6 +1833,11 @@ export class AdvancedFilterUtils {
           ),
       )
       .value();
+
+    //DEBUG
+    // console.log(
+    //   `gradeFieldsIncStyle: [${JSON.stringify(gradeFieldsIncStyle)}] -> [${gradeFieldsNotStyle}][${styleGradesFields}]`,
+    // );
 
     return [gradeFieldsNotStyle, styleGradesFields];
   };
