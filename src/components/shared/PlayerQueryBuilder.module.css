@@ -1,57 +1,235 @@
 /*
  * RQB uses global class names on its root (.player-query-builder). Scope tweaks
  * under .root so this stays a CSS Module (Next.js allows .module.css here).
+ * Class reference: https://react-querybuilder.js.org/docs/6/styling/classnames
  */
-.root :global(.player-query-builder .rule-fields) {
-  flex: 0 0 28rem;
-  max-width: 28rem;
+
+/*
+ * RQB passes `rule-fields` on this shell. It must be a flex item that can shrink (min-width:0)
+ * so it does not consume 100% row width (which blocks the value editor from sitting inline).
+ */
+.ruleFieldsShell {
+  flex: 0 1 auto;
   min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Inner strip: fills shell width; wraps selects instead of forcing row overflow */
+.ruleFieldSelector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ruleFieldSelect {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  width: auto;
+}
+
+.rootAddRuleCluster {
+  gap: 0.4rem;
 }
 
 /*
- * RQB v7 puts `rule-operators` / `rule-value` on the native <select>/<input>, not a wrapper.
- * Bootstrap `form-control` uses width:100% on the operator select, which steals the whole row.
+ * +Rule / +Sort / +Limit / +Group: default Bootstrap outline-secondary is nearly invisible
+ * on the pale RQB panel in light mode — use the same hoop purple family as remove glyphs.
  */
-.root :global(.player-query-builder .rule) {
-  min-width: 0;
+.qbAddToolbarBtn {
+  color: #3d157a !important;
+  border-color: #3d157a !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
-.root :global(.player-query-builder .rule select.rule-operators),
-.root :global(.player-query-builder .rule select.form-control.rule-operators) {
-  flex: 0 0 auto !important;
+.qbAddToolbarBtn:hover:not(:disabled),
+.qbAddToolbarBtn:focus:not(:disabled) {
+  color: #fff !important;
+  background-color: #3d157a !important;
+  border-color: #3d157a !important;
+}
+
+.qbAddToolbarBtn:active:not(:disabled) {
+  color: #fff !important;
+  background-color: #2d0f5c !important;
+  border-color: #2d0f5c !important;
+}
+
+:global([data-theme="dark"]) .qbAddToolbarBtn {
+  color: #e9d5ff !important;
+  border-color: #a78bfa !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+:global([data-theme="dark"]) .qbAddToolbarBtn:hover:not(:disabled),
+:global([data-theme="dark"]) .qbAddToolbarBtn:focus:not(:disabled) {
+  color: #1a0a2e !important;
+  background-color: #c4b5fd !important;
+  border-color: #c4b5fd !important;
+}
+
+:global([data-theme="dark"]) .qbAddToolbarBtn:active:not(:disabled) {
+  color: #f5f3ff !important;
+  background-color: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
+}
+
+/*
+ * Remove-rule / remove-group glyph: hoop-explorer purple (same family as negated filter
+ * chips in react_select_dark.css, e.g. #3d157a / #1a015aff), not outline-danger red.
+ */
+.removeRuleBtn {
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 0.2rem 0.45rem;
+  color: #3d157a !important;
+  border-color: #3d157a !important;
+  background-color: #fff !important;
+}
+
+.removeRuleBtn:hover:not(:disabled),
+.removeRuleBtn:focus:not(:disabled) {
+  color: #fff !important;
+  background-color: #3d157a !important;
+  border-color: #3d157a !important;
+}
+
+.removeRuleBtn:active:not(:disabled) {
+  color: #fff !important;
+  background-color: #2d0f5c !important;
+  border-color: #2d0f5c !important;
+}
+
+:global([data-theme="dark"]) .removeRuleBtn {
+  color: #e9d5ff !important;
+  border-color: #a78bfa !important;
+  background-color: transparent !important;
+}
+
+:global([data-theme="dark"]) .removeRuleBtn:hover:not(:disabled),
+:global([data-theme="dark"]) .removeRuleBtn:focus:not(:disabled) {
+  color: #1a0a2e !important;
+  background-color: #c4b5fd !important;
+  border-color: #c4b5fd !important;
+}
+
+:global([data-theme="dark"]) .removeRuleBtn:active:not(:disabled) {
+  color: #f5f3ff !important;
+  background-color: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
+}
+
+.combinatorSelect {
+  width: auto;
+  flex: 0 0 auto;
+  max-width: 8rem;
+}
+
+.notToggle {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.ruleOperatorSelect {
+  flex: 0 0 auto;
   width: auto !important;
   min-width: 3.25rem;
-  max-width: 5.5rem;
+  max-width: 6rem;
 }
 
-/* Default ValueEditor: class is on the input/textarea itself (often without .form-control). */
+/*
+ * Rule row: allow wrapping so fields / operator / value never overlap when space is tight.
+ * RQB also sets .ruleGroup .rule { display:flex; gap:0.5rem } — we align with that gap.
+ */
+.root :global(.player-query-builder .rule) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  min-width: 0;
+  width: 100%;
+}
+
+/*
+ * `rule-fields` is on .ruleFieldsShell (see PlayerLeaderboardCascadingFieldSelector).
+ * Keep flex sizing here too so it wins over any future RQB defaults.
+ */
+.root :global(.player-query-builder .rule-fields) {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  width: auto !important;
+  box-sizing: border-box;
+}
+
+/* Value: only flex-grow segment on the rule row — fills space between operator and remove */
+.root :global(.player-query-builder .rule .rule-value) {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  width: auto !important;
+  box-sizing: border-box;
+}
+
+/* Remove stays at natural size at end of row */
+.root :global(.player-query-builder .rule .rule-remove) {
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+/* Default ValueEditor (non-custom): Bootstrap-ish chrome when RQB omits .form-control */
+.root
+  :global(.player-query-builder .rule textarea.rule-value:not(.form-control)),
+.root :global(.player-query-builder .rule input.rule-value:not(.form-control)) {
+  border: 1px solid #ced4da;
+  border-radius: 0.2rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #495057;
+}
+
+/* Value control: flex-grow but do not use width:100% of the whole rule (causes overlap) */
 .root :global(.player-query-builder .rule input.rule-value),
 .root :global(.player-query-builder .rule textarea.rule-value),
 .root :global(.player-query-builder .rule select.rule-value) {
-  flex: 1 1 0 !important;
+  flex: 1 1 auto;
   min-width: 0 !important;
-  width: 100% !important;
   max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .root :global(.player-query-builder .rule input.rule-value.form-control),
 .root :global(.player-query-builder .rule textarea.rule-value.form-control),
 .root :global(.player-query-builder .rule select.rule-value.form-control) {
-  flex: 1 1 0 !important;
-  min-width: 0 !important;
-  width: 100% !important;
-  max-width: 100%;
-}
-
-/* When `rule-value` is on a wrapper (custom Linq editor), grow that wrapper */
-.root :global(.player-query-builder .rule .rule-value) {
-  flex: 1 1 0 !important;
+  flex: 1 1 auto;
   min-width: 0 !important;
   max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Custom rule: `rule-value` is merged on this div; flex comes from :global(.rule-value) above */
+/* Custom Linq wrapper fills the value cell only */
 .valueEditorCustom {
   width: 100%;
   min-width: 0;
+}
+
+/* Group header: AND/OR + actions */
+.root :global(.player-query-builder .ruleGroup) {
+  border-color: #dee2e6;
+}
+
+.root :global(.player-query-builder .ruleGroup-header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
 }

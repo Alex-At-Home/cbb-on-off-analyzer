@@ -7,22 +7,24 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Button, ButtonGroup, Form } from "react-bootstrap";
+import { faMinusSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Form } from "react-bootstrap";
 import type {
+  ActionProps,
   ActionWithRulesAndAddersProps,
+  ActionWithRulesProps,
+  CombinatorSelectorProps,
   Field,
   FieldSelectorProps,
+  NotToggleProps,
   OperatorSelectorProps,
+  Option,
   RuleGroupType,
   RuleType,
   ValueEditorProps,
 } from "react-querybuilder";
-import {
-  ActionElement,
-  QueryBuilder,
-  ValueEditor,
-  ValueSelector,
-} from "react-querybuilder";
+import { QueryBuilder, ValueEditor, ValueSelector } from "react-querybuilder";
 import "react-querybuilder/dist/query-builder.css";
 import styles from "./PlayerQueryBuilder.module.css";
 import { AdvancedFilterUtils } from "../../utils/AdvancedFilterUtils";
@@ -185,14 +187,16 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
 
   return (
     <div
-      className={`d-flex flex-column align-items-stretch ${props.className || ""}`}
+      className={[styles.ruleFieldsShell, props.className]
+        .filter(Boolean)
+        .join(" ")}
     >
-      <div className="d-flex flex-wrap align-items-center">
+      <div className={`d-flex align-items-center ${styles.ruleFieldSelector}`}>
         <Form.Control
           as="select"
           size="sm"
-          className="mr-1 mb-1"
-          style={{ minWidth: "6.5rem", maxWidth: "10rem" }}
+          className={styles.ruleFieldSelect}
+          style={{ minWidth: "6.5rem" }}
           title="Rule source"
           disabled={props.disabled}
           value={source}
@@ -212,58 +216,77 @@ const PlayerLeaderboardCascadingFieldSelector: React.FC<FieldSelectorProps> = (
           <option value="custom">Custom</option>
         </Form.Control>
         {source !== "custom" ? (
-          <Form.Control
-            as="select"
-            size="sm"
-            className="mr-1 mb-1"
-            style={{ minWidth: "10rem", maxWidth: "18rem" }}
-            title="Stat group"
-            disabled={props.disabled}
-            value={sliceId}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              const nextSlice = activeSliceList.find(
-                (s) => s.id === e.target.value,
-              );
-              const first = nextSlice?.fields[0];
-              if (first) {
-                props.handleOnChange(first.name);
-              }
-            }}
-          >
-            {activeSliceList.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.title}
-              </option>
-            ))}
-          </Form.Control>
+          <>
+            <Form.Control
+              as="select"
+              size="sm"
+              className={styles.ruleFieldSelect}
+              style={{ minWidth: "9rem" }}
+              title="Stat group"
+              disabled={props.disabled}
+              value={sliceId}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                const nextSlice = activeSliceList.find(
+                  (s) => s.id === e.target.value,
+                );
+                const first = nextSlice?.fields[0];
+                if (first) {
+                  props.handleOnChange(first.name);
+                }
+              }}
+            >
+              {activeSliceList.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.title}
+                </option>
+              ))}
+            </Form.Control>
+            <Form.Control
+              as="select"
+              size="sm"
+              className={styles.ruleFieldSelect}
+              style={{ minWidth: "10rem" }}
+              title="Field"
+              disabled={props.disabled}
+              value={currentField}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                props.handleOnChange(e.target.value);
+              }}
+            >
+              <option value="">— Field —</option>
+              {activeSlice.fields.map((f) => (
+                <option key={f.name} value={f.name}>
+                  {f.label}
+                </option>
+              ))}
+            </Form.Control>
+          </>
         ) : null}
       </div>
-      {source !== "custom" ? (
-        <div className="d-flex flex-wrap align-items-center">
-          <Form.Control
-            as="select"
-            size="sm"
-            className="mr-1 mb-1"
-            style={{ minWidth: "11rem", maxWidth: "22rem" }}
-            title="Field"
-            disabled={props.disabled}
-            value={currentField}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              props.handleOnChange(e.target.value);
-            }}
-          >
-            <option value="">— Field —</option>
-            {activeSlice.fields.map((f) => (
-              <option key={f.name} value={f.name}>
-                {f.label}
-              </option>
-            ))}
-          </Form.Control>
-        </div>
-      ) : null}
     </div>
   );
 };
+
+function flattenSelectorOptions<Opt extends Option>(
+  options: readonly Opt[] | readonly { options?: Opt[]; label?: string }[],
+): Opt[] {
+  const out: Opt[] = [];
+  for (const o of options ?? []) {
+    if (!o) {
+      continue;
+    }
+    if ("options" in o && Array.isArray(o.options)) {
+      for (const c of o.options) {
+        if (c) {
+          out.push(c);
+        }
+      }
+    } else {
+      out.push(o as Opt);
+    }
+  }
+  return out;
+}
 
 function renderOperatorOptions(
   options: OperatorSelectorProps["options"] | undefined,
@@ -293,6 +316,88 @@ function renderOperatorOptions(
   return rows;
 }
 
+const PlayerQbRemoveGlyphButton: React.FC<
+  ActionProps | ActionWithRulesProps
+> = (props) => (
+  <Button
+    type="button"
+    variant="outline-secondary"
+    size="sm"
+    className={[styles.removeRuleBtn, props.className]
+      .filter(Boolean)
+      .join(" ")}
+    disabled={props.disabled}
+    title={props.title}
+    aria-label={props.title || "Remove"}
+    onClick={props.handleOnClick}
+  >
+    <FontAwesomeIcon icon={faMinusSquare} />
+  </Button>
+);
+
+const PlayerQbAddGroupAction: React.FC<ActionWithRulesAndAddersProps> = (
+  props,
+) => (
+  <Button
+    type="button"
+    variant="outline-secondary"
+    size="sm"
+    className={[styles.qbAddToolbarBtn, props.className]
+      .filter(Boolean)
+      .join(" ")}
+    disabled={props.disabled || false}
+    title={props.title}
+    onClick={(e) => props.handleOnClick(e)}
+  >
+    {props.label}
+  </Button>
+);
+
+const PlayerQbCombinatorSelector: React.FC<CombinatorSelectorProps> = (
+  props,
+) => {
+  const flat = flattenSelectorOptions(props.options);
+  return (
+    <Form.Control
+      as="select"
+      size="sm"
+      className={[styles.combinatorSelect, props.className]
+        .filter(Boolean)
+        .join(" ")}
+      disabled={props.disabled}
+      title={props.title}
+      value={props.value}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        props.handleOnChange(e.target.value)
+      }
+    >
+      {flat.map((c) => (
+        <option key={c.name} value={c.name}>
+          {c.label}
+        </option>
+      ))}
+    </Form.Control>
+  );
+};
+
+const PlayerQbNotToggle: React.FC<NotToggleProps> = (props) => {
+  const id = `player-qb-not-${props.path.join("-")}`;
+  return (
+    <Form.Check
+      type="checkbox"
+      id={id}
+      className={[styles.notToggle, props.className].filter(Boolean).join(" ")}
+      disabled={props.disabled}
+      checked={!!props.checked}
+      label={props.label}
+      title={props.title}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        props.handleOnChange(e.target.checked)
+      }
+    />
+  );
+};
+
 const PlayerQbOperatorSelector: React.FC<OperatorSelectorProps> = (props) => {
   if (props.field === PLAYER_QB_CUSTOM_RULE_FIELD) {
     return <span className="sr-only">=</span>;
@@ -301,7 +406,9 @@ const PlayerQbOperatorSelector: React.FC<OperatorSelectorProps> = (props) => {
     <Form.Control
       as="select"
       size="sm"
-      className={props.className}
+      className={[styles.ruleOperatorSelect, props.className]
+        .filter(Boolean)
+        .join(" ")}
       disabled={props.disabled}
       title={props.title}
       value={props.value}
@@ -317,7 +424,14 @@ const PlayerQbOperatorSelector: React.FC<OperatorSelectorProps> = (props) => {
 const PlayerQbValueEditor: React.FC<ValueEditorProps> = (props) => {
   const ui = useContext(PlayerQbUiContext);
   if (props.field !== PLAYER_QB_CUSTOM_RULE_FIELD) {
-    return <ValueEditor {...props} />;
+    return (
+      <ValueEditor
+        {...props}
+        className={["form-control", "form-control-sm", props.className]
+          .filter(Boolean)
+          .join(" ")}
+      />
+    );
   }
   return (
     <div
@@ -656,43 +770,38 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
   const PlayerAddRuleAction: React.FC<ActionWithRulesAndAddersProps> =
     useCallback(
       (props) => {
+        const addRuleBtn = (
+          <Button
+            type="button"
+            variant="outline-secondary"
+            size="sm"
+            className={styles.qbAddToolbarBtn}
+            disabled={props.disabled || disabled}
+            title={props.title}
+            onClick={(e) => props.handleOnClick(e)}
+          >
+            {props.label}
+          </Button>
+        );
         if (props.path.length > 0) {
-          return (
-            <ActionElement
-              className={props.className}
-              handleOnClick={props.handleOnClick}
-              label={props.label}
-              title={props.title}
-              disabled={props.disabled || disabled}
-              disabledTranslation={props.disabledTranslation}
-              testID={props.testID}
-              ruleOrGroup={props.ruleOrGroup}
-              schema={props.schema}
-              path={props.path}
-              level={props.level}
-              context={props.context}
-              validation={props.validation}
-            />
-          );
+          return <span className={props.className}>{addRuleBtn}</span>;
         }
         return (
-          <ButtonGroup size="sm" className={props.className}>
-            <ActionElement
-              handleOnClick={props.handleOnClick}
-              label={props.label}
-              title={props.title}
-              disabled={props.disabled || disabled}
-              disabledTranslation={props.disabledTranslation}
-              testID={props.testID}
-              ruleOrGroup={props.ruleOrGroup}
-              schema={props.schema}
-              path={props.path}
-              level={props.level}
-              context={props.context}
-              validation={props.validation}
-            />
+          <div
+            className={[
+              styles.rootAddRuleCluster,
+              "d-inline-flex align-items-center flex-wrap",
+              props.className || "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            {addRuleBtn}
             <Button
+              type="button"
               variant="outline-secondary"
+              size="sm"
+              className={styles.qbAddToolbarBtn}
               title="Add a SORT_BY clause"
               disabled={props.disabled || disabled}
               onClick={(e) => {
@@ -703,7 +812,10 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
               + Sort
             </Button>
             <Button
+              type="button"
               variant="outline-secondary"
+              size="sm"
+              className={styles.qbAddToolbarBtn}
               title="Add LIMIT"
               disabled={props.disabled || disabled}
               onClick={(e) => {
@@ -713,7 +825,7 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
             >
               + Limit
             </Button>
-          </ButtonGroup>
+          </div>
         );
       },
       [addLimitClause, addSortRow, disabled],
@@ -731,7 +843,12 @@ const PlayerQueryBuilder: React.FC<PlayerQueryBuilderProps> = ({
             fieldSelector: PlayerLeaderboardCascadingFieldSelector,
             operatorSelector: PlayerQbOperatorSelector,
             valueEditor: PlayerQbValueEditor,
+            combinatorSelector: PlayerQbCombinatorSelector,
+            notToggle: PlayerQbNotToggle,
             addRuleAction: PlayerAddRuleAction,
+            addGroupAction: PlayerQbAddGroupAction,
+            removeRuleAction: PlayerQbRemoveGlyphButton,
+            removeGroupAction: PlayerQbRemoveGlyphButton,
           }}
           query={query}
           onQueryChange={emitLinq}
