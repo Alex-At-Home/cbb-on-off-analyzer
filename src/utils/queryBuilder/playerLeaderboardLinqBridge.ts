@@ -84,6 +84,9 @@ function readNumber(ctx: ParseCtx): string | null {
   if (j === start) {
     return null;
   }
+  if (j < ctx.s.length && ctx.s[j] === "%") {
+    j++;
+  }
   ctx.i = j;
   return ctx.s.slice(start, j);
 }
@@ -293,7 +296,7 @@ function parseRule(ctx: ParseCtx): RuleType | null {
   };
 }
 
-function formatRuleValue(value: unknown): string {
+export function formatRuleValue(value: unknown): string {
   if (value === null || value === undefined) {
     return "";
   }
@@ -302,6 +305,9 @@ function formatRuleValue(value: unknown): string {
     return `""`;
   }
   if (/^-?\d+(\.\d+)?$/.test(s)) {
+    return s;
+  }
+  if (/^-?\d+(\.\d+)?%$/.test(s)) {
     return s;
   }
   return `'${s.replace(/'/g, "\\'")}'`;
@@ -337,4 +343,81 @@ function formatGroupInner(group: RuleGroupType): string {
     }
   }
   return parts.join(comb);
+}
+
+/** One SORT_BY clause (expression before ASC/DESC). */
+export type PlayerLeaderboardSortRow = {
+  id: string;
+  /** Sort key expression, e.g. `off_adj_rapm` or `100*pctile_off_efg`. */
+  expression: string;
+  ascending: boolean;
+};
+
+function stripTrailingSortDirection(frag: string): string {
+  return frag.replace(/\s+(ASC|DESC)\s*$/i, "").trim();
+}
+
+function parseLimitFromCommitted(committed: string): number | null {
+  const parts = committed.split(/\bLIMIT\b/i);
+  if (parts.length < 2) {
+    return null;
+  }
+  const tail = parts.slice(1).join("LIMIT").trim();
+  const head = tail.split(/\s+/)[0] ?? "";
+  const n = parseInt(head, 10);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+/**
+ * Splits a full player-leaderboard filter string into where-clause, SORT_BY rows, and LIMIT,
+ * matching [`AdvancedFilterUtils.applyFilter`](src/utils/AdvancedFilterUtils.ts) segment rules.
+ */
+export function parsePlayerLeaderboardFilterParts(committed: string): {
+  whereCore: string;
+  sortRows: PlayerLeaderboardSortRow[];
+  limit: number | null;
+} {
+  const filterFrags = committed
+    .split(/\bSORT_BY\b/i)
+    .map((frag) => frag.split(/\bLIMIT\b/i)[0] ?? frag);
+  const whereCore = (filterFrags[0] ?? "").trim();
+  const sortFrags = filterFrags.slice(1).map((f) => f.trim()).filter(Boolean);
+  const sortRows: PlayerLeaderboardSortRow[] = sortFrags.map((frag, i) => {
+    const ascending = frag.toUpperCase().indexOf("ASC") >= 0;
+    return {
+      id: `sort-${i}`,
+      expression: stripTrailingSortDirection(frag),
+      ascending,
+    };
+  });
+  const limit = parseLimitFromCommitted(committed);
+  return { whereCore, sortRows, limit };
+}
+
+let sortRowId = 0;
+export function newSortRowId(): string {
+  sortRowId += 1;
+  return `sort-${sortRowId}`;
+}
+
+/** Builds the committed filter string from structured parts (matches `applyFilter` expectations). */
+export function composePlayerLeaderboardFilterString(
+  whereCore: string,
+  sortRows: PlayerLeaderboardSortRow[],
+  limit: number | null,
+): string {
+  const w = whereCore.trim();
+  let out = w;
+  for (const row of sortRows) {
+    const expr = row.expression.trim();
+    if (!expr) {
+      continue;
+    }
+    const dir = row.ascending ? "ASC" : "DESC";
+    out += `${out ? " " : ""}SORT_BY ${expr} ${dir}`;
+  }
+  if (limit != null && limit > 0) {
+    out += `${out ? " " : ""}LIMIT ${limit}`;
+  }
+  return out.trim();
 }

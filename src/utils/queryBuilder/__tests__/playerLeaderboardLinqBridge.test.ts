@@ -1,5 +1,8 @@
 import {
+  composePlayerLeaderboardFilterString,
+  formatRuleValue,
   linqToQuery,
+  parsePlayerLeaderboardFilterParts,
   queryToLinq,
   splitPlayerLeaderboardFilterSuffix,
   stripNonFilterLinqSuffixes,
@@ -49,5 +52,43 @@ describe("playerLeaderboardLinqBridge", () => {
     const q = linqToQuery(src);
     expect(q).not.toBeNull();
     expect(queryToLinq(q!)).toBe(`player_name = 'Smith'`);
+  });
+
+  it("round-trips percentage literal without quotes", () => {
+    const src = "off_efg > 20%";
+    const q = linqToQuery(src);
+    expect(q).not.toBeNull();
+    expect(queryToLinq(q!)).toBe(src);
+  });
+
+  it("formatRuleValue emits unquoted numeric percent", () => {
+    expect(formatRuleValue("20%")).toBe("20%");
+    expect(formatRuleValue("3.5%")).toBe("3.5%");
+  });
+
+  it("parsePlayerLeaderboardFilterParts splits where, sorts, and limit", () => {
+    const s =
+      "off_efg > 0.5 SORT_BY off_adj_rapm ASC SORT_BY def_adj_rapm DESC LIMIT 25";
+    expect(parsePlayerLeaderboardFilterParts(s)).toEqual({
+      whereCore: "off_efg > 0.5",
+      sortRows: [
+        { id: "sort-0", expression: "off_adj_rapm", ascending: true },
+        { id: "sort-1", expression: "def_adj_rapm", ascending: false },
+      ],
+      limit: 25,
+    });
+  });
+
+  it("composePlayerLeaderboardFilterString round-trips parse parts", () => {
+    const parts = parsePlayerLeaderboardFilterParts(
+      "a && b SORT_BY x ASC LIMIT 10",
+    );
+    expect(
+      composePlayerLeaderboardFilterString(
+        parts.whereCore,
+        parts.sortRows,
+        parts.limit,
+      ),
+    ).toBe("a && b SORT_BY x ASC LIMIT 10");
   });
 });
