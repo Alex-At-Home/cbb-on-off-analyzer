@@ -2087,17 +2087,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             )
           : undefined;
 
-      const baseSeasonRows = showAll
-        ? playerRowBuilder(
-            playerCareerInfo.season,
-            year,
-            topYear,
-            undefined,
-            undefined,
-            undefined,
-            firstBlockWithRows === "season" ? portalEvalTextRow : undefined,
-          )
-        : [];
+      const baseSeasonRows =
+        showAll && playerCareerInfo.season
+          ? playerRowBuilder(
+              playerCareerInfo.season,
+              year,
+              topYear,
+              undefined,
+              undefined,
+              undefined,
+              firstBlockWithRows === "season" ? portalEvalTextRow : undefined,
+            )
+          : [];
       const baseConfRows =
         playerCareerInfo.conf && showConf
           ? playerRowBuilder(
@@ -2797,7 +2798,9 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 diags ? diags.totalSimilarity : -10000000,
               )
               .flatMap(({ p, diags }, i) => {
-                const players = playerRowBuilder(p, p.year || "????", i == 0);
+                const players = p
+                  ? playerRowBuilder(p, p.year || "????", i == 0)
+                  : [];
                 return players
                   .concat(
                     diags
