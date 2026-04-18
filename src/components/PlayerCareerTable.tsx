@@ -1,5 +1,5 @@
 // React imports:
-import React, { useState, useEffect, ReactNode, useRef } from "react";
+import React, { useState, useEffect, ReactNode, useRef, useMemo } from "react";
 
 // Next imports:
 import { NextPage } from "next";
@@ -103,6 +103,19 @@ const fetchRetryOptions = {
   retryOn: [419, 502, 503, 504],
 };
 const fetchWithRetry = fetchBuilder(fetch, fetchRetryOptions);
+
+/** `_all` season row must exist with identity + sample for career rows / portal eval. Conf/T100-only years are not usable alone. */
+function careerSeasonYearIsSelectable(yearInfo: IndivCareerInfo): boolean {
+  const season = yearInfo.season;
+  if (!season) return false;
+  if (!season.code && !season.key) return false;
+  const poss = season.off_team_poss?.value;
+  const docCount = season.doc_count;
+  if ((poss == null || poss <= 0) && (docCount == null || docCount <= 0)) {
+    return false;
+  }
+  return true;
+}
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -557,28 +570,64 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
 
   // 2] Data Model
 
-  const playerSeasonInfo = _.chain(playerSeasons)
-    .transform(
-      (acc, v) => {
-        const year = v.year;
-        if (year) {
-          const playerYear = acc[year] || {};
-          const playerId: string = (v as any)._id;
-          if (_.endsWith(playerId, "_all")) {
-            playerYear.season = v;
-          } else if (_.endsWith(playerId, "_conf")) {
-            playerYear.conf = v;
-          } else if (_.endsWith(playerId, "_t100")) {
-            playerYear.t100 = v;
-          }
-          acc[year] = playerYear;
-        }
-      },
-      {} as Record<string, IndivCareerInfo>,
-    )
-    .toPairs()
-    .orderBy(([key, __]) => key, "desc")
-    .value();
+  const playerSeasonInfo = useMemo(
+    () =>
+      _.chain(playerSeasons)
+        .transform(
+          (acc, v) => {
+            const year = v.year;
+            if (year) {
+              const playerYear = acc[year] || {};
+              const playerId: string = (v as any)._id;
+              if (_.endsWith(playerId, "_all")) {
+                playerYear.season = v;
+              } else if (_.endsWith(playerId, "_conf")) {
+                playerYear.conf = v;
+              } else if (_.endsWith(playerId, "_t100")) {
+                playerYear.t100 = v;
+              }
+              acc[year] = playerYear;
+            }
+          },
+          {} as Record<string, IndivCareerInfo>,
+        )
+        .toPairs()
+        .orderBy(([key, __]) => key, "desc")
+        .value(),
+    [playerSeasons],
+  );
+
+  const selectableSeasonYearCount = useMemo(
+    () =>
+      _.sumBy(playerSeasonInfo, ([, info]) =>
+        careerSeasonYearIsSelectable(info) ? 1 : 0,
+      ),
+    [playerSeasonInfo],
+  );
+
+  const firstSelectableYearIndex = useMemo(
+    () =>
+      playerSeasonInfo.findIndex(([_, info]) =>
+        careerSeasonYearIsSelectable(info),
+      ),
+    [playerSeasonInfo],
+  );
+
+  useEffect(() => {
+    setYearsToShow((prev) => {
+      const filtered = Array.from(prev).filter((y) => {
+        const tuple = _.find(playerSeasonInfo, ([yr]) => yr === y);
+        return tuple ? careerSeasonYearIsSelectable(tuple[1]) : false;
+      });
+      if (
+        filtered.length === prev.size &&
+        _.every(filtered, (y) => prev.has(y))
+      ) {
+        return prev;
+      }
+      return new Set(filtered);
+    });
+  }, [playerSeasonInfo]);
 
   useEffect(() => {
     const yearsToShowArr = Array.from(yearsToShow);
@@ -602,7 +651,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
       t100: showT100,
       conf: showConf,
       yearsToShow:
-        yearsToShowArr.length == playerSeasonInfo.length
+        yearsToShowArr.length == selectableSeasonYearCount
           ? undefined
           : yearsToShowArr.join(","),
       stickyQuickToggle,
@@ -656,6 +705,8 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     showPinnedOnly,
     showSimilaritySliders,
     separatePlayerSeasons,
+    selectableSeasonYearCount,
+    playerCareerParams,
   ]);
 
   /** NCAA id has changed, clear years to show */
@@ -776,10 +827,10 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
   const rosterInfoSpanCalculator = (key: string) =>
     key == "efg" ? 2 : key == "assist" ? 0 : 1;
 
-  /** Teams for selected seasons */
-  const selectedYearsChain = _.chain(playerSeasonInfo).filter(
-    (info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0]),
-  );
+  /** Teams for selected seasons (years without a usable `_all` season row are omitted from the table) */
+  const selectedYearsChain = _.chain(playerSeasonInfo)
+    .filter((info) => _.isEmpty(yearsToShow) || yearsToShow.has(info[0]))
+    .filter((info) => careerSeasonYearIsSelectable(info[1]));
   const currPlayerSelected = playerSimilarityMode
     ? selectedYearsChain
         .take(1)
@@ -2888,10 +2939,18 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
     buildTopLevelGradeControls,
     (__) => {
       if (buildTopLevelGradeControls) {
+        const gradeYearCandidates = !_.isEmpty(yearsToShow)
+          ? Array.from(yearsToShow).filter((y) =>
+              _.some(
+                playerSeasonInfo,
+                ([yr, inf]) => yr === y && careerSeasonYearIsSelectable(inf),
+              ),
+            )
+          : playerSeasonInfo
+              .filter(([, inf]) => careerSeasonYearIsSelectable(inf))
+              .map(([yr]) => yr);
         const yearToUseForTopLevelGradeControls =
-          (!_.isEmpty(yearsToShow)
-            ? Array.from(yearsToShow)
-            : playerSeasonInfo.map((s) => s[0]))?.[0] || "??";
+          gradeYearCandidates[0] || "??";
         const divisionStatsCacheByYear: DivisionStatsCache = showGrades
           ? divisionStatsCache[yearToUseForTopLevelGradeControls] || {}
           : {};
@@ -2912,7 +2971,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
           },
           {
             countsAreExample:
-              (_.size(yearsToShow) || _.size(playerSeasonInfo)) > 1,
+              (_.size(yearsToShow) || selectableSeasonYearCount) > 1,
             onHide: () => {
               setHideGlobalGradeSettings(true);
             },
@@ -2935,18 +2994,29 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 `Show / hide data for this year (starting ${y[0]})` +
                 _.isEmpty(similarPlayers)
                   ? ""
-                  : " (disabled until similar players cleared)",
+                  : " (disabled until similar players cleared)" +
+                    (!careerSeasonYearIsSelectable(y[1])
+                      ? " — no season/sample row for this year"
+                      : ""),
               toggled:
-                (playerSimilarityMode
-                  ? _.isEmpty(yearsToShow) && yIndex == 0 //(player similarity mode, default to first year)
-                  : _.isEmpty(yearsToShow)) || yearsToShow.has(y[0]),
+                careerSeasonYearIsSelectable(y[1]) &&
+                ((playerSimilarityMode
+                  ? _.isEmpty(yearsToShow) &&
+                    yIndex === firstSelectableYearIndex //(similarity mode: default first usable year)
+                  : _.isEmpty(yearsToShow)) ||
+                  yearsToShow.has(y[0])),
+              disabled: !careerSeasonYearIsSelectable(y[1]),
               onClick: () => {
+                if (!careerSeasonYearIsSelectable(y[1])) return;
                 if (playerSimilarityMode) {
                   //(currently - can only view one season/sample at a time)
                   setYearsToShow(new Set([y[0]]));
                 } else {
+                  const selectableYearKeys = playerSeasonInfo
+                    .filter(([__, inf]) => careerSeasonYearIsSelectable(inf))
+                    .map(([yr]) => yr);
                   const newYearSet = _.isEmpty(yearsToShow)
-                    ? new Set<string>(playerSeasonInfo.map((y) => y[0]))
+                    ? new Set<string>(selectableYearKeys)
                     : new Set(yearsToShow);
                   const currHasYear = newYearSet.has(y[0]);
                   if (currHasYear) {
