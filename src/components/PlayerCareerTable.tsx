@@ -83,7 +83,7 @@ import GenericTogglingMenuItem from "./shared/GenericTogglingMenuItem";
 import { AnnotationMenuItems } from "./shared/AnnotationMenuItems";
 import { GradeUtils } from "../utils/stats/GradeUtils";
 import { TeamEditorUtils } from "../utils/stats/TeamEditorUtils";
-import PortalProspectEvalBlock from "./portal/PortalProspectEvalBlock";
+import PlayerPortalEvalRow from "./shared/PlayerPortalEvalRow";
 import SimilarityConfigModal from "./shared/SimilarityConfigModal";
 import SimilarityWeights from "./shared/SimilarityWeights";
 import SimilarityDiagnosticView from "./diags/SimilarityDiagnosticView";
@@ -103,241 +103,6 @@ const fetchRetryOptions = {
   retryOn: [419, 502, 503, 504],
 };
 const fetchWithRetry = fetchBuilder(fetch, fetchRetryOptions);
-
-type PlayerCareerPortalEvalRowProps = {
-  seasonPlayer: IndivCareerStatSet;
-  year: string;
-  topYear: boolean;
-  gender: string;
-  showGrades: string | undefined;
-  divisionStatsCache: Record<string, DivisionStatsCache>;
-  positionalStatsCache: Record<string, PositionStatsCache>;
-};
-
-const PlayerCareerPortalEvalRow: React.FC<PlayerCareerPortalEvalRowProps> = ({
-  seasonPlayer,
-  year,
-  topYear,
-  gender,
-  showGrades,
-  divisionStatsCache,
-  positionalStatsCache,
-}) => {
-  const longYear = DateUtils.getLongFormYear(year);
-  const genderYearKey = `${gender}_${longYear}`;
-  const avgEfficiency =
-    efficiencyAverages[genderYearKey] || efficiencyAverages.fallback;
-
-  const prediction = TeamEditorUtils.approxTransferPrediction(
-    seasonPlayer,
-    undefined,
-    year,
-    avgEfficiency,
-  );
-
-  const playerForEval = { ...seasonPlayer } as Record<string, any>;
-  playerForEval.off_adj_rapm_pred = prediction.off_adj_rapm;
-  playerForEval.def_adj_rapm_pred = prediction.def_adj_rapm;
-  playerForEval.off_rtg_pred = prediction.off_rtg;
-  playerForEval.off_usage_pred = prediction.off_usage;
-
-  const yrKey = seasonPlayer.year || year;
-  const divisionStatsCacheByYear = divisionStatsCache[yrKey] || {};
-
-  const { tierToUse: predTierToUse, gradeFormat: predGradeFormat } =
-    GradeTableUtils.buildPlayerTierInfo(
-      showGrades || "rank:Combo",
-      {
-        comboTier: divisionStatsCacheByYear.Combo,
-        highTier: divisionStatsCacheByYear.High,
-        mediumTier: divisionStatsCacheByYear.Medium,
-        lowTier: divisionStatsCacheByYear.Low,
-      },
-      positionalStatsCache[yrKey] || {},
-    );
-
-  const player = playerForEval;
-  const offPred = player.off_adj_rapm_pred?.value || 0;
-  const defPred = player.def_adj_rapm_pred?.value || 0;
-  const netPred = offPred - defPred;
-  const offRtgPred = player.off_rtg_pred?.value || 100;
-  const offUsagePred = (player.off_usage_pred?.value || 0.2) * 100;
-
-  const netPredWithShadow = (
-    <b
-      style={CommonTableDefs.getTextShadow(
-        { value: netPred },
-        CbbColors.diff10_p100_redGreen[0],
-        "15px",
-        6,
-      )}
-    >
-      {netPred.toFixed(1)}
-    </b>
-  );
-  const offPredWithShadow = (
-    <b
-      style={CommonTableDefs.getTextShadow(
-        { value: offPred },
-        CbbColors.diff10_p100_redGreen[0],
-        "15px",
-        6,
-      )}
-    >
-      {offPred.toFixed(1)}
-    </b>
-  );
-  const defPredWithShadow = (
-    <b
-      style={CommonTableDefs.getTextShadow(
-        { value: defPred },
-        CbbColors.diff10_p100_redGreen[1],
-        "15px",
-        6,
-      )}
-    >
-      {defPred.toFixed(1)}
-    </b>
-  );
-  const offRtgWithShadow = (
-    <b
-      style={CommonTableDefs.getTextShadow(
-        { value: offRtgPred },
-        CbbColors.pp100[0],
-        "15px",
-        6,
-      )}
-    >
-      {offRtgPred.toFixed(1)}
-    </b>
-  );
-  const usageWithShadow = (
-    <b
-      style={CommonTableDefs.getTextShadow(
-        { value: offUsagePred * 0.01 },
-        CbbColors.usg[0],
-        "15px",
-        6,
-      )}
-    >
-      {offUsagePred.toFixed(1)}
-    </b>
-  );
-
-  let netGrade: ReactNode;
-  let offGrade: ReactNode;
-  let defGrade: ReactNode;
-  let offRtgGrade: ReactNode;
-  let usageGrade: ReactNode;
-
-  if (showGrades) {
-    const statsToGrade = {
-      off_adj_rapm: player.off_adj_rapm_pred,
-      def_adj_rapm: player.def_adj_rapm_pred,
-      off_adj_rapm_margin: { value: netPred },
-      off_rtg: player.off_rtg_pred,
-      off_usage: player.off_usage_pred,
-    };
-
-    const predictedGrades = predTierToUse
-      ? GradeUtils.buildPlayerPercentiles(
-          predTierToUse,
-          statsToGrade,
-          _.keys(statsToGrade),
-          predGradeFormat == "rank",
-        )
-      : {};
-
-    netGrade = predictedGrades.off_adj_rapm_margin ? (
-      <small>
-        &nbsp;(
-        {GradeTableUtils.buildPlayerGradeTextElement(
-          predictedGrades.off_adj_rapm_margin,
-          predGradeFormat,
-          CbbColors.off_pctile_qual,
-        )}
-        )
-      </small>
-    ) : undefined;
-
-    offGrade = predictedGrades.off_adj_rapm ? (
-      <small>
-        &nbsp;(
-        {GradeTableUtils.buildPlayerGradeTextElement(
-          predictedGrades.off_adj_rapm,
-          predGradeFormat,
-          CbbColors.off_pctile_qual,
-        )}
-        )
-      </small>
-    ) : undefined;
-
-    defGrade = predictedGrades.def_adj_rapm ? (
-      <small>
-        &nbsp;(
-        {GradeTableUtils.buildPlayerGradeTextElement(
-          predictedGrades.def_adj_rapm,
-          predGradeFormat,
-          CbbColors.off_pctile_qual,
-        )}
-        )
-      </small>
-    ) : undefined;
-
-    offRtgGrade = predictedGrades.off_rtg ? (
-      <small>
-        &nbsp;(
-        {GradeTableUtils.buildPlayerGradeTextElement(
-          predictedGrades.off_rtg,
-          predGradeFormat,
-          CbbColors.off_pctile_qual,
-        )}
-        )
-      </small>
-    ) : undefined;
-
-    usageGrade = predictedGrades.off_usage ? (
-      <small>
-        &nbsp;(
-        {GradeTableUtils.buildPlayerGradeTextElement(
-          predictedGrades.off_usage,
-          predGradeFormat,
-          CbbColors.all_pctile_freq,
-        )}
-        )
-      </small>
-    ) : undefined;
-  }
-
-  const smallComp1 = (
-    <small>
-      <b>Next year&apos;s RAPM predictions</b>
-    </small>
-  );
-  const smallComp2 = <small>//</small>;
-  const smallComp3 = (
-    <small>
-      {" "}
-      // off rating=[{offRtgWithShadow}]{offRtgGrade} usage=[{usageWithShadow}]%
-      {usageGrade}
-    </small>
-  );
-
-  return (
-    <PortalProspectEvalBlock
-      tierToUse={predTierToUse}
-      gradeFormat={predGradeFormat}
-      player={playerForEval}
-      gender={gender}
-      avgEfficiency={avgEfficiency}
-      defaultExpanded={topYear}
-    >
-      {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2} off=[
-      {offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]{defGrade}
-      {smallComp3}
-    </PortalProspectEvalBlock>
-  );
-};
 
 type Props = {
   playerSeasons: Array<IndivCareerStatSet>;
@@ -2069,22 +1834,50 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
             ? "t100"
             : null;
 
+      /** Portal predictions need a full season stat row (`code`, `team`, …). Conf/T100-only years can omit `season`. */
       const portalEvalTextRow =
-        !playerSimilarityMode && portalEvalMode && firstBlockWithRows
-          ? GenericTableOps.buildTextRow(
-              <PlayerCareerPortalEvalRow
-                seasonPlayer={playerCareerInfo.season}
-                year={year}
-                topYear={topYear}
-                gender={
-                  playerCareerParams.gender || ParamDefaults.defaultGender
-                }
-                showGrades={showGrades}
-                divisionStatsCache={divisionStatsCache}
-                positionalStatsCache={positionalStatsCache}
-              />,
-              "small",
-            )
+        !playerSimilarityMode &&
+        portalEvalMode &&
+        firstBlockWithRows &&
+        playerCareerInfo.season
+          ? (() => {
+              const genderForPortal =
+                playerCareerParams.gender || ParamDefaults.defaultGender;
+              const longYear = DateUtils.getLongFormYear(year);
+              const genderYearKey = `${genderForPortal}_${longYear}`;
+              const avgEffForPortal =
+                efficiencyAverages[genderYearKey] ||
+                efficiencyAverages.fallback;
+              const portalPrediction = TeamEditorUtils.approxTransferPrediction(
+                playerCareerInfo.season,
+                undefined,
+                year,
+                avgEffForPortal,
+              );
+              const playerForPortalEval = {
+                ...playerCareerInfo.season,
+              } as Record<string, any>;
+              playerForPortalEval.off_adj_rapm_pred =
+                portalPrediction.off_adj_rapm;
+              playerForPortalEval.def_adj_rapm_pred =
+                portalPrediction.def_adj_rapm;
+              playerForPortalEval.off_rtg_pred = portalPrediction.off_rtg;
+              playerForPortalEval.off_usage_pred = portalPrediction.off_usage;
+
+              return GenericTableOps.buildTextRow(
+                <PlayerPortalEvalRow
+                  player={playerForPortalEval}
+                  gender={genderForPortal}
+                  year={year}
+                  showGrades={showGrades}
+                  divisionStatsCache={divisionStatsCache}
+                  positionalStatsCache={positionalStatsCache}
+                  avgEfficiency={avgEffForPortal}
+                  defaultExpanded={topYear}
+                />,
+                "small",
+              );
+            })()
           : undefined;
 
       const baseSeasonRows =

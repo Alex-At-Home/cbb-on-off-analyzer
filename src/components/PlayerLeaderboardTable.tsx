@@ -98,7 +98,7 @@ import ThemedSelect from "./shared/ThemedSelect";
 import TableSortPopupMenu, {
   TableSortPopupMenuState,
 } from "./shared/TableSortPopupMenu";
-import PortalProspectEvalBlock from "./portal/PortalProspectEvalBlock";
+import PlayerPortalEvalRow from "./shared/PlayerPortalEvalRow";
 const PlayerGeoMapNoSsr = dynamic(() => import("./diags/PlayerGeoMap"), {
   ssr: false,
 });
@@ -1739,222 +1739,23 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
         <span> (&gt;{player.transfer_dest})</span>
       ) : null;
 
-      const predictionLine = _.thru(transferPredictionMode, (__) => {
-        if (transferPredictionMode) {
-          const { tierToUse: predTierToUse, gradeFormat: predGradeFormat } =
-            GradeTableUtils.buildPlayerTierInfo(
-              showGrades || "rank:Combo",
-              {
-                comboTier: divisionStatsCacheByYear.Combo,
-                highTier: divisionStatsCacheByYear.High,
-                mediumTier: divisionStatsCacheByYear.Medium,
-                lowTier: divisionStatsCacheByYear.Low,
-              },
-              positionalStatsCache[player.year || year] || {},
-            );
-
-          const offPred = player.off_adj_rapm_pred?.value || 0;
-          const defPred = player.def_adj_rapm_pred?.value || 0;
-          const netPred = offPred - defPred;
-          const offRtgPred = player.off_rtg_pred?.value || 100;
-          const offUsagePred = (player.off_usage_pred?.value || 0.2) * 100;
-          const netPredWithShadow = (
-            <b
-              style={CommonTableDefs.getTextShadow(
-                { value: netPred },
-                CbbColors.diff10_p100_redGreen[0],
-                "15px",
-                6,
-              )}
-            >
-              {netPred.toFixed(1)}
-            </b>
-          );
-          const offPredWithShadow = (
-            <b
-              style={CommonTableDefs.getTextShadow(
-                { value: offPred },
-                CbbColors.diff10_p100_redGreen[0],
-                "15px",
-                6,
-              )}
-            >
-              {offPred.toFixed(1)}
-            </b>
-          );
-          const defPredWithShadow = (
-            <b
-              style={CommonTableDefs.getTextShadow(
-                { value: defPred },
-                CbbColors.diff10_p100_redGreen[1],
-                "15px",
-                6,
-              )}
-            >
-              {defPred.toFixed(1)}
-            </b>
-          );
-          const offRtgWithShadow = (
-            <b
-              style={CommonTableDefs.getTextShadow(
-                { value: offRtgPred },
-                CbbColors.pp100[0],
-                "15px",
-                6,
-              )}
-            >
-              {offRtgPred.toFixed(1)}
-            </b>
-          );
-          const usageWithShadow = (
-            <b
-              style={CommonTableDefs.getTextShadow(
-                { value: offUsagePred * 0.01 },
-                CbbColors.usg[0],
-                "15px",
-                6,
-              )}
-            >
-              {offUsagePred.toFixed(1)}
-            </b>
-          );
-
-          // Enrich with grade info
-          const { netGrade, offGrade, defGrade, offRtgGrade, usageGrade } =
-            _.thru(showGrades, (__) => {
-              if (playerIndex < 50) {
-                //(since it can be slightly slow)
-                const statsToGrade = {
-                  off_adj_rapm: player.off_adj_rapm_pred,
-                  def_adj_rapm: player.def_adj_rapm_pred,
-                  off_adj_rapm_margin: { value: netPred },
-                  off_rtg: player.off_rtg_pred,
-                  off_usage: player.off_usage_pred,
-                };
-
-                const predictedGrades = predTierToUse
-                  ? GradeUtils.buildPlayerPercentiles(
-                      predTierToUse,
-                      statsToGrade,
-                      _.keys(statsToGrade),
-                      predGradeFormat == "rank",
-                    )
-                  : {};
-
-                const netGradeEl = predictedGrades.off_adj_rapm_margin ? (
-                  <small>
-                    &nbsp;(
-                    {GradeTableUtils.buildPlayerGradeTextElement(
-                      predictedGrades.off_adj_rapm_margin,
-                      predGradeFormat,
-                      CbbColors.off_pctile_qual,
-                    )}
-                    )
-                  </small>
-                ) : undefined;
-
-                const offGradeEl = predictedGrades.off_adj_rapm ? (
-                  <small>
-                    &nbsp;(
-                    {GradeTableUtils.buildPlayerGradeTextElement(
-                      predictedGrades.off_adj_rapm,
-                      predGradeFormat,
-                      CbbColors.off_pctile_qual,
-                    )}
-                    )
-                  </small>
-                ) : undefined;
-
-                const defGradeEl = predictedGrades.def_adj_rapm ? (
-                  <small>
-                    &nbsp;(
-                    {GradeTableUtils.buildPlayerGradeTextElement(
-                      predictedGrades.def_adj_rapm,
-                      predGradeFormat,
-                      CbbColors.off_pctile_qual,
-                    )}
-                    )
-                  </small>
-                ) : undefined;
-
-                const offRtgGradeEl = predictedGrades.off_rtg ? (
-                  <small>
-                    &nbsp;(
-                    {GradeTableUtils.buildPlayerGradeTextElement(
-                      predictedGrades.off_rtg,
-                      predGradeFormat,
-                      CbbColors.off_pctile_qual,
-                    )}
-                    )
-                  </small>
-                ) : undefined;
-
-                const usageGradeEl = predictedGrades.off_usage ? (
-                  <small>
-                    &nbsp;(
-                    {GradeTableUtils.buildPlayerGradeTextElement(
-                      predictedGrades.off_usage,
-                      predGradeFormat,
-                      CbbColors.all_pctile_freq,
-                    )}
-                    )
-                  </small>
-                ) : undefined;
-
-                return {
-                  netGrade: netGradeEl,
-                  offGrade: offGradeEl,
-                  defGrade: defGradeEl,
-                  offRtgGrade: offRtgGradeEl,
-                  usageGrade: usageGradeEl,
-                };
-              } else {
-                return {
-                  netGrade: undefined,
-                  offGrade: undefined,
-                  defGrade: undefined,
-                  offRtgGrade: undefined,
-                  usageGrade: undefined,
-                };
-              }
-            });
-
-          const smallComp1 = (
-            <small>
-              <b>Next year's RAPM predictions</b>
-            </small>
-          );
-          const smallComp2 = <small>//</small>;
-          const smallComp3 = (
-            <small>
-              {" "}
-              // off rating=[{offRtgWithShadow}]{offRtgGrade} usage=[
-              {usageWithShadow}]%{usageGrade}
-            </small>
-          );
-          return (
-            <span>
-              <PortalProspectEvalBlock
-                tierToUse={predTierToUse}
-                gradeFormat={predGradeFormat}
-                player={player}
-                gender={gender}
-                avgEfficiency={
-                  efficiencyAverages[`${gender}_${player.year || year}`] ||
-                  efficiencyAverages.fallback
-                }
-              >
-                {smallComp1}: net=[{netPredWithShadow}]{netGrade} {smallComp2}{" "}
-                off=[{offPredWithShadow}]{offGrade} def=[{defPredWithShadow}]
-                {defGrade}
-                {smallComp3}
-              </PortalProspectEvalBlock>
-            </span>
-          );
-        } else {
-          return undefined;
-        }
-      });
+      const predictionLine = transferPredictionMode ? (
+        <PlayerPortalEvalRow
+          player={player}
+          gender={gender}
+          showGrades={showGrades}
+          divisionStatsCache={divisionStatsCache}
+          positionalStatsCache={positionalStatsCache}
+          year={year}
+          avgEfficiency={
+            efficiencyAverages[`${gender}_${player.year || year}`] ||
+            efficiencyAverages.fallback
+          }
+          wrapInSpan
+          maxPlayersForGrades={50}
+          playerIndex={playerIndex}
+        />
+      ) : undefined;
 
       // Player display
 
