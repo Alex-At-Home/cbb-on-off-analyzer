@@ -1904,7 +1904,7 @@ export class TeamEditorManualFixes {
             leftTeam: ["MiBrown::"], //(NBA)
           },
           Maryland: {
-            leftTeam: ["CoMetcalf::"], //(was listed as Jr but is Sr)
+            leftTeam: ["CoMetcalf::", "MyRice::"], //(was listed as Jr but is Sr)
             superSeniorsReturning: new Set(["PhPayne::"]),
             ...TeamEditorManualFixes.buildOverrides({
               "": {
@@ -1912,9 +1912,13 @@ export class TeamEditorManualFixes {
                 "AnMills::": {
                   o: 0.75,
                 },
+                "DjWagner:Arkansas:": {
+                  d: 0.5,
+                },
                 "PhPayne::": {
                   o: 0.75,
                   d: 0.75,
+                  m: 27,
                 },
                 BaOladotun: {
                   d: -1,
