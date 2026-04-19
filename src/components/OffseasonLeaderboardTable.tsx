@@ -1102,6 +1102,20 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         onHeaderClick={
           transferInOutMode ? handleOffseasonHeaderClick : undefined
         }
+        sortFieldOps={{
+          unsortableFields: new Set([
+            "conf",
+            "net_grade",
+            "off",
+            "off_grade",
+            "def",
+            "def_grade",
+            "high_grade",
+            "low_grade",
+            "roster",
+          ]),
+          defaultHeaderClickMsg: "Click to sort by this field (descending)",
+        }}
       />
     );
   }, [

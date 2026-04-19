@@ -619,6 +619,16 @@ export type ExtraColSet = {
   /** The column definitions */
   colSet: Record<string, GenericTableColProps>;
 };
+
+export type SortHeaderOpts = {
+  /** Add fields for which we don't want a sort option */
+  unsortableFields?: Set<string>;
+  /** The message to show on table click (default: 'Click to choose...') */
+  defaultHeaderClickMsg?: string;
+  /** field specific messages */
+  columnHeaderClickMsgOverrides?: Record<string, string>;
+};
+
 type Props = {
   responsive?: boolean;
   /* otherwise table is always 100% */
@@ -647,6 +657,8 @@ type Props = {
   sortField?: string;
   /** If this callback is enabled, the table headers become clickable (ev is the click event) */
   onHeaderClick?: (headerKey: string, ev: any) => void;
+  /** Extra options for sorting */
+  sortFieldOps?: SortHeaderOpts;
 };
 const GenericTable: React.FunctionComponent<Props> = ({
   responsive,
@@ -667,6 +679,7 @@ const GenericTable: React.FunctionComponent<Props> = ({
   onPresetChange,
   sortField,
   onHeaderClick,
+  sortFieldOps,
 }) => {
   const { resolvedTheme } = useTheme();
   const [lockMode, setLockMode] = useState(
@@ -997,7 +1010,10 @@ const GenericTable: React.FunctionComponent<Props> = ({
     return Object.entries(tableFields).map(([colKey, colProp], index) => {
       const style = getColStyle(colProp);
       const isClickable =
-        !!onHeaderClick && !colProp.isTitle && colProp.widthUnits > 0;
+        !!onHeaderClick &&
+        !colProp.isTitle &&
+        colProp.widthUnits > 0 &&
+        !sortFieldOps?.unsortableFields?.has(colKey);
       const tooltip = (
         <Tooltip id={`${toolTipId}-${index}`}>
           {colProp.toolTip}
@@ -1005,7 +1021,9 @@ const GenericTable: React.FunctionComponent<Props> = ({
             <>
               <br />
               <br />
-              Click to choose from available sort options
+              {sortFieldOps?.columnHeaderClickMsgOverrides?.[colKey] ??
+                sortFieldOps?.defaultHeaderClickMsg ??
+                "Click to choose from available sort options"}
             </>
           ) : undefined}
         </Tooltip>
