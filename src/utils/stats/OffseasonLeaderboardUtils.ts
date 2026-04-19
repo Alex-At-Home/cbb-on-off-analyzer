@@ -59,6 +59,8 @@ export type OffseasonTeamInfo = {
   sr_def: number;
   dev_off: number;
   dev_def: number;
+  stay_off: number;
+  stay_def: number;
   fr_net: number;
 
   players?: Array<GoodBadOkTriple>;
@@ -96,6 +98,73 @@ const diagnosticCompareWithRostersDebugOnly = false;
 
 /** Logic for building off-season predictions (etc) across all teams */
 export class OffseasonLeaderboardUtils {
+  /**
+   * Transfer/roster-loss caps used in `buildAllTeamStats` sorting.
+   * Leaderboard table cells for I-O and SrOut must use these same values or row order will not match the column numbers.
+   */
+  static offseasonTransferComponentMargins(
+    t: Pick<
+      OffseasonTeamInfo,
+      | "net"
+      | "in_off"
+      | "in_def"
+      | "out_off"
+      | "out_def"
+      | "nba_off"
+      | "nba_def"
+      | "sr_off"
+      | "sr_def"
+      | "fr_net"
+    >,
+  ) {
+    const transferIn = t.in_off - t.in_def;
+    const benefitCap = t.net > 0 ? 0.33 * t.net : t.net; //(1/3 transfer, 1/3 dev, 1/3 Fr)
+    const transferInOutMargin =
+      t.in_off - t.in_def - Math.max(t.out_off - t.out_def, -benefitCap);
+    const seniorOut = Math.max(t.sr_off - t.sr_def, -benefitCap);
+    const totalInOutMargin =
+      t.fr_net + transferInOutMargin - (t.nba_off - t.nba_def) - seniorOut;
+    return {
+      benefitCap,
+      transferIn,
+      transferInOutMargin,
+      seniorOut,
+      totalInOutMargin,
+    };
+  }
+
+  /** Higher value = earlier row (table top). Used with `orderBy(..., ["desc","desc"])`. */
+  static offseasonLeaderboardSortPrimaryMetric(
+    sortBy: string,
+    t: OffseasonTeamInfo,
+  ): number {
+    const m = OffseasonLeaderboardUtils.offseasonTransferComponentMargins(t);
+    switch (sortBy) {
+      case "offseason_net":
+        return m.totalInOutMargin + (t.dev_off - t.dev_def);
+      case "dev_in":
+        return t.dev_off - t.dev_def;
+      case "total_io":
+        return m.totalInOutMargin;
+      case "txfer_in":
+        return m.transferIn;
+      case "txfer_out":
+        return t.out_off - t.out_def;
+      case "txfer_io":
+        return m.transferInOutMargin;
+      case "nba_out":
+        return t.nba_off - t.nba_def;
+      case "sr_out":
+        return m.seniorOut;
+      case "stay_production":
+        return t.stay_off - t.stay_def;
+      case "fr_net":
+        return t.fr_net;
+      default:
+        return t.net;
+    }
+  }
+
   static buildAllTeamStats(
     // Input state:
     dataEvent: TeamEditorStatsModel,
@@ -541,6 +610,8 @@ export class OffseasonLeaderboardUtils {
           sr_def: pxResults.sr_def,
           dev_off: pxResults.dev_off,
           dev_def: pxResults.dev_def,
+          stay_off: pxResults.stay_off,
+          stay_def: pxResults.stay_def,
           fr_net: pxResults.fr_net,
 
           players: includeTeams ? pxResults.basePlayersPlusHypos : undefined,
@@ -553,37 +624,18 @@ export class OffseasonLeaderboardUtils {
             : undefined,
         };
       })
-      .sortBy((t) => {
-        // For net transfer purposes, cap the benefit you can get from losing players
-        const transferIn = t.in_off - t.in_def;
-        const benefitCap = t.net > 0 ? 0.33 * t.net : t.net; //(1/3 transfer, 1/3 dev, 1/3 Fr)
-        const transferInOutMargin =
-          t.in_off - t.in_def - Math.max(t.out_off - t.out_def, -benefitCap);
-        const seniorOut = Math.max(t.sr_off - t.sr_def, -benefitCap);
-
-        const totalInOutMargin =
-          t.fr_net + transferInOutMargin - (t.nba_off - t.nba_def) - seniorOut;
-        switch (sortBy) {
-          case "offseason_net":
-            return -totalInOutMargin - (t.dev_off - t.dev_def);
-          case "dev_in":
-            return -(t.dev_off - t.dev_def);
-          case "total_io":
-            return -totalInOutMargin;
-          case "txfer_in":
-            return -transferIn;
-          case "txfer_out":
-            return -(t.out_off - t.out_def);
-          case "txfer_io":
-            return -transferInOutMargin;
-          case "nba_out":
-            return -(t.nba_off - t.nba_def);
-          case "sr_out":
-            return -seniorOut;
-          default:
-            return -t.net;
-        }
-      })
+      // Descending-only: primary metric, then net (tiebreak so e.g. `fr_net` ties stay ordered).
+      .orderBy(
+        [
+          (t: OffseasonTeamInfo) =>
+            OffseasonLeaderboardUtils.offseasonLeaderboardSortPrimaryMetric(
+              sortBy,
+              t,
+            ),
+          (t: OffseasonTeamInfo) => t.net,
+        ],
+        ["desc", "desc"],
+      )
       .value();
 
     if (

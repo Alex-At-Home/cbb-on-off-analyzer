@@ -50,6 +50,7 @@ import { UrlRouting } from "../utils/UrlRouting";
 import { efficiencyAverages } from "../utils/public-data/efficiencyAverages";
 import TeamEditorTable, { TeamEditorStatsModel } from "./TeamEditorTable";
 import { CommonTableDefs } from "../utils/tables/CommonTableDefs";
+import { OffseasonLeaderboardTableDefs } from "../utils/tables/OffseasonLeaderboardTableDefs";
 import { DateUtils } from "../utils/DateUtils";
 import { InputGroup } from "react-bootstrap";
 
@@ -69,7 +70,6 @@ import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
 import ThemedSelect from "./shared/ThemedSelect";
-
 type Props = {
   startingState: OffseasonLeaderboardParams;
   dataEvent: TeamEditorStatsModel;
@@ -1088,11 +1088,21 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
       ];
     });
 
+    const offseasonTableSortField =
+      OffseasonLeaderboardTableDefs.sortByToTableField[sortBy];
+    const handleOffseasonHeaderClick = (headerKey: string) => {
+      const v = OffseasonLeaderboardTableDefs.tableHeaderKeyToSortBy[headerKey];
+      if (v) {
+        friendlyChange(() => setSortBy(v), sortBy !== v);
+      }
+    };
+
     const buildOriginalTable = () => {
-      const originalTableDefs = CommonTableDefs.offseasonLeaderboardTable(
-        evalMode,
-        transferInOutMode,
-      );
+      const originalTableDefs =
+        OffseasonLeaderboardTableDefs.offseasonLeaderboardTable(
+          evalMode,
+          transferInOutMode,
+        );
 
       const originalTableRows = maybeHandSortedTeamRanks
         .flatMap(([t, netRankIn], finalTeamOrder) => {
@@ -1220,12 +1230,9 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
             }
           };
 
-          const totalInOutMargin =
-            t.fr_net +
-            (t.in_off - t.in_def) -
-            (t.out_off - t.out_def) -
-            (t.nba_off - t.nba_def) -
-            (t.sr_off - t.sr_def);
+          const transferCaps =
+            OffseasonLeaderboardUtils.offseasonTransferComponentMargins(t);
+          const totalInOutMargin = transferCaps.totalInOutMargin;
 
           return [
             GenericTableOps.buildDataRow(
@@ -1274,9 +1281,10 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
                 inout_margin: { value: totalInOutMargin },
                 fr_margin: { value: t.fr_net },
                 in_margin: { value: t.in_off - t.in_def },
+                stay_margin: { value: t.stay_off - t.stay_def },
                 out_margin: { value: t.out_off - t.out_def },
                 nba_margin: { value: t.nba_off - t.nba_def },
-                sr_margin: { value: t.sr_off - t.sr_def },
+                sr_margin: { value: transferCaps.seniorOut },
 
                 roster: (
                   <span style={{ whiteSpace: "nowrap" }}>
@@ -1347,6 +1355,8 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
           tableFields={originalTableDefs}
           tableData={originalTableRows}
           cellTooltipMode={undefined}
+          sortField={offseasonTableSortField}
+          onHeaderClick={handleOffseasonHeaderClick}
         />
       );
     };
@@ -1358,6 +1368,8 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
           tableFields={tableDefs}
           tableData={tableRows}
           cellTooltipMode={undefined}
+          sortField={offseasonTableSortField}
+          onHeaderClick={handleOffseasonHeaderClick}
         />
 
         <Row className="mt-3">
@@ -1445,17 +1457,10 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
   function stringToOption(s: string) {
     return { label: s, value: s };
   }
-  const sortByOptions: Record<string, { label: string; value: string }> = {
-    net: { label: "Net Rating", value: "net" },
-    offseason_net: { label: "Total offseason net", value: "offseason_net" },
-    total_io: { label: "Total in - out", value: "total_io" },
-    txfer_io: { label: "Transfer in - out", value: "txfer_io" },
-    txfer_in: { label: "Transfers in", value: "txfer_in" },
-    txfer_out: { label: "Transfers out", value: "txfer_out" },
-    dev_in: { label: "Returning improvement", value: "dev_in" },
-    nba_out: { label: "Declared", value: "nba_out" },
-    sr_out: { label: "Aged out", value: "sr_out" },
-  };
+  const sortByOptions = _.keyBy(
+    OffseasonLeaderboardTableDefs.SORT_BY_OPTIONS,
+    "value",
+  ) as Record<string, { label: string; value: string }>;
 
   return (
     <Container>
@@ -1605,7 +1610,7 @@ const OffseasonTierListTable: React.FunctionComponent<Props> = ({
             <Col xs={12} sm={12} md={4} lg={4}>
               <ThemedSelect
                 styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
-                value={sortByOptions[sortBy]}
+                value={sortByOptions[sortBy] ?? sortByOptions.net}
                 options={_.values(sortByOptions)}
                 isSearchable={false}
                 onChange={(option: any) => {

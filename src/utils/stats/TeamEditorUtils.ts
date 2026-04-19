@@ -176,6 +176,9 @@ export type TeamEditorProcessingResults = {
   fr_net: number;
   dev_off: number;
   dev_def: number;
+  /** Last-season weighted off/def from returning players (same cohort as dev). */
+  stay_off: number;
+  stay_def: number;
 };
 
 /** Data manipulation functions for the TeamEditorTable */
@@ -785,6 +788,11 @@ export class TeamEditorUtils {
             acc.dev_def +
             (TeamEditorUtils.getDef(p.ok) * possPctDef -
               TeamEditorUtils.getDef(p.orig) * possActPctDef);
+          //(use predicted values)
+          acc.stay_off =
+            acc.stay_off + TeamEditorUtils.getOff(p.ok) * possPctOff;
+          acc.stay_def =
+            acc.stay_def + TeamEditorUtils.getDef(p.ok) * possPctDef;
           //Diag
           // if (team == "Kansas") console.log(`Developing [${p.orig.code}][${p.orig.team}][${p.orig.year}] / ` +
           //    `off:[${TeamEditorUtils.getOff(p.ok).toFixed(2)}][${TeamEditorUtils.getOff(p.orig).toFixed(2)}] ` +
@@ -792,7 +800,15 @@ export class TeamEditorUtils {
           //    `[${acc.dev_off.toFixed(2)}] [${acc.dev_def.toFixed(2)}]`);
         }
       },
-      { in_off: 0, in_def: 0, fr_net: 0, dev_off: 0, dev_def: 0 },
+      {
+        in_off: 0,
+        in_def: 0,
+        fr_net: 0,
+        dev_off: 0,
+        dev_def: 0,
+        stay_off: 0,
+        stay_def: 0,
+      },
     );
 
     //////////////
