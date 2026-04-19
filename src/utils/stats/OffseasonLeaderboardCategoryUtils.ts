@@ -26,6 +26,15 @@ export type CategoryPathNeedDetail = {
   quantifier: "any" | "all";
   k: number;
   groups: CategoryPathNeedGroup[];
+  /**
+   * When primary is “Need any 1” with only 1–3 solo names: greedy combo among
+   * remaining rotation players that also clears the gap (`Or all N of:` / `Or both:` — every
+   * listed player’s marginal swing must hit together).
+   */
+  remainderOrAny?: {
+    k: number;
+    groups: CategoryPathNeedGroup[];
+  };
 };
 
 /** Result of {@link OffseasonLeaderboardCategoryUtils.buildNeedDetailFromTriples}. */
@@ -422,19 +431,116 @@ export class OffseasonLeaderboardCategoryUtils {
       playerDivisionStats,
     );
 
+    let detail: CategoryPathNeedDetail = { quantifier, k, groups };
+
+    if (
+      quantifier === "any" &&
+      k === 1 &&
+      solo.length >= 1 &&
+      solo.length <= 3
+    ) {
+      const remainderCombo =
+        OffseasonLeaderboardCategoryUtils.remainderCombinationNeedOrUndefined(
+          triplesSorted,
+          solo,
+          gap,
+          playerDivisionStats,
+          maxK,
+        );
+      if (remainderCombo) {
+        detail = { ...detail, remainderOrAny: remainderCombo };
+      }
+    }
+
     return {
       outcome: "detail",
-      detail: { quantifier, k, groups },
+      detail,
     };
   }
 
-  static plainTextFromNeedDetail(detail: CategoryPathNeedDetail): string {
-    const head = `Need ${detail.quantifier} ${detail.k} of:`;
-    const lines = detail.groups.map(
-      (g) =>
-        `* ${g.categoryLabel}: ${g.playerNames.map((n) => `[${n}]`).join(", ")}`,
+  /**
+   * Exclude solo-clearers (by triple key), greedy prefix on rest by current `d` sort.
+   * Requires at least 2 players (no one in remainder clears alone) and k ≤ maxK.
+   */
+  private static remainderCombinationNeedOrUndefined(
+    triplesSorted: { triple: GoodBadOkTriple; d: number }[],
+    soloClearers: { triple: GoodBadOkTriple; d: number }[],
+    gap: number,
+    playerDivisionStats: DivisionStatistics | undefined,
+    maxK: number,
+  ): { k: number; groups: CategoryPathNeedGroup[] } | undefined {
+    const soloKeys = new Set(soloClearers.map((x) => x.triple.key));
+    const remaining = triplesSorted.filter((x) => !soloKeys.has(x.triple.key));
+
+    let sum = 0;
+    let take = 0;
+    for (let i = 0; i < remaining.length; i++) {
+      sum += remaining[i]!.d;
+      take = i + 1;
+      if (sum >= gap) break;
+    }
+
+    if (sum < gap || take < 2 || take > maxK) {
+      return undefined;
+    }
+
+    const entries = remaining.slice(0, take);
+    const groups = OffseasonLeaderboardCategoryUtils.groupPlayersForNeedDisplay(
+      entries,
+      playerDivisionStats,
     );
-    return [head, ...lines].join("\n");
+
+    return { k: take, groups };
+  }
+
+  /** UI / plain-text heading for primary “Need …” block. */
+  static formatPrimaryNeedHeading(
+    quantifier: "any" | "all",
+    k: number,
+  ): string {
+    if (quantifier === "all" && k === 2) {
+      return "Need both:";
+    }
+    return `Need ${quantifier} ${k} of:`;
+  }
+
+  /** UI / plain-text heading for remainder “Or …” combo block. */
+  static formatRemainderNeedHeading(k: number): string {
+    return k === 2 ? "Or both:" : `Or all ${k} of:`;
+  }
+
+  static plainTextFromNeedDetail(detail: CategoryPathNeedDetail): string {
+    const blockLines = (
+      heading: string,
+      groups: CategoryPathNeedGroup[],
+    ): string[] => [
+      heading,
+      ...groups.map(
+        (g) =>
+          `* ${g.categoryLabel}: ${g.playerNames.map((n) => `[${n}]`).join(", ")}`,
+      ),
+    ];
+
+    const primaryLines = blockLines(
+      OffseasonLeaderboardCategoryUtils.formatPrimaryNeedHeading(
+        detail.quantifier,
+        detail.k,
+      ),
+      detail.groups,
+    );
+
+    if (!detail.remainderOrAny) {
+      return primaryLines.join("\n");
+    }
+
+    const orLines = blockLines(
+      OffseasonLeaderboardCategoryUtils.formatRemainderNeedHeading(
+        detail.remainderOrAny.k,
+      ),
+      detail.remainderOrAny.groups,
+    );
+
+    return [...primaryLines, "", ...orLines].join("\n");
   }
 
   private static netD1RankFromTriple(
@@ -545,12 +651,14 @@ export class OffseasonLeaderboardCategoryUtils {
           analysisNeedDetail = undefined;
           kNeed = 0;
         } else {
-          kNeed = needResult.detail.k;
-          analysisNeedDetail = needResult.detail;
+          const d = needResult.detail;
+          kNeed = d.k;
+          if (d.remainderOrAny) {
+            kNeed = Math.max(kNeed, d.remainderOrAny.k);
+          }
+          analysisNeedDetail = d;
           analysisText =
-            OffseasonLeaderboardCategoryUtils.plainTextFromNeedDetail(
-              needResult.detail,
-            );
+            OffseasonLeaderboardCategoryUtils.plainTextFromNeedDetail(d);
         }
       }
 

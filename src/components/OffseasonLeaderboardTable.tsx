@@ -78,6 +78,7 @@ import {
 import {
   OffseasonLeaderboardCategoryUtils,
   type CategoryPathNeedDetail,
+  type CategoryPathNeedGroup,
 } from "../utils/stats/OffseasonLeaderboardCategoryUtils";
 import type { DivisionStatistics } from "../utils/StatModels";
 
@@ -98,6 +99,41 @@ const diagnosticCompareWithRosters = false;
 
 /** Replace with real URLs when wired (player-level destination). */
 const CATEGORY_PATH_PLAYER_NEED_LINK_HREF = "";
+
+function CategoryPathNeedGroupsList({
+  groups,
+  href,
+}: {
+  groups: CategoryPathNeedGroup[];
+  href: string;
+}) {
+  return (
+    <ul className="mb-0 mt-1 ps-3">
+      {groups.map((g) => (
+        <li key={g.categoryLabel}>
+          <strong>{g.categoryLabel}:</strong>{" "}
+          {g.playerNames.map((name, idx) => (
+            <React.Fragment key={`${g.categoryLabel}-${idx}-${name}`}>
+              {idx > 0 ? ", " : null}
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (!CATEGORY_PATH_PLAYER_NEED_LINK_HREF) {
+                    e.preventDefault();
+                  }
+                }}
+              >
+                [{name}]
+              </a>
+            </React.Fragment>
+          ))}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function CategoryPathWhatsNeededCell({
   analysisText,
@@ -134,32 +170,28 @@ function CategoryPathWhatsNeededCell({
       }}
     >
       <div>
-        Need {analysisNeedDetail.quantifier} {analysisNeedDetail.k} of:
+        {OffseasonLeaderboardCategoryUtils.formatPrimaryNeedHeading(
+          analysisNeedDetail.quantifier,
+          analysisNeedDetail.k,
+        )}
       </div>
-      <ul className="mb-0 mt-1 ps-3">
-        {analysisNeedDetail.groups.map((g) => (
-          <li key={g.categoryLabel}>
-            <strong>{g.categoryLabel}:</strong>{" "}
-            {g.playerNames.map((name, idx) => (
-              <React.Fragment key={`${g.categoryLabel}-${idx}-${name}`}>
-                {idx > 0 ? ", " : null}
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => {
-                    if (!CATEGORY_PATH_PLAYER_NEED_LINK_HREF) {
-                      e.preventDefault();
-                    }
-                  }}
-                >
-                  [{name}]
-                </a>
-              </React.Fragment>
-            ))}
-          </li>
-        ))}
-      </ul>
+      <CategoryPathNeedGroupsList
+        groups={analysisNeedDetail.groups}
+        href={href}
+      />
+      {analysisNeedDetail.remainderOrAny ? (
+        <>
+          <div className="mt-2">
+            {OffseasonLeaderboardCategoryUtils.formatRemainderNeedHeading(
+              analysisNeedDetail.remainderOrAny.k,
+            )}
+          </div>
+          <CategoryPathNeedGroupsList
+            groups={analysisNeedDetail.remainderOrAny.groups}
+            href={href}
+          />
+        </>
+      ) : null}
     </small>
   );
 }
