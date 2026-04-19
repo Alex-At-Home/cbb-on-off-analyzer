@@ -2,16 +2,9 @@ import React, { useState } from "react";
 import { GradeUtils } from "../../utils/stats/GradeUtils";
 import { DivisionStatistics } from "../../utils/StatModels";
 import {
-  buildPortalOverallCaveats,
-  formatCategoryLabel,
-  portalEvalLeagueLabelForViewer,
-  statisticToD1Rank,
-} from "../../utils/portal/portalEvalRules";
-import {
-  runDefenseEvalRules,
-  runOffenseEvalRules,
+  PortalUtils,
   type PortalEvalOffenseDefenseSnapshot,
-} from "../../utils/portal/portalEvalOffDefNotes";
+} from "../../utils/stats/PortalUtils";
 import { DefaultSimilarityConfig } from "../../utils/FilterModels";
 import { UrlRouting } from "../../utils/UrlRouting";
 
@@ -84,19 +77,19 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
     gradeFormat === "rank",
   );
 
-  const netRank = statisticToD1Rank(
+  const netRank = PortalUtils.statisticToD1Rank(
     predictedGrades.off_adj_rapm_margin as { value?: number; samples?: number },
   );
-  const offRank = statisticToD1Rank(
+  const offRank = PortalUtils.statisticToD1Rank(
     predictedGrades.off_adj_rapm as { value?: number; samples?: number },
   );
-  const defRank = statisticToD1Rank(
+  const defRank = PortalUtils.statisticToD1Rank(
     predictedGrades.def_adj_rapm as { value?: number; samples?: number },
   );
 
-  const league = portalEvalLeagueLabelForViewer();
+  const league = PortalUtils.portalEvalLeagueLabelForViewer();
 
-  const caveats = buildPortalOverallCaveats({
+  const caveats = PortalUtils.buildPortalOverallCaveats({
     yearClass: player.roster?.year_class,
     teamPossPct: player.off_team_poss_pct?.value,
     rosterHeight: player.roster?.height,
@@ -104,13 +97,13 @@ const PortalProspectEvalBlock: React.FC<PortalProspectEvalBlockProps> = ({
     gender,
   });
 
-  const netCat = formatCategoryLabel(netRank);
-  const offCat = formatCategoryLabel(offRank);
-  const defCat = formatCategoryLabel(defRank);
+  const netCat = PortalUtils.formatCategoryLabel(netRank);
+  const offCat = PortalUtils.formatCategoryLabel(offRank);
+  const defCat = PortalUtils.formatCategoryLabel(defRank);
 
   const odSnap = offenseDefenseSnapshotFromPlayer(player, avgEfficiency);
-  const offenseNotes = runOffenseEvalRules(odSnap);
-  const defenseNotes = runDefenseEvalRules(odSnap);
+  const offenseNotes = PortalUtils.runOffenseEvalRules(odSnap);
+  const defenseNotes = PortalUtils.runDefenseEvalRules(odSnap);
 
   const ncaaId = player.roster?.ncaa_id as string | undefined;
   /** Fr with no prior season row (mirrors TeamEditor “true freshman” vs redshirt/fake Fr when prev year is present). */
