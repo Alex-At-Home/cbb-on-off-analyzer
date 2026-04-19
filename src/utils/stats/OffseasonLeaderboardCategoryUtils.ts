@@ -28,6 +28,12 @@ export type CategoryPathNeedDetail = {
   groups: CategoryPathNeedGroup[];
 };
 
+/** Result of {@link OffseasonLeaderboardCategoryUtils.buildNeedDetailFromTriples}. */
+export type BuildCategoryPathNeedResult =
+  | { outcome: "detail"; detail: CategoryPathNeedDetail }
+  | { outcome: "too_many_swings" }
+  | { outcome: "impossible" };
+
 export type OffseasonCategoryPathComputedRow = {
   team: string;
   conf: string;
@@ -51,6 +57,11 @@ export class OffseasonLeaderboardCategoryUtils {
   static readonly TIER_RANK_T25 = 25;
   static readonly TIER_RANK_ONE_DIGIT = 40;
   static readonly TIER_RANK_BUBBLE = 60;
+
+  /** Only the top-N rotation players (ok team poss %) feed upside / need lists. */
+  static readonly MAX_UPSIDE_PLAYERS_IN_POOL = 7;
+  /** Max swings in a “Need all k” line; more than this → Goal = Else + “No bad luck!”. */
+  static readonly MAX_SWINGS_IN_NEED_LIST = 5;
 
   /** Grace margin (pts/100) applied so thresholds are slightly easier than the raw boundary net. */
   static readonly NET_THRESHOLD_GRACE_PTS = 0.5;
@@ -222,6 +233,30 @@ export class OffseasonLeaderboardCategoryUtils {
   }
 
   /**
+   * Top {@link MAX_UPSIDE_PLAYERS_IN_POOL} players by ok possession %, then
+   * positive-marginal only, ordered by swing `d` descending for greedy need logic.
+   */
+  static topPossPoolForUpside(
+    players: GoodBadOkTriple[],
+  ): { triple: GoodBadOkTriple; d: number }[] {
+    const n = OffseasonLeaderboardCategoryUtils.MAX_UPSIDE_PLAYERS_IN_POOL;
+    const withPoss = players.map((triple) => ({
+      triple,
+      d: OffseasonLeaderboardCategoryUtils.playerMarginalGoodMinusOk(triple),
+      possPct: triple.ok?.off_team_poss_pct?.value ?? 0,
+    }));
+    const topByMins = _.orderBy(withPoss, [(x) => x.possPct], ["desc"]).slice(
+      0,
+      n,
+    );
+    const positiveSwings = _.filter(topByMins, (x) => x.d > 0);
+    return _.orderBy(positiveSwings, [(x) => x.d], ["desc"]).map((x) => ({
+      triple: x.triple,
+      d: x.d,
+    }));
+  }
+
+  /**
    * Display name for roster rows — use `orig.key` (“Last, First”).
    * Do not parse {@link GoodBadOkTriple.key}: transfers use `code:SCHOOL_TEAM:year`
    * so text after the first colon is often the player’s **previous school**, not their name.
@@ -337,15 +372,20 @@ export class OffseasonLeaderboardCategoryUtils {
   }
 
   /**
-   * Solo swing clears gap → “any 1”, list everyone with marginal swing ≥ gap.
-   * Else minimal greedy prefix (largest swings first); “all k”, list exactly those k players.
+   * Solo swing clears gap → “any 1”, list solo clearers (pool already ≤7 by minutes).
+   * Else minimal greedy prefix by `d`; if that prefix length exceeds
+   * {@link MAX_SWINGS_IN_NEED_LIST}, returns {@link BuildCategoryPathNeedResult} `too_many_swings`.
    */
   static buildNeedDetailFromTriples(
     triplesSorted: { triple: GoodBadOkTriple; d: number }[],
     gap: number,
     playerDivisionStats: DivisionStatistics | undefined,
-  ): CategoryPathNeedDetail | undefined {
-    if (gap <= 0 || triplesSorted.length === 0) return undefined;
+  ): BuildCategoryPathNeedResult {
+    const maxK = OffseasonLeaderboardCategoryUtils.MAX_SWINGS_IN_NEED_LIST;
+
+    if (gap <= 0 || triplesSorted.length === 0) {
+      return { outcome: "impossible" };
+    }
 
     const solo = triplesSorted.filter((x) => x.d >= gap);
     let entries: typeof triplesSorted;
@@ -364,7 +404,13 @@ export class OffseasonLeaderboardCategoryUtils {
         take = i + 1;
         if (sum >= gap) break;
       }
-      if (sum < gap) return undefined;
+      if (sum < gap) {
+        return { outcome: "impossible" };
+      }
+
+      if (take > maxK) {
+        return { outcome: "too_many_swings" };
+      }
 
       quantifier = "all";
       k = take;
@@ -376,7 +422,10 @@ export class OffseasonLeaderboardCategoryUtils {
       playerDivisionStats,
     );
 
-    return { quantifier, k, groups };
+    return {
+      outcome: "detail",
+      detail: { quantifier, k, groups },
+    };
   }
 
   static plainTextFromNeedDetail(detail: CategoryPathNeedDetail): string {
@@ -450,18 +499,15 @@ export class OffseasonLeaderboardCategoryUtils {
       const gap = thresh - t.net;
 
       const players = t.players || [];
-      const triplesSorted = _.chain(players)
-        .map((p) => ({
-          triple: p,
-          d: OffseasonLeaderboardCategoryUtils.playerMarginalGoodMinusOk(p),
-        }))
-        .filter((x) => x.d > 0)
-        .orderBy([(x) => x.d], ["desc"])
-        .value();
+      const triplesSorted =
+        OffseasonLeaderboardCategoryUtils.topPossPoolForUpside(players);
 
       let kNeed = 0;
       let analysisText = "";
       let analysisNeedDetail: CategoryPathNeedDetail | undefined;
+      let goalLabelOut = OffseasonLeaderboardCategoryUtils.tierLabels[goalTier];
+      let goalSortKeyOut = cutoff;
+      let goalThresholdNetOut = thresh;
 
       if (gap <= 0) {
         analysisText =
@@ -469,31 +515,54 @@ export class OffseasonLeaderboardCategoryUtils {
             ? "No bad luck!"
             : "Any sort of positive variance should be enough";
       } else {
-        const needDetail =
+        const needResult =
           OffseasonLeaderboardCategoryUtils.buildNeedDetailFromTriples(
             triplesSorted,
             gap,
             playerDivisionStats,
           );
-        if (!needDetail) {
+
+        if (needResult.outcome === "impossible") {
           continue;
         }
 
-        kNeed = needDetail.k;
-        analysisNeedDetail = needDetail;
-        analysisText =
-          OffseasonLeaderboardCategoryUtils.plainTextFromNeedDetail(needDetail);
+        if (needResult.outcome === "too_many_swings") {
+          const fbCut = OffseasonLeaderboardCategoryUtils.rankCutoffForTier(fb);
+          const fbThresh =
+            OffseasonLeaderboardCategoryUtils.thresholdNetForGoalRank(
+              sortedByNetDescending,
+              fbCut,
+              priorSeasonTeamDivisionStats,
+            );
+          if (fbThresh === undefined) {
+            continue;
+          }
+
+          goalLabelOut = OffseasonLeaderboardCategoryUtils.tierLabels[fb];
+          goalSortKeyOut = fbCut;
+          goalThresholdNetOut = fbThresh;
+          analysisText = "No bad luck!";
+          analysisNeedDetail = undefined;
+          kNeed = 0;
+        } else {
+          kNeed = needResult.detail.k;
+          analysisNeedDetail = needResult.detail;
+          analysisText =
+            OffseasonLeaderboardCategoryUtils.plainTextFromNeedDetail(
+              needResult.detail,
+            );
+        }
       }
 
       rows.push({
         team: t.team,
         conf: t.conf,
-        goalLabel: OffseasonLeaderboardCategoryUtils.tierLabels[goalTier],
+        goalLabel: goalLabelOut,
         fallbackLabel: OffseasonLeaderboardCategoryUtils.tierLabels[fb],
         analysisText,
         analysisNeedDetail,
-        goalSortKey: cutoff,
-        goalThresholdNet: thresh,
+        goalSortKey: goalSortKeyOut,
+        goalThresholdNet: goalThresholdNetOut,
         kSwings: kNeed,
         net: t.net,
         netRank,

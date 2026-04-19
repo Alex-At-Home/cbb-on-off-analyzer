@@ -1379,7 +1379,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               ),
               conf: <small>{t.conf}</small>,
               path_goal: cr.goalLabel,
-              path_else: cr.fallbackLabel,
+              path_else:
+                cr.goalLabel === cr.fallbackLabel ? "-" : cr.fallbackLabel,
               path_whats_needed: (
                 <CategoryPathWhatsNeededCell
                   analysisText={cr.analysisText}
