@@ -245,4 +245,84 @@ export class OffseasonLeaderboardTableDefs {
         ),
     ) as Record<string, GenericTableColProps>;
   }
+
+  /** Tournament-path columns (national rank goals / upside swings). */
+  static offseasonLeaderboardCategoryPathTable(
+    evalMode: boolean,
+  ): Record<string, GenericTableColProps> {
+    return _.omit(
+      {
+        title: GenericTableOps.addTitle(
+          "",
+          "",
+          CommonTableDefs.rowSpanCalculator,
+          "small",
+          GenericTableOps.htmlFormatter,
+          8,
+        ),
+        conf: GenericTableOps.addDataCol(
+          "Conf",
+          "The team's conference",
+          GenericTableOps.defaultColorPicker,
+          GenericTableOps.htmlFormatter,
+        ),
+        sepCat0: GenericTableOps.addColSeparator(0.25),
+        path_goal: new GenericTableColProps(
+          "Goal",
+          "The goal this team should be chasing",
+          3,
+          false,
+          GenericTableOps.htmlFormatter,
+          CbbColors.applyThemedBackground,
+          GenericTableOps.defaultRowSpanCalculator,
+          undefined,
+          "",
+        ),
+        path_else: new GenericTableColProps(
+          "Else",
+          "If the team misses their goal, but no bad luck, this is a likely outcome",
+          3,
+          false,
+          GenericTableOps.htmlFormatter,
+          CbbColors.applyThemedBackground,
+          GenericTableOps.defaultRowSpanCalculator,
+          undefined,
+          "",
+        ),
+        path_whats_needed: new GenericTableColProps(
+          "What's needed for goal",
+          "Player-level upside vs ok projection needed to reach the Goal tier net threshold (when not already there).",
+          18,
+          false,
+          GenericTableOps.htmlFormatter,
+          CbbColors.applyThemedBackground,
+          GenericTableOps.defaultRowSpanCalculator,
+          undefined,
+          "",
+        ),
+        sepCat1: GenericTableOps.addColSeparator(0.25),
+        actual_grade: GenericTableOps.addDataCol(
+          "Act.",
+          "Ranking based on the team's actual Net Adjusted Pts/100 above an average D1 team",
+          CbbColors.varPicker(CbbColors.net_guess),
+          GenericTableOps.gradeOrHtmlFormatter,
+        ),
+        sepCat2: GenericTableOps.addColSeparator(0.25),
+        roster: GenericTableOps.addDataCol(
+          "Roster",
+          "Projected of (high major) Superstars / Stars / Starters / Rotation players on the team",
+          CbbColors.applyThemedBackground,
+          GenericTableOps.htmlFormatter,
+        ),
+        sepCat3: GenericTableOps.addColSeparator(),
+        edit: GenericTableOps.addDataCol(
+          "",
+          "Edit the team projections",
+          CbbColors.applyThemedBackground,
+          GenericTableOps.htmlFormatter,
+        ),
+      },
+      evalMode ? [] : ["actual_grade"],
+    ) as Record<string, GenericTableColProps>;
+  }
 }

@@ -98,6 +98,7 @@ const OffseasonLeaderboardPage: NextPage<Props> = ({ testMode }) => {
         // omit all defaults
 
         !rawParams.transferInOutMode ? ["transferInOutMode"] : [],
+        !rawParams.categoryPathMode ? ["categoryPathMode"] : [],
         !rawParams.showAllTeams ? ["showAllTeams"] : [],
         !rawParams.showDepthChartRows ? ["showDepthChartRows"] : [],
         !rawParams.evalMode ? ["evalMode"] : [],

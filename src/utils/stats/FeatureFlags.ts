@@ -33,4 +33,7 @@ export class FeatureFlags {
 
   /** Query builder work */
   static readonly visualQueryBuilder = true;
+
+  /** Offseason leaderboard “tournament path” column mode (dev-only until enabled). */
+  static readonly categoryOffseasonLeaderboard = true;
 }

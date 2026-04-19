@@ -70,6 +70,16 @@ import TeamFilterAutoSuggestText, {
 } from "./shared/TeamFilterAutoSuggestText";
 import ThemedSelect from "./shared/ThemedSelect";
 import { buildTwoDepthRows } from "../utils/tables/TeamEditorDepthChart";
+import { FeatureFlags } from "../utils/stats/FeatureFlags";
+import {
+  GradeTableUtils,
+  type DivisionStatsCache,
+} from "../utils/tables/GradeTableUtils";
+import {
+  OffseasonLeaderboardCategoryUtils,
+  type CategoryPathNeedDetail,
+} from "../utils/stats/OffseasonLeaderboardCategoryUtils";
+import type { DivisionStatistics } from "../utils/StatModels";
 
 type Props = {
   startingState: OffseasonLeaderboardParams;
@@ -85,6 +95,74 @@ const updateNextYearsRoster = process.env.BUILD_OFFSEASON_ROSTER == "true";
 
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
+
+/** Replace with real URLs when wired (player-level destination). */
+const CATEGORY_PATH_PLAYER_NEED_LINK_HREF = "";
+
+function CategoryPathWhatsNeededCell({
+  analysisText,
+  analysisNeedDetail,
+}: {
+  analysisText: string;
+  analysisNeedDetail?: CategoryPathNeedDetail;
+}) {
+  if (!analysisNeedDetail) {
+    return (
+      <small
+        style={{
+          whiteSpace: "normal",
+          maxWidth: "none",
+          textAlign: "left",
+          display: "block",
+        }}
+      >
+        {analysisText}
+      </small>
+    );
+  }
+
+  const href = CATEGORY_PATH_PLAYER_NEED_LINK_HREF || "#";
+
+  return (
+    <small
+      style={{
+        whiteSpace: "normal",
+        maxWidth: "none",
+        fontSize: "0.82rem",
+        textAlign: "left",
+        display: "block",
+      }}
+    >
+      <div>
+        Need {analysisNeedDetail.quantifier} {analysisNeedDetail.k} of:
+      </div>
+      <ul className="mb-0 mt-1 ps-3">
+        {analysisNeedDetail.groups.map((g) => (
+          <li key={g.categoryLabel}>
+            <strong>{g.categoryLabel}:</strong>{" "}
+            {g.playerNames.map((name, idx) => (
+              <React.Fragment key={`${g.categoryLabel}-${idx}-${name}`}>
+                {idx > 0 ? ", " : null}
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (!CATEGORY_PATH_PLAYER_NEED_LINK_HREF) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  [{name}]
+                </a>
+              </React.Fragment>
+            ))}
+          </li>
+        ))}
+      </ul>
+    </small>
+  );
+}
 
 const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   startingState,
@@ -166,6 +244,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [transferInOutMode, setTransferInOutMode] = useState(
     startingState.transferInOutMode || false,
   );
+  const [categoryPathMode, setCategoryPathMode] = useState(
+    !!startingState.categoryPathMode,
+  );
+  const [playerDivisionStatsCache, setPlayerDivisionStatsCache] =
+    useState<DivisionStatsCache>({});
+  const [teamDivisionStatsCache, setTeamDivisionStatsCache] =
+    useState<DivisionStatsCache>({});
   const [evalMode, setEvalMode] = useState(startingState.evalMode || false);
   const [showExtraStatsInEvalMode, setShowExtraStatsInEvalMode] =
     useState<Boolean>(false); //TODO make this display param (this option is mostly for me at the moment, so not a prio)
@@ -277,6 +362,36 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   );
 
   /** When the params change */
+  const categoryOffseasonLbActive = FeatureFlags.isActiveWindow(
+    FeatureFlags.categoryOffseasonLeaderboard,
+  );
+
+  useEffect(() => {
+    if (!categoryOffseasonLbActive && categoryPathMode) {
+      setCategoryPathMode(false);
+    }
+  }, [categoryOffseasonLbActive, categoryPathMode]);
+
+  useEffect(() => {
+    if (!categoryOffseasonLbActive || !categoryPathMode) {
+      return;
+    }
+    GradeTableUtils.populatePlayerDivisionStatsCache(
+      {
+        gender,
+        year: yearWithStats,
+      },
+      setPlayerDivisionStatsCache,
+    );
+    GradeTableUtils.populateTeamDivisionStatsCache(
+      {
+        gender,
+        year: yearWithStats,
+      },
+      setTeamDivisionStatsCache,
+    );
+  }, [categoryOffseasonLbActive, categoryPathMode, gender, yearWithStats]);
+
   useEffect(() => {
     onChangeState(
       _.merge(
@@ -286,6 +401,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           confs,
           evalMode: evalMode,
           transferInOutMode: transferInOutMode,
+          ...(categoryOffseasonLbActive ? { categoryPathMode } : {}),
           sortBy: sortBy,
           queryFilters: queryFilters,
           showAllTeams,
@@ -310,6 +426,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     year,
     evalMode,
     transferInOutMode,
+    categoryPathMode,
+    categoryOffseasonLbActive,
     showAllTeams,
     showDepthChartRows,
     sortBy,
@@ -376,10 +494,17 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   );
 
   const table = React.useMemo(() => {
-    const tableDefs = OffseasonLeaderboardTableDefs.offseasonLeaderboardTable(
-      evalMode,
-      transferInOutMode,
-    );
+    const categoryPathEffective = categoryOffseasonLbActive && categoryPathMode;
+
+    const tableDefs =
+      categoryPathEffective && categoryPathMode
+        ? OffseasonLeaderboardTableDefs.offseasonLeaderboardCategoryPathTable(
+            evalMode,
+          )
+        : OffseasonLeaderboardTableDefs.offseasonLeaderboardTable(
+            evalMode,
+            transferInOutMode,
+          );
 
     const waitForRosterDiagMode =
       diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam);
@@ -432,7 +557,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       rostersPerTeam,
       avgEff,
       actualResultsAvgEff,
-      logDivisionStatsToFile && typeof window === `undefined`, //(in preseason-building mode, include teams)
+      (logDivisionStatsToFile && typeof window === `undefined`) ||
+        (categoryPathEffective && categoryPathMode), //(in preseason-building mode, include teams)
       showDepthChartRows,
     );
 
@@ -729,7 +855,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         })
       : tableRowsPreMaybeManualSort;
 
-    const tableRows = maybeHandSortedTeamRanks
+    const standardTableRows = maybeHandSortedTeamRanks
       .flatMap(([t, netRankIn], finalTeamOrder) => {
         const nonStdSort = sortBy && sortBy != "net" && transferInOutMode;
 
@@ -1083,6 +1209,294 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       })
       .value();
 
+    const sortedNationalForCategory = _.orderBy(
+      teamRanks,
+      [(z) => z.net],
+      ["desc"],
+    );
+    const netRankByTeamForCategory = _.fromPairs(
+      sortedNationalForCategory.map((z, i) => [z.team, i + 1]),
+    );
+
+    const categoryTableRows = (() => {
+      const catSorted = OffseasonLeaderboardCategoryUtils.buildCategoryPathRows(
+        maybeHandSortedTeamRanks.map(([x]) => x).value(),
+        netRankByTeamForCategory,
+        sortedNationalForCategory,
+        playerDivisionStatsCache.Combo as DivisionStatistics | undefined,
+        teamDivisionStatsCache.Combo as DivisionStatistics | undefined,
+      );
+      const byGoal = _.groupBy(catSorted, (r) => r.goalSortKey);
+      const sectionCutoffs = _.sortBy(
+        Object.keys(byGoal).map(Number),
+        (x) => x,
+      );
+      let rowNum = 0;
+
+      return _.flatMap(sectionCutoffs, (gk) => {
+        const group = _.orderBy(byGoal[gk]!, [(r) => r.net], ["desc"]);
+        if (!group.length) return [];
+
+        const thr0 = group[0]!.goalThresholdNet;
+        const gl0 = group[0]!.goalLabel;
+
+        const headerRow = GenericTableOps.buildTextRow(
+          <span className="small">
+            <i>
+              Goal: {gl0} (rating threshold: {thr0.toFixed(1)})
+            </i>
+          </span>,
+          "small text-center border-secondary border-top pt-2 pb-1",
+        );
+
+        const sectionRows = _.flatMap(group, (cr) => {
+          rowNum += 1;
+          const catIx = rowNum - 1;
+          const t = cr.teamInfo;
+          const netRank = cr.netRank;
+          const goodNet = GradeUtils.buildTeamPercentiles(
+            derivedDivisionStats,
+            { off_net: { value: t.goodNet } },
+            ["net"],
+            true,
+          );
+          const badNet = GradeUtils.buildTeamPercentiles(
+            derivedDivisionStats,
+            { off_net: { value: t.badNet } },
+            ["net"],
+            true,
+          );
+          const teamParams = {
+            year,
+            gender,
+            team: t.team,
+            evalMode: evalMode,
+            ...(teamOverrides[t.team] || {}),
+          };
+          const teamOverride = teamOverrides[t.team] || {};
+          const hasOverrides =
+            teamOverride.addedPlayers ||
+            teamOverride.deletedPlayers ||
+            teamOverride.disabledPlayers ||
+            teamOverride.overrides;
+          const maybeOverriddenEl = hasOverrides ? <span> (*)</span> : null;
+          const teamTooltip = (
+            <Tooltip id={`catTeamTooltip${catIx}`}>
+              {maybeOverriddenEl ? (
+                <span>
+                  (Team has edits, click on View icon to right to see them)
+                  <br />
+                  <br />
+                </span>
+              ) : null}
+              {AvailableTeams.teamAliases[t.team] ? (
+                <>
+                  Other names over the years:{" "}
+                  {AvailableTeams.teamAliases[t.team].join("; ")}
+                  <br />
+                  <br />
+                </>
+              ) : undefined}
+              Open new tab with the detailed off-season predictions for this
+              team
+              {maybeOverriddenEl ? <span> (with these edits)</span> : null}
+            </Tooltip>
+          );
+          const teamLink = (
+            <OverlayTrigger placement="auto" overlay={teamTooltip}>
+              <b>
+                <a
+                  target="_blank"
+                  href={UrlRouting.getTeamEditorUrl(teamParams)}
+                >
+                  {t.team}
+                </a>
+                {maybeOverriddenEl}
+              </b>
+            </OverlayTrigger>
+          );
+          const actualNetRankObj = getActualNetRankObj(t);
+          const actualNetRank = actualNetRankObj
+            ? toIntRank(actualNetRankObj?.off_net)
+            : 0;
+          const goodNetRank = actualNetRankObj ? toIntRank(goodNet.off_net) : 0;
+          const badNetRank = actualNetRankObj ? toIntRank(badNet.off_net) : 0;
+          const evalStdDev =
+            actualNetRank < netRank
+              ? netRank - goodNetRank
+              : badNetRank - netRank;
+          const deltaProjRank =
+            Math.abs(netRank - actualNetRank) / (evalStdDev || 1);
+          const maybeMinutesWarning = () => {
+            if (t.playersInPrediction <= 5) {
+              const badPredictionWarning = (
+                <Tooltip id={`catBadPred${catIx}`}>
+                  This prediction is very dubious - only based on [
+                  {t.playersInPrediction}] players' stats, with [
+                  {(200 - t.playersInPredictionMins).toFixed(1)}] minutes
+                  assigned to [{t.conf}] replacement level stats, despite
+                  unrealistically maxing out the minutes of the named players.
+                </Tooltip>
+              );
+              return (
+                <OverlayTrigger placement="auto" overlay={badPredictionWarning}>
+                  <sup style={{ color: "red" }}>&nbsp;(!!)</sup>
+                </OverlayTrigger>
+              );
+            } else if (
+              t.playersInPrediction == 6 ||
+              (t.playersInPrediction == 7 && t.playersInPredictionMins < 175)
+            ) {
+              const mehPredictionWarning = (
+                <Tooltip id={`catMehPred${catIx}`}>
+                  This prediction is dubious - only based on [
+                  {t.playersInPrediction}] players' stats, with [
+                  {(200 - t.playersInPredictionMins).toFixed(1)}] minutes
+                  assigned to [{t.conf}] replacement level stats, despite
+                  possibly unrealistically maxing out the minutes of the named
+                  players.
+                </Tooltip>
+              );
+              return (
+                <OverlayTrigger placement="auto" overlay={mehPredictionWarning}>
+                  <sup style={{ color: "orange" }}>&nbsp;(!)</sup>
+                </OverlayTrigger>
+              );
+            } else {
+              return null;
+            }
+          };
+          const dataRow = GenericTableOps.buildDataRow(
+            {
+              title: (
+                <span>
+                  <sup>
+                    <small>{rowNum}</small>&nbsp;
+                  </sup>
+                  {teamLink}
+                  {maybeMinutesWarning()}
+                </span>
+              ),
+              conf: <small>{t.conf}</small>,
+              path_goal: cr.goalLabel,
+              path_else: cr.fallbackLabel,
+              path_whats_needed: (
+                <CategoryPathWhatsNeededCell
+                  analysisText={cr.analysisText}
+                  analysisNeedDetail={cr.analysisNeedDetail}
+                />
+              ),
+              actual_grade: _.isNil(actualNetRankObj?.off_net)
+                ? undefined
+                : {
+                    ...actualNetRankObj?.off_net,
+                    colorOverride: deltaProjRank,
+                  },
+              roster: (
+                <span style={{ whiteSpace: "nowrap" }}>
+                  <small>{t.rosterInfo}</small>
+                </span>
+              ),
+              edit: (
+                <OverlayTrigger overlay={editTooltip} placement="auto">
+                  <Button
+                    variant={
+                      t.team == teamView ? "secondary" : "outline-secondary"
+                    }
+                    size="sm"
+                    onClick={(ev: any) => {
+                      friendlyChange(() => {
+                        if (teamView == t.team) {
+                          setTeamView("");
+                        } else {
+                          setTeamView(t.team);
+                        }
+                      }, true);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faEye} />
+                  </Button>
+                </OverlayTrigger>
+              ),
+            },
+            GenericTableOps.defaultFormatter,
+            GenericTableOps.defaultCellMeta,
+          );
+
+          return [
+            dataRow,
+            ...(showDepthChartRows && t.depthChart
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <TeamDepthChartView
+                      rows={t.depthChart.rows}
+                      rosterStatsByPlayerId={t.depthChart.rosterStatsByPlayerId}
+                      positionFromPlayerId={t.depthChart.positionFromPlayerId}
+                      factorMins={teamOverrides[t.team]?.factorMins === true}
+                      showPreviousSeasonInTooltip={
+                        teamOverrides[t.team]?.showPrevSeasons === true
+                      }
+                      getPlayerCareerUrl={(triple) => {
+                        const offSeasonMode = true;
+                        const showLinks =
+                          !triple.manualProfile ||
+                          ((!offSeasonMode || evalMode) &&
+                            triple.actualResults);
+                        if (!showLinks || !triple.orig.roster?.ncaa_id) {
+                          return undefined;
+                        }
+                        return UrlRouting.getPlayerCareer({
+                          ncaaId: triple.orig.roster.ncaa_id,
+                          gender,
+                          showInfoSubHeader: true,
+                        });
+                      }}
+                    />,
+                    "small pt-1",
+                  ),
+                ]
+              : []),
+            ...(teamView == t.team
+              ? [
+                  GenericTableOps.buildTextRow(
+                    <TeamEditorTable
+                      startingState={{
+                        team: teamView,
+                        gender,
+                        year,
+                        showDepthChart: false,
+                        evalMode: evalMode,
+                        ...(teamOverrides[teamView] || {}),
+                      }}
+                      dataEvent={dataEvent}
+                      onChangeState={(newState) => {
+                        const newOverrides = _.cloneDeep(teamOverrides);
+                        if (_.isEmpty(newState)) {
+                          delete newOverrides[teamView];
+                        } else {
+                          newOverrides[teamView] = newState;
+                        }
+                        friendlyChange(() => {
+                          setTeamOverrides(newOverrides);
+                        }, true);
+                      }}
+                      overrideGrades={derivedDivisionStats}
+                    />,
+                  ),
+                ]
+              : []),
+          ];
+        });
+
+        return [headerRow, ...sectionRows];
+      });
+    })();
+
+    const tableRows =
+      categoryPathEffective && categoryPathMode
+        ? categoryTableRows
+        : standardTableRows;
+
     const offseasonTableSortField =
       OffseasonLeaderboardTableDefs.sortByToTableField[sortBy];
     const handleOffseasonHeaderClick = (headerKey: string) => {
@@ -1132,6 +1546,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     rostersPerTeam,
     showExtraStatsInEvalMode,
     showDepthChartRows,
+    categoryOffseasonLbActive,
+    categoryPathMode,
+    playerDivisionStatsCache,
+    teamDivisionStatsCache,
   ]);
 
   // 3] View
@@ -1269,14 +1687,27 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             <GenericTogglingMenuItem
               text={"Show breakdown of team's offseason metrics"}
               truthVal={transferInOutMode}
-              disabled={evalMode}
+              disabled={evalMode || categoryPathMode}
               onSelect={() =>
-                friendlyChange(
-                  () => setTransferInOutMode(!transferInOutMode),
-                  !evalMode,
-                )
+                friendlyChange(() => {
+                  setCategoryPathMode(false);
+                  setTransferInOutMode(!transferInOutMode);
+                }, !evalMode)
               }
             />
+            {categoryOffseasonLbActive ? (
+              <GenericTogglingMenuItem
+                text={"Tournament path (WIP)"}
+                truthVal={categoryPathMode}
+                disabled={evalMode || transferInOutMode}
+                onSelect={() =>
+                  friendlyChange(() => {
+                    setTransferInOutMode(false);
+                    setCategoryPathMode(!categoryPathMode);
+                  }, true)
+                }
+              />
+            ) : null}
             <GenericTogglingMenuItem
               text={"Show all teams (slow, useful for export)"}
               truthVal={showAllTeams}
@@ -1299,6 +1730,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                     } //(otherwise leave year along)
                     setEvalMode(false);
                   } else {
+                    setCategoryPathMode(false);
                     //Switching on, we only support 21/22 and 22/23
                     setYearBeforeSettingEvalMode(year);
                     if (year < DateUtils.firstYearWithDecentRosterData) {

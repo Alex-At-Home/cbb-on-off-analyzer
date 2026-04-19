@@ -393,6 +393,8 @@ export type OffseasonLeaderboardParams = {
   confs?: string;
   evalMode?: boolean;
   transferInOutMode?: boolean;
+  /** Tournament-path column mode (feature-flagged in UI). */
+  categoryPathMode?: boolean;
   showAllTeams?: boolean;
   /** When true, each team row is followed by a 2-deep depth chart. */
   showDepthChartRows?: boolean;

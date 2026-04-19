@@ -849,6 +849,43 @@ export class GradeUtils {
     }
   }
 
+  /**
+   * Reverse lookup for national **team** adjusted net (`off_net`) from a loaded
+   * {@link DivisionStatistics} LUT (same archive as {@link GradeUtils.getPercentile}).
+   * Rank **1** is the best team (highest net); use this for “~top 8 / 25 / …” cutlines
+   * calibrated to a **prior season’s** D1 ladder (e.g. Combo tier JSON).
+   */
+  static adjustedNetAtNationalRankFromDivisionStats(
+    divStats: DivisionStatistics | undefined,
+    rankOneIndexed: number,
+  ): number | undefined {
+    if (!divStats?.tier_lut?.off_net?.lut || rankOneIndexed < 1) {
+      return undefined;
+    }
+    const el = divStats.tier_lut.off_net as DivisionStatisticsElement;
+    const n = el.size;
+    if (!n || rankOneIndexed > n) {
+      return undefined;
+    }
+
+    const nets: number[] = [];
+    _.forEach(el.lut, (arr) => {
+      if (!arr?.length) return;
+      for (let ii = 1; ii < arr.length; ii++) {
+        nets.push(arr[ii]!);
+      }
+    });
+
+    if (nets.length === 0) {
+      return undefined;
+    }
+
+    const ascending = _.sortBy(nets);
+    const effectiveRank = Math.min(rankOneIndexed, ascending.length);
+    const idxFromWorst = ascending.length - effectiveRank;
+    return ascending[idxFromWorst];
+  }
+
   static readonly teamFieldsToInvert = {
     off_to: true,
     off_to_nonstl: true,
