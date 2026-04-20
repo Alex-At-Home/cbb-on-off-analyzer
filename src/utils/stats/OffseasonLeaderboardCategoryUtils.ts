@@ -76,7 +76,7 @@ export class OffseasonLeaderboardCategoryUtils {
 
   /**
    * National teams (by net) passed into {@link buildCategoryPathRows} when no
-   * conference / manual row filter — wider than the normal T75 slice.
+   * conference / manual row filter — top N by net, wider than the normal T75 slice.
    */
   static readonly CATEGORY_PATH_TABLE_TEAM_CAP = 120;
 
@@ -128,25 +128,6 @@ export class OffseasonLeaderboardCategoryUtils {
     if (netRank <= OffseasonLeaderboardCategoryUtils.TIER_RANK_BUBBLE)
       return "bubble";
     return "out";
-  }
-
-  /**
-   * Category-path table slice: keep teams whose ok projection sits on the ladder
-   * at bubble or better (drops absolute “outside top 60” / `out` rows from the T120 net slice).
-   */
-  static teamOkProjectedCanReachBubbleContention(
-    t: OffseasonTeamInfo,
-    sortedByNetDescending: OffseasonTeamInfo[],
-    priorSeasonTeamDivisionStats: DivisionStatistics | undefined,
-    netRankOrdinalFallback: number,
-  ): boolean {
-    const fb = OffseasonLeaderboardCategoryUtils.tierFromOkPredictedNet(
-      t.net,
-      sortedByNetDescending,
-      priorSeasonTeamDivisionStats,
-      netRankOrdinalFallback,
-    );
-    return fb !== "out";
   }
 
   /**
@@ -689,6 +670,14 @@ export class OffseasonLeaderboardCategoryUtils {
         }
 
         if (needResult.outcome === "too_many_swings") {
+          /**
+           * Goal headers are only FF / Top 25 / 1-digit / Bubble. Never use “Outside top 60”
+           * as Goal — that tier is Else-only. Teams below the bubble ladder (`fb === out`) with
+           * too many marginal swings don’t get a compact path row here.
+           */
+          if (fb === "out") {
+            continue;
+          }
           const fbCut = OffseasonLeaderboardCategoryUtils.rankCutoffForTier(fb);
           const fbThresh =
             OffseasonLeaderboardCategoryUtils.thresholdNetForGoalRank(

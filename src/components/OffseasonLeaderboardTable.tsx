@@ -1349,19 +1349,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           .filter(confFilter)
           .orderBy([(z) => z.net], ["desc"])
           .take(OffseasonLeaderboardCategoryUtils.CATEGORY_PATH_TABLE_TEAM_CAP)
-          .value()
-          .filter((t) => {
-            const nr = netRankByTeamForCategory[t.team];
-            if (nr === undefined) {
-              return false;
-            }
-            return OffseasonLeaderboardCategoryUtils.teamOkProjectedCanReachBubbleContention(
-              t,
-              sortedNationalForCategory,
-              priorSeasonCombo,
-              nr,
-            );
-          });
+          .value();
       } else {
         teamsForCategoryPath = maybeHandSortedTeamRanks.map(([x]) => x).value();
       }
@@ -1381,7 +1369,11 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       let rowNum = 0;
 
       return _.flatMap(sectionCutoffs, (gk) => {
-        const group = _.orderBy(byGoal[gk]!, [(r) => r.net], ["desc"]);
+        const group = _.orderBy(
+          byGoal[gk]!,
+          [(r) => r.kSwings, (r) => r.net],
+          ["asc", "desc"],
+        );
         if (!group.length) return [];
 
         const thr0 = group[0]!.goalThresholdNet;
