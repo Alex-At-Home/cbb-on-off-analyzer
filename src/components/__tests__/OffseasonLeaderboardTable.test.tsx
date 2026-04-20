@@ -13,31 +13,39 @@ import _ from "lodash";
 import fs from "fs";
 import OffSeasonLeaderboardTable from "../OffseasonLeaderboardTable";
 
+jest.mock("next-themes", () => ({
+  useTheme: () => ({
+    resolvedTheme: "light",
+    theme: "light",
+    setTheme: jest.fn(),
+  }),
+}));
+
 describe("OffseasonLeaderboardTable", () => {
   // Load in data sample:
   const sampleData = JSON.parse(
     fs.readFileSync(
       "./public/leaderboards/lineups/players_all_Men_2019_High.json",
-      { encoding: "utf-8" }
-    )
+      { encoding: "utf-8" },
+    ),
   );
   const sampleDataMore = JSON.parse(
     fs.readFileSync(
       "./public/leaderboards/lineups/players_all_Men_2018_High.json",
-      { encoding: "utf-8" }
-    )
+      { encoding: "utf-8" },
+    ),
   );
   const sampleDataEvenMore = JSON.parse(
     fs.readFileSync(
       "./public/leaderboards/lineups/players_all_Men_2020_High.json",
-      { encoding: "utf-8" }
-    )
+      { encoding: "utf-8" },
+    ),
   );
   const sampleTeamData = JSON.parse(
     fs.readFileSync(
       "./public/leaderboards/lineups/team_stats_all_Men_2020_High.json",
-      { encoding: "utf-8" }
-    )
+      { encoding: "utf-8" },
+    ),
   );
   const transfers = [
     {
@@ -67,13 +75,13 @@ describe("OffseasonLeaderboardTable", () => {
   const threeYearsWithEvalTeamStats = {
     ...threeYears,
     teamStats: sampleTeamData.teams.filter(
-      (t: any) => t.team_name == "Maryland"
+      (t: any) => t.team_name == "Maryland",
     ),
   };
 
   // Tidy up snapshot rendering:
   expect.addSnapshotSerializer(
-    SampleDataUtils.summarizeEnrichedApiResponse(sampleData.players[0])
+    SampleDataUtils.summarizeEnrichedApiResponse(sampleData.players[0]),
   );
 
   test("OffseasonLeaderboardTable - should create snapshot", () => {
@@ -85,7 +93,7 @@ describe("OffseasonLeaderboardTable", () => {
         }}
         dataEvent={twoYears}
         onChangeState={dummyChangeStateCallback}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -99,7 +107,7 @@ describe("OffseasonLeaderboardTable", () => {
         }}
         dataEvent={twoYears}
         onChangeState={dummyChangeStateCallback}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -115,7 +123,7 @@ describe("OffseasonLeaderboardTable", () => {
         }
         dataEvent={threeYearsWithEvalTeamStats}
         onChangeState={dummyChangeStateCallback}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -129,7 +137,7 @@ describe("OffseasonLeaderboardTable", () => {
         }}
         dataEvent={twoYears}
         onChangeState={dummyChangeStateCallback}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -147,7 +155,7 @@ describe("OffseasonLeaderboardTable", () => {
         }
         dataEvent={twoYears}
         onChangeState={dummyChangeStateCallback}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });
@@ -165,7 +173,7 @@ describe("OffseasonLeaderboardTable", () => {
         }
         dataEvent={twoYears}
         onChangeState={dummyChangeStateCallback}
-      />
+      />,
     );
     expect(toJson(wrapper)).toMatchSnapshot();
   });

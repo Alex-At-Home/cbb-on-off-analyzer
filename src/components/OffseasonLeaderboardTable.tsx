@@ -81,6 +81,9 @@ import {
   type CategoryPathNeedGroup,
 } from "../utils/stats/OffseasonLeaderboardCategoryUtils";
 import type { DivisionStatistics } from "../utils/StatModels";
+import { useTheme } from "next-themes";
+import type { GoodBadOkTriple } from "../utils/stats/TeamEditorUtils";
+import olbStyles from "./OffseasonLeaderboardTable.module.css";
 
 type Props = {
   startingState: OffseasonLeaderboardParams;
@@ -97,38 +100,39 @@ const updateNextYearsRoster = process.env.BUILD_OFFSEASON_ROSTER == "true";
 /** Will dump out some possible manual overrides to be made */
 const diagnosticCompareWithRosters = false;
 
-/** Replace with real URLs when wired (player-level destination). */
-const CATEGORY_PATH_PLAYER_NEED_LINK_HREF = "";
-
 function CategoryPathNeedGroupsList({
   groups,
-  href,
+  getPlayerCareerUrl,
 }: {
   groups: CategoryPathNeedGroup[];
-  href: string;
+  getPlayerCareerUrl: (triple: GoodBadOkTriple) => string | undefined;
 }) {
   return (
     <ul className="mb-0 mt-1 ps-3">
       {groups.map((g) => (
         <li key={g.categoryLabel}>
           <strong>{g.categoryLabel}:</strong>{" "}
-          {g.playerNames.map((name, idx) => (
-            <React.Fragment key={`${g.categoryLabel}-${idx}-${name}`}>
-              {idx > 0 ? ", " : null}
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => {
-                  if (!CATEGORY_PATH_PLAYER_NEED_LINK_HREF) {
-                    e.preventDefault();
-                  }
-                }}
+          {g.players.map((p, idx) => {
+            const careerHref = getPlayerCareerUrl(p.triple);
+            return (
+              <React.Fragment
+                key={`${g.categoryLabel}-${idx}-${p.displayName}`}
               >
-                [{name}]
-              </a>
-            </React.Fragment>
-          ))}
+                {idx > 0 ? ", " : null}
+                {careerHref ? (
+                  <a
+                    href={careerHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    [{p.displayName}]
+                  </a>
+                ) : (
+                  <i>[{p.displayName}]</i>
+                )}
+              </React.Fragment>
+            );
+          })}
         </li>
       ))}
     </ul>
@@ -138,9 +142,11 @@ function CategoryPathNeedGroupsList({
 function CategoryPathWhatsNeededCell({
   analysisText,
   analysisNeedDetail,
+  getPlayerCareerUrl,
 }: {
   analysisText: string;
   analysisNeedDetail?: CategoryPathNeedDetail;
+  getPlayerCareerUrl: (triple: GoodBadOkTriple) => string | undefined;
 }) {
   if (!analysisNeedDetail) {
     return (
@@ -156,8 +162,6 @@ function CategoryPathWhatsNeededCell({
       </small>
     );
   }
-
-  const href = CATEGORY_PATH_PLAYER_NEED_LINK_HREF || "#";
 
   return (
     <small
@@ -177,22 +181,63 @@ function CategoryPathWhatsNeededCell({
       </div>
       <CategoryPathNeedGroupsList
         groups={analysisNeedDetail.groups}
-        href={href}
+        getPlayerCareerUrl={getPlayerCareerUrl}
       />
       {analysisNeedDetail.remainderOrAny ? (
         <>
           <div className="mt-2">
             {OffseasonLeaderboardCategoryUtils.formatRemainderNeedHeading(
+              analysisNeedDetail.remainderOrAny.quantifier,
               analysisNeedDetail.remainderOrAny.k,
             )}
           </div>
           <CategoryPathNeedGroupsList
             groups={analysisNeedDetail.remainderOrAny.groups}
-            href={href}
+            getPlayerCareerUrl={getPlayerCareerUrl}
           />
         </>
       ) : null}
     </small>
+  );
+}
+
+function OffseasonLbTeamTitleCell({
+  resolvedTheme,
+  team,
+  rankLeading,
+  teamLink,
+  minutesWarning,
+}: {
+  resolvedTheme: string | undefined;
+  team: string;
+  rankLeading: React.ReactNode;
+  teamLink: React.ReactNode;
+  minutesWarning: React.ReactNode;
+}) {
+  return (
+    <span
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "0.5rem",
+        width: "100%",
+      }}
+    >
+      <img
+        alt=""
+        role="presentation"
+        style={{ width: "16px", height: "16px", flexShrink: 0 }}
+        src={`logos/${resolvedTheme == "dark" ? "dark" : "normal"}/${
+          team || "Unknown"
+        }.png`}
+      />
+      <span style={{ textAlign: "right", flex: "1 1 auto", minWidth: 0 }}>
+        {rankLeading}
+        {teamLink}
+        {minutesWarning}
+      </span>
+    </span>
   );
 }
 
@@ -470,6 +515,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [loadingOverride, setLoadingOverride] = useState(false);
 
   useEffect(() => {
+    const waitForRosterDiagMode =
+      diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam);
+    if (!waitForRosterDiagMode && !_.isEmpty(dataEvent.players)) {
+      setLoadingOverride((lo) => (lo ? false : lo));
+    }
+  }, [rostersPerTeam, dataEvent.players]);
+
+  useEffect(() => {
     // Add and remove clipboard listener
     initClipboard();
 
@@ -525,8 +578,33 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     </Tooltip>
   );
 
+  const { resolvedTheme } = useTheme();
+
+  const getCategoryPathPlayerCareerUrl = React.useCallback(
+    (triple: GoodBadOkTriple) => {
+      const offSeasonMode = true;
+      const showLinks =
+        !triple.manualProfile ||
+        ((!offSeasonMode || evalMode) && triple.actualResults);
+      if (!showLinks || !triple.orig.roster?.ncaa_id) {
+        return undefined;
+      }
+      return UrlRouting.getPlayerCareer({
+        ncaaId: triple.orig.roster.ncaa_id,
+        gender,
+        showInfoSubHeader: true,
+      });
+    },
+    [evalMode, gender],
+  );
+
   const table = React.useMemo(() => {
     const categoryPathEffective = categoryOffseasonLbActive && categoryPathMode;
+
+    const goalSubheaderThemeClass =
+      resolvedTheme === "dark"
+        ? olbStyles.goalSubheaderRowDark
+        : olbStyles.goalSubheaderRowLight;
 
     const tableDefs =
       categoryPathEffective && categoryPathMode
@@ -554,8 +632,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           />
         </div>
       );
-    } else {
-      setLoadingOverride(false);
     }
 
     // The avgEff based on which the stats were calc'd (yearWithStats) and what actually happened (year)
@@ -566,7 +642,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       ? efficiencyAverages[`${gender}_${year}`] || efficiencyAverages.fallback
       : avgEff;
 
-    // Team stats generation business logic:
+    // Team stats generation: only transfer in/out mode may reorder by sortBy;
+    // otherwise teamRanks stay net-sorted (category path and normal ranking).
+    const sortByForTeamRanking = transferInOutMode ? sortBy : "net";
     const {
       derivedDivisionStats,
       teamRanks,
@@ -581,7 +659,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         confs,
         year,
         gender,
-        sortBy,
+        sortBy: sortByForTeamRanking,
         evalMode,
         diagnosticCompareWithRosters,
       },
@@ -1089,15 +1167,19 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             GenericTableOps.buildDataRow(
               {
                 title: (
-                  <span>
-                    {nonStdSort || confs ? (
-                      <sup>
-                        <small>{1 + netRankIn}</small>&nbsp;
-                      </sup>
-                    ) : null}
-                    {teamLink}
-                    {maybeMinutesWarning()}
-                  </span>
+                  <OffseasonLbTeamTitleCell
+                    resolvedTheme={resolvedTheme}
+                    team={t.team}
+                    rankLeading={
+                      nonStdSort || confs ? (
+                        <sup>
+                          <small>{1 + netRankIn}</small>&nbsp;
+                        </sup>
+                      ) : null
+                    }
+                    teamLink={teamLink}
+                    minutesWarning={maybeMinutesWarning()}
+                  />
                 ),
                 conf: <small>{t.conf}</small>,
 
@@ -1251,12 +1333,45 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     );
 
     const categoryTableRows = (() => {
+      const categoryPathNoSliceFilter = confs === "" && !hasCustomFilter;
+      const priorSeasonCombo = teamDivisionStatsCache.Combo as
+        | DivisionStatistics
+        | undefined;
+
+      let teamsForCategoryPath: OffseasonTeamInfo[];
+      if (
+        categoryPathEffective &&
+        categoryPathMode &&
+        categoryPathNoSliceFilter &&
+        !showAllTeams
+      ) {
+        teamsForCategoryPath = _.chain(teamRanks)
+          .filter(confFilter)
+          .orderBy([(z) => z.net], ["desc"])
+          .take(OffseasonLeaderboardCategoryUtils.CATEGORY_PATH_TABLE_TEAM_CAP)
+          .value()
+          .filter((t) => {
+            const nr = netRankByTeamForCategory[t.team];
+            if (nr === undefined) {
+              return false;
+            }
+            return OffseasonLeaderboardCategoryUtils.teamOkProjectedCanReachBubbleContention(
+              t,
+              sortedNationalForCategory,
+              priorSeasonCombo,
+              nr,
+            );
+          });
+      } else {
+        teamsForCategoryPath = maybeHandSortedTeamRanks.map(([x]) => x).value();
+      }
+
       const catSorted = OffseasonLeaderboardCategoryUtils.buildCategoryPathRows(
-        maybeHandSortedTeamRanks.map(([x]) => x).value(),
+        teamsForCategoryPath,
         netRankByTeamForCategory,
         sortedNationalForCategory,
         playerDivisionStatsCache.Combo as DivisionStatistics | undefined,
-        teamDivisionStatsCache.Combo as DivisionStatistics | undefined,
+        priorSeasonCombo,
       );
       const byGoal = _.groupBy(catSorted, (r) => r.goalSortKey);
       const sectionCutoffs = _.sortBy(
@@ -1274,11 +1389,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
 
         const headerRow = GenericTableOps.buildTextRow(
           <span className="small">
-            <i>
-              Goal: {gl0} (rating threshold: {thr0.toFixed(1)})
-            </i>
+            <b>Goal: {gl0}</b> (rating threshold: {thr0.toFixed(1)})
           </span>,
-          "small text-center border-secondary border-top pt-2 pb-1",
+          `small text-center border-secondary border-top pt-2 pb-1 ${goalSubheaderThemeClass}`,
         );
 
         const sectionRows = _.flatMap(group, (cr) => {
@@ -1401,13 +1514,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           const dataRow = GenericTableOps.buildDataRow(
             {
               title: (
-                <span>
-                  <sup>
-                    <small>{rowNum}</small>&nbsp;
-                  </sup>
-                  {teamLink}
-                  {maybeMinutesWarning()}
-                </span>
+                <OffseasonLbTeamTitleCell
+                  resolvedTheme={resolvedTheme}
+                  team={t.team}
+                  rankLeading={null}
+                  teamLink={teamLink}
+                  minutesWarning={maybeMinutesWarning()}
+                />
               ),
               conf: <small>{t.conf}</small>,
               path_goal: cr.goalLabel,
@@ -1417,6 +1530,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 <CategoryPathWhatsNeededCell
                   analysisText={cr.analysisText}
                   analysisNeedDetail={cr.analysisNeedDetail}
+                  getPlayerCareerUrl={getCategoryPathPlayerCareerUrl}
                 />
               ),
               actual_grade: _.isNil(actualNetRankObj?.off_net)
@@ -1583,6 +1697,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     categoryPathMode,
     playerDivisionStatsCache,
     teamDivisionStatsCache,
+    resolvedTheme,
+    getCategoryPathPlayerCareerUrl,
+    showAllTeams,
+    hasCustomFilter,
   ]);
 
   // 3] View

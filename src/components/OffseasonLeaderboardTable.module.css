@@ -1,0 +1,9 @@
+/* Goal-section subheaders — align with PlayerQueryBuilder panel (light vs dark). */
+
+.goalSubheaderRowLight {
+  background-color: #d9edf7;
+}
+
+.goalSubheaderRowDark {
+  background-color: #171f2f;
+}

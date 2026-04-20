@@ -15,11 +15,17 @@ export type OffseasonCategoryTierId =
   | "bubble"
   | "out";
 
-/** Grouped roster names for category-path “Need” display (optimistic tier / good projection). */
+/** One roster line in a “Need” bullet (triple retained for PlayerCareer links in UI). */
+export type CategoryPathNeedPlayerRef = {
+  displayName: string;
+  triple: GoodBadOkTriple;
+};
+
+/** Grouped roster entries for category-path “Need” display (optimistic tier / good projection). */
 export type CategoryPathNeedGroup = {
   categoryLabel: string;
   sortKey: number;
-  playerNames: string[];
+  players: CategoryPathNeedPlayerRef[];
 };
 
 export type CategoryPathNeedDetail = {
@@ -32,6 +38,7 @@ export type CategoryPathNeedDetail = {
    * listed player’s marginal swing must hit together).
    */
   remainderOrAny?: {
+    quantifier: "any" | "all";
     k: number;
     groups: CategoryPathNeedGroup[];
   };
@@ -67,8 +74,16 @@ export class OffseasonLeaderboardCategoryUtils {
   static readonly TIER_RANK_ONE_DIGIT = 40;
   static readonly TIER_RANK_BUBBLE = 60;
 
+  /**
+   * National teams (by net) passed into {@link buildCategoryPathRows} when no
+   * conference / manual row filter — wider than the normal T75 slice.
+   */
+  static readonly CATEGORY_PATH_TABLE_TEAM_CAP = 120;
+
   /** Only the top-N rotation players (ok team poss %) feed upside / need lists. */
   static readonly MAX_UPSIDE_PLAYERS_IN_POOL = 7;
+  /** Minimum ok possession share (e.g. 0.4 = 40% of team possessions) to enter that pool. */
+  static readonly MIN_POSS_PCT_FOR_UPSIDE_POOL = 0.4;
   /** Max swings in a “Need all k” line; more than this → Goal = Else + “No bad luck!”. */
   static readonly MAX_SWINGS_IN_NEED_LIST = 5;
 
@@ -113,6 +128,25 @@ export class OffseasonLeaderboardCategoryUtils {
     if (netRank <= OffseasonLeaderboardCategoryUtils.TIER_RANK_BUBBLE)
       return "bubble";
     return "out";
+  }
+
+  /**
+   * Category-path table slice: keep teams whose ok projection sits on the ladder
+   * at bubble or better (drops absolute “outside top 60” / `out` rows from the T120 net slice).
+   */
+  static teamOkProjectedCanReachBubbleContention(
+    t: OffseasonTeamInfo,
+    sortedByNetDescending: OffseasonTeamInfo[],
+    priorSeasonTeamDivisionStats: DivisionStatistics | undefined,
+    netRankOrdinalFallback: number,
+  ): boolean {
+    const fb = OffseasonLeaderboardCategoryUtils.tierFromOkPredictedNet(
+      t.net,
+      sortedByNetDescending,
+      priorSeasonTeamDivisionStats,
+      netRankOrdinalFallback,
+    );
+    return fb !== "out";
   }
 
   /**
@@ -242,22 +276,27 @@ export class OffseasonLeaderboardCategoryUtils {
   }
 
   /**
-   * Top {@link MAX_UPSIDE_PLAYERS_IN_POOL} players by ok possession %, then
-   * positive-marginal only, ordered by swing `d` descending for greedy need logic.
+   * Players with ok poss % ≥ {@link MIN_POSS_PCT_FOR_UPSIDE_POOL}, top
+   * {@link MAX_UPSIDE_PLAYERS_IN_POOL} by minutes, then positive marginal swing only,
+   * ordered by `d` descending for greedy need logic.
    */
   static topPossPoolForUpside(
     players: GoodBadOkTriple[],
   ): { triple: GoodBadOkTriple; d: number }[] {
     const n = OffseasonLeaderboardCategoryUtils.MAX_UPSIDE_PLAYERS_IN_POOL;
+    const minPoss =
+      OffseasonLeaderboardCategoryUtils.MIN_POSS_PCT_FOR_UPSIDE_POOL;
     const withPoss = players.map((triple) => ({
       triple,
       d: OffseasonLeaderboardCategoryUtils.playerMarginalGoodMinusOk(triple),
       possPct: triple.ok?.off_team_poss_pct?.value ?? 0,
     }));
-    const topByMins = _.orderBy(withPoss, [(x) => x.possPct], ["desc"]).slice(
-      0,
-      n,
-    );
+    const eligibleByMins = _.filter(withPoss, (x) => x.possPct >= minPoss);
+    const topByMins = _.orderBy(
+      eligibleByMins,
+      [(x) => x.possPct],
+      ["desc"],
+    ).slice(0, n);
     const positiveSwings = _.filter(topByMins, (x) => x.d > 0);
     return _.orderBy(positiveSwings, [(x) => x.d], ["desc"]).map((x) => ({
       triple: x.triple,
@@ -306,7 +345,7 @@ export class OffseasonLeaderboardCategoryUtils {
     const nextLab =
       OffseasonLeaderboardCategoryUtils.nextBetterPortalTierLabel(goodRank);
     if (!nextLab) {
-      return "is POY contender";
+      return "is All American";
     }
     return `is closer to ${nextLab}`;
   }
@@ -371,9 +410,12 @@ export class OffseasonLeaderboardCategoryUtils {
       _.map(byLabel, (list, categoryLabel) => ({
         categoryLabel,
         sortKey: list[0]!.meta.sortKey,
-        playerNames: _.sortBy(list, [(x) => -x.d]).map((x) =>
-          OffseasonLeaderboardCategoryUtils.playerDisplayName(x.triple),
-        ),
+        players: _.sortBy(list, [(x) => -x.d]).map((x) => ({
+          displayName: OffseasonLeaderboardCategoryUtils.playerDisplayName(
+            x.triple,
+          ),
+          triple: x.triple,
+        })),
       })),
       [(g) => g.sortKey],
       ["asc"],
@@ -468,7 +510,9 @@ export class OffseasonLeaderboardCategoryUtils {
     gap: number,
     playerDivisionStats: DivisionStatistics | undefined,
     maxK: number,
-  ): { k: number; groups: CategoryPathNeedGroup[] } | undefined {
+  ):
+    | { k: number; groups: CategoryPathNeedGroup[]; quantifier: "any" | "all" }
+    | undefined {
     const soloKeys = new Set(soloClearers.map((x) => x.triple.key));
     const remaining = triplesSorted.filter((x) => !soloKeys.has(x.triple.key));
 
@@ -490,7 +534,12 @@ export class OffseasonLeaderboardCategoryUtils {
       playerDivisionStats,
     );
 
-    return { k: take, groups };
+    return {
+      k: take,
+      groups,
+      quantifier:
+        _.sumBy(groups, (g) => g.players.length) == take ? "all" : "any",
+    };
   }
 
   /** UI / plain-text heading for primary “Need …” block. */
@@ -505,8 +554,14 @@ export class OffseasonLeaderboardCategoryUtils {
   }
 
   /** UI / plain-text heading for remainder “Or …” combo block. */
-  static formatRemainderNeedHeading(k: number): string {
-    return k === 2 ? "Or both:" : `Or all ${k} of:`;
+  static formatRemainderNeedHeading(
+    quantifier: "any" | "all",
+    k: number,
+  ): string {
+    if (quantifier === "all" && k === 2) {
+      return "Or eg both:";
+    }
+    return `Or ${quantifier} ${k} of:`;
   }
 
   static plainTextFromNeedDetail(detail: CategoryPathNeedDetail): string {
@@ -517,7 +572,7 @@ export class OffseasonLeaderboardCategoryUtils {
       heading,
       ...groups.map(
         (g) =>
-          `* ${g.categoryLabel}: ${g.playerNames.map((n) => `[${n}]`).join(", ")}`,
+          `* ${g.categoryLabel}: ${g.players.map((p) => `[${p.displayName}]`).join(", ")}`,
       ),
     ];
 
@@ -535,6 +590,7 @@ export class OffseasonLeaderboardCategoryUtils {
 
     const orLines = blockLines(
       OffseasonLeaderboardCategoryUtils.formatRemainderNeedHeading(
+        detail.remainderOrAny.quantifier,
         detail.remainderOrAny.k,
       ),
       detail.remainderOrAny.groups,

@@ -269,7 +269,7 @@ export class OffseasonLeaderboardTableDefs {
         sepCat0: GenericTableOps.addColSeparator(0.25),
         path_goal: new GenericTableColProps(
           "Goal",
-          "The goal this team should be chasing",
+          "The goal this team can realistically be chasing",
           3,
           false,
           GenericTableOps.htmlFormatter,
