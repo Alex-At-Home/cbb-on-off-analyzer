@@ -3538,6 +3538,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         <Form.Group as={Row}>
           <Col xs={6} sm={6} md={3} lg={2}>
             <ThemedSelect
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={stringToOption(gender)}
               options={["Men", "Women"].map((gender) => stringToOption(gender))}
               isSearchable={false}
@@ -3559,6 +3560,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
           </Col>
           <Col xs={6} sm={6} md={3} lg={2}>
             <ThemedSelect
+              styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
               value={stringToOption(year)}
               options={DateUtils.teamEditorYears(offSeasonMode)
                 .concat(offSeasonMode ? [] : ["All"])
