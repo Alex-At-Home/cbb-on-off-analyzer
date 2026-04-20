@@ -147,7 +147,7 @@ export const freshmenMen2025_26: Record<string, any> = {
     "Massamba Diop, Mor": {
       pos: "C",
       pr: "4*/T40ish",
-      c: "MoMassambadiop",
+      c: "MoMassambadi",
       h: "6-10",
       r: 20,
     },
@@ -389,14 +389,14 @@ export const freshmenMen2025_26: Record<string, any> = {
     "de Ridder, Thijs": {
       pos: "WF",
       pr: "5*",
-      c: "ThDeridder",
+      c: "ThDeRidder",
       h: "6-8",
       r: -70,
     },
-    "Grunloh, Johann": {
+    "Gruenloh, Johann": {
       pos: "C",
       pr: "5*",
-      c: "JoGrunloh",
+      c: "JoGruenloh",
       h: "6-11",
       r: -80,
     },
@@ -785,7 +785,7 @@ export const freshmenMen2025_26: Record<string, any> = {
     "Kharchenkov, Ivan": {
       pos: "WG",
       pr: "4*",
-      c: "IvKharchenkov",
+      c: "IvKharchenko",
       h: "6-6",
       r: 75,
     },
