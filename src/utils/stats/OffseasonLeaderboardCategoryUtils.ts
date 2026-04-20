@@ -7,6 +7,11 @@ import type { GoodBadOkTriple } from "./TeamEditorUtils";
 import { TeamEditorUtils } from "./TeamEditorUtils";
 import type { OffseasonTeamInfo } from "./OffseasonLeaderboardUtils";
 
+/** Set `true` to log `[category-path-trace]` for {@link DEBUG_TRACE_CATEGORY_PATH_TEAM_NAME}. */
+export const DEBUG_TRACE_CATEGORY_PATH_TEAM = false;
+/** Must match {@link OffseasonTeamInfo.team} exactly (e.g. `"UCLA"`). */
+export const DEBUG_TRACE_CATEGORY_PATH_TEAM_NAME = "TeamName";
+
 /** Tournament-path tiers (fallback / goal labels). */
 export type OffseasonCategoryTierId =
   | "ff"
@@ -617,8 +622,21 @@ export class OffseasonLeaderboardCategoryUtils {
     const rows: OffseasonCategoryPathComputedRow[] = [];
 
     for (const t of teamRanksInDisplayOrder) {
+      const trace =
+        DEBUG_TRACE_CATEGORY_PATH_TEAM &&
+        t.team === DEBUG_TRACE_CATEGORY_PATH_TEAM_NAME;
+
       const netRank = netRankByTeam[t.team];
-      if (netRank === undefined) continue;
+      if (netRank === undefined) {
+        if (trace) {
+          console.info("[category-path-trace] SKIP net_rank_undefined", {
+            team: t.team,
+            net: t.net,
+            conf: t.conf,
+          });
+        }
+        continue;
+      }
 
       const fb = OffseasonLeaderboardCategoryUtils.tierFromOkPredictedNet(
         t.net,
@@ -628,7 +646,16 @@ export class OffseasonLeaderboardCategoryUtils {
       );
       const goalTier =
         OffseasonLeaderboardCategoryUtils.goalTierFromFallback(fb);
-      if (!goalTier) continue;
+      if (!goalTier) {
+        if (trace) {
+          console.info("[category-path-trace] SKIP goal_tier_null", {
+            team: t.team,
+            fb,
+            netRank,
+          });
+        }
+        continue;
+      }
 
       const cutoff =
         OffseasonLeaderboardCategoryUtils.rankCutoffForTier(goalTier);
@@ -637,7 +664,17 @@ export class OffseasonLeaderboardCategoryUtils {
         cutoff,
         priorSeasonTeamDivisionStats,
       );
-      if (thresh === undefined) continue;
+      if (thresh === undefined) {
+        if (trace) {
+          console.info("[category-path-trace] SKIP goal_thresh_undefined", {
+            team: t.team,
+            goalTier,
+            cutoff,
+            netRank,
+          });
+        }
+        continue;
+      }
 
       const gap = thresh - t.net;
 
@@ -666,16 +703,71 @@ export class OffseasonLeaderboardCategoryUtils {
           );
 
         if (needResult.outcome === "impossible") {
-          continue;
-        }
-
-        if (needResult.outcome === "too_many_swings") {
+          if (trace) {
+            console.info(
+              "[category-path-trace] KEEP need_impossible_fallback",
+              {
+                team: t.team,
+                stretchGoalTier: goalTier,
+                gapToStretchGoal: gap,
+                upsidePoolLen: triplesSorted.length,
+                sumD: _.sumBy(triplesSorted, (x) => x.d),
+                bucketGoalTierDisplay: fb === "out" ? "bubble" : fb,
+              },
+            );
+          }
+          /**
+           * Stretch goal (`goalTier` = one step above Else) isn’t reachable with listed
+           * marginal swings — bucket the row by **Else tier** (`fb`) so Goal matches the same
+           * ladder band as Else (e.g. both Top 25), not under Final Four headers.
+           * Pure `out`Else → bucket Goal as Bubble (never “Outside top 60” as Goal).
+           */
+          const goalTierDisplay: OffseasonCategoryTierId =
+            fb === "out" ? "bubble" : fb;
+          const displayCut =
+            OffseasonLeaderboardCategoryUtils.rankCutoffForTier(
+              goalTierDisplay,
+            );
+          const displayThresh =
+            OffseasonLeaderboardCategoryUtils.thresholdNetForGoalRank(
+              sortedByNetDescending,
+              displayCut,
+              priorSeasonTeamDivisionStats,
+            );
+          goalLabelOut =
+            OffseasonLeaderboardCategoryUtils.tierLabels[goalTierDisplay];
+          goalSortKeyOut = displayCut;
+          if (displayThresh !== undefined) {
+            goalThresholdNetOut = displayThresh;
+          }
+          const gapDisplay =
+            displayThresh !== undefined ? displayThresh - t.net : gap;
+          if (gapDisplay <= 0) {
+            analysisText =
+              fb === goalTierDisplay
+                ? "No bad luck!"
+                : "Any sort of positive variance should be enough";
+          } else {
+            analysisText =
+              triplesSorted.length === 0
+                ? "No marginal-upside projections (good vs ok) among the top possession-minute players for a named need breakdown."
+                : "Marginal swings among listed players don’t reach this net gap together.";
+          }
+          analysisNeedDetail = undefined;
+          kNeed = 0;
+        } else if (needResult.outcome === "too_many_swings") {
           /**
            * Goal headers are only FF / Top 25 / 1-digit / Bubble. Never use “Outside top 60”
            * as Goal — that tier is Else-only. Teams below the bubble ladder (`fb === out`) with
            * too many marginal swings don’t get a compact path row here.
            */
           if (fb === "out") {
+            if (trace) {
+              console.info(
+                "[category-path-trace] SKIP too_many_swings_fb_out",
+                { team: t.team, gap },
+              );
+            }
             continue;
           }
           const fbCut = OffseasonLeaderboardCategoryUtils.rankCutoffForTier(fb);
@@ -686,6 +778,12 @@ export class OffseasonLeaderboardCategoryUtils {
               priorSeasonTeamDivisionStats,
             );
           if (fbThresh === undefined) {
+            if (trace) {
+              console.info(
+                "[category-path-trace] SKIP too_many_swings_fb_thresh_undefined",
+                { team: t.team, fb, fbCut },
+              );
+            }
             continue;
           }
 
@@ -705,6 +803,17 @@ export class OffseasonLeaderboardCategoryUtils {
           analysisText =
             OffseasonLeaderboardCategoryUtils.plainTextFromNeedDetail(d);
         }
+      }
+
+      if (trace) {
+        console.info("[category-path-trace] KEEP row", {
+          team: t.team,
+          fb,
+          goalTier,
+          goalLabel: goalLabelOut,
+          gap,
+          kSwings: kNeed,
+        });
       }
 
       rows.push({

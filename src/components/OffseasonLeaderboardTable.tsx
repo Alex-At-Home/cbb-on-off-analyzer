@@ -76,6 +76,8 @@ import {
   type DivisionStatsCache,
 } from "../utils/tables/GradeTableUtils";
 import {
+  DEBUG_TRACE_CATEGORY_PATH_TEAM,
+  DEBUG_TRACE_CATEGORY_PATH_TEAM_NAME,
   OffseasonLeaderboardCategoryUtils,
   type CategoryPathNeedDetail,
   type CategoryPathNeedGroup,
@@ -1352,6 +1354,53 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           .value();
       } else {
         teamsForCategoryPath = maybeHandSortedTeamRanks.map(([x]) => x).value();
+      }
+
+      if (DEBUG_TRACE_CATEGORY_PATH_TEAM) {
+        const tn = DEBUG_TRACE_CATEGORY_PATH_TEAM_NAME;
+        const idx = teamsForCategoryPath.findIndex((x) => x.team === tn);
+        const inInput = idx >= 0;
+        console.info("[category-path-trace] input to buildCategoryPathRows", {
+          team: tn,
+          inInput,
+          inputIndex: inInput ? idx : -1,
+          inputLen: teamsForCategoryPath.length,
+          inputBranch:
+            categoryPathEffective &&
+            categoryPathMode &&
+            categoryPathNoSliceFilter &&
+            !showAllTeams
+              ? "t120_net_filtered"
+              : "maybeHandSorted_take75_or_all",
+          confs,
+          hasCustomFilter,
+          showAllTeams,
+        });
+        if (inInput) {
+          const u = teamsForCategoryPath[idx]!;
+          console.info("[category-path-trace] team in input slice", {
+            net: u.net,
+            conf: u.conf,
+            nationalRank: netRankByTeamForCategory[tn],
+          });
+        } else {
+          const inAfterConf = _.chain(teamRanks)
+            .filter(confFilter)
+            .find((x) => x.team === tn)
+            .value();
+          console.info("[category-path-trace] team NOT in input slice", {
+            hasTeamInTeamRanks: teamRanks.some((x) => x.team === tn),
+            nationalRankIfPresent: netRankByTeamForCategory[tn],
+            netRankMapHasKey: tn in netRankByTeamForCategory,
+            passesConfFilter: !!inAfterConf,
+            confIfFound: inAfterConf?.conf,
+            teamsPassingConfFilter: _.chain(teamRanks)
+              .filter(confFilter)
+              .size()
+              .value(),
+            takeCap: showAllTeams ? 10000 : 75,
+          });
+        }
       }
 
       const catSorted = OffseasonLeaderboardCategoryUtils.buildCategoryPathRows(
