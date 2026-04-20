@@ -156,7 +156,7 @@ export const excludeFromMidMajor = new Set([
 ]);
 
 export const NicknameToConference: Record<string, string> = _.chain(
-  ConferenceToNickname
+  ConferenceToNickname,
 )
   .toPairs()
   .map((kv) => [kv[1], kv[0]])
@@ -165,14 +165,14 @@ export const NicknameToConference: Record<string, string> = _.chain(
 
 export const Power6ConferencesNicks = ["B1G", "ACC", "BE", "B12", "P12", "SEC"];
 export const Power6Conferences = Power6ConferencesNicks.map(
-  (c) => NicknameToConference[c] || c
+  (c) => NicknameToConference[c] || c,
 );
 
 export const NonP6Conferences = _.chain(ConferenceToNickname)
   .flatMap((confNick, conf) =>
     confNick == NonP6Nick || confNick == P6Nick || HighMajorConfs.has(conf)
       ? []
-      : [conf]
+      : [conf],
   )
   .value();
 
@@ -388,6 +388,13 @@ export const latestConfChanges = {
   },
 
   "2025/26": {
+    ...latestConfChanges_2022,
+    ...latestConfChanges_2023,
+    ...latestConfChanges_2024,
+    ...latestConfChanges_2025,
+  },
+
+  "2026/27": {
     ...latestConfChanges_2022,
     ...latestConfChanges_2023,
     ...latestConfChanges_2024,
