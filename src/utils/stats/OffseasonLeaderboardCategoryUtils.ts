@@ -1,5 +1,6 @@
 import _ from "lodash";
 
+import { GenericTableOps } from "../../components/GenericTable";
 import type { DivisionStatistics, PureStatSet } from "../StatModels";
 import { GradeUtils } from "./GradeUtils";
 import { PortalUtils, type PortalTierBand } from "./PortalUtils";
@@ -20,10 +21,26 @@ export type OffseasonCategoryTierId =
   | "bubble"
   | "out";
 
+/**
+ * Position bucket for **good** projection D1 rank within that projection’s primary portal band:
+ * top **33%** / middle **34%** / bottom **33%** of the band span.
+ */
+export type CategoryPathNeedBandQuartile = "top" | "middle" | "bottom";
+
 /** One roster line in a “Need” bullet (triple retained for PlayerCareer links in UI). */
 export type CategoryPathNeedPlayerRef = {
   displayName: string;
   triple: GoodBadOkTriple;
+  bandQuartile: CategoryPathNeedBandQuartile;
+  rankCurrentLabel: string;
+  /** Primary portal tier label for the **ok** (current) projection, e.g. “Starter Caliber”. */
+  okCurrentTierLabel: string;
+  rankUpsideLabel: string;
+  marginalPtsPer100: number;
+  /** Good projection’s primary portal band (same as top/middle/bottom span / range in tooltip). */
+  portalBandLabel: string;
+  bandMinRank: number;
+  bandMaxRank: number;
 };
 
 /** Grouped roster entries for category-path “Need” display (optimistic tier / good projection). */
@@ -67,6 +84,10 @@ export type OffseasonCategoryPathComputedRow = {
   goalSortKey: number;
   /** National net rating threshold for this goal (includes 0.5 pts/100 grace). */
   goalThresholdNet: number;
+  /**
+   * Sort-only difficulty between primary and optional **Or …** need lines: mean of their `k`
+   * values (when there is no remainder, this equals primary `k`).
+   */
   kSwings: number;
   net: number;
   netRank: number;
@@ -110,6 +131,105 @@ export class OffseasonLeaderboardCategoryUtils {
       (b) => rank >= b.minRank && rank <= b.maxRank,
     );
     return _.minBy(matching, (b) => b.minRank);
+  }
+
+  /**
+   * Within {@link primaryPortalBand(rank)} on normalized position in the band span:
+   * best **33%** → `top`, worst **33%** → `bottom`, middle **34%** → `middle`.
+   * Used with **good** projection rank for Need chips.
+   */
+  static bandQuartileInPrimaryPortalBand(
+    d1Rank: number | null,
+  ): CategoryPathNeedBandQuartile {
+    if (d1Rank === null || !Number.isFinite(d1Rank)) {
+      return "middle";
+    }
+    const band = OffseasonLeaderboardCategoryUtils.primaryPortalBand(d1Rank);
+    if (!band) return "middle";
+    const span = band.maxRank - band.minRank;
+    if (span <= 0) return "middle";
+    const posInBand = (d1Rank - band.minRank) / span;
+    if (posInBand <= 0.33) return "top";
+    if (posInBand >= 0.67) return "bottom";
+    return "middle";
+  }
+
+  /** One Need-list player row (ranks, marginal swing, portal band for tooltip + arrows). */
+  static buildCategoryPathNeedPlayerRef(
+    triple: GoodBadOkTriple,
+    playerDivisionStats: DivisionStatistics | undefined,
+  ): CategoryPathNeedPlayerRef {
+    const okRank = OffseasonLeaderboardCategoryUtils.netD1RankFromTriple(
+      triple,
+      "ok",
+      playerDivisionStats,
+    );
+    const goodRank = OffseasonLeaderboardCategoryUtils.netD1RankFromTriple(
+      triple,
+      "good",
+      playerDivisionStats,
+    );
+    const marginal =
+      OffseasonLeaderboardCategoryUtils.playerMarginalGoodMinusOk(triple);
+
+    let okCurrentTierLabel = "—";
+    if (okRank !== null) {
+      const okBand =
+        OffseasonLeaderboardCategoryUtils.primaryPortalBand(okRank);
+      if (okBand) {
+        okCurrentTierLabel = okBand.label;
+      }
+    }
+
+    let portalBandLabel = "—";
+    let bandMinRank = 0;
+    let bandMaxRank = 0;
+    if (goodRank !== null) {
+      const goodBand =
+        OffseasonLeaderboardCategoryUtils.primaryPortalBand(goodRank);
+      if (goodBand) {
+        portalBandLabel = goodBand.label;
+        bandMinRank = goodBand.minRank;
+        bandMaxRank = goodBand.maxRank;
+      }
+    }
+
+    const rankCurrentLabel =
+      okRank !== null ? `T${GenericTableOps.getApproxRank(okRank)}` : "—";
+    const rankUpsideLabel =
+      goodRank !== null ? `T${GenericTableOps.getApproxRank(goodRank)}` : "—";
+
+    return {
+      displayName: OffseasonLeaderboardCategoryUtils.playerDisplayName(triple),
+      triple,
+      bandQuartile:
+        OffseasonLeaderboardCategoryUtils.bandQuartileInPrimaryPortalBand(
+          goodRank,
+        ),
+      rankCurrentLabel,
+      okCurrentTierLabel,
+      rankUpsideLabel,
+      marginalPtsPer100: marginal,
+      portalBandLabel,
+      bandMinRank,
+      bandMaxRank,
+    };
+  }
+
+  /** Plain-text tooltip for a category-path Need list player chip. */
+  static categoryPathNeedPlayerTooltipText(
+    p: CategoryPathNeedPlayerRef,
+  ): string {
+    const delta = p.marginalPtsPer100.toFixed(1);
+    const currently =
+      p.okCurrentTierLabel !== "—"
+        ? `(currently ${p.rankCurrentLabel}, ${p.okCurrentTierLabel})`
+        : `(currently ${p.rankCurrentLabel})`;
+    const base = `${p.displayName} ${currently} needs to hit their upside of ${p.rankUpsideLabel} (delta [${delta}] pts/100`;
+    if (p.portalBandLabel === "—") {
+      return `${base})`;
+    }
+    return `${base}, ${p.bandQuartile} of [${p.portalBandLabel}] range [${p.bandMinRank}:${p.bandMaxRank}])`;
   }
 
   /** Next better band label toward rank 1; null if already in the top band row. */
@@ -396,12 +516,12 @@ export class OffseasonLeaderboardCategoryUtils {
       _.map(byLabel, (list, categoryLabel) => ({
         categoryLabel,
         sortKey: list[0]!.meta.sortKey,
-        players: _.sortBy(list, [(x) => -x.d]).map((x) => ({
-          displayName: OffseasonLeaderboardCategoryUtils.playerDisplayName(
+        players: _.sortBy(list, [(x) => -x.d]).map((x) =>
+          OffseasonLeaderboardCategoryUtils.buildCategoryPathNeedPlayerRef(
             x.triple,
+            playerDivisionStats,
           ),
-          triple: x.triple,
-        })),
+        ),
       })),
       [(g) => g.sortKey],
       ["asc"],
@@ -795,10 +915,9 @@ export class OffseasonLeaderboardCategoryUtils {
           kNeed = 0;
         } else {
           const d = needResult.detail;
-          kNeed = d.k;
-          if (d.remainderOrAny) {
-            kNeed = Math.max(kNeed, d.remainderOrAny.k);
-          }
+          const kAlt = d.remainderOrAny?.k ?? d.k;
+          // Sort key: primary `k`, slightly penalized if the alternate “Or …” path needs more players.
+          kNeed = (d.k + kAlt) / 2;
           analysisNeedDetail = d;
           analysisText =
             OffseasonLeaderboardCategoryUtils.plainTextFromNeedDetail(d);

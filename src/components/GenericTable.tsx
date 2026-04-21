@@ -257,6 +257,14 @@ export class GenericTableOps {
       return GenericTableOps.percentFormatter(val);
     }
   };
+  /** Gives a less granular rank since for individuals these things aren't very accurate anyway */
+  static readonly getApproxRank = (rank: number): number => {
+    if (rank <= 250) {
+      return 10 * Math.ceil(rank / 10);
+    } else {
+      return 50 * Math.ceil(rank / 50);
+    }
+  };
   static readonly approxRankOrHtmlFormatter = (val: any) => {
     if (React.isValidElement(val)) {
       return GenericTableOps.htmlFormatter(val as React.ReactNode);
@@ -266,13 +274,7 @@ export class GenericTableOps {
       const rank = 1 + Math.round((1 - pctile) * numSamples); //(+1, since 100% is rank==1)
 
       // How granular we are depends on how highly ranked we are:
-      const approxRank = _.thru(rank, (r) => {
-        if (r <= 250) {
-          return 10 * Math.ceil(r / 10);
-        } else {
-          return 50 * Math.ceil(r / 50);
-        }
-      });
+      const approxRank = GenericTableOps.getApproxRank(rank);
       return GenericTableOps.approxRankFormatter({ value: approxRank });
     } else {
       return GenericTableOps.percentFormatter(val);

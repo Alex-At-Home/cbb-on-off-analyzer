@@ -111,27 +111,47 @@ function CategoryPathNeedGroupsList({
 }) {
   return (
     <ul className="mb-0 mt-1 ps-3">
-      {groups.map((g) => (
+      {groups.map((g, gIdx) => (
         <li key={g.categoryLabel}>
           <strong>{g.categoryLabel}:</strong>{" "}
           {g.players.map((p, idx) => {
             const careerHref = getPlayerCareerUrl(p.triple);
+            const arrow =
+              p.bandQuartile === "top"
+                ? "↑"
+                : p.bandQuartile === "bottom"
+                  ? "↓"
+                  : null;
+            const tip = (
+              <Tooltip id={`catpath-need-${gIdx}-${idx}`}>
+                {OffseasonLeaderboardCategoryUtils.categoryPathNeedPlayerTooltipText(
+                  p,
+                )}
+              </Tooltip>
+            );
             return (
               <React.Fragment
                 key={`${g.categoryLabel}-${idx}-${p.displayName}`}
               >
                 {idx > 0 ? ", " : null}
-                {careerHref ? (
-                  <a
-                    href={careerHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    [{p.displayName}]
-                  </a>
-                ) : (
-                  <i>[{p.displayName}]</i>
-                )}
+                <OverlayTrigger placement="auto" overlay={tip}>
+                  <span className="d-inline-block">
+                    {"["}
+                    {careerHref ? (
+                      <a
+                        href={careerHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {p.displayName}
+                      </a>
+                    ) : (
+                      <i>{p.displayName}</i>
+                    )}
+                    {arrow != null ? <sup>{arrow}</sup> : null}
+                    {"]"}
+                  </span>
+                </OverlayTrigger>
               </React.Fragment>
             );
           })}
