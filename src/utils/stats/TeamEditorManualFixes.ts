@@ -1936,7 +1936,9 @@ export class TeamEditorManualFixes {
             leftTeam: ["ChAnderson::"], //(NBA)
           },
           UConn: {
-            leftTeam: ["JaRoss::"], //(What a mess, he was JnRoss last season, need to fix the code to merge these 2)
+            leftTeam: ["JaRoss::", "SoBall::"],
+            //(What a mess, he was JaRoss last season, need to fix the code to merge these 2)
+            //(SoBall:: has a year-ending injury :( )
           },
           Washington: {
             leftTeam: ["HaSteinbach::"], //(NBA)
