@@ -1869,7 +1869,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 {
                   label: "Goals",
                   tooltip:
-                    "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                    "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                   toggled: categoryPathMode,
                   disabled: evalMode,
                   onClick: () =>
@@ -1880,7 +1880,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 },
                 {
                   label: "Classic",
-                  tooltip: "The usual predicted range of offense/defense/net",
+                  tooltip:
+                    "Classic: The usual predicted range of offense/defense/net",
                   toggled: !categoryPathMode && !transferInOutMode,
                   disabled: evalMode,
                   onClick: () =>
@@ -1893,7 +1894,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 {
                   label: "Breakdown",
                   tooltip:
-                    "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                    "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                   toggled: transferInOutMode && !categoryPathMode,
                   disabled: evalMode,
                   onClick: () =>

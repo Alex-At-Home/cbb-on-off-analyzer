@@ -85,8 +85,9 @@ export type OffseasonCategoryPathComputedRow = {
   /** National net rating threshold for this goal (includes 0.5 pts/100 grace). */
   goalThresholdNet: number;
   /**
-   * Sort-only difficulty between primary and optional **Or …** need lines: mean of their `k`
-   * values (when there is no remainder, this equals primary `k`).
+   * Sort-only need difficulty: mean of primary / alternate `k` when a path exists;
+   * {@link MAX_SWINGS_IN_NEED_LIST} + 1 when the stretch path is impossible but the row is
+   * still shown (Else not `out`).
    */
   kSwings: number;
   net: number;
@@ -882,6 +883,25 @@ export class OffseasonLeaderboardCategoryUtils {
           );
 
         if (needResult.outcome === "impossible") {
+          /**
+           * Else `out` (&gt;T60): stretch “Bubble” goal is not a realistic cohort to rank here —
+           * marginal swings can’t close the gap, so omit (same spirit as `too_many_swings` + out).
+           */
+          if (fb === "out") {
+            if (trace) {
+              console.info(
+                "[category-path-trace] SKIP need_impossible_fb_out",
+                {
+                  team: t.team,
+                  stretchGoalTier: goalTier,
+                  gap,
+                  upsidePoolLen: triplesSorted.length,
+                  sumD: _.sumBy(triplesSorted, (x) => x.d),
+                },
+              );
+            }
+            continue;
+          }
           if (trace) {
             console.info(
               "[category-path-trace] KEEP need_impossible_fallback",
@@ -891,18 +911,16 @@ export class OffseasonLeaderboardCategoryUtils {
                 gapToStretchGoal: gap,
                 upsidePoolLen: triplesSorted.length,
                 sumD: _.sumBy(triplesSorted, (x) => x.d),
-                bucketGoalTierDisplay: fb === "out" ? "bubble" : fb,
+                bucketGoalTierDisplay: fb,
               },
             );
           }
           /**
-           * Stretch goal (`goalTier` = one step above Else) isn’t reachable with listed
-           * marginal swings — bucket the row by **Else tier** (`fb`) so Goal matches the same
-           * ladder band as Else (e.g. both Top 25), not under Final Four headers.
-           * Pure `out`Else → bucket Goal as Bubble (never “Outside top 60” as Goal).
+           * Stretch goal isn’t reachable with listed marginal swings — bucket Goal by **Else**
+           * tier (`fb`) so headers align (e.g. both Top 25). Sort **after** any team with a
+           * real upside path by using a high {@link kSwings} tie-breaker.
            */
-          const goalTierDisplay: OffseasonCategoryTierId =
-            fb === "out" ? "bubble" : fb;
+          const goalTierDisplay: OffseasonCategoryTierId = fb;
           const displayCut =
             OffseasonLeaderboardCategoryUtils.rankCutoffForTier(
               goalTierDisplay,
@@ -933,7 +951,7 @@ export class OffseasonLeaderboardCategoryUtils {
                 : "Marginal swings among listed players don’t reach this net gap together.";
           }
           analysisNeedDetail = undefined;
-          kNeed = 0;
+          kNeed = OffseasonLeaderboardCategoryUtils.MAX_SWINGS_IN_NEED_LIST + 1;
         } else if (needResult.outcome === "too_many_swings") {
           /**
            * Goal headers are only FF / Top 25 / 1-digit / Bubble. Never use “Outside top 60”
