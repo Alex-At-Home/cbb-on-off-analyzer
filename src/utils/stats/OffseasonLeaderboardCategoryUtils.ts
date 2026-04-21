@@ -951,7 +951,15 @@ export class OffseasonLeaderboardCategoryUtils {
                 : "Marginal swings among listed players don’t reach this net gap together.";
           }
           analysisNeedDetail = undefined;
-          kNeed = OffseasonLeaderboardCategoryUtils.MAX_SWINGS_IN_NEED_LIST + 1;
+          /**
+           * Stretch to the *next* tier is impossible, but the team may already sit **above**
+           * the Else-tier net bar (`gapDisplay` ≤ 0). Those rows still read “No bad luck!” and
+           * must sort with other clears (`kSwings` 0), not after real swing paths (`MAX+1`).
+           */
+          kNeed =
+            gapDisplay <= 0
+              ? 0
+              : OffseasonLeaderboardCategoryUtils.MAX_SWINGS_IN_NEED_LIST + 1;
         } else if (needResult.outcome === "too_many_swings") {
           /**
            * Goal headers are only FF / Top 25 / 1-digit / Bubble. Never use “Outside top 60”

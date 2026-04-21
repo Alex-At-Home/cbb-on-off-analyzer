@@ -1459,7 +1459,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         const headerRow = GenericTableOps.buildTextRow(
           <span className="small">
             <b>Goal: {gl0}</b> ([
-            <b>{group.length}</b>] teams; rating threshold: {thr0.toFixed(1)})
+            <b>{group.length}</b>] team{group.length == 1 ? "" : `s`}; rating
+            threshold: {thr0.toFixed(1)})
           </span>,
           `small text-center border-secondary border-top pt-2 pb-1 ${goalSubheaderThemeClass}`,
         );

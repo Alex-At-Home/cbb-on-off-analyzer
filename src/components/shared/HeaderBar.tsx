@@ -494,53 +494,27 @@ const HeaderBar: React.FunctionComponent<Props> = ({
           {highlight ? <b>Teams</b> : "Teams"}
         </Dropdown.Toggle>
         <Dropdown.Menu style={dropdownStyle}>
-          {DateUtils.showOffseasonMetrics && (
-            <Dropdown.Item>
-              {buildNavItem(
-                "Off-season Team Builder",
-                teamBuilderTooltip,
-                getTeamBuilderUrl(),
-                `${ParamPrefixes.team}_editor`,
-              )}
-            </Dropdown.Item>
-          )}
-          {DateUtils.showOffseasonMetrics ? (
-            <Dropdown.Item>
-              {buildNavItem(
-                "Off-season Depth Charts",
-                teamLeaderboardTooltip,
-                UrlRouting.getOffseasonLeaderboard({
-                  showDepthChartRows: true,
-                } as OffseasonLeaderboardParams),
-                `${ParamPrefixes.team}_leaderboard`,
-              )}
-            </Dropdown.Item>
-          ) : undefined}
-          {DateUtils.showOffseasonMetrics ? (
-            <Dropdown.Item>
-              {buildNavItem(
-                "How is your off-season going?",
-                teamLeaderboardTooltip,
-                UrlRouting.getOffseasonLeaderboard({
-                  transferInOutMode: true,
-                } as OffseasonLeaderboardParams),
-                `${ParamPrefixes.team}_leaderboard`,
-              )}
-            </Dropdown.Item>
-          ) : undefined}
+          <Dropdown.Header
+            className="text-muted text-left font-weight-normal py-2 mb-0"
+            style={{ fontSize: "0.75rem", lineHeight: 1.25 }}
+          >
+            OFFSEASON CONTENT:
+          </Dropdown.Header>
           {DateUtils.frontPageIsOffseasonLeaderboard ? (
             <>
               <Dropdown.Item>
                 {buildNavItem(
-                  "Editable Off-season Leaderboard",
+                  "Predictions",
                   teamLeaderboardTooltip,
-                  getTeamLeaderboardUrl(),
+                  UrlRouting.getOffseasonLeaderboard({
+                    categoryPathMode: true,
+                  } as OffseasonLeaderboardParams),
                   `${ParamPrefixes.team}_leaderboard`,
                 )}
               </Dropdown.Item>
               <Dropdown.Item>
                 {buildNavItem(
-                  "Off-season Tier Lists",
+                  "Tier Lists",
                   offseasonTierListTooltip,
                   UrlRouting.getOffseasonTierList({}),
                   `${ParamPrefixes.team}_tierList`,
@@ -557,16 +531,40 @@ const HeaderBar: React.FunctionComponent<Props> = ({
               )}
             </Dropdown.Item>
           )}
-          {DateUtils.frontPageIsOffseasonLeaderboard ? (
+          {DateUtils.showOffseasonMetrics && (
             <Dropdown.Item>
               {buildNavItem(
-                "Last season's team leaderboard",
+                "Team Builder",
+                teamBuilderTooltip,
+                getTeamBuilderUrl(),
+                `${ParamPrefixes.team}_editor`,
+              )}
+            </Dropdown.Item>
+          )}
+          {DateUtils.showOffseasonMetrics ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Depth Charts",
                 teamLeaderboardTooltip,
-                getTeamLeaderboardUrl(false),
+                UrlRouting.getOffseasonLeaderboard({
+                  showDepthChartRows: true,
+                } as OffseasonLeaderboardParams),
                 `${ParamPrefixes.team}_leaderboard`,
               )}
             </Dropdown.Item>
-          ) : null}
+          ) : undefined}
+          {DateUtils.showOffseasonMetrics ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "In/Out Breakdowns",
+                teamLeaderboardTooltip,
+                UrlRouting.getOffseasonLeaderboard({
+                  transferInOutMode: true,
+                } as OffseasonLeaderboardParams),
+                `${ParamPrefixes.team}_leaderboard`,
+              )}
+            </Dropdown.Item>
+          ) : undefined}
           <Dropdown.Divider />
           <Dropdown.Item>
             {buildNavItem(
@@ -643,6 +641,16 @@ const HeaderBar: React.FunctionComponent<Props> = ({
             )}
           </Dropdown.Item>
           <Dropdown.Divider />
+          {DateUtils.frontPageIsOffseasonLeaderboard ? (
+            <Dropdown.Item>
+              {buildNavItem(
+                "Last season's team leaderboard",
+                teamLeaderboardTooltip,
+                getTeamLeaderboardUrl(true),
+                `${ParamPrefixes.team}_leaderboard`,
+              )}
+            </Dropdown.Item>
+          ) : null}
           {!DateUtils.showOffseasonMetrics && (
             <Dropdown.Item>
               {buildNavItem(
