@@ -36,6 +36,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -88,6 +93,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot - with user ed
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -7513,6 +7523,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -7565,6 +7580,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -9302,10 +9322,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": 92.56012410990972,
                     },
                     "bad_net": {
-                      "value": 19.807106380792863,
+                      "value": 19.817034353253533,
                     },
                     "bad_off": {
-                      "value": 112.3672304907026,
+                      "value": 112.37715846316325,
                     },
                     "good_def": {
                       "value": 88.15380145632678,
@@ -10210,23 +10230,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 4.478282257042658,
-                                                                    "value": 4.478282257042658,
+                                                                    "old_value": 4.483059965605613,
+                                                                    "value": 4.483059965605613,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 5.006982257042658,
+                                                                    "value": 5.011759965605613,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 114.30250439982123,
+                                                                    "value": 114.35625362115448,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.25791435639058014,
+                                                                    "value": 0.2576754709624324,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -10247,7 +10267,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2982031354533649,
+                                      "lack_of_playmaking_penalty": -0.2934254268904102,
                                       "positional_penalty": -0.0044146075039763755,
                                     },
                                     "good": {
@@ -10263,9 +10283,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -1.4910156772668244,
+                                      "lack_of_playmaking_penalty": -1.467127134452051,
                                       "ortg_sos_delta": -0.11688537408942068,
-                                      "switch_usage_ortg_average": -1.8637695965835377,
+                                      "switch_usage_ortg_average": -1.8339089180650632,
                                       "switch_usage_ortg_style": 0.13697504776101255,
                                     },
                                     "good": {
@@ -10284,7 +10304,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.014910156772668243,
+                                      "average_usage": 0.014671271344520509,
                                       "switch_usage_ortg_style": -0.1095800382088152,
                                     },
                                     "good": {
@@ -10467,23 +10487,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": -0.18631774295734127,
-                                                                    "value": -0.18631774295734127,
+                                                                    "old_value": -0.18154003439438654,
+                                                                    "value": -0.18154003439438654,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.9006822570426587,
+                                                                    "value": 1.9054599656056135,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 113.49272308731624,
+                                                                    "value": 113.31244444435316,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.15331015677266824,
+                                                                    "value": 0.15467127134452052,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -10506,7 +10526,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2982031354533649,
+                                      "lack_of_playmaking_penalty": -0.2934254268904102,
                                       "positional_penalty": -0.0044146075039763755,
                                     },
                                     "good": {
@@ -10522,9 +10542,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -1.4910156772668244,
+                                      "lack_of_playmaking_penalty": -1.467127134452051,
                                       "ortg_sos_delta": 2.595662280483296,
-                                      "switch_usage_ortg_average": -2.236523515900231,
+                                      "switch_usage_ortg_average": -2.20069070167807,
+                                      "switch_usage_ortg_style": -0.2400000000000091,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 6,
@@ -10540,7 +10561,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.014910156772668243,
+                                      "average_usage": 0.014671271344520509,
+                                      "switch_usage_ortg_style": 0.1600000000000018,
                                     },
                                     "good": {
                                       "average_usage": -0.01394178258210399,
@@ -10720,23 +10742,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 0.6965822570426587,
-                                                                    "value": 0.6965822570426587,
+                                                                    "old_value": 0.7013599656056134,
+                                                                    "value": 0.7013599656056134,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.1641822570426588,
+                                                                    "value": 1.1689599656056135,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 105.47623322637705,
+                                                                    "value": 105.53595458341398,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1743431009370349,
+                                                                    "value": 0.17410421550888716,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -10757,7 +10779,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2982031354533649,
+                                      "lack_of_playmaking_penalty": -0.2934254268904102,
                                       "positional_penalty": -0.0044146075039763755,
                                     },
                                     "good": {
@@ -10773,9 +10795,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -1.4910156772668244,
+                                      "lack_of_playmaking_penalty": -1.467127134452051,
                                       "ortg_sos_delta": -0.3164859558008857,
-                                      "switch_usage_ortg_average": -2.236523515900231,
+                                      "switch_usage_ortg_average": -2.20069070167807,
                                       "switch_usage_ortg_style": 0.44505837534499904,
                                     },
                                     "good": {
@@ -10794,7 +10816,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.014910156772668243,
+                                      "average_usage": 0.014671271344520509,
                                       "switch_usage_ortg_style": -0.2967055835633346,
                                     },
                                     "good": {
@@ -10977,23 +10999,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 0.6285322570426586,
-                                                                    "value": 0.6285322570426586,
+                                                                    "old_value": 0.6333099656056134,
+                                                                    "value": 0.6333099656056134,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.20423225704265874,
+                                                                    "value": 0.20900996560561347,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 98.83605773167281,
+                                                                    "value": 98.88980695300604,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.2049896291986785,
+                                                                    "value": 0.20475074377053076,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -11014,7 +11036,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2982031354533649,
+                                      "lack_of_playmaking_penalty": -0.2934254268904102,
                                       "player_gravity_penalty": -0.21215,
                                       "positional_penalty": -0.0044146075039763755,
                                     },
@@ -11030,9 +11052,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -1.4910156772668244,
+                                      "lack_of_playmaking_penalty": -1.467127134452051,
                                       "ortg_sos_delta": -0.05552294122556134,
-                                      "switch_usage_ortg_average": -2.111782785933272,
+                                      "switch_usage_ortg_average": -2.0819221074148118,
                                       "switch_usage_ortg_style": 0.0780791360984665,
                                     },
                                     "good": {
@@ -11051,7 +11073,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.014910156772668243,
+                                      "average_usage": 0.014671271344520509,
                                       "switch_usage_ortg_style": -0.052052757398974595,
                                     },
                                     "good": {
@@ -11234,23 +11256,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 1.1065890810426586,
-                                                                    "value": 1.1065890810426586,
+                                                                    "old_value": 1.1113667896056134,
+                                                                    "value": 1.1113667896056134,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.6596890810426586,
+                                                                    "value": 1.6644667896056133,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 109.12821703520012,
+                                                                    "value": 109.18793839223706,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.17225578227188673,
+                                                                    "value": 0.172016896843739,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -11274,7 +11296,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   "off": {
                                     "bad": {
                                       "fr_regression": -0.04589317600000009,
-                                      "lack_of_playmaking_penalty": -0.2982031354533649,
+                                      "lack_of_playmaking_penalty": -0.2934254268904102,
                                       "positional_penalty": -0.0044146075039763755,
                                     },
                                     "good": {
@@ -11291,9 +11313,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -1.4910156772668244,
+                                      "lack_of_playmaking_penalty": -1.467127134452051,
                                       "ortg_sos_delta": -1.3817999467500357,
-                                      "switch_usage_ortg_average": -2.236523515900231,
+                                      "switch_usage_ortg_average": -2.20069070167807,
                                       "switch_usage_ortg_style": 1.943156175117224,
                                     },
                                     "good": {
@@ -11312,7 +11334,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.014910156772668243,
+                                      "average_usage": 0.014671271344520509,
                                       "switch_usage_ortg_style": -1.2954374500781514,
                                     },
                                     "good": {
@@ -11497,23 +11519,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 2.326853073042659,
-                                                                    "value": 2.326853073042659,
+                                                                    "old_value": 2.3316307816056137,
+                                                                    "value": 2.3316307816056137,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 3.0450530730426593,
+                                                                    "value": 3.049830781605614,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 109.93036332385341,
+                                                                    "value": 109.98411254518665,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.23614932417064513,
+                                                                    "value": 0.2359104387424974,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -11537,7 +11559,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   "off": {
                                     "bad": {
                                       "fr_regression": -0.30642918399999974,
-                                      "lack_of_playmaking_penalty": -0.2982031354533649,
+                                      "lack_of_playmaking_penalty": -0.2934254268904102,
                                       "positional_penalty": -0.0044146075039763755,
                                     },
                                     "good": {
@@ -11554,9 +11576,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -1.4910156772668244,
+                                      "lack_of_playmaking_penalty": -1.467127134452051,
                                       "ortg_sos_delta": -0.1771554775491211,
-                                      "switch_usage_ortg_average": -1.8637695965835235,
+                                      "switch_usage_ortg_average": -1.8339089180650632,
                                       "switch_usage_ortg_style": 0.20760407525288826,
                                     },
                                     "good": {
@@ -11575,7 +11597,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.014910156772668243,
+                                      "average_usage": 0.014671271344520509,
                                       "switch_usage_ortg_style": -0.16608326020230907,
                                     },
                                     "good": {
@@ -11768,10 +11790,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": -0.022685713272864186,
                     },
                     "bad_net": {
-                      "value": 0.7192679703155229,
+                      "value": 0.7240456788784776,
                     },
                     "bad_off": {
-                      "value": 0.6965822570426587,
+                      "value": 0.7013599656056134,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -12044,10 +12066,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": -2.1169069996728647,
                     },
                     "bad_net": {
-                      "value": 3.223496080715523,
+                      "value": 3.228273789278478,
                     },
                     "bad_off": {
-                      "value": 1.1065890810426586,
+                      "value": 1.1113667896056134,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -12210,10 +12232,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": -2.1735757132728644,
                     },
                     "bad_net": {
-                      "value": 2.802107970315523,
+                      "value": 2.8068856788784777,
                     },
                     "bad_off": {
-                      "value": 0.6285322570426586,
+                      "value": 0.6333099656056134,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -12376,10 +12398,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": -2.275441220472864,
                     },
                     "bad_net": {
-                      "value": 2.0891234775155225,
+                      "value": 2.0939011860784773,
                     },
                     "bad_off": {
-                      "value": -0.18631774295734127,
+                      "value": -0.18154003439438654,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -12565,10 +12587,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": -1.674366250872864,
                     },
                     "bad_net": {
-                      "value": 4.001219323915523,
+                      "value": 4.0059970324784775,
                     },
                     "bad_off": {
-                      "value": 2.326853073042659,
+                      "value": 2.3316307816056137,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -12731,10 +12753,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": 0.32441460750397644,
                     },
                     "bad_net": {
-                      "value": -0.9470323504613178,
+                      "value": -0.942254641898363,
                     },
                     "bad_off": {
-                      "value": -0.6226177429573414,
+                      "value": -0.6178400343943866,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -12872,10 +12894,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot 1`] = `
                       "value": -1.9999157132728642,
                     },
                     "bad_net": {
-                      "value": 6.478197970315523,
+                      "value": 6.482975678878478,
                     },
                     "bad_off": {
-                      "value": 4.478282257042658,
+                      "value": 4.483059965605613,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -14623,6 +14645,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -14675,6 +14702,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -17459,7 +17491,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     },
                                     "good": {
                                       "ortg_sos_delta": -3.855734065631708,
-                                      "switch_usage_ortg_average": 2.8956401629463357,
+                                      "switch_usage_ortg_average": 3.242827570985014,
                                       "switch_usage_ortg_style": 4.637573007757069,
                                       "yearly_bonus": 3,
                                     },
@@ -17476,7 +17508,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "switch_usage_ortg_style": -3.6147506865297245,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
+                                      "average_usage": -0.02594262056788013,
                                       "switch_usage_ortg_style": -3.7100584062056554,
                                       "yearly_bonus": 2,
                                     },
@@ -17528,12 +17560,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 124.3146791050717,
+                                                                    "value": 124.66186651311038,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.20383429463437278,
+                                                                    "value": 0.20105679537006332,
                                                                   }},
                                 "key": "BrFernando::",
                                 "nil": 0,
@@ -17707,7 +17739,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     },
                                     "good": {
                                       "ortg_sos_delta": 1.9006482424560716,
-                                      "switch_usage_ortg_average": 3.1072681955356103,
+                                      "switch_usage_ortg_average": 3.5238930851820243,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -17721,7 +17753,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "average_usage": -0.0030863768986297,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
+                                      "average_usage": -0.02594262056788013,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -17774,12 +17806,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 125.64921643799168,
+                                                                    "value": 126.0658413276381,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19153487869642932,
+                                                                    "value": 0.18875737943211987,
                                                                   }},
                                 "key": "DoScott::",
                                 "nil": 0,
@@ -17998,7 +18030,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     },
                                     "good": {
                                       "ortg_sos_delta": 1.3535476779964313,
-                                      "switch_usage_ortg_average": 2.8956401629463357,
+                                      "switch_usage_ortg_average": 3.242827570985014,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -18012,7 +18044,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "average_usage": -0.0030863768986297,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
+                                      "average_usage": -0.02594262056788013,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -18065,12 +18097,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 119.44128784094276,
+                                                                    "value": 119.78847524898144,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.23533487869642933,
+                                                                    "value": 0.23255737943211988,
                                                                   }},
                                 "key": "ErAyala::",
                                 "nil": 0,
@@ -18289,8 +18321,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     },
                                     "good": {
                                       "ortg_sos_delta": 1.4775003314197193,
-                                      "switch_usage_ortg_average": 2.8956401629463357,
-                                      "switch_usage_ortg_style": 2.796750000000003,
+                                      "switch_usage_ortg_average": 3.242827570985014,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -18306,8 +18337,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "switch_usage_ortg_style": -0.9174000000000015,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
-                                      "switch_usage_ortg_style": -2.2374000000000027,
+                                      "average_usage": -0.02594262056788013,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -18361,12 +18391,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 114.18999049436606,
+                                                                    "value": 111.74042790240473,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.22836087869642935,
+                                                                    "value": 0.2479573794321199,
                                                                   }},
                                 "key": "AaWiggins::",
                                 "nil": 0,
@@ -18584,7 +18614,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     },
                                     "good": {
                                       "ortg_sos_delta": 1.5958573878706375,
-                                      "switch_usage_ortg_average": 3.474768195535603,
+                                      "switch_usage_ortg_average": 3.891393085182017,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -18598,7 +18628,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "average_usage": -0.0030863768986297,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
+                                      "average_usage": -0.02594262056788013,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -18651,12 +18681,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 117.32492558340624,
+                                                                    "value": 117.74155047305265,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.15523487869642932,
+                                                                    "value": 0.15245737943211987,
                                                                   }},
                                 "key": "HaHart::",
                                 "nil": 0,
@@ -18845,7 +18875,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     "good": {
                                       "fr_yearly_bonus": 6,
                                       "ortg_sos_delta": -3.774659710977801,
-                                      "switch_usage_ortg_average": 2.8956401629463357,
+                                      "switch_usage_ortg_average": 3.2520637308390263,
                                       "switch_usage_ortg_style": 4.66585322828503,
                                     },
                                     "ok": {
@@ -18861,7 +18891,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "switch_usage_ortg_style": -3.5387434790416776,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
+                                      "average_usage": -0.02594262056788013,
                                       "fr_yearly_bonus": 4,
                                       "switch_usage_ortg_style": -3.7326825826280245,
                                     },
@@ -18913,12 +18943,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 123.04153368025356,
+                                                                    "value": 123.39795724814626,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.20240805287014904,
+                                                                    "value": 0.1996305536058396,
                                                                   }},
                                 "key": "JaSmith::",
                                 "nil": 0,
@@ -19092,7 +19122,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                     },
                                     "good": {
                                       "ortg_sos_delta": 1.0490462708661994,
-                                      "switch_usage_ortg_average": 3.474768195535603,
+                                      "switch_usage_ortg_average": 3.891393085182017,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -19106,7 +19136,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
                                       "average_usage": -0.0030863768986297,
                                     },
                                     "good": {
-                                      "average_usage": -0.02316512130357068,
+                                      "average_usage": -0.02594262056788013,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -19159,12 +19189,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode (le
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 114.4489144664018,
+                                                                    "value": 114.86553935604822,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1616348786964293,
+                                                                    "value": 0.15885737943211986,
                                                                   }},
                                 "key": "JsHamilton::",
                                 "nil": 0,
@@ -23040,6 +23070,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -23092,6 +23127,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -25443,12 +25483,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 109.2166989658938,
+                                                        "value": 107.2449489658938,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.248126,
+                                                        "value": 0.2639,
                                                       }
 
                             ok_net: {
@@ -26726,12 +26766,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                     },
                                     "good": {
                                       "ortg_sos_delta": 1.7248489658937984,
-                                      "switch_usage_ortg_style": 2.796750000000003,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
                                       "ortg_sos_delta": 1.7248489658937984,
-                                      "switch_usage_ortg_style": 1.9717500000000001,
                                       "yearly_bonus": 1.5,
                                     },
                                   },
@@ -26740,11 +26778,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                                       "switch_usage_ortg_style": -0.9174000000000015,
                                     },
                                     "good": {
-                                      "switch_usage_ortg_style": -2.2374000000000027,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
-                                      "switch_usage_ortg_style": -1.5774000000000021,
                                       "yearly_bonus": 1,
                                     },
                                   },
@@ -26793,12 +26829,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 111.5416989658938,
+                                                                    "value": 108.7449489658938,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.251526,
+                                                                    "value": 0.27390000000000003,
                                                                   }},
                                 "key": "AaWiggins::",
                                 "nil": 0,
@@ -26846,12 +26882,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 109.2166989658938,
+                                                                    "value": 107.2449489658938,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.248126,
+                                                                    "value": 0.2639,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -28554,7 +28590,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     "ok_off": undefined,
                     "ortg": {
                       "old_value": undefined,
-                      "value": 109.2166989658938,
+                      "value": 107.2449489658938,
                     },
                     "pos": <span
                       style={
@@ -28595,7 +28631,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode - w
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.248126,
+                      "value": 0.2639,
                     },
                   },
                   "kind": "data-row",
@@ -31775,6 +31811,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -31827,6 +31868,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -34614,7 +34660,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     },
                                     "good": {
                                       "ortg_sos_delta": -5.145998744404878,
-                                      "switch_usage_ortg_average": 2.4065963108130433,
+                                      "switch_usage_ortg_average": 2.816929286106557,
                                       "switch_usage_ortg_style": 6.191292317659105,
                                       "yearly_bonus": 3,
                                     },
@@ -34631,7 +34677,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "switch_usage_ortg_style": -4.824373822879559,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
+                                      "average_usage": -0.021207805483831554,
                                       "switch_usage_ortg_style": -4.953033854127282,
                                       "yearly_bonus": 2,
                                     },
@@ -34683,12 +34729,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 124.08908988406728,
+                                                                    "value": 124.49942285936079,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.196097409143519,
+                                                                    "value": 0.19336185597489564,
                                                                   }},
                                 "key": "BrFernando::",
                                 "nil": 0,
@@ -34865,7 +34911,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.5450605623154132,
-                                      "switch_usage_ortg_average": 2.4033378472812217,
+                                      "switch_usage_ortg_average": 2.8136708225747213,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -34879,7 +34925,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "average_usage": 0.00114441756760858,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
+                                      "average_usage": -0.021207805483831554,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -34932,12 +34978,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 123.58969840959664,
+                                                                    "value": 124.00003138489014,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19622774768479181,
+                                                                    "value": 0.19349219451616845,
                                                                   }},
                                 "key": "DoScott::",
                                 "nil": 0,
@@ -35159,7 +35205,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.0659571427167549,
-                                      "switch_usage_ortg_average": 2.309031539401019,
+                                      "switch_usage_ortg_average": 2.65097568547894,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -35173,7 +35219,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "average_usage": 0.00114441756760858,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
+                                      "average_usage": -0.021207805483831554,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -35226,12 +35272,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 117.56708868211777,
+                                                                    "value": 117.90903282819569,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.24002774768479182,
+                                                                    "value": 0.23729219451616845,
                                                                   }},
                                 "key": "ErAyala::",
                                 "nil": 0,
@@ -35452,8 +35498,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.2811734403470041,
-                                      "switch_usage_ortg_average": 2.309031539401019,
-                                      "switch_usage_ortg_style": 2.796750000000003,
+                                      "switch_usage_ortg_average": 2.65097568547894,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -35469,8 +35514,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "switch_usage_ortg_style": -0.9174000000000015,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
-                                      "switch_usage_ortg_style": -2.2374000000000027,
+                                      "average_usage": -0.021207805483831554,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -35524,12 +35568,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 112.40705497974803,
+                                                                    "value": 109.95224912582594,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.23305374768479184,
+                                                                    "value": 0.2526921945161685,
                                                                   }},
                                 "key": "AaWiggins::",
                                 "nil": 0,
@@ -35749,7 +35793,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.3388333063166584,
-                                      "switch_usage_ortg_average": 2.7708378472812285,
+                                      "switch_usage_ortg_average": 3.181170822574728,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -35763,7 +35807,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "average_usage": 0.00114441756760858,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
+                                      "average_usage": -0.021207805483831554,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -35816,12 +35860,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 115.36397115359789,
+                                                                    "value": 115.77430412889139,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.15992774768479182,
+                                                                    "value": 0.15719219451616845,
                                                                   }},
                                 "key": "HaHart::",
                                 "nil": 0,
@@ -36012,7 +36056,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     "good": {
                                       "fr_yearly_bonus": 6,
                                       "ortg_sos_delta": -5.016146871084061,
-                                      "switch_usage_ortg_average": 2.4391677324118035,
+                                      "switch_usage_ortg_average": 2.849500707705303,
                                       "switch_usage_ortg_style": 6.204149425652858,
                                     },
                                     "ok": {
@@ -36028,7 +36072,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "switch_usage_ortg_style": -4.702637691641313,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
+                                      "average_usage": -0.021207805483831554,
                                       "fr_yearly_bonus": 4,
                                       "switch_usage_ortg_style": -4.963319540522292,
                                     },
@@ -36080,12 +36124,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 122.8818702869806,
+                                                                    "value": 123.2922032622741,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19479455227956885,
+                                                                    "value": 0.19205899911094548,
                                                                   }},
                                 "key": "JaSmith::",
                                 "nil": 0,
@@ -36263,7 +36307,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                     },
                                     "good": {
                                       "ortg_sos_delta": -0.17536427798668797,
-                                      "switch_usage_ortg_average": 2.7708378472812285,
+                                      "switch_usage_ortg_average": 3.181170822574728,
                                       "switch_usage_ortg_style": 0.2535364129146416,
                                       "yearly_bonus": 3,
                                     },
@@ -36280,7 +36324,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
                                       "switch_usage_ortg_style": -0.16440401061252363,
                                     },
                                     "good": {
-                                      "average_usage": -0.018472252315208187,
+                                      "average_usage": -0.021207805483831554,
                                       "switch_usage_ortg_style": -0.16902427527642824,
                                       "yearly_bonus": 2,
                                     },
@@ -36335,12 +36379,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode 1`]
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 112.77410998220918,
+                                                                    "value": 113.18444295750268,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.16463750493202753,
+                                                                    "value": 0.16190195176340416,
                                                                   }},
                                 "key": "JsHamilton::",
                                 "nil": 0,
@@ -40379,6 +40423,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -40431,6 +40480,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -42176,19 +42230,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": 90.50026634925021,
                     },
                     "bad_net": {
-                      "value": 28.72250825285183,
+                      "value": 28.802226109936548,
                     },
                     "bad_off": {
-                      "value": 119.22277460210205,
+                      "value": 119.30249245918677,
                     },
                     "good_def": {
                       "value": 88.44036619640707,
                     },
                     "good_net": {
-                      "value": 34.50648844234467,
+                      "value": 34.49773961610412,
                     },
                     "good_off": {
-                      "value": 122.94685463875174,
+                      "value": 122.9381058125112,
                     },
                     "mpg": undefined,
                     "nil": undefined,
@@ -42196,10 +42250,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": 89.48699765330889,
                     },
                     "ok_net": {
-                      "value": 31.537731439485157,
+                      "value": 31.530581408726388,
                     },
                     "ok_off": {
-                      "value": 121.02472909279405,
+                      "value": 121.01757906203528,
                     },
                     "title": <OverlayTrigger
                       overlay={
@@ -43381,23 +43435,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 4.740192893261106,
-                                                                    "value": 4.740192893261106,
+                                                                    "old_value": 4.778326390641201,
+                                                                    "value": 4.778326390641201,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 5.268892893261106,
+                                                                    "value": 5.307026390641201,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 118.11642315567829,
+                                                                    "value": 118.59309187292948,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1978916171081491,
+                                                                    "value": 0.19598494223914437,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -43415,7 +43469,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                     },
                                     "good": {
                                       "player_gravity_bonus": 0.26434999999999986,
@@ -43427,14 +43481,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": -5.145998744404878,
-                                      "switch_usage_ortg_average": -0.3053033005417092,
+                                      "switch_usage_ortg_average": -0.01930207019098873,
                                       "switch_usage_ortg_style": 6.134060734319334,
                                     },
                                     "good": {
                                       "ortg_sos_delta": -5.145998744404878,
-                                      "switch_usage_ortg_average": 2.673569886009716,
+                                      "switch_usage_ortg_average": 3.0048600530268175,
                                       "switch_usage_ortg_style": 6.191292317659105,
                                       "yearly_bonus": 3,
                                     },
@@ -43447,11 +43501,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                       "switch_usage_ortg_style": -4.824373822879559,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "switch_usage_ortg_style": -4.953033854127282,
                                       "yearly_bonus": 2,
                                     },
@@ -43503,12 +43557,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 124.35606345926395,
+                                                                    "value": 124.68735362628105,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19431758530887458,
+                                                                    "value": 0.19210898419542716,
                                                                   }},
                                 "key": "BrFernando::",
                                 "nil": 0,
@@ -43633,23 +43687,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 4.102792893261107,
-                                                                    "value": 4.102792893261107,
+                                                                    "old_value": 4.1409263906412015,
+                                                                    "value": 4.1409263906412015,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 4.983192893261107,
+                                                                    "value": 5.021326390641201,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 117.67752172807924,
+                                                                    "value": 118.15419044533043,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1967353553369447,
+                                                                    "value": 0.19482868046793997,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -43667,7 +43721,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                     },
                                     "good": {
                                       "player_gravity_bonus": 0.4401999999999999,
@@ -43679,13 +43733,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": 0.5450605623154132,
-                                      "switch_usage_ortg_average": -0.3053033005417092,
+                                      "switch_usage_ortg_average": -0.01930207019098873,
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.5450605623154132,
-                                      "switch_usage_ortg_average": 2.67031142247788,
+                                      "switch_usage_ortg_average": 3.001601589494996,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -43696,10 +43750,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -43752,12 +43806,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 123.8566719847933,
+                                                                    "value": 124.18796215181041,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1944479238501474,
+                                                                    "value": 0.19223932273669997,
                                                                   }},
                                 "key": "DoScott::",
                                 "nil": 0,
@@ -43922,23 +43976,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 3.1850428932611066,
-                                                                    "value": 3.1850428932611066,
+                                                                    "old_value": 3.2231763906412008,
+                                                                    "value": 3.2231763906412008,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 2.8065428932611067,
+                                                                    "value": 2.844676390641201,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 108.58251151490538,
+                                                                    "value": 109.01151336043144,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.21256263902505737,
+                                                                    "value": 0.21065596415605264,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -43956,7 +44010,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                       "player_gravity_penalty": -0.18924999999999992,
                                     },
                                     "good": {
@@ -43968,14 +44022,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": -5.010423073267987,
-                                      "switch_usage_ortg_average": -0.25441941711808624,
+                                      "switch_usage_ortg_average": -0.016085058492492976,
                                       "switch_usage_ortg_style": 5.871589538985916,
                                     },
                                     "good": {
                                       "ortg_sos_delta": -5.010423073267987,
-                                      "switch_usage_ortg_average": 2.531509518731582,
+                                      "switch_usage_ortg_average": 2.8075846579125,
                                       "switch_usage_ortg_style": 6.0423267723617045,
                                       "yearly_bonus": 3,
                                     },
@@ -43988,11 +44042,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                       "switch_usage_ortg_style": -4.697271631188731,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "switch_usage_ortg_style": -4.8338614178893655,
                                       "yearly_bonus": 2,
                                     },
@@ -44044,12 +44098,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 114.7427132178253,
+                                                                    "value": 115.01878835700622,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.20890930967125376,
+                                                                    "value": 0.20670070855780634,
                                                                   }},
                                 "key": "AnCowan::",
                                 "nil": 0,
@@ -44174,23 +44228,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 3.2629428932611066,
-                                                                    "value": 3.2629428932611066,
+                                                                    "old_value": 3.3010763906412013,
+                                                                    "value": 3.3010763906412013,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 3.102042893261106,
+                                                                    "value": 3.1401763906412006,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 104.99006848953445,
+                                                                    "value": 105.41907033506051,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.24676135533694468,
+                                                                    "value": 0.24485468046793996,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -44208,7 +44262,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                       "player_gravity_penalty": -0.08045000000000013,
                                     },
                                     "good": {
@@ -44220,15 +44274,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": 0.2811734403470041,
-                                      "switch_usage_ortg_average": -0.25441941711808624,
+                                      "switch_usage_ortg_average": -0.016085058492492976,
                                       "switch_usage_ortg_style": 1.1467499999999973,
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.2811734403470041,
-                                      "switch_usage_ortg_average": 2.531509518731582,
-                                      "switch_usage_ortg_style": 2.796750000000003,
+                                      "switch_usage_ortg_average": 2.8075846579125,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -44240,12 +44293,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                       "switch_usage_ortg_style": -0.9174000000000015,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
-                                      "switch_usage_ortg_style": -2.2374000000000027,
+                                      "average_usage": -0.022460677263300033,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -44299,12 +44351,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 112.62953295907859,
+                                                                    "value": 110.1088580982595,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.23127392385014742,
+                                                                    "value": 0.2514393227367,
                                                                   }},
                                 "key": "AaWiggins::",
                                 "nil": 0,
@@ -44472,23 +44524,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 4.468592893261106,
-                                                                    "value": 4.468592893261106,
+                                                                    "old_value": 4.506726390641201,
+                                                                    "value": 4.506726390641201,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 4.947192893261106,
+                                                                    "value": 4.985326390641201,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 111.8001021919042,
+                                                                    "value": 112.22910403743026,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.24053535533694467,
+                                                                    "value": 0.23862868046793995,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -44508,7 +44560,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                     },
                                     "good": {
                                       "player_gravity_bonus": 0.23930000000000007,
@@ -44520,13 +44572,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": 0.0659571427167549,
-                                      "switch_usage_ortg_average": -0.25441941711808624,
+                                      "switch_usage_ortg_average": -0.016085058492492976,
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.0659571427167549,
-                                      "switch_usage_ortg_average": 2.531509518731582,
+                                      "switch_usage_ortg_average": 2.8075846579125,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -44537,10 +44589,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -44593,12 +44645,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 117.78956666144833,
+                                                                    "value": 118.06564180062925,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.2382479238501474,
+                                                                    "value": 0.23603932273669997,
                                                                   }},
                                 "key": "ErAyala::",
                                 "nil": 0,
@@ -44765,23 +44817,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 2.588763709261107,
-                                                                    "value": 2.588763709261107,
+                                                                    "old_value": 2.6268972066412015,
+                                                                    "value": 2.6268972066412015,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 3.306963709261107,
+                                                                    "value": 3.345097206641201,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 114.21117083214173,
+                                                                    "value": 114.68783954939292,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.17790897842053152,
+                                                                    "value": 0.1760023035515268,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -44802,7 +44854,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   "off": {
                                     "bad": {
                                       "fr_regression": -0.30642918399999974,
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 2.4,
@@ -44815,15 +44867,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": -5.016146871084061,
-                                      "switch_usage_ortg_average": -0.3053033005417092,
+                                      "switch_usage_ortg_average": -0.01930207019098873,
                                       "switch_usage_ortg_style": 6.481456537461966,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 6,
                                       "ortg_sos_delta": -5.016146871084061,
-                                      "switch_usage_ortg_average": 2.706141307608462,
+                                      "switch_usage_ortg_average": 3.0374314746255777,
                                       "switch_usage_ortg_style": 6.204149425652858,
                                     },
                                     "ok": {
@@ -44835,11 +44887,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                       "switch_usage_ortg_style": -4.702637691641313,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "fr_yearly_bonus": 4,
                                       "switch_usage_ortg_style": -4.963319540522292,
                                     },
@@ -44891,12 +44943,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 123.14884386217726,
+                                                                    "value": 123.48013402919437,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19301472844492443,
+                                                                    "value": 0.190806127331477,
                                                                   }},
                                 "key": "JaSmith::",
                                 "nil": 0,
@@ -45021,23 +45073,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 1.2083928932611063,
-                                                                    "value": 1.2083928932611063,
+                                                                    "old_value": 1.246526390641201,
+                                                                    "value": 1.246526390641201,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.9158928932611063,
+                                                                    "value": 1.9540263906412008,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 106.48750290369593,
+                                                                    "value": 106.96417162094711,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.16519131523081945,
+                                                                    "value": 0.16328464036181473,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -45055,7 +45107,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                     },
                                     "good": {
                                       "player_gravity_bonus": 0.3537499999999999,
@@ -45067,14 +45119,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": -0.17536427798668797,
-                                      "switch_usage_ortg_average": -0.3053033005417092,
+                                      "switch_usage_ortg_average": -0.01930207019098873,
                                       "switch_usage_ortg_style": 0.24660601591878617,
                                     },
                                     "good": {
                                       "ortg_sos_delta": -0.17536427798668797,
-                                      "switch_usage_ortg_average": 3.037811422477887,
+                                      "switch_usage_ortg_average": 3.3691015894950027,
                                       "switch_usage_ortg_style": 0.2535364129146416,
                                       "yearly_bonus": 3,
                                     },
@@ -45087,11 +45139,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                       "switch_usage_ortg_style": -0.16440401061252363,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "switch_usage_ortg_style": -0.16902427527642824,
                                       "yearly_bonus": 2,
                                     },
@@ -45146,12 +45198,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 113.04108355740584,
+                                                                    "value": 113.37237372442296,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1628576810973831,
+                                                                    "value": 0.16064907998393568,
                                                                   }},
                                 "key": "JsHamilton::",
                                 "nil": 0,
@@ -45285,23 +45337,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 0.6419928932611063,
-                                                                    "value": 0.6419928932611063,
+                                                                    "old_value": 0.6801263906412008,
+                                                                    "value": 0.6801263906412008,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.7118928932611064,
+                                                                    "value": 0.7500263906412009,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 96.90798835750081,
+                                                                    "value": 97.33699020302687,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.20773535533694468,
+                                                                    "value": 0.20582868046793995,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -45321,7 +45373,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                     },
                                     "good": {
                                       "incorp_prev_season": 0.26261267215887585,
@@ -45335,14 +45387,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": 0.12294330831336708,
-                                      "switch_usage_ortg_average": -0.25441941711808624,
+                                      "switch_usage_ortg_average": -0.016085058492492976,
                                     },
                                     "good": {
                                       "incorp_prev_season": 0.5235542540214482,
                                       "ortg_sos_delta": 0.12294330831336708,
-                                      "switch_usage_ortg_average": 2.531509518731582,
+                                      "switch_usage_ortg_average": 2.8075846579125,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -45354,10 +45406,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "incorp_prev_season": 0.26261267215887585,
                                       "yearly_bonus": 2,
                                     },
@@ -45412,12 +45464,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 103.42100708106639,
+                                                                    "value": 103.69708222024731,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.20807405057173614,
+                                                                    "value": 0.20586544945828872,
                                                                   }},
                                 "key": "DaMorsell::",
                                 "nil": 0,
@@ -45585,23 +45637,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 3.0202928932611064,
-                                                                    "value": 3.0202928932611064,
+                                                                    "old_value": 3.058426390641201,
+                                                                    "value": 3.058426390641201,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.5096928932611062,
+                                                                    "value": 1.5478263906412006,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 109.08429447208049,
+                                                                    "value": 109.56096318933167,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1604353553369447,
+                                                                    "value": 0.15852868046793997,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -45619,7 +45671,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.04070710673889366,
+                                      "lack_of_playmaking_penalty": -0.0025736093587991338,
                                       "player_gravity_penalty": -0.7553000000000001,
                                     },
                                     "good": {
@@ -45631,13 +45683,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.2035355336944683,
+                                      "lack_of_playmaking_penalty": -0.012868046793995669,
                                       "ortg_sos_delta": 0.3388333063166584,
-                                      "switch_usage_ortg_average": -0.3053033005417092,
+                                      "switch_usage_ortg_average": -0.01930207019098873,
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.3388333063166584,
-                                      "switch_usage_ortg_average": 3.037811422477887,
+                                      "switch_usage_ortg_average": 3.3691015894950027,
                                       "yearly_bonus": 3,
                                     },
                                     "ok": {
@@ -45648,10 +45700,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.002035355336944683,
+                                      "average_usage": 0.0001286804679399567,
                                     },
                                     "good": {
-                                      "average_usage": -0.02025207614985261,
+                                      "average_usage": -0.022460677263300033,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
@@ -45704,12 +45756,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 115.63094472879455,
+                                                                    "value": 115.96223489581166,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.1581479238501474,
+                                                                    "value": 0.15593932273669997,
                                                                   }},
                                 "key": "HaHart::",
                                 "nil": 0,
@@ -45854,10 +45906,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -2.1102223947725776,
                     },
                     "bad_net": {
-                      "value": 5.295265288033685,
+                      "value": 5.333398785413778,
                     },
                     "bad_off": {
-                      "value": 3.1850428932611066,
+                      "value": 3.2231763906412008,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -46116,10 +46168,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -2.6006523947725775,
                     },
                     "bad_net": {
-                      "value": 7.069245288033684,
+                      "value": 7.107378785413778,
                     },
                     "bad_off": {
-                      "value": 4.468592893261106,
+                      "value": 4.506726390641201,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -46282,10 +46334,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -1.6326723947725774,
                     },
                     "bad_net": {
-                      "value": 4.652965288033684,
+                      "value": 4.691098785413779,
                     },
                     "bad_off": {
-                      "value": 3.0202928932611064,
+                      "value": 3.058426390641201,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -46448,10 +46500,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -0.8570623947725774,
                     },
                     "bad_net": {
-                      "value": 4.120005288033684,
+                      "value": 4.158138785413779,
                     },
                     "bad_off": {
-                      "value": 3.2629428932611066,
+                      "value": 3.3010763906412013,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -46614,10 +46666,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -2.4847993187609543,
                     },
                     "bad_net": {
-                      "value": 3.1267922120220604,
+                      "value": 3.164925709402155,
                     },
                     "bad_off": {
-                      "value": 0.6419928932611063,
+                      "value": 0.6801263906412008,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -46780,10 +46832,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -3.490922394772577,
                     },
                     "bad_net": {
-                      "value": 7.593715288033684,
+                      "value": 7.631848785413778,
                     },
                     "bad_off": {
-                      "value": 4.102792893261107,
+                      "value": 4.1409263906412015,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -46946,10 +46998,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -0.17892239477257726,
                     },
                     "bad_net": {
-                      "value": 1.3873152880336836,
+                      "value": 1.4254487854137783,
                     },
                     "bad_off": {
-                      "value": 1.2083928932611063,
+                      "value": 1.246526390641201,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -47208,10 +47260,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -1.7952329323725773,
                     },
                     "bad_net": {
-                      "value": 4.383996641633685,
+                      "value": 4.422130139013779,
                     },
                     "bad_off": {
-                      "value": 2.588763709261107,
+                      "value": 2.6268972066412015,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -47374,10 +47426,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": 0.32000000000000006,
                     },
                     "bad_net": {
-                      "value": -0.6807071067388938,
+                      "value": -0.6425736093587993,
                     },
                     "bad_off": {
-                      "value": -0.3607071067388937,
+                      "value": -0.3225736093587992,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -47515,10 +47567,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -2.120782394772577,
                     },
                     "bad_net": {
-                      "value": 6.860975288033684,
+                      "value": 6.8991087854137785,
                     },
                     "bad_off": {
-                      "value": 4.740192893261106,
+                      "value": 4.778326390641201,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -47681,10 +47733,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, eval mode, mi
                       "value": -2.1815723947725774,
                     },
                     "bad_net": {
-                      "value": 0.14956528803368352,
+                      "value": 0.18769878541377816,
                     },
                     "bad_off": {
-                      "value": -2.032007106738894,
+                      "value": -1.9938736093587992,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -49161,6 +49213,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -49213,6 +49270,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
               "value": "2019/20",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -50950,19 +51012,19 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": 90.71711865420806,
                     },
                     "bad_net": {
-                      "value": 24.48249792584018,
+                      "value": 24.555387935070385,
                     },
                     "bad_off": {
-                      "value": 115.19961658004826,
+                      "value": 115.27250658927846,
                     },
                     "good_def": {
                       "value": 86.64148247027907,
                     },
                     "good_net": {
-                      "value": 33.90279204618088,
+                      "value": 33.89479255837792,
                     },
                     "good_off": {
-                      "value": 120.54427451645996,
+                      "value": 120.536275028657,
                     },
                     "mpg": undefined,
                     "nil": undefined,
@@ -50970,10 +51032,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": 88.65815981947384,
                     },
                     "ok_net": {
-                      "value": 29.03342886327467,
+                      "value": 29.026891233851828,
                     },
                     "ok_off": {
-                      "value": 117.69158868274852,
+                      "value": 117.68505105332568,
                     },
                     "title": <OverlayTrigger
                       overlay={
@@ -51542,12 +51604,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 117.35521719392685,
+                                                        "value": 117.73928599861314,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.16785089401361863,
+                                                        "value": 0.16529043531570994,
                                                       }
 
                             ok_net: {
@@ -51594,12 +51656,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 112.98801131799145,
+                                                        "value": 111.2941453995649,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.23843068047502647,
+                                                        "value": 0.25198160782243884,
                                                       }
 
                             ok_net: {
@@ -51646,12 +51708,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 120.37778119036396,
+                                                        "value": 120.69783852760254,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.24387814269178215,
+                                                        "value": 0.24131768399387346,
                                                       }
 
                             ok_net: {
@@ -51698,12 +51760,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 105.39559478615611,
+                                                        "value": 105.77966359084242,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.19073087554258839,
+                                                        "value": 0.1881704168446797,
                                                       }
 
                             ok_net: {
@@ -51750,12 +51812,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 121.78016177250282,
+                                                        "value": 122.16423057718912,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.14853087554258837,
+                                                        "value": 0.14597041684467968,
                                                       }
 
                             ok_net: {
@@ -51802,12 +51864,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 113.6635717423199,
+                                                        "value": 114.0476405470062,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.17019288126902898,
+                                                        "value": 0.1676324225711203,
                                                       }
 
                             ok_net: {
@@ -51854,12 +51916,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                             off_rtg: {
                                                         "old_value": undefined,
-                                                        "value": 117.50872334567258,
+                                                        "value": 117.82878068291116,
                                                       }
 
                             off_usage: {
                                                         "old_value": undefined,
-                                                        "value": 0.2320643302129034,
+                                                        "value": 0.2295038715149947,
                                                       }
 
                             ok_net: {
@@ -51924,23 +51986,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 4.694029474180325,
-                                                                    "value": 4.694029474180325,
+                                                                    "old_value": 4.728896831102142,
+                                                                    "value": 4.728896831102142,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 5.2227294741803245,
+                                                                    "value": 5.257596831102142,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 116.6662919080411,
+                                                                    "value": 117.05854967341153,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.24809523591757812,
+                                                                    "value": 0.24635186807148726,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -51958,7 +52020,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                     },
                                     "good": {
                                       "player_gravity_bonus": 0.26434999999999986,
@@ -51970,9 +52032,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": -0.03715097316327842,
-                                      "switch_usage_ortg_average": -0.5429407863729665,
+                                      "switch_usage_ortg_average": -0.3250198056116176,
                                       "switch_usage_ortg_style": 0.04353629667571113,
                                     },
                                     "good": {
@@ -51983,14 +52045,14 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     },
                                     "ok": {
                                       "ortg_sos_delta": -0.03715097316327842,
-                                      "switch_usage_ortg_average": 1.2336405571764573,
+                                      "switch_usage_ortg_average": 1.5536978944150377,
                                       "switch_usage_ortg_style": 0.04409160635077569,
                                       "yearly_bonus": 1.5,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
+                                      "average_usage": 0.0026001584448928916,
                                       "switch_usage_ortg_style": -0.03482903734056498,
                                     },
                                     "good": {
@@ -51999,7 +52061,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
+                                      "average_usage": -0.012429583155320306,
                                       "switch_usage_ortg_style": -0.035273285080622684,
                                       "yearly_bonus": 1,
                                     },
@@ -52096,12 +52158,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 120.37778119036396,
+                                                                    "value": 120.69783852760254,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.24387814269178215,
+                                                                    "value": 0.24131768399387346,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -52173,23 +52235,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 0.029429474180324974,
-                                                                    "value": 0.029429474180324974,
+                                                                    "old_value": 0.06429683110214217,
+                                                                    "value": 0.06429683110214217,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 2.116429474180325,
+                                                                    "value": 2.151296831102142,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 116.21391153114514,
+                                                                    "value": 116.40975349266785,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.14274352629098375,
+                                                                    "value": 0.1426001584448929,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -52209,7 +52271,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 2.4,
@@ -52221,9 +52283,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": 2.6751931038910755,
-                                      "switch_usage_ortg_average": -0.6515289436475626,
+                                      "switch_usage_ortg_average": -0.3900237667339326,
+                                      "switch_usage_ortg_style": -0.2400000000000091,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 6,
@@ -52233,19 +52296,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     "ok": {
                                       "fr_yearly_bonus": 3,
                                       "ortg_sos_delta": 2.6751931038910755,
-                                      "switch_usage_ortg_average": 1.4803686686117459,
+                                      "switch_usage_ortg_average": 1.8644374732980395,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
+                                      "average_usage": 0.0026001584448928916,
+                                      "switch_usage_ortg_style": 0.1600000000000018,
                                     },
                                     "good": {
                                       "average_usage": -0.02768667714345846,
                                       "fr_yearly_bonus": 4,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
+                                      "average_usage": -0.012429583155320306,
                                       "fr_yearly_bonus": 2,
                                     },
                                   },
@@ -52341,12 +52405,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 121.78016177250282,
+                                                                    "value": 122.16423057718912,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.14853087554258837,
+                                                                    "value": 0.14597041684467968,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -52418,23 +52482,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 3.138879474180325,
-                                                                    "value": 3.138879474180325,
+                                                                    "old_value": 3.173746831102142,
+                                                                    "value": 3.173746831102142,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 2.760379474180325,
+                                                                    "value": 2.7952468311021423,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 108.45027667091514,
+                                                                    "value": 107.65011575378864,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.2492577366188499,
+                                                                    "value": 0.2570537182327345,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -52452,7 +52516,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                       "player_gravity_penalty": -0.18924999999999992,
                                     },
                                     "good": {
@@ -52464,10 +52528,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": -0.32495362263024674,
-                                      "switch_usage_ortg_average": -0.5429407863729665,
-                                      "switch_usage_ortg_style": 1.5732237090167303,
+                                      "switch_usage_ortg_average": -0.3250198056116176,
+                                      "switch_usage_ortg_style": 0.38080502651979486,
                                     },
                                     "good": {
                                       "ortg_sos_delta": -0.32495362263024674,
@@ -52477,15 +52541,15 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     },
                                     "ok": {
                                       "ortg_sos_delta": -0.32495362263024674,
-                                      "switch_usage_ortg_average": 1.2336405571764573,
-                                      "switch_usage_ortg_style": 2.400024383445242,
+                                      "switch_usage_ortg_average": 1.5536978944150377,
+                                      "switch_usage_ortg_style": 0.3861011277801083,
                                       "yearly_bonus": 1.5,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
-                                      "switch_usage_ortg_style": -1.2585789672133854,
+                                      "average_usage": 0.0026001584448928916,
+                                      "switch_usage_ortg_style": -0.30464402121583767,
                                     },
                                     "good": {
                                       "average_usage": -0.02768667714345846,
@@ -52493,8 +52557,8 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
-                                      "switch_usage_ortg_style": -1.9200195067561925,
+                                      "average_usage": -0.012429583155320306,
+                                      "switch_usage_ortg_style": -0.30888090222409015,
                                       "yearly_bonus": 1,
                                     },
                                   },
@@ -52590,12 +52654,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 112.98801131799145,
+                                                                    "value": 111.2941453995649,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.23843068047502647,
+                                                                    "value": 0.25198160782243884,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -52667,23 +52731,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 1.3223362981803248,
-                                                                    "value": 1.3223362981803248,
+                                                                    "old_value": 1.357203655102142,
+                                                                    "value": 1.357203655102142,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.875436298180325,
+                                                                    "value": 1.9103036551021422,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 111.73930383826641,
+                                                                    "value": 112.17514579978912,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.162394632190699,
+                                                                    "value": 0.16065126434460814,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -52704,7 +52768,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   "off": {
                                     "bad": {
                                       "fr_regression": -0.04589317600000009,
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 2.4,
@@ -52717,9 +52781,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": -1.3065487040303623,
-                                      "switch_usage_ortg_average": -0.6515289436475626,
+                                      "switch_usage_ortg_average": -0.3900237667339326,
                                       "switch_usage_ortg_style": 1.837334115042708,
                                     },
                                     "good": {
@@ -52731,13 +52795,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     "ok": {
                                       "fr_yearly_bonus": 3,
                                       "ortg_sos_delta": -1.3065487040303623,
-                                      "switch_usage_ortg_average": 1.4803686686117459,
+                                      "switch_usage_ortg_average": 1.8644374732980395,
                                       "switch_usage_ortg_style": 1.886997229345468,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
+                                      "average_usage": 0.0026001584448928916,
                                       "switch_usage_ortg_style": -1.2248894100284757,
                                     },
                                     "good": {
@@ -52746,7 +52810,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                       "switch_usage_ortg_style": -1.291106895765473,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
+                                      "average_usage": -0.012429583155320306,
                                       "fr_yearly_bonus": 2,
                                       "switch_usage_ortg_style": -1.2579981528969744,
                                     },
@@ -52843,12 +52907,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 117.35521719392685,
+                                                                    "value": 117.73928599861314,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.16785089401361863,
+                                                                    "value": 0.16529043531570994,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -52920,23 +52984,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 0.912329474180325,
-                                                                    "value": 0.912329474180325,
+                                                                    "old_value": 0.9471968311021421,
+                                                                    "value": 0.9471968311021421,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 1.379929474180325,
+                                                                    "value": 1.4147968311021422,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 108.08791370460514,
+                                                                    "value": 108.52375566612785,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.16446825065980494,
+                                                                    "value": 0.16272488281371408,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -52954,7 +53018,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 2.4,
@@ -52966,9 +53030,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": -0.24269606732573834,
-                                      "switch_usage_ortg_average": -0.6515289436475626,
+                                      "switch_usage_ortg_average": -0.3900237667339326,
                                       "switch_usage_ortg_style": 0.34129134467681865,
                                     },
                                     "good": {
@@ -52980,13 +53044,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     "ok": {
                                       "fr_yearly_bonus": 3,
                                       "ortg_sos_delta": -0.24269606732573834,
-                                      "switch_usage_ortg_average": 1.4803686686117459,
+                                      "switch_usage_ortg_average": 1.8644374732980395,
                                       "switch_usage_ortg_style": 0.35069914103389976,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
+                                      "average_usage": 0.0026001584448928916,
                                       "switch_usage_ortg_style": -0.22752756311787878,
                                     },
                                     "good": {
@@ -52995,7 +53059,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                       "switch_usage_ortg_style": -0.24007129159399465,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
+                                      "average_usage": -0.012429583155320306,
                                       "fr_yearly_bonus": 2,
                                       "switch_usage_ortg_style": -0.2337994273559367,
                                     },
@@ -53092,12 +53156,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 113.6635717423199,
+                                                                    "value": 114.0476405470062,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.17019288126902898,
+                                                                    "value": 0.1676324225711203,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -53171,23 +53235,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 2.5426002901803253,
-                                                                    "value": 2.5426002901803253,
+                                                                    "old_value": 2.5774676471021425,
+                                                                    "value": 2.5774676471021425,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 3.2608002901803252,
+                                                                    "value": 3.2956676471021424,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 112.29466891507336,
+                                                                    "value": 112.68692668044379,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.22630194462491013,
+                                                                    "value": 0.22455857677881927,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -53208,7 +53272,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   "off": {
                                     "bad": {
                                       "fr_regression": -0.30642918399999974,
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                     },
                                     "good": {
                                       "fr_yearly_bonus": 2.4,
@@ -53221,9 +53285,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": -0.10043537771450417,
-                                      "switch_usage_ortg_average": -0.5429407863729665,
+                                      "switch_usage_ortg_average": -0.3250198056116176,
                                       "switch_usage_ortg_style": 0.11769770825920034,
                                     },
                                     "good": {
@@ -53235,13 +53299,13 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     "ok": {
                                       "fr_yearly_bonus": 3,
                                       "ortg_sos_delta": -0.10043537771450417,
-                                      "switch_usage_ortg_average": 1.2336405571764573,
+                                      "switch_usage_ortg_average": 1.5536978944150377,
                                       "switch_usage_ortg_style": 0.12081816621062558,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
+                                      "average_usage": 0.0026001584448928916,
                                       "switch_usage_ortg_style": -0.0941581666073602,
                                     },
                                     "good": {
@@ -53250,7 +53314,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                       "switch_usage_ortg_style": -0.0991508993296309,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
+                                      "average_usage": -0.012429583155320306,
                                       "fr_yearly_bonus": 2,
                                       "switch_usage_ortg_style": -0.09665453296849555,
                                     },
@@ -53347,12 +53411,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 117.50872334567258,
+                                                                    "value": 117.82878068291116,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.2320643302129034,
+                                                                    "value": 0.2295038715149947,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -53424,23 +53488,23 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                                                   }
 
                                   off_adj_rapm: {
-                                                                    "old_value": 0.8442794741803249,
-                                                                    "value": 0.8442794741803249,
+                                                                    "old_value": 0.8791468311021421,
+                                                                    "value": 0.8791468311021421,
                                                                   }
 
                                   off_adj_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.419979474180325,
+                                                                    "value": 0.4548468311021422,
                                                                   }
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 101.34434454479843,
+                                                                    "value": 101.78018650632114,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19494352629098374,
+                                                                    "value": 0.19320015844489288,
                                                                   }},
                                 "diag": {
                                   "def": {
@@ -53458,7 +53522,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.08687052581967503,
+                                      "lack_of_playmaking_penalty": -0.05200316889785783,
                                       "player_gravity_penalty": -0.21215,
                                     },
                                     "good": {
@@ -53470,9 +53534,9 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                   },
                                   "off_rtg": {
                                     "bad": {
-                                      "lack_of_playmaking_penalty": -0.43435262909837513,
+                                      "lack_of_playmaking_penalty": -0.26001584448928916,
                                       "ortg_sos_delta": 0.013926117544357908,
-                                      "switch_usage_ortg_average": -0.6515289436475626,
+                                      "switch_usage_ortg_average": -0.3900237667339326,
                                     },
                                     "good": {
                                       "ortg_sos_delta": 0.013926117544357908,
@@ -53481,20 +53545,20 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                                     },
                                     "ok": {
                                       "ortg_sos_delta": 0.013926117544357908,
-                                      "switch_usage_ortg_average": 1.4653686686117453,
+                                      "switch_usage_ortg_average": 1.8494374732980532,
                                       "yearly_bonus": 1.5,
                                     },
                                   },
                                   "off_usage": {
                                     "bad": {
-                                      "average_usage": 0.004343526290983751,
+                                      "average_usage": 0.0026001584448928916,
                                     },
                                     "good": {
                                       "average_usage": -0.02768667714345846,
                                       "yearly_bonus": 2,
                                     },
                                     "ok": {
-                                      "average_usage": -0.009869124457411615,
+                                      "average_usage": -0.012429583155320306,
                                       "yearly_bonus": 1,
                                     },
                                   },
@@ -53590,12 +53654,12 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
 
                                   off_rtg: {
                                                                     "old_value": undefined,
-                                                                    "value": 105.39559478615611,
+                                                                    "value": 105.77966359084242,
                                                                   }
 
                                   off_usage: {
                                                                     "old_value": undefined,
-                                                                    "value": 0.19073087554258839,
+                                                                    "value": 0.1881704168446797,
                                                                   }},
                                 "orig": {
                                   def_adj_prod: {
@@ -53677,10 +53741,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -2.0730378197277357,
                     },
                     "bad_net": {
-                      "value": 5.21191729390806,
+                      "value": 5.246784650829878,
                     },
                     "bad_off": {
-                      "value": 3.138879474180325,
+                      "value": 3.173746831102142,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -53780,7 +53844,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 112.98801131799145,
+                      "value": 111.2941453995649,
                     },
                     "pos": <span
                       style={
@@ -53823,7 +53887,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.23843068047502647,
+                      "value": 0.25198160782243884,
                     },
                   },
                   "kind": "data-row",
@@ -53843,10 +53907,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -0.10636781972773558,
                     },
                     "bad_net": {
-                      "value": 1.0186972939080605,
+                      "value": 1.0535646508298777,
                     },
                     "bad_off": {
-                      "value": 0.912329474180325,
+                      "value": 0.9471968311021421,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -53946,7 +54010,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 113.6635717423199,
+                      "value": 114.0476405470062,
                     },
                     "pos": <span
                       style={
@@ -53989,7 +54053,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.17019288126902898,
+                      "value": 0.1676324225711203,
                     },
                   },
                   "kind": "data-row",
@@ -54101,10 +54165,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -2.200589106127736,
                     },
                     "bad_net": {
-                      "value": 3.5229254043080607,
+                      "value": 3.557792761229878,
                     },
                     "bad_off": {
-                      "value": 1.3223362981803248,
+                      "value": 1.357203655102142,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -54204,7 +54268,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 117.35521719392685,
+                      "value": 117.73928599861314,
                     },
                     "pos": <span
                       style={
@@ -54247,7 +54311,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.16785089401361863,
+                      "value": 0.16529043531570994,
                     },
                   },
                   "kind": "data-row",
@@ -54267,10 +54331,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -2.2572578197277355,
                     },
                     "bad_net": {
-                      "value": 3.1015372939080605,
+                      "value": 3.1364046508298777,
                     },
                     "bad_off": {
-                      "value": 0.8442794741803249,
+                      "value": 0.8791468311021421,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -54370,7 +54434,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 105.39559478615611,
+                      "value": 105.77966359084242,
                     },
                     "pos": <span
                       style={
@@ -54413,7 +54477,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.19073087554258839,
+                      "value": 0.1881704168446797,
                     },
                   },
                   "kind": "data-row",
@@ -54433,10 +54497,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -2.3591233269277354,
                     },
                     "bad_net": {
-                      "value": 2.3885528011080606,
+                      "value": 2.4234201580298778,
                     },
                     "bad_off": {
-                      "value": 0.029429474180324974,
+                      "value": 0.06429683110214217,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -54536,7 +54600,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 121.78016177250282,
+                      "value": 122.16423057718912,
                     },
                     "pos": <span
                       style={
@@ -54579,7 +54643,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.14853087554258837,
+                      "value": 0.14597041684467968,
                     },
                   },
                   "kind": "data-row",
@@ -54691,10 +54755,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -1.7580483573277355,
                     },
                     "bad_net": {
-                      "value": 4.30064864750806,
+                      "value": 4.335516004429878,
                     },
                     "bad_off": {
-                      "value": 2.5426002901803253,
+                      "value": 2.5774676471021425,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -54794,7 +54858,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 117.50872334567258,
+                      "value": 117.82878068291116,
                     },
                     "pos": <span
                       style={
@@ -54837,7 +54901,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.2320643302129034,
+                      "value": 0.2295038715149947,
                     },
                   },
                   "kind": "data-row",
@@ -54857,10 +54921,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": 0.32000000000000006,
                     },
                     "bad_net": {
-                      "value": -0.7268705258196752,
+                      "value": -0.692003168897858,
                     },
                     "bad_off": {
-                      "value": -0.4068705258196751,
+                      "value": -0.3720031688978579,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -54998,10 +55062,10 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                       "value": -2.083597819727735,
                     },
                     "bad_net": {
-                      "value": 6.7776272939080595,
+                      "value": 6.812494650829878,
                     },
                     "bad_off": {
-                      "value": 4.694029474180325,
+                      "value": 4.728896831102142,
                     },
                     "caliber": undefined,
                     "disable": <OverlayTrigger
@@ -55101,7 +55165,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     },
                     "ortg": {
                       "old_value": undefined,
-                      "value": 120.37778119036396,
+                      "value": 120.69783852760254,
                     },
                     "pos": <span
                       style={
@@ -55144,7 +55208,7 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, misc display 
                     </span>,
                     "usage": {
                       "old_value": undefined,
-                      "value": 0.24387814269178215,
+                      "value": 0.24131768399387346,
                     },
                   },
                   "kind": "data-row",
@@ -55732,6 +55796,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -55788,6 +55857,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "All",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -60064,6 +60138,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -60120,6 +60199,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode 
               "value": "All",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -63486,6 +63570,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
             },
           ]
         }
+        styles={
+          {
+            "menu": [Function],
+          }
+        }
         value={
           {
             "label": "Men",
@@ -63542,6 +63631,11 @@ exports[`TeamEditorTable TeamEditorTable - should create snapshot, what if mode,
               "value": "All",
             },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {

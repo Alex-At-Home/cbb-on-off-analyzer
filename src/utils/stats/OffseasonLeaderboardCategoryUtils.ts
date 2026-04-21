@@ -125,6 +125,46 @@ export class OffseasonLeaderboardCategoryUtils {
       out: "Outside top 60",
     };
 
+  /** Short Else-column labels for category-path table (aligned with {@link tierLabels}). */
+  static readonly elseTierAbbreviation: Record<
+    OffseasonCategoryTierId,
+    string
+  > = {
+    ff: "FF",
+    t25: "T25",
+    one_digit: "S6-9",
+    bubble: "Bub",
+    out: ">T60",
+  };
+
+  /**
+   * Maps Else column prose (from {@link tierLabels}) to abbreviations: FF, T25, S6-9, Bub, &gt;T60.
+   */
+  static elseAbbrevFromFallbackLabel(fallbackLabel: string): string {
+    const entry = _.find(
+      _.toPairs(OffseasonLeaderboardCategoryUtils.tierLabels),
+      ([, lab]) => lab === fallbackLabel,
+    );
+    if (!entry) return fallbackLabel;
+    const tier = entry[0] as OffseasonCategoryTierId;
+    return OffseasonLeaderboardCategoryUtils.elseTierAbbreviation[tier];
+  }
+
+  /**
+   * Within one Goal section (same `goalSortKey`), cumulative % of teams with {@link OffseasonCategoryPathComputedRow.kSwings}
+   * at most this row’s value (lower need = better; integer 0–100).
+   */
+  static kNeedCumulativePercentileInGoalGroup(
+    group: OffseasonCategoryPathComputedRow[],
+    row: OffseasonCategoryPathComputedRow,
+  ): number {
+    const n = group.length;
+    if (n === 0) return 0;
+    const k = row.kSwings;
+    const le = _.sumBy(group, (r) => (r.kSwings <= k + 1e-9 ? 1 : 0));
+    return Math.round((100 * le) / n);
+  }
+
   /** Primary portal band for a D1 rank (best / smallest minRank among matches). */
   private static primaryPortalBand(rank: number): PortalTierBand | undefined {
     const matching = PortalUtils.PORTAL_TIER_BANDS.filter(
@@ -668,6 +708,25 @@ export class OffseasonLeaderboardCategoryUtils {
       return "Or eg both:";
     }
     return `Or ${quantifier} ${k} of:`;
+  }
+
+  /**
+   * Short “What’s needed” line when {@link OffseasonLeaderboardParams.summaryGoalDetails} is on
+   * (primary `k` and optional remainder `k`, e.g. `+1-2 things go well`).
+   */
+  static summaryThingsGoWellFromNeedDetail(
+    detail: CategoryPathNeedDetail,
+  ): string {
+    const ks = [detail.k];
+    if (detail.remainderOrAny) {
+      ks.push(detail.remainderOrAny.k);
+    }
+    const lo = Math.min(...ks);
+    const hi = Math.max(...ks);
+    if (lo === hi) {
+      return `+${lo} things go well`;
+    }
+    return `+${lo}-${hi} things go well`;
   }
 
   static plainTextFromNeedDetail(detail: CategoryPathNeedDetail): string {

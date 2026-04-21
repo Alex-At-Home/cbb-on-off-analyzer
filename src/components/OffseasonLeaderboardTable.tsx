@@ -13,6 +13,7 @@ import Form from "react-bootstrap/Form";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
 // Additional components:
 // @ts-ignore
@@ -69,8 +70,8 @@ import TeamFilterAutoSuggestText, {
   notFromFilterAutoSuggest,
 } from "./shared/TeamFilterAutoSuggestText";
 import ThemedSelect from "./shared/ThemedSelect";
+import ToggleButtonGroup from "./shared/ToggleButtonGroup";
 import { buildTwoDepthRows } from "../utils/tables/TeamEditorDepthChart";
-import { FeatureFlags } from "../utils/stats/FeatureFlags";
 import {
   GradeTableUtils,
   type DivisionStatsCache,
@@ -165,10 +166,12 @@ function CategoryPathWhatsNeededCell({
   analysisText,
   analysisNeedDetail,
   getPlayerCareerUrl,
+  summaryGoalDetails,
 }: {
   analysisText: string;
   analysisNeedDetail?: CategoryPathNeedDetail;
   getPlayerCareerUrl: (triple: GoodBadOkTriple) => string | undefined;
+  summaryGoalDetails: boolean;
 }) {
   if (!analysisNeedDetail) {
     return (
@@ -181,6 +184,24 @@ function CategoryPathWhatsNeededCell({
         }}
       >
         {analysisText}
+      </small>
+    );
+  }
+
+  if (summaryGoalDetails) {
+    return (
+      <small
+        style={{
+          whiteSpace: "normal",
+          maxWidth: "none",
+          fontSize: "0.82rem",
+          textAlign: "left",
+          display: "block",
+        }}
+      >
+        {OffseasonLeaderboardCategoryUtils.summaryThingsGoWellFromNeedDetail(
+          analysisNeedDetail,
+        )}
       </small>
     );
   }
@@ -363,6 +384,13 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     setShowDepthChartRows(startingState.showDepthChartRows === true);
   }, [startingState.showDepthChartRows]);
 
+  const [summaryGoalDetails, setSummaryGoalDetails] = useState(
+    startingState.summaryGoalDetails === true,
+  );
+  useEffect(() => {
+    setSummaryGoalDetails(startingState.summaryGoalDetails === true);
+  }, [startingState.summaryGoalDetails]);
+
   const [rostersPerTeam, setRostersPerTeam] = useState(
     {} as Record<string, Record<string, RosterEntry>>,
   );
@@ -461,18 +489,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   );
 
   /** When the params change */
-  const categoryOffseasonLbActive = FeatureFlags.isActiveWindow(
-    FeatureFlags.categoryOffseasonLeaderboard,
-  );
-
   useEffect(() => {
-    if (!categoryOffseasonLbActive && categoryPathMode) {
-      setCategoryPathMode(false);
-    }
-  }, [categoryOffseasonLbActive, categoryPathMode]);
-
-  useEffect(() => {
-    if (!categoryOffseasonLbActive || !categoryPathMode) {
+    if (!categoryPathMode) {
       return;
     }
     GradeTableUtils.populatePlayerDivisionStatsCache(
@@ -489,7 +507,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       },
       setTeamDivisionStatsCache,
     );
-  }, [categoryOffseasonLbActive, categoryPathMode, gender, yearWithStats]);
+  }, [categoryPathMode, gender, yearWithStats]);
 
   useEffect(() => {
     onChangeState(
@@ -500,7 +518,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           confs,
           evalMode: evalMode,
           transferInOutMode: transferInOutMode,
-          ...(categoryOffseasonLbActive ? { categoryPathMode } : {}),
+          categoryPathMode,
+          summaryGoalDetails,
           sortBy: sortBy,
           queryFilters: queryFilters,
           showAllTeams,
@@ -526,9 +545,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     evalMode,
     transferInOutMode,
     categoryPathMode,
-    categoryOffseasonLbActive,
     showAllTeams,
     showDepthChartRows,
+    summaryGoalDetails,
     sortBy,
     queryFilters,
   ]);
@@ -621,22 +640,19 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   );
 
   const table = React.useMemo(() => {
-    const categoryPathEffective = categoryOffseasonLbActive && categoryPathMode;
-
     const goalSubheaderThemeClass =
       resolvedTheme === "dark"
         ? olbStyles.goalSubheaderRowDark
         : olbStyles.goalSubheaderRowLight;
 
-    const tableDefs =
-      categoryPathEffective && categoryPathMode
-        ? OffseasonLeaderboardTableDefs.offseasonLeaderboardCategoryPathTable(
-            evalMode,
-          )
-        : OffseasonLeaderboardTableDefs.offseasonLeaderboardTable(
-            evalMode,
-            transferInOutMode,
-          );
+    const tableDefs = categoryPathMode
+      ? OffseasonLeaderboardTableDefs.offseasonLeaderboardCategoryPathTable(
+          evalMode,
+        )
+      : OffseasonLeaderboardTableDefs.offseasonLeaderboardTable(
+          evalMode,
+          transferInOutMode,
+        );
 
     const waitForRosterDiagMode =
       diagnosticCompareWithRosters && _.isEmpty(rostersPerTeam);
@@ -690,7 +706,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       avgEff,
       actualResultsAvgEff,
       (logDivisionStatsToFile && typeof window === `undefined`) ||
-        (categoryPathEffective && categoryPathMode), //(in preseason-building mode, include teams)
+        categoryPathMode, //(in preseason-building mode, include teams)
       showDepthChartRows,
     );
 
@@ -1361,12 +1377,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         | undefined;
 
       let teamsForCategoryPath: OffseasonTeamInfo[];
-      if (
-        categoryPathEffective &&
-        categoryPathMode &&
-        categoryPathNoSliceFilter &&
-        !showAllTeams
-      ) {
+      if (categoryPathMode && categoryPathNoSliceFilter && !showAllTeams) {
         teamsForCategoryPath = _.chain(teamRanks)
           .filter(confFilter)
           .orderBy([(z) => z.net], ["desc"])
@@ -1386,10 +1397,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
           inputIndex: inInput ? idx : -1,
           inputLen: teamsForCategoryPath.length,
           inputBranch:
-            categoryPathEffective &&
-            categoryPathMode &&
-            categoryPathNoSliceFilter &&
-            !showAllTeams
+            categoryPathMode && categoryPathNoSliceFilter && !showAllTeams
               ? "t120_net_filtered"
               : "maybeHandSorted_take75_or_all",
           confs,
@@ -1450,7 +1458,8 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
 
         const headerRow = GenericTableOps.buildTextRow(
           <span className="small">
-            <b>Goal: {gl0}</b> (rating threshold: {thr0.toFixed(1)})
+            <b>Goal: {gl0}</b> ([
+            <b>{group.length}</b>] teams; rating threshold: {thr0.toFixed(1)})
           </span>,
           `small text-center border-secondary border-top pt-2 pb-1 ${goalSubheaderThemeClass}`,
         );
@@ -1586,13 +1595,31 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
               conf: <small>{t.conf}</small>,
               path_goal: cr.goalLabel,
               path_else:
-                cr.goalLabel === cr.fallbackLabel ? "-" : cr.fallbackLabel,
+                cr.goalLabel === cr.fallbackLabel ? (
+                  "-"
+                ) : (
+                  <small>
+                    {OffseasonLeaderboardCategoryUtils.elseAbbrevFromFallbackLabel(
+                      cr.fallbackLabel,
+                    )}
+                  </small>
+                ),
               path_whats_needed: (
                 <CategoryPathWhatsNeededCell
                   analysisText={cr.analysisText}
                   analysisNeedDetail={cr.analysisNeedDetail}
                   getPlayerCareerUrl={getCategoryPathPlayerCareerUrl}
+                  summaryGoalDetails={summaryGoalDetails}
                 />
+              ),
+              path_pctle: (
+                <small>
+                  {OffseasonLeaderboardCategoryUtils.kNeedCumulativePercentileInGoalGroup(
+                    group,
+                    cr,
+                  )}
+                  %
+                </small>
               ),
               actual_grade: _.isNil(actualNetRankObj?.off_net)
                 ? undefined
@@ -1700,10 +1727,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       });
     })();
 
-    const tableRows =
-      categoryPathEffective && categoryPathMode
-        ? categoryTableRows
-        : standardTableRows;
+    const tableRows = categoryPathMode ? categoryTableRows : standardTableRows;
 
     const offseasonTableSortField =
       OffseasonLeaderboardTableDefs.sortByToTableField[sortBy];
@@ -1735,6 +1759,10 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             "high_grade",
             "low_grade",
             "roster",
+            "path_goal",
+            "path_else",
+            "path_whats_needed",
+            "path_pctle",
           ]),
           defaultHeaderClickMsg: "Click to sort by this field (descending)",
         }}
@@ -1754,7 +1782,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     rostersPerTeam,
     showExtraStatsInEvalMode,
     showDepthChartRows,
-    categoryOffseasonLbActive,
     categoryPathMode,
     playerDivisionStatsCache,
     teamDivisionStatsCache,
@@ -1762,6 +1789,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     getCategoryPathPlayerCareerUrl,
     showAllTeams,
     hasCustomFilter,
+    summaryGoalDetails,
   ]);
 
   // 3] View
@@ -1825,6 +1853,106 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     "value",
   ) as Record<string, { label: string; value: string }>;
 
+  const categoryPathConferenceFootnote =
+    categoryPathMode &&
+    confs.trim() !== "" &&
+    confs !== ConfSelectorConstants.queryFiltersName;
+
+  const offSeasonLbViewToggleRow = (
+    <Form.Group as={Row} className="mt-1 mb-2">
+      <Col xs={12}>
+        <ToggleButtonGroup
+          labelOverride=""
+          items={[
+            {
+              items: [
+                {
+                  label: "Goals",
+                  tooltip:
+                    "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  toggled: categoryPathMode,
+                  disabled: evalMode,
+                  onClick: () =>
+                    friendlyChange(() => {
+                      setTransferInOutMode(false);
+                      setCategoryPathMode(true);
+                    }, !categoryPathMode || transferInOutMode),
+                },
+                {
+                  label: "Classic",
+                  tooltip: "The usual predicted range of offense/defense/net",
+                  toggled: !categoryPathMode && !transferInOutMode,
+                  disabled: evalMode,
+                  onClick: () =>
+                    friendlyChange(() => {
+                      setCategoryPathMode(false);
+                      setTransferInOutMode(false);
+                      setSummaryGoalDetails(false);
+                    }, categoryPathMode || transferInOutMode),
+                },
+                {
+                  label: "Breakdown",
+                  tooltip:
+                    "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  toggled: transferInOutMode && !categoryPathMode,
+                  disabled: evalMode,
+                  onClick: () =>
+                    friendlyChange(() => {
+                      setCategoryPathMode(false);
+                      setTransferInOutMode(true);
+                      setSummaryGoalDetails(false);
+                    }, !transferInOutMode || categoryPathMode),
+                },
+              ],
+            },
+            {
+              label: "|",
+              tooltip: "",
+              toggled: true,
+              onClick: () => {},
+              isLabelOnly: true,
+            },
+            {
+              label: "2-deep",
+              tooltip:
+                "Show a two-line PG–C depth chart (by projected minutes) above the Guards / Wings / Bigs sections",
+              toggled: showDepthChartRows,
+              disabled: false,
+              onClick: () =>
+                friendlyChange(
+                  () => setShowDepthChartRows(!showDepthChartRows),
+                  true,
+                ),
+            },
+            ...(categoryPathMode
+              ? [
+                  {
+                    label: "|",
+                    tooltip: "",
+                    toggled: true,
+                    onClick: () => {},
+                    isLabelOnly: true,
+                  },
+                  {
+                    label: "Details",
+                    tooltip:
+                      "When on, shows full player-level examples of what would need to go right; when off, shows a one-line +N things go well summary instead",
+                    toggled: !summaryGoalDetails,
+                    disabled: false,
+                    onClick: () =>
+                      friendlyChange(
+                        () => setSummaryGoalDetails(!summaryGoalDetails),
+                        true,
+                      ),
+                  },
+                ]
+              : []),
+          ]}
+        />
+      </Col>
+    </Form.Group>
+  );
+
   return (
     <Container>
       <Form.Group as={Row}>
@@ -1886,49 +2014,6 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
         <Col lg={1} className="mt-1">
           <GenericTogglingMenu>
             <GenericTogglingMenuItem
-              text={"Show 2-deep under each team"}
-              truthVal={showDepthChartRows}
-              disabled={false}
-              onSelect={() =>
-                friendlyChange(
-                  () => setShowDepthChartRows(!showDepthChartRows),
-                  true,
-                )
-              }
-            />
-            <GenericTogglingMenuItem
-              text={"Show breakdown of team's offseason metrics"}
-              truthVal={transferInOutMode}
-              disabled={evalMode || categoryPathMode}
-              onSelect={() =>
-                friendlyChange(() => {
-                  setCategoryPathMode(false);
-                  setTransferInOutMode(!transferInOutMode);
-                }, !evalMode)
-              }
-            />
-            {categoryOffseasonLbActive ? (
-              <GenericTogglingMenuItem
-                text={"Tournament path (WIP)"}
-                truthVal={categoryPathMode}
-                disabled={evalMode || transferInOutMode}
-                onSelect={() =>
-                  friendlyChange(() => {
-                    setTransferInOutMode(false);
-                    setCategoryPathMode(!categoryPathMode);
-                  }, true)
-                }
-              />
-            ) : null}
-            <GenericTogglingMenuItem
-              text={"Show all teams (slow, useful for export)"}
-              truthVal={showAllTeams}
-              disabled={false}
-              onSelect={() =>
-                friendlyChange(() => setShowAllTeams(!showAllTeams), !evalMode)
-              }
-            />
-            <GenericTogglingMenuItem
               text={"Review mode"}
               truthVal={evalMode}
               disabled={transferInOutMode}
@@ -1943,6 +2028,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                     setEvalMode(false);
                   } else {
                     setCategoryPathMode(false);
+                    setSummaryGoalDetails(false);
                     //Switching on, we only support 21/22 and 22/23
                     setYearBeforeSettingEvalMode(year);
                     if (year < DateUtils.firstYearWithDecentRosterData) {
@@ -1960,9 +2046,19 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
                 }, true)
               }
             />
+            <Dropdown.Divider />
+            <GenericTogglingMenuItem
+              text={"Show all teams (slow, useful for export)"}
+              truthVal={showAllTeams}
+              disabled={false}
+              onSelect={() =>
+                friendlyChange(() => setShowAllTeams(!showAllTeams), !evalMode)
+              }
+            />
           </GenericTogglingMenu>
         </Col>
       </Form.Group>
+      {offSeasonLbViewToggleRow}
       {transferInOutMode || hasCustomFilter ? (
         <Form.Group as={Row}>
           {hasCustomFilter ? (
@@ -2021,7 +2117,15 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
             spinner
             text={"Loading Offseason Leaderboard..."}
           >
-            {table}
+            <>
+              {table}
+              {categoryPathConferenceFootnote ? (
+                <div className="small text-muted mt-2 mb-1 text-center px-2">
+                  Teams not at least in the &apos;Bubble&apos; goal grouping are
+                  not displayed, switch to Classic view above
+                </div>
+              ) : null}
+            </>
           </LoadingOverlay>
         </Col>
       </Row>

@@ -393,11 +393,15 @@ export type OffseasonLeaderboardParams = {
   confs?: string;
   evalMode?: boolean;
   transferInOutMode?: boolean;
-  /** Tournament-path column mode (feature-flagged in UI). */
+  /** Tournament-path (“Goals”) column mode for the off-season leaderboard. */
   categoryPathMode?: boolean;
   showAllTeams?: boolean;
   /** When true, each team row is followed by a 2-deep depth chart. */
   showDepthChartRows?: boolean;
+  /**
+   * Category-path only: replace player-level “What’s needed” bullets with short “+N things go well” lines.
+   */
+  summaryGoalDetails?: boolean;
   sortBy?: string; //(for transferInOutMode)
   queryFilters?: string;
 } & Record<string, string>; //(for teamOverrides)
