@@ -1929,6 +1929,26 @@ export class TeamEditorManualFixes {
           "North Carolina": {
             leftTeam: ["CaWilson::"], //(NBA)
           },
+          "St. John's (NY)": {
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                "Ellis, Quinn": {
+                  pos: "PG",
+                  pr: "5*",
+                  c: "RoRice",
+                  h: "6-4",
+                  r: 0,
+                },
+                "Jovanovic, Djordije": {
+                  pos: "WG",
+                  pr: "4*/T40ish",
+                  c: "DjJovanovic",
+                  h: "6-7",
+                  r: -20,
+                },
+              },
+            })[""],
+          },
           Tennessee: {
             leftTeam: ["NaAment::"], //(NBA)
           },
@@ -1936,9 +1956,16 @@ export class TeamEditorManualFixes {
             leftTeam: ["ChAnderson::"], //(NBA)
           },
           UConn: {
-            leftTeam: ["JaRoss::", "SoBall::"],
+            leftTeam: ["JaRoss::"],
             //(What a mess, he was JaRoss last season, need to fix the code to merge these 2)
-            //(SoBall:: has a year-ending injury :( )
+            ...TeamEditorManualFixes.buildOverrides({
+              "": {
+                // Adjustments:
+                SoBall: {
+                  m: 0, // injured for the season :(
+                },
+              },
+            })[""],
           },
           Washington: {
             leftTeam: ["HaSteinbach::"], //(NBA)
