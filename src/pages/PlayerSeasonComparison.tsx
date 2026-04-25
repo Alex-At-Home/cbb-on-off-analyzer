@@ -74,6 +74,9 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
   );
   const [currYear, setCurrYear] = useState("");
   const [currGender, setCurrGender] = useState("");
+  const [currIncLowVol, setCurrIncLowVol] = useState<boolean | undefined>(
+    undefined,
+  );
 
   // Game filter
 
@@ -164,11 +167,17 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
 
     const gender = paramObj.gender || ParamDefaults.defaultGender;
     const fullYear = paramObj.year || DateUtils.offseasonYear;
+    const incLowVol = paramObj.incLowVol ?? false;
 
-    if (fullYear != currYear || gender != currGender) {
+    if (
+      fullYear != currYear ||
+      gender != currGender ||
+      incLowVol != currIncLowVol
+    ) {
       // Only need to do this if the data source has changed
       setCurrYear(fullYear);
       setCurrGender(gender);
+      setCurrIncLowVol(incLowVol);
       const tier = "All"; //(changing tier unsupported)
 
       const yearsToDo = multiYearScenarios[fullYear] || [fullYear];
@@ -281,7 +290,7 @@ const PlayerSeasonComparison: NextPage<Props> = ({ testMode }) => {
         });
       });
     }
-  }, [playerSeasonComparisonParams]);
+  }, [playerSeasonComparisonParams, currYear, currGender, currIncLowVol]);
 
   // View
 

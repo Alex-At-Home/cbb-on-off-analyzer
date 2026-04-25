@@ -3083,9 +3083,16 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                 text={<span>Include low-volume players</span>}
                 truthVal={incLowVol}
                 onSelect={() => {
-                  friendlyChange(() => {
+                  if (!dataEvent.syntheticData) {
+                    friendlyChange(() => {
+                      setIncLowVol(!incLowVol);
+                    }, true);
+                  } else {
                     setIncLowVol(!incLowVol);
-                  }, true);
+                  }
+                  //Kindy hacky but in synthetic mode sometimes this is fixed and clicking this
+                  // will make no difference, in which case we need it not to go into friendly mode
+                  // which never returns if there's no refresh
                 }}
               />
               <AnnotationMenuItems />

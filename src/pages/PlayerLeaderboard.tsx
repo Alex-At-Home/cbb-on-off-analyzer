@@ -116,6 +116,10 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
   const [currGender, setCurrGender] = useState("");
   const [currTier, setCurrTier] = useState("");
   const [currNeedTeamStats, setCurrNeedTeamStats] = useState(false);
+  const [currIncLowVol, setCurrIncLowVol] = useState<boolean | undefined>(
+    undefined,
+  );
+  const [currTransferStr, setCurrTransferStr] = useState("");
 
   // Game filter
 
@@ -240,6 +244,8 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
     const fullYear = paramObj.year || ParamDefaults.defaultLeaderboardYear;
     const year = fullYear.substring(0, 4);
     const tier = paramObj.tier || ParamDefaults.defaultTier;
+    const incLowVol = paramObj.incLowVol ?? false;
+    const transferStr = paramObj.transferMode?.toString() || "";
 
     const nextYear = DateUtils.getNextYear(fullYear);
     const transferMode =
@@ -250,6 +256,7 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       playerLeaderboardParams.advancedFilter || ""
     ).includes("team_stats.");
 
+    //TODO: need to incorporate this into the fetch
     const needExtraPlayerStats =
       FeatureFlags.isActiveWindow(FeatureFlags.netPointsOngoingWork) &&
       IndivTableDefs.isNetPtsImpactTableSelected(
@@ -258,21 +265,24 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
       );
 
     if (
-      year.startsWith(DateUtils.MultiYearPrefix) ||
-      year == DateUtils.AllYears ||
-      tier == "All" ||
-      transferModeUrlParam
+      currYear != fullYear ||
+      currGender != gender ||
+      currTier != tier ||
+      currIncLowVol != incLowVol ||
+      (!currNeedTeamStats && needsTeamStats) || //(currNeedTeamStats is a latch)
+      transferStr != currTransferStr
     ) {
-      //TODO: why aren't I checking before re-fetching all the info here?
-      //TODO: oh I think it's because I wanted to avoid caching all years for the sub-key - see LineupLeaderboard for how I fixed that
-      //(note the transferModeUrlParam means we use this slightly less efficient construct with single tier transfers)
-
       //TODO: tidy this up
       setDataEvent(dataEventInit); //(clear saved sub-events)
 
-      const transferYearStrSplit = (
-        paramObj.transferMode?.toString() || ""
-      ).split(":");
+      setCurrYear(fullYear);
+      setCurrGender(gender);
+      setCurrTier(tier);
+      setCurrTransferStr(transferStr);
+      setCurrIncLowVol(incLowVol);
+      setCurrNeedTeamStats(needsTeamStats);
+
+      const transferYearStrSplit = transferStr.split(":");
       const transferYearStr =
         transferYearStrSplit[0] == "true"
           ? (
@@ -364,61 +374,16 @@ const PlayLeaderboardPage: NextPage<Props> = ({ testMode }) => {
           });
         },
       );
-    } else {
-      if (
-        !dataEvent[dataSubEventKey]?.players?.length ||
-        currYear != fullYear ||
-        currGender != gender ||
-        currTier != tier ||
-        (!currNeedTeamStats && needsTeamStats) //(currNeedTeamStats is a latch)
-      ) {
-        const oldCurrYear = currYear;
-        setCurrYear(fullYear);
-        setCurrGender(gender);
-        setCurrTier(tier);
-        setCurrNeedTeamStats(needsTeamStats);
-        setDataSubEvent({ players: [], confs: [] }); //(set the spinner off)
-
-        const playerLboardPromise = LeaderboardUtils.getSingleYearPlayerLboards(
-          dataSubEventKey,
-          gender,
-          fullYear,
-          tier,
-        );
-        const teamStatsPromise = needsTeamStats
-          ? LeaderboardUtils.getMultiYearTeamDetails(
-              "all", //(too restrictive to force team queries to be the same as player filter)
-              gender,
-              fullYear,
-              tier,
-              [], //TODO: support "All"
-            )
-          : Promise.resolve([]);
-
-        Promise.all([playerLboardPromise, teamStatsPromise]).then(
-          (playerAndTeamJsons) => {
-            const [playerJson, teamsJson] = playerAndTeamJsons;
-            if (needsTeamStats) {
-              playerJson.teams = _.chain(teamsJson)
-                .flatMap((d) => d.teams || [])
-                .flatten()
-                .map((t) => [`${t.team_name}_${t.year}`, t])
-                .fromPairs()
-                .value();
-            }
-            //(if year has changed then clear saved data events)
-            setDataEvent({
-              ...(oldCurrYear != year ? dataEventInit : dataEvent),
-              [dataSubEventKey]: playerJson,
-            });
-            setDataSubEvent(playerJson);
-          },
-        );
-      } else if (dataSubEvent != dataEvent[dataSubEventKey]) {
-        setDataSubEvent(dataEvent[dataSubEventKey]);
-      }
     }
-  }, [playerLeaderboardParams]);
+  }, [
+    playerLeaderboardParams,
+    currYear,
+    currGender,
+    currTier,
+    currIncLowVol,
+    currNeedTeamStats,
+    currTransferStr,
+  ]);
 
   // View
 

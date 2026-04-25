@@ -3303,6 +3303,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       <PlayerLeaderboardTable
         startingState={{
           ...startingState,
+          incLowVol: true,
           transferMode,
           //(for the current off-season, only show available transfers; for historical seasons, show all transfers)
           year: onlyThisYear ? yearWithStats : "All",
@@ -3381,6 +3382,7 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
             setLboardAltDataSource(undefined); //(use default)
           }
           newParams.transferMode = transferMode; //(this is handled separately for synthetic data)
+          newParams.incLowVol = true;
           setLboardParams(newParams);
         }}
         teamEditorMode={(p: IndivStatSet) => {

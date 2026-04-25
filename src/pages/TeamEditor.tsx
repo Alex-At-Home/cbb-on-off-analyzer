@@ -157,6 +157,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
           : [],
 
         // "Add players from leaderboard" params
+        !!rawParams.incLowVol ? ["rawParams.incLowVol"] : [],
 
         rawParams.tier == "All" ? ["tier"] : [],
         !rawParams.filter ? ["filter"] : [],
@@ -302,7 +303,7 @@ const TeamEditorPage: NextPage<Props> = ({ testMode }) => {
         });
       });
     }
-  }, [teamEditorParams]);
+  }, [teamEditorParams, currYear, currGender, currEvalMode, currOffSeasonMode]);
 
   // View
 
