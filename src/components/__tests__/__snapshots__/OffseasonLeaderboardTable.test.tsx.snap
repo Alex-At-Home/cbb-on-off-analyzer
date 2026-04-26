@@ -35,7 +35,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
               "label": "Men",
               "value": "Men",
             },
+            {
+              "label": "Women",
+              "value": "Women",
+            },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -255,25 +264,25 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
             {
               "items": [
                 {
-                  "disabled": true,
+                  "disabled": false,
                   "label": "Goals",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  "tooltip": "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                 },
                 {
                   "disabled": false,
                   "label": "Classic",
                   "onClick": [Function],
                   "toggled": true,
-                  "tooltip": "The usual predicted range of offense/defense/net",
+                  "tooltip": "Classic: The usual predicted range of offense/defense/net",
                 },
                 {
                   "disabled": false,
                   "label": "Breakdown",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  "tooltip": "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                 },
               ],
             },
@@ -474,6 +483,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - queryFilters + ov
                 "high_grade",
                 "low_grade",
                 "roster",
+                "path_goal",
+                "path_else",
+                "path_whats_needed",
+                "path_pctle",
               },
             }
           }
@@ -1091,7 +1104,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "Men",
               "value": "Men",
             },
+            {
+              "label": "Women",
+              "value": "Women",
+            },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -1311,25 +1333,25 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             {
               "items": [
                 {
-                  "disabled": true,
+                  "disabled": false,
                   "label": "Goals",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  "tooltip": "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                 },
                 {
                   "disabled": false,
                   "label": "Classic",
                   "onClick": [Function],
                   "toggled": true,
-                  "tooltip": "The usual predicted range of offense/defense/net",
+                  "tooltip": "Classic: The usual predicted range of offense/defense/net",
                 },
                 {
                   "disabled": false,
                   "label": "Breakdown",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  "tooltip": "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                 },
               ],
             },
@@ -1376,6 +1398,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "high_grade",
                 "low_grade",
                 "roster",
+                "path_goal",
+                "path_else",
+                "path_whats_needed",
+                "path_pctle",
               },
             }
           }
@@ -4042,7 +4068,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "Men",
               "value": "Men",
             },
+            {
+              "label": "Women",
+              "value": "Women",
+            },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -4262,21 +4297,21 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                   "label": "Goals",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  "tooltip": "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                 },
                 {
                   "disabled": true,
                   "label": "Classic",
                   "onClick": [Function],
                   "toggled": true,
-                  "tooltip": "The usual predicted range of offense/defense/net",
+                  "tooltip": "Classic: The usual predicted range of offense/defense/net",
                 },
                 {
                   "disabled": true,
                   "label": "Breakdown",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  "tooltip": "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                 },
               ],
             },
@@ -4323,6 +4358,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "high_grade",
                 "low_grade",
                 "roster",
+                "path_goal",
+                "path_else",
+                "path_whats_needed",
+                "path_pctle",
               },
             }
           }
@@ -17984,7 +18023,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "Men",
               "value": "Men",
             },
+            {
+              "label": "Women",
+              "value": "Women",
+            },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -18204,25 +18252,25 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             {
               "items": [
                 {
-                  "disabled": true,
+                  "disabled": false,
                   "label": "Goals",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  "tooltip": "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                 },
                 {
                   "disabled": false,
                   "label": "Classic",
                   "onClick": [Function],
                   "toggled": true,
-                  "tooltip": "The usual predicted range of offense/defense/net",
+                  "tooltip": "Classic: The usual predicted range of offense/defense/net",
                 },
                 {
                   "disabled": false,
                   "label": "Breakdown",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  "tooltip": "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                 },
               ],
             },
@@ -18269,6 +18317,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "high_grade",
                 "low_grade",
                 "roster",
+                "path_goal",
+                "path_else",
+                "path_whats_needed",
+                "path_pctle",
               },
             }
           }
@@ -32843,7 +32895,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
               "label": "Men",
               "value": "Men",
             },
+            {
+              "label": "Women",
+              "value": "Women",
+            },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -33063,25 +33124,25 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
             {
               "items": [
                 {
-                  "disabled": true,
+                  "disabled": false,
                   "label": "Goals",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  "tooltip": "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                 },
                 {
                   "disabled": false,
                   "label": "Classic",
                   "onClick": [Function],
                   "toggled": true,
-                  "tooltip": "The usual predicted range of offense/defense/net",
+                  "tooltip": "Classic: The usual predicted range of offense/defense/net",
                 },
                 {
                   "disabled": false,
                   "label": "Breakdown",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  "tooltip": "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                 },
               ],
             },
@@ -33128,6 +33189,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - should create sna
                 "high_grade",
                 "low_grade",
                 "roster",
+                "path_goal",
+                "path_else",
+                "path_whats_needed",
+                "path_pctle",
               },
             }
           }
@@ -45838,7 +45903,16 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
               "label": "Men",
               "value": "Men",
             },
+            {
+              "label": "Women",
+              "value": "Women",
+            },
           ]
+        }
+        styles={
+          {
+            "menu": [Function],
+          }
         }
         value={
           {
@@ -46058,25 +46132,25 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
             {
               "items": [
                 {
-                  "disabled": true,
+                  "disabled": false,
                   "label": "Goals",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
+                  "tooltip": "Goals: A new way of ranking teams based on a realistic goal and what would need to go right to get them there",
                 },
                 {
                   "disabled": false,
                   "label": "Classic",
                   "onClick": [Function],
                   "toggled": false,
-                  "tooltip": "The usual predicted range of offense/defense/net",
+                  "tooltip": "Classic: The usual predicted range of offense/defense/net",
                 },
                 {
                   "disabled": false,
                   "label": "Breakdown",
                   "onClick": [Function],
                   "toggled": true,
-                  "tooltip": "A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
+                  "tooltip": "Breakdown: A view of the different components (transfers in/out, freshmen in, seniors out, etc.) of each team's off-season",
                 },
               ],
             },
@@ -46349,6 +46423,10 @@ exports[`OffseasonLeaderboardTable OffseasonLeaderboardTable - transfer in+out +
                 "high_grade",
                 "low_grade",
                 "roster",
+                "path_goal",
+                "path_else",
+                "path_whats_needed",
+                "path_pctle",
               },
             }
           }

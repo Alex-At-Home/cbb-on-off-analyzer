@@ -125,6 +125,7 @@ export class TeamEditorManualFixes {
                     const baseForThisRank =
                       TeamEditorUtils.getBenchLevelScoringByProfile(
                         over.pr as Profiles,
+                        genderYear.startsWith("Women") ? "Women" : "Men",
                       );
                     const initialPredRapm =
                       baseForThisRank +

@@ -1070,6 +1070,7 @@ const PlayerLeaderboardTable: React.FunctionComponent<Props> = ({
                   player,
                   player.transfer_dest,
                   player.year,
+                  gender as "Men" | "Women",
                   avgEfficiency,
                 );
                 player.off_adj_rapm_pred = prediction.off_adj_rapm;

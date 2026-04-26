@@ -1903,6 +1903,7 @@ const PlayerCareerTable: React.FunctionComponent<Props> = ({
                 playerCareerInfo.season,
                 undefined,
                 year,
+                genderForPortal as "Men" | "Women",
                 avgEffForPortal,
               );
               const playerForPortalEval = {

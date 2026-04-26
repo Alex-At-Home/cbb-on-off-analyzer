@@ -528,7 +528,11 @@ export class OffseasonLeaderboardUtils {
         const finalActualEffAdj = totalActualMins
           ? 5.0 *
             Math.max(0, 1.0 - totalActualMins) *
-            TeamEditorUtils.getBenchLevelScoring(t, year)
+            TeamEditorUtils.getBenchLevelScoring(
+              t,
+              year,
+              gender as "Men" | "Women",
+            )
           : 0;
 
         const actualTotalsFromTeam = evalMode

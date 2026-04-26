@@ -2190,7 +2190,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       const finalActualEffAdj = totalActualMins
         ? 5.0 *
           Math.max(0, 1.0 - totalActualMins) *
-          TeamEditorUtils.getBenchLevelScoring(team, yearWithStats)
+          TeamEditorUtils.getBenchLevelScoring(
+            team,
+            yearWithStats,
+            gender as "Men" | "Women",
+          )
         : 0;
 
       //Depth diag:
@@ -2228,7 +2232,11 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
         : 5.0;
       const getRawBenchLevel =
         Math.max(0, 5.0 - rawTotalMins) *
-        TeamEditorUtils.getBenchLevelScoring(team, yearWithStats);
+        TeamEditorUtils.getBenchLevelScoring(
+          team,
+          yearWithStats,
+          gender as "Men" | "Women",
+        );
       const rawNetSum = inSeasonPlayerResultsList
         ? _.sumBy(
             inSeasonPlayerResultsList,

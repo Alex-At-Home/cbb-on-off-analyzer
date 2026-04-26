@@ -400,9 +400,6 @@ export class TeamEditorUtils {
       ? TeamEditorManualFixes.fixes(genderYearLookup)[team] || {}
       : {};
 
-    /**/
-    console.log(`?? [${genderYearLookup}][${team}]`, teamOverrides);
-
     // Special case: if a player from the previous year went a code switch because of sibling shenanigans
     // then mutate player list to fix it so transfer lists are correctly applied in getBasePlayers
     const prevYear = DateUtils.getPrevYear(year);
@@ -632,6 +629,7 @@ export class TeamEditorUtils {
             const o = keyVal[1];
             const netScoring = TeamEditorUtils.getBenchLevelScoringByProfile(
               o.profile,
+              gender as "Men" | "Women",
             );
             const offAdj = o.global_off_adj || 0;
             const defAdj = o.global_def_adj || 0;
@@ -704,6 +702,7 @@ export class TeamEditorUtils {
       return TeamEditorUtils.buildBenchEfficiency(
         team,
         year,
+        gender as "Men" | "Women",
         key,
         "N/A",
         "N/A",
@@ -734,6 +733,7 @@ export class TeamEditorUtils {
       basePlayersPlusHypos,
       team,
       year,
+      gender as "Men" | "Women",
       teamSosOff,
       teamSosDef,
       avgEff,
@@ -747,6 +747,7 @@ export class TeamEditorUtils {
       basePlayersPlusHypos,
       team,
       year,
+      gender as "Men" | "Women",
       disabledPlayersIn,
       unpausedOverrides,
       hasDeletedPlayersOrTransfersIn,
@@ -894,6 +895,7 @@ export class TeamEditorUtils {
       : TeamEditorUtils.getBenchMinutes(
           team,
           year,
+          gender as "Men" | "Women",
           rosterGuardMinsPreBench,
           rosterWingMinsPreBench,
           rosterBigMinsPreBench,
@@ -1451,6 +1453,7 @@ export class TeamEditorUtils {
     player: IndivStatSet,
     destTeam: string | undefined,
     year: string,
+    gender: "Men" | "Women",
     avgEff: number,
   ): PureStatSet {
     const settings = TeamEditorUtils.getSettingsToUse(year);
@@ -1476,6 +1479,7 @@ export class TeamEditorUtils {
       return TeamEditorUtils.buildBenchEfficiency(
         destTeam || fallbackTeam,
         year,
+        gender,
         key,
         "N/A",
         "N/A",
@@ -1489,6 +1493,7 @@ export class TeamEditorUtils {
       rosterOfOne,
       destTeam || fallbackTeam,
       year,
+      gender,
       avgEff + 7.5, //(for off/def SoS, just assume a balanced +15 net)
       avgEff - 7.5,
       avgEff, //(inject typical HM SoS)
@@ -1512,6 +1517,7 @@ export class TeamEditorUtils {
     roster: GoodBadOkTriple[],
     team: string,
     year: string,
+    gender: "Men" | "Women",
     teamSosOff: number,
     teamSosDef: number,
     avgEff: number,
@@ -1531,7 +1537,7 @@ export class TeamEditorUtils {
     };
 
     const baseBenchDefense =
-      -0.5 * TeamEditorUtils.getBenchLevelScoring(team, year);
+      -0.5 * TeamEditorUtils.getBenchLevelScoring(team, year, gender);
     const benchDefence = _.chain(benchEstimates)
       .map((b) => {
         const def: Statistic = b.def_adj_rapm || {};
@@ -1842,6 +1848,7 @@ export class TeamEditorUtils {
       const defaultBenchLevelScoring = TeamEditorUtils.getBenchLevelScoring(
         team,
         year,
+        gender,
       );
       // If we know this player's rank then we regress to their expectation
       const [offMaybeFrRegressTo, defMaybeFrRegressTo] =
@@ -2470,6 +2477,7 @@ export class TeamEditorUtils {
     roster: GoodBadOkTriple[],
     team: string,
     year: string,
+    gender: "Men" | "Women",
     disabledPlayers: Record<string, boolean>,
     overrides: Record<string, PlayerEditModel>,
     hasDeletedPlayersOrTransfersIn: boolean,
@@ -2490,7 +2498,11 @@ export class TeamEditorUtils {
     const filteredRoster = roster.filter((p) => !disabledPlayers[p.key]);
 
     const benchProfileLevel = TeamEditorUtils.teamToProfileLevel(team, year);
-    const benchLevelScoring = TeamEditorUtils.getBenchLevelScoring(team, year);
+    const benchLevelScoring = TeamEditorUtils.getBenchLevelScoring(
+      team,
+      year,
+      gender,
+    );
     const benchScoringEstimates = _.range(0, 3).map((keyIndex) => {
       return _.isNil(benchEstimates?.[keyIndex])
         ? benchLevelScoring
@@ -2809,6 +2821,7 @@ export class TeamEditorUtils {
   static buildBenchEfficiency = (
     team: string,
     year: string,
+    gender: "Men" | "Women",
     key: string,
     name: string,
     posClass: string,
@@ -2816,7 +2829,11 @@ export class TeamEditorUtils {
     lastYearBenchStats: IndivStatSet | undefined,
     overrides: Record<string, PlayerEditModel>,
   ) => {
-    const defaultBenchLevel = TeamEditorUtils.getBenchLevelScoring(team, year);
+    const defaultBenchLevel = TeamEditorUtils.getBenchLevelScoring(
+      team,
+      year,
+      gender,
+    );
 
     const regressedBenchFactorOff = lastYearBenchStats //0.5 if played 20mpg
       ? Math.min(3 * (lastYearBenchStats.off_team_poss_pct?.value || 0), 0.5)
@@ -2931,6 +2948,7 @@ export class TeamEditorUtils {
   static getBenchMinutes(
     team: string,
     year: string,
+    gender: "Men" | "Women",
     guardPctIn: number,
     wingPctIn: number,
     bigPctIn: number,
@@ -2997,6 +3015,7 @@ export class TeamEditorUtils {
         return TeamEditorUtils.buildBenchEfficiency(
           team,
           year,
+          gender,
           key,
           name,
           posClass,
@@ -3346,7 +3365,11 @@ export class TeamEditorUtils {
   /** Gets the bench level scoring depending on the quality of the team
    * note this is (off-def) margin, use 0.5* to get off and def components
    */
-  static getBenchLevelScoring(team: string, year: string) {
+  static getBenchLevelScoring(
+    team: string,
+    year: string,
+    gender: "Men" | "Women",
+  ) {
     const level = _.find(
       AvailableTeams.byName[team] || [],
       (teamInfo) => teamInfo.year == year,
@@ -3356,20 +3379,26 @@ export class TeamEditorUtils {
     const getBenchLevel = () => {
       if (team == "Gonzaga") {
         // Treat as high major
-        return TeamEditorUtils.getBenchLevelScoringByProfile("3.5*/T150ish");
+        return TeamEditorUtils.getBenchLevelScoringByProfile(
+          "3.5*/T150ish",
+          gender,
+        );
       } else if (level.category == "high") {
-        return TeamEditorUtils.getBenchLevelScoringByProfile("3.5*/T150ish");
+        return TeamEditorUtils.getBenchLevelScoringByProfile(
+          "3.5*/T150ish",
+          gender,
+        );
       } else if (level.category == "midhigh") {
-        return TeamEditorUtils.getBenchLevelScoringByProfile("3*");
+        return TeamEditorUtils.getBenchLevelScoringByProfile("3*", gender);
       } else if (level.category == "mid") {
-        return TeamEditorUtils.getBenchLevelScoringByProfile("3+2*s");
+        return TeamEditorUtils.getBenchLevelScoringByProfile("3+2*s", gender);
       } else if (level.category == "midlow") {
-        return TeamEditorUtils.getBenchLevelScoringByProfile("2*");
+        return TeamEditorUtils.getBenchLevelScoringByProfile("2*", gender);
       } else if (level.category == "low") {
-        return TeamEditorUtils.getBenchLevelScoringByProfile("UR");
+        return TeamEditorUtils.getBenchLevelScoringByProfile("UR", gender);
       } else {
         //unknown
-        return TeamEditorUtils.getBenchLevelScoringByProfile(undefined);
+        return TeamEditorUtils.getBenchLevelScoringByProfile(undefined, gender);
       }
     };
     return getBenchLevel();
@@ -3468,14 +3497,31 @@ export class TeamEditorUtils {
   /** Provides an offense/defense based on "HS recruitment level, see TeamRosterEditor"
    * note this is (off-def) margin, use 0.5* to get off and def components
    */
-  static getBenchLevelScoringByProfile(profile: Profiles | undefined): number {
+  static getBenchLevelScoringByProfile(
+    profile: Profiles | undefined,
+    gender?: "Men" | "Women",
+  ): number {
+    const womenBonus = _.thru(gender, (mg) => {
+      // Women T100 values are larger due to disparity
+      if (mg == "Women") {
+        if (profile == "5*/Lotto" || profile == "5*") {
+          return 2.0;
+        } else if (profile == "4*/T40ish" || profile == "4*") {
+          return 1.0;
+        } else {
+          return 0;
+        }
+      } else {
+        return 0;
+      }
+    });
     //(these numbers derived from looking at the T200 Fr for the last 4 years - the lower ranges are purely guesswork)
-    const lotto = 6.5; //6.5 to 5.5, depending on penalty
-    const fiveStar = 5.2; // 5.2 to 4.2 depending on penalty
-    const borderline5Star = 4.6;
-    const top40 = 3.5; //3 to 4 depending on bonus
+    const lotto = womenBonus + 6.5; //6.5 to 5.5, depending on penalty
+    const fiveStar = womenBonus + 5.2; // 5.2 to 4.2 depending on penalty
+    const borderline5Star = womenBonus + 4.6;
+    const top40 = womenBonus + 3.5; //3 to 4 depending on bonus
     //(discontinuity here, slightly arbitrary but blue chip Fr do seem to have a jump)
-    const fourStar = 1.5; // 1 to 2 depending on bonus
+    const fourStar = womenBonus + 1.5; // 1 to 2 depending on bonus
     if (profile == "5*/Lotto") {
       // blend the various RAPM range because a lotto pick sometimes just ... isn't...
       return 0.7 * lotto + 0.2 * fiveStar + 0.1 * top40;
