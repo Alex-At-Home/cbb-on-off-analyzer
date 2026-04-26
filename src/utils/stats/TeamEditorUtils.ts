@@ -400,6 +400,9 @@ export class TeamEditorUtils {
       ? TeamEditorManualFixes.fixes(genderYearLookup)[team] || {}
       : {};
 
+    /**/
+    console.log(`?? [${genderYearLookup}][${team}]`, teamOverrides);
+
     // Special case: if a player from the previous year went a code switch because of sibling shenanigans
     // then mutate player list to fix it so transfer lists are correctly applied in getBasePlayers
     const prevYear = DateUtils.getPrevYear(year);

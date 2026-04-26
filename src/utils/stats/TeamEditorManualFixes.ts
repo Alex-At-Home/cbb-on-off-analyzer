@@ -8,6 +8,7 @@ import { freshmenMen2023_24 } from "../public-data/freshmenMen2023_24";
 import { freshmenMen2024_25 } from "../public-data/freshmenMen2024_25";
 import { freshmenMen2025_26 } from "../public-data/freshmenMen2025_26";
 import { freshmenMen2026_27 } from "../public-data/freshmenMen2026_27";
+import { freshmenWomen2026_27 } from "../public-data/freshmenWomen2026_27";
 import { superSeniors2021_22 } from "../public-data/superSeniors2021_22";
 import { leftTeam2021_22 } from "../public-data/leftTeam2021_22";
 import { superSeniors2022_23 } from "../public-data/superSeniors2022_23";
@@ -63,6 +64,11 @@ export class TeamEditorManualFixes {
       return TeamEditorManualFixes.buildOverrides(
         freshmenMen2026_27,
         "Men_2026/27",
+      );
+    } else if (genderYear == "Women_2025/26") {
+      return TeamEditorManualFixes.buildOverrides(
+        freshmenWomen2026_27,
+        "Women_2026/27",
       );
     } else {
       return {};
@@ -1978,6 +1984,19 @@ export class TeamEditorManualFixes {
           {},
           {}, //(use prev season until have calculated this season's)
         );
+        return combinedOverrides;
+      } else if (genderYear == "Women_2025/26") {
+        const manualOverrides_Women_2026_27: Record<
+          string,
+          TeamEditorManualFixModel
+        > = {};
+        const combinedOverrides = TeamEditorManualFixes.combineOverrides(
+          mutableToRet,
+          manualOverrides_Women_2026_27,
+          {},
+          {}, //(use prev season until have calculated this season's)
+        );
+
         return combinedOverrides;
       } else {
         // Note when calling combineOverrides, need to use leftTeam${prevYear} to handle players who left a season ago

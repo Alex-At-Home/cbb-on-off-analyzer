@@ -41,6 +41,7 @@ import Statistics from "statistics.js";
 import {
   TeamEditorParams,
   OffseasonLeaderboardParams,
+  ParamDefaults,
 } from "../utils/FilterModels";
 
 import { Statistic, RosterEntry, PlayerCode } from "../utils/StatModels";
@@ -355,7 +356,9 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
   const [yearBeforeSettingEvalMode, setYearBeforeSettingEvalMode] =
     useState("");
 
-  const [gender, setGender] = useState("Men"); // TODO ignore input just take Men
+  const [gender, setGender] = useState(
+    startingState.gender || ParamDefaults.defaultGender,
+  );
   const [teamView, setTeamView] = useState(startingState.teamView || "");
 
   const [showAllTeams, setShowAllTeams] = useState(
@@ -514,6 +517,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       _.merge(
         {
           year: year,
+          gender,
           teamView: teamView,
           confs,
           evalMode: evalMode,
@@ -542,6 +546,7 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
     confs,
     teamOverrides,
     year,
+    gender,
     evalMode,
     transferInOutMode,
     categoryPathMode,
@@ -1960,12 +1965,14 @@ const OffSeasonLeaderboardTable: React.FunctionComponent<Props> = ({
       <Form.Group as={Row}>
         <Col xs={6} sm={6} md={3} lg={2} style={{ zIndex: 12 }}>
           <ThemedSelect
-            value={stringToOption("Men")}
-            options={["Men"].map((gender) => stringToOption(gender))}
+            styles={{ menu: (base: any) => ({ ...base, zIndex: 1000 }) }}
+            value={stringToOption(gender)}
+            options={["Men", "Women"].map((gender) => stringToOption(gender))}
             isSearchable={false}
             onChange={(option: any) => {
               if ((option as any)?.value) {
-                /* currently only support Men */
+                const newGender = (option as any).value;
+                setGender(newGender);
               }
             }}
           />

@@ -344,7 +344,9 @@ const TeamEditorTable: React.FunctionComponent<Props> = ({
       : startingState.showOnlyCurrentYear,
   );
   const [reloadData, setReloadData] = useState(false);
-  const hasTransfers = gender == "Men" && yearWithStats >= "2019";
+  const hasTransfers =
+    (gender == "Men" && yearWithStats >= "2019") ||
+    (gender == "Women" && yearWithStats >= "2025");
 
   // Core team editor state
 
