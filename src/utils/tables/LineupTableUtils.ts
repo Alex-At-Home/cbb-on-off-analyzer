@@ -548,49 +548,46 @@ export class LineupTableUtils {
     const filterOnPosition = _.some(orFragments, (orFrag) => orFrag[2]);
 
     const minPossInt = parseInt(minPoss);
-    const passLineup = (lineup: LineupStatSet) => {
+    const passLineupPhase1 = (lineup: LineupStatSet) => {
       const offPos = lineup.off_poss?.value || 0;
       const defPos = lineup.def_poss?.value || 0;
       const phase1Pass = offPos >= minPossInt || defPos >= minPossInt;
+      return phase1Pass;
+    };
+    const passLineupPhase2 = (lineup: LineupStatSet) => {
+      const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
 
-      if (phase1Pass) {
-        const codesAndIds = LineupTableUtils.buildCodesAndIds(lineup);
+      const lineupPosFromPlayerKey =
+        positionFromPlayerKey || lineup.player_info || {}; //(leaderboard version, calc from lineup)
+      const lineupTeamSeason =
+        teamSeasonLookup || `${lineup.gender}_${lineup.team}_${lineup.year}`; //(leaderboard version, calc from lineup)
 
-        const lineupPosFromPlayerKey =
-          positionFromPlayerKey || lineup.player_info || {}; //(leaderboard version, calc from lineup)
-        const lineupTeamSeason =
-          teamSeasonLookup || `${lineup.gender}_${lineup.team}_${lineup.year}`; //(leaderboard version, calc from lineup)
+      const namesToTest = filterOnPosition
+        ? PositionUtils.orderLineup(
+            codesAndIds,
+            lineupPosFromPlayerKey,
+            lineupTeamSeason,
+          )
+        : codesAndIds;
+      const teamFilter = lineup.team
+        ? [{ id: `${lineup.team}_${lineup.year}`, code: lineup.team }]
+        : []; //(leaderboard version)
 
-        const namesToTest = filterOnPosition
-          ? PositionUtils.orderLineup(
-              codesAndIds,
-              lineupPosFromPlayerKey,
-              lineupTeamSeason,
-            )
-          : codesAndIds;
-        const teamFilter = lineup.team
-          ? [{ id: `${lineup.team}_${lineup.year}`, code: lineup.team }]
-          : []; //(leaderboard version)
+      const namesAndTeams = namesToTest.concat(teamFilter);
 
-        const namesAndTeams = namesToTest.concat(teamFilter);
+      const playerFilter: Boolean = _.chain(orFragments)
+        .map((orFrag) => {
+          const [filterFragmentsPve, filterFragmentsNve, filterOnPos] = orFrag;
+          return PositionUtils.testPositionalAwareFilter(
+            namesAndTeams,
+            filterFragmentsPve,
+            filterFragmentsNve,
+          );
+        })
+        .some()
+        .value();
 
-        const playerFilter: Boolean = _.chain(orFragments)
-          .map((orFrag) => {
-            const [filterFragmentsPve, filterFragmentsNve, filterOnPos] =
-              orFrag;
-            return PositionUtils.testPositionalAwareFilter(
-              namesAndTeams,
-              filterFragmentsPve,
-              filterFragmentsNve,
-            );
-          })
-          .some()
-          .value();
-
-        return playerFilter && lineup.key != ""; // (workaround for #53 pending fix)
-      } else {
-        return false;
-      }
+      return playerFilter && lineup.key != ""; // (workaround for #53 pending fix)
     };
 
     const sortAndTruncLineups = (
@@ -605,13 +602,18 @@ export class LineupTableUtils {
 
     if (alsoReturnDroppedLineups) {
       const [filteredLineups, droppedLineups] = _.chain(lineups)
-        .partition(passLineup)
+        .filter(passLineupPhase1)
+        .partition(passLineupPhase2)
         .value();
       return [sortAndTruncLineups(_.chain(filteredLineups)), droppedLineups];
     } else {
       // more efficient if we don't need dropped lineups
       return [
-        sortAndTruncLineups(_.chain(lineups).filter(passLineup)),
+        sortAndTruncLineups(
+          _.chain(lineups).filter(
+            (l) => passLineupPhase1(l) && passLineupPhase2(l),
+          ),
+        ),
         undefined,
       ];
     }
