@@ -767,6 +767,7 @@ const TeamStatsExplorerTable: React.FunctionComponent<Props> = ({
     });
 
     const [header, dataRows] = AdvancedFilterUtils.generateTeamExplorerCsv(
+      advancedFilterStr,
       finalData,
       showGrades
         ? (year: string) =>

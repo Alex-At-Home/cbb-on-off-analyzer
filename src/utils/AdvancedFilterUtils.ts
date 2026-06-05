@@ -753,6 +753,11 @@ export class AdvancedFilterUtils {
     "off_style_offball_pct",
     "off_style_offball_usg",
     "off_style_offball_ppp",
+    // (team only)
+    "off_style_frontcourt_pct",
+    "off_style_frontcourt_ppp",
+    "off_style_backcourt_pct",
+    "off_style_backcourt_ppp",
   ];
 
   /** "Clever" replacements that happen after singleYearfixObjectFormat */
@@ -762,6 +767,57 @@ export class AdvancedFilterUtils {
       "($.p.def_adj_rtg?.value - ($.p.def_adj_rtg?.old_value ?? $.p.def_adj_rtg?.value))",
     );
   }
+
+  /** "Clever" replacements that happen for team stats (before teamFixObjectFormat) */
+  static advancedTeamPreFieldReplacements(s: string) {
+    // For now this is just a straight port of TeamStatsExplorerChart.axisPresets, need to merge all this
+
+    return (
+      s
+        .replace(
+          /off_style_halfcourt_pct/g,
+          "(1 - off_style_transition_pct - off_style_reb_scramble_pct)",
+        )
+        .replace(
+          /off_style_halfcourt_ppp/g,
+          "(off_style_onball_pct*off_style_onball_ppp + off_style_offball_pct*off_style_offball_ppp)/(off_style_onball_pct + off_style_offball_pct)",
+        )
+        // Thses are just axisPresets
+        .replace(
+          /off_style_onball_pct/g,
+          "(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+        )
+        .replace(
+          /off_style_onball_ppp/g,
+          "(off_style_rim_attack_pct*off_style_rim_attack_ppp + off_style_dribble_jumper_pct*off_style_dribble_jumper_ppp + off_style_mid_range_pct*off_style_mid_range_ppp + off_style_post_up_pct*off_style_post_up_ppp)/(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct)",
+        )
+        .replace(
+          /off_style_offball_pct/g,
+          "(off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+        )
+        .replace(
+          /off_style_offball_ppp/g,
+          "(off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp  + off_style_post_kick_pct*off_style_post_kick_ppp + off_style_high_low_pct*off_style_high_low_ppp  + off_style_pick_pop_pct*off_style_pick_pop_ppp) / (off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct  + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+        )
+        .replace(
+          /off_style_frontcourt_pct/g,
+          "(off_style_post_up_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+        )
+        .replace(
+          /off_style_frontcourt_ppp/g,
+          "(off_style_post_up_pct*off_style_post_up_ppp + off_style_big_cut_roll_pct*off_style_big_cut_roll_ppp + off_style_post_kick_pct*off_style_post_kick_ppp + off_style_high_low_pct*off_style_high_low_ppp + off_style_pick_pop_pct*off_style_pick_pop_ppp)/(off_style_post_up_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+        )
+        .replace(
+          /off_style_backcourt_pct/g,
+          "(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct) /(off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_post_up_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct + off_style_big_cut_roll_pct + off_style_post_kick_pct + off_style_high_low_pct + off_style_pick_pop_pct)",
+        )
+        .replace(
+          /off_style_backcourt_ppp/g,
+          "(off_style_rim_attack_pct*off_style_rim_attack_ppp + off_style_dribble_jumper_pct*off_style_dribble_jumper_ppp + off_style_mid_range_pct*off_style_mid_range_ppp + off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct)",
+        )
+    );
+  }
+
   /** "Clever" replacements that happen after singleYearfixObjectFormat */
   static advancedSingleYearPreFieldReplacements(s: string) {
     // On-Ball
@@ -1111,6 +1167,7 @@ export class AdvancedFilterUtils {
       AdvancedFilterUtils.fixBoolOps,
       AdvancedFilterUtils.avoidAssigmentOperator,
       AdvancedFilterUtils.fieldReplacements,
+      AdvancedFilterUtils.advancedTeamPreFieldReplacements,
       AdvancedFilterUtils.teamFixObjectFormat,
       AdvancedFilterUtils.gradeConvert,
       AdvancedFilterUtils.convertPercentages,
@@ -1572,18 +1629,25 @@ export class AdvancedFilterUtils {
 
   /** Team explorer CSV logic */
   static generateTeamExplorerCsv = (
+    filterStr: string,
     inData: any[],
     divStats?: (year: string) => DivisionStatistics | undefined,
   ): [string, string[]] => {
-    const headerFields = divStats
-      ? _.drop(
-          AdvancedFilterUtils.teamExplorerAutocomplete,
-          AdvancedFilterUtils.operators.length,
-        )
-      : AdvancedFilterUtils.teamExplorerMetadata.concat(
-          AdvancedFilterUtils.teamExplorerGradedStats,
-        );
-
+    const headerFields = (
+      divStats
+        ? _.drop(
+            AdvancedFilterUtils.teamExplorerAutocomplete,
+            AdvancedFilterUtils.operators.length,
+          )
+        : AdvancedFilterUtils.teamExplorerMetadata.concat(
+            AdvancedFilterUtils.teamExplorerGradedStats,
+          )
+    ).concat(
+      // Currently only include these if specified
+      AdvancedFilterUtils.advancedSingleYearFields.filter((f) =>
+        filterStr.includes(f),
+      ),
+    );
     const rawExpressionString = headerFields.join(" , ");
     const expressionString = AdvancedFilterUtils.tidyTeamExplorerClauses(
       `JSON.stringify([ ${rawExpressionString} ])`,
