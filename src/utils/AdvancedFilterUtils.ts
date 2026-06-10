@@ -742,9 +742,11 @@ export class AdvancedFilterUtils {
 
   /** Have a list of these since we don't currently default to them (TODO: should do later?) */
   static readonly advancedSingleYearFields = [
+    //(player only)
     "def_onball_delta",
-    "off_style_halfcourt_pct",
     "off_style_total_halfcourt_pct",
+    //(player and team - except team doesn't have "_usg")
+    "off_style_halfcourt_pct",
     "off_style_halfcourt_usg",
     "off_style_halfcourt_ppp",
     "off_style_onball_pct",
@@ -758,6 +760,17 @@ export class AdvancedFilterUtils {
     "off_style_frontcourt_ppp",
     "off_style_backcourt_pct",
     "off_style_backcourt_ppp",
+    // (defense: team only)
+    "def_style_frontcourt_pct",
+    "def_style_frontcourt_ppp",
+    "def_style_backcourt_pct",
+    "def_style_backcourt_ppp",
+    "def_style_halfcourt_pct",
+    "def_style_halfcourt_ppp",
+    "def_style_onball_pct",
+    "def_style_onball_ppp",
+    "def_style_offball_pct",
+    "def_style_offball_ppp",
   ];
 
   /** "Clever" replacements that happen after singleYearfixObjectFormat */
@@ -814,6 +827,47 @@ export class AdvancedFilterUtils {
         .replace(
           /off_style_backcourt_ppp/g,
           "(off_style_rim_attack_pct*off_style_rim_attack_ppp + off_style_dribble_jumper_pct*off_style_dribble_jumper_ppp + off_style_mid_range_pct*off_style_mid_range_ppp + off_style_attack_kick_pct*off_style_attack_kick_ppp + off_style_perimeter_cut_pct*off_style_perimeter_cut_ppp) / (off_style_rim_attack_pct + off_style_dribble_jumper_pct + off_style_mid_range_pct + off_style_attack_kick_pct + off_style_perimeter_cut_pct)",
+        )
+        // defense:
+        .replace(
+          /def_style_halfcourt_pct/g,
+          "(1 - def_style_transition_pct - def_style_reb_scramble_pct)",
+        )
+        .replace(
+          /def_style_halfcourt_ppp/g,
+          "(def_style_onball_pct*def_style_onball_ppp + def_style_offball_pct*def_style_offball_ppp)/(def_style_onball_pct + def_style_offball_pct)",
+        )
+        .replace(
+          /def_style_onball_pct/g,
+          "(def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_post_up_pct) / (def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_post_up_pct + def_style_attack_kick_pct + def_style_perimeter_cut_pct + def_style_big_cut_roll_pct + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct)",
+        )
+        .replace(
+          /def_style_onball_ppp/g,
+          "(def_style_rim_attack_pct*def_style_rim_attack_ppp + def_style_dribble_jumper_pct*def_style_dribble_jumper_ppp + def_style_mid_range_pct*def_style_mid_range_ppp + def_style_post_up_pct*def_style_post_up_ppp)/(def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_post_up_pct)",
+        )
+        .replace(
+          /def_style_offball_pct/g,
+          "(def_style_attack_kick_pct + def_style_perimeter_cut_pct + def_style_big_cut_roll_pct  + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct) /(def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_post_up_pct + def_style_attack_kick_pct + def_style_perimeter_cut_pct + def_style_big_cut_roll_pct + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct)",
+        )
+        .replace(
+          /def_style_offball_ppp/g,
+          "(def_style_attack_kick_pct*def_style_attack_kick_ppp + def_style_perimeter_cut_pct*def_style_perimeter_cut_ppp + def_style_big_cut_roll_pct*def_style_big_cut_roll_ppp  + def_style_post_kick_pct*def_style_post_kick_ppp + def_style_high_low_pct*def_style_high_low_ppp  + def_style_pick_pop_pct*def_style_pick_pop_ppp) / (def_style_attack_kick_pct + def_style_perimeter_cut_pct + def_style_big_cut_roll_pct  + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct)",
+        )
+        .replace(
+          /def_style_frontcourt_pct/g,
+          "(def_style_post_up_pct + def_style_big_cut_roll_pct + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct) / (def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_post_up_pct + def_style_attack_kick_pct + def_style_perimeter_cut_pct + def_style_big_cut_roll_pct + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct)",
+        )
+        .replace(
+          /def_style_frontcourt_ppp/g,
+          "(def_style_post_up_pct*def_style_post_up_ppp + def_style_big_cut_roll_pct*def_style_big_cut_roll_ppp + def_style_post_kick_pct*def_style_post_kick_ppp + def_style_high_low_pct*def_style_high_low_ppp + def_style_pick_pop_pct*def_style_pick_pop_ppp)/(def_style_post_up_pct + def_style_big_cut_roll_pct + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct)",
+        )
+        .replace(
+          /def_style_backcourt_pct/g,
+          "(def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_attack_kick_pct + def_style_perimeter_cut_pct) /(def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_post_up_pct + def_style_attack_kick_pct + def_style_perimeter_cut_pct + def_style_big_cut_roll_pct + def_style_post_kick_pct + def_style_high_low_pct + def_style_pick_pop_pct)",
+        )
+        .replace(
+          /def_style_backcourt_ppp/g,
+          "(def_style_rim_attack_pct*def_style_rim_attack_ppp + def_style_dribble_jumper_pct*def_style_dribble_jumper_ppp + def_style_mid_range_pct*def_style_mid_range_ppp + def_style_attack_kick_pct*def_style_attack_kick_ppp + def_style_perimeter_cut_pct*def_style_perimeter_cut_ppp) / (def_style_rim_attack_pct + def_style_dribble_jumper_pct + def_style_mid_range_pct + def_style_attack_kick_pct + def_style_perimeter_cut_pct)",
         )
     );
   }
